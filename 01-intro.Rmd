@@ -2093,6 +2093,7 @@ plot(x,y, type="s", lwd=2, col="blue",
 ### Função de distribuição empírica
 
 ```{r}
+library(latex2exp)
 # Definir os parâmetros da distribuição de Poisson
 lambda <- 5
 
@@ -2107,6 +2108,12 @@ plot(Fn, main=TeX("Função de Distribuição Empírica da $Poisson(lambda = 5)$
 
 # OU
 #plot.ecdf(dados)
+
+plot(Fn, main="Função de Distribuição Empírica",
+     xlab="x",
+     ylab="Fn",
+     col="blue",
+     verticals = TRUE)
 ```
 
 **Cálculo de probabilidades**: Seja $X\sim\text{Poisson}(\lambda=5)$.
@@ -2449,5 +2456,6 @@ plot(Fn, main="Função de Distribuição Empírica",
      xlab="x",
      ylab="Fn",
      col="blue")
+
 ```
 
