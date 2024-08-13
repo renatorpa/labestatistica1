@@ -486,36 +486,36 @@ div.csl-indent {
 <div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="matriz-e-array.html#cb335-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">12</span>),<span class="at">nrow=</span><span class="dv">4</span>)</span>
 <span id="cb335-2"><a href="matriz-e-array.html#cb335-2" tabindex="-1"></a>x</span></code></pre></div>
 <pre><code>##        [,1]   [,2]   [,3]
-## [1,] -0.421 -2.315  1.516
-## [2,] -0.544 -2.151  0.237
-## [3,] -1.279  0.727 -0.700
-## [4,] -1.198 -1.107 -0.449</code></pre>
+## [1,] -1.669 -0.418  0.821
+## [2,]  0.224 -1.123 -1.007
+## [3,]  1.372  1.835 -0.983
+## [4,]  0.538  0.144 -0.378</code></pre>
 <div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="matriz-e-array.html#cb337-1" tabindex="-1"></a><span class="fu">colnames</span>(x) <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;dados&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
 <span id="cb337-2"><a href="matriz-e-array.html#cb337-2" tabindex="-1"></a>x</span></code></pre></div>
 <pre><code>##      dados1 dados2 dados3
-## [1,] -0.421 -2.315  1.516
-## [2,] -0.544 -2.151  0.237
-## [3,] -1.279  0.727 -0.700
-## [4,] -1.198 -1.107 -0.449</code></pre>
+## [1,] -1.669 -0.418  0.821
+## [2,]  0.224 -1.123 -1.007
+## [3,]  1.372  1.835 -0.983
+## [4,]  0.538  0.144 -0.378</code></pre>
 <div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="matriz-e-array.html#cb339-1" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">15</span>),<span class="at">nrow=</span><span class="dv">5</span>)</span>
 <span id="cb339-2"><a href="matriz-e-array.html#cb339-2" tabindex="-1"></a>y </span></code></pre></div>
-<pre><code>##         [,1]    [,2]    [,3]
-## [1,] -0.7182 -0.5698  1.6951
-## [2,] -0.5619  1.1911 -1.3004
-## [3,] -0.0998 -0.0739 -0.0711
-## [4,] -0.9223  0.3967  0.4195
-## [5,] -0.2350  0.4604 -0.1827</code></pre>
+<pre><code>##        [,1]   [,2]   [,3]
+## [1,]  0.423  0.538  0.266
+## [2,] -1.500  0.989 -1.532
+## [3,]  0.501  1.080 -1.294
+## [4,]  0.612  1.686  1.790
+## [5,] -1.940 -1.797  0.260</code></pre>
 <div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="matriz-e-array.html#cb341-1" tabindex="-1"></a><span class="fu">colnames</span>(y) <span class="ot">&lt;-</span> LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(y)]</span>
 <span id="cb341-2"><a href="matriz-e-array.html#cb341-2" tabindex="-1"></a></span>
 <span id="cb341-3"><a href="matriz-e-array.html#cb341-3" tabindex="-1"></a><span class="fu">rownames</span>(y) <span class="ot">&lt;-</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(y)]</span>
 <span id="cb341-4"><a href="matriz-e-array.html#cb341-4" tabindex="-1"></a></span>
 <span id="cb341-5"><a href="matriz-e-array.html#cb341-5" tabindex="-1"></a>y</span></code></pre></div>
-<pre><code>##         A       B       C
-## a -0.7182 -0.5698  1.6951
-## b -0.5619  1.1911 -1.3004
-## c -0.0998 -0.0739 -0.0711
-## d -0.9223  0.3967  0.4195
-## e -0.2350  0.4604 -0.1827</code></pre>
+<pre><code>##        A      B      C
+## a  0.423  0.538  0.266
+## b -1.500  0.989 -1.532
+## c  0.501  1.080 -1.294
+## d  0.612  1.686  1.790
+## e -1.940 -1.797  0.260</code></pre>
 </div>
 <div id="multiplicação-de-matrizes" class="section level2 hasAnchor" number="10.4">
 <h2><span class="header-section-number">10.4</span> Multiplicação de matrizes<a href="matriz-e-array.html#multiplicação-de-matrizes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -523,11 +523,11 @@ div.csl-indent {
 <span id="cb343-2"><a href="matriz-e-array.html#cb343-2" tabindex="-1"></a>N<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">15</span>),<span class="at">nrow=</span><span class="dv">5</span>,<span class="at">ncol=</span><span class="dv">3</span>)</span>
 <span id="cb343-3"><a href="matriz-e-array.html#cb343-3" tabindex="-1"></a></span>
 <span id="cb343-4"><a href="matriz-e-array.html#cb343-4" tabindex="-1"></a>M<span class="sc">%*%</span>N</span></code></pre></div>
-<pre><code>##        [,1]   [,2]  [,3]
-## [1,] -1.828 -1.372 4.886
-## [2,]  3.356  2.526 1.949
-## [3,]  0.998  0.735 4.640
-## [4,] -0.106  0.334 0.515</code></pre>
+<pre><code>##       [,1]   [,2]   [,3]
+## [1,]  1.25 -0.151  3.416
+## [2,]  1.90 -0.388  0.401
+## [3,]  3.23 -1.958 -1.352
+## [4,] -1.67  0.181  0.268</code></pre>
 </div>
 <div id="algumas-outras-funções" class="section level2 hasAnchor" number="10.5">
 <h2><span class="header-section-number">10.5</span> Algumas outras funções<a href="matriz-e-array.html#algumas-outras-funções" class="anchor-section" aria-label="Anchor link to header"></a></h2>
