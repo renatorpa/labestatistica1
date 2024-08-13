@@ -169,12 +169,7 @@ div.csl-indent {
 <li><a href="./">A Minimal Book Example</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a>
-<ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#usage"><i class="fa fa-check"></i><b>1.1</b> Usage</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#render-book"><i class="fa fa-check"></i><b>1.2</b> Render book</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#preview-book"><i class="fa fa-check"></i><b>1.3</b> Preview book</a></li>
-</ul></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prefácio</a></li>
 <li class="chapter" data-level="2" data-path="r-e-rstudio.html"><a href="r-e-rstudio.html"><i class="fa fa-check"></i><b>2</b> R e RStudio</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="r-e-rstudio.html"><a href="r-e-rstudio.html#instalação-e-funcionalidades-básicas"><i class="fa fa-check"></i><b>2.1</b> Instalação e funcionalidades básicas</a></li>
@@ -324,6 +319,7 @@ div.csl-indent {
 <li class="chapter" data-level="19.6.5" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-4"><i class="fa fa-check"></i><b>19.6.5</b> Função de distribuição</a></li>
 <li class="chapter" data-level="19.6.6" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-5"><i class="fa fa-check"></i><b>19.6.6</b> Função de distribuição empírica</a></li>
 </ul></li>
+<li class="chapter" data-level="19.7" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#exercícios"><i class="fa fa-check"></i><b>19.7</b> Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="20" data-path="cross.html"><a href="cross.html"><i class="fa fa-check"></i><b>20</b> Cross-references</a>
 <ul>
@@ -376,12 +372,12 @@ div.csl-indent {
 <li><p>São reutilizáveis e podem ser chamadas várias vezes dentro de um script.</p></li>
 <li><p>Podem ser passados dados para uma função, conhecidos como parâmetros ou argumentos.</p></li>
 </ul>
-<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="funções.html#cb421-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
-<span id="cb421-2"><a href="funções.html#cb421-2" tabindex="-1"></a>nome_da_funcao <span class="ot">&lt;-</span> <span class="cf">function</span>(argumentos) {</span>
-<span id="cb421-3"><a href="funções.html#cb421-3" tabindex="-1"></a>  <span class="co"># Código da função</span></span>
-<span id="cb421-4"><a href="funções.html#cb421-4" tabindex="-1"></a>  resultado <span class="ot">&lt;-</span> ... <span class="co"># Cálculos ou operações</span></span>
-<span id="cb421-5"><a href="funções.html#cb421-5" tabindex="-1"></a>  <span class="fu">return</span>(resultado) <span class="co"># Retorno do valor</span></span>
-<span id="cb421-6"><a href="funções.html#cb421-6" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="funções.html#cb419-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
+<span id="cb419-2"><a href="funções.html#cb419-2" tabindex="-1"></a>nome_da_funcao <span class="ot">&lt;-</span> <span class="cf">function</span>(argumentos) {</span>
+<span id="cb419-3"><a href="funções.html#cb419-3" tabindex="-1"></a>  <span class="co"># Código da função</span></span>
+<span id="cb419-4"><a href="funções.html#cb419-4" tabindex="-1"></a>  resultado <span class="ot">&lt;-</span> ... <span class="co"># Cálculos ou operações</span></span>
+<span id="cb419-5"><a href="funções.html#cb419-5" tabindex="-1"></a>  <span class="fu">return</span>(resultado) <span class="co"># Retorno do valor</span></span>
+<span id="cb419-6"><a href="funções.html#cb419-6" tabindex="-1"></a>}</span></code></pre></div>
 <ul>
 <li><p><strong>Nome da Função</strong>: Identificador da função.</p></li>
 <li><p><strong>Argumentos</strong>: Valores de entrada para a função.</p></li>
@@ -390,81 +386,81 @@ div.csl-indent {
 </ul>
 <p>As funções como objetivo principal a modularização (dividir o código em partes menores e gerenciáveis) e a reutilização de código, facilitando a organização e a legibilidade dos scripts. Ao encapsular um bloco de código em uma função, podemos executá-lo múltiplas vezes com diferentes parâmetros, reduzindo a redundância e o tempo de desenvolvimento.</p>
 <p><strong>Exemplo:</strong> Função para calcular a área de um objeto retangular</p>
-<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="funções.html#cb422-1" tabindex="-1"></a>calcula_area <span class="ot">&lt;-</span> <span class="cf">function</span>(largura, altura) {</span>
-<span id="cb422-2"><a href="funções.html#cb422-2" tabindex="-1"></a>  area <span class="ot">&lt;-</span> largura <span class="sc">*</span> altura</span>
-<span id="cb422-3"><a href="funções.html#cb422-3" tabindex="-1"></a>  <span class="fu">return</span>(area)</span>
-<span id="cb422-4"><a href="funções.html#cb422-4" tabindex="-1"></a>}</span>
-<span id="cb422-5"><a href="funções.html#cb422-5" tabindex="-1"></a></span>
-<span id="cb422-6"><a href="funções.html#cb422-6" tabindex="-1"></a>largura_obj <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">readline</span>(<span class="st">&quot;Insira a largura (em cm): &quot;</span>))</span>
-<span id="cb422-7"><a href="funções.html#cb422-7" tabindex="-1"></a>altura_obj <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">readline</span>(<span class="st">&quot;Insira a altura (em cm): &quot;</span>))</span>
-<span id="cb422-8"><a href="funções.html#cb422-8" tabindex="-1"></a></span>
-<span id="cb422-9"><a href="funções.html#cb422-9" tabindex="-1"></a><span class="co"># Chamada da função</span></span>
-<span id="cb422-10"><a href="funções.html#cb422-10" tabindex="-1"></a>area_obj <span class="ot">&lt;-</span> <span class="fu">calcula_area</span>(largura_obj, altura_obj) </span>
-<span id="cb422-11"><a href="funções.html#cb422-11" tabindex="-1"></a></span>
-<span id="cb422-12"><a href="funções.html#cb422-12" tabindex="-1"></a><span class="fu">print</span>(area_obj)</span></code></pre></div>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="funções.html#cb420-1" tabindex="-1"></a>calcula_area <span class="ot">&lt;-</span> <span class="cf">function</span>(largura, altura) {</span>
+<span id="cb420-2"><a href="funções.html#cb420-2" tabindex="-1"></a>  area <span class="ot">&lt;-</span> largura <span class="sc">*</span> altura</span>
+<span id="cb420-3"><a href="funções.html#cb420-3" tabindex="-1"></a>  <span class="fu">return</span>(area)</span>
+<span id="cb420-4"><a href="funções.html#cb420-4" tabindex="-1"></a>}</span>
+<span id="cb420-5"><a href="funções.html#cb420-5" tabindex="-1"></a></span>
+<span id="cb420-6"><a href="funções.html#cb420-6" tabindex="-1"></a>largura_obj <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">readline</span>(<span class="st">&quot;Insira a largura (em cm): &quot;</span>))</span>
+<span id="cb420-7"><a href="funções.html#cb420-7" tabindex="-1"></a>altura_obj <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">readline</span>(<span class="st">&quot;Insira a altura (em cm): &quot;</span>))</span>
+<span id="cb420-8"><a href="funções.html#cb420-8" tabindex="-1"></a></span>
+<span id="cb420-9"><a href="funções.html#cb420-9" tabindex="-1"></a><span class="co"># Chamada da função</span></span>
+<span id="cb420-10"><a href="funções.html#cb420-10" tabindex="-1"></a>area_obj <span class="ot">&lt;-</span> <span class="fu">calcula_area</span>(largura_obj, altura_obj) </span>
+<span id="cb420-11"><a href="funções.html#cb420-11" tabindex="-1"></a></span>
+<span id="cb420-12"><a href="funções.html#cb420-12" tabindex="-1"></a><span class="fu">print</span>(area_obj)</span></code></pre></div>
 <ul>
 <li><p><strong>Variáveis locais</strong>: As variáveis <code>largura</code> e <code>altura</code> são locais. Estas variáveis só existem quando a função está a ser executada. Quando a execução da função termina, as variáveis locais são destruídas.</p></li>
 <li><p><strong>Variáveis globais</strong>: As variáveis <code>largura_obj</code> e <code>altura_obj</code> são variáveis globais. Estas variáveis são acessíveis a todo o script e representam a largura e altura do objeto inserido pelo utilizador.</p></li>
 <li><p>As variáveis locais e globais devem ter nomes <strong>diferentes</strong> para que o código seja mais legível.</p></li>
 </ul>
 <p><strong>Passagem de argumento: valores de argumentos por omissão (default)</strong></p>
-<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="funções.html#cb423-1" tabindex="-1"></a>calcula_area <span class="ot">&lt;-</span> <span class="cf">function</span>(largura, <span class="at">altura=</span><span class="dv">2</span>) { </span>
-<span id="cb423-2"><a href="funções.html#cb423-2" tabindex="-1"></a>  area <span class="ot">&lt;-</span> largura <span class="sc">*</span> altura  </span>
-<span id="cb423-3"><a href="funções.html#cb423-3" tabindex="-1"></a>  <span class="fu">return</span>(area)</span>
-<span id="cb423-4"><a href="funções.html#cb423-4" tabindex="-1"></a>}</span>
-<span id="cb423-5"><a href="funções.html#cb423-5" tabindex="-1"></a><span class="co"># Chamada da função</span></span>
-<span id="cb423-6"><a href="funções.html#cb423-6" tabindex="-1"></a></span>
-<span id="cb423-7"><a href="funções.html#cb423-7" tabindex="-1"></a>area_obj <span class="ot">&lt;-</span> <span class="fu">calcula_area</span>(<span class="dv">4</span>) </span>
-<span id="cb423-8"><a href="funções.html#cb423-8" tabindex="-1"></a></span>
-<span id="cb423-9"><a href="funções.html#cb423-9" tabindex="-1"></a><span class="fu">print</span>(area_obj)</span></code></pre></div>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="funções.html#cb421-1" tabindex="-1"></a>calcula_area <span class="ot">&lt;-</span> <span class="cf">function</span>(largura, <span class="at">altura=</span><span class="dv">2</span>) { </span>
+<span id="cb421-2"><a href="funções.html#cb421-2" tabindex="-1"></a>  area <span class="ot">&lt;-</span> largura <span class="sc">*</span> altura  </span>
+<span id="cb421-3"><a href="funções.html#cb421-3" tabindex="-1"></a>  <span class="fu">return</span>(area)</span>
+<span id="cb421-4"><a href="funções.html#cb421-4" tabindex="-1"></a>}</span>
+<span id="cb421-5"><a href="funções.html#cb421-5" tabindex="-1"></a><span class="co"># Chamada da função</span></span>
+<span id="cb421-6"><a href="funções.html#cb421-6" tabindex="-1"></a></span>
+<span id="cb421-7"><a href="funções.html#cb421-7" tabindex="-1"></a>area_obj <span class="ot">&lt;-</span> <span class="fu">calcula_area</span>(<span class="dv">4</span>) </span>
+<span id="cb421-8"><a href="funções.html#cb421-8" tabindex="-1"></a></span>
+<span id="cb421-9"><a href="funções.html#cb421-9" tabindex="-1"></a><span class="fu">print</span>(area_obj)</span></code></pre></div>
 <pre><code>## [1] 8</code></pre>
 <ul>
 <li><p>Caso a altura seja omitida é considerada por definição o valor 2.</p></li>
 <li><p>Como a altura foi omitida o cálculo da área será 4*2</p></li>
 </ul>
-<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="funções.html#cb425-1" tabindex="-1"></a>calcula_area <span class="ot">&lt;-</span> <span class="cf">function</span>(largura, <span class="at">altura=</span><span class="dv">2</span>) { </span>
-<span id="cb425-2"><a href="funções.html#cb425-2" tabindex="-1"></a>        area <span class="ot">&lt;-</span> largura <span class="sc">*</span> altura  </span>
-<span id="cb425-3"><a href="funções.html#cb425-3" tabindex="-1"></a>        <span class="fu">return</span>(area)</span>
-<span id="cb425-4"><a href="funções.html#cb425-4" tabindex="-1"></a>}</span>
-<span id="cb425-5"><a href="funções.html#cb425-5" tabindex="-1"></a></span>
-<span id="cb425-6"><a href="funções.html#cb425-6" tabindex="-1"></a><span class="co"># Chamada da função</span></span>
-<span id="cb425-7"><a href="funções.html#cb425-7" tabindex="-1"></a>area_obj <span class="ot">&lt;-</span> <span class="fu">calcula_area</span>(<span class="at">altura=</span><span class="dv">4</span>,<span class="at">largura=</span><span class="dv">3</span>) </span>
-<span id="cb425-8"><a href="funções.html#cb425-8" tabindex="-1"></a>    </span>
-<span id="cb425-9"><a href="funções.html#cb425-9" tabindex="-1"></a><span class="fu">print</span>(area_obj)</span></code></pre></div>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="funções.html#cb423-1" tabindex="-1"></a>calcula_area <span class="ot">&lt;-</span> <span class="cf">function</span>(largura, <span class="at">altura=</span><span class="dv">2</span>) { </span>
+<span id="cb423-2"><a href="funções.html#cb423-2" tabindex="-1"></a>        area <span class="ot">&lt;-</span> largura <span class="sc">*</span> altura  </span>
+<span id="cb423-3"><a href="funções.html#cb423-3" tabindex="-1"></a>        <span class="fu">return</span>(area)</span>
+<span id="cb423-4"><a href="funções.html#cb423-4" tabindex="-1"></a>}</span>
+<span id="cb423-5"><a href="funções.html#cb423-5" tabindex="-1"></a></span>
+<span id="cb423-6"><a href="funções.html#cb423-6" tabindex="-1"></a><span class="co"># Chamada da função</span></span>
+<span id="cb423-7"><a href="funções.html#cb423-7" tabindex="-1"></a>area_obj <span class="ot">&lt;-</span> <span class="fu">calcula_area</span>(<span class="at">altura=</span><span class="dv">4</span>,<span class="at">largura=</span><span class="dv">3</span>) </span>
+<span id="cb423-8"><a href="funções.html#cb423-8" tabindex="-1"></a>    </span>
+<span id="cb423-9"><a href="funções.html#cb423-9" tabindex="-1"></a><span class="fu">print</span>(area_obj)</span></code></pre></div>
 <pre><code>## [1] 12</code></pre>
 <ul>
 <li>Se os argumentos forem passados por palavra chave, a ordem dos argumentos pode ser trocada.</li>
 </ul>
 <p><strong>Exemplo:</strong></p>
-<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="funções.html#cb427-1" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb427-2"><a href="funções.html#cb427-2" tabindex="-1"></a>  <span class="cf">if</span> (x <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
-<span id="cb427-3"><a href="funções.html#cb427-3" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">&quot;Erro: x não pode ser negativo&quot;</span>)  <span class="co"># Interrompe a função com uma mensagem de erro</span></span>
-<span id="cb427-4"><a href="funções.html#cb427-4" tabindex="-1"></a>  }</span>
-<span id="cb427-5"><a href="funções.html#cb427-5" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">sqrt</span>(x))</span>
-<span id="cb427-6"><a href="funções.html#cb427-6" tabindex="-1"></a>}</span>
-<span id="cb427-7"><a href="funções.html#cb427-7" tabindex="-1"></a></span>
-<span id="cb427-8"><a href="funções.html#cb427-8" tabindex="-1"></a><span class="fu">f</span>(<span class="sc">-</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="funções.html#cb425-1" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb425-2"><a href="funções.html#cb425-2" tabindex="-1"></a>  <span class="cf">if</span> (x <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
+<span id="cb425-3"><a href="funções.html#cb425-3" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">&quot;Erro: x não pode ser negativo&quot;</span>)  <span class="co"># Interrompe a função com uma mensagem de erro</span></span>
+<span id="cb425-4"><a href="funções.html#cb425-4" tabindex="-1"></a>  }</span>
+<span id="cb425-5"><a href="funções.html#cb425-5" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">sqrt</span>(x))</span>
+<span id="cb425-6"><a href="funções.html#cb425-6" tabindex="-1"></a>}</span>
+<span id="cb425-7"><a href="funções.html#cb425-7" tabindex="-1"></a></span>
+<span id="cb425-8"><a href="funções.html#cb425-8" tabindex="-1"></a><span class="fu">f</span>(<span class="sc">-</span><span class="dv">2</span>)</span></code></pre></div>
 <ul>
 <li><p>O <code>stop</code> é usado para interromper a execução de uma função ou de um script, gerando um erro.</p></li>
 <li><p>Ele pode ser usado em qualquer lugar do código, dentro ou fora de loops, para gerar um erro e parar a execução do código.</p></li>
 <li><p>Quando <code>stop</code> é chamado, ele pode exibir uma mensagem de erro personalizada, e a execução do script ou função é completamente interrompida.</p></li>
 </ul>
 <p><strong>Exercício 1:</strong> Qual será o output do script abaixo?</p>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="funções.html#cb428-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span>  </span>
-<span id="cb428-2"><a href="funções.html#cb428-2" tabindex="-1"></a></span>
-<span id="cb428-3"><a href="funções.html#cb428-3" tabindex="-1"></a>minha_funcao <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb428-4"><a href="funções.html#cb428-4" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="dv">5</span>  </span>
-<span id="cb428-5"><a href="funções.html#cb428-5" tabindex="-1"></a>    <span class="fu">return</span>(x)</span>
-<span id="cb428-6"><a href="funções.html#cb428-6" tabindex="-1"></a>}</span>
-<span id="cb428-7"><a href="funções.html#cb428-7" tabindex="-1"></a></span>
-<span id="cb428-8"><a href="funções.html#cb428-8" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">minha_funcao</span>()) </span>
-<span id="cb428-9"><a href="funções.html#cb428-9" tabindex="-1"></a><span class="fu">print</span>(x) </span></code></pre></div>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="funções.html#cb426-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span>  </span>
+<span id="cb426-2"><a href="funções.html#cb426-2" tabindex="-1"></a></span>
+<span id="cb426-3"><a href="funções.html#cb426-3" tabindex="-1"></a>minha_funcao <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb426-4"><a href="funções.html#cb426-4" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="dv">5</span>  </span>
+<span id="cb426-5"><a href="funções.html#cb426-5" tabindex="-1"></a>    <span class="fu">return</span>(x)</span>
+<span id="cb426-6"><a href="funções.html#cb426-6" tabindex="-1"></a>}</span>
+<span id="cb426-7"><a href="funções.html#cb426-7" tabindex="-1"></a></span>
+<span id="cb426-8"><a href="funções.html#cb426-8" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">minha_funcao</span>()) </span>
+<span id="cb426-9"><a href="funções.html#cb426-9" tabindex="-1"></a><span class="fu">print</span>(x) </span></code></pre></div>
 <p><strong>Exercício 2:</strong> Qual é o resultado da chamada da função <code>dados_estudante</code>?</p>
-<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="funções.html#cb429-1" tabindex="-1"></a>dados_estudante <span class="ot">&lt;-</span> <span class="cf">function</span>(nome, <span class="at">altura=</span><span class="dv">167</span>){</span>
-<span id="cb429-2"><a href="funções.html#cb429-2" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;O(A) estudante&quot;</span>,nome,<span class="st">&quot;tem&quot;</span>,altura,<span class="st">&quot;centímetros de altura.&quot;</span>))</span>
-<span id="cb429-3"><a href="funções.html#cb429-3" tabindex="-1"></a>}</span>
-<span id="cb429-4"><a href="funções.html#cb429-4" tabindex="-1"></a></span>
-<span id="cb429-5"><a href="funções.html#cb429-5" tabindex="-1"></a><span class="fu">dados_estudante</span>(<span class="st">&quot;Joana&quot;</span>,<span class="dv">160</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="funções.html#cb427-1" tabindex="-1"></a>dados_estudante <span class="ot">&lt;-</span> <span class="cf">function</span>(nome, <span class="at">altura=</span><span class="dv">167</span>){</span>
+<span id="cb427-2"><a href="funções.html#cb427-2" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;O(A) estudante&quot;</span>,nome,<span class="st">&quot;tem&quot;</span>,altura,<span class="st">&quot;centímetros de altura.&quot;</span>))</span>
+<span id="cb427-3"><a href="funções.html#cb427-3" tabindex="-1"></a>}</span>
+<span id="cb427-4"><a href="funções.html#cb427-4" tabindex="-1"></a></span>
+<span id="cb427-5"><a href="funções.html#cb427-5" tabindex="-1"></a><span class="fu">dados_estudante</span>(<span class="st">&quot;Joana&quot;</span>,<span class="dv">160</span>)</span></code></pre></div>
 <p><strong>Exercício 3:</strong> Qual é a sintaxe correta para definir uma função em R que soma dois números?</p>
 <ol style="list-style-type: lower-alpha">
 <li><p><code>sum &lt;- function(x, y) \{return(x + y)\}</code></p></li>
@@ -473,22 +469,22 @@ div.csl-indent {
 <li><p><code>sum(x, y) = function \{return(x + y)\}</code></p></li>
 </ol>
 <p><strong>Exercício 4:</strong> Qual das seguintes chamadas à função estão corretas?</p>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="funções.html#cb430-1" tabindex="-1"></a>dados_estudante <span class="ot">&lt;-</span> <span class="cf">function</span>(nome, <span class="at">altura=</span><span class="dv">167</span>) {</span>
-<span id="cb430-2"><a href="funções.html#cb430-2" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;O(A) estudante&quot;</span>,nome,<span class="st">&quot;tem&quot;</span>,altura,<span class="st">&quot;centímetros de altura.&quot;</span>))</span>
-<span id="cb430-3"><a href="funções.html#cb430-3" tabindex="-1"></a>}</span>
-<span id="cb430-4"><a href="funções.html#cb430-4" tabindex="-1"></a></span>
-<span id="cb430-5"><a href="funções.html#cb430-5" tabindex="-1"></a><span class="fu">dados_estudante</span>(<span class="st">&quot;Joana&quot;</span>,<span class="dv">160</span>)</span>
-<span id="cb430-6"><a href="funções.html#cb430-6" tabindex="-1"></a><span class="fu">dados_estudante</span>(<span class="at">altura=</span><span class="dv">160</span>, <span class="at">nome=</span><span class="st">&quot;Joana&quot;</span>)</span>
-<span id="cb430-7"><a href="funções.html#cb430-7" tabindex="-1"></a><span class="fu">dados_estudante</span>(<span class="at">nome =</span> <span class="st">&quot;Joana&quot;</span>, <span class="dv">160</span>)</span>
-<span id="cb430-8"><a href="funções.html#cb430-8" tabindex="-1"></a><span class="fu">dados_estudante</span>(<span class="at">altura=</span><span class="dv">160</span>, <span class="st">&quot;Joana&quot;</span>)</span>
-<span id="cb430-9"><a href="funções.html#cb430-9" tabindex="-1"></a><span class="fu">dados_estudante</span>(<span class="dv">160</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="funções.html#cb428-1" tabindex="-1"></a>dados_estudante <span class="ot">&lt;-</span> <span class="cf">function</span>(nome, <span class="at">altura=</span><span class="dv">167</span>) {</span>
+<span id="cb428-2"><a href="funções.html#cb428-2" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;O(A) estudante&quot;</span>,nome,<span class="st">&quot;tem&quot;</span>,altura,<span class="st">&quot;centímetros de altura.&quot;</span>))</span>
+<span id="cb428-3"><a href="funções.html#cb428-3" tabindex="-1"></a>}</span>
+<span id="cb428-4"><a href="funções.html#cb428-4" tabindex="-1"></a></span>
+<span id="cb428-5"><a href="funções.html#cb428-5" tabindex="-1"></a><span class="fu">dados_estudante</span>(<span class="st">&quot;Joana&quot;</span>,<span class="dv">160</span>)</span>
+<span id="cb428-6"><a href="funções.html#cb428-6" tabindex="-1"></a><span class="fu">dados_estudante</span>(<span class="at">altura=</span><span class="dv">160</span>, <span class="at">nome=</span><span class="st">&quot;Joana&quot;</span>)</span>
+<span id="cb428-7"><a href="funções.html#cb428-7" tabindex="-1"></a><span class="fu">dados_estudante</span>(<span class="at">nome =</span> <span class="st">&quot;Joana&quot;</span>, <span class="dv">160</span>)</span>
+<span id="cb428-8"><a href="funções.html#cb428-8" tabindex="-1"></a><span class="fu">dados_estudante</span>(<span class="at">altura=</span><span class="dv">160</span>, <span class="st">&quot;Joana&quot;</span>)</span>
+<span id="cb428-9"><a href="funções.html#cb428-9" tabindex="-1"></a><span class="fu">dados_estudante</span>(<span class="dv">160</span>)</span></code></pre></div>
 <p><code>dados_estudante(160)</code> - Esta chamada está errada porque 160 será interpretado como nome, e altura usará seu valor padrão, 167. Isso resultará na impressão: <code>"O(A) estudante 160 tem 167 centímetros de altura."</code> A chamada está tecnicamente correta no sentido de sintaxe, mas o resultado não faz sentido lógico, já que 160 não é um nome válido para um estudante.</p>
 <p><strong>Exercício 5:</strong> Qual o resultado do seguinte programa?</p>
-<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="funções.html#cb431-1" tabindex="-1"></a>adi <span class="ot">&lt;-</span> <span class="cf">function</span>(a,b) {  </span>
-<span id="cb431-2"><a href="funções.html#cb431-2" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">c</span>(a<span class="sc">+</span><span class="dv">5</span>, b<span class="sc">+</span><span class="dv">5</span>))</span>
-<span id="cb431-3"><a href="funções.html#cb431-3" tabindex="-1"></a>}</span>
-<span id="cb431-4"><a href="funções.html#cb431-4" tabindex="-1"></a></span>
-<span id="cb431-5"><a href="funções.html#cb431-5" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> <span class="fu">adi</span>(<span class="dv">3</span>,<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="funções.html#cb429-1" tabindex="-1"></a>adi <span class="ot">&lt;-</span> <span class="cf">function</span>(a,b) {  </span>
+<span id="cb429-2"><a href="funções.html#cb429-2" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">c</span>(a<span class="sc">+</span><span class="dv">5</span>, b<span class="sc">+</span><span class="dv">5</span>))</span>
+<span id="cb429-3"><a href="funções.html#cb429-3" tabindex="-1"></a>}</span>
+<span id="cb429-4"><a href="funções.html#cb429-4" tabindex="-1"></a></span>
+<span id="cb429-5"><a href="funções.html#cb429-5" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> <span class="fu">adi</span>(<span class="dv">3</span>,<span class="dv">2</span>)</span></code></pre></div>
 </div>
             </section>
 
