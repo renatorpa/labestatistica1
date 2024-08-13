@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 6 Loop for | Introdução ao R</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 6 Loop for | Introdução ao R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 6 Loop for | Introdução ao R" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Renato de Paula" />
+
+
+<meta name="date" content="2024-08-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="loop-while.html"/>
+<link rel="next" href="família-xapply.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#usage"><i class="fa fa-check"></i><b>1.1</b> Usage</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#render-book"><i class="fa fa-check"></i><b>1.2</b> Render book</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#preview-book"><i class="fa fa-check"></i><b>1.3</b> Preview book</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="r-e-rstudio.html"><a href="r-e-rstudio.html"><i class="fa fa-check"></i><b>2</b> R e RStudio</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r-e-rstudio.html"><a href="r-e-rstudio.html#instalação-e-funcionalidades-básicas"><i class="fa fa-check"></i><b>2.1</b> Instalação e funcionalidades básicas</a></li>
+<li class="chapter" data-level="2.2" data-path="r-e-rstudio.html"><a href="r-e-rstudio.html#navegando-no-rstudio"><i class="fa fa-check"></i><b>2.2</b> Navegando no RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="r-como-uma-calculadora-e-operações-aritméticas.html"><a href="r-como-uma-calculadora-e-operações-aritméticas.html"><i class="fa fa-check"></i><b>3</b> R como uma calculadora e Operações Aritméticas</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="r-como-uma-calculadora-e-operações-aritméticas.html"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#o-prompt"><i class="fa fa-check"></i><b>3.1</b> O prompt</a></li>
+<li class="chapter" data-level="3.2" data-path="r-como-uma-calculadora-e-operações-aritméticas.html"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#o-que-é-uma-variável"><i class="fa fa-check"></i><b>3.2</b> O que é uma variável?</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="r-como-uma-calculadora-e-operações-aritméticas.html"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#atribuições"><i class="fa fa-check"></i><b>3.2.1</b> Atribuições</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="r-como-uma-calculadora-e-operações-aritméticas.html"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#regras-para-definição-de-variáveis"><i class="fa fa-check"></i><b>3.3</b> Regras para definição de variáveis</a></li>
+<li class="chapter" data-level="3.4" data-path="r-como-uma-calculadora-e-operações-aritméticas.html"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#tipos-de-dados"><i class="fa fa-check"></i><b>3.4</b> Tipos de dados</a></li>
+<li class="chapter" data-level="3.5" data-path="r-como-uma-calculadora-e-operações-aritméticas.html"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#comandos-importantes"><i class="fa fa-check"></i><b>3.5</b> Comandos importantes</a></li>
+<li class="chapter" data-level="3.6" data-path="r-como-uma-calculadora-e-operações-aritméticas.html"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#operadores-aritméticos-em-r"><i class="fa fa-check"></i><b>3.6</b> Operadores aritméticos em R</a></li>
+<li class="chapter" data-level="3.7" data-path="r-como-uma-calculadora-e-operações-aritméticas.html"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#quantidade-de-digitos"><i class="fa fa-check"></i><b>3.7</b> Quantidade de digitos</a></li>
+<li class="chapter" data-level="3.8" data-path="r-como-uma-calculadora-e-operações-aritméticas.html"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#infinito-indefinido-e-valores-ausentes"><i class="fa fa-check"></i><b>3.8</b> Infinito, indefinido e valores ausentes</a></li>
+<li class="chapter" data-level="3.9" data-path="r-como-uma-calculadora-e-operações-aritméticas.html"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#escrita-dinâmica"><i class="fa fa-check"></i><b>3.9</b> Escrita dinâmica</a></li>
+<li class="chapter" data-level="3.10" data-path="r-como-uma-calculadora-e-operações-aritméticas.html"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#conversão-entre-tipos-de-dados"><i class="fa fa-check"></i><b>3.10</b> Conversão entre tipos de dados</a></li>
+<li class="chapter" data-level="3.11" data-path="r-como-uma-calculadora-e-operações-aritméticas.html"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#funções-print-readline-paste-e-cat"><i class="fa fa-check"></i><b>3.11</b> Funções <code>print()</code>, <code>readline()</code>, <code>paste()</code> e <code>cat()</code></a></li>
+<li class="chapter" data-level="3.12" data-path="r-como-uma-calculadora-e-operações-aritméticas.html"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#operadores-lógicos-e-relacionais"><i class="fa fa-check"></i><b>3.12</b> Operadores Lógicos e Relacionais</a>
+<ul>
+<li class="chapter" data-level="3.12.1" data-path="r-como-uma-calculadora-e-operações-aritméticas.html"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#operadores-lógicos"><i class="fa fa-check"></i><b>3.12.1</b> Operadores Lógicos</a></li>
+<li class="chapter" data-level="3.12.2" data-path="r-como-uma-calculadora-e-operações-aritméticas.html"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#operadores-relacionais"><i class="fa fa-check"></i><b>3.12.2</b> Operadores Relacionais</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html"><i class="fa fa-check"></i><b>4</b> Estruturas de Seleção</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html#condicional-if"><i class="fa fa-check"></i><b>4.1</b> Condicional <code>if</code></a></li>
+<li class="chapter" data-level="4.2" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html#condicional-if...else"><i class="fa fa-check"></i><b>4.2</b> Condicional <code>if...else</code></a></li>
+<li class="chapter" data-level="4.3" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html#condicional-if...else-if...else"><i class="fa fa-check"></i><b>4.3</b> Condicional <code>if...else if...else</code></a></li>
+<li class="chapter" data-level="4.4" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html#a-função-ifelse"><i class="fa fa-check"></i><b>4.4</b> A função <code>ifelse()</code></a></li>
+<li class="chapter" data-level="4.5" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html#exemplos"><i class="fa fa-check"></i><b>4.5</b> Exemplos</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="loop-while.html"><a href="loop-while.html"><i class="fa fa-check"></i><b>5</b> Loop while</a></li>
+<li class="chapter" data-level="6" data-path="loop-for.html"><a href="loop-for.html"><i class="fa fa-check"></i><b>6</b> Loop for</a></li>
+<li class="chapter" data-level="7" data-path="família-xapply.html"><a href="família-xapply.html"><i class="fa fa-check"></i><b>7</b> Família <code>Xapply()</code></a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="família-xapply.html"><a href="família-xapply.html#função-apply"><i class="fa fa-check"></i><b>7.1</b> Função <code>apply()</code></a></li>
+<li class="chapter" data-level="7.2" data-path="família-xapply.html"><a href="família-xapply.html#função-lapply"><i class="fa fa-check"></i><b>7.2</b> Função <code>lapply()</code></a></li>
+<li class="chapter" data-level="7.3" data-path="família-xapply.html"><a href="família-xapply.html#função-sapply"><i class="fa fa-check"></i><b>7.3</b> Função <code>sapply()</code></a></li>
+<li class="chapter" data-level="7.4" data-path="família-xapply.html"><a href="família-xapply.html#função-tapply"><i class="fa fa-check"></i><b>7.4</b> Função <code>tapply()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html"><i class="fa fa-check"></i><b>8</b> Estrutura de Dados Básicas</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#vetor"><i class="fa fa-check"></i><b>8.1</b> Vetor</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#tipos-comuns-de-vetores"><i class="fa fa-check"></i><b>8.1.1</b> Tipos Comuns de Vetores</a></li>
+<li class="chapter" data-level="8.1.2" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#construindo-vetores"><i class="fa fa-check"></i><b>8.1.2</b> Construindo vetores</a></li>
+<li class="chapter" data-level="8.1.3" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#acesso-a-elementos-de-um-vetor"><i class="fa fa-check"></i><b>8.1.3</b> Acesso a Elementos de um Vetor</a></li>
+<li class="chapter" data-level="8.1.4" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#funções-comuns-para-vetores"><i class="fa fa-check"></i><b>8.1.4</b> Funções Comuns para Vetores</a></li>
+<li class="chapter" data-level="8.1.5" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#operações-com-vetores"><i class="fa fa-check"></i><b>8.1.5</b> Operações com Vetores</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="fatores.html"><a href="fatores.html"><i class="fa fa-check"></i><b>9</b> Fatores</a></li>
+<li class="chapter" data-level="10" data-path="matriz-e-array.html"><a href="matriz-e-array.html"><i class="fa fa-check"></i><b>10</b> Matriz e array</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="matriz-e-array.html"><a href="matriz-e-array.html#construindo-matrizes"><i class="fa fa-check"></i><b>10.1</b> Construindo matrizes</a></li>
+<li class="chapter" data-level="10.2" data-path="matriz-e-array.html"><a href="matriz-e-array.html#índice-e-índice-lógico"><i class="fa fa-check"></i><b>10.2</b> Índice e índice lógico</a></li>
+<li class="chapter" data-level="10.3" data-path="matriz-e-array.html"><a href="matriz-e-array.html#nomeando-linhas-e-colunas-numa-matriz"><i class="fa fa-check"></i><b>10.3</b> Nomeando linhas e colunas numa matriz</a></li>
+<li class="chapter" data-level="10.4" data-path="matriz-e-array.html"><a href="matriz-e-array.html#multiplicação-de-matrizes"><i class="fa fa-check"></i><b>10.4</b> Multiplicação de matrizes</a></li>
+<li class="chapter" data-level="10.5" data-path="matriz-e-array.html"><a href="matriz-e-array.html#algumas-outras-funções"><i class="fa fa-check"></i><b>10.5</b> Algumas outras funções</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="data-frame.html"><a href="data-frame.html"><i class="fa fa-check"></i><b>11</b> Data-frame</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="data-frame.html"><a href="data-frame.html#criando-um-data-frame"><i class="fa fa-check"></i><b>11.1</b> Criando um data frame</a></li>
+<li class="chapter" data-level="11.2" data-path="data-frame.html"><a href="data-frame.html#acessando-linhas-e-colunas"><i class="fa fa-check"></i><b>11.2</b> Acessando linhas e colunas</a></li>
+<li class="chapter" data-level="11.3" data-path="data-frame.html"><a href="data-frame.html#adicionando-e-removendo-colunas"><i class="fa fa-check"></i><b>11.3</b> Adicionando e removendo colunas</a></li>
+<li class="chapter" data-level="11.4" data-path="data-frame.html"><a href="data-frame.html#fundindo-dados"><i class="fa fa-check"></i><b>11.4</b> Fundindo dados</a></li>
+<li class="chapter" data-level="11.5" data-path="data-frame.html"><a href="data-frame.html#dimensão-informações-de-colunas-e-outros"><i class="fa fa-check"></i><b>11.5</b> Dimensão, informações de colunas e outros</a></li>
+<li class="chapter" data-level="11.6" data-path="data-frame.html"><a href="data-frame.html#a-função-subset"><i class="fa fa-check"></i><b>11.6</b> A função <code>subset()</code></a></li>
+<li class="chapter" data-level="11.7" data-path="data-frame.html"><a href="data-frame.html#a-função-summary"><i class="fa fa-check"></i><b>11.7</b> A função <code>summary()</code></a></li>
+<li class="chapter" data-level="11.8" data-path="data-frame.html"><a href="data-frame.html#valores-faltantes"><i class="fa fa-check"></i><b>11.8</b> Valores faltantes</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="listas.html"><a href="listas.html"><i class="fa fa-check"></i><b>12</b> Listas</a></li>
+<li class="chapter" data-level="13" data-path="funções.html"><a href="funções.html"><i class="fa fa-check"></i><b>13</b> Funções</a></li>
+<li class="chapter" data-level="14" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html"><i class="fa fa-check"></i><b>14</b> Leitura de Dados</a></li>
+<li class="chapter" data-level="15" data-path="manipulando-dados.html"><a href="manipulando-dados.html"><i class="fa fa-check"></i><b>15</b> Manipulando dados</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="manipulando-dados.html"><a href="manipulando-dados.html#tapply-aggregate-e-by"><i class="fa fa-check"></i><b>15.1</b> <code>tapply()</code>, <code>aggregate()</code> e <code>by()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="o-package-dplyr.html"><a href="o-package-dplyr.html"><i class="fa fa-check"></i><b>16</b> O package dplyr</a></li>
+<li class="chapter" data-level="17" data-path="gráficos-em-r.html"><a href="gráficos-em-r.html"><i class="fa fa-check"></i><b>17</b> Gráficos em R</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="gráficos-em-r.html"><a href="gráficos-em-r.html#gráfico-de-barras"><i class="fa fa-check"></i><b>17.1</b> Gráfico de Barras</a></li>
+<li class="chapter" data-level="17.2" data-path="gráficos-em-r.html"><a href="gráficos-em-r.html#gráfico-circular-pizza"><i class="fa fa-check"></i><b>17.2</b> Gráfico circular (pizza)</a></li>
+<li class="chapter" data-level="17.3" data-path="gráficos-em-r.html"><a href="gráficos-em-r.html#histograma"><i class="fa fa-check"></i><b>17.3</b> Histograma</a></li>
+<li class="chapter" data-level="17.4" data-path="gráficos-em-r.html"><a href="gráficos-em-r.html#box-plot"><i class="fa fa-check"></i><b>17.4</b> Box-plot</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="simulação.html"><a href="simulação.html"><i class="fa fa-check"></i><b>18</b> Simulação</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="simulação.html"><a href="simulação.html#geração-de-números-pseudoaleatórios"><i class="fa fa-check"></i><b>18.1</b> Geração de números pseudoaleatórios</a>
+<ul>
+<li class="chapter" data-level="18.1.1" data-path="simulação.html"><a href="simulação.html#a-função-sample"><i class="fa fa-check"></i><b>18.1.1</b> A função <code>sample()</code></a></li>
+<li class="chapter" data-level="18.1.2" data-path="simulação.html"><a href="simulação.html#método-da-transformada-inversa"><i class="fa fa-check"></i><b>18.1.2</b> Método da transformada inversa</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html"><i class="fa fa-check"></i><b>19</b> Distribuições univariadas no R</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica"><i class="fa fa-check"></i><b>19.1</b> Função de distribuição empírica</a>
+<ul>
+<li class="chapter" data-level="19.1.1" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-no-r-função-ecdf"><i class="fa fa-check"></i><b>19.1.1</b> Função de distribuição empírica no R, função <code>ecdf()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="19.2" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#gerando-uma-variável-aleatória-com-distribuição-binomial"><i class="fa fa-check"></i><b>19.2</b> Gerando uma variável aleatória com distribuição binomial</a>
+<ul>
+<li class="chapter" data-level="19.2.1" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#cálculo-de-probabilidades"><i class="fa fa-check"></i><b>19.2.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="19.2.2" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-massa-de-probabilidade-teórica"><i class="fa fa-check"></i><b>19.2.2</b> Função massa de probabilidade (teórica)</a></li>
+<li class="chapter" data-level="19.2.3" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-massa-de-probabilidade-simulação"><i class="fa fa-check"></i><b>19.2.3</b> Função massa de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="19.2.4" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#comparação"><i class="fa fa-check"></i><b>19.2.4</b> Comparação</a></li>
+<li class="chapter" data-level="19.2.5" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição"><i class="fa fa-check"></i><b>19.2.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="19.2.6" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-1"><i class="fa fa-check"></i><b>19.2.6</b> Função de distribuição empírica</a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#gerando-uma-variável-aleatória-com-distribuição-de-poisson"><i class="fa fa-check"></i><b>19.3</b> Gerando uma variável aleatória com distribuição de Poisson</a>
+<ul>
+<li class="chapter" data-level="19.3.1" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#cálculo-de-probabilidades-1"><i class="fa fa-check"></i><b>19.3.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="19.3.2" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-massa-de-probabilidade-teórica-1"><i class="fa fa-check"></i><b>19.3.2</b> Função massa de probabilidade (teórica)</a></li>
+<li class="chapter" data-level="19.3.3" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-massa-de-probabilidade-simulação-1"><i class="fa fa-check"></i><b>19.3.3</b> Função massa de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="19.3.4" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#comparação-1"><i class="fa fa-check"></i><b>19.3.4</b> Comparação</a></li>
+<li class="chapter" data-level="19.3.5" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-1"><i class="fa fa-check"></i><b>19.3.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="19.3.6" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-2"><i class="fa fa-check"></i><b>19.3.6</b> Função de distribuição empírica</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#gerando-uma-variável-aleatória-com-distribuição-de-uniforme"><i class="fa fa-check"></i><b>19.4</b> Gerando uma variável aleatória com distribuição de Uniforme</a>
+<ul>
+<li class="chapter" data-level="19.4.1" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#cálculo-de-probabilidades-2"><i class="fa fa-check"></i><b>19.4.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="19.4.2" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade"><i class="fa fa-check"></i><b>19.4.2</b> Função densidade de probabilidade</a></li>
+<li class="chapter" data-level="19.4.3" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade-simulação"><i class="fa fa-check"></i><b>19.4.3</b> Função densidade de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="19.4.4" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#comparação-2"><i class="fa fa-check"></i><b>19.4.4</b> Comparação</a></li>
+<li class="chapter" data-level="19.4.5" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-2"><i class="fa fa-check"></i><b>19.4.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="19.4.6" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-3"><i class="fa fa-check"></i><b>19.4.6</b> Função de distribuição empírica</a></li>
+</ul></li>
+<li class="chapter" data-level="19.5" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#gerando-uma-variável-aleatória-com-distribuição-exponencial"><i class="fa fa-check"></i><b>19.5</b> Gerando uma variável aleatória com distribuição Exponencial</a>
+<ul>
+<li class="chapter" data-level="19.5.1" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#cálculo-de-probabilidades-3"><i class="fa fa-check"></i><b>19.5.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="19.5.2" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade-teórica"><i class="fa fa-check"></i><b>19.5.2</b> Função densidade de probabilidade (teórica)</a></li>
+<li class="chapter" data-level="19.5.3" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade-simulação-1"><i class="fa fa-check"></i><b>19.5.3</b> Função densidade de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="19.5.4" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#comparação-3"><i class="fa fa-check"></i><b>19.5.4</b> Comparação</a></li>
+<li class="chapter" data-level="19.5.5" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-3"><i class="fa fa-check"></i><b>19.5.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="19.5.6" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-4"><i class="fa fa-check"></i><b>19.5.6</b> Função de distribuição empírica</a></li>
+</ul></li>
+<li class="chapter" data-level="19.6" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#gerando-uma-variável-aleatória-com-distribuição-normal"><i class="fa fa-check"></i><b>19.6</b> Gerando uma variável aleatória com distribuição Normal</a>
+<ul>
+<li class="chapter" data-level="19.6.1" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#cálculo-de-probabilidades-4"><i class="fa fa-check"></i><b>19.6.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="19.6.2" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade-teórica-1"><i class="fa fa-check"></i><b>19.6.2</b> Função densidade de probabilidade (teórica)</a></li>
+<li class="chapter" data-level="19.6.3" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade-simulação-2"><i class="fa fa-check"></i><b>19.6.3</b> Função densidade de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="19.6.4" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#comparação-4"><i class="fa fa-check"></i><b>19.6.4</b> Comparação</a></li>
+<li class="chapter" data-level="19.6.5" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-4"><i class="fa fa-check"></i><b>19.6.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="19.6.6" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-5"><i class="fa fa-check"></i><b>19.6.6</b> Função de distribuição empírica</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="cross.html"><a href="cross.html"><i class="fa fa-check"></i><b>20</b> Cross-references</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="cross.html"><a href="cross.html#chapters-and-sub-chapters"><i class="fa fa-check"></i><b>20.1</b> Chapters and sub-chapters</a></li>
+<li class="chapter" data-level="20.2" data-path="cross.html"><a href="cross.html#captioned-figures-and-tables"><i class="fa fa-check"></i><b>20.2</b> Captioned figures and tables</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="parts.html"><a href="parts.html"><i class="fa fa-check"></i><b>21</b> Parts</a></li>
+<li class="chapter" data-level="22" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>22</b> Footnotes and citations</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#footnotes"><i class="fa fa-check"></i><b>22.1</b> Footnotes</a></li>
+<li class="chapter" data-level="22.2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#citations"><i class="fa fa-check"></i><b>22.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>23</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>23.1</b> Equations</a></li>
+<li class="chapter" data-level="23.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>23.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="23.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>23.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>24</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>24.1</b> Publishing</a></li>
+<li class="chapter" data-level="24.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>24.2</b> 404 pages</a></li>
+<li class="chapter" data-level="24.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>24.3</b> Metadata for sharing</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introdução ao R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="loop-for" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Capítulo 6</span> Loop for<a href="loop-for.html#loop-for" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>A instrução <code>for</code> em R é uma estrutura de controle de fluxo que permite executar repetidamente um bloco de código para cada elemento em um conjunto de elementos. É especialmente útil para situações em que se conhece o número de iterações a serem realizadas com antecedência. A instrução for é amplamente utilizada em R para iterar sobre vetores, listas, data frames e outras estruturas de dados.</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="loop-for.html#cb173-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
+<span id="cb173-2"><a href="loop-for.html#cb173-2" tabindex="-1"></a><span class="cf">for</span> (variável <span class="cf">in</span> sequência) {</span>
+<span id="cb173-3"><a href="loop-for.html#cb173-3" tabindex="-1"></a>  <span class="co"># Bloco de código a ser executado</span></span>
+<span id="cb173-4"><a href="loop-for.html#cb173-4" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li><p><strong>variável</strong>: Uma variável que assume o valor de cada elemento na sequência em cada iteração do loop.</p></li>
+<li><p><strong>sequência</strong>: Um vetor, lista ou qualquer estrutura de dados sobre a qual se deseja iterar.</p></li>
+<li><p><strong>bloco de código</strong>: O conjunto de instruções que serão executadas para cada elemento da sequência.</p></li>
+</ul>
+<p><strong>Como funciona o <code>for()</code></strong></p>
+<ul>
+<li><p><strong>Inicialização</strong>: Antes do loop começar, a variável de controle é inicializada com o primeiro elemento da sequência.</p></li>
+<li><p><strong>Iteração</strong>: Em cada iteração do loop, a variável de controle assume o próximo valor da sequência.</p></li>
+<li><p>**Execução do Bloco de Código*: O bloco de código dentro do loop é executado uma vez para cada elemento da sequência.</p></li>
+<li><p><strong>Finalização</strong>: O loop termina quando todos os elementos da sequência forem processados.</p></li>
+</ul>
+<p><strong>Exemplo 1:</strong> Imprima os números de 0 a 10 no ecrã.</p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="loop-for.html#cb174-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>) {</span>
+<span id="cb174-2"><a href="loop-for.html#cb174-2" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
+<span id="cb174-3"><a href="loop-for.html#cb174-3" tabindex="-1"></a>}</span></code></pre></div>
+<p><strong>Exemplo 2:</strong> Soma dos elementos de um vetor</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="loop-for.html#cb175-1" tabindex="-1"></a>numeros <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb175-2"><a href="loop-for.html#cb175-2" tabindex="-1"></a>soma <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb175-3"><a href="loop-for.html#cb175-3" tabindex="-1"></a></span>
+<span id="cb175-4"><a href="loop-for.html#cb175-4" tabindex="-1"></a><span class="cf">for</span> (num <span class="cf">in</span> numeros) {</span>
+<span id="cb175-5"><a href="loop-for.html#cb175-5" tabindex="-1"></a>  soma <span class="ot">&lt;-</span> soma <span class="sc">+</span> num</span>
+<span id="cb175-6"><a href="loop-for.html#cb175-6" tabindex="-1"></a>}</span>
+<span id="cb175-7"><a href="loop-for.html#cb175-7" tabindex="-1"></a></span>
+<span id="cb175-8"><a href="loop-for.html#cb175-8" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;A soma dos números é:&quot;</span>, soma))</span></code></pre></div>
+<pre><code>## [1] &quot;A soma dos números é: 15&quot;</code></pre>
+<p><strong>Exemplo 3:</strong> Uso do <code>for</code> com índices. Você também pode usar o loop for para iterar sobre índices de vetores ou listas, o que pode ser útil quando se deseja acessar ou modificar elementos em posições específicas. Multiplique por 2 os elementos do vetor.</p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="loop-for.html#cb177-1" tabindex="-1"></a>numeros <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>)</span>
+<span id="cb177-2"><a href="loop-for.html#cb177-2" tabindex="-1"></a></span>
+<span id="cb177-3"><a href="loop-for.html#cb177-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(numeros)) {</span>
+<span id="cb177-4"><a href="loop-for.html#cb177-4" tabindex="-1"></a>  numeros[i] <span class="ot">&lt;-</span> numeros[i] <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb177-5"><a href="loop-for.html#cb177-5" tabindex="-1"></a>}</span>
+<span id="cb177-6"><a href="loop-for.html#cb177-6" tabindex="-1"></a></span>
+<span id="cb177-7"><a href="loop-for.html#cb177-7" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Elementos do vetor multiplicados por 2:&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Elementos do vetor multiplicados por 2:&quot;</code></pre>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="loop-for.html#cb179-1" tabindex="-1"></a><span class="fu">print</span>(numeros)</span></code></pre></div>
+<pre><code>## [1]  20  40  60  80 100</code></pre>
+<p><strong>Exemplo 4:</strong> Exemplo com matrizes. O loop for também pode ser usado para iterar sobre elementos de uma matriz, seja por linha ou por coluna.</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="loop-for.html#cb181-1" tabindex="-1"></a>matriz <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">nrow=</span><span class="dv">3</span>, <span class="at">ncol=</span><span class="dv">3</span>)</span>
+<span id="cb181-2"><a href="loop-for.html#cb181-2" tabindex="-1"></a>soma_linhas <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="fu">nrow</span>(matriz))</span>
+<span id="cb181-3"><a href="loop-for.html#cb181-3" tabindex="-1"></a></span>
+<span id="cb181-4"><a href="loop-for.html#cb181-4" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(matriz)) {</span>
+<span id="cb181-5"><a href="loop-for.html#cb181-5" tabindex="-1"></a>  soma_linhas[i] <span class="ot">&lt;-</span> <span class="fu">sum</span>(matriz[i, ])</span>
+<span id="cb181-6"><a href="loop-for.html#cb181-6" tabindex="-1"></a>}</span>
+<span id="cb181-7"><a href="loop-for.html#cb181-7" tabindex="-1"></a></span>
+<span id="cb181-8"><a href="loop-for.html#cb181-8" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Soma dos elementos de cada linha:&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Soma dos elementos de cada linha:&quot;</code></pre>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="loop-for.html#cb183-1" tabindex="-1"></a><span class="fu">print</span>(soma_linhas)</span></code></pre></div>
+<pre><code>## [1] 12 15 18</code></pre>
+<p><strong>Exemplo 5:</strong> Cálculo de Médias de Colunas em um Data Frame</p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="loop-for.html#cb185-1" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb185-2"><a href="loop-for.html#cb185-2" tabindex="-1"></a><span class="at">A =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
+<span id="cb185-3"><a href="loop-for.html#cb185-3" tabindex="-1"></a><span class="at">B =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>),</span>
+<span id="cb185-4"><a href="loop-for.html#cb185-4" tabindex="-1"></a><span class="at">C =</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>)</span>
+<span id="cb185-5"><a href="loop-for.html#cb185-5" tabindex="-1"></a>)</span>
+<span id="cb185-6"><a href="loop-for.html#cb185-6" tabindex="-1"></a></span>
+<span id="cb185-7"><a href="loop-for.html#cb185-7" tabindex="-1"></a>medias <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="fu">ncol</span>(dados))</span>
+<span id="cb185-8"><a href="loop-for.html#cb185-8" tabindex="-1"></a></span>
+<span id="cb185-9"><a href="loop-for.html#cb185-9" tabindex="-1"></a><span class="cf">for</span> (col <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(dados)) {</span>
+<span id="cb185-10"><a href="loop-for.html#cb185-10" tabindex="-1"></a>  medias[col] <span class="ot">&lt;-</span> <span class="fu">mean</span>(dados[, col])</span>
+<span id="cb185-11"><a href="loop-for.html#cb185-11" tabindex="-1"></a>}</span>
+<span id="cb185-12"><a href="loop-for.html#cb185-12" tabindex="-1"></a></span>
+<span id="cb185-13"><a href="loop-for.html#cb185-13" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Médias das colunas do data frame:&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Médias das colunas do data frame:&quot;</code></pre>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="loop-for.html#cb187-1" tabindex="-1"></a><span class="fu">print</span>(medias)</span></code></pre></div>
+<pre><code>## [1] 2 5 8</code></pre>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="loop-while.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="família-xapply.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-intro.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["meuLivro2.pdf", "meuLivro2.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

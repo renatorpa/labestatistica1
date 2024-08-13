@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 13 Funções | Introdução ao R</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 13 Funções | Introdução ao R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 13 Funções | Introdução ao R" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Renato de Paula" />
+
+
+<meta name="date" content="2024-08-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="listas.html"/>
+<link rel="next" href="leitura-de-dados.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#usage"><i class="fa fa-check"></i><b>1.1</b> Usage</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#render-book"><i class="fa fa-check"></i><b>1.2</b> Render book</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#preview-book"><i class="fa fa-check"></i><b>1.3</b> Preview book</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="r-e-rstudio.html"><a href="r-e-rstudio.html"><i class="fa fa-check"></i><b>2</b> R e RStudio</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r-e-rstudio.html"><a href="r-e-rstudio.html#instalação-e-funcionalidades-básicas"><i class="fa fa-check"></i><b>2.1</b> Instalação e funcionalidades básicas</a></li>
+<li class="chapter" data-level="2.2" data-path="r-e-rstudio.html"><a href="r-e-rstudio.html#navegando-no-rstudio"><i class="fa fa-check"></i><b>2.2</b> Navegando no RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="r-como-uma-calculadora-e-operações-aritméticas.html"><a href="r-como-uma-calculadora-e-operações-aritméticas.html"><i class="fa fa-check"></i><b>3</b> R como uma calculadora e Operações Aritméticas</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="r-como-uma-calculadora-e-operações-aritméticas.html"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#o-prompt"><i class="fa fa-check"></i><b>3.1</b> O prompt</a></li>
+<li class="chapter" data-level="3.2" data-path="r-como-uma-calculadora-e-operações-aritméticas.html"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#o-que-é-uma-variável"><i class="fa fa-check"></i><b>3.2</b> O que é uma variável?</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="r-como-uma-calculadora-e-operações-aritméticas.html"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#atribuições"><i class="fa fa-check"></i><b>3.2.1</b> Atribuições</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="r-como-uma-calculadora-e-operações-aritméticas.html"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#regras-para-definição-de-variáveis"><i class="fa fa-check"></i><b>3.3</b> Regras para definição de variáveis</a></li>
+<li class="chapter" data-level="3.4" data-path="r-como-uma-calculadora-e-operações-aritméticas.html"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#tipos-de-dados"><i class="fa fa-check"></i><b>3.4</b> Tipos de dados</a></li>
+<li class="chapter" data-level="3.5" data-path="r-como-uma-calculadora-e-operações-aritméticas.html"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#comandos-importantes"><i class="fa fa-check"></i><b>3.5</b> Comandos importantes</a></li>
+<li class="chapter" data-level="3.6" data-path="r-como-uma-calculadora-e-operações-aritméticas.html"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#operadores-aritméticos-em-r"><i class="fa fa-check"></i><b>3.6</b> Operadores aritméticos em R</a></li>
+<li class="chapter" data-level="3.7" data-path="r-como-uma-calculadora-e-operações-aritméticas.html"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#quantidade-de-digitos"><i class="fa fa-check"></i><b>3.7</b> Quantidade de digitos</a></li>
+<li class="chapter" data-level="3.8" data-path="r-como-uma-calculadora-e-operações-aritméticas.html"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#infinito-indefinido-e-valores-ausentes"><i class="fa fa-check"></i><b>3.8</b> Infinito, indefinido e valores ausentes</a></li>
+<li class="chapter" data-level="3.9" data-path="r-como-uma-calculadora-e-operações-aritméticas.html"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#escrita-dinâmica"><i class="fa fa-check"></i><b>3.9</b> Escrita dinâmica</a></li>
+<li class="chapter" data-level="3.10" data-path="r-como-uma-calculadora-e-operações-aritméticas.html"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#conversão-entre-tipos-de-dados"><i class="fa fa-check"></i><b>3.10</b> Conversão entre tipos de dados</a></li>
+<li class="chapter" data-level="3.11" data-path="r-como-uma-calculadora-e-operações-aritméticas.html"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#funções-print-readline-paste-e-cat"><i class="fa fa-check"></i><b>3.11</b> Funções <code>print()</code>, <code>readline()</code>, <code>paste()</code> e <code>cat()</code></a></li>
+<li class="chapter" data-level="3.12" data-path="r-como-uma-calculadora-e-operações-aritméticas.html"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#operadores-lógicos-e-relacionais"><i class="fa fa-check"></i><b>3.12</b> Operadores Lógicos e Relacionais</a>
+<ul>
+<li class="chapter" data-level="3.12.1" data-path="r-como-uma-calculadora-e-operações-aritméticas.html"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#operadores-lógicos"><i class="fa fa-check"></i><b>3.12.1</b> Operadores Lógicos</a></li>
+<li class="chapter" data-level="3.12.2" data-path="r-como-uma-calculadora-e-operações-aritméticas.html"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#operadores-relacionais"><i class="fa fa-check"></i><b>3.12.2</b> Operadores Relacionais</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html"><i class="fa fa-check"></i><b>4</b> Estruturas de Seleção</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html#condicional-if"><i class="fa fa-check"></i><b>4.1</b> Condicional <code>if</code></a></li>
+<li class="chapter" data-level="4.2" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html#condicional-if...else"><i class="fa fa-check"></i><b>4.2</b> Condicional <code>if...else</code></a></li>
+<li class="chapter" data-level="4.3" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html#condicional-if...else-if...else"><i class="fa fa-check"></i><b>4.3</b> Condicional <code>if...else if...else</code></a></li>
+<li class="chapter" data-level="4.4" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html#a-função-ifelse"><i class="fa fa-check"></i><b>4.4</b> A função <code>ifelse()</code></a></li>
+<li class="chapter" data-level="4.5" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html#exemplos"><i class="fa fa-check"></i><b>4.5</b> Exemplos</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="loop-while.html"><a href="loop-while.html"><i class="fa fa-check"></i><b>5</b> Loop while</a></li>
+<li class="chapter" data-level="6" data-path="loop-for.html"><a href="loop-for.html"><i class="fa fa-check"></i><b>6</b> Loop for</a></li>
+<li class="chapter" data-level="7" data-path="família-xapply.html"><a href="família-xapply.html"><i class="fa fa-check"></i><b>7</b> Família <code>Xapply()</code></a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="família-xapply.html"><a href="família-xapply.html#função-apply"><i class="fa fa-check"></i><b>7.1</b> Função <code>apply()</code></a></li>
+<li class="chapter" data-level="7.2" data-path="família-xapply.html"><a href="família-xapply.html#função-lapply"><i class="fa fa-check"></i><b>7.2</b> Função <code>lapply()</code></a></li>
+<li class="chapter" data-level="7.3" data-path="família-xapply.html"><a href="família-xapply.html#função-sapply"><i class="fa fa-check"></i><b>7.3</b> Função <code>sapply()</code></a></li>
+<li class="chapter" data-level="7.4" data-path="família-xapply.html"><a href="família-xapply.html#função-tapply"><i class="fa fa-check"></i><b>7.4</b> Função <code>tapply()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html"><i class="fa fa-check"></i><b>8</b> Estrutura de Dados Básicas</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#vetor"><i class="fa fa-check"></i><b>8.1</b> Vetor</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#tipos-comuns-de-vetores"><i class="fa fa-check"></i><b>8.1.1</b> Tipos Comuns de Vetores</a></li>
+<li class="chapter" data-level="8.1.2" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#construindo-vetores"><i class="fa fa-check"></i><b>8.1.2</b> Construindo vetores</a></li>
+<li class="chapter" data-level="8.1.3" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#acesso-a-elementos-de-um-vetor"><i class="fa fa-check"></i><b>8.1.3</b> Acesso a Elementos de um Vetor</a></li>
+<li class="chapter" data-level="8.1.4" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#funções-comuns-para-vetores"><i class="fa fa-check"></i><b>8.1.4</b> Funções Comuns para Vetores</a></li>
+<li class="chapter" data-level="8.1.5" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#operações-com-vetores"><i class="fa fa-check"></i><b>8.1.5</b> Operações com Vetores</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="fatores.html"><a href="fatores.html"><i class="fa fa-check"></i><b>9</b> Fatores</a></li>
+<li class="chapter" data-level="10" data-path="matriz-e-array.html"><a href="matriz-e-array.html"><i class="fa fa-check"></i><b>10</b> Matriz e array</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="matriz-e-array.html"><a href="matriz-e-array.html#construindo-matrizes"><i class="fa fa-check"></i><b>10.1</b> Construindo matrizes</a></li>
+<li class="chapter" data-level="10.2" data-path="matriz-e-array.html"><a href="matriz-e-array.html#índice-e-índice-lógico"><i class="fa fa-check"></i><b>10.2</b> Índice e índice lógico</a></li>
+<li class="chapter" data-level="10.3" data-path="matriz-e-array.html"><a href="matriz-e-array.html#nomeando-linhas-e-colunas-numa-matriz"><i class="fa fa-check"></i><b>10.3</b> Nomeando linhas e colunas numa matriz</a></li>
+<li class="chapter" data-level="10.4" data-path="matriz-e-array.html"><a href="matriz-e-array.html#multiplicação-de-matrizes"><i class="fa fa-check"></i><b>10.4</b> Multiplicação de matrizes</a></li>
+<li class="chapter" data-level="10.5" data-path="matriz-e-array.html"><a href="matriz-e-array.html#algumas-outras-funções"><i class="fa fa-check"></i><b>10.5</b> Algumas outras funções</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="data-frame.html"><a href="data-frame.html"><i class="fa fa-check"></i><b>11</b> Data-frame</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="data-frame.html"><a href="data-frame.html#criando-um-data-frame"><i class="fa fa-check"></i><b>11.1</b> Criando um data frame</a></li>
+<li class="chapter" data-level="11.2" data-path="data-frame.html"><a href="data-frame.html#acessando-linhas-e-colunas"><i class="fa fa-check"></i><b>11.2</b> Acessando linhas e colunas</a></li>
+<li class="chapter" data-level="11.3" data-path="data-frame.html"><a href="data-frame.html#adicionando-e-removendo-colunas"><i class="fa fa-check"></i><b>11.3</b> Adicionando e removendo colunas</a></li>
+<li class="chapter" data-level="11.4" data-path="data-frame.html"><a href="data-frame.html#fundindo-dados"><i class="fa fa-check"></i><b>11.4</b> Fundindo dados</a></li>
+<li class="chapter" data-level="11.5" data-path="data-frame.html"><a href="data-frame.html#dimensão-informações-de-colunas-e-outros"><i class="fa fa-check"></i><b>11.5</b> Dimensão, informações de colunas e outros</a></li>
+<li class="chapter" data-level="11.6" data-path="data-frame.html"><a href="data-frame.html#a-função-subset"><i class="fa fa-check"></i><b>11.6</b> A função <code>subset()</code></a></li>
+<li class="chapter" data-level="11.7" data-path="data-frame.html"><a href="data-frame.html#a-função-summary"><i class="fa fa-check"></i><b>11.7</b> A função <code>summary()</code></a></li>
+<li class="chapter" data-level="11.8" data-path="data-frame.html"><a href="data-frame.html#valores-faltantes"><i class="fa fa-check"></i><b>11.8</b> Valores faltantes</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="listas.html"><a href="listas.html"><i class="fa fa-check"></i><b>12</b> Listas</a></li>
+<li class="chapter" data-level="13" data-path="funções.html"><a href="funções.html"><i class="fa fa-check"></i><b>13</b> Funções</a></li>
+<li class="chapter" data-level="14" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html"><i class="fa fa-check"></i><b>14</b> Leitura de Dados</a></li>
+<li class="chapter" data-level="15" data-path="manipulando-dados.html"><a href="manipulando-dados.html"><i class="fa fa-check"></i><b>15</b> Manipulando dados</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="manipulando-dados.html"><a href="manipulando-dados.html#tapply-aggregate-e-by"><i class="fa fa-check"></i><b>15.1</b> <code>tapply()</code>, <code>aggregate()</code> e <code>by()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="o-package-dplyr.html"><a href="o-package-dplyr.html"><i class="fa fa-check"></i><b>16</b> O package dplyr</a></li>
+<li class="chapter" data-level="17" data-path="gráficos-em-r.html"><a href="gráficos-em-r.html"><i class="fa fa-check"></i><b>17</b> Gráficos em R</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="gráficos-em-r.html"><a href="gráficos-em-r.html#gráfico-de-barras"><i class="fa fa-check"></i><b>17.1</b> Gráfico de Barras</a></li>
+<li class="chapter" data-level="17.2" data-path="gráficos-em-r.html"><a href="gráficos-em-r.html#gráfico-circular-pizza"><i class="fa fa-check"></i><b>17.2</b> Gráfico circular (pizza)</a></li>
+<li class="chapter" data-level="17.3" data-path="gráficos-em-r.html"><a href="gráficos-em-r.html#histograma"><i class="fa fa-check"></i><b>17.3</b> Histograma</a></li>
+<li class="chapter" data-level="17.4" data-path="gráficos-em-r.html"><a href="gráficos-em-r.html#box-plot"><i class="fa fa-check"></i><b>17.4</b> Box-plot</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="simulação.html"><a href="simulação.html"><i class="fa fa-check"></i><b>18</b> Simulação</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="simulação.html"><a href="simulação.html#geração-de-números-pseudoaleatórios"><i class="fa fa-check"></i><b>18.1</b> Geração de números pseudoaleatórios</a>
+<ul>
+<li class="chapter" data-level="18.1.1" data-path="simulação.html"><a href="simulação.html#a-função-sample"><i class="fa fa-check"></i><b>18.1.1</b> A função <code>sample()</code></a></li>
+<li class="chapter" data-level="18.1.2" data-path="simulação.html"><a href="simulação.html#método-da-transformada-inversa"><i class="fa fa-check"></i><b>18.1.2</b> Método da transformada inversa</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html"><i class="fa fa-check"></i><b>19</b> Distribuições univariadas no R</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica"><i class="fa fa-check"></i><b>19.1</b> Função de distribuição empírica</a>
+<ul>
+<li class="chapter" data-level="19.1.1" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-no-r-função-ecdf"><i class="fa fa-check"></i><b>19.1.1</b> Função de distribuição empírica no R, função <code>ecdf()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="19.2" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#gerando-uma-variável-aleatória-com-distribuição-binomial"><i class="fa fa-check"></i><b>19.2</b> Gerando uma variável aleatória com distribuição binomial</a>
+<ul>
+<li class="chapter" data-level="19.2.1" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#cálculo-de-probabilidades"><i class="fa fa-check"></i><b>19.2.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="19.2.2" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-massa-de-probabilidade-teórica"><i class="fa fa-check"></i><b>19.2.2</b> Função massa de probabilidade (teórica)</a></li>
+<li class="chapter" data-level="19.2.3" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-massa-de-probabilidade-simulação"><i class="fa fa-check"></i><b>19.2.3</b> Função massa de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="19.2.4" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#comparação"><i class="fa fa-check"></i><b>19.2.4</b> Comparação</a></li>
+<li class="chapter" data-level="19.2.5" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição"><i class="fa fa-check"></i><b>19.2.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="19.2.6" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-1"><i class="fa fa-check"></i><b>19.2.6</b> Função de distribuição empírica</a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#gerando-uma-variável-aleatória-com-distribuição-de-poisson"><i class="fa fa-check"></i><b>19.3</b> Gerando uma variável aleatória com distribuição de Poisson</a>
+<ul>
+<li class="chapter" data-level="19.3.1" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#cálculo-de-probabilidades-1"><i class="fa fa-check"></i><b>19.3.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="19.3.2" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-massa-de-probabilidade-teórica-1"><i class="fa fa-check"></i><b>19.3.2</b> Função massa de probabilidade (teórica)</a></li>
+<li class="chapter" data-level="19.3.3" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-massa-de-probabilidade-simulação-1"><i class="fa fa-check"></i><b>19.3.3</b> Função massa de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="19.3.4" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#comparação-1"><i class="fa fa-check"></i><b>19.3.4</b> Comparação</a></li>
+<li class="chapter" data-level="19.3.5" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-1"><i class="fa fa-check"></i><b>19.3.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="19.3.6" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-2"><i class="fa fa-check"></i><b>19.3.6</b> Função de distribuição empírica</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#gerando-uma-variável-aleatória-com-distribuição-de-uniforme"><i class="fa fa-check"></i><b>19.4</b> Gerando uma variável aleatória com distribuição de Uniforme</a>
+<ul>
+<li class="chapter" data-level="19.4.1" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#cálculo-de-probabilidades-2"><i class="fa fa-check"></i><b>19.4.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="19.4.2" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade"><i class="fa fa-check"></i><b>19.4.2</b> Função densidade de probabilidade</a></li>
+<li class="chapter" data-level="19.4.3" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade-simulação"><i class="fa fa-check"></i><b>19.4.3</b> Função densidade de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="19.4.4" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#comparação-2"><i class="fa fa-check"></i><b>19.4.4</b> Comparação</a></li>
+<li class="chapter" data-level="19.4.5" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-2"><i class="fa fa-check"></i><b>19.4.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="19.4.6" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-3"><i class="fa fa-check"></i><b>19.4.6</b> Função de distribuição empírica</a></li>
+</ul></li>
+<li class="chapter" data-level="19.5" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#gerando-uma-variável-aleatória-com-distribuição-exponencial"><i class="fa fa-check"></i><b>19.5</b> Gerando uma variável aleatória com distribuição Exponencial</a>
+<ul>
+<li class="chapter" data-level="19.5.1" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#cálculo-de-probabilidades-3"><i class="fa fa-check"></i><b>19.5.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="19.5.2" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade-teórica"><i class="fa fa-check"></i><b>19.5.2</b> Função densidade de probabilidade (teórica)</a></li>
+<li class="chapter" data-level="19.5.3" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade-simulação-1"><i class="fa fa-check"></i><b>19.5.3</b> Função densidade de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="19.5.4" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#comparação-3"><i class="fa fa-check"></i><b>19.5.4</b> Comparação</a></li>
+<li class="chapter" data-level="19.5.5" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-3"><i class="fa fa-check"></i><b>19.5.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="19.5.6" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-4"><i class="fa fa-check"></i><b>19.5.6</b> Função de distribuição empírica</a></li>
+</ul></li>
+<li class="chapter" data-level="19.6" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#gerando-uma-variável-aleatória-com-distribuição-normal"><i class="fa fa-check"></i><b>19.6</b> Gerando uma variável aleatória com distribuição Normal</a>
+<ul>
+<li class="chapter" data-level="19.6.1" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#cálculo-de-probabilidades-4"><i class="fa fa-check"></i><b>19.6.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="19.6.2" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade-teórica-1"><i class="fa fa-check"></i><b>19.6.2</b> Função densidade de probabilidade (teórica)</a></li>
+<li class="chapter" data-level="19.6.3" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade-simulação-2"><i class="fa fa-check"></i><b>19.6.3</b> Função densidade de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="19.6.4" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#comparação-4"><i class="fa fa-check"></i><b>19.6.4</b> Comparação</a></li>
+<li class="chapter" data-level="19.6.5" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-4"><i class="fa fa-check"></i><b>19.6.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="19.6.6" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-5"><i class="fa fa-check"></i><b>19.6.6</b> Função de distribuição empírica</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="cross.html"><a href="cross.html"><i class="fa fa-check"></i><b>20</b> Cross-references</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="cross.html"><a href="cross.html#chapters-and-sub-chapters"><i class="fa fa-check"></i><b>20.1</b> Chapters and sub-chapters</a></li>
+<li class="chapter" data-level="20.2" data-path="cross.html"><a href="cross.html#captioned-figures-and-tables"><i class="fa fa-check"></i><b>20.2</b> Captioned figures and tables</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="parts.html"><a href="parts.html"><i class="fa fa-check"></i><b>21</b> Parts</a></li>
+<li class="chapter" data-level="22" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>22</b> Footnotes and citations</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#footnotes"><i class="fa fa-check"></i><b>22.1</b> Footnotes</a></li>
+<li class="chapter" data-level="22.2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#citations"><i class="fa fa-check"></i><b>22.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>23</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>23.1</b> Equations</a></li>
+<li class="chapter" data-level="23.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>23.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="23.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>23.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>24</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>24.1</b> Publishing</a></li>
+<li class="chapter" data-level="24.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>24.2</b> 404 pages</a></li>
+<li class="chapter" data-level="24.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>24.3</b> Metadata for sharing</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introdução ao R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="funções" class="section level1 hasAnchor" number="13">
+<h1><span class="header-section-number">Capítulo 13</span> Funções<a href="funções.html#funções" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<ul>
+<li><p>Uma <strong>função</strong> é um bloco de código que realiza tarefas específicas e que só é executado quando é chamada.</p></li>
+<li><p>São reutilizáveis e podem ser chamadas várias vezes dentro de um script.</p></li>
+<li><p>Podem ser passados dados para uma função, conhecidos como parâmetros ou argumentos.</p></li>
+</ul>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="funções.html#cb421-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
+<span id="cb421-2"><a href="funções.html#cb421-2" tabindex="-1"></a>nome_da_funcao <span class="ot">&lt;-</span> <span class="cf">function</span>(argumentos) {</span>
+<span id="cb421-3"><a href="funções.html#cb421-3" tabindex="-1"></a>  <span class="co"># Código da função</span></span>
+<span id="cb421-4"><a href="funções.html#cb421-4" tabindex="-1"></a>  resultado <span class="ot">&lt;-</span> ... <span class="co"># Cálculos ou operações</span></span>
+<span id="cb421-5"><a href="funções.html#cb421-5" tabindex="-1"></a>  <span class="fu">return</span>(resultado) <span class="co"># Retorno do valor</span></span>
+<span id="cb421-6"><a href="funções.html#cb421-6" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li><p><strong>Nome da Função</strong>: Identificador da função.</p></li>
+<li><p><strong>Argumentos</strong>: Valores de entrada para a função.</p></li>
+<li><p><strong>Corpo da Função</strong>: Bloco de código que realiza operações.</p></li>
+<li><p><strong>Return</strong>: Valor que a função devolve.</p></li>
+</ul>
+<p>As funções como objetivo principal a modularização (dividir o código em partes menores e gerenciáveis) e a reutilização de código, facilitando a organização e a legibilidade dos scripts. Ao encapsular um bloco de código em uma função, podemos executá-lo múltiplas vezes com diferentes parâmetros, reduzindo a redundância e o tempo de desenvolvimento.</p>
+<p><strong>Exemplo:</strong> Função para calcular a área de um objeto retangular</p>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="funções.html#cb422-1" tabindex="-1"></a>calcula_area <span class="ot">&lt;-</span> <span class="cf">function</span>(largura, altura) {</span>
+<span id="cb422-2"><a href="funções.html#cb422-2" tabindex="-1"></a>  area <span class="ot">&lt;-</span> largura <span class="sc">*</span> altura</span>
+<span id="cb422-3"><a href="funções.html#cb422-3" tabindex="-1"></a>  <span class="fu">return</span>(area)</span>
+<span id="cb422-4"><a href="funções.html#cb422-4" tabindex="-1"></a>}</span>
+<span id="cb422-5"><a href="funções.html#cb422-5" tabindex="-1"></a></span>
+<span id="cb422-6"><a href="funções.html#cb422-6" tabindex="-1"></a>largura_obj <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">readline</span>(<span class="st">&quot;Insira a largura (em cm): &quot;</span>))</span>
+<span id="cb422-7"><a href="funções.html#cb422-7" tabindex="-1"></a>altura_obj <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">readline</span>(<span class="st">&quot;Insira a altura (em cm): &quot;</span>))</span>
+<span id="cb422-8"><a href="funções.html#cb422-8" tabindex="-1"></a></span>
+<span id="cb422-9"><a href="funções.html#cb422-9" tabindex="-1"></a><span class="co"># Chamada da função</span></span>
+<span id="cb422-10"><a href="funções.html#cb422-10" tabindex="-1"></a>area_obj <span class="ot">&lt;-</span> <span class="fu">calcula_area</span>(largura_obj, altura_obj) </span>
+<span id="cb422-11"><a href="funções.html#cb422-11" tabindex="-1"></a></span>
+<span id="cb422-12"><a href="funções.html#cb422-12" tabindex="-1"></a><span class="fu">print</span>(area_obj)</span></code></pre></div>
+<ul>
+<li><p><strong>Variáveis locais</strong>: As variáveis <code>largura</code> e <code>altura</code> são locais. Estas variáveis só existem quando a função está a ser executada. Quando a execução da função termina, as variáveis locais são destruídas.</p></li>
+<li><p><strong>Variáveis globais</strong>: As variáveis <code>largura_obj</code> e <code>altura_obj</code> são variáveis globais. Estas variáveis são acessíveis a todo o script e representam a largura e altura do objeto inserido pelo utilizador.</p></li>
+<li><p>As variáveis locais e globais devem ter nomes <strong>diferentes</strong> para que o código seja mais legível.</p></li>
+</ul>
+<p><strong>Passagem de argumento: valores de argumentos por omissão (default)</strong></p>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="funções.html#cb423-1" tabindex="-1"></a>calcula_area <span class="ot">&lt;-</span> <span class="cf">function</span>(largura, <span class="at">altura=</span><span class="dv">2</span>) { </span>
+<span id="cb423-2"><a href="funções.html#cb423-2" tabindex="-1"></a>  area <span class="ot">&lt;-</span> largura <span class="sc">*</span> altura  </span>
+<span id="cb423-3"><a href="funções.html#cb423-3" tabindex="-1"></a>  <span class="fu">return</span>(area)</span>
+<span id="cb423-4"><a href="funções.html#cb423-4" tabindex="-1"></a>}</span>
+<span id="cb423-5"><a href="funções.html#cb423-5" tabindex="-1"></a><span class="co"># Chamada da função</span></span>
+<span id="cb423-6"><a href="funções.html#cb423-6" tabindex="-1"></a></span>
+<span id="cb423-7"><a href="funções.html#cb423-7" tabindex="-1"></a>area_obj <span class="ot">&lt;-</span> <span class="fu">calcula_area</span>(<span class="dv">4</span>) </span>
+<span id="cb423-8"><a href="funções.html#cb423-8" tabindex="-1"></a></span>
+<span id="cb423-9"><a href="funções.html#cb423-9" tabindex="-1"></a><span class="fu">print</span>(area_obj)</span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<ul>
+<li><p>Caso a altura seja omitida é considerada por definição o valor 2.</p></li>
+<li><p>Como a altura foi omitida o cálculo da área será 4*2</p></li>
+</ul>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="funções.html#cb425-1" tabindex="-1"></a>calcula_area <span class="ot">&lt;-</span> <span class="cf">function</span>(largura, <span class="at">altura=</span><span class="dv">2</span>) { </span>
+<span id="cb425-2"><a href="funções.html#cb425-2" tabindex="-1"></a>        area <span class="ot">&lt;-</span> largura <span class="sc">*</span> altura  </span>
+<span id="cb425-3"><a href="funções.html#cb425-3" tabindex="-1"></a>        <span class="fu">return</span>(area)</span>
+<span id="cb425-4"><a href="funções.html#cb425-4" tabindex="-1"></a>}</span>
+<span id="cb425-5"><a href="funções.html#cb425-5" tabindex="-1"></a></span>
+<span id="cb425-6"><a href="funções.html#cb425-6" tabindex="-1"></a><span class="co"># Chamada da função</span></span>
+<span id="cb425-7"><a href="funções.html#cb425-7" tabindex="-1"></a>area_obj <span class="ot">&lt;-</span> <span class="fu">calcula_area</span>(<span class="at">altura=</span><span class="dv">4</span>,<span class="at">largura=</span><span class="dv">3</span>) </span>
+<span id="cb425-8"><a href="funções.html#cb425-8" tabindex="-1"></a>    </span>
+<span id="cb425-9"><a href="funções.html#cb425-9" tabindex="-1"></a><span class="fu">print</span>(area_obj)</span></code></pre></div>
+<pre><code>## [1] 12</code></pre>
+<ul>
+<li>Se os argumentos forem passados por palavra chave, a ordem dos argumentos pode ser trocada.</li>
+</ul>
+<p><strong>Exemplo:</strong></p>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="funções.html#cb427-1" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb427-2"><a href="funções.html#cb427-2" tabindex="-1"></a>  <span class="cf">if</span> (x <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
+<span id="cb427-3"><a href="funções.html#cb427-3" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">&quot;Erro: x não pode ser negativo&quot;</span>)  <span class="co"># Interrompe a função com uma mensagem de erro</span></span>
+<span id="cb427-4"><a href="funções.html#cb427-4" tabindex="-1"></a>  }</span>
+<span id="cb427-5"><a href="funções.html#cb427-5" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">sqrt</span>(x))</span>
+<span id="cb427-6"><a href="funções.html#cb427-6" tabindex="-1"></a>}</span>
+<span id="cb427-7"><a href="funções.html#cb427-7" tabindex="-1"></a></span>
+<span id="cb427-8"><a href="funções.html#cb427-8" tabindex="-1"></a><span class="fu">f</span>(<span class="sc">-</span><span class="dv">2</span>)</span></code></pre></div>
+<ul>
+<li><p>O <code>stop</code> é usado para interromper a execução de uma função ou de um script, gerando um erro.</p></li>
+<li><p>Ele pode ser usado em qualquer lugar do código, dentro ou fora de loops, para gerar um erro e parar a execução do código.</p></li>
+<li><p>Quando <code>stop</code> é chamado, ele pode exibir uma mensagem de erro personalizada, e a execução do script ou função é completamente interrompida.</p></li>
+</ul>
+<p><strong>Exercício 1:</strong> Qual será o output do script abaixo?</p>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="funções.html#cb428-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span>  </span>
+<span id="cb428-2"><a href="funções.html#cb428-2" tabindex="-1"></a></span>
+<span id="cb428-3"><a href="funções.html#cb428-3" tabindex="-1"></a>minha_funcao <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb428-4"><a href="funções.html#cb428-4" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="dv">5</span>  </span>
+<span id="cb428-5"><a href="funções.html#cb428-5" tabindex="-1"></a>    <span class="fu">return</span>(x)</span>
+<span id="cb428-6"><a href="funções.html#cb428-6" tabindex="-1"></a>}</span>
+<span id="cb428-7"><a href="funções.html#cb428-7" tabindex="-1"></a></span>
+<span id="cb428-8"><a href="funções.html#cb428-8" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">minha_funcao</span>()) </span>
+<span id="cb428-9"><a href="funções.html#cb428-9" tabindex="-1"></a><span class="fu">print</span>(x) </span></code></pre></div>
+<p><strong>Exercício 2:</strong> Qual é o resultado da chamada da função <code>dados_estudante</code>?</p>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="funções.html#cb429-1" tabindex="-1"></a>dados_estudante <span class="ot">&lt;-</span> <span class="cf">function</span>(nome, <span class="at">altura=</span><span class="dv">167</span>){</span>
+<span id="cb429-2"><a href="funções.html#cb429-2" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;O(A) estudante&quot;</span>,nome,<span class="st">&quot;tem&quot;</span>,altura,<span class="st">&quot;centímetros de altura.&quot;</span>))</span>
+<span id="cb429-3"><a href="funções.html#cb429-3" tabindex="-1"></a>}</span>
+<span id="cb429-4"><a href="funções.html#cb429-4" tabindex="-1"></a></span>
+<span id="cb429-5"><a href="funções.html#cb429-5" tabindex="-1"></a><span class="fu">dados_estudante</span>(<span class="st">&quot;Joana&quot;</span>,<span class="dv">160</span>)</span></code></pre></div>
+<p><strong>Exercício 3:</strong> Qual é a sintaxe correta para definir uma função em R que soma dois números?</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><code>sum &lt;- function(x, y) \{return(x + y)\}</code></p></li>
+<li><p><code>function sum(x, y) \{return(x + y)\}</code></p></li>
+<li><p><code>def sum(x, y) \{return(x + y)\}</code></p></li>
+<li><p><code>sum(x, y) = function \{return(x + y)\}</code></p></li>
+</ol>
+<p><strong>Exercício 4:</strong> Qual das seguintes chamadas à função estão corretas?</p>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="funções.html#cb430-1" tabindex="-1"></a>dados_estudante <span class="ot">&lt;-</span> <span class="cf">function</span>(nome, <span class="at">altura=</span><span class="dv">167</span>) {</span>
+<span id="cb430-2"><a href="funções.html#cb430-2" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;O(A) estudante&quot;</span>,nome,<span class="st">&quot;tem&quot;</span>,altura,<span class="st">&quot;centímetros de altura.&quot;</span>))</span>
+<span id="cb430-3"><a href="funções.html#cb430-3" tabindex="-1"></a>}</span>
+<span id="cb430-4"><a href="funções.html#cb430-4" tabindex="-1"></a></span>
+<span id="cb430-5"><a href="funções.html#cb430-5" tabindex="-1"></a><span class="fu">dados_estudante</span>(<span class="st">&quot;Joana&quot;</span>,<span class="dv">160</span>)</span>
+<span id="cb430-6"><a href="funções.html#cb430-6" tabindex="-1"></a><span class="fu">dados_estudante</span>(<span class="at">altura=</span><span class="dv">160</span>, <span class="at">nome=</span><span class="st">&quot;Joana&quot;</span>)</span>
+<span id="cb430-7"><a href="funções.html#cb430-7" tabindex="-1"></a><span class="fu">dados_estudante</span>(<span class="at">nome =</span> <span class="st">&quot;Joana&quot;</span>, <span class="dv">160</span>)</span>
+<span id="cb430-8"><a href="funções.html#cb430-8" tabindex="-1"></a><span class="fu">dados_estudante</span>(<span class="at">altura=</span><span class="dv">160</span>, <span class="st">&quot;Joana&quot;</span>)</span>
+<span id="cb430-9"><a href="funções.html#cb430-9" tabindex="-1"></a><span class="fu">dados_estudante</span>(<span class="dv">160</span>)</span></code></pre></div>
+<p><code>dados_estudante(160)</code> - Esta chamada está errada porque 160 será interpretado como nome, e altura usará seu valor padrão, 167. Isso resultará na impressão: <code>"O(A) estudante 160 tem 167 centímetros de altura."</code> A chamada está tecnicamente correta no sentido de sintaxe, mas o resultado não faz sentido lógico, já que 160 não é um nome válido para um estudante.</p>
+<p><strong>Exercício 5:</strong> Qual o resultado do seguinte programa?</p>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="funções.html#cb431-1" tabindex="-1"></a>adi <span class="ot">&lt;-</span> <span class="cf">function</span>(a,b) {  </span>
+<span id="cb431-2"><a href="funções.html#cb431-2" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">c</span>(a<span class="sc">+</span><span class="dv">5</span>, b<span class="sc">+</span><span class="dv">5</span>))</span>
+<span id="cb431-3"><a href="funções.html#cb431-3" tabindex="-1"></a>}</span>
+<span id="cb431-4"><a href="funções.html#cb431-4" tabindex="-1"></a></span>
+<span id="cb431-5"><a href="funções.html#cb431-5" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> <span class="fu">adi</span>(<span class="dv">3</span>,<span class="dv">2</span>)</span></code></pre></div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="listas.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="leitura-de-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-intro.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["meuLivro2.pdf", "meuLivro2.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
