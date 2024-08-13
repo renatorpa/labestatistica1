@@ -1,11 +1,2453 @@
-# Hello bookdown 
 
-All chapters start with a first-level heading followed by your chapter title, like the line above. There should be only one first-level heading (`#`) per .Rmd file.
+# R e RStudio
 
-## A section
+O software de código aberto R foi desenvolvido como uma implementação livre da linguagem S, que foi projetada como uma linguagem para computação estatística, programação estatística e gráficos. A intenção principal era permitir aos usuários explorar os dados de uma forma fácil e interativa, apoiada em representações gráficas significativas. O software estatístico R foi originalmente criado por Ross Ihaka e Robert Gentleman (Universidade de Auckland, Nova Zelândia).
 
-All chapter sections start with a second-level (`##`) or higher heading followed by your section title, like the sections above and below here. You can have as many as you want within a chapter.
+R é um conjunto integrado de recursos de software para manipulação de dados, cálculo e exibição gráfica. Ele inclui:
 
-### An unnumbered section {-}
+-   Manuseio eficaz de dados e facilidade de armazenamento;
 
-Chapters and sections are numbered by default. To un-number a heading, add a `{.unnumbered}` or the shorter `{-}` at the end of the heading, like in this section.
+-   Um conjunto de operadores para cálculos em arrays/matrizes;
+
+-   Uma coleção grande, coerente e integrada de ferramentas intermediárias para análise de dados;
+
+-   Recursos gráficos para análise e exibição de dados na tela ou em cópia impressa;
+
+-   Uma linguagem de programação bem desenvolvida, simples e eficaz que inclui condicionais, loops, funções recursivas definidas pelo usuário e recursos de entrada e saída.
+
+## Instalação e funcionalidades básicas
+
+-   A versão “base” do R, ou seja, o software com seus comandos mais relevantes, pode ser baixado em <https://www.r-project.org/>. Após instalar o R, é recomendável instalar também um editor. Um editor permite ao usuário salvar e exibir convenientemente o código R, enviar esse código ao R Console e controlar as configurações e a saída. Uma escolha popular de editor é o RStudio (gratuito), que pode ser baixado em <https://www.rstudio.com/>.
+
+-   Muitos pacotes adicionais escritos pelo usuário estão disponíveis online e podem ser instalados no console R ou usando o menu R. Dentro do console, a função `install.packages(“pacote para instalar”)` pode ser usada. Observe que é necessária uma conexão com a Internet.
+
+## Navegando no RStudio
+
+Existem quatro painéis de trabalho no RStudio:
+
+-   **Painel de código-fonte**. Este painel é onde os scripts são gravados/carregados e exibidos. Possui realce de sintaxe e preenchimento automático, além de permitir passar o código linha por linha, como seleções ou como um todo.
+
+-   **Painel do console do R**. É aqui que os comandos são executados e é essencialmente a aparência do console do R básico, só que melhor! O console possui realce de sintaxe, preenchimento de código e interface com outros painéis do RStudio.
+
+-   **Workspace/Histórico**. A aba do espaço de trabalho exibe informações que normalmente ficam ocultas no R, como dados carregados, funções e outras variáveis. A aba histórico armazena todos os comandos (linhas de código) que foram analisados por meio do R.
+
+-   **Último painel**. Este painel inclui a aba de arquivos (lista todos os arquivos no diretório de trabalho atual), a aba de gráficos (quaisquer gráficos), a aba de pacotes (pacotes instalados e a aba de ajuda (sistema de ajuda html embutido).
+
+# R como uma calculadora e Operações Aritméticas
+
+A estatística tem uma relação estreita com a álgebra: os conjuntos de dados podem ser vistos como matrizes e as variáveis como vetores. O R faz uso dessas estruturas e é por isso que primeiro apresentamos funcionalidades de estrutura de dados antes de explicar alguns dos comandos estatísticos básicos mais relevantes.
+
+## O prompt
+
+-   O R possui uma interface de linha de comando e aceitará comandos simples. Isso é marcado por um símbolo \>, chamado **prompt**. Se você digitar um comando e pressionar Enter, o R irá avaliá-lo e imprimir o resultado para você.
+
+```{r}
+print("Meu primeiro comando no R!")
+```
+
+-   O caractere `#` marca o início de um comentário. Todos os caracteres até o final da linha são ignorados pelo R. Usamos `#` para comentar nosso código R.
+
+```{r}
+# Meu primeiro comando no R!
+```
+
+-   Se soubermos o nome de um comando que gostaríamos de usar e quisermos aprender sobre sua funcionalidade, digitar `?command` no prompt da linha de comando do R exibe uma página de ajuda, por exemplo.
+
+```{r eval=FALSE}
+?sum
+```
+
+exibe uma página de ajuda para a função de soma.
+
+-   Usando
+
+```{r eval=FALSE}
+example(sum)
+```
+
+mostra exemplos de aplicação da respetiva função.
+
+## O que é uma variável?
+
+Em R, uma variável é um local de armazenamento nomeado na memória onde os dados podem ser armazenados para recuperação e manipulação posterior. Variáveis em R são usadas para armazenar diferentes tipos de dados, como números, caracteres, vetores, data frames e muito mais. O tipo de dado de uma variável em R é determinado pelo valor atribuído a ela.
+
+### Atribuições
+
+-   A expressão `x<-10` cria uma variável $x$ e atribui o valor 10 a $x$. Observe que a variável à esquerda é atribuída ao valor à direita. O lado esquerdo deve conter apenas um único nome de variável.
+
+-   Também se pode atribuir usando = (ou `->`). Porém, para evitar confusão, é comum usar `<-` para distinguir do operador de igualdade =.
+
+```{r}
+# Atribuição correta 
+a <- 10
+b <- a + 1
+```
+
+```{r eval=FALSE}
+# Atribuição incorreta
+10 = a
+a + 2 = 10 # Uma atribuição não é uma equação
+```
+
+-   O comando `c(1,2,3,4,5)` combina os números 1, 2, 3, 4 e 5 em um vetor.
+
+-   Os vetores podem ser atribuídos a um “objeto”. Por exemplo,
+
+```{r}
+X <- c(2,12,22,32)
+```
+
+atribui um vetor numérico de comprimento 4 ao objeto `X`. Observe que o R diferencia maiúsculas de minúsculas, ou seja, `X` e `x` são dois nomes de variáveis diferentes.
+
+## Regras para definição de variáveis
+
+Os nomes de variáveis em R devem começar com uma letra ou ponto final (seguido de uma letra) e podem conter letras, números, pontos e sublinhados.
+
+-   O nome da variável não pode conter espaços ou outro caracter especial (como \@, #, \$, %). Devemos usar apenas letras, números e sublinhados (\_). Ex: `nome_cliente2`.
+
+-   Ao nomear variáveis, você não pode usar palavras reservadas do R. Palavras reservadas são termos que possuem significados específicos e não podem ser redefinidos (por exemplo, `if, else, for, while, class, FALSE, TRUE, exp, sum`).
+
+-   Como já mencionado, o R diferencia letras maiúsculas de minúsculas, o que significa que `fcul` e `Fcul` são tratados como duas variáveis diferentes. É uma convenção comum em R usar letras minúsculas para nomes de variáveis e separar palavras com sublinhados. Ex: `faculdade_de_ciencias`.
+
+-   Escolha nomes que descrevam claramente a finalidade da variável para que o código seja mais compreensível. Ex: `nome` em vez de `x`.
+
+```{r}
+idade <- 20
+Idade <- 30
+```
+
+## Tipos de dados
+
+Variáveis em R podem armazenar vários tipos de dados, incluindo:
+
+-   **Numeric**: Números. Ex: `42, 3.14`
+
+-   **Character**: sequências de texto. Ex: `“Olá”`
+
+-   **Logical**: valores booleanos. Ex: `TRUE` ou `FALSE`
+
+-   **Vectors**: coleções de elementos do mesmo tipo. Ex: `c(1, 2, 3)`
+
+-   **Data Frames**: estruturas de dados tabulares com linhas e colunas
+
+-   **Lists**: coleções de elementos de diferentes tipos
+
+-   **Factors**: dados categóricos
+
+```{r}
+# Numeric
+a <- 3.14
+
+# Character
+b <- "Programação R"
+
+# Logical
+c <- 3<2
+
+# Vectors
+d <- c(1,2,3)
+```
+
+## Comandos importantes
+
+```{r eval=FALSE}
+ls() #exibe a lista de variáveis na memória
+	
+ls.str() #mostra a estrutura da lista de variáveis na memória
+	
+rm(a) #remove um objeto
+	
+rm(list=ls()) #remover todos os objetos
+	
+save.image('nome-do-arquivo.RData') #salvar
+```
+
+## Operadores aritméticos em R
+
+| **Operador** | **Descrição**                            | **Exemplo**            |
+|------------------------|--------------------------|----------------------|
+| \+           | adiciona dois valores                    | `5 + 2` resulta em 7   |
+| \-           | subtrai dois valores                     | `5 - 2` resulta em 3   |
+| \*           | multiplica dois valores                  | `5 * 2` resulta em 10  |
+| /            | divide dois valores (sem arredondamento) | `5 / 2` resulta em 2.5 |
+| %/%          | realiza divisão inteira                  | `5 %/% 2` resulta em 2 |
+| %%           | retorna o resto da divisão               | `5 %% 2` resulta em 1  |
+| \^           | realiza exponenciação                    | `5 ^ 2` resulta em 25  |
+
+**Exemplos:**
+
+```{r}
+1+1
+	
+5-2
+	
+5*21
+	
+sqrt(9)
+
+3^3
+	
+3**3
+	
+log(9)
+	
+log10(9)
+	
+# prioridade de resolução
+19 + 26 /4 -2 *10
+	
+((19 + 26) /(4 -2))*10
+```
+
+## Quantidade de digitos
+
+```{r}
+exp(1)
+
+options(digits = 20)
+
+exp(1)
+
+options(digits = 3)
+
+exp(1)
+```
+
+## Infinito, indefinido e valores ausentes
+
+```{r}
+1/0  
+
+2*Inf
+	
+-1/0
+	
+0/0
+	
+0*Inf
+	
+sqrt(-1)
+	
+c(1,2,3,NA,5)
+	
+mean(c(1,2,3,NA,5))
+	
+mean(c(1,2,3,NA,5), na.rm = TRUE)
+	
+x <- c(1, 2, NaN, 4, 5)
+y <- c(1, 2, NA, 4, 5)
+	
+is.na(x)  
+is.nan(x) 
+	
+is.na(y) 
+is.nan(y)
+	
+# Operações com NaN e NA
+sum(x)  # Exibe: NaN, porque a soma envolve um NaN
+sum(y)  # Exibe: NA, porque a soma envolve um NA
+	
+sum(x, na.rm = TRUE)  # Exibe: 12, ignora NaN na soma
+sum(y, na.rm = TRUE)  # Exibe: 12, ignora NA na soma
+```
+
+-   **NaN** significa **"Not a Number"** e é usado para representar resultados indefinidos de operações matemáticas.
+
+-   **NA** significa **"Not Available"** e é usado para representar dados ausentes ou valores que não estão disponíveis em um conjunto de dados.
+
+## Escrita dinâmica
+
+O R determina dinamicamente o tipo de uma variável com base no valor atribuído a ela.
+
+```{r}
+x <- 5         
+class(x) 
+
+y <- "Cinco"   
+class(y) 
+
+z <- TRUE  
+class(z) 
+```
+
+-   A função `class()` retorna a classe de um objeto em R. A classe de um objeto determina como ele será tratado pelas funções que operam sobre ele. Por exemplo, vetores, matrizes, data frames e listas são todas classes de objetos em R.
+
+-   A função `typeof()` em R é usada para retornar o tipo de armazenamento interno de um objeto. Ela fornece informações detalhadas sobre como os dados são representados na memória.
+
+```{r}
+x <- 1:10
+class(x) 
+typeof(x) 
+
+y <- c(1.1, 2.2, 3.3)
+class(y) 
+typeof(y) 
+
+z <- data.frame(a = 1:3, b = c("A", "B", "C"))
+class(z) 
+typeof(z) 
+
+w <- list(a = 1, b = "text")
+class(w) 
+typeof(w) 
+```
+
+## Conversão entre tipos de dados
+
+```{r}
+# Convertendo inteiro em string 
+a <- 15
+b <- as.character(15)
+print(b)
+	
+# Convertendo float em inteiro
+x <- 1.5
+y <- as.integer(x)
+print(y)
+
+# Convertendo string em float
+z <- "10"
+w <- as.numeric(z)
+print(w)
+```
+
+## Funções `print()`, `readline()`, `paste()` e `cat()`
+
+-   A função `print()` é utilizada para exibir valores e resultados de expressões no console.
+
+-   A função `readline()` é usada para receber entradas do usuário por meio do teclado.
+
+-   A função `paste()` é utilizada para concatenar strings com um separador específico.
+
+-   A função `paste0()` é utilizada para concatenar strings sem nenhum separador específico.
+
+-   A função `cat()` é usada para concatenar e exibir uma ou mais cadeias de caracteres (strings) ou valores de uma forma mais direta, sem estruturas de formatação adicionais.
+
+**Ex1:**
+
+```{r}
+nome1 <- "faculdade"
+nome2 <- "ciências"
+print(paste(nome1, nome2))
+```
+
+**Ex2:**
+
+```{r eval=FALSE}
+# Solicitar entrada do usuário
+n <- readline(prompt = "Digite um número: ")
+
+# Converta a entrada em um valor numérico
+n <- as.integer(n)
+
+# Imprima o valor no ecrã
+print(n+1)
+```
+
+**Ex3:**
+
+```{r}
+# Solicitar entrada do usuário
+nome <- readline(prompt = "Entre com o seu nome: ")
+	
+# Imprima uma mensagem de saudação
+cat("Olá, ",nome, "!")
+```
+
+**Ex4:**
+
+```{r eval=FALSE}
+# Solicitar ao usuário a entrada numérica
+idade <- readline(prompt = "Digite a sua idade: ")
+	
+# Converta a entrada em um valor numérico
+idade <- as.numeric(idade)
+	
+# Verifique se a entrada é numérica
+if (is.na(idade)) {
+cat("Entrada inválida. Insira um valor numérico.\n")
+} else {
+  cat("Você tem ", idade, " anos.\n")
+}
+```
+
+**Concatenando duas palavras simples**
+
+```{r}
+result <- paste("Hello", "World")
+print(result)
+```
+
+**Concatenando várias strings**
+
+```{r}
+result <- paste("Data", "Science", "with", "R")
+print(result)
+```
+
+**Concatenando com um separador específico**
+
+```{r}
+result <- paste("2024", "04", "28", sep="-")
+print(result)
+```
+
+**Concatenando vetor de strings**
+
+```{r}
+first_names <- c("Anna", "Bruno", "Carlos")
+last_names <- c("Smith", "Oliveira", "Santos")
+result <- paste(first_names, last_names)
+print(result)
+```
+
+**Concatene com cada elemento de um vetor**
+
+```{r}
+numbers <- 1:3
+result <- paste("Number", numbers)
+print(result)
+```
+
+**Usando `paste0()` para concatenar sem espaço**
+
+```{r}
+result <- paste0("Hello", "World")
+print(result)
+```
+
+**Concatenando strings com números**
+
+```{r}
+age <- 25
+result <- paste("I am", age, "years old")
+print(result)
+```
+
+## Operadores Lógicos e Relacionais
+
+No R, operadores lógicos e relacionais são utilizados para realizar comparações e tomar decisões com base nos resultados dessas comparações. Estes operadores são fundamentais para a construção de estruturas de controle de fluxo, como instruções condicionais (`if`, `else`) e loops (`for`, `while`).
+
+### Operadores Lógicos
+
+Os operadores lógicos são usados para combinar ou modificar condições lógicas.
+
+-   O operador `&` (E lógico) retorna `TRUE` se todas as expressões forem verdadeiras.
+
+-   O operador `|` (OU lógico) retorna `TRUE` se pelo menos uma das expressões for verdadeira.
+
+-   O operador `!` (Não lógico) inverte o valor de uma expressão booleana, transformando `TRUE` em `FALSE` e vice-versa.
+
+**Exemplos:**
+
+```{r}
+(5 > 3) & (4 > 2) 
+
+(5 < 3) | (4 > 2) 
+
+!(5 > 3)  
+```
+
+### Operadores Relacionais
+
+Os operadores relacionais são usados para comparar valores e retornam valores lógicos (`TRUE` ou `FALSE`) com base na comparação.
+
+-   `a == b` ("a" é igual a "b")
+-   `a != b` ("a" é diferente de "b")
+-   `a > b` ("a" é maior que "b")
+-   `a < b` ("a" é menor que "b")
+-   `a >= b` ("a" é maior ou igual a "b")
+-   `a <= b` ("a" é menor ou igual a "b")
+-   `is.na(a)` ("a" é missing - ausente/faltante)
+-   `is.null(a)` ("a" é nulo)
+
+**Exemplos:**
+
+```{r}
+# maior que 
+2 > 1
+
+1 > 2
+
+# menor que
+1 < 2
+
+# maior ou igual a
+0 >= (2+(-2))
+
+# menor ou igual a 
+1 <= 3
+
+# conjunção E
+9 > 11 & 0 < 1
+
+# ou
+6 < 5 | 0>-1
+
+# igual a
+1 == 2/2
+
+# diferente de
+1 != 2
+```
+
+# Estruturas de Seleção
+
+Em R, as estruturas de seleção ou decisão são usadas para controlar o fluxo de execução do código com base em condições específicas. Estas estruturas permitem executar diferentes blocos de código dependendo de valores ou condições lógicas. As estruturas de seleção mais comuns em R são if, `if`, `else`, `else if`.
+
+## Condicional `if`
+
+A instrução `if` executa um bloco de código se uma condição for verdadeira.
+
+```{r eval=FALSE}
+# Sintaxe	
+if (condição) {
+	  # Código a ser executado se a condição for TRUE
+}
+```
+
+**Exemplo 1:**
+
+```{r}
+x <- 10
+
+if (x > 5) {
+	  print("x é maior que 5")
+}
+```
+
+## Condicional `if...else`
+
+A estrutura `if...else` permite executar um bloco de código quando a condição é verdadeira e outro bloco de código quando a condição é falsa.
+
+```{r eval=FALSE}
+# Sintaxe
+if (condição) {
+	  # Código a ser executado se a condição for TRUE
+} else {
+	  # Código a ser executado se a condição for FALSE
+}
+```
+
+**Exemplo 2:**
+
+```{r}
+x <- 3
+
+if (x > 5) {
+	  print("x é maior que 5")
+} else {
+    print("x não é maior que 5")
+}
+```
+
+## Condicional `if...else if...else`
+
+A estrutura `if...else if...else` permite testar múltiplas condições em sequência. Executa o bloco de código do primeiro teste que resulta em verdadeiro.
+
+```{r eval=FALSE}
+# Sintaxe
+if (condição1) {
+	  # Código se condição1 for TRUE
+} else if (condição2) {
+	  # Código se condição2 for TRUE
+} else {
+	  # Código se nenhuma condição anterior for TRUE
+}
+```
+
+**Exemplo 3:**
+
+```{r}
+x <- 7
+
+if (x > 10) {
+	  print("x é maior que 10")
+} else if (x > 5) {
+	    print("x é maior que 5, mas não maior que 10")
+} else {
+	    print("x não é maior que 5")
+}
+```
+
+## A função `ifelse()`
+
+A função `ifelse` é uma versão vetorizada de if...else que retorna valores dependendo de uma condição. É muito útil para aplicar condições a vetores. Veremos mais sobre isso após falarmos sobre vetores.
+
+```{r eval=FALSE}
+# Sintaxe
+resultado <- ifelse(condição, valor_se_true, valor_se_false)
+```
+
+**Exemplo 4:**
+
+```{r}
+valores <- c(4, 6, 9, 3)
+resultado <- ifelse(valores > 5, "maior que 5", "não é maior que 5")
+print(resultado)
+```
+
+## Exemplos
+
+**Exemplo 5:** Indique o(os) erro(os) no código abaixo
+
+```{r eval=FALSE}
+if (x%%2 = 0){  
+	  print("Par")
+} else {  
+    print("Ímpar")
+}
+```
+
+Código correto
+
+```{r eval=FALSE}
+if (x%%2 == 0){  
+  print("Par")
+} else {  
+    print("Ímpar")
+}
+```
+
+**Exemplo 6:** Indique o(os) erro(os) no código abaixo
+
+```{r eval=FALSE}
+if (a>0) {  
+  print("Positivo")  
+  if (a%%5 = 0)     
+    print("Divisível por 5")  	
+} else if (a==0)   
+    print("Zero")
+  else if {  
+    print("Negativo")
+}
+```
+
+Código correto
+
+```{r eval=FALSE}
+if (a>0) {  
+  print("Positivo")  
+  if (a%%5 == 0) {    
+    print("Divisível por 5")  
+  }
+} else if (a==0) {  
+    print("Zero")
+} else {  
+    print("Negativo")
+}
+```
+
+**Exemplo 7:** Quais os valores de `x` e `y` no final da execução
+
+```{r eval=FALSE}
+x = 1
+y = 0
+if (x == 1){  
+  y = y - 1
+}
+if (y == 1){  
+  x = x + 1
+}
+```
+
+**Exemplo 8:**
+
+-   Se `x=1` qual será o valor de `x` no final da execução?
+
+-   Qual teria de ser o valor de `x` para que no final da execução fosse -1?
+
+-   Há uma parte do programa que nunca é executada: qual é e porquê?
+
+```{r eval=FALSE}
+if (x == 1){  
+  x = x + 1  
+  if (x == 1){    
+    x = x + 1  
+  } else {   
+      x = x - 1  
+  }
+} else {  
+    x = x - 1
+}
+```
+
+# Loop while
+
+A instrução `while` em R é uma estrutura de controle de fluxo que permite executar um bloco de código repetidamente, enquanto uma condição especificada for verdadeira. É particularmente útil para situações em que o número de repetições não é conhecido antecipadamente, mas depende de alguma condição lógica.
+
+```{r eval=FALSE}
+# Sintaxe
+while (condição) {
+  # Bloco de código a ser executado
+}
+```
+
+-   **condição**: Uma expressão lógica que é avaliada antes de cada iteração do loop. Enquanto essa condição for `TRUE`, o bloco de código dentro do while será executado.
+
+-   **Bloco de código**: As instruções que devem ser repetidamente executadas enquanto a condição for verdadeira.
+
+**Como funciona o while**
+
+-   **Avaliação da Condição**: Antes de cada execução do bloco de código, a condição é avaliada.
+
+-   **Execução do Bloco de Código**: Se a condição for `TRUE`, o bloco de código dentro do `while` é executado.
+
+-   **Reavaliação**: Após a execução do bloco de código, a condição é reavaliada. Se continuar a ser `TRUE`, o ciclo se repete. Se a condição for `FALSE`, o loop termina e o controle do programa continua com a próxima instrução após o `while`.
+
+**Exemplo 1:** Somando números até um limite.
+
+```{r}
+limite <- 10
+soma <- 0
+contador <- 1
+
+while (contador <= limite) {
+  soma <- soma + contador
+  contador <- contador + 1
+}
+
+print(paste("A soma dos números de 1 a", limite, "é:", soma))
+```
+
+**Exemplo 2:** Escrevendo a tabuada de um número inteiro
+
+```{r eval=FALSE}
+n <- as.numeric(readline("Digite um número inteiro: "))
+
+print(paste("Tabuada do",n, ":"))
+i=1
+while (i <= 10){  
+  print(paste(n,"x",i, "=", n*i))  
+  i + 1
+}
+```
+
+Explique porque o programa acima não termina. Qual o erro no nosso código?
+
+**Exemplo 3:**
+
+```{r}
+limite <- 10
+soma <- 0
+contador <- 1
+
+while (contador <= limite) {  
+  soma <- soma + contador  
+  print(contador)  
+  if (contador == 3){    
+  	break  
+  }  
+  contador <- contador + 1
+}
+```
+
+-   **break** é uma instrução utilizada em ciclos para interromper a sua execução (sair de um ciclo antes de ter sido percorrido completamente). Quando o `break` é chamado, o loop é imediatamente interrompido, e o fluxo de execução continua na próxima linha de código após o loop.
+
+**Considerações importantes sobre o uso do `while()`**
+
+-   **Condição de Parada**: É crucial garantir que a condição do `while` se torne `FALSE` em algum ponto para evitar loops infinitos que podem fazer o programa parar de responder.
+
+-   **Incremento/Decremento**: Certifique-se de que a variável que controla a condição seja atualizada adequadamente dentro do loop para evitar loops infinitos.
+
+-   **Desempenho**: Loops `while` podem ser menos eficientes do que loops vetorizados em R, portanto, para grandes conjuntos de dados, considere outras abordagens, como aplicar funções vetorizadas (`apply`, `lapply`, etc.).
+
+# Loop for
+
+A instrução `for` em R é uma estrutura de controle de fluxo que permite executar repetidamente um bloco de código para cada elemento em um conjunto de elementos. É especialmente útil para situações em que se conhece o número de iterações a serem realizadas com antecedência. A instrução for é amplamente utilizada em R para iterar sobre vetores, listas, data frames e outras estruturas de dados.
+
+```{r eval=FALSE}
+# Sintaxe
+for (variável in sequência) {
+  # Bloco de código a ser executado
+}
+```
+
+-   **variável**: Uma variável que assume o valor de cada elemento na sequência em cada iteração do loop.
+
+-   **sequência**: Um vetor, lista ou qualquer estrutura de dados sobre a qual se deseja iterar.
+
+-   **bloco de código**: O conjunto de instruções que serão executadas para cada elemento da sequência.
+
+**Como funciona o `for()`**
+
+* **Inicialização**: Antes do loop começar, a variável de controle é inicializada com o primeiro elemento da sequência.
+
+* **Iteração**: Em cada iteração do loop, a variável de controle assume o próximo valor da sequência.
+
+* **Execução do Bloco de Código*: O bloco de código dentro do loop é executado uma vez para cada elemento da sequência.
+
+* **Finalização**: O loop termina quando todos os elementos da sequência forem processados.
+
+**Exemplo 1:** Imprima os números de 0 a 10 no ecrã.
+
+```{r eval=FALSE}
+for (i in 0:10) {
+  print(i)
+}
+```
+
+**Exemplo 2:** Soma dos elementos de um vetor
+
+```{r}
+numeros <- c(1, 2, 3, 4, 5)
+soma <- 0
+
+for (num in numeros) {
+  soma <- soma + num
+}
+
+print(paste("A soma dos números é:", soma))
+```
+
+**Exemplo 3:** Uso do `for` com índices. Você também pode usar o loop for para iterar sobre índices de vetores ou listas, o que pode ser útil quando se deseja acessar ou modificar elementos em posições específicas. Multiplique por 2 os elementos do vetor.
+
+```{r}
+numeros <- c(10, 20, 30, 40, 50)
+
+for (i in 1:length(numeros)) {
+  numeros[i] <- numeros[i] * 2
+}
+
+print("Elementos do vetor multiplicados por 2:")
+print(numeros)
+```
+
+**Exemplo 4:** Exemplo com matrizes. O loop for também pode ser usado para iterar sobre elementos de uma matriz, seja por linha ou por coluna.
+
+```{r}
+matriz <- matrix(1:9, nrow=3, ncol=3)
+soma_linhas <- numeric(nrow(matriz))
+
+for (i in 1:nrow(matriz)) {
+  soma_linhas[i] <- sum(matriz[i, ])
+}
+
+print("Soma dos elementos de cada linha:")
+print(soma_linhas)
+```
+
+**Exemplo 5:** Cálculo de Médias de Colunas em um Data Frame
+
+```{r}
+dados <- data.frame(
+A = c(1, 2, 3),
+B = c(4, 5, 6),
+C = c(7, 8, 9)
+)
+
+medias <- numeric(ncol(dados))
+
+for (col in 1:ncol(dados)) {
+  medias[col] <- mean(dados[, col])
+}
+
+print("Médias das colunas do data frame:")
+print(medias)
+```
+
+# Família `Xapply()`
+
+A família `Xapply()` no R refere-se a um conjunto de funções que são usadas para iterar sobre objetos de forma eficiente, substituindo a necessidade de ciclos explícitos como `for`. Essas funções são muito úteis para realizar operações repetitivas em listas, vetores, matrizes, data frames e outros objetos, de maneira concisa e muitas vezes mais rápida.
+
+| **Função** | **Argumentos** | **Objetivo** | **Input** | **Output** |
+|------------|----------------|--------------|-----------|------------|
+| `apply`    | `apply(x, MARGIN, FUN)` | Aplica uma função às linhas ou colunas ou a ambas | Data frame ou matriz | vetor, lista, array |
+| `lapply`   | `lapply(x, FUN)` | Aplica uma função a todos os elementos da entrada | Lista, vetor ou data frame | lista |
+| `sapply`   | `sapply(x, FUN)` | Aplica uma função a todos os elementos da entrada | Lista, vetor ou data frame | vetor ou matriz |
+| `tapply`   | `tapply(x, INDEX, FUN)` | Aplica uma função a cada fator | Vetor ou data frame | array |
+
+## Função `apply()`
+
+Aplica uma função a margens (linhas ou colunas) de uma matriz ou data frame e fornece saída em vetor, lista ou array. É usada para evitar loops (ciclos).
+
+```{r eval=FALSE}
+# Sintaxe
+apply(X, MARGIN, FUN)
+```
+
+* `X`: A matriz ou data frame.
+
+* `MARGIN`: Indica se a função deve ser aplicada a linha (1) ou coluna (2).
+
+* `FUN`: A função a ser aplicada.
+
+**Exemplo**: Calcular a soma, a média e a raíz quadrada de cada coluna de uma matriz.
+
+```{r}
+matriz <- matrix(1:9, nrow = 3)
+
+apply(matriz, 2, sum)
+apply(matriz, 2, mean)
+
+f <- function(x) sqrt(x)
+apply(matriz, 2, f)
+```
+
+## Função `lapply()`
+
+Aplica uma função a cada elemento de uma lista ou vetor e retorna uma lista. É útil quando você precisa manter a estrutura de saída como uma lista.
+
+```{r eval=FALSE}
+# Sintaxe
+lapply(X, FUN, ...)
+```
+
+* `X`: A lista ou vetor.
+
+* `FUN`: A função a ser aplicada.
+
+**Exemplo 1:**
+
+```{r}
+nomes <- c("ANA", "JOAO", "PAULO", "FILIPA")
+(nomes_minusc <- lapply(nomes, tolower))
+
+str(nomes_minusc) 
+```
+
+**Exemplo 2:**
+
+```{r}
+# Aplicar a função sqrt a cada elemento de uma lista
+vetor_dados <- list(a = 1:4, b = 5:8)
+lapply(vetor_dados, sqrt)
+```
+
+## Função `sapply()`
+
+Similar ao `lapply()`, aplica uma função a cada elemento de uma lista, vetor ou data frame, mas tenta simplificar o resultado(saída) para um vetor ou matriz.
+
+```{r eval=FALSE}
+# Sintaxe
+sapply(X, FUN, ...)
+```
+
+**Exemplo**
+
+```{r}
+dados <- 1:5
+f <- function(x) x^2
+
+lapply(dados, f)
+sapply(dados, f)
+```
+
+## Função `tapply()`
+
+Aplica uma função a grupos de valores em um vetor. É ideal para operações em subconjuntos de dados categorizados.
+
+```{r eval=FALSE}
+# Sintaxe
+tapply(X, INDEX, FUN, ...)
+```
+
+* `X`: O vetor de dados
+
+* `INDEX`: Um fator ou lista de fatores que definem os grupos.
+
+* `FUN`: A função a ser aplicada
+
+**Exemplo:** O dataset `iris` no R é um dos conjuntos de dados mais conhecidos e frequentemente utilizados para exemplificar análises estatísticas e técnicas de aprendizado de máquina. Foi introduzido por Ronald A. Fisher em 1936 em seu artigo sobre a utilização de modelos estatísticos para discriminação de espécies de plantas. O objetivo deste conjunto de dados é prever a classe de cada uma das três espécies de flores (fatores): Setosa, Versicolor, Virginica. O conjunto de dados coleta informações para cada espécie sobre seu comprimento e largura.
+
+```{r}
+iris
+
+tapply(iris$Petal.Length, iris$Species, mean)
+```
+
+# Estrutura de Dados Básicas
+
+Em R temos objetos que são funções e objetos que são dados.
+
+* Exemplos de funções:
+  + `cos()`
+  + `print()`
+  + `plot()`
+  + `integrate()`
+
+* Exemplos de dados:
+  + `23`
+  + `"Hello"`
+  + `TRUE`
+  + `c(1,2,3)`
+  + `data.frame(nome = c("Alice", "Bob"), idade = c(25, 30))`
+  + `list(numero = 42, nome = "Alice", flag = TRUE`)
+  + `factor(c("homem", "mulher", "mulher", "homem"))`
+
+## Vetor
+
+Um vetor é uma estrutura de dados básica que pode armazenar uma sequência de objetos do mesmo tipo. Vetores podem conter dados numéricos, caracteres, valores lógicos (`TRUE`/`FALSE`), números complexos, entre outros.
+
+* Todos os elementos de um vetor devem ser do mesmo tipo.
+
+* Os elementos de um vetor são indexados a partir de 1.
+ 
+* Vetores podem ser facilmente manipulados e transformados usando uma ampla gama de funções. 
+ 
+* Vetores podem ser criados usando a função `c()` (combine ou concatenate).
+
+### Tipos Comuns de Vetores
+
+```{r}
+# vetor numérico
+c(1.1, 2.2, 3.3)
+
+# vetor inteiro
+c(1L, 2L, 3L) 
+
+# vetor de strings
+c("a", "b", "c") 
+
+# vetor lógico
+c(TRUE, 1==2)
+
+# Não podemos ter combinações...
+c(3, 1==2, "a") ## Observe que o R simplesmente transformou tudo em characters!
+```
+
+### Construindo vetores
+
+```{r}
+# Inteiros de 1 a 10
+x <- 1:10
+x
+
+# Sequência de 0 a 50 de 10 em 10
+a <- seq(from = 0, to = 50, by=10)
+a
+
+# Sequência de 11 números de 0 a 1
+y <- seq(0,1, length=15)
+y
+
+# O mesmo número ou o mesmo vetor várias vezes
+z <- rep(1:3, times=4)
+z
+
+t <- rep(1:3, each=4)
+t
+
+# Combine números, vetores ou ambos em um novo vetor
+w <- c(x,z,5)
+w
+```
+
+### Acesso a Elementos de um Vetor
+
+```{r}
+# Defina um vetor com inteiros de (-5) a 5 e extraia os números com valor absoluto menor que 3:
+x<- (-5):5
+x
+
+# pelo seu índice no vetor:
+x[4:8]
+ 
+# ou, por seleção negativa (coloque um sinal de menos na frente dos índices que não queremos):
+x[-c(1:3,9:11)]
+
+# Um vetor lógico pode ser definido por:
+index<-abs(x)<3
+index 
+
+# Agora este vetor pode ser usado para extrair os números desejados:
+x[index]
+
+# Que é a mesma coisa que...
+x[abs(x) < 3]
+
+letters[1:3]
+letters[c(2,4,6)]
+LETTERS[1:3]
+
+y <- 1:10
+y[ (y>5) ] # seleciona qualquer número > 5
+y[ (y%%2==0) ] # números que são divisíveis por 2
+y[ (y%%2==1) ] # números que não são divisíveis por 2
+y[5] <- NA
+y[!is.na(y)] # todos y que não são NA 
+```
+
+### Funções Comuns para Vetores
+
+```{r}
+num_vector <- c(2.2, 1.1, 3.3)
+
+# Obtém o comprimento de um vetor
+length(num_vector)
+
+# Calcula a soma dos elementos de um vetor
+sum(num_vector)
+
+# Calcula a média dos elementos de um vetor
+mean(num_vector)
+
+# Ordena os elementos de um vetor
+sort(num_vector)
+
+sort(num_vector,decreasing = TRUE)
+
+# Remove elementos duplicados de um vetor
+duplicate_vector <- c(1, 2, 2, 3, 3, 3)
+unique(duplicate_vector)  
+```
+
+### Operações com Vetores
+
+```{r}
+# Adição
+num_vector + 1  
+
+# Multiplicação
+num_vector * 2  
+
+# Comparações
+num_vector > 2  
+
+c(2,3,5,7)^2
+
+c(2,3,5,7)^c(2,3)
+
+c(1,2,3,4,5,6)^c(2,3,4)
+
+c(2,3,5,7)^c(2,3,4)
+```
+
+Os últimos quatro comandos mostram a “propriedade de reciclagem” do R. Ele tenta combinar os vetores em relação ao comprimento, se possível. Na verdade,
+
+```{r}
+c(2,3,5,7)^c(2,3)
+```
+
+é expandido para
+
+```{r}
+c(2,3,5,7)^c(2,3,2,3)
+```
+
+O último exemplo mostra que o R dá um aviso se o comprimento do vetor mais curto não puder ser expandido para o comprimento do vetor mais longo por uma simples multiplicação com um número natural (2, 3, 4,...). Aqui
+
+```{r}
+c(2,3,5,7)^c(2,3,4)
+```
+
+é expandido para
+
+```{r}
+c(2,3,5,7)^c(2,3,4,2)
+```
+
+de modo que nem todos os elementos de \verb|c(2,3,4)| são "reciclados''.
+
+# Fatores
+
+Em R, um “factor” (ou “fator”, em português) é uma estrutura de dados usada para representar dados categóricos. Fatores são muito úteis em análises estatísticas e visualizações, pois permitem que você trate dados categóricos de forma eficiente e consistente.
+
+* Fatores têm **níveis**, que são os valores distintos que a variável categórica pode assumir.
+
+* Internamente, os fatores são armazenados como inteiros que correspondem aos níveis, mas são exibidos como rótulos (labels).
+
+* Fatores podem ser ordenados (ordered factors) ou não ordenados (unordered factors).
+
+```{r}
+# Vetor de dados categóricos
+data <- c("low", "medium", "high", "medium", "low", "high")
+
+# Criar um fator
+factor_data <- factor(data)
+
+print(factor_data)
+
+# Especificar os níveis
+factor_data <- factor(data, levels = c("low", "medium", "high"))
+print(factor_data)
+
+# Criar um fator ordenado
+ordered_factor <- factor(data, levels = c("low", "medium", "high"), ordered = TRUE)
+print(ordered_factor)
+
+# Verificar Níveis
+levels(factor_data)
+
+# Modificar Níveis
+levels(factor_data) <- c("Low", "Medium", "High")
+print(factor_data)
+```
+
+# Matriz e array
+
+Uma **matriz** é uma coleção de objetos do mesmo tipo (numérico, lógico, etc.) organizada em um formato bidimensional, ou seja, em linhas e colunas.
+
+* **nrow**: corresponde ao número de linhas;
+
+**ncol**: corresponde ao número de colunas.
+
+```{r}
+matrix(c(1,2,3,4,5,6)+exp(1),nrow=2)
+
+matrix(c(1,2,3,4,5,6)+exp(1),nrow=2) > 6
+
+# Também podemos criar matrizes de ordem superior
+array(c(1:24), dim=c(4,3,2))
+```
+
+## Construindo matrizes
+
+* O comando `rbind` (row bind) é usado para combinar objetos por linhas. Isso significa que os vetores ou matrizes fornecidos serão empilhados verticalmente, criando novas linhas na estrutura de dados resultante.
+
+* O comando `cbind` (column bind) é usado para combinar objetos por colunas. Isso significa que os vetores ou matrizes fornecidos serão combinados horizontalmente, criando novas colunas na estrutura de dados resultante.
+
+**Exemplo com vetores**
+
+```{r}
+# Criar dois vetores
+vector1 <- c(1, 2, 3)
+vector2 <- c(4, 5, 6)
+
+# Combinar os vetores por linhas
+result <- rbind(vector1, vector2)
+print(result)
+
+# Combinar os vetores por colunas
+result <- cbind(vector1, vector2)
+print(result)
+
+# Combinando linhas em uma matriz
+A <- rbind(1:3, c(1,1,2))
+A
+
+# Combinando colunas em uma matriz
+B <- cbind(1:3, c(1,1,2))
+B
+```
+
+**Exemplo com matrizes**
+
+```{r}
+# Criar duas matrizes
+matrix1 <- matrix(1:6, nrow = 2, ncol = 3)
+matrix2 <- matrix(7:12, nrow = 2, ncol = 3)
+
+# Combinar as matrizes por linhas
+result <- rbind(matrix1, matrix2)
+print(result)
+
+result <- cbind(matrix1, matrix2)
+print(result)
+```
+
+## Índice e índice lógico
+
+```{r}
+A<-matrix((-4):5, nrow=2, ncol=5)
+A
+
+# Acessando as entradas de uma matriz
+A[1,2]
+
+# Valores negativos 
+A[A<0]
+ 
+# Atribuições
+A[A<0]<-0
+A
+
+# Selecionando as linhas de uma matriz
+A[2,]
+
+# Selecionando as colunas de uma matriz
+A[,c(2,4)] 
+```
+
+## Nomeando linhas e colunas numa matriz
+
+```{r}
+x <- matrix(rnorm(12),nrow=4)
+x
+
+colnames(x) <- paste("dados",1:3,sep="")
+x
+
+y <- matrix(rnorm(15),nrow=5)
+y 
+
+colnames(y) <- LETTERS[1:ncol(y)]
+
+rownames(y) <- letters[1:nrow(y)]
+
+y
+```
+
+## Multiplicação de matrizes
+
+```{r}
+M<-matrix(rnorm(20),nrow=4,ncol=5)
+N<-matrix(rnorm(15),nrow=5,ncol=3)
+
+M%*%N
+```
+
+## Algumas outras funções
+
+Seja $M$ uma matriz quadrada. 
+
+* dimensão de uma matriz $\to$ `dim(M)`	
+
+* transposta de uma matriz $\to$ `t(M)`
+ 
+* determinante de uma matriz $\to$ `det(M)`
+ 
+* inversa de uma matriz $\to$ `solve(M)`
+ 
+* autovalores e autovetores $\to$ `eigen(M)`
+ 
+* soma dos elementos de uma matriz $\to$ `sum(M)`
+
+* média dos elementos de uma matriz $\to$ `mean(M)`
+
+* aplicar uma função a cada linha ou coluna $\to$ `apply(M,1, sum) # soma de cada linha` 
+ 
+* aplicar uma função a cada linha ou coluna $\to$ `apply(M,2, mean) # média de cada coluna` 
+
+# Data-frame
+
+Um data frame em R é uma estrutura de dados bidimensional que é usada para armazenar dados tabulares. Cada coluna em um data frame pode conter valores de diferentes tipos (numéricos, caracteres, fatores, etc.), mas todos os elementos dentro de uma coluna devem ser do mesmo tipo. Um data frame é similar a uma tabela em um banco de dados ou uma planilha em um programa de planilhas como o Excel. Podemos criar data frames lendo dados de arquivos ou usando a função `as.data.frame()` em um conjunto de vetores. 
+
+## Criando um data frame
+
+```{r}
+df <- data.frame(
+id = 1:4,
+nome = c("Ana", "Bruno", "Carlos", "Diana"),
+idade = c(23, 35, 31, 28),
+salario = c(5000, 6000, 7000, 8000))
+df
+
+# Comparando com uma matriz
+cbind(id = 1:4,
+nome = c("Ana", "Bruno", "Carlos", "Diana"),
+idade = c(23, 35, 31, 28),
+salario = c(5000, 6000, 7000, 8000))
+```
+
+## Acessando linhas e colunas
+
+```{r}
+# Acessando a coluna id
+df[,1]
+
+# Outra forma de acessar a coluna id
+df$id
+
+# Outra forma de acessar a coluna id
+df[["id"]]
+
+# Acessando linhas e colunas por índice
+df[1, ] # Primeira linha
+
+# Segunda coluna
+df[, 2] 
+
+# Elemento na primeira linha, segunda coluna
+df[1, 2] 
+
+# Subconjunto das primeiras duas linhas e colunas
+df[1:2, 1:2] 
+
+# Acessando linhas e colunas por nome
+df[1, "nome"] # Elemento na primeira linha, coluna "nome"
+
+# Colunas "nome" e "idade"
+df[c("nome", "idade")] 
+```
+
+## Adicionando e removendo colunas
+
+```{r}
+# Adicionar novas colunas
+df$novo_salario <- df$salario * 1.1 
+df
+
+# Remover coluna
+df$id <- NULL
+df
+```
+
+## Fundindo dados
+
+```{r}
+df1 <- data.frame(curso=c("PE","LE","CAL"), horas=c(60,75,90))
+df1
+
+df2 <- data.frame(curso=c("CAL","PE","LE"), creditos=c(8,6,7))
+df2 
+
+df12 <- merge(df1, df2, by="curso")
+df12
+```
+
+## Dimensão, informações de colunas e outros
+
+```{r}
+df <- iris
+names(df)
+
+class(df$Sepal.Length)
+
+class(df$Species)
+
+dim(df)
+
+nrow(df)
+
+ncol(df)
+
+# Visão geral da estrutura do objeto
+str(df)
+
+head(df, 3)
+
+tail(df, 5)
+```
+
+## A função `subset()`
+
+```{r}
+df1 <- df[df$Sepal.Width > 3, c("Petal.Width","Species")]
+head(df1)
+  
+(df2 <- subset(df, Sepal.Width > 3, select = c(Petal.Width, Species)))
+
+(df3 <- subset(df, Petal.Width == 0.3, select = -Sepal.Width))
+   
+(df4 <- subset(df, select = Sepal.Width:Petal.Width))
+```
+
+## A função `summary()`
+
+A função `summary()` no R é usada para gerar resumos estatísticos de objetos. O comportamento da função varia dependendo do tipo de objeto que você passa para ela, mas geralmente fornece uma visão geral das características principais do objeto.
+
+```{r}
+x <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+summary(x)	
+
+summary(iris$Sepal.Length)
+
+summary(iris)  
+```
+
+## Valores faltantes
+
+# Listas
+
+Uma lista em R é uma estrutura de dados que permite armazenar elementos de diferentes tipos, como vetores, matrizes, data frames, funções e até outras listas. Essa flexibilidade distingue as listas de outras estruturas, como vetores, que são homogêneos e podem conter apenas elementos de um único tipo.
+
+* **Heterogeneidade**: Uma lista pode conter elementos de diferentes tipos. Por exemplo, você pode ter um vetor numérico, um vetor de caracteres, uma matriz e um data frame, todos na mesma lista.
+
+* **Indexação**: Os elementos de uma lista podem ser acessados usando colchetes duplos [[ ]] ou utilizando o operador $ para acessar elementos nomeados. Além disso, o índice simples [ ] retorna uma sublista.
+
+* **Flexibilidade**: As listas podem ser usadas para armazenar saídas complexas de funções ou para estruturar dados que requerem uma organização mais flexível.
+
+```{r}
+# Criando uma lista com diferentes tipos de elementos
+minha_lista <- list(
+  nome = "Estudante",
+  idade = 21,
+  notas = c(85, 90, 92),
+  disciplinas = c("Matemática", "Estatística", "Computação"),
+  matriz_exemplo = matrix(1:9, nrow = 3, byrow = TRUE),
+  media= function(x) mean(x)
+)
+
+# Visualizando a lista
+print(minha_lista)
+
+# Acessando um elemento pelo nome usando $
+print(minha_lista$nome)
+
+# Acessando um elemento pelo índice
+print(minha_lista[[1]])
+
+# Acessando uma sublista
+print(minha_lista[1:2])
+
+# Acessando uma parte de um elemento, como o segundo valor do vetor "notas"
+print(minha_lista$notas[2])
+```
+
+# Funções
+
+* Uma **função** é um bloco de código que realiza tarefas específicas e que só é executado quando é chamada.
+ 
+* São reutilizáveis e podem ser chamadas várias vezes dentro de um script.
+ 
+* Podem ser passados dados para uma função, conhecidos como parâmetros ou argumentos.
+ 
+```{r eval=FALSE}
+# Sintaxe
+nome_da_funcao <- function(argumentos) {
+  # Código da função
+  resultado <- ... # Cálculos ou operações
+  return(resultado) # Retorno do valor
+}
+```
+
+* **Nome da Função**: Identificador da função.
+
+* **Argumentos**: Valores de entrada para a função.
+
+* **Corpo da Função**: Bloco de código que realiza operações.
+
+* **Return**: Valor que a função devolve.
+
+As funções como objetivo principal a modularização (dividir o código em partes menores e gerenciáveis) e a reutilização de código, facilitando a organização e a legibilidade dos scripts. Ao encapsular um bloco de código em uma função, podemos executá-lo múltiplas vezes com diferentes parâmetros, reduzindo a redundância e o tempo de desenvolvimento.
+
+**Exemplo:** Função para calcular a área de um objeto retangular
+
+```{r eval=FALSE}
+calcula_area <- function(largura, altura) {
+  area <- largura * altura
+  return(area)
+}
+
+largura_obj <- as.numeric(readline("Insira a largura (em cm): "))
+altura_obj <- as.numeric(readline("Insira a altura (em cm): "))
+
+# Chamada da função
+area_obj <- calcula_area(largura_obj, altura_obj) 
+
+print(area_obj)
+```
+
+* **Variáveis locais**: As variáveis `largura` e `altura` são locais. Estas variáveis só existem quando a função está a ser executada. Quando a execução da função termina, as variáveis locais são destruídas. 
+
+* **Variáveis globais**: As variáveis `largura_obj` e `altura_obj` são variáveis globais. Estas variáveis são acessíveis a todo o script e representam a largura e altura do objeto inserido pelo utilizador.
+
+* As variáveis locais e globais devem ter nomes **diferentes** para que o código seja mais legível.
+
+**Passagem de argumento: valores de argumentos por omissão (default)**
+
+```{r}
+calcula_area <- function(largura, altura=2) { 
+  area <- largura * altura  
+  return(area)
+}
+# Chamada da função
+
+area_obj <- calcula_area(4) 
+
+print(area_obj)
+```
+
+* Caso a altura seja omitida é considerada por definição o valor 2.
+
+* Como a altura foi omitida o cálculo da área será 4*2
+
+```{r}
+calcula_area <- function(largura, altura=2) { 
+		area <- largura * altura  
+		return(area)
+}
+
+# Chamada da função
+area_obj <- calcula_area(altura=4,largura=3) 
+	
+print(area_obj)
+```
+
+* Se os argumentos forem passados por palavra chave, a ordem dos argumentos pode ser trocada.
+
+**Exemplo:**
+
+```{r eval=FALSE}
+f <- function(x) {
+  if (x < 0) {
+    stop("Erro: x não pode ser negativo")  # Interrompe a função com uma mensagem de erro
+  }
+  return(sqrt(x))
+}
+
+f(-2)
+```
+
+* O `stop` é usado para interromper a execução de uma função ou de um script, gerando um erro.
+
+* Ele pode ser usado em qualquer lugar do código, dentro ou fora de loops, para gerar um erro e parar a execução do código.
+ 
+* Quando `stop` é chamado, ele pode exibir uma mensagem de erro personalizada, e a execução do script ou função é completamente interrompida.
+
+**Exercício 1:** Qual será o output do script abaixo?
+
+```{r eval=FALSE}
+x <- 10  
+
+minha_funcao <- function() {
+	x <- 5  
+	return(x)
+}
+
+print(minha_funcao()) 
+print(x) 
+```
+
+**Exercício 2:** Qual é o resultado da chamada da função `dados_estudante`?
+
+```{r eval=FALSE}
+dados_estudante <- function(nome, altura=167){
+  print(paste("O(A) estudante",nome,"tem",altura,"centímetros de altura."))
+}
+
+dados_estudante("Joana",160)
+```
+
+**Exercício 3:** Qual é a sintaxe correta para definir uma função em R que soma dois números?
+
+(a) `sum <- function(x, y) \{return(x + y)\}`
+
+(b) `function sum(x, y) \{return(x + y)\}`
+
+(c) `def sum(x, y) \{return(x + y)\}`
+
+(d) `sum(x, y) = function \{return(x + y)\}`
+
+**Exercício 4:** Qual das seguintes chamadas à função estão corretas?
+
+```{r eval=FALSE}
+dados_estudante <- function(nome, altura=167) {
+  print(paste("O(A) estudante",nome,"tem",altura,"centímetros de altura."))
+}
+
+dados_estudante("Joana",160)
+dados_estudante(altura=160, nome="Joana")
+dados_estudante(nome = "Joana", 160)
+dados_estudante(altura=160, "Joana")
+dados_estudante(160)
+```
+
+`dados_estudante(160)` - Esta chamada está errada porque 160 será interpretado como nome, e altura usará seu valor padrão, 167. Isso resultará na impressão: `"O(A) estudante 160 tem 167 centímetros de altura."` A chamada está tecnicamente correta no sentido de sintaxe, mas o resultado não faz sentido lógico, já que 160 não é um nome válido para um estudante.
+
+**Exercício 5:** Qual o resultado do seguinte programa?
+
+```{r eval=FALSE}
+adi <- function(a,b) {  
+  return(c(a+5, b+5))
+}
+
+resultado <- adi(3,2)
+```
+
+# Leitura de Dados
+
+# Manipulando dados
+
+## `tapply()`, `aggregate()` e `by()`
+
+# O package dplyr
+
+# Gráficos em R
+
+## Gráfico de Barras
+
+**Gráfico de barras**: Conjunto de barras verticais ou horizontais. Cada barra representa uma categoria, e a altura da barra mostra a frequência sbsoluta ou relativa dessa categoria. A largura das barras não tem significado.
+
+```{r}
+# Dados de exemplo: cores favoritas
+cores <- c("Azul", "Vermelho", "Verde", "Azul", "Verde", 
+"Vermelho", "Azul", "Verde", "Azul", "Vermelho")
+
+# Calcular as frequências absolutas
+frequencia_absoluta <- table(cores)
+
+# Criar o gráfico de barras com frequências absolutas
+barplot(frequencia_absoluta,
+  main = "Gráfico de Barras",         
+  xlab = "Cor",         
+  ylab = "Frequência Absoluta",         
+  col = c("blue", "red", "green")) 
+```
+
+
+```{r}
+# Calcular as frequências relativas
+frequencia_relativa <- frequencia_absoluta / length(cores)	
+	
+# Criar o gráfico de barras com frequências relativas
+barplot(frequencia_relativa,         
+  main = "Gráfico de Barras",         
+  xlab = "Cor",         
+  ylab = "Frequência Relativa") 
+```
+
+## Gráfico circular (pizza)
+
+**Gráfico circular**: Exibe as proporções ou percentagens de diferentes categorias de dados em relação a um todo. Cada categoria é representada como uma “fatia” do círculo, e o tamanho de cada fatia é proporcional à sua contribuição para o total.
+
+```{r}
+# Criar gráfico circular
+pie(frequencia_relativa, main="Gráfico circular",
+  col=c("blue","green","red"))
+```
+
+## Histograma
+
+Histograma é uma representação gráfica dos dados em que se marcam as classes (intervalos) no eixo horizontal e as frequências (absuluta ou relativa) no eixo vertical. 
+
+* Cada retângulo corresponde a uma classe.
+
+* A largura de cada retângulo é igual à amplitude da classe
+
+* Se as classes tiverem todas a mesma amplitude, a altura do retângulo é proporcional à frequência.
+
+Por default, o R utiliza a frequência absoluta para construir o histograma. Se tiver interesse em representar as frequências relativas, utilize a opção `freq=FALSE` nos argumentos da função `hist()`. O padrão de intervalo de classe no R é $(a, b]$.
+
+```{r}
+# Considere os dados referentes à massa (em kg) de 40 bicicletas
+
+bicicletas <- c(4.3,6.8,9.2,7.2,8.7,8.6,6.6,5.2,8.1,10.9,7.4,4.5,3.8,7.6,6.8,7.8,8.4,7.5,10.5,6.0,7.7,8.1,7.0,8.2,8.4,8.8,6.7,8.2,9.4,7.7,6.3,7.7,9.1,7.9,7.9,9.4,8.2,6.7,8.2,6.5)
+  
+h <- hist(bicicletas,     
+  main = "Histograma",     
+  xlab = "Massa (kg)",     
+  ylab = "Freq. absoluta",     
+  ylim = c(0,12),     
+  labels = TRUE,     
+  col = "lightblue")
+  
+# Pontos limites das classes
+h$breaks
+
+# O comando h$counts retorna um vetor com as frequências absolutas dentro de cada classe
+h$counts
+```
+
+```{r}
+# Histograma com frequência relativa
+hist(bicicletas,
+  main = "Histograma",          
+  xlab = "Massa (kg)",          
+  ylab = "Freq. relativa",     
+  freq = FALSE,     
+  labels = TRUE,          
+  col = "lightblue")
+```
+
+## Box-plot
+
+```{r}
+# Caixa de bigodes vertical
+boxplot(bicicletas, main = "Caixa de bigodes", col="red")
+```
+
+```{r}
+# Caixa de bigodes horizontal
+boxplot(bicicletas, main = "Caixa de bigodes", col="green", horizontal = TRUE)
+```
+
+```{r}
+# Caixa de bigodes lado a lado
+par(mfrow=c(1,2))
+
+# Caixa de bigodes vertical
+boxplot(bicicletas,main = "Caixa de bigodes",col = "red")
+
+# Caixa de bigodes horizontal
+boxplot(bicicletas,main = "Caixa de bigodes",col = "green",horizontal = TRUE)
+
+dev.off()
+```
+
+# Simulação
+
+## Geração de números pseudoaleatórios
+
+**Números Aleatórios**
+
+Números aleatórios são valores que são gerados de forma imprevisível e não seguem nenhum padrão determinado. Em outras palavras, cada número em uma sequência de números aleatórios é escolhido de maneira independente dos outros, sem qualquer correlação entre eles. Na prática, os números aleatórios são usados em diversas áreas, como criptografia, simulações, estatísticas, jogos de azar, entre outros, onde é crucial que os números não possam ser antecipados.
+
+A verdadeira aleatoriedade é geralmente derivada de processos físicos que são inerentemente imprevisíveis, como a radiação cósmica, ruído térmico em circuitos eletrônicos, ou o decaimento radioativo. Em computação, no entanto, obter números verdadeiramente aleatórios é difícil e muitas vezes desnecessário.
+
+**Números Pseudoaleatórios**
+
+Números pseudoaleatórios, por outro lado, são números que são gerados por algoritmos que produzem sequências que parecem aleatórias, mas são, na verdade, determinadas por um valor inicial chamado semente (ou “seed” em inglês). Se o algoritmo é iniciado com a mesma semente, ele produzirá exatamente a mesma sequência de números.
+
+Embora sejam determinísticos, os números pseudoaleatórios são amplamente utilizados porque podem ser gerados rapidamente e, para muitas aplicações, eles são suficientemente aleatórios. A principal vantagem é que, ao usar a mesma semente, é possível replicar experimentos ou simulações, o que é útil em pesquisas e depurações.
+
+Uma das aproximações mais comuns para gerar números pseudoaleatórios é o método *congruencial multiplicativo*:
+
+* Considere um valor inicial $x_0$, chamado semente;
+
+* Recursivamente calcule os valores sucessivos $x_{n}$, $n\geq 1$, usando: $$x_{n} = ax_{n-1} \, \text{mod}\, m,$$ onde $a$ e $m$ são inteiros positivos dados. Ou seja, $x_{n}$ é o resto da divisão inteira de $ax_{n-1}$ por m;
+
+ * A quantidade $x_{n}/m$ é chamada um número pseudoaleatório, ou seja, é uma aproximação para o valor de uma variável aleatória uniforme.
+
+As constantes $a$ e $m$ a serem escolhidas devem satisfazer três critérios:
+
+* Para qualquer semente inicial, a sequência resultante deve ter a “aparência” de uma sequência de variáveis aleatórias uniformes $(0,1)$ independentes.
+ 
+* Para qualquer semente inicial, o número de variáveis que podem ser geradas antes da repetição ocorrer deve ser grande.
+ 
+* Os valores podem ser calculados eficientemente em um computador digital.
+
+### A função `sample()`
+
+### Método da transformada inversa
+
+# Distribuições univariadas no R
+
+No R temos acesso as mais comuns distribuições univariadas. Todas as funções tem as seguintes formas:
+
+| **Função**                      | **Descrição**                                                    |
+|---------------------------------|------------------------------------------------------------------|
+| **p**nome( ...)               | função de distribuição                                           |
+| **d**nome( ...)               | função de probabilidade ou densidade de probabilidade            |
+| **q**nome( ...)               | inversa da função de distribuição                                |
+| **r**nome( ...)               | geração de números aleatórios com a distribuição especificada     |
+
+o **nome** é uma abreviatura do nome usual da distribuição (`binom`, `geom`, `pois`, `unif`, `exp`, `norm`, ...). 
+
+## Função de distribuição empírica
+
+A função de distribuição empírica é uma função de distribuição acumulada que descreve a proporção ou contagem de observações em um conjunto de dados que são menores ou iguais a um determinado valor. É uma ferramenta útil para visualizar a distribuição de dados observados e comparar distribuições amostrais.
+
+* É uma função definida para todo número real $x$ e que para cada $x$ dá a proporção de elementos da amostra menores ou iguais a $x$:
+$$F_{n}(x) = \frac{\# \, \text{observações} \leq x}{n}$$
+* Para construir a função de distribuição empírica precisamos primeiramente ordenar os dados em ordem crescente: $(x_{(1)},\ldots,x_{(n)})$
+ 
+* A definição da função de distribuição empírica é
+$$F_{n}(x) = \begin{cases}
+	0, & \quad x < x_{(1)} \\
+	\frac{i}{n}, & \quad x_{(i)}\leq x < x_{(i+1)}, \quad i=1,\ldots,n-1 \\
+	1, & \quad x\geq x_{(n)}
+\end{cases}$$
+
+* Passo a passo para a construção da função
+  + Inicie desenhando a função do valor mais à esquerda para o mais à direita.
+  + Atribua o valor 0 para todos os valores menores que o menor valor da amostra,  $x_{(1)}$ .
+  + Atribua o valor  $\frac{1}{n}$ para o intervalo entre $x_{(1)}$  e  $x_{(2)}$, o valor $\frac{2}{n}$ para o intervalo entre $x_{(2)}$ e $x_{(3)}$, e assim por diante, até atingir todos os valores da amostra.
+  + Para valores iguais ou superiores ao maior valor da amostra, $x_{(n)}$, a função tomará o valor 1.
+  + Se um valor na amostra se repetir $k$ vezes, o salto da função para esse ponto será  $\frac{k}{n}$, em vez de  $\frac{1}{n}$.
+  
+### Função de distribuição empírica no R, função `ecdf()`
+
+A função `ecdf()` no R é usada para calcular a função de distribuição empírica (Empirical Cumulative Distribution Function - ECDF) de um conjunto de dados. 
+
+```{r}
+# Conjunto de dados
+dados <- c(3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5)
+
+# Calcular a ECDF usando a função ecdf()
+Fn <- ecdf(dados)
+
+# Plotar a ECDF usando a função ecdf()
+plot(Fn, main = "Função de Distribuição Empírica", xlab = "x", ylab = "Fn(x)", col = "blue", lwd = 2)
+```
+
+## Gerando uma variável aleatória com distribuição binomial
+
+### Cálculo de probabilidades
+
+Seja $X\sim \text{Binomial}(n=20,p=0.1)$.
+
+$P(X = 4) \to$ `dbinom(4,20,0.1)` = 0.08978 
+
+$P(X \leq 4) \to$ `pbinom(4,20,0.1)` = 0.9568
+
+$P(X > 4)\to$ `pbinom(4,20,0.1,lower.tail=FALSE)` = 0.04317
+
+### Função massa de probabilidade (teórica)
+
+```{r}
+# Simulação de Variáveis aleatórias
+
+# Função massa de probabilidade Binomial(n,p)
+n <- 20
+p <- 0.1
+x <- 0:20
+
+teorico <- data.frame(x = x, y=dbinom(x, size = n, prob = p))
+
+# Carregue o pacote ggplot2
+library(ggplot2)
+
+ggplot(teorico) +  
+  geom_point(aes(x = x, y=y), color = "blue") + 
+  scale_x_continuous(breaks = 0:n) +  
+  labs(title = "Binomial(20,0.1)", x = "Número de sucessos", y = "Probabilidade") +  
+  theme_light()
+```
+
+### Função massa de probabilidade (simulação)
+
+```{r}
+set.seed(1234)
+
+n <- 20
+p <- 0.9
+k <- 1000 # número de simulações
+
+dados <- data.frame(X = rbinom(k, size = n, prob = p))
+
+# Carregue o pacote ggplot2library(ggplot2)
+
+ggplot(dados) +   
+geom_bar(aes(x=X, y=after_stat(prop)), fill = "lightblue") +
+  scale_x_continuous(breaks = 0:n) +   
+  labs(title = "Geração de números aleatórios de Bi(20,0.9)", x="Número de sucessos", 
+  y="Frequência relativa") +  
+  theme_light()
+```
+
+### Comparação
+
+```{r}
+set.seed(1234)
+
+n <- 20
+p <- 0.1
+k <- 1000 # número de simulações
+
+dados <- data.frame(X = rbinom(k, size = n, prob = p))
+teorico <- data.frame(x = 0:n, y=dbinom(0:n, size = n, prob = p))
+
+# Carregue o pacote ggplot2
+library(ggplot2)
+
+ggplot(dados) +  
+  geom_bar(aes(x = X, y = after_stat(prop)), fill = "lightblue") + 
+  geom_point(data = teorico, aes(x, y), color = "magenta") + 
+  scale_x_continuous(breaks = 0:n) +  
+  labs(title = "Geração de números aleatórios de Bi(20,0.1)", x = "Número de sucessos",       
+  y = "Probabilidade") +  
+  theme_light()
+```
+
+### Função de distribuição
+
+```{r}
+# Definir os parâmetros da distribuição binomial
+n <- 10 # Número de tentativas
+p <- 0.5 # Probabilidade de sucesso
+
+# Valores possíveis de sucessos (0 a n)
+x <- 0:n
+
+# Calcular a FD
+cdf_values <- pbinom(x, size = n, prob = p)
+
+# Plotar a FD
+plot(x, cdf_values, type = "s", lwd = 2, col = "blue", 
+xlab = "Número de Sucessos", ylab = "F(x)", 
+main = "Função de Distribuição Acumulada da Binomial(n = 10, p = 0.5)")
+```
+
+### Função de distribuição empírica
+
+```{r}
+# Definir os parâmetros da distribuição binomial
+n <- 10 # Número de tentativas
+p <- 0.5 # Probabilidade de sucesso
+
+set.seed(123)
+# Amostra aleatória de dimensão 1000
+amostra <- rbinom(1000,size = n, prob = p)
+
+# Distribuição empírica 
+Fn <- ecdf(amostra)
+
+# Plotar CDF
+plot(Fn, main = "Função de Distribuição Empírica", xlab = "x", 
+ylab = "Fn(x)", col = "blue")
+
+# OU
+plot.ecdf(amostra)
+```
+
+**Cálculo de probabilidade**: Seja $X \sim \text{Binomial}(n=10, p=0.5)$.
+
+
+$P(X \leq 4) =$ `pbinom(4,10,0.5)` = 0.377
+
+$P(X \leq 4) \approx$ `Fn(4)` = 0.382
+
+## Gerando uma variável aleatória com distribuição de Poisson
+
+### Cálculo de probabilidades
+
+Seja $X\sim\text{Poisson}(\lambda=5)$.
+
+$P(X =4) \to$ `dpois(4,5)` = 0.1755
+
+\noindent
+$P(X\leq 4) \to$ `ppois(4,5)` = 0.4405
+
+\noindent
+$P(X > 4)\to$ `ppois(4,5,lower.tail=FALSE)`= 0.5595
+
+### Função massa de probabilidade (teórica)
+
+```{r}
+# Definir os valores de lambda e x
+p <- c(0.1, 1, 2.5, 5, 15, 30)
+x <- 0:50
+
+# Carregar os pacotes necessários
+library(ggplot2)
+library(latex2exp)
+library(gridExtra)
+
+# Inicializar uma lista para armazenar os gráficos
+plots <- list()
+
+# Loop para criar os data frames e gráficos
+for (i in 1:length(p)) {  
+  teorico <- data.frame(x = x, y = dpois(x, lambda = p[i]))    
+	
+  plots[[i]] <- ggplot(teorico) +    
+    geom_point(aes(x = x, y = y), color = "blue") + 
+    scale_x_continuous(breaks = seq(0, 50, by = 10)) +
+    labs(title = TeX(paste0("$Poisson(lambda=", p[i], ")$")), x="x", y="Probabilidade") +
+    theme_light()
+}
+	
+# Dispor os gráficos em uma grade 2x3
+grid.arrange(grobs = plots, nrow = 2, ncol = 3)
+```
+
+### Função massa de probabilidade (simulação)
+
+```{r}
+p <- c(0.1, 1, 2.5, 5, 15, 30)
+n <- 1000
+
+# Carregar os pacotes necessários
+library(ggplot2)
+library(latex2exp)
+library(gridExtra)
+
+# Inicializar uma lista para armazenar os gráficos
+plots <- list()
+
+# Loop para criar os data frames e gráficos
+for (i in 1:length(p)) {  
+  dados <- data.frame(X = rpois(n, lambda = p[i]))
+  
+  plots[[i]] <- ggplot(dados) +    
+    geom_bar(aes(x = X, y =after_stat(prop)), fill="lightblue") + 
+    labs(title=TeX(paste("$Poisson(lambda=", p[i], ")$")), 
+    x = "x", y = "Frequência relativa") + 
+    theme_light()
+}
+
+# Dispor os gráficos em uma grade 2x3
+grid.arrange(grobs = plots, nrow = 2, ncol = 3)
+```
+
+### Comparação
+
+```{r}
+p <- c(0.1, 1, 2.5, 5, 15, 30)
+n <- 1000
+
+# Carregar os pacotes necessários
+library(ggplot2)
+library(latex2exp)
+library(gridExtra)
+
+# Inicializar uma lista para armazenar os gráficos
+plots <- list()
+
+# Loop para criar os data frames e gráficos
+for (i in 1:length(p)) {  
+  dados <- data.frame(X = rpois(n, lambda = p[i]))  
+  teorico <- data.frame(x=0:50, y=dpois(0:50,p[i]))    
+  
+  plots[[i]] <- ggplot(dados) +    
+    geom_bar(aes(x = X, y =after_stat(prop)), fill="lightblue") +    
+    geom_point(data = teorico, aes(x, y), color = "magenta") +    
+    scale_x_continuous(breaks = seq(0, 50, by = 10)) +
+    labs(title=TeX(paste("$Poisson(lambda=", p[i], ")$")), 
+    x = "x", y = "Frequência relativa") +    
+    theme_light()
+}
+
+# Dispor os gráficos em uma grade 2x3
+grid.arrange(grobs = plots, nrow = 2, ncol = 3)
+```
+
+### Função de distribuição
+
+```{r}
+lambda <- 5  # Parâmetro da Poisson
+x <- 0:15    # Valores de x para plotar a distribuição
+
+# Calcular a FD
+y <- ppois(x, lambda = lambda)
+
+# Plotar a FD
+plot(x,y, type="s", lwd=2, col="blue",     
+  main=TeX(paste("Função de Distribuição da $Poisson (lambda =", lambda, ")$")),    
+  xlab = "x",     
+  ylab = "F(x)")
+```
+
+### Função de distribuição empírica
+
+```{r}
+# Definir os parâmetros da distribuição de Poisson
+lambda <- 5
+
+dados <- rpois(1000,lambda = lambda)
+Fn <- ecdf(dados)
+
+# Plotar CDF
+plot(Fn, main=TeX("Função de Distribuição Empírica da $Poisson(lambda = 5)$"),
+  xlab = "x",     
+  ylab = "Fn(x)",      
+  col = "blue")
+
+# OU
+#plot.ecdf(dados)
+```
+
+**Cálculo de probabilidades**: Seja $X\sim\text{Poisson}(\lambda=5)$.
+
+$P(X\leq 4) \to$ `ppois(4,5)` = 0.4405
+
+$P(X \leq 4) \to$ `Fn(4)` = 0.433
+
+## Gerando uma variável aleatória com distribuição de Uniforme
+
+### Cálculo de probabilidades
+
+Seja $X\sim \text{Uniforme}(0,1)$
+
+* $P(X\leq 0.5) \to$ `punif(0.5, min = 0, max = 1)` = 0.5
+
+* $P(X > 0.5) \to$ `punif(0.5, min = 0, max = 1, lower.tail = FALSE)` = 0.5
+
+### Função densidade de probabilidade
+
+```{r}
+# Gerar os valores x para a densidade teórica
+x_vals <- seq(0, 1, length.out = 100)
+
+# Calcular a densidade teórica para os valores x
+y_vals <- dunif(x_vals, min = 0, max = 1)
+
+# Desenhar o gráfico da função densidade de probabilidade
+plot(x_vals, y_vals, type = "l", 
+     col = "red", lwd = 2, 
+     main = "Densidade da Distribuição Uniforme (0,1)",
+     xlab = "Valor", ylab = "Densidade")
+```
+
+### Função densidade de probabilidade (simulação)
+
+```{r}
+# Definir o tamanho da amostra
+n <- 10000
+
+# Fixar a semente para reprodutibilidade
+set.seed(123)
+
+# Gerar a variável aleatória com distribuição uniforme (0,1)
+uniform_data <- runif(n, min = 0, max = 1)
+
+# Criar um histograma da amostra 
+hist(uniform_data, probability = TRUE, 
+     main = "Histograma da Densidade - Uniforme(0,1)", 
+     xlab = "Valor", 
+     ylab = "Densidade", 
+     col = "lightblue", 
+     border = "darkblue")
+```
+
+### Comparação
+
+```{r}
+# Definir o tamanho da amostra
+n <- 10000
+
+# Fixar a semente para reprodutibilidade
+set.seed(123)
+
+# Gerar a variável aleatória com distribuição uniforme (0,1)
+uniform_data <- runif(n, min = 0, max = 1)
+
+# Criar um histograma da amostra com densidade
+hist(uniform_data, probability = TRUE, 
+     main = "Comparação da Densidade - Uniforme(0,1)", 
+     xlab = "Valor", 
+     ylab = "Densidade", 
+     col = "lightblue", 
+     border = "darkblue")
+
+# Adicionar a curva da densidade teórica
+curve(dunif(x, min = 0, max = 1), 
+      add = TRUE, 
+      col = "red", 
+      lwd = 2)
+```
+
+### Função de distribuição
+
+```{r}
+# Gerar os valores x para a FD teórica
+x_vals <- seq(0, 1, length.out = 100)
+
+# Calcular a FD teórica para os valores x
+y_vals <- punif(x_vals, min = 0, max = 1)
+
+# Desenhar o gráfico da função de distribuição acumulada
+plot(x_vals, y_vals, type = "l", 
+     col = "blue", lwd = 2, 
+     main = "Função de Distribuição Uniforme (0,1)",
+     xlab = "Valor", ylab = "F(x)")
+```
+
+### Função de distribuição empírica
+
+```{r}
+# Definir o tamanho da amostra
+n <- 10000
+
+# Fixar a semente para reprodutibilidade
+set.seed(123)
+
+# Gerar a variável aleatória com distribuição uniforme (0,1)
+uniform_data <- runif(n, min = 0, max = 1)
+
+# Função de distribuição empírica
+Fn <- ecdf(uniform_data)
+
+plot(Fn, main="Função de Distribuição Empírica",
+     xlab="x",
+     ylab="Fn",
+     col="blue")
+
+# OU
+#plot.ecdf(uniform_data)
+```
+
+## Gerando uma variável aleatória com distribuição Exponencial
+
+### Cálculo de probabilidades
+
+Seja $X\sim \text{Exponencial}(\lambda=1)$.
+
+$P(X\leq 0.5) \to$ `pexp(0.5,rate=1)`=0.3935
+
+$P(X > 0.5) \to$ `pexp(0.5,rate=1,lower.tail=FALSE)`=0.6065
+
+### Função densidade de probabilidade (teórica)
+
+```{r}
+# Gerar os valores x para a densidade teórica
+x_vals <- seq(0, 10, length.out = 100)
+
+# Calcular a densidade teórica para os valores x
+y_vals <- dexp(x_vals, rate=1)
+
+# Desenhar o gráfico da função densidade de probabilidade
+plot(x_vals, y_vals, type = "l", 
+     col = "red", lwd = 2, 
+     main = "Densidade da Distribuição Exponencial(1)",
+     xlab = "Valor", ylab = "Densidade")
+```
+
+### Função densidade de probabilidade (simulação)
+
+```{r}
+# Definir o tamanho da amostra
+n <- 10000
+
+# Fixar a semente para reprodutibilidade
+set.seed(123)
+
+# Gerar a variável aleatória com distribuição exponencial(1)
+expo_data <- rexp(n, rate=1)
+
+# Criar um histograma da amostra 
+hist(expo_data, probability = TRUE, 
+     main = "Histograma da Densidade - Exponencial(1)", 
+     xlab = "Valor", 
+     ylab = "Densidade", 
+     col = "lightblue", 
+     border = "darkblue")
+```
+
+### Comparação
+
+```{r}
+# Definir o tamanho da amostra
+n <- 10000
+
+# Fixar a semente para reprodutibilidade
+set.seed(123)
+
+# Gerar a variável aleatória com distribuição exponencial(1)
+expo_data <- rexp(n, rate=1)
+
+# Criar um histograma da amostra 
+hist(expo_data, probability = TRUE, 
+     main = "Comparação da Densidade - Exponencial(1)", 
+     xlab = "Valor", 
+     ylab = "Densidade", 
+     col = "lightblue", 
+     border = "darkblue")
+
+# Adicionar curva da densidade teórica
+curve(dexp(x,rate=1),
+      add=TRUE,
+      col="red",
+      lwd=2)
+```
+
+### Função de distribuição
+
+```{r}
+# Gerar os valores x para a FD teórica
+x_vals <- seq(0, 10, length.out = 100)
+
+# Calcular a FD teórica para os valores x
+y_vals <- pexp(x_vals, rate=1)
+
+# Desenhar o gráfico da FD
+plot(x_vals, y_vals, type = "l", 
+     col = "red", lwd = 2, 
+     main = "Função de Distribuição Exponencial(1)",
+     xlab = "Valor", ylab = "F(x)")
+```
+
+### Função de distribuição empírica
+
+```{r}
+# Definir o tamanho da amostra
+n <- 10000
+
+# Fixar a semente para reprodutibilidade
+set.seed(123)
+
+# Gerar a variável aleatória com distribuição exponencial(1)
+expo_data <- rexp(n, rate=1)
+
+# Função de distribuição empírica
+Fn <- ecdf(expo_data)
+
+plot(Fn, main="Função de Distribuição Empírica",
+     xlab="x",
+     ylab="Fn",
+     col="blue")
+```
+
+## Gerando uma variável aleatória com distribuição Normal
+
+### Cálculo de probabilidades
+
+Seja $X\sim \text{Normal}(0,1)$.
+
+$P(X \leq 0.5)\to$ `pnorm(0.5,mean=0,sd=1)`=0.6915
+
+$P(X >0.5)\to$ `pnorm(0.5,mean=0,sd=1,lower.tail=FALSE)`=0.3085
+
+### Função densidade de probabilidade (teórica)
+
+```{r}
+# Gerar os valores x para a densidade teórica
+x_vals <- seq(-5, 5, length.out = 100)
+
+# Calcular a densidade teórica para os valores x
+y_vals <- dnorm(x_vals, mean = 0, sd = 1)
+
+# Desenhar o gráfico da função densidade de probabilidade
+plot(x_vals, y_vals, type = "l", 
+     col = "red", lwd = 2, 
+     main = "Densidade da Distribuição Normal(0,1)",
+     xlab = "Valor", ylab = "Densidade")
+```
+
+### Função densidade de probabilidade (simulação)
+
+```{r}
+# Definir o tamanho da amostra
+n <- 10000
+
+# Fixar a semente para reprodutibilidade
+set.seed(123)
+
+# Gerar a variável aleatória com distribuição Normal(0,1)
+normal_data <- rnorm(n, mean = 0, sd = 1)
+
+# Criar um histograma da amostra com densidade
+hist(normal_data, probability = TRUE, 
+     main = "Comparação da Densidade - Normal(0,1)", 
+     xlab = "Valor", 
+     ylab = "Densidade", 
+     col = "lightblue", 
+     border = "darkblue")
+```
+
+### Comparação
+
+```{r}
+# Definir o tamanho da amostra
+n <- 10000
+
+# Fixar a semente para reprodutibilidade
+set.seed(123)
+
+# Gerar a variável aleatória com distribuição Normal(0,1)
+normal_data <- rnorm(n, mean = 0, sd = 1)
+
+# Criar um histograma da amostra com densidade
+hist(normal_data, probability = TRUE, 
+     main = "Comparação da Densidade - Normal(0,1)", 
+     xlab = "Valor", 
+     ylab = "Densidade", 
+     col = "lightblue", 
+     border = "darkblue")
+
+# Adicionar a curva da densidade teórica
+curve(dnorm(x, mean = 0, sd = 1), 
+      add = TRUE, 
+      col = "red", 
+      lwd = 2)
+```
+
+### Função de distribuição
+
+```{r}
+# Gerar os valores x para a FD teórica
+x_vals <- seq(-5, 5, length.out = 100)
+
+# Calcular a FD teórica para os valores x
+y_vals <- pnorm(x_vals, mean = 0, sd = 1)
+
+# Desenhar o gráfico da função de distribuição
+plot(x_vals, y_vals, type = "l", 
+     col = "blue", lwd = 2, 
+     main = "Função de Distribuição Normal(0,1)",
+     xlab = "Valor", ylab = "F(x)")
+```
+
+### Função de distribuição empírica
+
+```{r}
+# Definir o tamanho da amostra
+n <- 10000
+
+# Fixar a semente para reprodutibilidade
+set.seed(123)
+
+# Gerar a variável aleatória com distribuição Normal(0,1)
+normal_data <- rnorm(n, mean = 0, sd = 1)
+
+# Função de distribuição empírica
+Fn <- ecdf(normal_data)
+
+plot(Fn, main="Função de Distribuição Empírica",
+     xlab="x",
+     ylab="Fn",
+     col="blue")
+```
+
