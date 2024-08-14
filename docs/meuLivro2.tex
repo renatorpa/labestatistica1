@@ -120,25 +120,8 @@
 
 \title{Introdução ao R}
 \author{Renato de Paula}
-\date{2024-08-13}
+\date{2024-08-14}
 
-\usepackage{amsthm}
-\newtheorem{theorem}{Theorem}[chapter]
-\newtheorem{lemma}{Lemma}[chapter]
-\newtheorem{corollary}{Corollary}[chapter]
-\newtheorem{proposition}{Proposition}[chapter]
-\newtheorem{conjecture}{Conjecture}[chapter]
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}[chapter]
-\theoremstyle{definition}
-\newtheorem{example}{Example}[chapter]
-\theoremstyle{definition}
-\newtheorem{exercise}{Exercise}[chapter]
-\theoremstyle{definition}
-\newtheorem{hypothesis}{Hypothesis}[chapter]
-\theoremstyle{remark}
-\newtheorem*{remark}{Remark}
-\newtheorem*{solution}{Solution}
 \begin{document}
 \maketitle
 
@@ -146,49 +129,9 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\chapter{About}\label{about}
+\chapter{Prefácio}\label{prefuxe1cio}
 
-This is a \emph{sample} book written in \textbf{Markdown}. You can use anything that Pandoc's Markdown supports; for example, a math equation \(a^2 + b^2 = c^2\).
-
-\section{Usage}\label{usage}
-
-Each \textbf{bookdown} chapter is an .Rmd file, and each .Rmd file can contain one (and only one) chapter. A chapter \emph{must} start with a first-level heading: \texttt{\#\ A\ good\ chapter}, and can contain one (and only one) first-level heading.
-
-Use second-level and higher headings within chapters like: \texttt{\#\#\ A\ short\ section} or \texttt{\#\#\#\ An\ even\ shorter\ section}.
-
-The \texttt{index.Rmd} file is required, and is also your first book chapter. It will be the homepage when you render the book.
-
-\section{Render book}\label{render-book}
-
-You can render the HTML version of this example book without changing anything:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  Find the \textbf{Build} pane in the RStudio IDE, and
-\item
-  Click on \textbf{Build Book}, then select your output format, or select ``All formats'' if you'd like to use multiple formats from the same book source files.
-\end{enumerate}
-
-Or build the book from the R console:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{bookdown}\SpecialCharTok{::}\FunctionTok{render\_book}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-To render this example to PDF as a \texttt{bookdown::pdf\_book}, you'll need to install XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): \url{https://yihui.org/tinytex/}.
-
-\section{Preview book}\label{preview-book}
-
-As you work, you may start a local server to live preview this HTML book. This preview will update as you edit the book when you save individual .Rmd files. You can start the server in a work session by using the RStudio add-in ``Preview book'', or from the R console:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{bookdown}\SpecialCharTok{::}\FunctionTok{serve\_book}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
+Material utilizado no curso \textbf{Laboratório em Estatística I} da Faculdade de Ciências da Universidade de Lisboa.
 
 \chapter{R e RStudio}\label{r-e-rstudio}
 
@@ -215,7 +158,7 @@ R é um conjunto integrado de recursos de software para manipulação de dados, 
 \item
   A versão ``base'' do R, ou seja, o software com seus comandos mais relevantes, pode ser baixado em \url{https://www.r-project.org/}. Após instalar o R, é recomendável instalar também um editor. Um editor permite ao usuário salvar e exibir convenientemente o código R, enviar esse código ao R Console e controlar as configurações e a saída. Uma escolha popular de editor é o RStudio (gratuito), que pode ser baixado em \url{https://www.rstudio.com/}.
 \item
-  Muitos pacotes adicionais escritos pelo usuário estão disponíveis online e podem ser instalados no console R ou usando o menu R. Dentro do console, a função \texttt{install.packages(“pacote\ para\ instalar”)} pode ser usada. Observe que é necessária uma conexão com a Internet.
+  Muitos pacotes adicionais escritos pelo usuário estão disponíveis online e podem ser instalados no console R ou usando o menu R. Dentro do console, a função \texttt{install.packages(“pacote\ para\ instalar”)} pode ser usada. Observe que é necessária uma conexão com a Internet.Você pode ver todos os pacotes instalados usando a função \texttt{installed.packages()}.
 \end{itemize}
 
 \section{Navegando no RStudio}\label{navegando-no-rstudio}
@@ -224,13 +167,13 @@ Existem quatro painéis de trabalho no RStudio:
 
 \begin{itemize}
 \item
-  \textbf{Painel de código-fonte}. Este painel é onde os scripts são gravados/carregados e exibidos. Possui realce de sintaxe e preenchimento automático, além de permitir passar o código linha por linha, como seleções ou como um todo.
+  \textbf{Painel de código-fonte}. Este painel é onde os scripts são gravados/carregados e exibidos. Possui realce de sintaxe e preenchimento automático, além de permitir passar o código linha por linha.
 \item
   \textbf{Painel do console do R}. É aqui que os comandos são executados e é essencialmente a aparência do console do R básico, só que melhor! O console possui realce de sintaxe, preenchimento de código e interface com outros painéis do RStudio.
 \item
   \textbf{Workspace/Histórico}. A aba do espaço de trabalho exibe informações que normalmente ficam ocultas no R, como dados carregados, funções e outras variáveis. A aba histórico armazena todos os comandos (linhas de código) que foram analisados por meio do R.
 \item
-  \textbf{Último painel}. Este painel inclui a aba de arquivos (lista todos os arquivos no diretório de trabalho atual), a aba de gráficos (quaisquer gráficos), a aba de pacotes (pacotes instalados e a aba de ajuda (sistema de ajuda html embutido).
+  \textbf{Último painel}. Este painel inclui a aba de arquivos (lista todos os arquivos no diretório de trabalho atual), a aba de gráficos (quaisquer gráficos), a aba de pacotes (pacotes instalados) e a aba de ajuda (sistema de ajuda html embutido).
 \end{itemize}
 
 \chapter{R como uma calculadora e Operações Aritméticas}\label{r-como-uma-calculadora-e-operauxe7uxf5es-aritmuxe9ticas}
@@ -239,11 +182,7 @@ A estatística tem uma relação estreita com a álgebra: os conjuntos de dados 
 
 \section{O prompt}\label{o-prompt}
 
-\begin{itemize}
-\tightlist
-\item
-  O R possui uma interface de linha de comando e aceitará comandos simples. Isso é marcado por um símbolo \textgreater, chamado \textbf{prompt}. Se você digitar um comando e pressionar Enter, o R irá avaliá-lo e imprimir o resultado para você.
-\end{itemize}
+O R possui uma interface de linha de comando e aceitará comandos simples. Isso é marcado por um símbolo \textgreater, chamado \textbf{prompt}. Se você digitar um comando e pressionar Enter, o R irá avaliá-lo e imprimir o resultado para você.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -255,11 +194,9 @@ A estatística tem uma relação estreita com a álgebra: os conjuntos de dados 
 ## [1] "Meu primeiro comando no R!"
 \end{verbatim}
 
-\begin{itemize}
-\tightlist
-\item
-  O caractere \texttt{\#} marca o início de um comentário. Todos os caracteres até o final da linha são ignorados pelo R. Usamos \texttt{\#} para comentar nosso código R.
-\end{itemize}
+Observe que nestas notas, caixas cinzas são usadas para mostrar o código R digitado no console R. O símbolo \#\#{[}1{]} é usado para denotar o output do console R.
+
+O caractere \texttt{\#} marca o início de um comentário. Todos os caracteres até o final da linha são ignorados pelo R. Usamos \texttt{\#} para comentar nosso código R.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -267,11 +204,7 @@ A estatística tem uma relação estreita com a álgebra: os conjuntos de dados 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{itemize}
-\tightlist
-\item
-  Se soubermos o nome de um comando que gostaríamos de usar e quisermos aprender sobre sua funcionalidade, digitar \texttt{?command} no prompt da linha de comando do R exibe uma página de ajuda, por exemplo.
-\end{itemize}
+Se soubermos o nome de um comando que gostaríamos de usar e quisermos aprender sobre a sua funcionalidade, basta digitar \texttt{?command} no prompt da linha de comando do R que ele exibe uma página de ajuda. Por exemplo
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -295,9 +228,13 @@ exibe uma página de ajuda para a função de soma.
 
 mostra exemplos de aplicação da respetiva função.
 
+\section{Objetos}\label{objetos}
+
+Um \textbf{objeto} em R é uma unidade de armazenamento que contém valores ou funções e pode ser referenciado por um nome. Esses valores podem ser números, caracteres, vetores, matrizes, data frames, listas, ou até mesmo funções. Objetos são criados e manipulados através de comandos e podem ser reutilizados em qualquer parte do código. Tudo o que é criado ou carregado na sessão de R, como dados ou funções, é considerado um objeto.
+
 \section{O que é uma variável?}\label{o-que-uxe9-uma-variuxe1vel}
 
-Em R, uma variável é um local de armazenamento nomeado na memória onde os dados podem ser armazenados para recuperação e manipulação posterior. Variáveis em R são usadas para armazenar diferentes tipos de dados, como números, caracteres, vetores, data frames e muito mais. O tipo de dado de uma variável em R é determinado pelo valor atribuído a ela.
+Refere-se a um \textbf{nome} ou um identificador que é atribuído a um objeto. A variável armazena a referência ao objeto em si. Em outras palavras, uma variável é o nome que você usa para acessar os dados ou a função armazenada no objeto.
 
 \subsection{Atribuições}\label{atribuiuxe7uxf5es}
 
@@ -339,6 +276,16 @@ Em R, uma variável é um local de armazenamento nomeado na memória onde os dad
 
 atribui um vetor numérico de comprimento 4 ao objeto \texttt{X}. Observe que o R diferencia maiúsculas de minúsculas, ou seja, \texttt{X} e \texttt{x} são dois nomes de variáveis diferentes.
 
+À medida que definimos objetos no console, estamos na verdade alterando o espaço de trabalho. Você pode ver todas as variáveis salvas em seu espaço de trabalho digitando:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ls}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+No RStudio a aba \emph{Environment} mostra os valores.
+
 \section{Regras para definição de variáveis}\label{regras-para-definiuxe7uxe3o-de-variuxe1veis}
 
 Os nomes de variáveis em R devem começar com uma letra ou ponto final (seguido de uma letra) e podem conter letras, números, pontos e sublinhados.
@@ -367,13 +314,13 @@ Variáveis em R podem armazenar vários tipos de dados, incluindo:
 
 \begin{itemize}
 \item
-  \textbf{Numeric}: Números. Ex: \texttt{42,\ 3.14}
+  \textbf{Numeric}: números. Ex: \texttt{42,\ 3.14}
 \item
-  \textbf{Character}: sequências de texto. Ex: \texttt{“Olá”}
+  \textbf{Character}: sequências de caracteres Ex: \texttt{“Olá”}
 \item
   \textbf{Logical}: valores booleanos. Ex: \texttt{TRUE} ou \texttt{FALSE}
 \item
-  \textbf{Vectors}: coleções de elementos do mesmo tipo. Ex: \texttt{c(1,\ 2,\ 3)}
+  \textbf{Vectors}: coleções de elementos do mesmo tipo. Ex: \texttt{c(1,\ 2,\ 3)}, \texttt{\$c("a","b","c")\$}
 \item
   \textbf{Data Frames}: estruturas de dados tabulares com linhas e colunas
 \item
@@ -525,6 +472,16 @@ Variáveis em R podem armazenar vários tipos de dados, incluindo:
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\FunctionTok{exp}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.718282
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \CommentTok{\# prioridade de resolução}
 \DecValTok{19} \SpecialCharTok{+} \DecValTok{26} \SpecialCharTok{/}\DecValTok{4} \SpecialCharTok{{-}}\DecValTok{2} \SpecialCharTok{*}\DecValTok{10}
 \end{Highlighting}
@@ -543,6 +500,8 @@ Variáveis em R podem armazenar vários tipos de dados, incluindo:
 \begin{verbatim}
 ## [1] 225
 \end{verbatim}
+
+Ao contrário da função \texttt{ls()}, a maioria das funções requer um ou mais \emph{argumentos}. Note que usamos acima as funções predefinidas do R \texttt{sqrt()}, \texttt{log()}, \texttt{log10()} e \texttt{exp()} com seus respetivos argumentos.
 
 \section{Quantidade de digitos}\label{quantidade-de-digitos}
 
@@ -580,7 +539,37 @@ Variáveis em R podem armazenar vários tipos de dados, incluindo:
 ## [1] 2.72
 \end{verbatim}
 
-\section{Infinito, indefinido e valores ausentes}\label{infinito-indefinido-e-valores-ausentes}
+\section{Objetos predefinidos, Infinito, indefinido e valores ausentes}\label{objetos-predefinidos-infinito-indefinido-e-valores-ausentes}
+
+Existem vários conjuntos de dados incluídos para os usuários praticarem e testarem funções. Você pode ver todos os conjuntos de dados disponíveis digitando:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{data}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Isso mostra o nome do objeto para esses conjuntos de dados. Esses conjuntos de dados são objetos que podem ser usados simplesmente digitando o nome. Por exemplo, se você digitar:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{co2}
+\end{Highlighting}
+\end{Shaded}
+
+R mostrará dados de concentração atmosférica de CO2 de Mauna Loa.
+
+Outros objetos predefinidos são quantidades matemáticas, como \(\pi\) e \(\infty\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pi}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.14
+\end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -944,11 +933,11 @@ O R determina dinamicamente o tipo de uma variável com base no valor atribuído
 \item
   A função \texttt{readline()} é usada para receber entradas do usuário por meio do teclado.
 \item
-  A função \texttt{paste()} é utilizada para concatenar strings com um separador específico.
+  A função \texttt{paste()} é utilizada para concatenar sequências de caracteres (strings) com um separador específico.
 \item
   A função \texttt{paste0()} é utilizada para concatenar strings sem nenhum separador específico.
 \item
-  A função \texttt{cat()} é usada para concatenar e exibir uma ou mais cadeias de caracteres (strings) ou valores de uma forma mais direta, sem estruturas de formatação adicionais.
+  A função \texttt{cat()} é usada para concatenar e exibir uma ou mais strings ou valores de uma forma mais direta, sem estruturas de formatação adicionais.
 \end{itemize}
 
 \textbf{Ex1:}
@@ -986,23 +975,11 @@ O R determina dinamicamente o tipo de uma variável com base no valor atribuído
 \begin{Highlighting}[]
 \CommentTok{\# Solicitar entrada do usuário}
 \NormalTok{nome }\OtherTok{\textless{}{-}} \FunctionTok{readline}\NormalTok{(}\AttributeTok{prompt =} \StringTok{"Entre com o seu nome: "}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Entre com o seu nome:
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
+    
 \CommentTok{\# Imprima uma mensagem de saudação}
 \FunctionTok{cat}\NormalTok{(}\StringTok{"Olá, "}\NormalTok{,nome, }\StringTok{"!"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## Olá,   !
-\end{verbatim}
 
 \textbf{Ex4:}
 
@@ -1291,905 +1268,7 @@ Os operadores relacionais são usados para comparar valores e retornam valores l
 ## [1] TRUE
 \end{verbatim}
 
-\chapter{Estruturas de Seleção}\label{estruturas-de-seleuxe7uxe3o}
-
-Em R, as estruturas de seleção ou decisão são usadas para controlar o fluxo de execução do código com base em condições específicas. Estas estruturas permitem executar diferentes blocos de código dependendo de valores ou condições lógicas. As estruturas de seleção mais comuns em R são if, \texttt{if}, \texttt{else}, \texttt{else\ if}.
-
-\section{\texorpdfstring{Condicional \texttt{if}}{Condicional if}}\label{condicional-if}
-
-A instrução \texttt{if} executa um bloco de código se uma condição for verdadeira.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Sintaxe   }
-\ControlFlowTok{if}\NormalTok{ (condição) \{}
-      \CommentTok{\# Código a ser executado se a condição for TRUE}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{Exemplo 1:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{10}
-
-\ControlFlowTok{if}\NormalTok{ (x }\SpecialCharTok{\textgreater{}} \DecValTok{5}\NormalTok{) \{}
-      \FunctionTok{print}\NormalTok{(}\StringTok{"x é maior que 5"}\NormalTok{)}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "x é maior que 5"
-\end{verbatim}
-
-\section{\texorpdfstring{Condicional \texttt{if...else}}{Condicional if...else}}\label{condicional-if...else}
-
-A estrutura \texttt{if...else} permite executar um bloco de código quando a condição é verdadeira e outro bloco de código quando a condição é falsa.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Sintaxe}
-\ControlFlowTok{if}\NormalTok{ (condição) \{}
-      \CommentTok{\# Código a ser executado se a condição for TRUE}
-\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
-      \CommentTok{\# Código a ser executado se a condição for FALSE}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{Exemplo 2:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{3}
-
-\ControlFlowTok{if}\NormalTok{ (x }\SpecialCharTok{\textgreater{}} \DecValTok{5}\NormalTok{) \{}
-      \FunctionTok{print}\NormalTok{(}\StringTok{"x é maior que 5"}\NormalTok{)}
-\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
-    \FunctionTok{print}\NormalTok{(}\StringTok{"x não é maior que 5"}\NormalTok{)}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "x não é maior que 5"
-\end{verbatim}
-
-\section{\texorpdfstring{Condicional \texttt{if...else\ if...else}}{Condicional if...else if...else}}\label{condicional-if...else-if...else}
-
-A estrutura \texttt{if...else\ if...else} permite testar múltiplas condições em sequência. Executa o bloco de código do primeiro teste que resulta em verdadeiro.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Sintaxe}
-\ControlFlowTok{if}\NormalTok{ (condição1) \{}
-      \CommentTok{\# Código se condição1 for TRUE}
-\NormalTok{\} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (condição2) \{}
-      \CommentTok{\# Código se condição2 for TRUE}
-\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
-      \CommentTok{\# Código se nenhuma condição anterior for TRUE}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{Exemplo 3:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{7}
-
-\ControlFlowTok{if}\NormalTok{ (x }\SpecialCharTok{\textgreater{}} \DecValTok{10}\NormalTok{) \{}
-      \FunctionTok{print}\NormalTok{(}\StringTok{"x é maior que 10"}\NormalTok{)}
-\NormalTok{\} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (x }\SpecialCharTok{\textgreater{}} \DecValTok{5}\NormalTok{) \{}
-        \FunctionTok{print}\NormalTok{(}\StringTok{"x é maior que 5, mas não maior que 10"}\NormalTok{)}
-\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
-        \FunctionTok{print}\NormalTok{(}\StringTok{"x não é maior que 5"}\NormalTok{)}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "x é maior que 5, mas não maior que 10"
-\end{verbatim}
-
-\section{\texorpdfstring{A função \texttt{ifelse()}}{A função ifelse()}}\label{a-funuxe7uxe3o-ifelse}
-
-A função \texttt{ifelse} é uma versão vetorizada de if\ldots else que retorna valores dependendo de uma condição. É muito útil para aplicar condições a vetores. Veremos mais sobre isso após falarmos sobre vetores.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Sintaxe}
-\NormalTok{resultado }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(condição, valor\_se\_true, valor\_se\_false)}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{Exemplo 4:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{valores }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{3}\NormalTok{)}
-\NormalTok{resultado }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(valores }\SpecialCharTok{\textgreater{}} \DecValTok{5}\NormalTok{, }\StringTok{"maior que 5"}\NormalTok{, }\StringTok{"não é maior que 5"}\NormalTok{)}
-\FunctionTok{print}\NormalTok{(resultado)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "não é maior que 5" "maior que 5"       "maior que 5"      
-## [4] "não é maior que 5"
-\end{verbatim}
-
-\section{Exemplos}\label{exemplos}
-
-\textbf{Exemplo 5:} Indique o(os) erro(os) no código abaixo
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\ControlFlowTok{if}\NormalTok{ (x}\SpecialCharTok{\%\%}\DecValTok{2} \OtherTok{=} \DecValTok{0}\NormalTok{)\{  }
-      \FunctionTok{print}\NormalTok{(}\StringTok{"Par"}\NormalTok{)}
-\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{  }
-    \FunctionTok{print}\NormalTok{(}\StringTok{"Ímpar"}\NormalTok{)}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-Código correto
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\ControlFlowTok{if}\NormalTok{ (x}\SpecialCharTok{\%\%}\DecValTok{2} \SpecialCharTok{==} \DecValTok{0}\NormalTok{)\{  }
-  \FunctionTok{print}\NormalTok{(}\StringTok{"Par"}\NormalTok{)}
-\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{  }
-    \FunctionTok{print}\NormalTok{(}\StringTok{"Ímpar"}\NormalTok{)}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{Exemplo 6:} Indique o(os) erro(os) no código abaixo
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\ControlFlowTok{if}\NormalTok{ (a}\SpecialCharTok{\textgreater{}}\DecValTok{0}\NormalTok{) \{  }
-  \FunctionTok{print}\NormalTok{(}\StringTok{"Positivo"}\NormalTok{)  }
-  \ControlFlowTok{if}\NormalTok{ (a}\SpecialCharTok{\%\%}\DecValTok{5} \OtherTok{=} \DecValTok{0}\NormalTok{)     }
-    \FunctionTok{print}\NormalTok{(}\StringTok{"Divisível por 5"}\NormalTok{)    }
-\NormalTok{\} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (a}\SpecialCharTok{==}\DecValTok{0}\NormalTok{)   }
-    \FunctionTok{print}\NormalTok{(}\StringTok{"Zero"}\NormalTok{)}
-  \ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ \{  }
-    \FunctionTok{print}\NormalTok{(}\StringTok{"Negativo"}\NormalTok{)}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-Código correto
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\ControlFlowTok{if}\NormalTok{ (a}\SpecialCharTok{\textgreater{}}\DecValTok{0}\NormalTok{) \{  }
-  \FunctionTok{print}\NormalTok{(}\StringTok{"Positivo"}\NormalTok{)  }
-  \ControlFlowTok{if}\NormalTok{ (a}\SpecialCharTok{\%\%}\DecValTok{5} \SpecialCharTok{==} \DecValTok{0}\NormalTok{) \{    }
-    \FunctionTok{print}\NormalTok{(}\StringTok{"Divisível por 5"}\NormalTok{)  }
-\NormalTok{  \}}
-\NormalTok{\} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (a}\SpecialCharTok{==}\DecValTok{0}\NormalTok{) \{  }
-    \FunctionTok{print}\NormalTok{(}\StringTok{"Zero"}\NormalTok{)}
-\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{  }
-    \FunctionTok{print}\NormalTok{(}\StringTok{"Negativo"}\NormalTok{)}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{Exemplo 7:} Quais os valores de \texttt{x} e \texttt{y} no final da execução
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{x }\OtherTok{=} \DecValTok{1}
-\NormalTok{y }\OtherTok{=} \DecValTok{0}
-\ControlFlowTok{if}\NormalTok{ (x }\SpecialCharTok{==} \DecValTok{1}\NormalTok{)\{  }
-\NormalTok{  y }\OtherTok{=}\NormalTok{ y }\SpecialCharTok{{-}} \DecValTok{1}
-\NormalTok{\}}
-\ControlFlowTok{if}\NormalTok{ (y }\SpecialCharTok{==} \DecValTok{1}\NormalTok{)\{  }
-\NormalTok{  x }\OtherTok{=}\NormalTok{ x }\SpecialCharTok{+} \DecValTok{1}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{Exemplo 8:}
-
-\begin{itemize}
-\item
-  Se \texttt{x=1} qual será o valor de \texttt{x} no final da execução?
-\item
-  Qual teria de ser o valor de \texttt{x} para que no final da execução fosse -1?
-\item
-  Há uma parte do programa que nunca é executada: qual é e porquê?
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\ControlFlowTok{if}\NormalTok{ (x }\SpecialCharTok{==} \DecValTok{1}\NormalTok{)\{  }
-\NormalTok{  x }\OtherTok{=}\NormalTok{ x }\SpecialCharTok{+} \DecValTok{1}  
-  \ControlFlowTok{if}\NormalTok{ (x }\SpecialCharTok{==} \DecValTok{1}\NormalTok{)\{    }
-\NormalTok{    x }\OtherTok{=}\NormalTok{ x }\SpecialCharTok{+} \DecValTok{1}  
-\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{   }
-\NormalTok{      x }\OtherTok{=}\NormalTok{ x }\SpecialCharTok{{-}} \DecValTok{1}  
-\NormalTok{  \}}
-\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{  }
-\NormalTok{    x }\OtherTok{=}\NormalTok{ x }\SpecialCharTok{{-}} \DecValTok{1}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\chapter{Loop while}\label{loop-while}
-
-A instrução \texttt{while} em R é uma estrutura de controle de fluxo que permite executar um bloco de código repetidamente, enquanto uma condição especificada for verdadeira. É particularmente útil para situações em que o número de repetições não é conhecido antecipadamente, mas depende de alguma condição lógica.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Sintaxe}
-\ControlFlowTok{while}\NormalTok{ (condição) \{}
-  \CommentTok{\# Bloco de código a ser executado}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{itemize}
-\item
-  \textbf{condição}: Uma expressão lógica que é avaliada antes de cada iteração do loop. Enquanto essa condição for \texttt{TRUE}, o bloco de código dentro do while será executado.
-\item
-  \textbf{Bloco de código}: As instruções que devem ser repetidamente executadas enquanto a condição for verdadeira.
-\end{itemize}
-
-\textbf{Como funciona o while}
-
-\begin{itemize}
-\item
-  \textbf{Avaliação da Condição}: Antes de cada execução do bloco de código, a condição é avaliada.
-\item
-  \textbf{Execução do Bloco de Código}: Se a condição for \texttt{TRUE}, o bloco de código dentro do \texttt{while} é executado.
-\item
-  \textbf{Reavaliação}: Após a execução do bloco de código, a condição é reavaliada. Se continuar a ser \texttt{TRUE}, o ciclo se repete. Se a condição for \texttt{FALSE}, o loop termina e o controle do programa continua com a próxima instrução após o \texttt{while}.
-\end{itemize}
-
-\textbf{Exemplo 1:} Somando números até um limite.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{limite }\OtherTok{\textless{}{-}} \DecValTok{10}
-\NormalTok{soma }\OtherTok{\textless{}{-}} \DecValTok{0}
-\NormalTok{contador }\OtherTok{\textless{}{-}} \DecValTok{1}
-
-\ControlFlowTok{while}\NormalTok{ (contador }\SpecialCharTok{\textless{}=}\NormalTok{ limite) \{}
-\NormalTok{  soma }\OtherTok{\textless{}{-}}\NormalTok{ soma }\SpecialCharTok{+}\NormalTok{ contador}
-\NormalTok{  contador }\OtherTok{\textless{}{-}}\NormalTok{ contador }\SpecialCharTok{+} \DecValTok{1}
-\NormalTok{\}}
-
-\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"A soma dos números de 1 a"}\NormalTok{, limite, }\StringTok{"é:"}\NormalTok{, soma))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "A soma dos números de 1 a 10 é: 55"
-\end{verbatim}
-
-\textbf{Exemplo 2:} Escrevendo a tabuada de um número inteiro
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{n }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{readline}\NormalTok{(}\StringTok{"Digite um número inteiro: "}\NormalTok{))}
-
-\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Tabuada do"}\NormalTok{,n, }\StringTok{":"}\NormalTok{))}
-\NormalTok{i}\OtherTok{=}\DecValTok{1}
-\ControlFlowTok{while}\NormalTok{ (i }\SpecialCharTok{\textless{}=} \DecValTok{10}\NormalTok{)\{  }
-  \FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(n,}\StringTok{"x"}\NormalTok{,i, }\StringTok{"="}\NormalTok{, n}\SpecialCharTok{*}\NormalTok{i))  }
-\NormalTok{  i }\SpecialCharTok{+} \DecValTok{1}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-Explique porque o programa acima não termina. Qual o erro no nosso código?
-
-\textbf{Exemplo 3:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{limite }\OtherTok{\textless{}{-}} \DecValTok{10}
-\NormalTok{soma }\OtherTok{\textless{}{-}} \DecValTok{0}
-\NormalTok{contador }\OtherTok{\textless{}{-}} \DecValTok{1}
-
-\ControlFlowTok{while}\NormalTok{ (contador }\SpecialCharTok{\textless{}=}\NormalTok{ limite) \{  }
-\NormalTok{  soma }\OtherTok{\textless{}{-}}\NormalTok{ soma }\SpecialCharTok{+}\NormalTok{ contador  }
-  \FunctionTok{print}\NormalTok{(contador)  }
-  \ControlFlowTok{if}\NormalTok{ (contador }\SpecialCharTok{==} \DecValTok{3}\NormalTok{)\{    }
-    \ControlFlowTok{break}  
-\NormalTok{  \}  }
-\NormalTok{  contador }\OtherTok{\textless{}{-}}\NormalTok{ contador }\SpecialCharTok{+} \DecValTok{1}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 1
-## [1] 2
-## [1] 3
-\end{verbatim}
-
-\begin{itemize}
-\tightlist
-\item
-  \textbf{break} é uma instrução utilizada em ciclos para interromper a sua execução (sair de um ciclo antes de ter sido percorrido completamente). Quando o \texttt{break} é chamado, o loop é imediatamente interrompido, e o fluxo de execução continua na próxima linha de código após o loop.
-\end{itemize}
-
-\textbf{Considerações importantes sobre o uso do \texttt{while()}}
-
-\begin{itemize}
-\item
-  \textbf{Condição de Parada}: É crucial garantir que a condição do \texttt{while} se torne \texttt{FALSE} em algum ponto para evitar loops infinitos que podem fazer o programa parar de responder.
-\item
-  \textbf{Incremento/Decremento}: Certifique-se de que a variável que controla a condição seja atualizada adequadamente dentro do loop para evitar loops infinitos.
-\item
-  \textbf{Desempenho}: Loops \texttt{while} podem ser menos eficientes do que loops vetorizados em R, portanto, para grandes conjuntos de dados, considere outras abordagens, como aplicar funções vetorizadas (\texttt{apply}, \texttt{lapply}, etc.).
-\end{itemize}
-
-\chapter{Loop for}\label{loop-for}
-
-A instrução \texttt{for} em R é uma estrutura de controle de fluxo que permite executar repetidamente um bloco de código para cada elemento em um conjunto de elementos. É especialmente útil para situações em que se conhece o número de iterações a serem realizadas com antecedência. A instrução for é amplamente utilizada em R para iterar sobre vetores, listas, data frames e outras estruturas de dados.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Sintaxe}
-\ControlFlowTok{for}\NormalTok{ (variável }\ControlFlowTok{in}\NormalTok{ sequência) \{}
-  \CommentTok{\# Bloco de código a ser executado}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{itemize}
-\item
-  \textbf{variável}: Uma variável que assume o valor de cada elemento na sequência em cada iteração do loop.
-\item
-  \textbf{sequência}: Um vetor, lista ou qualquer estrutura de dados sobre a qual se deseja iterar.
-\item
-  \textbf{bloco de código}: O conjunto de instruções que serão executadas para cada elemento da sequência.
-\end{itemize}
-
-\textbf{Como funciona o \texttt{for()}}
-
-\begin{itemize}
-\item
-  \textbf{Inicialização}: Antes do loop começar, a variável de controle é inicializada com o primeiro elemento da sequência.
-\item
-  \textbf{Iteração}: Em cada iteração do loop, a variável de controle assume o próximo valor da sequência.
-\item
-  **Execução do Bloco de Código*: O bloco de código dentro do loop é executado uma vez para cada elemento da sequência.
-\item
-  \textbf{Finalização}: O loop termina quando todos os elementos da sequência forem processados.
-\end{itemize}
-
-\textbf{Exemplo 1:} Imprima os números de 0 a 10 no ecrã.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{0}\SpecialCharTok{:}\DecValTok{10}\NormalTok{) \{}
-  \FunctionTok{print}\NormalTok{(i)}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{Exemplo 2:} Soma dos elementos de um vetor
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{numeros }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{)}
-\NormalTok{soma }\OtherTok{\textless{}{-}} \DecValTok{0}
-
-\ControlFlowTok{for}\NormalTok{ (num }\ControlFlowTok{in}\NormalTok{ numeros) \{}
-\NormalTok{  soma }\OtherTok{\textless{}{-}}\NormalTok{ soma }\SpecialCharTok{+}\NormalTok{ num}
-\NormalTok{\}}
-
-\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"A soma dos números é:"}\NormalTok{, soma))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "A soma dos números é: 15"
-\end{verbatim}
-
-\textbf{Exemplo 3:} Uso do \texttt{for} com índices. Você também pode usar o loop for para iterar sobre índices de vetores ou listas, o que pode ser útil quando se deseja acessar ou modificar elementos em posições específicas. Multiplique por 2 os elementos do vetor.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{numeros }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{30}\NormalTok{, }\DecValTok{40}\NormalTok{, }\DecValTok{50}\NormalTok{)}
-
-\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(numeros)) \{}
-\NormalTok{  numeros[i] }\OtherTok{\textless{}{-}}\NormalTok{ numeros[i] }\SpecialCharTok{*} \DecValTok{2}
-\NormalTok{\}}
-
-\FunctionTok{print}\NormalTok{(}\StringTok{"Elementos do vetor multiplicados por 2:"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "Elementos do vetor multiplicados por 2:"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{print}\NormalTok{(numeros)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1]  20  40  60  80 100
-\end{verbatim}
-
-\textbf{Exemplo 4:} Exemplo com matrizes. O loop for também pode ser usado para iterar sobre elementos de uma matriz, seja por linha ou por coluna.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{matriz }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{9}\NormalTok{, }\AttributeTok{nrow=}\DecValTok{3}\NormalTok{, }\AttributeTok{ncol=}\DecValTok{3}\NormalTok{)}
-\NormalTok{soma\_linhas }\OtherTok{\textless{}{-}} \FunctionTok{numeric}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(matriz))}
-
-\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(matriz)) \{}
-\NormalTok{  soma\_linhas[i] }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(matriz[i, ])}
-\NormalTok{\}}
-
-\FunctionTok{print}\NormalTok{(}\StringTok{"Soma dos elementos de cada linha:"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "Soma dos elementos de cada linha:"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{print}\NormalTok{(soma\_linhas)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 12 15 18
-\end{verbatim}
-
-\textbf{Exemplo 5:} Cálculo de Médias de Colunas em um Data Frame
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{dados }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
-\AttributeTok{A =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{),}
-\AttributeTok{B =} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{6}\NormalTok{),}
-\AttributeTok{C =} \FunctionTok{c}\NormalTok{(}\DecValTok{7}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{9}\NormalTok{)}
-\NormalTok{)}
-
-\NormalTok{medias }\OtherTok{\textless{}{-}} \FunctionTok{numeric}\NormalTok{(}\FunctionTok{ncol}\NormalTok{(dados))}
-
-\ControlFlowTok{for}\NormalTok{ (col }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(dados)) \{}
-\NormalTok{  medias[col] }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(dados[, col])}
-\NormalTok{\}}
-
-\FunctionTok{print}\NormalTok{(}\StringTok{"Médias das colunas do data frame:"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "Médias das colunas do data frame:"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{print}\NormalTok{(medias)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 2 5 8
-\end{verbatim}
-
-\chapter{\texorpdfstring{Família \texttt{Xapply()}}{Família Xapply()}}\label{famuxedlia-xapply}
-
-A família \texttt{Xapply()} no R refere-se a um conjunto de funções que são usadas para iterar sobre objetos de forma eficiente, substituindo a necessidade de ciclos explícitos como \texttt{for}. Essas funções são muito úteis para realizar operações repetitivas em listas, vetores, matrizes, data frames e outros objetos, de maneira concisa e muitas vezes mais rápida.
-
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1846}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2462}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2154}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1692}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1846}}@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-\textbf{Função}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\textbf{Argumentos}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\textbf{Objetivo}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\textbf{Input}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\textbf{Output}
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-\texttt{apply} & \texttt{apply(x,\ MARGIN,\ FUN)} & Aplica uma função às linhas ou colunas ou a ambas & Data frame ou matriz & vetor, lista, array \\
-\texttt{lapply} & \texttt{lapply(x,\ FUN)} & Aplica uma função a todos os elementos da entrada & Lista, vetor ou data frame & lista \\
-\texttt{sapply} & \texttt{sapply(x,\ FUN)} & Aplica uma função a todos os elementos da entrada & Lista, vetor ou data frame & vetor ou matriz \\
-\texttt{tapply} & \texttt{tapply(x,\ INDEX,\ FUN)} & Aplica uma função a cada fator & Vetor ou data frame & array \\
-\end{longtable}
-
-\section{\texorpdfstring{Função \texttt{apply()}}{Função apply()}}\label{funuxe7uxe3o-apply}
-
-Aplica uma função a margens (linhas ou colunas) de uma matriz ou data frame e fornece saída em vetor, lista ou array. É usada para evitar loops (ciclos).
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Sintaxe}
-\FunctionTok{apply}\NormalTok{(X, MARGIN, FUN)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{itemize}
-\item
-  \texttt{X}: A matriz ou data frame.
-\item
-  \texttt{MARGIN}: Indica se a função deve ser aplicada a linha (1) ou coluna (2).
-\item
-  \texttt{FUN}: A função a ser aplicada.
-\end{itemize}
-
-\textbf{Exemplo}: Calcular a soma, a média e a raíz quadrada de cada coluna de uma matriz.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{matriz }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{9}\NormalTok{, }\AttributeTok{nrow =} \DecValTok{3}\NormalTok{)}
-
-\FunctionTok{apply}\NormalTok{(matriz, }\DecValTok{2}\NormalTok{, sum)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1]  6 15 24
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{apply}\NormalTok{(matriz, }\DecValTok{2}\NormalTok{, mean)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 2 5 8
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{f }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{sqrt}\NormalTok{(x)}
-\FunctionTok{apply}\NormalTok{(matriz, }\DecValTok{2}\NormalTok{, f)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##      [,1] [,2] [,3]
-## [1,] 1.00 2.00 2.65
-## [2,] 1.41 2.24 2.83
-## [3,] 1.73 2.45 3.00
-\end{verbatim}
-
-\section{\texorpdfstring{Função \texttt{lapply()}}{Função lapply()}}\label{funuxe7uxe3o-lapply}
-
-Aplica uma função a cada elemento de uma lista ou vetor e retorna uma lista. É útil quando você precisa manter a estrutura de saída como uma lista.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Sintaxe}
-\FunctionTok{lapply}\NormalTok{(X, FUN, ...)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{itemize}
-\item
-  \texttt{X}: A lista ou vetor.
-\item
-  \texttt{FUN}: A função a ser aplicada.
-\end{itemize}
-
-\textbf{Exemplo 1:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{nomes }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"ANA"}\NormalTok{, }\StringTok{"JOAO"}\NormalTok{, }\StringTok{"PAULO"}\NormalTok{, }\StringTok{"FILIPA"}\NormalTok{)}
-\NormalTok{(nomes\_minusc }\OtherTok{\textless{}{-}} \FunctionTok{lapply}\NormalTok{(nomes, tolower))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [[1]]
-## [1] "ana"
-## 
-## [[2]]
-## [1] "joao"
-## 
-## [[3]]
-## [1] "paulo"
-## 
-## [[4]]
-## [1] "filipa"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{str}\NormalTok{(nomes\_minusc) }
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## List of 4
-##  $ : chr "ana"
-##  $ : chr "joao"
-##  $ : chr "paulo"
-##  $ : chr "filipa"
-\end{verbatim}
-
-\textbf{Exemplo 2:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Aplicar a função sqrt a cada elemento de uma lista}
-\NormalTok{vetor\_dados }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\AttributeTok{a =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{, }\AttributeTok{b =} \DecValTok{5}\SpecialCharTok{:}\DecValTok{8}\NormalTok{)}
-\FunctionTok{lapply}\NormalTok{(vetor\_dados, sqrt)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## $a
-## [1] 1.00 1.41 1.73 2.00
-## 
-## $b
-## [1] 2.24 2.45 2.65 2.83
-\end{verbatim}
-
-\section{\texorpdfstring{Função \texttt{sapply()}}{Função sapply()}}\label{funuxe7uxe3o-sapply}
-
-Similar ao \texttt{lapply()}, aplica uma função a cada elemento de uma lista, vetor ou data frame, mas tenta simplificar o resultado(saída) para um vetor ou matriz.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Sintaxe}
-\FunctionTok{sapply}\NormalTok{(X, FUN, ...)}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{Exemplo}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{dados }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{:}\DecValTok{5}
-\NormalTok{f }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) x}\SpecialCharTok{\^{}}\DecValTok{2}
-
-\FunctionTok{lapply}\NormalTok{(dados, f)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [[1]]
-## [1] 1
-## 
-## [[2]]
-## [1] 4
-## 
-## [[3]]
-## [1] 9
-## 
-## [[4]]
-## [1] 16
-## 
-## [[5]]
-## [1] 25
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{sapply}\NormalTok{(dados, f)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1]  1  4  9 16 25
-\end{verbatim}
-
-\section{\texorpdfstring{Função \texttt{tapply()}}{Função tapply()}}\label{funuxe7uxe3o-tapply}
-
-Aplica uma função a grupos de valores em um vetor. É ideal para operações em subconjuntos de dados categorizados.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Sintaxe}
-\FunctionTok{tapply}\NormalTok{(X, INDEX, FUN, ...)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{itemize}
-\item
-  \texttt{X}: O vetor de dados
-\item
-  \texttt{INDEX}: Um fator ou lista de fatores que definem os grupos.
-\item
-  \texttt{FUN}: A função a ser aplicada
-\end{itemize}
-
-\textbf{Exemplo:} O dataset \texttt{iris} no R é um dos conjuntos de dados mais conhecidos e frequentemente utilizados para exemplificar análises estatísticas e técnicas de aprendizado de máquina. Foi introduzido por Ronald A. Fisher em 1936 em seu artigo sobre a utilização de modelos estatísticos para discriminação de espécies de plantas. O objetivo deste conjunto de dados é prever a classe de cada uma das três espécies de flores (fatores): Setosa, Versicolor, Virginica. O conjunto de dados coleta informações para cada espécie sobre seu comprimento e largura.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{iris}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
-## 1            5.1         3.5          1.4         0.2     setosa
-## 2            4.9         3.0          1.4         0.2     setosa
-## 3            4.7         3.2          1.3         0.2     setosa
-## 4            4.6         3.1          1.5         0.2     setosa
-## 5            5.0         3.6          1.4         0.2     setosa
-## 6            5.4         3.9          1.7         0.4     setosa
-## 7            4.6         3.4          1.4         0.3     setosa
-## 8            5.0         3.4          1.5         0.2     setosa
-## 9            4.4         2.9          1.4         0.2     setosa
-## 10           4.9         3.1          1.5         0.1     setosa
-## 11           5.4         3.7          1.5         0.2     setosa
-## 12           4.8         3.4          1.6         0.2     setosa
-## 13           4.8         3.0          1.4         0.1     setosa
-## 14           4.3         3.0          1.1         0.1     setosa
-## 15           5.8         4.0          1.2         0.2     setosa
-## 16           5.7         4.4          1.5         0.4     setosa
-## 17           5.4         3.9          1.3         0.4     setosa
-## 18           5.1         3.5          1.4         0.3     setosa
-## 19           5.7         3.8          1.7         0.3     setosa
-## 20           5.1         3.8          1.5         0.3     setosa
-## 21           5.4         3.4          1.7         0.2     setosa
-## 22           5.1         3.7          1.5         0.4     setosa
-## 23           4.6         3.6          1.0         0.2     setosa
-## 24           5.1         3.3          1.7         0.5     setosa
-## 25           4.8         3.4          1.9         0.2     setosa
-## 26           5.0         3.0          1.6         0.2     setosa
-## 27           5.0         3.4          1.6         0.4     setosa
-## 28           5.2         3.5          1.5         0.2     setosa
-## 29           5.2         3.4          1.4         0.2     setosa
-## 30           4.7         3.2          1.6         0.2     setosa
-## 31           4.8         3.1          1.6         0.2     setosa
-## 32           5.4         3.4          1.5         0.4     setosa
-## 33           5.2         4.1          1.5         0.1     setosa
-## 34           5.5         4.2          1.4         0.2     setosa
-## 35           4.9         3.1          1.5         0.2     setosa
-## 36           5.0         3.2          1.2         0.2     setosa
-## 37           5.5         3.5          1.3         0.2     setosa
-## 38           4.9         3.6          1.4         0.1     setosa
-## 39           4.4         3.0          1.3         0.2     setosa
-## 40           5.1         3.4          1.5         0.2     setosa
-## 41           5.0         3.5          1.3         0.3     setosa
-## 42           4.5         2.3          1.3         0.3     setosa
-## 43           4.4         3.2          1.3         0.2     setosa
-## 44           5.0         3.5          1.6         0.6     setosa
-## 45           5.1         3.8          1.9         0.4     setosa
-## 46           4.8         3.0          1.4         0.3     setosa
-## 47           5.1         3.8          1.6         0.2     setosa
-## 48           4.6         3.2          1.4         0.2     setosa
-## 49           5.3         3.7          1.5         0.2     setosa
-## 50           5.0         3.3          1.4         0.2     setosa
-## 51           7.0         3.2          4.7         1.4 versicolor
-## 52           6.4         3.2          4.5         1.5 versicolor
-## 53           6.9         3.1          4.9         1.5 versicolor
-## 54           5.5         2.3          4.0         1.3 versicolor
-## 55           6.5         2.8          4.6         1.5 versicolor
-## 56           5.7         2.8          4.5         1.3 versicolor
-## 57           6.3         3.3          4.7         1.6 versicolor
-## 58           4.9         2.4          3.3         1.0 versicolor
-## 59           6.6         2.9          4.6         1.3 versicolor
-## 60           5.2         2.7          3.9         1.4 versicolor
-## 61           5.0         2.0          3.5         1.0 versicolor
-## 62           5.9         3.0          4.2         1.5 versicolor
-## 63           6.0         2.2          4.0         1.0 versicolor
-## 64           6.1         2.9          4.7         1.4 versicolor
-## 65           5.6         2.9          3.6         1.3 versicolor
-## 66           6.7         3.1          4.4         1.4 versicolor
-## 67           5.6         3.0          4.5         1.5 versicolor
-## 68           5.8         2.7          4.1         1.0 versicolor
-## 69           6.2         2.2          4.5         1.5 versicolor
-## 70           5.6         2.5          3.9         1.1 versicolor
-## 71           5.9         3.2          4.8         1.8 versicolor
-## 72           6.1         2.8          4.0         1.3 versicolor
-## 73           6.3         2.5          4.9         1.5 versicolor
-## 74           6.1         2.8          4.7         1.2 versicolor
-## 75           6.4         2.9          4.3         1.3 versicolor
-## 76           6.6         3.0          4.4         1.4 versicolor
-## 77           6.8         2.8          4.8         1.4 versicolor
-## 78           6.7         3.0          5.0         1.7 versicolor
-## 79           6.0         2.9          4.5         1.5 versicolor
-## 80           5.7         2.6          3.5         1.0 versicolor
-## 81           5.5         2.4          3.8         1.1 versicolor
-## 82           5.5         2.4          3.7         1.0 versicolor
-## 83           5.8         2.7          3.9         1.2 versicolor
-## 84           6.0         2.7          5.1         1.6 versicolor
-## 85           5.4         3.0          4.5         1.5 versicolor
-## 86           6.0         3.4          4.5         1.6 versicolor
-## 87           6.7         3.1          4.7         1.5 versicolor
-## 88           6.3         2.3          4.4         1.3 versicolor
-## 89           5.6         3.0          4.1         1.3 versicolor
-## 90           5.5         2.5          4.0         1.3 versicolor
-## 91           5.5         2.6          4.4         1.2 versicolor
-## 92           6.1         3.0          4.6         1.4 versicolor
-## 93           5.8         2.6          4.0         1.2 versicolor
-## 94           5.0         2.3          3.3         1.0 versicolor
-## 95           5.6         2.7          4.2         1.3 versicolor
-## 96           5.7         3.0          4.2         1.2 versicolor
-## 97           5.7         2.9          4.2         1.3 versicolor
-## 98           6.2         2.9          4.3         1.3 versicolor
-## 99           5.1         2.5          3.0         1.1 versicolor
-## 100          5.7         2.8          4.1         1.3 versicolor
-## 101          6.3         3.3          6.0         2.5  virginica
-## 102          5.8         2.7          5.1         1.9  virginica
-## 103          7.1         3.0          5.9         2.1  virginica
-## 104          6.3         2.9          5.6         1.8  virginica
-## 105          6.5         3.0          5.8         2.2  virginica
-## 106          7.6         3.0          6.6         2.1  virginica
-## 107          4.9         2.5          4.5         1.7  virginica
-## 108          7.3         2.9          6.3         1.8  virginica
-## 109          6.7         2.5          5.8         1.8  virginica
-## 110          7.2         3.6          6.1         2.5  virginica
-## 111          6.5         3.2          5.1         2.0  virginica
-## 112          6.4         2.7          5.3         1.9  virginica
-## 113          6.8         3.0          5.5         2.1  virginica
-## 114          5.7         2.5          5.0         2.0  virginica
-## 115          5.8         2.8          5.1         2.4  virginica
-## 116          6.4         3.2          5.3         2.3  virginica
-## 117          6.5         3.0          5.5         1.8  virginica
-## 118          7.7         3.8          6.7         2.2  virginica
-## 119          7.7         2.6          6.9         2.3  virginica
-## 120          6.0         2.2          5.0         1.5  virginica
-## 121          6.9         3.2          5.7         2.3  virginica
-## 122          5.6         2.8          4.9         2.0  virginica
-## 123          7.7         2.8          6.7         2.0  virginica
-## 124          6.3         2.7          4.9         1.8  virginica
-## 125          6.7         3.3          5.7         2.1  virginica
-## 126          7.2         3.2          6.0         1.8  virginica
-## 127          6.2         2.8          4.8         1.8  virginica
-## 128          6.1         3.0          4.9         1.8  virginica
-## 129          6.4         2.8          5.6         2.1  virginica
-## 130          7.2         3.0          5.8         1.6  virginica
-## 131          7.4         2.8          6.1         1.9  virginica
-## 132          7.9         3.8          6.4         2.0  virginica
-## 133          6.4         2.8          5.6         2.2  virginica
-## 134          6.3         2.8          5.1         1.5  virginica
-## 135          6.1         2.6          5.6         1.4  virginica
-## 136          7.7         3.0          6.1         2.3  virginica
-## 137          6.3         3.4          5.6         2.4  virginica
-## 138          6.4         3.1          5.5         1.8  virginica
-## 139          6.0         3.0          4.8         1.8  virginica
-## 140          6.9         3.1          5.4         2.1  virginica
-## 141          6.7         3.1          5.6         2.4  virginica
-## 142          6.9         3.1          5.1         2.3  virginica
-## 143          5.8         2.7          5.1         1.9  virginica
-## 144          6.8         3.2          5.9         2.3  virginica
-## 145          6.7         3.3          5.7         2.5  virginica
-## 146          6.7         3.0          5.2         2.3  virginica
-## 147          6.3         2.5          5.0         1.9  virginica
-## 148          6.5         3.0          5.2         2.0  virginica
-## 149          6.2         3.4          5.4         2.3  virginica
-## 150          5.9         3.0          5.1         1.8  virginica
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{tapply}\NormalTok{(iris}\SpecialCharTok{$}\NormalTok{Petal.Length, iris}\SpecialCharTok{$}\NormalTok{Species, mean)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##     setosa versicolor  virginica 
-##       1.46       4.26       5.55
-\end{verbatim}
+\section{Exercícios}\label{exercuxedcios}
 
 \chapter{Estrutura de Dados Básicas}\label{estrutura-de-dados-buxe1sicas}
 
@@ -2245,7 +1324,7 @@ Um vetor é uma estrutura de dados básica que pode armazenar uma sequência de 
 \item
   Vetores podem ser facilmente manipulados e transformados usando uma ampla gama de funções.
 \item
-  Vetores podem ser criados usando a função \texttt{c()} (combine ou concatenate).
+  Vetores podem ser criados usando a função \texttt{c()} (concatenate).
 \end{itemize}
 
 \subsection{Tipos Comuns de Vetores}\label{tipos-comuns-de-vetores}
@@ -2274,8 +1353,19 @@ Um vetor é uma estrutura de dados básica que pode armazenar uma sequência de 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# vetor de strings}
+\CommentTok{\# vetor de caracteres}
 \FunctionTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "a" "b" "c"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#ou}
+\FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2726,7 +1816,9 @@ O último exemplo mostra que o R dá um aviso se o comprimento do vetor mais cur
 
 de modo que nem todos os elementos de \verb|c(2,3,4)| são ``reciclados'\,'.
 
-\chapter{Fatores}\label{fatores}
+\subsection{Exercícios}\label{exercuxedcios-1}
+
+\section{Fatores}\label{fatores}
 
 Em R, um ``factor'' (ou ``fator'', em português) é uma estrutura de dados usada para representar dados categóricos. Fatores são muito úteis em análises estatísticas e visualizações, pois permitem que você trate dados categóricos de forma eficiente e consistente.
 
@@ -2806,7 +1898,7 @@ Em R, um ``factor'' (ou ``fator'', em português) é uma estrutura de dados usad
 ## Levels: Low Medium High
 \end{verbatim}
 
-\chapter{Matriz e array}\label{matriz-e-array}
+\section{Matriz e array}\label{matriz-e-array}
 
 Uma \textbf{matriz} é uma coleção de objetos do mesmo tipo (numérico, lógico, etc.) organizada em um formato bidimensional, ou seja, em linhas e colunas.
 
@@ -2867,7 +1959,7 @@ Uma \textbf{matriz} é uma coleção de objetos do mesmo tipo (numérico, lógic
 ## [4,]   16   20   24
 \end{verbatim}
 
-\section{Construindo matrizes}\label{construindo-matrizes}
+\subsection{Construindo matrizes}\label{construindo-matrizes}
 
 \begin{itemize}
 \item
@@ -2975,7 +2067,7 @@ Uma \textbf{matriz} é uma coleção de objetos do mesmo tipo (numérico, lógic
 ## [2,]    2    4    6    8   10   12
 \end{verbatim}
 
-\section{Índice e índice lógico}\label{uxedndice-e-uxedndice-luxf3gico}
+\subsection{Índice e índice lógico}\label{uxedndice-e-uxedndice-luxf3gico}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3050,7 +2142,7 @@ Uma \textbf{matriz} é uma coleção de objetos do mesmo tipo (numérico, lógic
 ## [2,]    0    3
 \end{verbatim}
 
-\section{Nomeando linhas e colunas numa matriz}\label{nomeando-linhas-e-colunas-numa-matriz}
+\subsection{Nomeando linhas e colunas numa matriz}\label{nomeando-linhas-e-colunas-numa-matriz}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3060,11 +2152,11 @@ Uma \textbf{matriz} é uma coleção de objetos do mesmo tipo (numérico, lógic
 \end{Shaded}
 
 \begin{verbatim}
-##        [,1]   [,2]   [,3]
-## [1,] -2.588 -3.178 -1.891
-## [2,]  1.515 -0.706 -2.094
-## [3,] -0.187 -1.077 -0.613
-## [4,] -0.353  0.193  0.823
+##          [,1]   [,2]   [,3]
+## [1,] -1.05598  0.546 -0.890
+## [2,]  0.00517  0.297 -0.433
+## [3,] -1.33501 -2.485  1.247
+## [4,] -0.54402  1.152  1.077
 \end{verbatim}
 
 \begin{Shaded}
@@ -3075,11 +2167,11 @@ Uma \textbf{matriz} é uma coleção de objetos do mesmo tipo (numérico, lógic
 \end{Shaded}
 
 \begin{verbatim}
-##      dados1 dados2 dados3
-## [1,] -2.588 -3.178 -1.891
-## [2,]  1.515 -0.706 -2.094
-## [3,] -0.187 -1.077 -0.613
-## [4,] -0.353  0.193  0.823
+##        dados1 dados2 dados3
+## [1,] -1.05598  0.546 -0.890
+## [2,]  0.00517  0.297 -0.433
+## [3,] -1.33501 -2.485  1.247
+## [4,] -0.54402  1.152  1.077
 \end{verbatim}
 
 \begin{Shaded}
@@ -3090,12 +2182,12 @@ Uma \textbf{matriz} é uma coleção de objetos do mesmo tipo (numérico, lógic
 \end{Shaded}
 
 \begin{verbatim}
-##        [,1]   [,2]   [,3]
-## [1,]  0.482 -0.502 -0.134
-## [2,] -0.600  0.977  0.841
-## [3,] -0.328 -1.000  0.471
-## [4,]  0.589  0.148  0.813
-## [5,] -1.067 -0.956 -2.351
+##         [,1]   [,2]    [,3]
+## [1,] -0.4697 -0.661  1.2657
+## [2,]  0.0585 -1.211 -0.0725
+## [3,]  1.9465 -0.945 -0.0500
+## [4,] -0.3565  0.149 -1.2568
+## [5,] -0.6331 -2.235 -0.3751
 \end{verbatim}
 
 \begin{Shaded}
@@ -3109,15 +2201,15 @@ Uma \textbf{matriz} é uma coleção de objetos do mesmo tipo (numérico, lógic
 \end{Shaded}
 
 \begin{verbatim}
-##        A      B      C
-## a  0.482 -0.502 -0.134
-## b -0.600  0.977  0.841
-## c -0.328 -1.000  0.471
-## d  0.589  0.148  0.813
-## e -1.067 -0.956 -2.351
+##         A      B       C
+## a -0.4697 -0.661  1.2657
+## b  0.0585 -1.211 -0.0725
+## c  1.9465 -0.945 -0.0500
+## d -0.3565  0.149 -1.2568
+## e -0.6331 -2.235 -0.3751
 \end{verbatim}
 
-\section{Multiplicação de matrizes}\label{multiplicauxe7uxe3o-de-matrizes}
+\subsection{Multiplicação de matrizes}\label{multiplicauxe7uxe3o-de-matrizes}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3129,14 +2221,14 @@ Uma \textbf{matriz} é uma coleção de objetos do mesmo tipo (numérico, lógic
 \end{Shaded}
 
 \begin{verbatim}
-##       [,1]   [,2]   [,3]
-## [1,] -2.05  1.357  1.773
-## [2,] -2.55  0.592 -1.424
-## [3,] -1.42 -0.833 -0.502
-## [4,]  1.60  0.140 -0.349
+##        [,1]  [,2]   [,3]
+## [1,] -1.387  1.12  0.351
+## [2,]  0.625  1.55 -0.253
+## [3,] -1.788 -2.12 -0.681
+## [4,] -0.421 -1.10 -0.570
 \end{verbatim}
 
-\section{Algumas outras funções}\label{algumas-outras-funuxe7uxf5es}
+\subsection{Algumas outras funções}\label{algumas-outras-funuxe7uxf5es}
 
 Seja \(M\) uma matriz quadrada.
 
@@ -3161,11 +2253,13 @@ Seja \(M\) uma matriz quadrada.
   aplicar uma função a cada linha ou coluna \(\to\) \texttt{apply(M,2,\ mean)\ \#\ média\ de\ cada\ coluna}
 \end{itemize}
 
-\chapter{Data-frame}\label{data-frame}
+\subsection{Exercícios}\label{exercuxedcios-2}
+
+\section{Data-frame}\label{data-frame}
 
 Um data frame em R é uma estrutura de dados bidimensional que é usada para armazenar dados tabulares. Cada coluna em um data frame pode conter valores de diferentes tipos (numéricos, caracteres, fatores, etc.), mas todos os elementos dentro de uma coluna devem ser do mesmo tipo. Um data frame é similar a uma tabela em um banco de dados ou uma planilha em um programa de planilhas como o Excel. Podemos criar data frames lendo dados de arquivos ou usando a função \texttt{as.data.frame()} em um conjunto de vetores.
 
-\section{Criando um data frame}\label{criando-um-data-frame}
+\subsection{Criando um data frame}\label{criando-um-data-frame}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3204,7 +2298,7 @@ Um data frame em R é uma estrutura de dados bidimensional que é usada para arm
 ## [4,] "4" "Diana"  "28"  "8000"
 \end{verbatim}
 
-\section{Acessando linhas e colunas}\label{acessando-linhas-e-colunas}
+\subsection{Acessando linhas e colunas}\label{acessando-linhas-e-colunas}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3312,7 +2406,7 @@ Um data frame em R é uma estrutura de dados bidimensional que é usada para arm
 ## 4  Diana    28
 \end{verbatim}
 
-\section{Adicionando e removendo colunas}\label{adicionando-e-removendo-colunas}
+\subsection{Adicionando e removendo colunas}\label{adicionando-e-removendo-colunas}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3346,7 +2440,7 @@ Um data frame em R é uma estrutura de dados bidimensional que é usada para arm
 ## 4  Diana    28    8000         8800
 \end{verbatim}
 
-\section{Fundindo dados}\label{fundindo-dados}
+\subsection{Fundindo dados}\label{fundindo-dados}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3390,7 +2484,7 @@ Um data frame em R é uma estrutura de dados bidimensional que é usada para arm
 ## 3    PE    60        6
 \end{verbatim}
 
-\section{Dimensão, informações de colunas e outros}\label{dimensuxe3o-informauxe7uxf5es-de-colunas-e-outros}
+\subsection{Dimensão, informações de colunas e outros}\label{dimensuxe3o-informauxe7uxf5es-de-colunas-e-outros}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3497,7 +2591,7 @@ Um data frame em R é uma estrutura de dados bidimensional que é usada para arm
 ## 150          5.9         3.0          5.1         1.8 virginica
 \end{verbatim}
 
-\section{\texorpdfstring{A função \texttt{subset()}}{A função subset()}}\label{a-funuxe7uxe3o-subset}
+\subsection{\texorpdfstring{A função \texttt{subset()}}{A função subset()}}\label{a-funuxe7uxe3o-subset}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3770,7 +2864,7 @@ Um data frame em R é uma estrutura de dados bidimensional que é usada para arm
 ## 150         3.0          5.1         1.8
 \end{verbatim}
 
-\section{\texorpdfstring{A função \texttt{summary()}}{A função summary()}}\label{a-funuxe7uxe3o-summary}
+\subsection{\texorpdfstring{A função \texttt{summary()}}{A função summary()}}\label{a-funuxe7uxe3o-summary}
 
 A função \texttt{summary()} no R é usada para gerar resumos estatísticos de objetos. O comportamento da função varia dependendo do tipo de objeto que você passa para ela, mas geralmente fornece uma visão geral das características principais do objeto.
 
@@ -3813,9 +2907,11 @@ A função \texttt{summary()} no R é usada para gerar resumos estatísticos de 
 ##  Max.   :7.90   Max.   :4.40   Max.   :6.90   Max.   :2.5
 \end{verbatim}
 
-\section{Valores faltantes}\label{valores-faltantes}
+\subsection{Valores faltantes}\label{valores-faltantes}
 
-\chapter{Listas}\label{listas}
+\subsection{Exercícios}\label{exercuxedcios-3}
+
+\section{Listas}\label{listas}
 
 Uma lista em R é uma estrutura de dados que permite armazenar elementos de diferentes tipos, como vetores, matrizes, data frames, funções e até outras listas. Essa flexibilidade distingue as listas de outras estruturas, como vetores, que são homogêneos e podem conter apenas elementos de um único tipo.
 
@@ -3915,6 +3011,237 @@ Uma lista em R é uma estrutura de dados que permite armazenar elementos de dife
 \begin{verbatim}
 ## [1] 90
 \end{verbatim}
+
+\chapter{Estruturas de Seleção}\label{estruturas-de-seleuxe7uxe3o}
+
+Em R, as estruturas de seleção ou decisão são usadas para controlar o fluxo de execução do código com base em condições específicas. Estas estruturas permitem executar diferentes blocos de código dependendo de valores ou condições lógicas. As estruturas de seleção mais comuns em R são if, \texttt{if}, \texttt{else}, \texttt{else\ if}.
+
+\section{\texorpdfstring{Condicional \texttt{if}}{Condicional if}}\label{condicional-if}
+
+A instrução \texttt{if} executa um bloco de código se uma condição for verdadeira.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Sintaxe   }
+\ControlFlowTok{if}\NormalTok{ (condição) \{}
+      \CommentTok{\# Código a ser executado se a condição for TRUE}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Exemplo 1:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{10}
+
+\ControlFlowTok{if}\NormalTok{ (x }\SpecialCharTok{\textgreater{}} \DecValTok{5}\NormalTok{) \{}
+      \FunctionTok{print}\NormalTok{(}\StringTok{"x é maior que 5"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "x é maior que 5"
+\end{verbatim}
+
+\section{\texorpdfstring{Condicional \texttt{if...else}}{Condicional if...else}}\label{condicional-if...else}
+
+A estrutura \texttt{if...else} permite executar um bloco de código quando a condição é verdadeira e outro bloco de código quando a condição é falsa.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Sintaxe}
+\ControlFlowTok{if}\NormalTok{ (condição) \{}
+      \CommentTok{\# Código a ser executado se a condição for TRUE}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+      \CommentTok{\# Código a ser executado se a condição for FALSE}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Exemplo 2:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{3}
+
+\ControlFlowTok{if}\NormalTok{ (x }\SpecialCharTok{\textgreater{}} \DecValTok{5}\NormalTok{) \{}
+      \FunctionTok{print}\NormalTok{(}\StringTok{"x é maior que 5"}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+    \FunctionTok{print}\NormalTok{(}\StringTok{"x não é maior que 5"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "x não é maior que 5"
+\end{verbatim}
+
+\section{\texorpdfstring{Condicional \texttt{if...else\ if...else}}{Condicional if...else if...else}}\label{condicional-if...else-if...else}
+
+A estrutura \texttt{if...else\ if...else} permite testar múltiplas condições em sequência. Executa o bloco de código do primeiro teste que resulta em verdadeiro.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Sintaxe}
+\ControlFlowTok{if}\NormalTok{ (condição1) \{}
+      \CommentTok{\# Código se condição1 for TRUE}
+\NormalTok{\} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (condição2) \{}
+      \CommentTok{\# Código se condição2 for TRUE}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+      \CommentTok{\# Código se nenhuma condição anterior for TRUE}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Exemplo 3:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{7}
+
+\ControlFlowTok{if}\NormalTok{ (x }\SpecialCharTok{\textgreater{}} \DecValTok{10}\NormalTok{) \{}
+      \FunctionTok{print}\NormalTok{(}\StringTok{"x é maior que 10"}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (x }\SpecialCharTok{\textgreater{}} \DecValTok{5}\NormalTok{) \{}
+        \FunctionTok{print}\NormalTok{(}\StringTok{"x é maior que 5, mas não maior que 10"}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+        \FunctionTok{print}\NormalTok{(}\StringTok{"x não é maior que 5"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "x é maior que 5, mas não maior que 10"
+\end{verbatim}
+
+\section{\texorpdfstring{A função \texttt{ifelse()}}{A função ifelse()}}\label{a-funuxe7uxe3o-ifelse}
+
+A função \texttt{ifelse} é uma versão vetorizada de if\ldots else que retorna valores dependendo de uma condição. É muito útil para aplicar condições a vetores. Veremos mais sobre isso após falarmos sobre vetores.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Sintaxe}
+\NormalTok{resultado }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(condição, valor\_se\_true, valor\_se\_false)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Exemplo 4:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{valores }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\NormalTok{resultado }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(valores }\SpecialCharTok{\textgreater{}} \DecValTok{5}\NormalTok{, }\StringTok{"maior que 5"}\NormalTok{, }\StringTok{"não é maior que 5"}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(resultado)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "não é maior que 5" "maior que 5"       "maior que 5"      
+## [4] "não é maior que 5"
+\end{verbatim}
+
+\section{Exemplos}\label{exemplos}
+
+\textbf{Exemplo 5:} Indique o(os) erro(os) no código abaixo
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (x}\SpecialCharTok{\%\%}\DecValTok{2} \OtherTok{=} \DecValTok{0}\NormalTok{)\{  }
+      \FunctionTok{print}\NormalTok{(}\StringTok{"Par"}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{  }
+    \FunctionTok{print}\NormalTok{(}\StringTok{"Ímpar"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Código correto
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (x}\SpecialCharTok{\%\%}\DecValTok{2} \SpecialCharTok{==} \DecValTok{0}\NormalTok{)\{  }
+  \FunctionTok{print}\NormalTok{(}\StringTok{"Par"}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{  }
+    \FunctionTok{print}\NormalTok{(}\StringTok{"Ímpar"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Exemplo 6:} Indique o(os) erro(os) no código abaixo
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (a}\SpecialCharTok{\textgreater{}}\DecValTok{0}\NormalTok{) \{  }
+  \FunctionTok{print}\NormalTok{(}\StringTok{"Positivo"}\NormalTok{)  }
+  \ControlFlowTok{if}\NormalTok{ (a}\SpecialCharTok{\%\%}\DecValTok{5} \OtherTok{=} \DecValTok{0}\NormalTok{)     }
+    \FunctionTok{print}\NormalTok{(}\StringTok{"Divisível por 5"}\NormalTok{)    }
+\NormalTok{\} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (a}\SpecialCharTok{==}\DecValTok{0}\NormalTok{)   }
+    \FunctionTok{print}\NormalTok{(}\StringTok{"Zero"}\NormalTok{)}
+  \ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ \{  }
+    \FunctionTok{print}\NormalTok{(}\StringTok{"Negativo"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Código correto
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (a}\SpecialCharTok{\textgreater{}}\DecValTok{0}\NormalTok{) \{  }
+  \FunctionTok{print}\NormalTok{(}\StringTok{"Positivo"}\NormalTok{)  }
+  \ControlFlowTok{if}\NormalTok{ (a}\SpecialCharTok{\%\%}\DecValTok{5} \SpecialCharTok{==} \DecValTok{0}\NormalTok{) \{    }
+    \FunctionTok{print}\NormalTok{(}\StringTok{"Divisível por 5"}\NormalTok{)  }
+\NormalTok{  \}}
+\NormalTok{\} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (a}\SpecialCharTok{==}\DecValTok{0}\NormalTok{) \{  }
+    \FunctionTok{print}\NormalTok{(}\StringTok{"Zero"}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{  }
+    \FunctionTok{print}\NormalTok{(}\StringTok{"Negativo"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Exemplo 7:} Quais os valores de \texttt{x} e \texttt{y} no final da execução
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{=} \DecValTok{1}
+\NormalTok{y }\OtherTok{=} \DecValTok{0}
+\ControlFlowTok{if}\NormalTok{ (x }\SpecialCharTok{==} \DecValTok{1}\NormalTok{)\{  }
+\NormalTok{  y }\OtherTok{=}\NormalTok{ y }\SpecialCharTok{{-}} \DecValTok{1}
+\NormalTok{\}}
+\ControlFlowTok{if}\NormalTok{ (y }\SpecialCharTok{==} \DecValTok{1}\NormalTok{)\{  }
+\NormalTok{  x }\OtherTok{=}\NormalTok{ x }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Exemplo 8:}
+
+\begin{itemize}
+\item
+  Se \texttt{x=1} qual será o valor de \texttt{x} no final da execução?
+\item
+  Qual teria de ser o valor de \texttt{x} para que no final da execução fosse -1?
+\item
+  Há uma parte do programa que nunca é executada: qual é e porquê?
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (x }\SpecialCharTok{==} \DecValTok{1}\NormalTok{)\{  }
+\NormalTok{  x }\OtherTok{=}\NormalTok{ x }\SpecialCharTok{+} \DecValTok{1}  
+  \ControlFlowTok{if}\NormalTok{ (x }\SpecialCharTok{==} \DecValTok{1}\NormalTok{)\{    }
+\NormalTok{    x }\OtherTok{=}\NormalTok{ x }\SpecialCharTok{+} \DecValTok{1}  
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{   }
+\NormalTok{      x }\OtherTok{=}\NormalTok{ x }\SpecialCharTok{{-}} \DecValTok{1}  
+\NormalTok{  \}}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{  }
+\NormalTok{    x }\OtherTok{=}\NormalTok{ x }\SpecialCharTok{{-}} \DecValTok{1}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Exercícios}\label{exercuxedcios-4}
 
 \chapter{Funções}\label{funuxe7uxf5es}
 
@@ -4126,6 +3453,758 @@ As funções como objetivo principal a modularização (dividir o código em par
 \end{Highlighting}
 \end{Shaded}
 
+\section{Exercícios}\label{exercuxedcios-5}
+
+\chapter{Scripts}\label{scripts}
+
+Um \textbf{script} é um ficheiro que contém um conjunto de definições (variáveis, funções e blocos de código) que podem ser reutilizadas noutros programas R.
+
+\textbf{Criação do scrip:}
+Para criar um script, basta guardar o seu código num ficheiro R com a extensão ``.R''
+
+\textbf{Exemplo:} Guarde o seguinte código no ficheiro \texttt{meu\_script.R}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{produto }\ControlFlowTok{function}\NormalTok{(x,y)\{}
+  \FunctionTok{return}\NormalTok{(x}\SpecialCharTok{*}\NormalTok{y)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Utilização do script}
+
+Para executar o script, use a função \texttt{source()} no console do R ou dentro de outro script:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{source}\NormalTok{(}\StringTok{"meu\_script.R"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Se o ficheiro \texttt{meu\_script.R} não estiver no diretório de trabalho atual, você pode fornecer o caminho completo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{source}\NormalTok{(}\StringTok{"/caminho/para/seu/script/meu\_script.R"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Resultado:}
+
+Quando você executa o comando \texttt{source()}, o R lê e executa todas as linhas do script, e os resultados (por exemplo, impressões de mensagens, funções\ldots) serão exibidos no console. Qualquer função ou variável definida no script ficará disponível no ambiente de trabalho após a execução do \texttt{source()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Faça agora}
+\FunctionTok{produto}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Observações}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Diretório de trabalho}: Para verificar ou alterar o diretório de trabalho em R, você pode usar as funções \texttt{getwd()} para ver o diretório atual e \texttt{setwd("caminho/do/diretorio")} para definir um novo diretório de trabalho.
+\end{itemize}
+
+\section{Exercícios}\label{exercuxedcios-6}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Construa o seguinte:
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Um script \texttt{quadrado.R} que disponibiliza funções que permitem calcular o perímetro e a área do quadrado dado o comprimento do lado. Use \texttt{quadrado.R} num outro script qualquer.
+\item
+  Um script \texttt{estatistica.R} que disponibiliza funções que permitem ordenar uma amostra e calcular a média, calcular a variância e o desvio padrão.
+\item
+  Um programa que recorrendo ao script anterior, calcula a mediana, variância e o desvio padrão da amostra \texttt{amostra\ \textless{}-\ c(1,2,3,4,5,6,7)}
+\end{enumerate}
+
+\chapter{Loop while}\label{loop-while}
+
+A instrução \texttt{while} em R é uma estrutura de controle de fluxo que permite executar um bloco de código repetidamente, enquanto uma condição especificada for verdadeira. É particularmente útil para situações em que o número de repetições não é conhecido antecipadamente, mas depende de alguma condição lógica.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Sintaxe}
+\ControlFlowTok{while}\NormalTok{ (condição) \{}
+  \CommentTok{\# Bloco de código a ser executado}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  \textbf{condição}: Uma expressão lógica que é avaliada antes de cada iteração do loop. Enquanto essa condição for \texttt{TRUE}, o bloco de código dentro do while será executado.
+\item
+  \textbf{Bloco de código}: As instruções que devem ser repetidamente executadas enquanto a condição for verdadeira.
+\end{itemize}
+
+\textbf{Como funciona o while}
+
+\begin{itemize}
+\item
+  \textbf{Avaliação da Condição}: Antes de cada execução do bloco de código, a condição é avaliada.
+\item
+  \textbf{Execução do Bloco de Código}: Se a condição for \texttt{TRUE}, o bloco de código dentro do \texttt{while} é executado.
+\item
+  \textbf{Reavaliação}: Após a execução do bloco de código, a condição é reavaliada. Se continuar a ser \texttt{TRUE}, o ciclo se repete. Se a condição for \texttt{FALSE}, o loop termina e o controle do programa continua com a próxima instrução após o \texttt{while}.
+\end{itemize}
+
+\textbf{Exemplo 1:} Somando números até um limite.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{limite }\OtherTok{\textless{}{-}} \DecValTok{10}
+\NormalTok{soma }\OtherTok{\textless{}{-}} \DecValTok{0}
+\NormalTok{contador }\OtherTok{\textless{}{-}} \DecValTok{1}
+
+\ControlFlowTok{while}\NormalTok{ (contador }\SpecialCharTok{\textless{}=}\NormalTok{ limite) \{}
+\NormalTok{  soma }\OtherTok{\textless{}{-}}\NormalTok{ soma }\SpecialCharTok{+}\NormalTok{ contador}
+\NormalTok{  contador }\OtherTok{\textless{}{-}}\NormalTok{ contador }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{\}}
+
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"A soma dos números de 1 a"}\NormalTok{, limite, }\StringTok{"é:"}\NormalTok{, soma))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "A soma dos números de 1 a 10 é: 55"
+\end{verbatim}
+
+\textbf{Exemplo 2:} Escrevendo a tabuada de um número inteiro
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{readline}\NormalTok{(}\StringTok{"Digite um número inteiro: "}\NormalTok{))}
+
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Tabuada do"}\NormalTok{,n, }\StringTok{":"}\NormalTok{))}
+\NormalTok{i}\OtherTok{=}\DecValTok{1}
+\ControlFlowTok{while}\NormalTok{ (i }\SpecialCharTok{\textless{}=} \DecValTok{10}\NormalTok{)\{  }
+  \FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(n,}\StringTok{"x"}\NormalTok{,i, }\StringTok{"="}\NormalTok{, n}\SpecialCharTok{*}\NormalTok{i))  }
+\NormalTok{  i }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Explique porque o programa acima não termina. Qual o erro no nosso código?
+
+\textbf{Exemplo 3:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{limite }\OtherTok{\textless{}{-}} \DecValTok{10}
+\NormalTok{soma }\OtherTok{\textless{}{-}} \DecValTok{0}
+\NormalTok{contador }\OtherTok{\textless{}{-}} \DecValTok{1}
+
+\ControlFlowTok{while}\NormalTok{ (contador }\SpecialCharTok{\textless{}=}\NormalTok{ limite) \{  }
+\NormalTok{  soma }\OtherTok{\textless{}{-}}\NormalTok{ soma }\SpecialCharTok{+}\NormalTok{ contador  }
+  \FunctionTok{print}\NormalTok{(contador)  }
+  \ControlFlowTok{if}\NormalTok{ (contador }\SpecialCharTok{==} \DecValTok{3}\NormalTok{)\{    }
+    \ControlFlowTok{break}  
+\NormalTok{  \}  }
+\NormalTok{  contador }\OtherTok{\textless{}{-}}\NormalTok{ contador }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+## [1] 2
+## [1] 3
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{break} é uma instrução utilizada em ciclos para interromper a sua execução (sair de um ciclo antes de ter sido percorrido completamente). Quando o \texttt{break} é chamado, o loop é imediatamente interrompido, e o fluxo de execução continua na próxima linha de código após o loop.
+\end{itemize}
+
+\textbf{Considerações importantes sobre o uso do \texttt{while()}}
+
+\begin{itemize}
+\item
+  \textbf{Condição de Parada}: É crucial garantir que a condição do \texttt{while} se torne \texttt{FALSE} em algum ponto para evitar loops infinitos que podem fazer o programa parar de responder.
+\item
+  \textbf{Incremento/Decremento}: Certifique-se de que a variável que controla a condição seja atualizada adequadamente dentro do loop para evitar loops infinitos.
+\item
+  \textbf{Desempenho}: Loops \texttt{while} podem ser menos eficientes do que loops vetorizados em R, portanto, para grandes conjuntos de dados, considere outras abordagens, como aplicar funções vetorizadas (\texttt{apply}, \texttt{lapply}, etc.).
+\end{itemize}
+
+\section{Exercícios}\label{exercuxedcios-7}
+
+\chapter{Loop for}\label{loop-for}
+
+A instrução \texttt{for} em R é uma estrutura de controle de fluxo que permite executar repetidamente um bloco de código para cada elemento em um conjunto de elementos. É especialmente útil para situações em que se conhece o número de iterações a serem realizadas com antecedência. A instrução for é amplamente utilizada em R para iterar sobre vetores, listas, data frames e outras estruturas de dados.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Sintaxe}
+\ControlFlowTok{for}\NormalTok{ (variável }\ControlFlowTok{in}\NormalTok{ sequência) \{}
+  \CommentTok{\# Bloco de código a ser executado}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  \textbf{variável}: Uma variável que assume o valor de cada elemento na sequência em cada iteração do loop.
+\item
+  \textbf{sequência}: Um vetor, lista ou qualquer estrutura de dados sobre a qual se deseja iterar.
+\item
+  \textbf{bloco de código}: O conjunto de instruções que serão executadas para cada elemento da sequência.
+\end{itemize}
+
+\textbf{Como funciona o \texttt{for()}}
+
+\begin{itemize}
+\item
+  \textbf{Inicialização}: Antes do loop começar, a variável de controle é inicializada com o primeiro elemento da sequência.
+\item
+  \textbf{Iteração}: Em cada iteração do loop, a variável de controle assume o próximo valor da sequência.
+\item
+  **Execução do Bloco de Código*: O bloco de código dentro do loop é executado uma vez para cada elemento da sequência.
+\item
+  \textbf{Finalização}: O loop termina quando todos os elementos da sequência forem processados.
+\end{itemize}
+
+\textbf{Exemplo 1:} Imprima os números de 0 a 10 no ecrã.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{0}\SpecialCharTok{:}\DecValTok{10}\NormalTok{) \{}
+  \FunctionTok{print}\NormalTok{(i)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Exemplo 2:} Soma dos elementos de um vetor
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{numeros }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{)}
+\NormalTok{soma }\OtherTok{\textless{}{-}} \DecValTok{0}
+
+\ControlFlowTok{for}\NormalTok{ (num }\ControlFlowTok{in}\NormalTok{ numeros) \{}
+\NormalTok{  soma }\OtherTok{\textless{}{-}}\NormalTok{ soma }\SpecialCharTok{+}\NormalTok{ num}
+\NormalTok{\}}
+
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"A soma dos números é:"}\NormalTok{, soma))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "A soma dos números é: 15"
+\end{verbatim}
+
+\textbf{Exemplo 3:} Uso do \texttt{for} com índices. Você também pode usar o loop for para iterar sobre índices de vetores ou listas, o que pode ser útil quando se deseja acessar ou modificar elementos em posições específicas. Multiplique por 2 os elementos do vetor.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{numeros }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{30}\NormalTok{, }\DecValTok{40}\NormalTok{, }\DecValTok{50}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(numeros)) \{}
+\NormalTok{  numeros[i] }\OtherTok{\textless{}{-}}\NormalTok{ numeros[i] }\SpecialCharTok{*} \DecValTok{2}
+\NormalTok{\}}
+
+\FunctionTok{print}\NormalTok{(}\StringTok{"Elementos do vetor multiplicados por 2:"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Elementos do vetor multiplicados por 2:"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(numeros)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  20  40  60  80 100
+\end{verbatim}
+
+\textbf{Exemplo 4:} Exemplo com matrizes. O loop for também pode ser usado para iterar sobre elementos de uma matriz, seja por linha ou por coluna.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{matriz }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{9}\NormalTok{, }\AttributeTok{nrow=}\DecValTok{3}\NormalTok{, }\AttributeTok{ncol=}\DecValTok{3}\NormalTok{)}
+\NormalTok{soma\_linhas }\OtherTok{\textless{}{-}} \FunctionTok{numeric}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(matriz))}
+
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(matriz)) \{}
+\NormalTok{  soma\_linhas[i] }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(matriz[i, ])}
+\NormalTok{\}}
+
+\FunctionTok{print}\NormalTok{(}\StringTok{"Soma dos elementos de cada linha:"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Soma dos elementos de cada linha:"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(soma\_linhas)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 12 15 18
+\end{verbatim}
+
+\textbf{Exemplo 5:} Cálculo de Médias de Colunas em um Data Frame
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+\AttributeTok{A =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{),}
+\AttributeTok{B =} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{6}\NormalTok{),}
+\AttributeTok{C =} \FunctionTok{c}\NormalTok{(}\DecValTok{7}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{9}\NormalTok{)}
+\NormalTok{)}
+
+\NormalTok{medias }\OtherTok{\textless{}{-}} \FunctionTok{numeric}\NormalTok{(}\FunctionTok{ncol}\NormalTok{(dados))}
+
+\ControlFlowTok{for}\NormalTok{ (col }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(dados)) \{}
+\NormalTok{  medias[col] }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(dados[, col])}
+\NormalTok{\}}
+
+\FunctionTok{print}\NormalTok{(}\StringTok{"Médias das colunas do data frame:"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Médias das colunas do data frame:"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(medias)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2 5 8
+\end{verbatim}
+
+\section{Exercícios}\label{exercuxedcios-8}
+
+\chapter{\texorpdfstring{Família \texttt{Xapply()}}{Família Xapply()}}\label{famuxedlia-xapply}
+
+A família \texttt{Xapply()} no R refere-se a um conjunto de funções que são usadas para iterar sobre objetos de forma eficiente, substituindo a necessidade de ciclos explícitos como \texttt{for}. Essas funções são muito úteis para realizar operações repetitivas em listas, vetores, matrizes, data frames e outros objetos, de maneira concisa e muitas vezes mais rápida.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1846}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2462}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2154}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1692}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1846}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Função}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Argumentos}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Objetivo}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Input}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Output}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{apply} & \texttt{apply(x,\ MARGIN,\ FUN)} & Aplica uma função às linhas ou colunas ou a ambas & Data frame ou matriz & vetor, lista, array \\
+\texttt{lapply} & \texttt{lapply(x,\ FUN)} & Aplica uma função a todos os elementos da entrada & Lista, vetor ou data frame & lista \\
+\texttt{sapply} & \texttt{sapply(x,\ FUN)} & Aplica uma função a todos os elementos da entrada & Lista, vetor ou data frame & vetor ou matriz \\
+\texttt{tapply} & \texttt{tapply(x,\ INDEX,\ FUN)} & Aplica uma função a cada fator & Vetor ou data frame & array \\
+\end{longtable}
+
+\section{\texorpdfstring{Função \texttt{apply()}}{Função apply()}}\label{funuxe7uxe3o-apply}
+
+Aplica uma função a margens (linhas ou colunas) de uma matriz ou data frame e fornece saída em vetor, lista ou array. É usada para evitar loops (ciclos).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Sintaxe}
+\FunctionTok{apply}\NormalTok{(X, MARGIN, FUN)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  \texttt{X}: A matriz ou data frame.
+\item
+  \texttt{MARGIN}: Indica se a função deve ser aplicada a linha (1) ou coluna (2).
+\item
+  \texttt{FUN}: A função a ser aplicada.
+\end{itemize}
+
+\textbf{Exemplo}: Calcular a soma, a média e a raíz quadrada de cada coluna de uma matriz.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{matriz }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{9}\NormalTok{, }\AttributeTok{nrow =} \DecValTok{3}\NormalTok{)}
+
+\FunctionTok{apply}\NormalTok{(matriz, }\DecValTok{2}\NormalTok{, sum)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  6 15 24
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{apply}\NormalTok{(matriz, }\DecValTok{2}\NormalTok{, mean)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2 5 8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{sqrt}\NormalTok{(x)}
+\FunctionTok{apply}\NormalTok{(matriz, }\DecValTok{2}\NormalTok{, f)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,] 1.00 2.00 2.65
+## [2,] 1.41 2.24 2.83
+## [3,] 1.73 2.45 3.00
+\end{verbatim}
+
+\section{\texorpdfstring{Função \texttt{lapply()}}{Função lapply()}}\label{funuxe7uxe3o-lapply}
+
+Aplica uma função a cada elemento de uma lista ou vetor e retorna uma lista. É útil quando você precisa manter a estrutura de saída como uma lista.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Sintaxe}
+\FunctionTok{lapply}\NormalTok{(X, FUN, ...)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  \texttt{X}: A lista ou vetor.
+\item
+  \texttt{FUN}: A função a ser aplicada.
+\end{itemize}
+
+\textbf{Exemplo 1:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nomes }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"ANA"}\NormalTok{, }\StringTok{"JOAO"}\NormalTok{, }\StringTok{"PAULO"}\NormalTok{, }\StringTok{"FILIPA"}\NormalTok{)}
+\NormalTok{(nomes\_minusc }\OtherTok{\textless{}{-}} \FunctionTok{lapply}\NormalTok{(nomes, tolower))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [1] "ana"
+## 
+## [[2]]
+## [1] "joao"
+## 
+## [[3]]
+## [1] "paulo"
+## 
+## [[4]]
+## [1] "filipa"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(nomes\_minusc) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## List of 4
+##  $ : chr "ana"
+##  $ : chr "joao"
+##  $ : chr "paulo"
+##  $ : chr "filipa"
+\end{verbatim}
+
+\textbf{Exemplo 2:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Aplicar a função sqrt a cada elemento de uma lista}
+\NormalTok{vetor\_dados }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\AttributeTok{a =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{, }\AttributeTok{b =} \DecValTok{5}\SpecialCharTok{:}\DecValTok{8}\NormalTok{)}
+\FunctionTok{lapply}\NormalTok{(vetor\_dados, sqrt)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $a
+## [1] 1.00 1.41 1.73 2.00
+## 
+## $b
+## [1] 2.24 2.45 2.65 2.83
+\end{verbatim}
+
+\section{\texorpdfstring{Função \texttt{sapply()}}{Função sapply()}}\label{funuxe7uxe3o-sapply}
+
+Similar ao \texttt{lapply()}, aplica uma função a cada elemento de uma lista, vetor ou data frame, mas tenta simplificar o resultado(saída) para um vetor ou matriz.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Sintaxe}
+\FunctionTok{sapply}\NormalTok{(X, FUN, ...)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Exemplo}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{:}\DecValTok{5}
+\NormalTok{f }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) x}\SpecialCharTok{\^{}}\DecValTok{2}
+
+\FunctionTok{lapply}\NormalTok{(dados, f)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] 4
+## 
+## [[3]]
+## [1] 9
+## 
+## [[4]]
+## [1] 16
+## 
+## [[5]]
+## [1] 25
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sapply}\NormalTok{(dados, f)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  1  4  9 16 25
+\end{verbatim}
+
+\section{\texorpdfstring{Função \texttt{tapply()}}{Função tapply()}}\label{funuxe7uxe3o-tapply}
+
+Aplica uma função a grupos de valores em um vetor. É ideal para operações em subconjuntos de dados categorizados.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Sintaxe}
+\FunctionTok{tapply}\NormalTok{(X, INDEX, FUN, ...)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  \texttt{X}: O vetor de dados
+\item
+  \texttt{INDEX}: Um fator ou lista de fatores que definem os grupos.
+\item
+  \texttt{FUN}: A função a ser aplicada
+\end{itemize}
+
+\textbf{Exemplo:} O dataset \texttt{iris} no R é um dos conjuntos de dados mais conhecidos e frequentemente utilizados para exemplificar análises estatísticas e técnicas de aprendizado de máquina. Foi introduzido por Ronald A. Fisher em 1936 em seu artigo sobre a utilização de modelos estatísticos para discriminação de espécies de plantas. O objetivo deste conjunto de dados é prever a classe de cada uma das três espécies de flores (fatores): Setosa, Versicolor, Virginica. O conjunto de dados coleta informações para cada espécie sobre seu comprimento e largura.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+## 1            5.1         3.5          1.4         0.2     setosa
+## 2            4.9         3.0          1.4         0.2     setosa
+## 3            4.7         3.2          1.3         0.2     setosa
+## 4            4.6         3.1          1.5         0.2     setosa
+## 5            5.0         3.6          1.4         0.2     setosa
+## 6            5.4         3.9          1.7         0.4     setosa
+## 7            4.6         3.4          1.4         0.3     setosa
+## 8            5.0         3.4          1.5         0.2     setosa
+## 9            4.4         2.9          1.4         0.2     setosa
+## 10           4.9         3.1          1.5         0.1     setosa
+## 11           5.4         3.7          1.5         0.2     setosa
+## 12           4.8         3.4          1.6         0.2     setosa
+## 13           4.8         3.0          1.4         0.1     setosa
+## 14           4.3         3.0          1.1         0.1     setosa
+## 15           5.8         4.0          1.2         0.2     setosa
+## 16           5.7         4.4          1.5         0.4     setosa
+## 17           5.4         3.9          1.3         0.4     setosa
+## 18           5.1         3.5          1.4         0.3     setosa
+## 19           5.7         3.8          1.7         0.3     setosa
+## 20           5.1         3.8          1.5         0.3     setosa
+## 21           5.4         3.4          1.7         0.2     setosa
+## 22           5.1         3.7          1.5         0.4     setosa
+## 23           4.6         3.6          1.0         0.2     setosa
+## 24           5.1         3.3          1.7         0.5     setosa
+## 25           4.8         3.4          1.9         0.2     setosa
+## 26           5.0         3.0          1.6         0.2     setosa
+## 27           5.0         3.4          1.6         0.4     setosa
+## 28           5.2         3.5          1.5         0.2     setosa
+## 29           5.2         3.4          1.4         0.2     setosa
+## 30           4.7         3.2          1.6         0.2     setosa
+## 31           4.8         3.1          1.6         0.2     setosa
+## 32           5.4         3.4          1.5         0.4     setosa
+## 33           5.2         4.1          1.5         0.1     setosa
+## 34           5.5         4.2          1.4         0.2     setosa
+## 35           4.9         3.1          1.5         0.2     setosa
+## 36           5.0         3.2          1.2         0.2     setosa
+## 37           5.5         3.5          1.3         0.2     setosa
+## 38           4.9         3.6          1.4         0.1     setosa
+## 39           4.4         3.0          1.3         0.2     setosa
+## 40           5.1         3.4          1.5         0.2     setosa
+## 41           5.0         3.5          1.3         0.3     setosa
+## 42           4.5         2.3          1.3         0.3     setosa
+## 43           4.4         3.2          1.3         0.2     setosa
+## 44           5.0         3.5          1.6         0.6     setosa
+## 45           5.1         3.8          1.9         0.4     setosa
+## 46           4.8         3.0          1.4         0.3     setosa
+## 47           5.1         3.8          1.6         0.2     setosa
+## 48           4.6         3.2          1.4         0.2     setosa
+## 49           5.3         3.7          1.5         0.2     setosa
+## 50           5.0         3.3          1.4         0.2     setosa
+## 51           7.0         3.2          4.7         1.4 versicolor
+## 52           6.4         3.2          4.5         1.5 versicolor
+## 53           6.9         3.1          4.9         1.5 versicolor
+## 54           5.5         2.3          4.0         1.3 versicolor
+## 55           6.5         2.8          4.6         1.5 versicolor
+## 56           5.7         2.8          4.5         1.3 versicolor
+## 57           6.3         3.3          4.7         1.6 versicolor
+## 58           4.9         2.4          3.3         1.0 versicolor
+## 59           6.6         2.9          4.6         1.3 versicolor
+## 60           5.2         2.7          3.9         1.4 versicolor
+## 61           5.0         2.0          3.5         1.0 versicolor
+## 62           5.9         3.0          4.2         1.5 versicolor
+## 63           6.0         2.2          4.0         1.0 versicolor
+## 64           6.1         2.9          4.7         1.4 versicolor
+## 65           5.6         2.9          3.6         1.3 versicolor
+## 66           6.7         3.1          4.4         1.4 versicolor
+## 67           5.6         3.0          4.5         1.5 versicolor
+## 68           5.8         2.7          4.1         1.0 versicolor
+## 69           6.2         2.2          4.5         1.5 versicolor
+## 70           5.6         2.5          3.9         1.1 versicolor
+## 71           5.9         3.2          4.8         1.8 versicolor
+## 72           6.1         2.8          4.0         1.3 versicolor
+## 73           6.3         2.5          4.9         1.5 versicolor
+## 74           6.1         2.8          4.7         1.2 versicolor
+## 75           6.4         2.9          4.3         1.3 versicolor
+## 76           6.6         3.0          4.4         1.4 versicolor
+## 77           6.8         2.8          4.8         1.4 versicolor
+## 78           6.7         3.0          5.0         1.7 versicolor
+## 79           6.0         2.9          4.5         1.5 versicolor
+## 80           5.7         2.6          3.5         1.0 versicolor
+## 81           5.5         2.4          3.8         1.1 versicolor
+## 82           5.5         2.4          3.7         1.0 versicolor
+## 83           5.8         2.7          3.9         1.2 versicolor
+## 84           6.0         2.7          5.1         1.6 versicolor
+## 85           5.4         3.0          4.5         1.5 versicolor
+## 86           6.0         3.4          4.5         1.6 versicolor
+## 87           6.7         3.1          4.7         1.5 versicolor
+## 88           6.3         2.3          4.4         1.3 versicolor
+## 89           5.6         3.0          4.1         1.3 versicolor
+## 90           5.5         2.5          4.0         1.3 versicolor
+## 91           5.5         2.6          4.4         1.2 versicolor
+## 92           6.1         3.0          4.6         1.4 versicolor
+## 93           5.8         2.6          4.0         1.2 versicolor
+## 94           5.0         2.3          3.3         1.0 versicolor
+## 95           5.6         2.7          4.2         1.3 versicolor
+## 96           5.7         3.0          4.2         1.2 versicolor
+## 97           5.7         2.9          4.2         1.3 versicolor
+## 98           6.2         2.9          4.3         1.3 versicolor
+## 99           5.1         2.5          3.0         1.1 versicolor
+## 100          5.7         2.8          4.1         1.3 versicolor
+## 101          6.3         3.3          6.0         2.5  virginica
+## 102          5.8         2.7          5.1         1.9  virginica
+## 103          7.1         3.0          5.9         2.1  virginica
+## 104          6.3         2.9          5.6         1.8  virginica
+## 105          6.5         3.0          5.8         2.2  virginica
+## 106          7.6         3.0          6.6         2.1  virginica
+## 107          4.9         2.5          4.5         1.7  virginica
+## 108          7.3         2.9          6.3         1.8  virginica
+## 109          6.7         2.5          5.8         1.8  virginica
+## 110          7.2         3.6          6.1         2.5  virginica
+## 111          6.5         3.2          5.1         2.0  virginica
+## 112          6.4         2.7          5.3         1.9  virginica
+## 113          6.8         3.0          5.5         2.1  virginica
+## 114          5.7         2.5          5.0         2.0  virginica
+## 115          5.8         2.8          5.1         2.4  virginica
+## 116          6.4         3.2          5.3         2.3  virginica
+## 117          6.5         3.0          5.5         1.8  virginica
+## 118          7.7         3.8          6.7         2.2  virginica
+## 119          7.7         2.6          6.9         2.3  virginica
+## 120          6.0         2.2          5.0         1.5  virginica
+## 121          6.9         3.2          5.7         2.3  virginica
+## 122          5.6         2.8          4.9         2.0  virginica
+## 123          7.7         2.8          6.7         2.0  virginica
+## 124          6.3         2.7          4.9         1.8  virginica
+## 125          6.7         3.3          5.7         2.1  virginica
+## 126          7.2         3.2          6.0         1.8  virginica
+## 127          6.2         2.8          4.8         1.8  virginica
+## 128          6.1         3.0          4.9         1.8  virginica
+## 129          6.4         2.8          5.6         2.1  virginica
+## 130          7.2         3.0          5.8         1.6  virginica
+## 131          7.4         2.8          6.1         1.9  virginica
+## 132          7.9         3.8          6.4         2.0  virginica
+## 133          6.4         2.8          5.6         2.2  virginica
+## 134          6.3         2.8          5.1         1.5  virginica
+## 135          6.1         2.6          5.6         1.4  virginica
+## 136          7.7         3.0          6.1         2.3  virginica
+## 137          6.3         3.4          5.6         2.4  virginica
+## 138          6.4         3.1          5.5         1.8  virginica
+## 139          6.0         3.0          4.8         1.8  virginica
+## 140          6.9         3.1          5.4         2.1  virginica
+## 141          6.7         3.1          5.6         2.4  virginica
+## 142          6.9         3.1          5.1         2.3  virginica
+## 143          5.8         2.7          5.1         1.9  virginica
+## 144          6.8         3.2          5.9         2.3  virginica
+## 145          6.7         3.3          5.7         2.5  virginica
+## 146          6.7         3.0          5.2         2.3  virginica
+## 147          6.3         2.5          5.0         1.9  virginica
+## 148          6.5         3.0          5.2         2.0  virginica
+## 149          6.2         3.4          5.4         2.3  virginica
+## 150          5.9         3.0          5.1         1.8  virginica
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{tapply}\NormalTok{(iris}\SpecialCharTok{$}\NormalTok{Petal.Length, iris}\SpecialCharTok{$}\NormalTok{Species, mean)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     setosa versicolor  virginica 
+##       1.46       4.26       5.55
+\end{verbatim}
+
+\section{Exercícios}\label{exercuxedcios-9}
+
 \chapter{Leitura de Dados}\label{leitura-de-dados}
 
 \chapter{Manipulando dados}\label{manipulando-dados}
@@ -4158,7 +4237,7 @@ As funções como objetivo principal a modularização (dividir o código em par
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-99-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-104-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4173,7 +4252,7 @@ As funções como objetivo principal a modularização (dividir o código em par
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-100-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-105-1.pdf}
 
 \section{Gráfico circular (pizza)}\label{gruxe1fico-circular-pizza}
 
@@ -4187,7 +4266,7 @@ As funções como objetivo principal a modularização (dividir o código em par
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-101-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-106-1.pdf}
 
 \section{Histograma}\label{histograma}
 
@@ -4220,7 +4299,7 @@ Por default, o R utiliza a frequência absoluta para construir o histograma. Se 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-102-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-107-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4257,7 +4336,7 @@ Por default, o R utiliza a frequência absoluta para construir o histograma. Se 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-103-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-108-1.pdf}
 
 \section{Box-plot}\label{box-plot}
 
@@ -4268,7 +4347,7 @@ Por default, o R utiliza a frequência absoluta para construir o histograma. Se 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-104-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-109-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4277,7 +4356,7 @@ Por default, o R utiliza a frequência absoluta para construir o histograma. Se 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-105-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-110-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4292,7 +4371,7 @@ Por default, o R utiliza a frequência absoluta para construir o histograma. Se 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-106-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-111-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4304,6 +4383,14 @@ Por default, o R utiliza a frequência absoluta para construir o histograma. Se 
 ## null device 
 ##           1
 \end{verbatim}
+
+\chapter{Manipulando dados}\label{manipulando-dados-1}
+
+\chapter{\texorpdfstring{O pacote \texttt{dplyr}}{O pacote dplyr}}\label{o-pacote-dplyr}
+
+O \texttt{dplyr} é um dos pacotes mais populares e amplamente utilizados no R para manipulação e transformação de dados. Ele faz parte do conjunto de pacotes ``tidyverse,'' que são projetados para simplificar o trabalho com dados no R. O \texttt{dplyr} oferece uma interface intuitiva e de fácil uso para realizar operações comuns em data frames, como seleção de colunas, filtragem de linhas, ordenação, resumo de dados e junção de data frames.
+
+\section{Exercícios}\label{exercuxedcios-10}
 
 \chapter{Simulação}\label{simulauxe7uxe3o}
 
@@ -4424,7 +4511,7 @@ A função \texttt{ecdf()} no R é usada para calcular a função de distribuiç
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-107-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-112-1.pdf}
 
 \section{Gerando uma variável aleatória com distribuição binomial}\label{gerando-uma-variuxe1vel-aleatuxf3ria-com-distribuiuxe7uxe3o-binomial}
 
@@ -4462,7 +4549,7 @@ Seja \(X\sim \text{Binomial}(n=20,p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-108-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-113-1.pdf}
 
 \subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o}
 
@@ -4487,7 +4574,7 @@ Seja \(X\sim \text{Binomial}(n=20,p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-109-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-114-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o}
 
@@ -4515,7 +4602,7 @@ Seja \(X\sim \text{Binomial}(n=20,p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-110-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-115-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o}
 
@@ -4538,7 +4625,7 @@ Seja \(X\sim \text{Binomial}(n=20,p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-111-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-116-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-1}
 
@@ -4561,7 +4648,7 @@ Seja \(X\sim \text{Binomial}(n=20,p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-112-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-117-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4570,7 +4657,7 @@ Seja \(X\sim \text{Binomial}(n=20,p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-112-2.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-117-2.pdf}
 
 \textbf{Cálculo de probabilidade}: Seja \(X \sim \text{Binomial}(n=10, p=0.5)\).
 
@@ -4624,7 +4711,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-113-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-118-1.pdf}
 
 \subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o-1}
 
@@ -4657,7 +4744,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-114-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-119-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-1}
 
@@ -4693,7 +4780,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-115-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-120-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-1}
 
@@ -4713,12 +4800,13 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-116-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-121-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-2}
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(latex2exp)}
 \CommentTok{\# Definir os parâmetros da distribuição de Poisson}
 \NormalTok{lambda }\OtherTok{\textless{}{-}} \DecValTok{5}
 
@@ -4733,14 +4821,22 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-117-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-122-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# OU}
 \CommentTok{\#plot.ecdf(dados)}
+
+\FunctionTok{plot}\NormalTok{(Fn, }\AttributeTok{main=}\StringTok{"Função de Distribuição Empírica"}\NormalTok{,}
+     \AttributeTok{xlab=}\StringTok{"x"}\NormalTok{,}
+     \AttributeTok{ylab=}\StringTok{"Fn"}\NormalTok{,}
+     \AttributeTok{col=}\StringTok{"blue"}\NormalTok{,}
+     \AttributeTok{verticals =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-122-2.pdf}
 
 \textbf{Cálculo de probabilidades}: Seja \(X\sim\text{Poisson}(\lambda=5)\).
 
@@ -4779,7 +4875,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-118-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-123-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o}
 
@@ -4804,7 +4900,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-119-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-124-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-2}
 
@@ -4835,7 +4931,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-120-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-125-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-2}
 
@@ -4855,7 +4951,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-121-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-126-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-3}
 
@@ -4880,7 +4976,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-122-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-127-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4917,7 +5013,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-123-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-128-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-1}
 
@@ -4942,7 +5038,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-124-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-129-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-3}
 
@@ -4973,7 +5069,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-125-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-130-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-3}
 
@@ -4993,7 +5089,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-126-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-131-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-4}
 
@@ -5018,7 +5114,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-127-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-132-1.pdf}
 
 \section{Gerando uma variável aleatória com distribuição Normal}\label{gerando-uma-variuxe1vel-aleatuxf3ria-com-distribuiuxe7uxe3o-normal}
 
@@ -5048,7 +5144,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-128-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-133-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-2}
 
@@ -5073,7 +5169,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-129-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-134-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-4}
 
@@ -5104,7 +5200,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-130-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-135-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-4}
 
@@ -5124,7 +5220,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-131-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-136-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-5}
 
@@ -5149,179 +5245,218 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-132-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-137-1.pdf}
 
-\chapter{Cross-references}\label{cross}
-
-Cross-references make it easier for your readers to find and link to elements in your book.
-
-\section{Chapters and sub-chapters}\label{chapters-and-sub-chapters}
-
-There are two steps to cross-reference any heading:
+\section{Exercícios}\label{exercuxedcios-11}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
-\tightlist
 \item
-  Label the heading: \texttt{\#\ Hello\ world\ \{\#nice-label\}}.
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Leave the label off if you like the automated heading generated based on your heading title: for example, \texttt{\#\ Hello\ world} = \texttt{\#\ Hello\ world\ \{\#hello-world\}}.
-  \item
-    To label an un-numbered heading, use: \texttt{\#\ Hello\ world\ \{-\#nice-label\}} or \texttt{\{\#\ Hello\ world\ .unnumbered\}}.
-  \end{itemize}
+  Usando o R e fixando a semente em 123, simule 1000 lançamentos de uma moeda com probabilidade de 0.5 de sair cara. Conte o número de caras em cada lançamento e plote um histograma dos resultados.
 \item
-  Next, reference the labeled heading anywhere in the text using \texttt{\textbackslash{}@ref(nice-label)}; for example, please see Chapter \ref{cross}.
-
-  \begin{itemize}
-  \tightlist
-  \item
-    If you prefer text as the link instead of a numbered reference use: \hyperref[cross]{any text you want can go here}.
-  \end{itemize}
+  Usando o R e fixando a semente em 123, gere uma amostra aleatória de 5000 observações de uma variável aleatória binomial com parâmetros \(n = 10\) e \(p = 0.3\). Calcule a média e a variância das observações geradas.
+\item
+  Usando o R e fixando a semente em 123, gere uma amostra aleatória de 2300 observações de uma variável aleatória de Poisson com parâmetro \(\lambda = 4\). Calcule a média e o desvio padrão das observações geradas.
+\item
+  Em um processo de qualidade, considere uma variável aleatória \(X\) que representa o número de produtos defeituosos em um lote de 50 produtos, onde a probabilidade de um produto ser defeituoso é 0.1. Usando o R e fixando a semente em 123 gere uma amostra aleatória de 10000 observações de \(X\). Conte a frequência de lotes com exatamente 5 produtos defeituosos. Calcule a proporção de lotes com exatamente 5 produtos defeituosos e compare o valor obtido com a probabilidade \(P(X=5)\), onde \(X \sim \text{Binomial}(50, 0.1)\).
+\item
+  Usando o R e fixando a semente em 123, gere uma amostra aleatória de 5000 observações de uma variável aleatória \(X\) binomial com parâmetros \(n = 20\) e \(p = 0.7\).
 \end{enumerate}
 
-\section{Captioned figures and tables}\label{captioned-figures-and-tables}
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Faça um histograma de frequência relativa associado aos valores amostrais. Sobreponha no gráfico a distribuição de probabilidade de \(X\).
+\item
+  Use a função de distribuição empírica para estimar \(P(X\leq 10)\) e compare com o valor teórico.
+\end{enumerate}
 
-Figures and tables \emph{with captions} can also be cross-referenced from elsewhere in your book using \texttt{\textbackslash{}@ref(fig:chunk-label)} and \texttt{\textbackslash{}@ref(tab:chunk-label)}, respectively.
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Usando o R e fixando a semente em 543, gere uma amostra aleatória de 2400 observações de uma variável aleatória \(Y\) de Poisson com parâmetro \(\lambda = 6\).
+\end{enumerate}
 
-See Figure \ref{fig:nice-fig}.
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Faça um histograma de frequência relativa associado aos valores amostrais. Sobreponha no gráfico a distribuição de probabilidade de \(X\).
+\item
+  Use a função de distribuição empírica para estimar \(P(Y > 5)\) e compare com o valor teórico.
+\end{enumerate}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mar =} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, .}\DecValTok{1}\NormalTok{, .}\DecValTok{1}\NormalTok{))}
-\FunctionTok{plot}\NormalTok{(pressure, }\AttributeTok{type =} \StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{, }\AttributeTok{pch =} \DecValTok{19}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\item
+  Usando o R e fixando a semente em 345, gere uma amostra aleatória de 3450 observações de uma variável aleatória \(Z\) uniforme no intervalo \([0, 1]\). Use a função de distribuição empírica para estimar \(P(Z \leq 0.5)\) e compare com o valor teórico.
+\item
+  Usando o R e fixando a semente em 123, gere uma amostra aleatória de 3467 observações de uma variável aleatória \(W\) normal com média \(\mu = 0\) e desvio padrão \(\sigma = 1\).
+\end{enumerate}
 
-\begin{figure}
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Faça um histograma de frequência relativa associado aos valores amostrais. Sobreponha no gráfico a distribuição de \(X\).
+\item
+  Use a função de distribuição empírica para estimar \(P(W > 1)\) e compare com o valor teórico.
+\end{enumerate}
 
-{\centering \includegraphics[width=0.8\linewidth]{meuLivro2_files/figure-latex/nice-fig-1} 
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{8}
+\tightlist
+\item
+  Usando o R e fixando a semente em 123, gere uma amostra aleatória de 1234 observações de uma variável aleatória \(V\) exponencial com parâmetro \(\lambda = 0.5\).
+\end{enumerate}
 
-}
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Faça um histograma de frequência relativa associado aos valores amostrais. Sobreponha no gráfico a distribuição de probabilidade de \(X\).
+\item
+  Use a função de distribuição empírica para estimar \(P(V > 2)\) e compare com o valor teórico.
+\end{enumerate}
 
-\caption{Here is a nice figure!}\label{fig:nice-fig}
-\end{figure}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{9}
+\tightlist
+\item
+  O número de acertos num alvo em 30 tentativas onde a probabilidade de acerto é 0.4, é modelado por uma variável aleatória \(X\) com distruibuição Binomial de parâmetros \(n=30\) e \(p=0.4\). Usando o R e fixando a semente em 123, gere uma amostra de dimensão \(n=700\) dessa variável. Para essa amostra:
+\end{enumerate}
 
-Don't miss Table \ref{tab:nice-tab}.
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Faça um histograma de frequência relativa associado aos valores amostrais. Sobreponha no gráfico a distribuição de probabilidade de \(X\).
+\item
+  Calcule a função de distribuição empírica e com base nessa função estime a probabilidade do número de acertos no alvo, em 30 tentativas, ser maior que 15. Calcule ainda o valor teórico dessa probabilidade.
+\end{enumerate}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}
-  \FunctionTok{head}\NormalTok{(pressure, }\DecValTok{10}\NormalTok{), }\AttributeTok{caption =} \StringTok{\textquotesingle{}Here is a nice table!\textquotesingle{}}\NormalTok{,}
-  \AttributeTok{booktabs =} \ConstantTok{TRUE}
-\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{10}
+\item
+  Usando o R e fixando a semente em 123, gere amostras de tamanho crescente \(n = 100, 1000, 10000, 100000\) de uma variável aleatória \(X\) com distribuição de Poisson com parâmetro \(\lambda = 3\). Para cada tamanho de amostra, calcule a média amostral e compare-a com o valor esperado teórico. Observe e comente a convergência das médias amostrais.
+\item
+  Usando o R e fixando a semente em 123, gere amostras de tamanho crescente \(n = 100, 1000, 10000, 100000\) de uma variável aleatória W com distribuição uniforme no intervalo \([0, 1]\). Para cada tamanho de amostra, calcule a média amostral e compare-a com o valor esperado teórico. Observe e comente a convergência das médias amostrais.
+\item
+  Um grupo de estudantes de Estatística está realizando uma pesquisa para avaliar o grau de satisfação dos alunos com um novo curso oferecido pela universidade. Cada estudante responde a uma pergunta onde pode indicar se está satisfeito ou insatisfeito com o curso. A probabilidade de um estudante estar satisfeito é de \(0.75\).
+\end{enumerate}
 
-\begin{table}
+\begin{itemize}
+\tightlist
+\item
+  Usando o R e fixando a semente em 42, simule amostras de tamanho crescente \(n = 100, 500, 1000, 5000, 10000\) de uma variável aleatória \(X\) com distribuição binomial, onde \(X\) representa o número de estudantes satisfeitos. Para cada tamanho de amostra, calcule a proporção de estudantes satisfeitos e compare-a com a probabilidade teórica de satisfação (0.75).
+\end{itemize}
 
-\caption{\label{tab:nice-tab}Here is a nice table!}
-\centering
-\begin{tabular}[t]{rr}
-\toprule
-temperature & pressure\\
-\midrule
-0 & 0.000\\
-20 & 0.001\\
-40 & 0.006\\
-60 & 0.030\\
-80 & 0.090\\
-\addlinespace
-100 & 0.270\\
-120 & 0.750\\
-140 & 1.850\\
-160 & 4.200\\
-180 & 8.800\\
-\bottomrule
-\end{tabular}
-\end{table}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{13}
+\item
+  Usando o R e fixando a semente em 1058, gere 9060 amostras de dimensão 9 de uma população, \(X\sim \text{Binomial}(41,0.81)\). Calcule a média de cada uma dessas amostras, obtendo uma amostra de médias. Calcule ainda o valor esperado da distribuição teórica de \(X\) e compare com a média da amostra de médias.
+\item
+  Em um hospital, o tempo de atendimento de pacientes segue uma distribuição exponencial com média de 30 minutos. Um pesquisador deseja estimar o tempo médio de atendimento coletando amostras de diferentes tamanhos.
+\end{enumerate}
 
-\chapter{Parts}\label{parts}
+\begin{itemize}
+\tightlist
+\item
+  Usando o R e fixando a semente em 456, simule 1000 amostras de tamanho 50, 100 e 1000 do tempo de atendimento. Para cada tamanho de amostra, calcule a média de cada amostra e plote o histograma das médias amostrais para cada tamanho. Compare essas distribuições com a distribuição normal com média \(E(X)\) e desvio padrão \(\sqrt{V(X)n}\) e comente sobre a aplicação do Teorema do Limite Central.
+\end{itemize}
 
-You can add parts to organize one or more book chapters together. Parts can be inserted at the top of an .Rmd file, before the first-level chapter heading in that same file.
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{15}
+\tightlist
+\item
+  O tempo de espera (em minutos) para o atendimento no setor de informações de um banco é modelado por uma variável aleatória X com distribuição \text{Uniforme}(\(a=5, b=20\)). Usando o R e fixando a semente em 1430, gere 8000 amostras de dimensão \(n=100\) dessa variável. Para essas amostras:
+\end{enumerate}
 
-Add a numbered part: \texttt{\#\ (PART)\ Act\ one\ \{-\}} (followed by \texttt{\#\ A\ chapter})
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Calcule a soma de cada uma das amostras obtendo assim valores da distribuição da soma \(S_{n} = \sum_{i=1}^{n}X_{n}\).
+\item
+  Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da soma e sobreponha no gráfico uma curva com distribuição normal de valor esperado \(nE(X)\) e desvio padrão \(\sqrt{V(X)n}\).
+\item
+  Calcule a média de cada uma das amostras obtendo assim valores da distribuição da média \(\bar{X_{n}}\).
+\item
+  Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da média \(\bar{X_{n}}\). Sobreponha no gráfico uma curva com distribuição normal com valor esperado \(E(X)\) e desvio padrão \(\sqrt{V(x)/n}\).
+\end{enumerate}
 
-Add an unnumbered part: \texttt{\#\ (PART\textbackslash{}*)\ Act\ one\ \{-\}} (followed by \texttt{\#\ A\ chapter})
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{16}
+\tightlist
+\item
+  O tempo de atendimento (em minutos), de doentes graves num determinado hospital, é modelado por uma variável aleatória \(X\) com distribuição Exponencial(\(\lambda=0.21\)). Usando o R e fixando a semente em 1580, gere 1234 amostras de dimensão \(n=50\) dessa variável. Para essas amostras:
+\end{enumerate}
 
-Add an appendix as a special kind of un-numbered part: \texttt{\#\ (APPENDIX)\ Other\ stuff\ \{-\}} (followed by \texttt{\#\ A\ chapter}). Chapters in an appendix are prepended with letters instead of numbers.
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Calcule a soma de cada uma das amostras obtendo assim valores da distribuição da soma \(S_{n} = \sum_{i=1}^{n}X_{n}\).
+\item
+  Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da soma e sobreponha no gráfico uma curva com distribuição normal de valor esperado \(nE(X)\) e desvio padrão \(\sqrt{V(X)n}\).
+\item
+  Calcule agora a soma padronizada \[\frac{S_{n}-E(S_{n})}{\sqrt{V(S_{n})}}\] e faça um histograma de frequência relativa associado aos valores obtidos da distribuição da soma padronizada. Sobreponha no gráfico uma curva com distribuição normal de valor esperado 0 e desvio padrão 1.
+\item
+  Calcule a média de cada uma das amostras obtendo assim valores da distribuição da média \(\bar{X_{n}}\).
+\item
+  Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da média \(\bar{X_{n}}\). Sobreponha no gráfico uma curva com distribuição normal com valor esperado \(E(X)\) e desvio padrão \(\sqrt{V(x)/n}\).
+\end{enumerate}
 
-\chapter{Footnotes and citations}\label{footnotes-and-citations}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{17}
+\tightlist
+\item
+  A altura (em centímetros) dos alunos de uma escola é modelada por uma variável aleatória X com distribuição \text{Normal}(\(\mu=170, \sigma=10\)). Usando o R e fixando a semente em 678, gere 9876 amostras de dimensão \(n=80\) dessa variável. Para essas amostras:
+\end{enumerate}
 
-\section{Footnotes}\label{footnotes}
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Calcule a soma de cada uma das amostras obtendo assim valores da distribuição da soma \(S_{n} = \sum_{i=1}^{n}X_{n}\).
+\item
+  Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da soma e sobreponha no gráfico uma curva com distribuição normal de valor esperado \(nE(X)\) e desvio padrão \(\sqrt{V(X)n}\).
+\item
+  Calcule agora a soma padronizada \[\frac{S_{n}-E(S_{n})}{\sqrt{V(S_{n})}}\] e faça um histograma de frequência relativa associado aos valores obtidos da distribuição da soma padronizada. Sobreponha no gráfico uma curva com distribuição normal de valor esperado 0 e desvio padrão 1.
+\item
+  Calcule a média de cada uma das amostras obtendo assim valores da distribuição da média \(\bar{X_{n}}\).
+\item
+  Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da média \(\bar{X_{n}}\). Sobreponha no gráfico uma curva com distribuição normal com valor esperado \(E(X)\) e desvio padrão \(\sqrt{V(x)/n}\).
+\item
+  Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da média padronizada \[\frac{\bar{X}_{n}-E(\bar{X_{n}})}{\sqrt{V(\bar{X_{n}})}}\] e sobreponha no gráfico com uma curva com distribuição Normal com valor esperado 0 e desvio padrão 1.
+\end{enumerate}
 
-Footnotes are put inside the square brackets after a caret \texttt{\^{}{[}{]}}. Like this one \footnote{This is a footnote.}.
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{18}
+\tightlist
+\item
+  A chegada de clientes em uma loja durante 1 hora, assumindo uma taxa média de 20 clientes por hora pode ser modelada por uma variável aleatória \(X\) com distribuição de Poisson(\(\lambda=20\)). Usando o R e fixando a semente em 1222, gere 8050 amostras de dimensão 30 de \(X\).
+\end{enumerate}
 
-\section{Citations}\label{citations}
-
-Reference items in your bibliography file(s) using \texttt{@key}.
-
-For example, we are using the \textbf{bookdown} package \citep{R-bookdown} (check out the last code chunk in index.Rmd to see how this citation key was added) in this sample book, which was built on top of R Markdown and \textbf{knitr} \citep{xie2015} (this citation was added manually in an external file book.bib).
-Note that the \texttt{.bib} files need to be listed in the index.Rmd with the YAML \texttt{bibliography} key.
-
-The RStudio Visual Markdown Editor can also make it easier to insert citations: \url{https://rstudio.github.io/visual-markdown-editing/\#/citations}
-
-\chapter{Blocks}\label{blocks}
-
-\section{Equations}\label{equations}
-
-Here is an equation.
-
-\begin{equation} 
-  f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k}
-  \label{eq:binom}
-\end{equation}
-
-You may refer to using \texttt{\textbackslash{}@ref(eq:binom)}, like see Equation \eqref{eq:binom}.
-
-\section{Theorems and proofs}\label{theorems-and-proofs}
-
-Labeled theorems can be referenced in text using \texttt{\textbackslash{}@ref(thm:tri)}, for example, check out this smart theorem \ref{thm:tri}.
-
-\begin{theorem}
-\protect\hypertarget{thm:tri}{}\label{thm:tri}For a right triangle, if \(c\) denotes the \emph{length} of the hypotenuse
-and \(a\) and \(b\) denote the lengths of the \textbf{other} two sides, we have
-\[a^2 + b^2 = c^2\]
-\end{theorem}
-
-Read more here \url{https://bookdown.org/yihui/bookdown/markdown-extensions-by-bookdown.html}.
-
-\section{Callout blocks}\label{callout-blocks}
-
-The R Markdown Cookbook provides more help on how to use custom blocks to design your own callouts: \url{https://bookdown.org/yihui/rmarkdown-cookbook/custom-blocks.html}
-
-\chapter{Sharing your book}\label{sharing-your-book}
-
-\section{Publishing}\label{publishing}
-
-HTML books can be published online, see: \url{https://bookdown.org/yihui/bookdown/publishing.html}
-
-\section{404 pages}\label{pages}
-
-By default, users will be directed to a 404 page if they try to access a webpage that cannot be found. If you'd like to customize your 404 page instead of using the default, you may add either a \texttt{\_404.Rmd} or \texttt{\_404.md} file to your project root and use code and/or Markdown syntax.
-
-\section{Metadata for sharing}\label{metadata-for-sharing}
-
-Bookdown HTML books will provide HTML metadata for social sharing on platforms like Twitter, Facebook, and LinkedIn, using information you provide in the \texttt{index.Rmd} YAML. To setup, set the \texttt{url} for your book and the path to your \texttt{cover-image} file. Your book's \texttt{title} and \texttt{description} are also used.
-
-This \texttt{gitbook} uses the same social sharing data across all chapters in your book- all links shared will look the same.
-
-Specify your book's source repository on GitHub using the \texttt{edit} key under the configuration options in the \texttt{\_output.yml} file, which allows users to suggest an edit by linking to a chapter's source file.
-
-Read more about the features of this output format here:
-
-\url{https://pkgs.rstudio.com/bookdown/reference/gitbook.html}
-
-Or use:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{?bookdown}\SpecialCharTok{::}\NormalTok{gitbook}
-\end{Highlighting}
-\end{Shaded}
-
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Calcule a soma de cada uma das amostras obtendo assim valores da distribuição da soma \(S_{n} = \sum_{i=1}^{n}X_{n}\).
+\item
+  Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da soma e sobreponha no gráfico uma curva com distribuição normal de valor esperado \(nE(X)\) e desvio padrão \(\sqrt{V(X)n}\).
+\item
+  Calcule agora a soma padronizada \[\frac{S_{n}-E(S_{n})}{\sqrt{V(S_{n})}}\] e faça um histograma de frequência relativa associado aos valores obtidos da distribuição da soma padronizada. Sobreponha no gráfico uma curva com distribuição normal de valor esperado 0 e desvio padrão 1.
+\item
+  Calcule a média de cada uma das amostras obtendo assim valores da distribuição da média \(\bar{X_{n}}\).
+\item
+  Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da média \(\bar{X_{n}}\). Sobreponha no gráfico uma curva com distribuição normal com valor esperado \(E(X)\) e desvio padrão \(\sqrt{V(x)/n}\).
+\item
+  Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da média padronizada \[\frac{\bar{X}_{n}-E(\bar{X_{n}})}{\sqrt{V(\bar{X_{n}})}}\] e sobreponha no gráfico com uma curva com distribuição Normal com valor esperado 0 e desvio padrão 1.
+\end{enumerate}
 
   \bibliography{book.bib,packages.bib}
 
