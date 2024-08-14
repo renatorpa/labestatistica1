@@ -19,19 +19,19 @@ R é um conjunto integrado de recursos de software para manipulação de dados, 
 
 -   A versão “base” do R, ou seja, o software com seus comandos mais relevantes, pode ser baixado em <https://www.r-project.org/>. Após instalar o R, é recomendável instalar também um editor. Um editor permite ao usuário salvar e exibir convenientemente o código R, enviar esse código ao R Console e controlar as configurações e a saída. Uma escolha popular de editor é o RStudio (gratuito), que pode ser baixado em <https://www.rstudio.com/>.
 
--   Muitos pacotes adicionais escritos pelo usuário estão disponíveis online e podem ser instalados no console R ou usando o menu R. Dentro do console, a função `install.packages(“pacote para instalar”)` pode ser usada. Observe que é necessária uma conexão com a Internet.
+-   Muitos pacotes adicionais escritos pelo usuário estão disponíveis online e podem ser instalados no console R ou usando o menu R. Dentro do console, a função `install.packages(“pacote para instalar”)` pode ser usada. Observe que é necessária uma conexão com a Internet.Você pode ver todos os pacotes instalados usando a função `installed.packages()`.
 
 ## Navegando no RStudio
 
 Existem quatro painéis de trabalho no RStudio:
 
--   **Painel de código-fonte**. Este painel é onde os scripts são gravados/carregados e exibidos. Possui realce de sintaxe e preenchimento automático, além de permitir passar o código linha por linha, como seleções ou como um todo.
+-   **Painel de código-fonte**. Este painel é onde os scripts são gravados/carregados e exibidos. Possui realce de sintaxe e preenchimento automático, além de permitir passar o código linha por linha.
 
 -   **Painel do console do R**. É aqui que os comandos são executados e é essencialmente a aparência do console do R básico, só que melhor! O console possui realce de sintaxe, preenchimento de código e interface com outros painéis do RStudio.
 
 -   **Workspace/Histórico**. A aba do espaço de trabalho exibe informações que normalmente ficam ocultas no R, como dados carregados, funções e outras variáveis. A aba histórico armazena todos os comandos (linhas de código) que foram analisados por meio do R.
 
--   **Último painel**. Este painel inclui a aba de arquivos (lista todos os arquivos no diretório de trabalho atual), a aba de gráficos (quaisquer gráficos), a aba de pacotes (pacotes instalados e a aba de ajuda (sistema de ajuda html embutido).
+-   **Último painel**. Este painel inclui a aba de arquivos (lista todos os arquivos no diretório de trabalho atual), a aba de gráficos (quaisquer gráficos), a aba de pacotes (pacotes instalados) e a aba de ajuda (sistema de ajuda html embutido).
 
 # R como uma calculadora e Operações Aritméticas
 
@@ -39,19 +39,21 @@ A estatística tem uma relação estreita com a álgebra: os conjuntos de dados 
 
 ## O prompt
 
--   O R possui uma interface de linha de comando e aceitará comandos simples. Isso é marcado por um símbolo \>, chamado **prompt**. Se você digitar um comando e pressionar Enter, o R irá avaliá-lo e imprimir o resultado para você.
+O R possui uma interface de linha de comando e aceitará comandos simples. Isso é marcado por um símbolo \>, chamado **prompt**. Se você digitar um comando e pressionar Enter, o R irá avaliá-lo e imprimir o resultado para você.
 
 ```{r}
 print("Meu primeiro comando no R!")
 ```
 
--   O caractere `#` marca o início de um comentário. Todos os caracteres até o final da linha são ignorados pelo R. Usamos `#` para comentar nosso código R.
+Observe que nestas notas, caixas cinzas são usadas para mostrar o código R digitado no console R. O símbolo ##[1] é usado para denotar o output do console R.
+
+O caractere `#` marca o início de um comentário. Todos os caracteres até o final da linha são ignorados pelo R. Usamos `#` para comentar nosso código R.
 
 ```{r}
 # Meu primeiro comando no R!
 ```
 
--   Se soubermos o nome de um comando que gostaríamos de usar e quisermos aprender sobre sua funcionalidade, digitar `?command` no prompt da linha de comando do R exibe uma página de ajuda, por exemplo.
+Se soubermos o nome de um comando que gostaríamos de usar e quisermos aprender sobre a sua funcionalidade, basta digitar `?command` no prompt da linha de comando do R que ele exibe uma página de ajuda. Por exemplo
 
 ```{r eval=FALSE}
 ?sum
@@ -67,9 +69,15 @@ example(sum)
 
 mostra exemplos de aplicação da respetiva função.
 
+## Objetos
+
+Um **objeto** em R é uma unidade de armazenamento que contém valores ou funções e pode ser referenciado por um nome. Esses valores podem ser números, caracteres, vetores, matrizes, data frames, listas, ou até mesmo funções. Objetos são criados e manipulados através de comandos e podem ser reutilizados em qualquer parte do código. Tudo o que é criado ou carregado na sessão de R, como dados ou funções, é considerado um objeto.
+
 ## O que é uma variável?
 
-Em R, uma variável é um local de armazenamento nomeado na memória onde os dados podem ser armazenados para recuperação e manipulação posterior. Variáveis em R são usadas para armazenar diferentes tipos de dados, como números, caracteres, vetores, data frames e muito mais. O tipo de dado de uma variável em R é determinado pelo valor atribuído a ela.
+Refere-se a um **nome** ou um identificador que é atribuído a um objeto. A variável armazena a referência ao objeto em si. Em outras palavras, uma variável é o nome que você usa para acessar os dados ou a função armazenada no objeto.
+
+<!-- Em R, uma variável é um local de armazenamento nomeado na memória onde os dados podem ser armazenados para recuperação e manipulação posterior. Variáveis em R são usadas para armazenar diferentes tipos de dados, como números, caracteres, vetores, data frames e muito mais. O tipo de dado de uma variável em R é determinado pelo valor atribuído a ela.-->
 
 ### Atribuições
 
@@ -89,15 +97,23 @@ b <- a + 1
 a + 2 = 10 # Uma atribuição não é uma equação
 ```
 
--   O comando `c(1,2,3,4,5)` combina os números 1, 2, 3, 4 e 5 em um vetor.
+- O comando `c(1,2,3,4,5)` combina os números 1, 2, 3, 4 e 5 em um vetor.
 
--   Os vetores podem ser atribuídos a um “objeto”. Por exemplo,
+- Os vetores podem ser atribuídos a um “objeto”. Por exemplo,
 
 ```{r}
 X <- c(2,12,22,32)
 ```
 
 atribui um vetor numérico de comprimento 4 ao objeto `X`. Observe que o R diferencia maiúsculas de minúsculas, ou seja, `X` e `x` são dois nomes de variáveis diferentes.
+
+À medida que definimos objetos no console, estamos na verdade alterando o espaço de trabalho. Você pode ver todas as variáveis salvas em seu espaço de trabalho digitando:
+
+```{r eval=FALSE}
+ls()
+```
+
+No RStudio a aba *Environment* mostra os valores.
 
 ## Regras para definição de variáveis
 
@@ -120,13 +136,13 @@ Idade <- 30
 
 Variáveis em R podem armazenar vários tipos de dados, incluindo:
 
--   **Numeric**: Números. Ex: `42, 3.14`
+-   **Numeric**: números. Ex: `42, 3.14`
 
--   **Character**: sequências de texto. Ex: `“Olá”`
+-   **Character**: sequências de caracteres Ex: `“Olá”`
 
 -   **Logical**: valores booleanos. Ex: `TRUE` ou `FALSE`
 
--   **Vectors**: coleções de elementos do mesmo tipo. Ex: `c(1, 2, 3)`
+-   **Vectors**: coleções de elementos do mesmo tipo. Ex: `c(1, 2, 3)`, `$c("a","b","c")$`
 
 -   **Data Frames**: estruturas de dados tabulares com linhas e colunas
 
@@ -192,12 +208,16 @@ sqrt(9)
 log(9)
 	
 log10(9)
+
+exp(1)
 	
 # prioridade de resolução
 19 + 26 /4 -2 *10
 	
 ((19 + 26) /(4 -2))*10
 ```
+
+Ao contrário da função `ls()`, a maioria das funções requer um ou mais *argumentos*. Note que usamos acima as funções predefinidas do R `sqrt()`, `log()`, `log10()` e `exp()` com seus respetivos argumentos.
 
 ## Quantidade de digitos
 
@@ -213,9 +233,27 @@ options(digits = 3)
 exp(1)
 ```
 
-## Infinito, indefinido e valores ausentes
+## Objetos predefinidos, Infinito, indefinido e valores ausentes
+
+Existem vários conjuntos de dados incluídos para os usuários praticarem e testarem funções. Você pode ver todos os conjuntos de dados disponíveis digitando:
+
+```{r eval=FALSE}
+data()
+```
+
+Isso mostra o nome do objeto para esses conjuntos de dados. Esses conjuntos de dados são objetos que podem ser usados simplesmente digitando o nome. Por exemplo, se você digitar:
+
+```{r eval=FALSE}
+co2
+```
+
+R mostrará dados de concentração atmosférica de CO2 de Mauna Loa.
+
+Outros objetos predefinidos são quantidades matemáticas, como $\pi$ e $\infty$.
 
 ```{r}
+pi
+
 1/0  
 
 2*Inf
@@ -317,11 +355,11 @@ print(w)
 
 -   A função `readline()` é usada para receber entradas do usuário por meio do teclado.
 
--   A função `paste()` é utilizada para concatenar strings com um separador específico.
+-   A função `paste()` é utilizada para concatenar sequências de caracteres (strings) com um separador específico.
 
 -   A função `paste0()` é utilizada para concatenar strings sem nenhum separador específico.
 
--   A função `cat()` é usada para concatenar e exibir uma ou mais cadeias de caracteres (strings) ou valores de uma forma mais direta, sem estruturas de formatação adicionais.
+-   A função `cat()` é usada para concatenar e exibir uma ou mais strings ou valores de uma forma mais direta, sem estruturas de formatação adicionais.
 
 **Ex1:**
 
@@ -346,7 +384,7 @@ print(n+1)
 
 **Ex3:**
 
-```{r}
+```{r eval=FALSE}
 # Solicitar entrada do usuário
 nome <- readline(prompt = "Entre com o seu nome: ")
 	
@@ -489,6 +527,528 @@ Os operadores relacionais são usados para comparar valores e retornam valores l
 
 # diferente de
 1 != 2
+```
+
+## Exercícios lista 1
+
+# Estrutura de Dados Básicas
+
+Em R temos objetos que são funções e objetos que são dados.
+
+* Exemplos de funções:
+  + `cos()`
+  + `print()`
+  + `plot()`
+  + `integrate()`
+
+* Exemplos de dados:
+  + `23`
+  + `"Hello"`
+  + `TRUE`
+  + `c(1,2,3)`
+  + `data.frame(nome = c("Alice", "Bob"), idade = c(25, 30))`
+  + `list(numero = 42, nome = "Alice", flag = TRUE`)
+  + `factor(c("homem", "mulher", "mulher", "homem"))`
+
+## Vetor
+
+Um vetor é uma estrutura de dados básica que pode armazenar uma sequência de objetos do mesmo tipo. Vetores podem conter dados numéricos, caracteres, valores lógicos (`TRUE`/`FALSE`), números complexos, entre outros.
+
+* Todos os elementos de um vetor devem ser do mesmo tipo.
+
+* Os elementos de um vetor são indexados a partir de 1.
+ 
+* Vetores podem ser facilmente manipulados e transformados usando uma ampla gama de funções. 
+ 
+* Vetores podem ser criados usando a função `c()` (concatenate).
+
+### Tipos Comuns de Vetores
+
+```{r}
+# vetor numérico
+c(1.1, 2.2, 3.3)
+
+# vetor inteiro
+c(1L, 2L, 3L) 
+
+# vetor de caracteres
+c("a", "b", "c") 
+#ou
+c('a','b','c')
+
+# vetor lógico
+c(TRUE, 1==2)
+
+# Não podemos ter combinações...
+c(3, 1==2, "a") ## Observe que o R simplesmente transformou tudo em characters!
+```
+
+### Construindo vetores
+
+```{r}
+# Inteiros de 1 a 10
+x <- 1:10
+x
+
+# Sequência de 0 a 50 de 10 em 10
+a <- seq(from = 0, to = 50, by=10)
+a
+
+# Sequência de 11 números de 0 a 1
+y <- seq(0,1, length=15)
+y
+
+# O mesmo número ou o mesmo vetor várias vezes
+z <- rep(1:3, times=4)
+z
+
+t <- rep(1:3, each=4)
+t
+
+# Combine números, vetores ou ambos em um novo vetor
+w <- c(x,z,5)
+w
+```
+
+### Acesso a Elementos de um Vetor
+
+```{r}
+# Defina um vetor com inteiros de (-5) a 5 e extraia os números com valor absoluto menor que 3:
+x<- (-5):5
+x
+
+# pelo seu índice no vetor:
+x[4:8]
+ 
+# ou, por seleção negativa (coloque um sinal de menos na frente dos índices que não queremos):
+x[-c(1:3,9:11)]
+
+# Um vetor lógico pode ser definido por:
+index<-abs(x)<3
+index 
+
+# Agora este vetor pode ser usado para extrair os números desejados:
+x[index]
+
+# Que é a mesma coisa que...
+x[abs(x) < 3]
+
+letters[1:3]
+letters[c(2,4,6)]
+LETTERS[1:3]
+
+y <- 1:10
+y[ (y>5) ] # seleciona qualquer número > 5
+y[ (y%%2==0) ] # números que são divisíveis por 2
+y[ (y%%2==1) ] # números que não são divisíveis por 2
+y[5] <- NA
+y[!is.na(y)] # todos y que não são NA 
+```
+
+### Funções Comuns para Vetores
+
+```{r}
+num_vector <- c(2.2, 1.1, 3.3)
+
+# Obtém o comprimento de um vetor
+length(num_vector)
+
+# Calcula a soma dos elementos de um vetor
+sum(num_vector)
+
+# Calcula a média dos elementos de um vetor
+mean(num_vector)
+
+# Ordena os elementos de um vetor
+sort(num_vector)
+
+sort(num_vector,decreasing = TRUE)
+
+# Remove elementos duplicados de um vetor
+duplicate_vector <- c(1, 2, 2, 3, 3, 3)
+unique(duplicate_vector)  
+```
+
+### Operações com Vetores
+
+```{r}
+# Adição
+num_vector + 1  
+
+# Multiplicação
+num_vector * 2  
+
+# Comparações
+num_vector > 2  
+
+c(2,3,5,7)^2
+
+c(2,3,5,7)^c(2,3)
+
+c(1,2,3,4,5,6)^c(2,3,4)
+
+c(2,3,5,7)^c(2,3,4)
+```
+
+Os últimos quatro comandos mostram a “propriedade de reciclagem” do R. Ele tenta combinar os vetores em relação ao comprimento, se possível. Na verdade,
+
+```{r}
+c(2,3,5,7)^c(2,3)
+```
+
+é expandido para
+
+```{r}
+c(2,3,5,7)^c(2,3,2,3)
+```
+
+O último exemplo mostra que o R dá um aviso se o comprimento do vetor mais curto não puder ser expandido para o comprimento do vetor mais longo por uma simples multiplicação com um número natural (2, 3, 4,...). Aqui
+
+```{r}
+c(2,3,5,7)^c(2,3,4)
+```
+
+é expandido para
+
+```{r}
+c(2,3,5,7)^c(2,3,4,2)
+```
+
+de modo que nem todos os elementos de \verb|c(2,3,4)| são "reciclados''.
+
+## Fatores
+
+Em R, um “factor” (ou “fator”, em português) é uma estrutura de dados usada para representar dados categóricos. Fatores são muito úteis em análises estatísticas e visualizações, pois permitem que você trate dados categóricos de forma eficiente e consistente.
+
+* Fatores têm **níveis**, que são os valores distintos que a variável categórica pode assumir.
+
+* Internamente, os fatores são armazenados como inteiros que correspondem aos níveis, mas são exibidos como rótulos (labels).
+
+* Fatores podem ser ordenados (ordered factors) ou não ordenados (unordered factors).
+
+```{r}
+# Vetor de dados categóricos
+data <- c("low", "medium", "high", "medium", "low", "high")
+
+# Criar um fator
+factor_data <- factor(data)
+
+print(factor_data)
+
+# Especificar os níveis
+factor_data <- factor(data, levels = c("low", "medium", "high"))
+print(factor_data)
+
+# Criar um fator ordenado
+ordered_factor <- factor(data, levels = c("low", "medium", "high"), ordered = TRUE)
+print(ordered_factor)
+
+# Verificar Níveis
+levels(factor_data)
+
+# Modificar Níveis
+levels(factor_data) <- c("Low", "Medium", "High")
+print(factor_data)
+```
+
+## Matriz e array
+
+Uma **matriz** é uma coleção de objetos do mesmo tipo (numérico, lógico, etc.) organizada em um formato bidimensional, ou seja, em linhas e colunas.
+
+* **nrow**: corresponde ao número de linhas;
+
+**ncol**: corresponde ao número de colunas.
+
+```{r}
+matrix(c(1,2,3,4,5,6)+exp(1),nrow=2)
+
+matrix(c(1,2,3,4,5,6)+exp(1),nrow=2) > 6
+
+# Também podemos criar matrizes de ordem superior
+array(c(1:24), dim=c(4,3,2))
+```
+
+### Construindo matrizes
+
+* O comando `rbind` (row bind) é usado para combinar objetos por linhas. Isso significa que os vetores ou matrizes fornecidos serão empilhados verticalmente, criando novas linhas na estrutura de dados resultante.
+
+* O comando `cbind` (column bind) é usado para combinar objetos por colunas. Isso significa que os vetores ou matrizes fornecidos serão combinados horizontalmente, criando novas colunas na estrutura de dados resultante.
+
+**Exemplo com vetores**
+
+```{r}
+# Criar dois vetores
+vector1 <- c(1, 2, 3)
+vector2 <- c(4, 5, 6)
+
+# Combinar os vetores por linhas
+result <- rbind(vector1, vector2)
+print(result)
+
+# Combinar os vetores por colunas
+result <- cbind(vector1, vector2)
+print(result)
+
+# Combinando linhas em uma matriz
+A <- rbind(1:3, c(1,1,2))
+A
+
+# Combinando colunas em uma matriz
+B <- cbind(1:3, c(1,1,2))
+B
+```
+
+**Exemplo com matrizes**
+
+```{r}
+# Criar duas matrizes
+matrix1 <- matrix(1:6, nrow = 2, ncol = 3)
+matrix2 <- matrix(7:12, nrow = 2, ncol = 3)
+
+# Combinar as matrizes por linhas
+result <- rbind(matrix1, matrix2)
+print(result)
+
+result <- cbind(matrix1, matrix2)
+print(result)
+```
+
+### Índice e índice lógico
+
+```{r}
+A<-matrix((-4):5, nrow=2, ncol=5)
+A
+
+# Acessando as entradas de uma matriz
+A[1,2]
+
+# Valores negativos 
+A[A<0]
+ 
+# Atribuições
+A[A<0]<-0
+A
+
+# Selecionando as linhas de uma matriz
+A[2,]
+
+# Selecionando as colunas de uma matriz
+A[,c(2,4)] 
+```
+
+### Nomeando linhas e colunas numa matriz
+
+```{r}
+x <- matrix(rnorm(12),nrow=4)
+x
+
+colnames(x) <- paste("dados",1:3,sep="")
+x
+
+y <- matrix(rnorm(15),nrow=5)
+y 
+
+colnames(y) <- LETTERS[1:ncol(y)]
+
+rownames(y) <- letters[1:nrow(y)]
+
+y
+```
+
+### Multiplicação de matrizes
+
+```{r}
+M<-matrix(rnorm(20),nrow=4,ncol=5)
+N<-matrix(rnorm(15),nrow=5,ncol=3)
+
+M%*%N
+```
+
+### Algumas outras funções
+
+Seja $M$ uma matriz quadrada. 
+
+* dimensão de uma matriz $\to$ `dim(M)`	
+
+* transposta de uma matriz $\to$ `t(M)`
+ 
+* determinante de uma matriz $\to$ `det(M)`
+ 
+* inversa de uma matriz $\to$ `solve(M)`
+ 
+* autovalores e autovetores $\to$ `eigen(M)`
+ 
+* soma dos elementos de uma matriz $\to$ `sum(M)`
+
+* média dos elementos de uma matriz $\to$ `mean(M)`
+
+* aplicar uma função a cada linha ou coluna $\to$ `apply(M,1, sum) # soma de cada linha` 
+ * aplicar uma função a cada linha ou coluna $\to$ `apply(M,2, mean) # média de cada coluna` 
+
+## Data-frame
+
+Um data frame em R é uma estrutura de dados bidimensional que é usada para armazenar dados tabulares. Cada coluna em um data frame pode conter valores de diferentes tipos (numéricos, caracteres, fatores, etc.), mas todos os elementos dentro de uma coluna devem ser do mesmo tipo. Um data frame é similar a uma tabela em um banco de dados ou uma planilha em um programa de planilhas como o Excel. Podemos criar data frames lendo dados de arquivos ou usando a função `as.data.frame()` em um conjunto de vetores. 
+
+### Criando um data frame
+
+```{r}
+df <- data.frame(
+id = 1:4,
+nome = c("Ana", "Bruno", "Carlos", "Diana"),
+idade = c(23, 35, 31, 28),
+salario = c(5000, 6000, 7000, 8000))
+df
+
+# Comparando com uma matriz
+cbind(id = 1:4,
+nome = c("Ana", "Bruno", "Carlos", "Diana"),
+idade = c(23, 35, 31, 28),
+salario = c(5000, 6000, 7000, 8000))
+```
+
+### Acessando linhas e colunas
+
+```{r}
+# Acessando a coluna id
+df[,1]
+
+# Outra forma de acessar a coluna id
+df$id
+
+# Outra forma de acessar a coluna id
+df[["id"]]
+
+# Acessando linhas e colunas por índice
+df[1, ] # Primeira linha
+
+# Segunda coluna
+df[, 2] 
+
+# Elemento na primeira linha, segunda coluna
+df[1, 2] 
+
+# Subconjunto das primeiras duas linhas e colunas
+df[1:2, 1:2] 
+
+# Acessando linhas e colunas por nome
+df[1, "nome"] # Elemento na primeira linha, coluna "nome"
+
+# Colunas "nome" e "idade"
+df[c("nome", "idade")] 
+```
+
+### Adicionando e removendo colunas
+
+```{r}
+# Adicionar novas colunas
+df$novo_salario <- df$salario * 1.1 
+df
+
+# Remover coluna
+df$id <- NULL
+df
+```
+
+### Fundindo dados
+
+```{r}
+df1 <- data.frame(curso=c("PE","LE","CAL"), horas=c(60,75,90))
+df1
+
+df2 <- data.frame(curso=c("CAL","PE","LE"), creditos=c(8,6,7))
+df2 
+
+df12 <- merge(df1, df2, by="curso")
+df12
+```
+
+### Dimensão, informações de colunas e outros
+
+```{r}
+df <- iris
+names(df)
+
+class(df$Sepal.Length)
+
+class(df$Species)
+
+dim(df)
+
+nrow(df)
+
+ncol(df)
+
+# Visão geral da estrutura do objeto
+str(df)
+
+head(df, 3)
+
+tail(df, 5)
+```
+
+### A função `subset()`
+
+```{r}
+df1 <- df[df$Sepal.Width > 3, c("Petal.Width","Species")]
+head(df1)
+  
+(df2 <- subset(df, Sepal.Width > 3, select = c(Petal.Width, Species)))
+
+(df3 <- subset(df, Petal.Width == 0.3, select = -Sepal.Width))
+   
+(df4 <- subset(df, select = Sepal.Width:Petal.Width))
+```
+
+### A função `summary()`
+
+A função `summary()` no R é usada para gerar resumos estatísticos de objetos. O comportamento da função varia dependendo do tipo de objeto que você passa para ela, mas geralmente fornece uma visão geral das características principais do objeto.
+
+```{r}
+x <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+summary(x)	
+
+summary(iris$Sepal.Length)
+
+summary(iris)  
+```
+
+### Valores faltantes
+
+## Listas
+
+Uma lista em R é uma estrutura de dados que permite armazenar elementos de diferentes tipos, como vetores, matrizes, data frames, funções e até outras listas. Essa flexibilidade distingue as listas de outras estruturas, como vetores, que são homogêneos e podem conter apenas elementos de um único tipo.
+
+* **Heterogeneidade**: Uma lista pode conter elementos de diferentes tipos. Por exemplo, você pode ter um vetor numérico, um vetor de caracteres, uma matriz e um data frame, todos na mesma lista.
+
+* **Indexação**: Os elementos de uma lista podem ser acessados usando colchetes duplos [[ ]] ou utilizando o operador $ para acessar elementos nomeados. Além disso, o índice simples [ ] retorna uma sublista.
+
+* **Flexibilidade**: As listas podem ser usadas para armazenar saídas complexas de funções ou para estruturar dados que requerem uma organização mais flexível.
+
+```{r}
+# Criando uma lista com diferentes tipos de elementos
+minha_lista <- list(
+  nome = "Estudante",
+  idade = 21,
+  notas = c(85, 90, 92),
+  disciplinas = c("Matemática", "Estatística", "Computação"),
+  matriz_exemplo = matrix(1:9, nrow = 3, byrow = TRUE),
+  media= function(x) mean(x)
+)
+
+# Visualizando a lista
+print(minha_lista)
+
+# Acessando um elemento pelo nome usando $
+print(minha_lista$nome)
+
+# Acessando um elemento pelo índice
+print(minha_lista[[1]])
+
+# Acessando uma sublista
+print(minha_lista[1:2])
+
+# Acessando uma parte de um elemento, como o segundo valor do vetor "notas"
+print(minha_lista$notas[2])
 ```
 
 # Estruturas de Seleção
@@ -670,6 +1230,167 @@ if (x == 1){
 } else {  
     x = x - 1
 }
+```
+
+# Funções
+
+* Uma **função** é um bloco de código que realiza tarefas específicas e que só é executado quando é chamada.
+ 
+* São reutilizáveis e podem ser chamadas várias vezes dentro de um script.
+ 
+* Podem ser passados dados para uma função, conhecidos como parâmetros ou argumentos.
+ 
+```{r eval=FALSE}
+# Sintaxe
+nome_da_funcao <- function(argumentos) {
+  # Código da função
+  resultado <- ... # Cálculos ou operações
+  return(resultado) # Retorno do valor
+}
+```
+
+* **Nome da Função**: Identificador da função.
+
+* **Argumentos**: Valores de entrada para a função.
+
+* **Corpo da Função**: Bloco de código que realiza operações.
+
+* **Return**: Valor que a função devolve.
+
+As funções como objetivo principal a modularização (dividir o código em partes menores e gerenciáveis) e a reutilização de código, facilitando a organização e a legibilidade dos scripts. Ao encapsular um bloco de código em uma função, podemos executá-lo múltiplas vezes com diferentes parâmetros, reduzindo a redundância e o tempo de desenvolvimento.
+
+**Exemplo:** Função para calcular a área de um objeto retangular
+
+```{r eval=FALSE}
+calcula_area <- function(largura, altura) {
+  area <- largura * altura
+  return(area)
+}
+
+largura_obj <- as.numeric(readline("Insira a largura (em cm): "))
+altura_obj <- as.numeric(readline("Insira a altura (em cm): "))
+
+# Chamada da função
+area_obj <- calcula_area(largura_obj, altura_obj) 
+
+print(area_obj)
+```
+
+* **Variáveis locais**: As variáveis `largura` e `altura` são locais. Estas variáveis só existem quando a função está a ser executada. Quando a execução da função termina, as variáveis locais são destruídas. 
+
+* **Variáveis globais**: As variáveis `largura_obj` e `altura_obj` são variáveis globais. Estas variáveis são acessíveis a todo o script e representam a largura e altura do objeto inserido pelo utilizador.
+
+* As variáveis locais e globais devem ter nomes **diferentes** para que o código seja mais legível.
+
+**Passagem de argumento: valores de argumentos por omissão (default)**
+
+```{r}
+calcula_area <- function(largura, altura=2) { 
+  area <- largura * altura  
+  return(area)
+}
+# Chamada da função
+
+area_obj <- calcula_area(4) 
+
+print(area_obj)
+```
+
+* Caso a altura seja omitida é considerada por definição o valor 2.
+
+* Como a altura foi omitida o cálculo da área será 4*2
+
+```{r}
+calcula_area <- function(largura, altura=2) { 
+		area <- largura * altura  
+		return(area)
+}
+
+# Chamada da função
+area_obj <- calcula_area(altura=4,largura=3) 
+	
+print(area_obj)
+```
+
+* Se os argumentos forem passados por palavra chave, a ordem dos argumentos pode ser trocada.
+
+**Exemplo:**
+
+```{r eval=FALSE}
+f <- function(x) {
+  if (x < 0) {
+    stop("Erro: x não pode ser negativo")  # Interrompe a função com uma mensagem de erro
+  }
+  return(sqrt(x))
+}
+
+f(-2)
+```
+
+* O `stop` é usado para interromper a execução de uma função ou de um script, gerando um erro.
+
+* Ele pode ser usado em qualquer lugar do código, dentro ou fora de loops, para gerar um erro e parar a execução do código.
+ 
+* Quando `stop` é chamado, ele pode exibir uma mensagem de erro personalizada, e a execução do script ou função é completamente interrompida.
+
+**Exercício 1:** Qual será o output do script abaixo?
+
+```{r eval=FALSE}
+x <- 10  
+
+minha_funcao <- function() {
+	x <- 5  
+	return(x)
+}
+
+print(minha_funcao()) 
+print(x) 
+```
+
+**Exercício 2:** Qual é o resultado da chamada da função `dados_estudante`?
+
+```{r eval=FALSE}
+dados_estudante <- function(nome, altura=167){
+  print(paste("O(A) estudante",nome,"tem",altura,"centímetros de altura."))
+}
+
+dados_estudante("Joana",160)
+```
+
+**Exercício 3:** Qual é a sintaxe correta para definir uma função em R que soma dois números?
+
+(a) `sum <- function(x, y) \{return(x + y)\}`
+
+(b) `function sum(x, y) \{return(x + y)\}`
+
+(c) `def sum(x, y) \{return(x + y)\}`
+
+(d) `sum(x, y) = function \{return(x + y)\}`
+
+**Exercício 4:** Qual das seguintes chamadas à função estão corretas?
+
+```{r eval=FALSE}
+dados_estudante <- function(nome, altura=167) {
+  print(paste("O(A) estudante",nome,"tem",altura,"centímetros de altura."))
+}
+
+dados_estudante("Joana",160)
+dados_estudante(altura=160, nome="Joana")
+dados_estudante(nome = "Joana", 160)
+dados_estudante(altura=160, "Joana")
+dados_estudante(160)
+```
+
+`dados_estudante(160)` - Esta chamada está errada porque 160 será interpretado como nome, e altura usará seu valor padrão, 167. Isso resultará na impressão: `"O(A) estudante 160 tem 167 centímetros de altura."` A chamada está tecnicamente correta no sentido de sintaxe, mas o resultado não faz sentido lógico, já que 160 não é um nome válido para um estudante.
+
+**Exercício 5:** Qual o resultado do seguinte programa?
+
+```{r eval=FALSE}
+adi <- function(a,b) {  
+  return(c(a+5, b+5))
+}
+
+resultado <- adi(3,2)
 ```
 
 # Loop while
@@ -956,685 +1677,6 @@ iris
 tapply(iris$Petal.Length, iris$Species, mean)
 ```
 
-# Estrutura de Dados Básicas
-
-Em R temos objetos que são funções e objetos que são dados.
-
-* Exemplos de funções:
-  + `cos()`
-  + `print()`
-  + `plot()`
-  + `integrate()`
-
-* Exemplos de dados:
-  + `23`
-  + `"Hello"`
-  + `TRUE`
-  + `c(1,2,3)`
-  + `data.frame(nome = c("Alice", "Bob"), idade = c(25, 30))`
-  + `list(numero = 42, nome = "Alice", flag = TRUE`)
-  + `factor(c("homem", "mulher", "mulher", "homem"))`
-
-## Vetor
-
-Um vetor é uma estrutura de dados básica que pode armazenar uma sequência de objetos do mesmo tipo. Vetores podem conter dados numéricos, caracteres, valores lógicos (`TRUE`/`FALSE`), números complexos, entre outros.
-
-* Todos os elementos de um vetor devem ser do mesmo tipo.
-
-* Os elementos de um vetor são indexados a partir de 1.
- 
-* Vetores podem ser facilmente manipulados e transformados usando uma ampla gama de funções. 
- 
-* Vetores podem ser criados usando a função `c()` (combine ou concatenate).
-
-### Tipos Comuns de Vetores
-
-```{r}
-# vetor numérico
-c(1.1, 2.2, 3.3)
-
-# vetor inteiro
-c(1L, 2L, 3L) 
-
-# vetor de strings
-c("a", "b", "c") 
-
-# vetor lógico
-c(TRUE, 1==2)
-
-# Não podemos ter combinações...
-c(3, 1==2, "a") ## Observe que o R simplesmente transformou tudo em characters!
-```
-
-### Construindo vetores
-
-```{r}
-# Inteiros de 1 a 10
-x <- 1:10
-x
-
-# Sequência de 0 a 50 de 10 em 10
-a <- seq(from = 0, to = 50, by=10)
-a
-
-# Sequência de 11 números de 0 a 1
-y <- seq(0,1, length=15)
-y
-
-# O mesmo número ou o mesmo vetor várias vezes
-z <- rep(1:3, times=4)
-z
-
-t <- rep(1:3, each=4)
-t
-
-# Combine números, vetores ou ambos em um novo vetor
-w <- c(x,z,5)
-w
-```
-
-### Acesso a Elementos de um Vetor
-
-```{r}
-# Defina um vetor com inteiros de (-5) a 5 e extraia os números com valor absoluto menor que 3:
-x<- (-5):5
-x
-
-# pelo seu índice no vetor:
-x[4:8]
- 
-# ou, por seleção negativa (coloque um sinal de menos na frente dos índices que não queremos):
-x[-c(1:3,9:11)]
-
-# Um vetor lógico pode ser definido por:
-index<-abs(x)<3
-index 
-
-# Agora este vetor pode ser usado para extrair os números desejados:
-x[index]
-
-# Que é a mesma coisa que...
-x[abs(x) < 3]
-
-letters[1:3]
-letters[c(2,4,6)]
-LETTERS[1:3]
-
-y <- 1:10
-y[ (y>5) ] # seleciona qualquer número > 5
-y[ (y%%2==0) ] # números que são divisíveis por 2
-y[ (y%%2==1) ] # números que não são divisíveis por 2
-y[5] <- NA
-y[!is.na(y)] # todos y que não são NA 
-```
-
-### Funções Comuns para Vetores
-
-```{r}
-num_vector <- c(2.2, 1.1, 3.3)
-
-# Obtém o comprimento de um vetor
-length(num_vector)
-
-# Calcula a soma dos elementos de um vetor
-sum(num_vector)
-
-# Calcula a média dos elementos de um vetor
-mean(num_vector)
-
-# Ordena os elementos de um vetor
-sort(num_vector)
-
-sort(num_vector,decreasing = TRUE)
-
-# Remove elementos duplicados de um vetor
-duplicate_vector <- c(1, 2, 2, 3, 3, 3)
-unique(duplicate_vector)  
-```
-
-### Operações com Vetores
-
-```{r}
-# Adição
-num_vector + 1  
-
-# Multiplicação
-num_vector * 2  
-
-# Comparações
-num_vector > 2  
-
-c(2,3,5,7)^2
-
-c(2,3,5,7)^c(2,3)
-
-c(1,2,3,4,5,6)^c(2,3,4)
-
-c(2,3,5,7)^c(2,3,4)
-```
-
-Os últimos quatro comandos mostram a “propriedade de reciclagem” do R. Ele tenta combinar os vetores em relação ao comprimento, se possível. Na verdade,
-
-```{r}
-c(2,3,5,7)^c(2,3)
-```
-
-é expandido para
-
-```{r}
-c(2,3,5,7)^c(2,3,2,3)
-```
-
-O último exemplo mostra que o R dá um aviso se o comprimento do vetor mais curto não puder ser expandido para o comprimento do vetor mais longo por uma simples multiplicação com um número natural (2, 3, 4,...). Aqui
-
-```{r}
-c(2,3,5,7)^c(2,3,4)
-```
-
-é expandido para
-
-```{r}
-c(2,3,5,7)^c(2,3,4,2)
-```
-
-de modo que nem todos os elementos de \verb|c(2,3,4)| são "reciclados''.
-
-# Fatores
-
-Em R, um “factor” (ou “fator”, em português) é uma estrutura de dados usada para representar dados categóricos. Fatores são muito úteis em análises estatísticas e visualizações, pois permitem que você trate dados categóricos de forma eficiente e consistente.
-
-* Fatores têm **níveis**, que são os valores distintos que a variável categórica pode assumir.
-
-* Internamente, os fatores são armazenados como inteiros que correspondem aos níveis, mas são exibidos como rótulos (labels).
-
-* Fatores podem ser ordenados (ordered factors) ou não ordenados (unordered factors).
-
-```{r}
-# Vetor de dados categóricos
-data <- c("low", "medium", "high", "medium", "low", "high")
-
-# Criar um fator
-factor_data <- factor(data)
-
-print(factor_data)
-
-# Especificar os níveis
-factor_data <- factor(data, levels = c("low", "medium", "high"))
-print(factor_data)
-
-# Criar um fator ordenado
-ordered_factor <- factor(data, levels = c("low", "medium", "high"), ordered = TRUE)
-print(ordered_factor)
-
-# Verificar Níveis
-levels(factor_data)
-
-# Modificar Níveis
-levels(factor_data) <- c("Low", "Medium", "High")
-print(factor_data)
-```
-
-# Matriz e array
-
-Uma **matriz** é uma coleção de objetos do mesmo tipo (numérico, lógico, etc.) organizada em um formato bidimensional, ou seja, em linhas e colunas.
-
-* **nrow**: corresponde ao número de linhas;
-
-**ncol**: corresponde ao número de colunas.
-
-```{r}
-matrix(c(1,2,3,4,5,6)+exp(1),nrow=2)
-
-matrix(c(1,2,3,4,5,6)+exp(1),nrow=2) > 6
-
-# Também podemos criar matrizes de ordem superior
-array(c(1:24), dim=c(4,3,2))
-```
-
-## Construindo matrizes
-
-* O comando `rbind` (row bind) é usado para combinar objetos por linhas. Isso significa que os vetores ou matrizes fornecidos serão empilhados verticalmente, criando novas linhas na estrutura de dados resultante.
-
-* O comando `cbind` (column bind) é usado para combinar objetos por colunas. Isso significa que os vetores ou matrizes fornecidos serão combinados horizontalmente, criando novas colunas na estrutura de dados resultante.
-
-**Exemplo com vetores**
-
-```{r}
-# Criar dois vetores
-vector1 <- c(1, 2, 3)
-vector2 <- c(4, 5, 6)
-
-# Combinar os vetores por linhas
-result <- rbind(vector1, vector2)
-print(result)
-
-# Combinar os vetores por colunas
-result <- cbind(vector1, vector2)
-print(result)
-
-# Combinando linhas em uma matriz
-A <- rbind(1:3, c(1,1,2))
-A
-
-# Combinando colunas em uma matriz
-B <- cbind(1:3, c(1,1,2))
-B
-```
-
-**Exemplo com matrizes**
-
-```{r}
-# Criar duas matrizes
-matrix1 <- matrix(1:6, nrow = 2, ncol = 3)
-matrix2 <- matrix(7:12, nrow = 2, ncol = 3)
-
-# Combinar as matrizes por linhas
-result <- rbind(matrix1, matrix2)
-print(result)
-
-result <- cbind(matrix1, matrix2)
-print(result)
-```
-
-## Índice e índice lógico
-
-```{r}
-A<-matrix((-4):5, nrow=2, ncol=5)
-A
-
-# Acessando as entradas de uma matriz
-A[1,2]
-
-# Valores negativos 
-A[A<0]
- 
-# Atribuições
-A[A<0]<-0
-A
-
-# Selecionando as linhas de uma matriz
-A[2,]
-
-# Selecionando as colunas de uma matriz
-A[,c(2,4)] 
-```
-
-## Nomeando linhas e colunas numa matriz
-
-```{r}
-x <- matrix(rnorm(12),nrow=4)
-x
-
-colnames(x) <- paste("dados",1:3,sep="")
-x
-
-y <- matrix(rnorm(15),nrow=5)
-y 
-
-colnames(y) <- LETTERS[1:ncol(y)]
-
-rownames(y) <- letters[1:nrow(y)]
-
-y
-```
-
-## Multiplicação de matrizes
-
-```{r}
-M<-matrix(rnorm(20),nrow=4,ncol=5)
-N<-matrix(rnorm(15),nrow=5,ncol=3)
-
-M%*%N
-```
-
-## Algumas outras funções
-
-Seja $M$ uma matriz quadrada. 
-
-* dimensão de uma matriz $\to$ `dim(M)`	
-
-* transposta de uma matriz $\to$ `t(M)`
- 
-* determinante de uma matriz $\to$ `det(M)`
- 
-* inversa de uma matriz $\to$ `solve(M)`
- 
-* autovalores e autovetores $\to$ `eigen(M)`
- 
-* soma dos elementos de uma matriz $\to$ `sum(M)`
-
-* média dos elementos de uma matriz $\to$ `mean(M)`
-
-* aplicar uma função a cada linha ou coluna $\to$ `apply(M,1, sum) # soma de cada linha` 
- 
-* aplicar uma função a cada linha ou coluna $\to$ `apply(M,2, mean) # média de cada coluna` 
-
-# Data-frame
-
-Um data frame em R é uma estrutura de dados bidimensional que é usada para armazenar dados tabulares. Cada coluna em um data frame pode conter valores de diferentes tipos (numéricos, caracteres, fatores, etc.), mas todos os elementos dentro de uma coluna devem ser do mesmo tipo. Um data frame é similar a uma tabela em um banco de dados ou uma planilha em um programa de planilhas como o Excel. Podemos criar data frames lendo dados de arquivos ou usando a função `as.data.frame()` em um conjunto de vetores. 
-
-## Criando um data frame
-
-```{r}
-df <- data.frame(
-id = 1:4,
-nome = c("Ana", "Bruno", "Carlos", "Diana"),
-idade = c(23, 35, 31, 28),
-salario = c(5000, 6000, 7000, 8000))
-df
-
-# Comparando com uma matriz
-cbind(id = 1:4,
-nome = c("Ana", "Bruno", "Carlos", "Diana"),
-idade = c(23, 35, 31, 28),
-salario = c(5000, 6000, 7000, 8000))
-```
-
-## Acessando linhas e colunas
-
-```{r}
-# Acessando a coluna id
-df[,1]
-
-# Outra forma de acessar a coluna id
-df$id
-
-# Outra forma de acessar a coluna id
-df[["id"]]
-
-# Acessando linhas e colunas por índice
-df[1, ] # Primeira linha
-
-# Segunda coluna
-df[, 2] 
-
-# Elemento na primeira linha, segunda coluna
-df[1, 2] 
-
-# Subconjunto das primeiras duas linhas e colunas
-df[1:2, 1:2] 
-
-# Acessando linhas e colunas por nome
-df[1, "nome"] # Elemento na primeira linha, coluna "nome"
-
-# Colunas "nome" e "idade"
-df[c("nome", "idade")] 
-```
-
-## Adicionando e removendo colunas
-
-```{r}
-# Adicionar novas colunas
-df$novo_salario <- df$salario * 1.1 
-df
-
-# Remover coluna
-df$id <- NULL
-df
-```
-
-## Fundindo dados
-
-```{r}
-df1 <- data.frame(curso=c("PE","LE","CAL"), horas=c(60,75,90))
-df1
-
-df2 <- data.frame(curso=c("CAL","PE","LE"), creditos=c(8,6,7))
-df2 
-
-df12 <- merge(df1, df2, by="curso")
-df12
-```
-
-## Dimensão, informações de colunas e outros
-
-```{r}
-df <- iris
-names(df)
-
-class(df$Sepal.Length)
-
-class(df$Species)
-
-dim(df)
-
-nrow(df)
-
-ncol(df)
-
-# Visão geral da estrutura do objeto
-str(df)
-
-head(df, 3)
-
-tail(df, 5)
-```
-
-## A função `subset()`
-
-```{r}
-df1 <- df[df$Sepal.Width > 3, c("Petal.Width","Species")]
-head(df1)
-  
-(df2 <- subset(df, Sepal.Width > 3, select = c(Petal.Width, Species)))
-
-(df3 <- subset(df, Petal.Width == 0.3, select = -Sepal.Width))
-   
-(df4 <- subset(df, select = Sepal.Width:Petal.Width))
-```
-
-## A função `summary()`
-
-A função `summary()` no R é usada para gerar resumos estatísticos de objetos. O comportamento da função varia dependendo do tipo de objeto que você passa para ela, mas geralmente fornece uma visão geral das características principais do objeto.
-
-```{r}
-x <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
-summary(x)	
-
-summary(iris$Sepal.Length)
-
-summary(iris)  
-```
-
-## Valores faltantes
-
-# Listas
-
-Uma lista em R é uma estrutura de dados que permite armazenar elementos de diferentes tipos, como vetores, matrizes, data frames, funções e até outras listas. Essa flexibilidade distingue as listas de outras estruturas, como vetores, que são homogêneos e podem conter apenas elementos de um único tipo.
-
-* **Heterogeneidade**: Uma lista pode conter elementos de diferentes tipos. Por exemplo, você pode ter um vetor numérico, um vetor de caracteres, uma matriz e um data frame, todos na mesma lista.
-
-* **Indexação**: Os elementos de uma lista podem ser acessados usando colchetes duplos [[ ]] ou utilizando o operador $ para acessar elementos nomeados. Além disso, o índice simples [ ] retorna uma sublista.
-
-* **Flexibilidade**: As listas podem ser usadas para armazenar saídas complexas de funções ou para estruturar dados que requerem uma organização mais flexível.
-
-```{r}
-# Criando uma lista com diferentes tipos de elementos
-minha_lista <- list(
-  nome = "Estudante",
-  idade = 21,
-  notas = c(85, 90, 92),
-  disciplinas = c("Matemática", "Estatística", "Computação"),
-  matriz_exemplo = matrix(1:9, nrow = 3, byrow = TRUE),
-  media= function(x) mean(x)
-)
-
-# Visualizando a lista
-print(minha_lista)
-
-# Acessando um elemento pelo nome usando $
-print(minha_lista$nome)
-
-# Acessando um elemento pelo índice
-print(minha_lista[[1]])
-
-# Acessando uma sublista
-print(minha_lista[1:2])
-
-# Acessando uma parte de um elemento, como o segundo valor do vetor "notas"
-print(minha_lista$notas[2])
-```
-
-# Funções
-
-* Uma **função** é um bloco de código que realiza tarefas específicas e que só é executado quando é chamada.
- 
-* São reutilizáveis e podem ser chamadas várias vezes dentro de um script.
- 
-* Podem ser passados dados para uma função, conhecidos como parâmetros ou argumentos.
- 
-```{r eval=FALSE}
-# Sintaxe
-nome_da_funcao <- function(argumentos) {
-  # Código da função
-  resultado <- ... # Cálculos ou operações
-  return(resultado) # Retorno do valor
-}
-```
-
-* **Nome da Função**: Identificador da função.
-
-* **Argumentos**: Valores de entrada para a função.
-
-* **Corpo da Função**: Bloco de código que realiza operações.
-
-* **Return**: Valor que a função devolve.
-
-As funções como objetivo principal a modularização (dividir o código em partes menores e gerenciáveis) e a reutilização de código, facilitando a organização e a legibilidade dos scripts. Ao encapsular um bloco de código em uma função, podemos executá-lo múltiplas vezes com diferentes parâmetros, reduzindo a redundância e o tempo de desenvolvimento.
-
-**Exemplo:** Função para calcular a área de um objeto retangular
-
-```{r eval=FALSE}
-calcula_area <- function(largura, altura) {
-  area <- largura * altura
-  return(area)
-}
-
-largura_obj <- as.numeric(readline("Insira a largura (em cm): "))
-altura_obj <- as.numeric(readline("Insira a altura (em cm): "))
-
-# Chamada da função
-area_obj <- calcula_area(largura_obj, altura_obj) 
-
-print(area_obj)
-```
-
-* **Variáveis locais**: As variáveis `largura` e `altura` são locais. Estas variáveis só existem quando a função está a ser executada. Quando a execução da função termina, as variáveis locais são destruídas. 
-
-* **Variáveis globais**: As variáveis `largura_obj` e `altura_obj` são variáveis globais. Estas variáveis são acessíveis a todo o script e representam a largura e altura do objeto inserido pelo utilizador.
-
-* As variáveis locais e globais devem ter nomes **diferentes** para que o código seja mais legível.
-
-**Passagem de argumento: valores de argumentos por omissão (default)**
-
-```{r}
-calcula_area <- function(largura, altura=2) { 
-  area <- largura * altura  
-  return(area)
-}
-# Chamada da função
-
-area_obj <- calcula_area(4) 
-
-print(area_obj)
-```
-
-* Caso a altura seja omitida é considerada por definição o valor 2.
-
-* Como a altura foi omitida o cálculo da área será 4*2
-
-```{r}
-calcula_area <- function(largura, altura=2) { 
-		area <- largura * altura  
-		return(area)
-}
-
-# Chamada da função
-area_obj <- calcula_area(altura=4,largura=3) 
-	
-print(area_obj)
-```
-
-* Se os argumentos forem passados por palavra chave, a ordem dos argumentos pode ser trocada.
-
-**Exemplo:**
-
-```{r eval=FALSE}
-f <- function(x) {
-  if (x < 0) {
-    stop("Erro: x não pode ser negativo")  # Interrompe a função com uma mensagem de erro
-  }
-  return(sqrt(x))
-}
-
-f(-2)
-```
-
-* O `stop` é usado para interromper a execução de uma função ou de um script, gerando um erro.
-
-* Ele pode ser usado em qualquer lugar do código, dentro ou fora de loops, para gerar um erro e parar a execução do código.
- 
-* Quando `stop` é chamado, ele pode exibir uma mensagem de erro personalizada, e a execução do script ou função é completamente interrompida.
-
-**Exercício 1:** Qual será o output do script abaixo?
-
-```{r eval=FALSE}
-x <- 10  
-
-minha_funcao <- function() {
-	x <- 5  
-	return(x)
-}
-
-print(minha_funcao()) 
-print(x) 
-```
-
-**Exercício 2:** Qual é o resultado da chamada da função `dados_estudante`?
-
-```{r eval=FALSE}
-dados_estudante <- function(nome, altura=167){
-  print(paste("O(A) estudante",nome,"tem",altura,"centímetros de altura."))
-}
-
-dados_estudante("Joana",160)
-```
-
-**Exercício 3:** Qual é a sintaxe correta para definir uma função em R que soma dois números?
-
-(a) `sum <- function(x, y) \{return(x + y)\}`
-
-(b) `function sum(x, y) \{return(x + y)\}`
-
-(c) `def sum(x, y) \{return(x + y)\}`
-
-(d) `sum(x, y) = function \{return(x + y)\}`
-
-**Exercício 4:** Qual das seguintes chamadas à função estão corretas?
-
-```{r eval=FALSE}
-dados_estudante <- function(nome, altura=167) {
-  print(paste("O(A) estudante",nome,"tem",altura,"centímetros de altura."))
-}
-
-dados_estudante("Joana",160)
-dados_estudante(altura=160, nome="Joana")
-dados_estudante(nome = "Joana", 160)
-dados_estudante(altura=160, "Joana")
-dados_estudante(160)
-```
-
-`dados_estudante(160)` - Esta chamada está errada porque 160 será interpretado como nome, e altura usará seu valor padrão, 167. Isso resultará na impressão: `"O(A) estudante 160 tem 167 centímetros de altura."` A chamada está tecnicamente correta no sentido de sintaxe, mas o resultado não faz sentido lógico, já que 160 não é um nome válido para um estudante.
-
-**Exercício 5:** Qual o resultado do seguinte programa?
-
-```{r eval=FALSE}
-adi <- function(a,b) {  
-  return(c(a+5, b+5))
-}
-
-resultado <- adi(3,2)
-```
 
 # Leitura de Dados
 
