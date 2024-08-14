@@ -529,7 +529,7 @@ Os operadores relacionais são usados para comparar valores e retornam valores l
 1 != 2
 ```
 
-## Exercícios lista 1
+## Exercícios 
 
 # Estrutura de Dados Básicas
 
@@ -716,7 +716,7 @@ c(2,3,5,7)^c(2,3,4,2)
 
 de modo que nem todos os elementos de \verb|c(2,3,4)| são "reciclados''.
 
-### Exercícios lista vetores
+### Exercícios 
 
 ## Fatores
 
@@ -887,7 +887,7 @@ Seja $M$ uma matriz quadrada.
 * aplicar uma função a cada linha ou coluna $\to$ `apply(M,1, sum) # soma de cada linha` 
  * aplicar uma função a cada linha ou coluna $\to$ `apply(M,2, mean) # média de cada coluna` 
 
-### Exercícios lista matrizes
+### Exercícios 
 
 ## Data-frame
 
@@ -1018,7 +1018,7 @@ summary(iris)
 
 ### Valores faltantes
 
-### Exercícios lista data frames
+### Exercícios 
 
 ## Listas
 
@@ -1402,6 +1402,58 @@ resultado <- adi(3,2)
 ```
 
 ## Exercícios
+
+# Scripts
+
+Um **script** é um ficheiro que contém um conjunto de definições (variáveis, funções e blocos de código) que podem ser reutilizadas noutros programas R.
+
+**Criação do scrip:**
+Para criar um script, basta guardar o seu código num ficheiro R com a extensão ".R"
+
+**Exemplo:** Guarde o seguinte código no ficheiro `meu_script.R`
+
+```{r eval=FALSE}
+produto function(x,y){
+  return(x*y)
+}
+```
+
+**Utilização do script**
+
+Para executar o script, use a função `source()` no console do R ou dentro de outro script:
+
+```{r eval=FALSE}
+source("meu_script.R")
+```
+
+Se o ficheiro `meu_script.R` não estiver no diretório de trabalho atual, você pode fornecer o caminho completo:
+
+```{r eval=FALSE}
+source("/caminho/para/seu/script/meu_script.R")
+```
+
+**Resultado:**
+
+Quando você executa o comando `source()`, o R lê e executa todas as linhas do script, e os resultados (por exemplo, impressões de mensagens, funções...) serão exibidos no console. Qualquer função ou variável definida no script ficará disponível no ambiente de trabalho após a execução do `source()`.
+
+```{r eval=FALSE}
+# Faça agora
+produto(2,3)
+```
+
+**Observações**
+
+* **Diretório de trabalho**: Para verificar ou alterar o diretório de trabalho em R, você pode usar as funções `getwd()` para ver o diretório atual e `setwd("caminho/do/diretorio")` para definir um novo diretório de trabalho.
+
+## Exercícios
+
+1. Construa o seguinte:
+
+(a) Um script `quadrado.R` que disponibiliza funções que permitem calcular o perímetro e a área do quadrado dado o comprimento do lado. Use `quadrado.R` num outro script qualquer.
+
+(b) Um script `estatistica.R` que disponibiliza funções que permitem ordenar uma amostra e calcular a média, calcular a variância e o desvio padrão.
+
+(c) Um programa que recorrendo ao script anterior, calcula a mediana, variância e o desvio padrão da amostra `amostra <- c(1,2,3,4,5,6,7)`
 
 # Loop while
 
@@ -1812,6 +1864,12 @@ boxplot(bicicletas,main = "Caixa de bigodes",col = "green",horizontal = TRUE)
 
 dev.off()
 ```
+
+# Manipulando dados
+
+# O pacote `dplyr`
+
+O `dplyr` é um dos pacotes mais populares e amplamente utilizados no R para manipulação e transformação de dados. Ele faz parte do conjunto de pacotes “tidyverse,” que são projetados para simplificar o trabalho com dados no R. O `dplyr` oferece uma interface intuitiva e de fácil uso para realizar operações comuns em data frames, como seleção de colunas, filtragem de linhas, ordenação, resumo de dados e junção de data frames.
 
 ## Exercícios
 
