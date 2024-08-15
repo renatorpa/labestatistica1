@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Renato de Paula" />
 
 
-<meta name="date" content="2024-08-14" />
+<meta name="date" content="2024-08-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -266,7 +266,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.1" data-path="simulação.html"><a href="simulação.html#geração-de-números-pseudoaleatórios"><i class="fa fa-check"></i><b>16.1</b> Geração de números pseudoaleatórios</a>
 <ul>
 <li class="chapter" data-level="16.1.1" data-path="simulação.html"><a href="simulação.html#a-função-sample"><i class="fa fa-check"></i><b>16.1.1</b> A função <code>sample()</code></a></li>
-<li class="chapter" data-level="16.1.2" data-path="simulação.html"><a href="simulação.html#método-da-transformada-inversa"><i class="fa fa-check"></i><b>16.1.2</b> Método da transformada inversa</a></li>
+<li class="chapter" data-level="16.1.2" data-path="simulação.html"><a href="simulação.html#exercícios-11"><i class="fa fa-check"></i><b>16.1.2</b> Exercícios</a></li>
+<li class="chapter" data-level="16.1.3" data-path="simulação.html"><a href="simulação.html#método-da-transformada-inversa"><i class="fa fa-check"></i><b>16.1.3</b> Método da transformada inversa</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="17" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html"><i class="fa fa-check"></i><b>17</b> Distribuições univariadas no R</a>
@@ -320,7 +321,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="17.6.5" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-4"><i class="fa fa-check"></i><b>17.6.5</b> Função de distribuição</a></li>
 <li class="chapter" data-level="17.6.6" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-5"><i class="fa fa-check"></i><b>17.6.6</b> Função de distribuição empírica</a></li>
 </ul></li>
-<li class="chapter" data-level="17.7" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#exercícios-11"><i class="fa fa-check"></i><b>17.7</b> Exercícios</a></li>
+<li class="chapter" data-level="17.7" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#exercícios-12"><i class="fa fa-check"></i><b>17.7</b> Exercícios</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -401,15 +402,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="função-de-distribuição-empírica-no-r-função-ecdf" class="section level3 hasAnchor" number="17.1.1">
 <h3><span class="header-section-number">17.1.1</span> Função de distribuição empírica no R, função <code>ecdf()</code><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-no-r-função-ecdf" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A função <code>ecdf()</code> no R é usada para calcular a função de distribuição empírica (Empirical Cumulative Distribution Function - ECDF) de um conjunto de dados.</p>
-<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="distribuições-univariadas-no-r.html#cb454-1" tabindex="-1"></a><span class="co"># Conjunto de dados</span></span>
-<span id="cb454-2"><a href="distribuições-univariadas-no-r.html#cb454-2" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">9</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">5</span>)</span>
-<span id="cb454-3"><a href="distribuições-univariadas-no-r.html#cb454-3" tabindex="-1"></a></span>
-<span id="cb454-4"><a href="distribuições-univariadas-no-r.html#cb454-4" tabindex="-1"></a><span class="co"># Calcular a ECDF usando a função ecdf()</span></span>
-<span id="cb454-5"><a href="distribuições-univariadas-no-r.html#cb454-5" tabindex="-1"></a>Fn <span class="ot">&lt;-</span> <span class="fu">ecdf</span>(dados)</span>
-<span id="cb454-6"><a href="distribuições-univariadas-no-r.html#cb454-6" tabindex="-1"></a></span>
-<span id="cb454-7"><a href="distribuições-univariadas-no-r.html#cb454-7" tabindex="-1"></a><span class="co"># Plotar a ECDF usando a função ecdf()</span></span>
-<span id="cb454-8"><a href="distribuições-univariadas-no-r.html#cb454-8" tabindex="-1"></a><span class="fu">plot</span>(Fn, <span class="at">main =</span> <span class="st">&quot;Função de Distribuição Empírica&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Fn(x)&quot;</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-112-1.png" width="672" /></p>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="distribuições-univariadas-no-r.html#cb461-1" tabindex="-1"></a><span class="co"># Conjunto de dados</span></span>
+<span id="cb461-2"><a href="distribuições-univariadas-no-r.html#cb461-2" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">9</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">5</span>)</span>
+<span id="cb461-3"><a href="distribuições-univariadas-no-r.html#cb461-3" tabindex="-1"></a></span>
+<span id="cb461-4"><a href="distribuições-univariadas-no-r.html#cb461-4" tabindex="-1"></a><span class="co"># Calcular a ECDF usando a função ecdf()</span></span>
+<span id="cb461-5"><a href="distribuições-univariadas-no-r.html#cb461-5" tabindex="-1"></a>Fn <span class="ot">&lt;-</span> <span class="fu">ecdf</span>(dados)</span>
+<span id="cb461-6"><a href="distribuições-univariadas-no-r.html#cb461-6" tabindex="-1"></a></span>
+<span id="cb461-7"><a href="distribuições-univariadas-no-r.html#cb461-7" tabindex="-1"></a><span class="co"># Plotar a ECDF usando a função ecdf()</span></span>
+<span id="cb461-8"><a href="distribuições-univariadas-no-r.html#cb461-8" tabindex="-1"></a><span class="fu">plot</span>(Fn, <span class="at">main =</span> <span class="st">&quot;Função de Distribuição Empírica&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Fn(x)&quot;</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-116-1.png" width="672" /></p>
 </div>
 </div>
 <div id="gerando-uma-variável-aleatória-com-distribuição-binomial" class="section level2 hasAnchor" number="17.2">
@@ -423,106 +424,106 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="função-massa-de-probabilidade-teórica" class="section level3 hasAnchor" number="17.2.2">
 <h3><span class="header-section-number">17.2.2</span> Função massa de probabilidade (teórica)<a href="distribuições-univariadas-no-r.html#função-massa-de-probabilidade-teórica" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="distribuições-univariadas-no-r.html#cb455-1" tabindex="-1"></a><span class="co"># Simulação de Variáveis aleatórias</span></span>
-<span id="cb455-2"><a href="distribuições-univariadas-no-r.html#cb455-2" tabindex="-1"></a></span>
-<span id="cb455-3"><a href="distribuições-univariadas-no-r.html#cb455-3" tabindex="-1"></a><span class="co"># Função massa de probabilidade Binomial(n,p)</span></span>
-<span id="cb455-4"><a href="distribuições-univariadas-no-r.html#cb455-4" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb455-5"><a href="distribuições-univariadas-no-r.html#cb455-5" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.1</span></span>
-<span id="cb455-6"><a href="distribuições-univariadas-no-r.html#cb455-6" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span></span>
-<span id="cb455-7"><a href="distribuições-univariadas-no-r.html#cb455-7" tabindex="-1"></a></span>
-<span id="cb455-8"><a href="distribuições-univariadas-no-r.html#cb455-8" tabindex="-1"></a>teorico <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y=</span><span class="fu">dbinom</span>(x, <span class="at">size =</span> n, <span class="at">prob =</span> p))</span>
-<span id="cb455-9"><a href="distribuições-univariadas-no-r.html#cb455-9" tabindex="-1"></a></span>
-<span id="cb455-10"><a href="distribuições-univariadas-no-r.html#cb455-10" tabindex="-1"></a><span class="co"># Carregue o pacote ggplot2</span></span>
-<span id="cb455-11"><a href="distribuições-univariadas-no-r.html#cb455-11" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb455-12"><a href="distribuições-univariadas-no-r.html#cb455-12" tabindex="-1"></a></span>
-<span id="cb455-13"><a href="distribuições-univariadas-no-r.html#cb455-13" tabindex="-1"></a><span class="fu">ggplot</span>(teorico) <span class="sc">+</span>  </span>
-<span id="cb455-14"><a href="distribuições-univariadas-no-r.html#cb455-14" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y=</span>y), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb455-15"><a href="distribuições-univariadas-no-r.html#cb455-15" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">0</span><span class="sc">:</span>n) <span class="sc">+</span>  </span>
-<span id="cb455-16"><a href="distribuições-univariadas-no-r.html#cb455-16" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Binomial(20,0.1)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Número de sucessos&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Probabilidade&quot;</span>) <span class="sc">+</span>  </span>
-<span id="cb455-17"><a href="distribuições-univariadas-no-r.html#cb455-17" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-113-1.png" width="672" /></p>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="distribuições-univariadas-no-r.html#cb462-1" tabindex="-1"></a><span class="co"># Simulação de Variáveis aleatórias</span></span>
+<span id="cb462-2"><a href="distribuições-univariadas-no-r.html#cb462-2" tabindex="-1"></a></span>
+<span id="cb462-3"><a href="distribuições-univariadas-no-r.html#cb462-3" tabindex="-1"></a><span class="co"># Função massa de probabilidade Binomial(n,p)</span></span>
+<span id="cb462-4"><a href="distribuições-univariadas-no-r.html#cb462-4" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb462-5"><a href="distribuições-univariadas-no-r.html#cb462-5" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.1</span></span>
+<span id="cb462-6"><a href="distribuições-univariadas-no-r.html#cb462-6" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span></span>
+<span id="cb462-7"><a href="distribuições-univariadas-no-r.html#cb462-7" tabindex="-1"></a></span>
+<span id="cb462-8"><a href="distribuições-univariadas-no-r.html#cb462-8" tabindex="-1"></a>teorico <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y=</span><span class="fu">dbinom</span>(x, <span class="at">size =</span> n, <span class="at">prob =</span> p))</span>
+<span id="cb462-9"><a href="distribuições-univariadas-no-r.html#cb462-9" tabindex="-1"></a></span>
+<span id="cb462-10"><a href="distribuições-univariadas-no-r.html#cb462-10" tabindex="-1"></a><span class="co"># Carregue o pacote ggplot2</span></span>
+<span id="cb462-11"><a href="distribuições-univariadas-no-r.html#cb462-11" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb462-12"><a href="distribuições-univariadas-no-r.html#cb462-12" tabindex="-1"></a></span>
+<span id="cb462-13"><a href="distribuições-univariadas-no-r.html#cb462-13" tabindex="-1"></a><span class="fu">ggplot</span>(teorico) <span class="sc">+</span>  </span>
+<span id="cb462-14"><a href="distribuições-univariadas-no-r.html#cb462-14" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y=</span>y), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb462-15"><a href="distribuições-univariadas-no-r.html#cb462-15" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">0</span><span class="sc">:</span>n) <span class="sc">+</span>  </span>
+<span id="cb462-16"><a href="distribuições-univariadas-no-r.html#cb462-16" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Binomial(20,0.1)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Número de sucessos&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Probabilidade&quot;</span>) <span class="sc">+</span>  </span>
+<span id="cb462-17"><a href="distribuições-univariadas-no-r.html#cb462-17" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-117-1.png" width="672" /></p>
 </div>
 <div id="função-massa-de-probabilidade-simulação" class="section level3 hasAnchor" number="17.2.3">
 <h3><span class="header-section-number">17.2.3</span> Função massa de probabilidade (simulação)<a href="distribuições-univariadas-no-r.html#função-massa-de-probabilidade-simulação" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="distribuições-univariadas-no-r.html#cb456-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb456-2"><a href="distribuições-univariadas-no-r.html#cb456-2" tabindex="-1"></a></span>
-<span id="cb456-3"><a href="distribuições-univariadas-no-r.html#cb456-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb456-4"><a href="distribuições-univariadas-no-r.html#cb456-4" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.9</span></span>
-<span id="cb456-5"><a href="distribuições-univariadas-no-r.html#cb456-5" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">1000</span> <span class="co"># número de simulações</span></span>
-<span id="cb456-6"><a href="distribuições-univariadas-no-r.html#cb456-6" tabindex="-1"></a></span>
-<span id="cb456-7"><a href="distribuições-univariadas-no-r.html#cb456-7" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">X =</span> <span class="fu">rbinom</span>(k, <span class="at">size =</span> n, <span class="at">prob =</span> p))</span>
-<span id="cb456-8"><a href="distribuições-univariadas-no-r.html#cb456-8" tabindex="-1"></a></span>
-<span id="cb456-9"><a href="distribuições-univariadas-no-r.html#cb456-9" tabindex="-1"></a><span class="co"># Carregue o pacote ggplot2library(ggplot2)</span></span>
-<span id="cb456-10"><a href="distribuições-univariadas-no-r.html#cb456-10" tabindex="-1"></a></span>
-<span id="cb456-11"><a href="distribuições-univariadas-no-r.html#cb456-11" tabindex="-1"></a><span class="fu">ggplot</span>(dados) <span class="sc">+</span>   </span>
-<span id="cb456-12"><a href="distribuições-univariadas-no-r.html#cb456-12" tabindex="-1"></a><span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x=</span>X, <span class="at">y=</span><span class="fu">after_stat</span>(prop)), <span class="at">fill =</span> <span class="st">&quot;lightblue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb456-13"><a href="distribuições-univariadas-no-r.html#cb456-13" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">0</span><span class="sc">:</span>n) <span class="sc">+</span>   </span>
-<span id="cb456-14"><a href="distribuições-univariadas-no-r.html#cb456-14" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Geração de números aleatórios de Bi(20,0.9)&quot;</span>, <span class="at">x=</span><span class="st">&quot;Número de sucessos&quot;</span>, </span>
-<span id="cb456-15"><a href="distribuições-univariadas-no-r.html#cb456-15" tabindex="-1"></a>  <span class="at">y=</span><span class="st">&quot;Frequência relativa&quot;</span>) <span class="sc">+</span>  </span>
-<span id="cb456-16"><a href="distribuições-univariadas-no-r.html#cb456-16" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-114-1.png" width="672" /></p>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="distribuições-univariadas-no-r.html#cb463-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb463-2"><a href="distribuições-univariadas-no-r.html#cb463-2" tabindex="-1"></a></span>
+<span id="cb463-3"><a href="distribuições-univariadas-no-r.html#cb463-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb463-4"><a href="distribuições-univariadas-no-r.html#cb463-4" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.9</span></span>
+<span id="cb463-5"><a href="distribuições-univariadas-no-r.html#cb463-5" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">1000</span> <span class="co"># número de simulações</span></span>
+<span id="cb463-6"><a href="distribuições-univariadas-no-r.html#cb463-6" tabindex="-1"></a></span>
+<span id="cb463-7"><a href="distribuições-univariadas-no-r.html#cb463-7" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">X =</span> <span class="fu">rbinom</span>(k, <span class="at">size =</span> n, <span class="at">prob =</span> p))</span>
+<span id="cb463-8"><a href="distribuições-univariadas-no-r.html#cb463-8" tabindex="-1"></a></span>
+<span id="cb463-9"><a href="distribuições-univariadas-no-r.html#cb463-9" tabindex="-1"></a><span class="co"># Carregue o pacote ggplot2library(ggplot2)</span></span>
+<span id="cb463-10"><a href="distribuições-univariadas-no-r.html#cb463-10" tabindex="-1"></a></span>
+<span id="cb463-11"><a href="distribuições-univariadas-no-r.html#cb463-11" tabindex="-1"></a><span class="fu">ggplot</span>(dados) <span class="sc">+</span>   </span>
+<span id="cb463-12"><a href="distribuições-univariadas-no-r.html#cb463-12" tabindex="-1"></a><span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x=</span>X, <span class="at">y=</span><span class="fu">after_stat</span>(prop)), <span class="at">fill =</span> <span class="st">&quot;lightblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb463-13"><a href="distribuições-univariadas-no-r.html#cb463-13" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">0</span><span class="sc">:</span>n) <span class="sc">+</span>   </span>
+<span id="cb463-14"><a href="distribuições-univariadas-no-r.html#cb463-14" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Geração de números aleatórios de Bi(20,0.9)&quot;</span>, <span class="at">x=</span><span class="st">&quot;Número de sucessos&quot;</span>, </span>
+<span id="cb463-15"><a href="distribuições-univariadas-no-r.html#cb463-15" tabindex="-1"></a>  <span class="at">y=</span><span class="st">&quot;Frequência relativa&quot;</span>) <span class="sc">+</span>  </span>
+<span id="cb463-16"><a href="distribuições-univariadas-no-r.html#cb463-16" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-118-1.png" width="672" /></p>
 </div>
 <div id="comparação" class="section level3 hasAnchor" number="17.2.4">
 <h3><span class="header-section-number">17.2.4</span> Comparação<a href="distribuições-univariadas-no-r.html#comparação" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="distribuições-univariadas-no-r.html#cb457-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb457-2"><a href="distribuições-univariadas-no-r.html#cb457-2" tabindex="-1"></a></span>
-<span id="cb457-3"><a href="distribuições-univariadas-no-r.html#cb457-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb457-4"><a href="distribuições-univariadas-no-r.html#cb457-4" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.1</span></span>
-<span id="cb457-5"><a href="distribuições-univariadas-no-r.html#cb457-5" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">1000</span> <span class="co"># número de simulações</span></span>
-<span id="cb457-6"><a href="distribuições-univariadas-no-r.html#cb457-6" tabindex="-1"></a></span>
-<span id="cb457-7"><a href="distribuições-univariadas-no-r.html#cb457-7" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">X =</span> <span class="fu">rbinom</span>(k, <span class="at">size =</span> n, <span class="at">prob =</span> p))</span>
-<span id="cb457-8"><a href="distribuições-univariadas-no-r.html#cb457-8" tabindex="-1"></a>teorico <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">0</span><span class="sc">:</span>n, <span class="at">y=</span><span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span>n, <span class="at">size =</span> n, <span class="at">prob =</span> p))</span>
-<span id="cb457-9"><a href="distribuições-univariadas-no-r.html#cb457-9" tabindex="-1"></a></span>
-<span id="cb457-10"><a href="distribuições-univariadas-no-r.html#cb457-10" tabindex="-1"></a><span class="co"># Carregue o pacote ggplot2</span></span>
-<span id="cb457-11"><a href="distribuições-univariadas-no-r.html#cb457-11" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb457-12"><a href="distribuições-univariadas-no-r.html#cb457-12" tabindex="-1"></a></span>
-<span id="cb457-13"><a href="distribuições-univariadas-no-r.html#cb457-13" tabindex="-1"></a><span class="fu">ggplot</span>(dados) <span class="sc">+</span>  </span>
-<span id="cb457-14"><a href="distribuições-univariadas-no-r.html#cb457-14" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">y =</span> <span class="fu">after_stat</span>(prop)), <span class="at">fill =</span> <span class="st">&quot;lightblue&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb457-15"><a href="distribuições-univariadas-no-r.html#cb457-15" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> teorico, <span class="fu">aes</span>(x, y), <span class="at">color =</span> <span class="st">&quot;magenta&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb457-16"><a href="distribuições-univariadas-no-r.html#cb457-16" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">0</span><span class="sc">:</span>n) <span class="sc">+</span>  </span>
-<span id="cb457-17"><a href="distribuições-univariadas-no-r.html#cb457-17" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Geração de números aleatórios de Bi(20,0.1)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Número de sucessos&quot;</span>,       </span>
-<span id="cb457-18"><a href="distribuições-univariadas-no-r.html#cb457-18" tabindex="-1"></a>  <span class="at">y =</span> <span class="st">&quot;Probabilidade&quot;</span>) <span class="sc">+</span>  </span>
-<span id="cb457-19"><a href="distribuições-univariadas-no-r.html#cb457-19" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-115-1.png" width="672" /></p>
+<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="distribuições-univariadas-no-r.html#cb464-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb464-2"><a href="distribuições-univariadas-no-r.html#cb464-2" tabindex="-1"></a></span>
+<span id="cb464-3"><a href="distribuições-univariadas-no-r.html#cb464-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb464-4"><a href="distribuições-univariadas-no-r.html#cb464-4" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.1</span></span>
+<span id="cb464-5"><a href="distribuições-univariadas-no-r.html#cb464-5" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">1000</span> <span class="co"># número de simulações</span></span>
+<span id="cb464-6"><a href="distribuições-univariadas-no-r.html#cb464-6" tabindex="-1"></a></span>
+<span id="cb464-7"><a href="distribuições-univariadas-no-r.html#cb464-7" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">X =</span> <span class="fu">rbinom</span>(k, <span class="at">size =</span> n, <span class="at">prob =</span> p))</span>
+<span id="cb464-8"><a href="distribuições-univariadas-no-r.html#cb464-8" tabindex="-1"></a>teorico <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">0</span><span class="sc">:</span>n, <span class="at">y=</span><span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span>n, <span class="at">size =</span> n, <span class="at">prob =</span> p))</span>
+<span id="cb464-9"><a href="distribuições-univariadas-no-r.html#cb464-9" tabindex="-1"></a></span>
+<span id="cb464-10"><a href="distribuições-univariadas-no-r.html#cb464-10" tabindex="-1"></a><span class="co"># Carregue o pacote ggplot2</span></span>
+<span id="cb464-11"><a href="distribuições-univariadas-no-r.html#cb464-11" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb464-12"><a href="distribuições-univariadas-no-r.html#cb464-12" tabindex="-1"></a></span>
+<span id="cb464-13"><a href="distribuições-univariadas-no-r.html#cb464-13" tabindex="-1"></a><span class="fu">ggplot</span>(dados) <span class="sc">+</span>  </span>
+<span id="cb464-14"><a href="distribuições-univariadas-no-r.html#cb464-14" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">y =</span> <span class="fu">after_stat</span>(prop)), <span class="at">fill =</span> <span class="st">&quot;lightblue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb464-15"><a href="distribuições-univariadas-no-r.html#cb464-15" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> teorico, <span class="fu">aes</span>(x, y), <span class="at">color =</span> <span class="st">&quot;magenta&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb464-16"><a href="distribuições-univariadas-no-r.html#cb464-16" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">0</span><span class="sc">:</span>n) <span class="sc">+</span>  </span>
+<span id="cb464-17"><a href="distribuições-univariadas-no-r.html#cb464-17" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Geração de números aleatórios de Bi(20,0.1)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Número de sucessos&quot;</span>,       </span>
+<span id="cb464-18"><a href="distribuições-univariadas-no-r.html#cb464-18" tabindex="-1"></a>  <span class="at">y =</span> <span class="st">&quot;Probabilidade&quot;</span>) <span class="sc">+</span>  </span>
+<span id="cb464-19"><a href="distribuições-univariadas-no-r.html#cb464-19" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-119-1.png" width="672" /></p>
 </div>
 <div id="função-de-distribuição" class="section level3 hasAnchor" number="17.2.5">
 <h3><span class="header-section-number">17.2.5</span> Função de distribuição<a href="distribuições-univariadas-no-r.html#função-de-distribuição" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="distribuições-univariadas-no-r.html#cb458-1" tabindex="-1"></a><span class="co"># Definir os parâmetros da distribuição binomial</span></span>
-<span id="cb458-2"><a href="distribuições-univariadas-no-r.html#cb458-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="co"># Número de tentativas</span></span>
-<span id="cb458-3"><a href="distribuições-univariadas-no-r.html#cb458-3" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.5</span> <span class="co"># Probabilidade de sucesso</span></span>
-<span id="cb458-4"><a href="distribuições-univariadas-no-r.html#cb458-4" tabindex="-1"></a></span>
-<span id="cb458-5"><a href="distribuições-univariadas-no-r.html#cb458-5" tabindex="-1"></a><span class="co"># Valores possíveis de sucessos (0 a n)</span></span>
-<span id="cb458-6"><a href="distribuições-univariadas-no-r.html#cb458-6" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span>n</span>
-<span id="cb458-7"><a href="distribuições-univariadas-no-r.html#cb458-7" tabindex="-1"></a></span>
-<span id="cb458-8"><a href="distribuições-univariadas-no-r.html#cb458-8" tabindex="-1"></a><span class="co"># Calcular a FD</span></span>
-<span id="cb458-9"><a href="distribuições-univariadas-no-r.html#cb458-9" tabindex="-1"></a>cdf_values <span class="ot">&lt;-</span> <span class="fu">pbinom</span>(x, <span class="at">size =</span> n, <span class="at">prob =</span> p)</span>
-<span id="cb458-10"><a href="distribuições-univariadas-no-r.html#cb458-10" tabindex="-1"></a></span>
-<span id="cb458-11"><a href="distribuições-univariadas-no-r.html#cb458-11" tabindex="-1"></a><span class="co"># Plotar a FD</span></span>
-<span id="cb458-12"><a href="distribuições-univariadas-no-r.html#cb458-12" tabindex="-1"></a><span class="fu">plot</span>(x, cdf_values, <span class="at">type =</span> <span class="st">&quot;s&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, </span>
-<span id="cb458-13"><a href="distribuições-univariadas-no-r.html#cb458-13" tabindex="-1"></a><span class="at">xlab =</span> <span class="st">&quot;Número de Sucessos&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;F(x)&quot;</span>, </span>
-<span id="cb458-14"><a href="distribuições-univariadas-no-r.html#cb458-14" tabindex="-1"></a><span class="at">main =</span> <span class="st">&quot;Função de Distribuição Acumulada da Binomial(n = 10, p = 0.5)&quot;</span>)</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-116-1.png" width="672" /></p>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="distribuições-univariadas-no-r.html#cb465-1" tabindex="-1"></a><span class="co"># Definir os parâmetros da distribuição binomial</span></span>
+<span id="cb465-2"><a href="distribuições-univariadas-no-r.html#cb465-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="co"># Número de tentativas</span></span>
+<span id="cb465-3"><a href="distribuições-univariadas-no-r.html#cb465-3" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.5</span> <span class="co"># Probabilidade de sucesso</span></span>
+<span id="cb465-4"><a href="distribuições-univariadas-no-r.html#cb465-4" tabindex="-1"></a></span>
+<span id="cb465-5"><a href="distribuições-univariadas-no-r.html#cb465-5" tabindex="-1"></a><span class="co"># Valores possíveis de sucessos (0 a n)</span></span>
+<span id="cb465-6"><a href="distribuições-univariadas-no-r.html#cb465-6" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span>n</span>
+<span id="cb465-7"><a href="distribuições-univariadas-no-r.html#cb465-7" tabindex="-1"></a></span>
+<span id="cb465-8"><a href="distribuições-univariadas-no-r.html#cb465-8" tabindex="-1"></a><span class="co"># Calcular a FD</span></span>
+<span id="cb465-9"><a href="distribuições-univariadas-no-r.html#cb465-9" tabindex="-1"></a>cdf_values <span class="ot">&lt;-</span> <span class="fu">pbinom</span>(x, <span class="at">size =</span> n, <span class="at">prob =</span> p)</span>
+<span id="cb465-10"><a href="distribuições-univariadas-no-r.html#cb465-10" tabindex="-1"></a></span>
+<span id="cb465-11"><a href="distribuições-univariadas-no-r.html#cb465-11" tabindex="-1"></a><span class="co"># Plotar a FD</span></span>
+<span id="cb465-12"><a href="distribuições-univariadas-no-r.html#cb465-12" tabindex="-1"></a><span class="fu">plot</span>(x, cdf_values, <span class="at">type =</span> <span class="st">&quot;s&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, </span>
+<span id="cb465-13"><a href="distribuições-univariadas-no-r.html#cb465-13" tabindex="-1"></a><span class="at">xlab =</span> <span class="st">&quot;Número de Sucessos&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;F(x)&quot;</span>, </span>
+<span id="cb465-14"><a href="distribuições-univariadas-no-r.html#cb465-14" tabindex="-1"></a><span class="at">main =</span> <span class="st">&quot;Função de Distribuição Acumulada da Binomial(n = 10, p = 0.5)&quot;</span>)</span></code></pre></div>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-120-1.png" width="672" /></p>
 </div>
 <div id="função-de-distribuição-empírica-1" class="section level3 hasAnchor" number="17.2.6">
 <h3><span class="header-section-number">17.2.6</span> Função de distribuição empírica<a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="distribuições-univariadas-no-r.html#cb459-1" tabindex="-1"></a><span class="co"># Definir os parâmetros da distribuição binomial</span></span>
-<span id="cb459-2"><a href="distribuições-univariadas-no-r.html#cb459-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="co"># Número de tentativas</span></span>
-<span id="cb459-3"><a href="distribuições-univariadas-no-r.html#cb459-3" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.5</span> <span class="co"># Probabilidade de sucesso</span></span>
-<span id="cb459-4"><a href="distribuições-univariadas-no-r.html#cb459-4" tabindex="-1"></a></span>
-<span id="cb459-5"><a href="distribuições-univariadas-no-r.html#cb459-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb459-6"><a href="distribuições-univariadas-no-r.html#cb459-6" tabindex="-1"></a><span class="co"># Amostra aleatória de dimensão 1000</span></span>
-<span id="cb459-7"><a href="distribuições-univariadas-no-r.html#cb459-7" tabindex="-1"></a>amostra <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1000</span>,<span class="at">size =</span> n, <span class="at">prob =</span> p)</span>
-<span id="cb459-8"><a href="distribuições-univariadas-no-r.html#cb459-8" tabindex="-1"></a></span>
-<span id="cb459-9"><a href="distribuições-univariadas-no-r.html#cb459-9" tabindex="-1"></a><span class="co"># Distribuição empírica </span></span>
-<span id="cb459-10"><a href="distribuições-univariadas-no-r.html#cb459-10" tabindex="-1"></a>Fn <span class="ot">&lt;-</span> <span class="fu">ecdf</span>(amostra)</span>
-<span id="cb459-11"><a href="distribuições-univariadas-no-r.html#cb459-11" tabindex="-1"></a></span>
-<span id="cb459-12"><a href="distribuições-univariadas-no-r.html#cb459-12" tabindex="-1"></a><span class="co"># Plotar CDF</span></span>
-<span id="cb459-13"><a href="distribuições-univariadas-no-r.html#cb459-13" tabindex="-1"></a><span class="fu">plot</span>(Fn, <span class="at">main =</span> <span class="st">&quot;Função de Distribuição Empírica&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>, </span>
-<span id="cb459-14"><a href="distribuições-univariadas-no-r.html#cb459-14" tabindex="-1"></a><span class="at">ylab =</span> <span class="st">&quot;Fn(x)&quot;</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-117-1.png" width="672" /></p>
-<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="distribuições-univariadas-no-r.html#cb460-1" tabindex="-1"></a><span class="co"># OU</span></span>
-<span id="cb460-2"><a href="distribuições-univariadas-no-r.html#cb460-2" tabindex="-1"></a><span class="fu">plot.ecdf</span>(amostra)</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-117-2.png" width="672" /></p>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="distribuições-univariadas-no-r.html#cb466-1" tabindex="-1"></a><span class="co"># Definir os parâmetros da distribuição binomial</span></span>
+<span id="cb466-2"><a href="distribuições-univariadas-no-r.html#cb466-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="co"># Número de tentativas</span></span>
+<span id="cb466-3"><a href="distribuições-univariadas-no-r.html#cb466-3" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.5</span> <span class="co"># Probabilidade de sucesso</span></span>
+<span id="cb466-4"><a href="distribuições-univariadas-no-r.html#cb466-4" tabindex="-1"></a></span>
+<span id="cb466-5"><a href="distribuições-univariadas-no-r.html#cb466-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb466-6"><a href="distribuições-univariadas-no-r.html#cb466-6" tabindex="-1"></a><span class="co"># Amostra aleatória de dimensão 1000</span></span>
+<span id="cb466-7"><a href="distribuições-univariadas-no-r.html#cb466-7" tabindex="-1"></a>amostra <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1000</span>,<span class="at">size =</span> n, <span class="at">prob =</span> p)</span>
+<span id="cb466-8"><a href="distribuições-univariadas-no-r.html#cb466-8" tabindex="-1"></a></span>
+<span id="cb466-9"><a href="distribuições-univariadas-no-r.html#cb466-9" tabindex="-1"></a><span class="co"># Distribuição empírica </span></span>
+<span id="cb466-10"><a href="distribuições-univariadas-no-r.html#cb466-10" tabindex="-1"></a>Fn <span class="ot">&lt;-</span> <span class="fu">ecdf</span>(amostra)</span>
+<span id="cb466-11"><a href="distribuições-univariadas-no-r.html#cb466-11" tabindex="-1"></a></span>
+<span id="cb466-12"><a href="distribuições-univariadas-no-r.html#cb466-12" tabindex="-1"></a><span class="co"># Plotar CDF</span></span>
+<span id="cb466-13"><a href="distribuições-univariadas-no-r.html#cb466-13" tabindex="-1"></a><span class="fu">plot</span>(Fn, <span class="at">main =</span> <span class="st">&quot;Função de Distribuição Empírica&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>, </span>
+<span id="cb466-14"><a href="distribuições-univariadas-no-r.html#cb466-14" tabindex="-1"></a><span class="at">ylab =</span> <span class="st">&quot;Fn(x)&quot;</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-121-1.png" width="672" /></p>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="distribuições-univariadas-no-r.html#cb467-1" tabindex="-1"></a><span class="co"># OU</span></span>
+<span id="cb467-2"><a href="distribuições-univariadas-no-r.html#cb467-2" tabindex="-1"></a><span class="fu">plot.ecdf</span>(amostra)</span></code></pre></div>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-121-2.png" width="672" /></p>
 <p><strong>Cálculo de probabilidade</strong>: Seja <span class="math inline">\(X \sim \text{Binomial}(n=10, p=0.5)\)</span>.</p>
 <p><span class="math inline">\(P(X \leq 4) =\)</span> <code>pbinom(4,10,0.5)</code> = 0.377</p>
 <p><span class="math inline">\(P(X \leq 4) \approx\)</span> <code>Fn(4)</code> = 0.382</p>
@@ -541,131 +542,131 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="função-massa-de-probabilidade-teórica-1" class="section level3 hasAnchor" number="17.3.2">
 <h3><span class="header-section-number">17.3.2</span> Função massa de probabilidade (teórica)<a href="distribuições-univariadas-no-r.html#função-massa-de-probabilidade-teórica-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="distribuições-univariadas-no-r.html#cb461-1" tabindex="-1"></a><span class="co"># Definir os valores de lambda e x</span></span>
-<span id="cb461-2"><a href="distribuições-univariadas-no-r.html#cb461-2" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="dv">1</span>, <span class="fl">2.5</span>, <span class="dv">5</span>, <span class="dv">15</span>, <span class="dv">30</span>)</span>
-<span id="cb461-3"><a href="distribuições-univariadas-no-r.html#cb461-3" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">50</span></span>
-<span id="cb461-4"><a href="distribuições-univariadas-no-r.html#cb461-4" tabindex="-1"></a></span>
-<span id="cb461-5"><a href="distribuições-univariadas-no-r.html#cb461-5" tabindex="-1"></a><span class="co"># Carregar os pacotes necessários</span></span>
-<span id="cb461-6"><a href="distribuições-univariadas-no-r.html#cb461-6" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb461-7"><a href="distribuições-univariadas-no-r.html#cb461-7" tabindex="-1"></a><span class="fu">library</span>(latex2exp)</span>
-<span id="cb461-8"><a href="distribuições-univariadas-no-r.html#cb461-8" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
-<span id="cb461-9"><a href="distribuições-univariadas-no-r.html#cb461-9" tabindex="-1"></a></span>
-<span id="cb461-10"><a href="distribuições-univariadas-no-r.html#cb461-10" tabindex="-1"></a><span class="co"># Inicializar uma lista para armazenar os gráficos</span></span>
-<span id="cb461-11"><a href="distribuições-univariadas-no-r.html#cb461-11" tabindex="-1"></a>plots <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb461-12"><a href="distribuições-univariadas-no-r.html#cb461-12" tabindex="-1"></a></span>
-<span id="cb461-13"><a href="distribuições-univariadas-no-r.html#cb461-13" tabindex="-1"></a><span class="co"># Loop para criar os data frames e gráficos</span></span>
-<span id="cb461-14"><a href="distribuições-univariadas-no-r.html#cb461-14" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(p)) {  </span>
-<span id="cb461-15"><a href="distribuições-univariadas-no-r.html#cb461-15" tabindex="-1"></a>  teorico <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> <span class="fu">dpois</span>(x, <span class="at">lambda =</span> p[i]))    </span>
-<span id="cb461-16"><a href="distribuições-univariadas-no-r.html#cb461-16" tabindex="-1"></a>    </span>
-<span id="cb461-17"><a href="distribuições-univariadas-no-r.html#cb461-17" tabindex="-1"></a>  plots[[i]] <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(teorico) <span class="sc">+</span>    </span>
-<span id="cb461-18"><a href="distribuições-univariadas-no-r.html#cb461-18" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb461-19"><a href="distribuições-univariadas-no-r.html#cb461-19" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">50</span>, <span class="at">by =</span> <span class="dv">10</span>)) <span class="sc">+</span></span>
-<span id="cb461-20"><a href="distribuições-univariadas-no-r.html#cb461-20" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">TeX</span>(<span class="fu">paste0</span>(<span class="st">&quot;$Poisson(lambda=&quot;</span>, p[i], <span class="st">&quot;)$&quot;</span>)), <span class="at">x=</span><span class="st">&quot;x&quot;</span>, <span class="at">y=</span><span class="st">&quot;Probabilidade&quot;</span>) <span class="sc">+</span></span>
-<span id="cb461-21"><a href="distribuições-univariadas-no-r.html#cb461-21" tabindex="-1"></a>    <span class="fu">theme_light</span>()</span>
-<span id="cb461-22"><a href="distribuições-univariadas-no-r.html#cb461-22" tabindex="-1"></a>}</span>
-<span id="cb461-23"><a href="distribuições-univariadas-no-r.html#cb461-23" tabindex="-1"></a>    </span>
-<span id="cb461-24"><a href="distribuições-univariadas-no-r.html#cb461-24" tabindex="-1"></a><span class="co"># Dispor os gráficos em uma grade 2x3</span></span>
-<span id="cb461-25"><a href="distribuições-univariadas-no-r.html#cb461-25" tabindex="-1"></a><span class="fu">grid.arrange</span>(<span class="at">grobs =</span> plots, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-118-1.png" width="672" /></p>
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="distribuições-univariadas-no-r.html#cb468-1" tabindex="-1"></a><span class="co"># Definir os valores de lambda e x</span></span>
+<span id="cb468-2"><a href="distribuições-univariadas-no-r.html#cb468-2" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="dv">1</span>, <span class="fl">2.5</span>, <span class="dv">5</span>, <span class="dv">15</span>, <span class="dv">30</span>)</span>
+<span id="cb468-3"><a href="distribuições-univariadas-no-r.html#cb468-3" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">50</span></span>
+<span id="cb468-4"><a href="distribuições-univariadas-no-r.html#cb468-4" tabindex="-1"></a></span>
+<span id="cb468-5"><a href="distribuições-univariadas-no-r.html#cb468-5" tabindex="-1"></a><span class="co"># Carregar os pacotes necessários</span></span>
+<span id="cb468-6"><a href="distribuições-univariadas-no-r.html#cb468-6" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb468-7"><a href="distribuições-univariadas-no-r.html#cb468-7" tabindex="-1"></a><span class="fu">library</span>(latex2exp)</span>
+<span id="cb468-8"><a href="distribuições-univariadas-no-r.html#cb468-8" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb468-9"><a href="distribuições-univariadas-no-r.html#cb468-9" tabindex="-1"></a></span>
+<span id="cb468-10"><a href="distribuições-univariadas-no-r.html#cb468-10" tabindex="-1"></a><span class="co"># Inicializar uma lista para armazenar os gráficos</span></span>
+<span id="cb468-11"><a href="distribuições-univariadas-no-r.html#cb468-11" tabindex="-1"></a>plots <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb468-12"><a href="distribuições-univariadas-no-r.html#cb468-12" tabindex="-1"></a></span>
+<span id="cb468-13"><a href="distribuições-univariadas-no-r.html#cb468-13" tabindex="-1"></a><span class="co"># Loop para criar os data frames e gráficos</span></span>
+<span id="cb468-14"><a href="distribuições-univariadas-no-r.html#cb468-14" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(p)) {  </span>
+<span id="cb468-15"><a href="distribuições-univariadas-no-r.html#cb468-15" tabindex="-1"></a>  teorico <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> <span class="fu">dpois</span>(x, <span class="at">lambda =</span> p[i]))    </span>
+<span id="cb468-16"><a href="distribuições-univariadas-no-r.html#cb468-16" tabindex="-1"></a>    </span>
+<span id="cb468-17"><a href="distribuições-univariadas-no-r.html#cb468-17" tabindex="-1"></a>  plots[[i]] <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(teorico) <span class="sc">+</span>    </span>
+<span id="cb468-18"><a href="distribuições-univariadas-no-r.html#cb468-18" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb468-19"><a href="distribuições-univariadas-no-r.html#cb468-19" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">50</span>, <span class="at">by =</span> <span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb468-20"><a href="distribuições-univariadas-no-r.html#cb468-20" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">TeX</span>(<span class="fu">paste0</span>(<span class="st">&quot;$Poisson(lambda=&quot;</span>, p[i], <span class="st">&quot;)$&quot;</span>)), <span class="at">x=</span><span class="st">&quot;x&quot;</span>, <span class="at">y=</span><span class="st">&quot;Probabilidade&quot;</span>) <span class="sc">+</span></span>
+<span id="cb468-21"><a href="distribuições-univariadas-no-r.html#cb468-21" tabindex="-1"></a>    <span class="fu">theme_light</span>()</span>
+<span id="cb468-22"><a href="distribuições-univariadas-no-r.html#cb468-22" tabindex="-1"></a>}</span>
+<span id="cb468-23"><a href="distribuições-univariadas-no-r.html#cb468-23" tabindex="-1"></a>    </span>
+<span id="cb468-24"><a href="distribuições-univariadas-no-r.html#cb468-24" tabindex="-1"></a><span class="co"># Dispor os gráficos em uma grade 2x3</span></span>
+<span id="cb468-25"><a href="distribuições-univariadas-no-r.html#cb468-25" tabindex="-1"></a><span class="fu">grid.arrange</span>(<span class="at">grobs =</span> plots, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-122-1.png" width="672" /></p>
 </div>
 <div id="função-massa-de-probabilidade-simulação-1" class="section level3 hasAnchor" number="17.3.3">
 <h3><span class="header-section-number">17.3.3</span> Função massa de probabilidade (simulação)<a href="distribuições-univariadas-no-r.html#função-massa-de-probabilidade-simulação-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="distribuições-univariadas-no-r.html#cb462-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="dv">1</span>, <span class="fl">2.5</span>, <span class="dv">5</span>, <span class="dv">15</span>, <span class="dv">30</span>)</span>
-<span id="cb462-2"><a href="distribuições-univariadas-no-r.html#cb462-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb462-3"><a href="distribuições-univariadas-no-r.html#cb462-3" tabindex="-1"></a></span>
-<span id="cb462-4"><a href="distribuições-univariadas-no-r.html#cb462-4" tabindex="-1"></a><span class="co"># Carregar os pacotes necessários</span></span>
-<span id="cb462-5"><a href="distribuições-univariadas-no-r.html#cb462-5" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb462-6"><a href="distribuições-univariadas-no-r.html#cb462-6" tabindex="-1"></a><span class="fu">library</span>(latex2exp)</span>
-<span id="cb462-7"><a href="distribuições-univariadas-no-r.html#cb462-7" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
-<span id="cb462-8"><a href="distribuições-univariadas-no-r.html#cb462-8" tabindex="-1"></a></span>
-<span id="cb462-9"><a href="distribuições-univariadas-no-r.html#cb462-9" tabindex="-1"></a><span class="co"># Inicializar uma lista para armazenar os gráficos</span></span>
-<span id="cb462-10"><a href="distribuições-univariadas-no-r.html#cb462-10" tabindex="-1"></a>plots <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb462-11"><a href="distribuições-univariadas-no-r.html#cb462-11" tabindex="-1"></a></span>
-<span id="cb462-12"><a href="distribuições-univariadas-no-r.html#cb462-12" tabindex="-1"></a><span class="co"># Loop para criar os data frames e gráficos</span></span>
-<span id="cb462-13"><a href="distribuições-univariadas-no-r.html#cb462-13" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(p)) {  </span>
-<span id="cb462-14"><a href="distribuições-univariadas-no-r.html#cb462-14" tabindex="-1"></a>  dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">X =</span> <span class="fu">rpois</span>(n, <span class="at">lambda =</span> p[i]))</span>
-<span id="cb462-15"><a href="distribuições-univariadas-no-r.html#cb462-15" tabindex="-1"></a>  </span>
-<span id="cb462-16"><a href="distribuições-univariadas-no-r.html#cb462-16" tabindex="-1"></a>  plots[[i]] <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dados) <span class="sc">+</span>    </span>
-<span id="cb462-17"><a href="distribuições-univariadas-no-r.html#cb462-17" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">y =</span><span class="fu">after_stat</span>(prop)), <span class="at">fill=</span><span class="st">&quot;lightblue&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb462-18"><a href="distribuições-univariadas-no-r.html#cb462-18" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title=</span><span class="fu">TeX</span>(<span class="fu">paste</span>(<span class="st">&quot;$Poisson(lambda=&quot;</span>, p[i], <span class="st">&quot;)$&quot;</span>)), </span>
-<span id="cb462-19"><a href="distribuições-univariadas-no-r.html#cb462-19" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;x&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequência relativa&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb462-20"><a href="distribuições-univariadas-no-r.html#cb462-20" tabindex="-1"></a>    <span class="fu">theme_light</span>()</span>
-<span id="cb462-21"><a href="distribuições-univariadas-no-r.html#cb462-21" tabindex="-1"></a>}</span>
-<span id="cb462-22"><a href="distribuições-univariadas-no-r.html#cb462-22" tabindex="-1"></a></span>
-<span id="cb462-23"><a href="distribuições-univariadas-no-r.html#cb462-23" tabindex="-1"></a><span class="co"># Dispor os gráficos em uma grade 2x3</span></span>
-<span id="cb462-24"><a href="distribuições-univariadas-no-r.html#cb462-24" tabindex="-1"></a><span class="fu">grid.arrange</span>(<span class="at">grobs =</span> plots, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-119-1.png" width="672" /></p>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="distribuições-univariadas-no-r.html#cb469-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="dv">1</span>, <span class="fl">2.5</span>, <span class="dv">5</span>, <span class="dv">15</span>, <span class="dv">30</span>)</span>
+<span id="cb469-2"><a href="distribuições-univariadas-no-r.html#cb469-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb469-3"><a href="distribuições-univariadas-no-r.html#cb469-3" tabindex="-1"></a></span>
+<span id="cb469-4"><a href="distribuições-univariadas-no-r.html#cb469-4" tabindex="-1"></a><span class="co"># Carregar os pacotes necessários</span></span>
+<span id="cb469-5"><a href="distribuições-univariadas-no-r.html#cb469-5" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb469-6"><a href="distribuições-univariadas-no-r.html#cb469-6" tabindex="-1"></a><span class="fu">library</span>(latex2exp)</span>
+<span id="cb469-7"><a href="distribuições-univariadas-no-r.html#cb469-7" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb469-8"><a href="distribuições-univariadas-no-r.html#cb469-8" tabindex="-1"></a></span>
+<span id="cb469-9"><a href="distribuições-univariadas-no-r.html#cb469-9" tabindex="-1"></a><span class="co"># Inicializar uma lista para armazenar os gráficos</span></span>
+<span id="cb469-10"><a href="distribuições-univariadas-no-r.html#cb469-10" tabindex="-1"></a>plots <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb469-11"><a href="distribuições-univariadas-no-r.html#cb469-11" tabindex="-1"></a></span>
+<span id="cb469-12"><a href="distribuições-univariadas-no-r.html#cb469-12" tabindex="-1"></a><span class="co"># Loop para criar os data frames e gráficos</span></span>
+<span id="cb469-13"><a href="distribuições-univariadas-no-r.html#cb469-13" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(p)) {  </span>
+<span id="cb469-14"><a href="distribuições-univariadas-no-r.html#cb469-14" tabindex="-1"></a>  dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">X =</span> <span class="fu">rpois</span>(n, <span class="at">lambda =</span> p[i]))</span>
+<span id="cb469-15"><a href="distribuições-univariadas-no-r.html#cb469-15" tabindex="-1"></a>  </span>
+<span id="cb469-16"><a href="distribuições-univariadas-no-r.html#cb469-16" tabindex="-1"></a>  plots[[i]] <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dados) <span class="sc">+</span>    </span>
+<span id="cb469-17"><a href="distribuições-univariadas-no-r.html#cb469-17" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">y =</span><span class="fu">after_stat</span>(prop)), <span class="at">fill=</span><span class="st">&quot;lightblue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb469-18"><a href="distribuições-univariadas-no-r.html#cb469-18" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title=</span><span class="fu">TeX</span>(<span class="fu">paste</span>(<span class="st">&quot;$Poisson(lambda=&quot;</span>, p[i], <span class="st">&quot;)$&quot;</span>)), </span>
+<span id="cb469-19"><a href="distribuições-univariadas-no-r.html#cb469-19" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;x&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequência relativa&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb469-20"><a href="distribuições-univariadas-no-r.html#cb469-20" tabindex="-1"></a>    <span class="fu">theme_light</span>()</span>
+<span id="cb469-21"><a href="distribuições-univariadas-no-r.html#cb469-21" tabindex="-1"></a>}</span>
+<span id="cb469-22"><a href="distribuições-univariadas-no-r.html#cb469-22" tabindex="-1"></a></span>
+<span id="cb469-23"><a href="distribuições-univariadas-no-r.html#cb469-23" tabindex="-1"></a><span class="co"># Dispor os gráficos em uma grade 2x3</span></span>
+<span id="cb469-24"><a href="distribuições-univariadas-no-r.html#cb469-24" tabindex="-1"></a><span class="fu">grid.arrange</span>(<span class="at">grobs =</span> plots, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-123-1.png" width="672" /></p>
 </div>
 <div id="comparação-1" class="section level3 hasAnchor" number="17.3.4">
 <h3><span class="header-section-number">17.3.4</span> Comparação<a href="distribuições-univariadas-no-r.html#comparação-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="distribuições-univariadas-no-r.html#cb463-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="dv">1</span>, <span class="fl">2.5</span>, <span class="dv">5</span>, <span class="dv">15</span>, <span class="dv">30</span>)</span>
-<span id="cb463-2"><a href="distribuições-univariadas-no-r.html#cb463-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb463-3"><a href="distribuições-univariadas-no-r.html#cb463-3" tabindex="-1"></a></span>
-<span id="cb463-4"><a href="distribuições-univariadas-no-r.html#cb463-4" tabindex="-1"></a><span class="co"># Carregar os pacotes necessários</span></span>
-<span id="cb463-5"><a href="distribuições-univariadas-no-r.html#cb463-5" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb463-6"><a href="distribuições-univariadas-no-r.html#cb463-6" tabindex="-1"></a><span class="fu">library</span>(latex2exp)</span>
-<span id="cb463-7"><a href="distribuições-univariadas-no-r.html#cb463-7" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
-<span id="cb463-8"><a href="distribuições-univariadas-no-r.html#cb463-8" tabindex="-1"></a></span>
-<span id="cb463-9"><a href="distribuições-univariadas-no-r.html#cb463-9" tabindex="-1"></a><span class="co"># Inicializar uma lista para armazenar os gráficos</span></span>
-<span id="cb463-10"><a href="distribuições-univariadas-no-r.html#cb463-10" tabindex="-1"></a>plots <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb463-11"><a href="distribuições-univariadas-no-r.html#cb463-11" tabindex="-1"></a></span>
-<span id="cb463-12"><a href="distribuições-univariadas-no-r.html#cb463-12" tabindex="-1"></a><span class="co"># Loop para criar os data frames e gráficos</span></span>
-<span id="cb463-13"><a href="distribuições-univariadas-no-r.html#cb463-13" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(p)) {  </span>
-<span id="cb463-14"><a href="distribuições-univariadas-no-r.html#cb463-14" tabindex="-1"></a>  dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">X =</span> <span class="fu">rpois</span>(n, <span class="at">lambda =</span> p[i]))  </span>
-<span id="cb463-15"><a href="distribuições-univariadas-no-r.html#cb463-15" tabindex="-1"></a>  teorico <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">50</span>, <span class="at">y=</span><span class="fu">dpois</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">50</span>,p[i]))    </span>
-<span id="cb463-16"><a href="distribuições-univariadas-no-r.html#cb463-16" tabindex="-1"></a>  </span>
-<span id="cb463-17"><a href="distribuições-univariadas-no-r.html#cb463-17" tabindex="-1"></a>  plots[[i]] <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dados) <span class="sc">+</span>    </span>
-<span id="cb463-18"><a href="distribuições-univariadas-no-r.html#cb463-18" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">y =</span><span class="fu">after_stat</span>(prop)), <span class="at">fill=</span><span class="st">&quot;lightblue&quot;</span>) <span class="sc">+</span>    </span>
-<span id="cb463-19"><a href="distribuições-univariadas-no-r.html#cb463-19" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">data =</span> teorico, <span class="fu">aes</span>(x, y), <span class="at">color =</span> <span class="st">&quot;magenta&quot;</span>) <span class="sc">+</span>    </span>
-<span id="cb463-20"><a href="distribuições-univariadas-no-r.html#cb463-20" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">50</span>, <span class="at">by =</span> <span class="dv">10</span>)) <span class="sc">+</span></span>
-<span id="cb463-21"><a href="distribuições-univariadas-no-r.html#cb463-21" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title=</span><span class="fu">TeX</span>(<span class="fu">paste</span>(<span class="st">&quot;$Poisson(lambda=&quot;</span>, p[i], <span class="st">&quot;)$&quot;</span>)), </span>
-<span id="cb463-22"><a href="distribuições-univariadas-no-r.html#cb463-22" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;x&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequência relativa&quot;</span>) <span class="sc">+</span>    </span>
-<span id="cb463-23"><a href="distribuições-univariadas-no-r.html#cb463-23" tabindex="-1"></a>    <span class="fu">theme_light</span>()</span>
-<span id="cb463-24"><a href="distribuições-univariadas-no-r.html#cb463-24" tabindex="-1"></a>}</span>
-<span id="cb463-25"><a href="distribuições-univariadas-no-r.html#cb463-25" tabindex="-1"></a></span>
-<span id="cb463-26"><a href="distribuições-univariadas-no-r.html#cb463-26" tabindex="-1"></a><span class="co"># Dispor os gráficos em uma grade 2x3</span></span>
-<span id="cb463-27"><a href="distribuições-univariadas-no-r.html#cb463-27" tabindex="-1"></a><span class="fu">grid.arrange</span>(<span class="at">grobs =</span> plots, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-120-1.png" width="672" /></p>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="distribuições-univariadas-no-r.html#cb470-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="dv">1</span>, <span class="fl">2.5</span>, <span class="dv">5</span>, <span class="dv">15</span>, <span class="dv">30</span>)</span>
+<span id="cb470-2"><a href="distribuições-univariadas-no-r.html#cb470-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb470-3"><a href="distribuições-univariadas-no-r.html#cb470-3" tabindex="-1"></a></span>
+<span id="cb470-4"><a href="distribuições-univariadas-no-r.html#cb470-4" tabindex="-1"></a><span class="co"># Carregar os pacotes necessários</span></span>
+<span id="cb470-5"><a href="distribuições-univariadas-no-r.html#cb470-5" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb470-6"><a href="distribuições-univariadas-no-r.html#cb470-6" tabindex="-1"></a><span class="fu">library</span>(latex2exp)</span>
+<span id="cb470-7"><a href="distribuições-univariadas-no-r.html#cb470-7" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb470-8"><a href="distribuições-univariadas-no-r.html#cb470-8" tabindex="-1"></a></span>
+<span id="cb470-9"><a href="distribuições-univariadas-no-r.html#cb470-9" tabindex="-1"></a><span class="co"># Inicializar uma lista para armazenar os gráficos</span></span>
+<span id="cb470-10"><a href="distribuições-univariadas-no-r.html#cb470-10" tabindex="-1"></a>plots <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb470-11"><a href="distribuições-univariadas-no-r.html#cb470-11" tabindex="-1"></a></span>
+<span id="cb470-12"><a href="distribuições-univariadas-no-r.html#cb470-12" tabindex="-1"></a><span class="co"># Loop para criar os data frames e gráficos</span></span>
+<span id="cb470-13"><a href="distribuições-univariadas-no-r.html#cb470-13" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(p)) {  </span>
+<span id="cb470-14"><a href="distribuições-univariadas-no-r.html#cb470-14" tabindex="-1"></a>  dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">X =</span> <span class="fu">rpois</span>(n, <span class="at">lambda =</span> p[i]))  </span>
+<span id="cb470-15"><a href="distribuições-univariadas-no-r.html#cb470-15" tabindex="-1"></a>  teorico <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">50</span>, <span class="at">y=</span><span class="fu">dpois</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">50</span>,p[i]))    </span>
+<span id="cb470-16"><a href="distribuições-univariadas-no-r.html#cb470-16" tabindex="-1"></a>  </span>
+<span id="cb470-17"><a href="distribuições-univariadas-no-r.html#cb470-17" tabindex="-1"></a>  plots[[i]] <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dados) <span class="sc">+</span>    </span>
+<span id="cb470-18"><a href="distribuições-univariadas-no-r.html#cb470-18" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">y =</span><span class="fu">after_stat</span>(prop)), <span class="at">fill=</span><span class="st">&quot;lightblue&quot;</span>) <span class="sc">+</span>    </span>
+<span id="cb470-19"><a href="distribuições-univariadas-no-r.html#cb470-19" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">data =</span> teorico, <span class="fu">aes</span>(x, y), <span class="at">color =</span> <span class="st">&quot;magenta&quot;</span>) <span class="sc">+</span>    </span>
+<span id="cb470-20"><a href="distribuições-univariadas-no-r.html#cb470-20" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">50</span>, <span class="at">by =</span> <span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb470-21"><a href="distribuições-univariadas-no-r.html#cb470-21" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title=</span><span class="fu">TeX</span>(<span class="fu">paste</span>(<span class="st">&quot;$Poisson(lambda=&quot;</span>, p[i], <span class="st">&quot;)$&quot;</span>)), </span>
+<span id="cb470-22"><a href="distribuições-univariadas-no-r.html#cb470-22" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;x&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequência relativa&quot;</span>) <span class="sc">+</span>    </span>
+<span id="cb470-23"><a href="distribuições-univariadas-no-r.html#cb470-23" tabindex="-1"></a>    <span class="fu">theme_light</span>()</span>
+<span id="cb470-24"><a href="distribuições-univariadas-no-r.html#cb470-24" tabindex="-1"></a>}</span>
+<span id="cb470-25"><a href="distribuições-univariadas-no-r.html#cb470-25" tabindex="-1"></a></span>
+<span id="cb470-26"><a href="distribuições-univariadas-no-r.html#cb470-26" tabindex="-1"></a><span class="co"># Dispor os gráficos em uma grade 2x3</span></span>
+<span id="cb470-27"><a href="distribuições-univariadas-no-r.html#cb470-27" tabindex="-1"></a><span class="fu">grid.arrange</span>(<span class="at">grobs =</span> plots, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-124-1.png" width="672" /></p>
 </div>
 <div id="função-de-distribuição-1" class="section level3 hasAnchor" number="17.3.5">
 <h3><span class="header-section-number">17.3.5</span> Função de distribuição<a href="distribuições-univariadas-no-r.html#função-de-distribuição-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="distribuições-univariadas-no-r.html#cb464-1" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="dv">5</span>  <span class="co"># Parâmetro da Poisson</span></span>
-<span id="cb464-2"><a href="distribuições-univariadas-no-r.html#cb464-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">15</span>    <span class="co"># Valores de x para plotar a distribuição</span></span>
-<span id="cb464-3"><a href="distribuições-univariadas-no-r.html#cb464-3" tabindex="-1"></a></span>
-<span id="cb464-4"><a href="distribuições-univariadas-no-r.html#cb464-4" tabindex="-1"></a><span class="co"># Calcular a FD</span></span>
-<span id="cb464-5"><a href="distribuições-univariadas-no-r.html#cb464-5" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">ppois</span>(x, <span class="at">lambda =</span> lambda)</span>
-<span id="cb464-6"><a href="distribuições-univariadas-no-r.html#cb464-6" tabindex="-1"></a></span>
-<span id="cb464-7"><a href="distribuições-univariadas-no-r.html#cb464-7" tabindex="-1"></a><span class="co"># Plotar a FD</span></span>
-<span id="cb464-8"><a href="distribuições-univariadas-no-r.html#cb464-8" tabindex="-1"></a><span class="fu">plot</span>(x,y, <span class="at">type=</span><span class="st">&quot;s&quot;</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">&quot;blue&quot;</span>,     </span>
-<span id="cb464-9"><a href="distribuições-univariadas-no-r.html#cb464-9" tabindex="-1"></a>  <span class="at">main=</span><span class="fu">TeX</span>(<span class="fu">paste</span>(<span class="st">&quot;Função de Distribuição da $Poisson (lambda =&quot;</span>, lambda, <span class="st">&quot;)$&quot;</span>)),    </span>
-<span id="cb464-10"><a href="distribuições-univariadas-no-r.html#cb464-10" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>,     </span>
-<span id="cb464-11"><a href="distribuições-univariadas-no-r.html#cb464-11" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;F(x)&quot;</span>)</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-121-1.png" width="672" /></p>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="distribuições-univariadas-no-r.html#cb471-1" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="dv">5</span>  <span class="co"># Parâmetro da Poisson</span></span>
+<span id="cb471-2"><a href="distribuições-univariadas-no-r.html#cb471-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">15</span>    <span class="co"># Valores de x para plotar a distribuição</span></span>
+<span id="cb471-3"><a href="distribuições-univariadas-no-r.html#cb471-3" tabindex="-1"></a></span>
+<span id="cb471-4"><a href="distribuições-univariadas-no-r.html#cb471-4" tabindex="-1"></a><span class="co"># Calcular a FD</span></span>
+<span id="cb471-5"><a href="distribuições-univariadas-no-r.html#cb471-5" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">ppois</span>(x, <span class="at">lambda =</span> lambda)</span>
+<span id="cb471-6"><a href="distribuições-univariadas-no-r.html#cb471-6" tabindex="-1"></a></span>
+<span id="cb471-7"><a href="distribuições-univariadas-no-r.html#cb471-7" tabindex="-1"></a><span class="co"># Plotar a FD</span></span>
+<span id="cb471-8"><a href="distribuições-univariadas-no-r.html#cb471-8" tabindex="-1"></a><span class="fu">plot</span>(x,y, <span class="at">type=</span><span class="st">&quot;s&quot;</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">&quot;blue&quot;</span>,     </span>
+<span id="cb471-9"><a href="distribuições-univariadas-no-r.html#cb471-9" tabindex="-1"></a>  <span class="at">main=</span><span class="fu">TeX</span>(<span class="fu">paste</span>(<span class="st">&quot;Função de Distribuição da $Poisson (lambda =&quot;</span>, lambda, <span class="st">&quot;)$&quot;</span>)),    </span>
+<span id="cb471-10"><a href="distribuições-univariadas-no-r.html#cb471-10" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>,     </span>
+<span id="cb471-11"><a href="distribuições-univariadas-no-r.html#cb471-11" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;F(x)&quot;</span>)</span></code></pre></div>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-125-1.png" width="672" /></p>
 </div>
 <div id="função-de-distribuição-empírica-2" class="section level3 hasAnchor" number="17.3.6">
 <h3><span class="header-section-number">17.3.6</span> Função de distribuição empírica<a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="distribuições-univariadas-no-r.html#cb465-1" tabindex="-1"></a><span class="fu">library</span>(latex2exp)</span>
-<span id="cb465-2"><a href="distribuições-univariadas-no-r.html#cb465-2" tabindex="-1"></a><span class="co"># Definir os parâmetros da distribuição de Poisson</span></span>
-<span id="cb465-3"><a href="distribuições-univariadas-no-r.html#cb465-3" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb465-4"><a href="distribuições-univariadas-no-r.html#cb465-4" tabindex="-1"></a></span>
-<span id="cb465-5"><a href="distribuições-univariadas-no-r.html#cb465-5" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="dv">1000</span>,<span class="at">lambda =</span> lambda)</span>
-<span id="cb465-6"><a href="distribuições-univariadas-no-r.html#cb465-6" tabindex="-1"></a>Fn <span class="ot">&lt;-</span> <span class="fu">ecdf</span>(dados)</span>
-<span id="cb465-7"><a href="distribuições-univariadas-no-r.html#cb465-7" tabindex="-1"></a></span>
-<span id="cb465-8"><a href="distribuições-univariadas-no-r.html#cb465-8" tabindex="-1"></a><span class="co"># Plotar CDF</span></span>
-<span id="cb465-9"><a href="distribuições-univariadas-no-r.html#cb465-9" tabindex="-1"></a><span class="fu">plot</span>(Fn, <span class="at">main=</span><span class="fu">TeX</span>(<span class="st">&quot;Função de Distribuição Empírica da $Poisson(lambda = 5)$&quot;</span>),</span>
-<span id="cb465-10"><a href="distribuições-univariadas-no-r.html#cb465-10" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>,     </span>
-<span id="cb465-11"><a href="distribuições-univariadas-no-r.html#cb465-11" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;Fn(x)&quot;</span>,      </span>
-<span id="cb465-12"><a href="distribuições-univariadas-no-r.html#cb465-12" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-122-1.png" width="672" /></p>
-<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="distribuições-univariadas-no-r.html#cb466-1" tabindex="-1"></a><span class="co"># OU</span></span>
-<span id="cb466-2"><a href="distribuições-univariadas-no-r.html#cb466-2" tabindex="-1"></a><span class="co">#plot.ecdf(dados)</span></span>
-<span id="cb466-3"><a href="distribuições-univariadas-no-r.html#cb466-3" tabindex="-1"></a></span>
-<span id="cb466-4"><a href="distribuições-univariadas-no-r.html#cb466-4" tabindex="-1"></a><span class="fu">plot</span>(Fn, <span class="at">main=</span><span class="st">&quot;Função de Distribuição Empírica&quot;</span>,</span>
-<span id="cb466-5"><a href="distribuições-univariadas-no-r.html#cb466-5" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;x&quot;</span>,</span>
-<span id="cb466-6"><a href="distribuições-univariadas-no-r.html#cb466-6" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Fn&quot;</span>,</span>
-<span id="cb466-7"><a href="distribuições-univariadas-no-r.html#cb466-7" tabindex="-1"></a>     <span class="at">col=</span><span class="st">&quot;blue&quot;</span>,</span>
-<span id="cb466-8"><a href="distribuições-univariadas-no-r.html#cb466-8" tabindex="-1"></a>     <span class="at">verticals =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-122-2.png" width="672" /></p>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="distribuições-univariadas-no-r.html#cb472-1" tabindex="-1"></a><span class="fu">library</span>(latex2exp)</span>
+<span id="cb472-2"><a href="distribuições-univariadas-no-r.html#cb472-2" tabindex="-1"></a><span class="co"># Definir os parâmetros da distribuição de Poisson</span></span>
+<span id="cb472-3"><a href="distribuições-univariadas-no-r.html#cb472-3" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb472-4"><a href="distribuições-univariadas-no-r.html#cb472-4" tabindex="-1"></a></span>
+<span id="cb472-5"><a href="distribuições-univariadas-no-r.html#cb472-5" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="dv">1000</span>,<span class="at">lambda =</span> lambda)</span>
+<span id="cb472-6"><a href="distribuições-univariadas-no-r.html#cb472-6" tabindex="-1"></a>Fn <span class="ot">&lt;-</span> <span class="fu">ecdf</span>(dados)</span>
+<span id="cb472-7"><a href="distribuições-univariadas-no-r.html#cb472-7" tabindex="-1"></a></span>
+<span id="cb472-8"><a href="distribuições-univariadas-no-r.html#cb472-8" tabindex="-1"></a><span class="co"># Plotar CDF</span></span>
+<span id="cb472-9"><a href="distribuições-univariadas-no-r.html#cb472-9" tabindex="-1"></a><span class="fu">plot</span>(Fn, <span class="at">main=</span><span class="fu">TeX</span>(<span class="st">&quot;Função de Distribuição Empírica da $Poisson(lambda = 5)$&quot;</span>),</span>
+<span id="cb472-10"><a href="distribuições-univariadas-no-r.html#cb472-10" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>,     </span>
+<span id="cb472-11"><a href="distribuições-univariadas-no-r.html#cb472-11" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;Fn(x)&quot;</span>,      </span>
+<span id="cb472-12"><a href="distribuições-univariadas-no-r.html#cb472-12" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-126-1.png" width="672" /></p>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="distribuições-univariadas-no-r.html#cb473-1" tabindex="-1"></a><span class="co"># OU</span></span>
+<span id="cb473-2"><a href="distribuições-univariadas-no-r.html#cb473-2" tabindex="-1"></a><span class="co">#plot.ecdf(dados)</span></span>
+<span id="cb473-3"><a href="distribuições-univariadas-no-r.html#cb473-3" tabindex="-1"></a></span>
+<span id="cb473-4"><a href="distribuições-univariadas-no-r.html#cb473-4" tabindex="-1"></a><span class="fu">plot</span>(Fn, <span class="at">main=</span><span class="st">&quot;Função de Distribuição Empírica&quot;</span>,</span>
+<span id="cb473-5"><a href="distribuições-univariadas-no-r.html#cb473-5" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;x&quot;</span>,</span>
+<span id="cb473-6"><a href="distribuições-univariadas-no-r.html#cb473-6" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Fn&quot;</span>,</span>
+<span id="cb473-7"><a href="distribuições-univariadas-no-r.html#cb473-7" tabindex="-1"></a>     <span class="at">col=</span><span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb473-8"><a href="distribuições-univariadas-no-r.html#cb473-8" tabindex="-1"></a>     <span class="at">verticals =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-126-2.png" width="672" /></p>
 <p><strong>Cálculo de probabilidades</strong>: Seja <span class="math inline">\(X\sim\text{Poisson}(\lambda=5)\)</span>.</p>
 <p><span class="math inline">\(P(X\leq 4) \to\)</span> <code>ppois(4,5)</code> = 0.4405</p>
 <p><span class="math inline">\(P(X \leq 4) \to\)</span> <code>Fn(4)</code> = 0.433</p>
@@ -683,101 +684,101 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="função-densidade-de-probabilidade" class="section level3 hasAnchor" number="17.4.2">
 <h3><span class="header-section-number">17.4.2</span> Função densidade de probabilidade<a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="distribuições-univariadas-no-r.html#cb467-1" tabindex="-1"></a><span class="co"># Gerar os valores x para a densidade teórica</span></span>
-<span id="cb467-2"><a href="distribuições-univariadas-no-r.html#cb467-2" tabindex="-1"></a>x_vals <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
-<span id="cb467-3"><a href="distribuições-univariadas-no-r.html#cb467-3" tabindex="-1"></a></span>
-<span id="cb467-4"><a href="distribuições-univariadas-no-r.html#cb467-4" tabindex="-1"></a><span class="co"># Calcular a densidade teórica para os valores x</span></span>
-<span id="cb467-5"><a href="distribuições-univariadas-no-r.html#cb467-5" tabindex="-1"></a>y_vals <span class="ot">&lt;-</span> <span class="fu">dunif</span>(x_vals, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
-<span id="cb467-6"><a href="distribuições-univariadas-no-r.html#cb467-6" tabindex="-1"></a></span>
-<span id="cb467-7"><a href="distribuições-univariadas-no-r.html#cb467-7" tabindex="-1"></a><span class="co"># Desenhar o gráfico da função densidade de probabilidade</span></span>
-<span id="cb467-8"><a href="distribuições-univariadas-no-r.html#cb467-8" tabindex="-1"></a><span class="fu">plot</span>(x_vals, y_vals, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, </span>
-<span id="cb467-9"><a href="distribuições-univariadas-no-r.html#cb467-9" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, </span>
-<span id="cb467-10"><a href="distribuições-univariadas-no-r.html#cb467-10" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Densidade da Distribuição Uniforme (0,1)&quot;</span>,</span>
-<span id="cb467-11"><a href="distribuições-univariadas-no-r.html#cb467-11" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Valor&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Densidade&quot;</span>)</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-123-1.png" width="672" /></p>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="distribuições-univariadas-no-r.html#cb474-1" tabindex="-1"></a><span class="co"># Gerar os valores x para a densidade teórica</span></span>
+<span id="cb474-2"><a href="distribuições-univariadas-no-r.html#cb474-2" tabindex="-1"></a>x_vals <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
+<span id="cb474-3"><a href="distribuições-univariadas-no-r.html#cb474-3" tabindex="-1"></a></span>
+<span id="cb474-4"><a href="distribuições-univariadas-no-r.html#cb474-4" tabindex="-1"></a><span class="co"># Calcular a densidade teórica para os valores x</span></span>
+<span id="cb474-5"><a href="distribuições-univariadas-no-r.html#cb474-5" tabindex="-1"></a>y_vals <span class="ot">&lt;-</span> <span class="fu">dunif</span>(x_vals, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
+<span id="cb474-6"><a href="distribuições-univariadas-no-r.html#cb474-6" tabindex="-1"></a></span>
+<span id="cb474-7"><a href="distribuições-univariadas-no-r.html#cb474-7" tabindex="-1"></a><span class="co"># Desenhar o gráfico da função densidade de probabilidade</span></span>
+<span id="cb474-8"><a href="distribuições-univariadas-no-r.html#cb474-8" tabindex="-1"></a><span class="fu">plot</span>(x_vals, y_vals, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, </span>
+<span id="cb474-9"><a href="distribuições-univariadas-no-r.html#cb474-9" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, </span>
+<span id="cb474-10"><a href="distribuições-univariadas-no-r.html#cb474-10" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Densidade da Distribuição Uniforme (0,1)&quot;</span>,</span>
+<span id="cb474-11"><a href="distribuições-univariadas-no-r.html#cb474-11" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Valor&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Densidade&quot;</span>)</span></code></pre></div>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-127-1.png" width="672" /></p>
 </div>
 <div id="função-densidade-de-probabilidade-simulação" class="section level3 hasAnchor" number="17.4.3">
 <h3><span class="header-section-number">17.4.3</span> Função densidade de probabilidade (simulação)<a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade-simulação" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="distribuições-univariadas-no-r.html#cb468-1" tabindex="-1"></a><span class="co"># Definir o tamanho da amostra</span></span>
-<span id="cb468-2"><a href="distribuições-univariadas-no-r.html#cb468-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
-<span id="cb468-3"><a href="distribuições-univariadas-no-r.html#cb468-3" tabindex="-1"></a></span>
-<span id="cb468-4"><a href="distribuições-univariadas-no-r.html#cb468-4" tabindex="-1"></a><span class="co"># Fixar a semente para reprodutibilidade</span></span>
-<span id="cb468-5"><a href="distribuições-univariadas-no-r.html#cb468-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb468-6"><a href="distribuições-univariadas-no-r.html#cb468-6" tabindex="-1"></a></span>
-<span id="cb468-7"><a href="distribuições-univariadas-no-r.html#cb468-7" tabindex="-1"></a><span class="co"># Gerar a variável aleatória com distribuição uniforme (0,1)</span></span>
-<span id="cb468-8"><a href="distribuições-univariadas-no-r.html#cb468-8" tabindex="-1"></a>uniform_data <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
-<span id="cb468-9"><a href="distribuições-univariadas-no-r.html#cb468-9" tabindex="-1"></a></span>
-<span id="cb468-10"><a href="distribuições-univariadas-no-r.html#cb468-10" tabindex="-1"></a><span class="co"># Criar um histograma da amostra </span></span>
-<span id="cb468-11"><a href="distribuições-univariadas-no-r.html#cb468-11" tabindex="-1"></a><span class="fu">hist</span>(uniform_data, <span class="at">probability =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb468-12"><a href="distribuições-univariadas-no-r.html#cb468-12" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Histograma da Densidade - Uniforme(0,1)&quot;</span>, </span>
-<span id="cb468-13"><a href="distribuições-univariadas-no-r.html#cb468-13" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Valor&quot;</span>, </span>
-<span id="cb468-14"><a href="distribuições-univariadas-no-r.html#cb468-14" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Densidade&quot;</span>, </span>
-<span id="cb468-15"><a href="distribuições-univariadas-no-r.html#cb468-15" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>, </span>
-<span id="cb468-16"><a href="distribuições-univariadas-no-r.html#cb468-16" tabindex="-1"></a>     <span class="at">border =</span> <span class="st">&quot;darkblue&quot;</span>)</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-124-1.png" width="672" /></p>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="distribuições-univariadas-no-r.html#cb475-1" tabindex="-1"></a><span class="co"># Definir o tamanho da amostra</span></span>
+<span id="cb475-2"><a href="distribuições-univariadas-no-r.html#cb475-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb475-3"><a href="distribuições-univariadas-no-r.html#cb475-3" tabindex="-1"></a></span>
+<span id="cb475-4"><a href="distribuições-univariadas-no-r.html#cb475-4" tabindex="-1"></a><span class="co"># Fixar a semente para reprodutibilidade</span></span>
+<span id="cb475-5"><a href="distribuições-univariadas-no-r.html#cb475-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb475-6"><a href="distribuições-univariadas-no-r.html#cb475-6" tabindex="-1"></a></span>
+<span id="cb475-7"><a href="distribuições-univariadas-no-r.html#cb475-7" tabindex="-1"></a><span class="co"># Gerar a variável aleatória com distribuição uniforme (0,1)</span></span>
+<span id="cb475-8"><a href="distribuições-univariadas-no-r.html#cb475-8" tabindex="-1"></a>uniform_data <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
+<span id="cb475-9"><a href="distribuições-univariadas-no-r.html#cb475-9" tabindex="-1"></a></span>
+<span id="cb475-10"><a href="distribuições-univariadas-no-r.html#cb475-10" tabindex="-1"></a><span class="co"># Criar um histograma da amostra </span></span>
+<span id="cb475-11"><a href="distribuições-univariadas-no-r.html#cb475-11" tabindex="-1"></a><span class="fu">hist</span>(uniform_data, <span class="at">probability =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb475-12"><a href="distribuições-univariadas-no-r.html#cb475-12" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Histograma da Densidade - Uniforme(0,1)&quot;</span>, </span>
+<span id="cb475-13"><a href="distribuições-univariadas-no-r.html#cb475-13" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Valor&quot;</span>, </span>
+<span id="cb475-14"><a href="distribuições-univariadas-no-r.html#cb475-14" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Densidade&quot;</span>, </span>
+<span id="cb475-15"><a href="distribuições-univariadas-no-r.html#cb475-15" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>, </span>
+<span id="cb475-16"><a href="distribuições-univariadas-no-r.html#cb475-16" tabindex="-1"></a>     <span class="at">border =</span> <span class="st">&quot;darkblue&quot;</span>)</span></code></pre></div>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
 </div>
 <div id="comparação-2" class="section level3 hasAnchor" number="17.4.4">
 <h3><span class="header-section-number">17.4.4</span> Comparação<a href="distribuições-univariadas-no-r.html#comparação-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="distribuições-univariadas-no-r.html#cb469-1" tabindex="-1"></a><span class="co"># Definir o tamanho da amostra</span></span>
-<span id="cb469-2"><a href="distribuições-univariadas-no-r.html#cb469-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
-<span id="cb469-3"><a href="distribuições-univariadas-no-r.html#cb469-3" tabindex="-1"></a></span>
-<span id="cb469-4"><a href="distribuições-univariadas-no-r.html#cb469-4" tabindex="-1"></a><span class="co"># Fixar a semente para reprodutibilidade</span></span>
-<span id="cb469-5"><a href="distribuições-univariadas-no-r.html#cb469-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb469-6"><a href="distribuições-univariadas-no-r.html#cb469-6" tabindex="-1"></a></span>
-<span id="cb469-7"><a href="distribuições-univariadas-no-r.html#cb469-7" tabindex="-1"></a><span class="co"># Gerar a variável aleatória com distribuição uniforme (0,1)</span></span>
-<span id="cb469-8"><a href="distribuições-univariadas-no-r.html#cb469-8" tabindex="-1"></a>uniform_data <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
-<span id="cb469-9"><a href="distribuições-univariadas-no-r.html#cb469-9" tabindex="-1"></a></span>
-<span id="cb469-10"><a href="distribuições-univariadas-no-r.html#cb469-10" tabindex="-1"></a><span class="co"># Criar um histograma da amostra com densidade</span></span>
-<span id="cb469-11"><a href="distribuições-univariadas-no-r.html#cb469-11" tabindex="-1"></a><span class="fu">hist</span>(uniform_data, <span class="at">probability =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb469-12"><a href="distribuições-univariadas-no-r.html#cb469-12" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Comparação da Densidade - Uniforme(0,1)&quot;</span>, </span>
-<span id="cb469-13"><a href="distribuições-univariadas-no-r.html#cb469-13" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Valor&quot;</span>, </span>
-<span id="cb469-14"><a href="distribuições-univariadas-no-r.html#cb469-14" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Densidade&quot;</span>, </span>
-<span id="cb469-15"><a href="distribuições-univariadas-no-r.html#cb469-15" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>, </span>
-<span id="cb469-16"><a href="distribuições-univariadas-no-r.html#cb469-16" tabindex="-1"></a>     <span class="at">border =</span> <span class="st">&quot;darkblue&quot;</span>)</span>
-<span id="cb469-17"><a href="distribuições-univariadas-no-r.html#cb469-17" tabindex="-1"></a></span>
-<span id="cb469-18"><a href="distribuições-univariadas-no-r.html#cb469-18" tabindex="-1"></a><span class="co"># Adicionar a curva da densidade teórica</span></span>
-<span id="cb469-19"><a href="distribuições-univariadas-no-r.html#cb469-19" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dunif</span>(x, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>), </span>
-<span id="cb469-20"><a href="distribuições-univariadas-no-r.html#cb469-20" tabindex="-1"></a>      <span class="at">add =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb469-21"><a href="distribuições-univariadas-no-r.html#cb469-21" tabindex="-1"></a>      <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, </span>
-<span id="cb469-22"><a href="distribuições-univariadas-no-r.html#cb469-22" tabindex="-1"></a>      <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-125-1.png" width="672" /></p>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="distribuições-univariadas-no-r.html#cb476-1" tabindex="-1"></a><span class="co"># Definir o tamanho da amostra</span></span>
+<span id="cb476-2"><a href="distribuições-univariadas-no-r.html#cb476-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb476-3"><a href="distribuições-univariadas-no-r.html#cb476-3" tabindex="-1"></a></span>
+<span id="cb476-4"><a href="distribuições-univariadas-no-r.html#cb476-4" tabindex="-1"></a><span class="co"># Fixar a semente para reprodutibilidade</span></span>
+<span id="cb476-5"><a href="distribuições-univariadas-no-r.html#cb476-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb476-6"><a href="distribuições-univariadas-no-r.html#cb476-6" tabindex="-1"></a></span>
+<span id="cb476-7"><a href="distribuições-univariadas-no-r.html#cb476-7" tabindex="-1"></a><span class="co"># Gerar a variável aleatória com distribuição uniforme (0,1)</span></span>
+<span id="cb476-8"><a href="distribuições-univariadas-no-r.html#cb476-8" tabindex="-1"></a>uniform_data <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
+<span id="cb476-9"><a href="distribuições-univariadas-no-r.html#cb476-9" tabindex="-1"></a></span>
+<span id="cb476-10"><a href="distribuições-univariadas-no-r.html#cb476-10" tabindex="-1"></a><span class="co"># Criar um histograma da amostra com densidade</span></span>
+<span id="cb476-11"><a href="distribuições-univariadas-no-r.html#cb476-11" tabindex="-1"></a><span class="fu">hist</span>(uniform_data, <span class="at">probability =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb476-12"><a href="distribuições-univariadas-no-r.html#cb476-12" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Comparação da Densidade - Uniforme(0,1)&quot;</span>, </span>
+<span id="cb476-13"><a href="distribuições-univariadas-no-r.html#cb476-13" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Valor&quot;</span>, </span>
+<span id="cb476-14"><a href="distribuições-univariadas-no-r.html#cb476-14" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Densidade&quot;</span>, </span>
+<span id="cb476-15"><a href="distribuições-univariadas-no-r.html#cb476-15" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>, </span>
+<span id="cb476-16"><a href="distribuições-univariadas-no-r.html#cb476-16" tabindex="-1"></a>     <span class="at">border =</span> <span class="st">&quot;darkblue&quot;</span>)</span>
+<span id="cb476-17"><a href="distribuições-univariadas-no-r.html#cb476-17" tabindex="-1"></a></span>
+<span id="cb476-18"><a href="distribuições-univariadas-no-r.html#cb476-18" tabindex="-1"></a><span class="co"># Adicionar a curva da densidade teórica</span></span>
+<span id="cb476-19"><a href="distribuições-univariadas-no-r.html#cb476-19" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dunif</span>(x, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>), </span>
+<span id="cb476-20"><a href="distribuições-univariadas-no-r.html#cb476-20" tabindex="-1"></a>      <span class="at">add =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb476-21"><a href="distribuições-univariadas-no-r.html#cb476-21" tabindex="-1"></a>      <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, </span>
+<span id="cb476-22"><a href="distribuições-univariadas-no-r.html#cb476-22" tabindex="-1"></a>      <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
 </div>
 <div id="função-de-distribuição-2" class="section level3 hasAnchor" number="17.4.5">
 <h3><span class="header-section-number">17.4.5</span> Função de distribuição<a href="distribuições-univariadas-no-r.html#função-de-distribuição-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="distribuições-univariadas-no-r.html#cb470-1" tabindex="-1"></a><span class="co"># Gerar os valores x para a FD teórica</span></span>
-<span id="cb470-2"><a href="distribuições-univariadas-no-r.html#cb470-2" tabindex="-1"></a>x_vals <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
-<span id="cb470-3"><a href="distribuições-univariadas-no-r.html#cb470-3" tabindex="-1"></a></span>
-<span id="cb470-4"><a href="distribuições-univariadas-no-r.html#cb470-4" tabindex="-1"></a><span class="co"># Calcular a FD teórica para os valores x</span></span>
-<span id="cb470-5"><a href="distribuições-univariadas-no-r.html#cb470-5" tabindex="-1"></a>y_vals <span class="ot">&lt;-</span> <span class="fu">punif</span>(x_vals, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
-<span id="cb470-6"><a href="distribuições-univariadas-no-r.html#cb470-6" tabindex="-1"></a></span>
-<span id="cb470-7"><a href="distribuições-univariadas-no-r.html#cb470-7" tabindex="-1"></a><span class="co"># Desenhar o gráfico da função de distribuição acumulada</span></span>
-<span id="cb470-8"><a href="distribuições-univariadas-no-r.html#cb470-8" tabindex="-1"></a><span class="fu">plot</span>(x_vals, y_vals, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, </span>
-<span id="cb470-9"><a href="distribuições-univariadas-no-r.html#cb470-9" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, </span>
-<span id="cb470-10"><a href="distribuições-univariadas-no-r.html#cb470-10" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Função de Distribuição Uniforme (0,1)&quot;</span>,</span>
-<span id="cb470-11"><a href="distribuições-univariadas-no-r.html#cb470-11" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Valor&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;F(x)&quot;</span>)</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-126-1.png" width="672" /></p>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="distribuições-univariadas-no-r.html#cb477-1" tabindex="-1"></a><span class="co"># Gerar os valores x para a FD teórica</span></span>
+<span id="cb477-2"><a href="distribuições-univariadas-no-r.html#cb477-2" tabindex="-1"></a>x_vals <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
+<span id="cb477-3"><a href="distribuições-univariadas-no-r.html#cb477-3" tabindex="-1"></a></span>
+<span id="cb477-4"><a href="distribuições-univariadas-no-r.html#cb477-4" tabindex="-1"></a><span class="co"># Calcular a FD teórica para os valores x</span></span>
+<span id="cb477-5"><a href="distribuições-univariadas-no-r.html#cb477-5" tabindex="-1"></a>y_vals <span class="ot">&lt;-</span> <span class="fu">punif</span>(x_vals, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
+<span id="cb477-6"><a href="distribuições-univariadas-no-r.html#cb477-6" tabindex="-1"></a></span>
+<span id="cb477-7"><a href="distribuições-univariadas-no-r.html#cb477-7" tabindex="-1"></a><span class="co"># Desenhar o gráfico da função de distribuição acumulada</span></span>
+<span id="cb477-8"><a href="distribuições-univariadas-no-r.html#cb477-8" tabindex="-1"></a><span class="fu">plot</span>(x_vals, y_vals, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, </span>
+<span id="cb477-9"><a href="distribuições-univariadas-no-r.html#cb477-9" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, </span>
+<span id="cb477-10"><a href="distribuições-univariadas-no-r.html#cb477-10" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Função de Distribuição Uniforme (0,1)&quot;</span>,</span>
+<span id="cb477-11"><a href="distribuições-univariadas-no-r.html#cb477-11" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Valor&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;F(x)&quot;</span>)</span></code></pre></div>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-130-1.png" width="672" /></p>
 </div>
 <div id="função-de-distribuição-empírica-3" class="section level3 hasAnchor" number="17.4.6">
 <h3><span class="header-section-number">17.4.6</span> Função de distribuição empírica<a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="distribuições-univariadas-no-r.html#cb471-1" tabindex="-1"></a><span class="co"># Definir o tamanho da amostra</span></span>
-<span id="cb471-2"><a href="distribuições-univariadas-no-r.html#cb471-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
-<span id="cb471-3"><a href="distribuições-univariadas-no-r.html#cb471-3" tabindex="-1"></a></span>
-<span id="cb471-4"><a href="distribuições-univariadas-no-r.html#cb471-4" tabindex="-1"></a><span class="co"># Fixar a semente para reprodutibilidade</span></span>
-<span id="cb471-5"><a href="distribuições-univariadas-no-r.html#cb471-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb471-6"><a href="distribuições-univariadas-no-r.html#cb471-6" tabindex="-1"></a></span>
-<span id="cb471-7"><a href="distribuições-univariadas-no-r.html#cb471-7" tabindex="-1"></a><span class="co"># Gerar a variável aleatória com distribuição uniforme (0,1)</span></span>
-<span id="cb471-8"><a href="distribuições-univariadas-no-r.html#cb471-8" tabindex="-1"></a>uniform_data <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
-<span id="cb471-9"><a href="distribuições-univariadas-no-r.html#cb471-9" tabindex="-1"></a></span>
-<span id="cb471-10"><a href="distribuições-univariadas-no-r.html#cb471-10" tabindex="-1"></a><span class="co"># Função de distribuição empírica</span></span>
-<span id="cb471-11"><a href="distribuições-univariadas-no-r.html#cb471-11" tabindex="-1"></a>Fn <span class="ot">&lt;-</span> <span class="fu">ecdf</span>(uniform_data)</span>
-<span id="cb471-12"><a href="distribuições-univariadas-no-r.html#cb471-12" tabindex="-1"></a></span>
-<span id="cb471-13"><a href="distribuições-univariadas-no-r.html#cb471-13" tabindex="-1"></a><span class="fu">plot</span>(Fn, <span class="at">main=</span><span class="st">&quot;Função de Distribuição Empírica&quot;</span>,</span>
-<span id="cb471-14"><a href="distribuições-univariadas-no-r.html#cb471-14" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;x&quot;</span>,</span>
-<span id="cb471-15"><a href="distribuições-univariadas-no-r.html#cb471-15" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Fn&quot;</span>,</span>
-<span id="cb471-16"><a href="distribuições-univariadas-no-r.html#cb471-16" tabindex="-1"></a>     <span class="at">col=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-127-1.png" width="672" /></p>
-<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="distribuições-univariadas-no-r.html#cb472-1" tabindex="-1"></a><span class="co"># OU</span></span>
-<span id="cb472-2"><a href="distribuições-univariadas-no-r.html#cb472-2" tabindex="-1"></a><span class="co">#plot.ecdf(uniform_data)</span></span></code></pre></div>
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="distribuições-univariadas-no-r.html#cb478-1" tabindex="-1"></a><span class="co"># Definir o tamanho da amostra</span></span>
+<span id="cb478-2"><a href="distribuições-univariadas-no-r.html#cb478-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb478-3"><a href="distribuições-univariadas-no-r.html#cb478-3" tabindex="-1"></a></span>
+<span id="cb478-4"><a href="distribuições-univariadas-no-r.html#cb478-4" tabindex="-1"></a><span class="co"># Fixar a semente para reprodutibilidade</span></span>
+<span id="cb478-5"><a href="distribuições-univariadas-no-r.html#cb478-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb478-6"><a href="distribuições-univariadas-no-r.html#cb478-6" tabindex="-1"></a></span>
+<span id="cb478-7"><a href="distribuições-univariadas-no-r.html#cb478-7" tabindex="-1"></a><span class="co"># Gerar a variável aleatória com distribuição uniforme (0,1)</span></span>
+<span id="cb478-8"><a href="distribuições-univariadas-no-r.html#cb478-8" tabindex="-1"></a>uniform_data <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
+<span id="cb478-9"><a href="distribuições-univariadas-no-r.html#cb478-9" tabindex="-1"></a></span>
+<span id="cb478-10"><a href="distribuições-univariadas-no-r.html#cb478-10" tabindex="-1"></a><span class="co"># Função de distribuição empírica</span></span>
+<span id="cb478-11"><a href="distribuições-univariadas-no-r.html#cb478-11" tabindex="-1"></a>Fn <span class="ot">&lt;-</span> <span class="fu">ecdf</span>(uniform_data)</span>
+<span id="cb478-12"><a href="distribuições-univariadas-no-r.html#cb478-12" tabindex="-1"></a></span>
+<span id="cb478-13"><a href="distribuições-univariadas-no-r.html#cb478-13" tabindex="-1"></a><span class="fu">plot</span>(Fn, <span class="at">main=</span><span class="st">&quot;Função de Distribuição Empírica&quot;</span>,</span>
+<span id="cb478-14"><a href="distribuições-univariadas-no-r.html#cb478-14" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;x&quot;</span>,</span>
+<span id="cb478-15"><a href="distribuições-univariadas-no-r.html#cb478-15" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Fn&quot;</span>,</span>
+<span id="cb478-16"><a href="distribuições-univariadas-no-r.html#cb478-16" tabindex="-1"></a>     <span class="at">col=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="distribuições-univariadas-no-r.html#cb479-1" tabindex="-1"></a><span class="co"># OU</span></span>
+<span id="cb479-2"><a href="distribuições-univariadas-no-r.html#cb479-2" tabindex="-1"></a><span class="co">#plot.ecdf(uniform_data)</span></span></code></pre></div>
 </div>
 </div>
 <div id="gerando-uma-variável-aleatória-com-distribuição-exponencial" class="section level2 hasAnchor" number="17.5">
@@ -790,99 +791,99 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="função-densidade-de-probabilidade-teórica" class="section level3 hasAnchor" number="17.5.2">
 <h3><span class="header-section-number">17.5.2</span> Função densidade de probabilidade (teórica)<a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade-teórica" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="distribuições-univariadas-no-r.html#cb473-1" tabindex="-1"></a><span class="co"># Gerar os valores x para a densidade teórica</span></span>
-<span id="cb473-2"><a href="distribuições-univariadas-no-r.html#cb473-2" tabindex="-1"></a>x_vals <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
-<span id="cb473-3"><a href="distribuições-univariadas-no-r.html#cb473-3" tabindex="-1"></a></span>
-<span id="cb473-4"><a href="distribuições-univariadas-no-r.html#cb473-4" tabindex="-1"></a><span class="co"># Calcular a densidade teórica para os valores x</span></span>
-<span id="cb473-5"><a href="distribuições-univariadas-no-r.html#cb473-5" tabindex="-1"></a>y_vals <span class="ot">&lt;-</span> <span class="fu">dexp</span>(x_vals, <span class="at">rate=</span><span class="dv">1</span>)</span>
-<span id="cb473-6"><a href="distribuições-univariadas-no-r.html#cb473-6" tabindex="-1"></a></span>
-<span id="cb473-7"><a href="distribuições-univariadas-no-r.html#cb473-7" tabindex="-1"></a><span class="co"># Desenhar o gráfico da função densidade de probabilidade</span></span>
-<span id="cb473-8"><a href="distribuições-univariadas-no-r.html#cb473-8" tabindex="-1"></a><span class="fu">plot</span>(x_vals, y_vals, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, </span>
-<span id="cb473-9"><a href="distribuições-univariadas-no-r.html#cb473-9" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, </span>
-<span id="cb473-10"><a href="distribuições-univariadas-no-r.html#cb473-10" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Densidade da Distribuição Exponencial(1)&quot;</span>,</span>
-<span id="cb473-11"><a href="distribuições-univariadas-no-r.html#cb473-11" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Valor&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Densidade&quot;</span>)</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="distribuições-univariadas-no-r.html#cb480-1" tabindex="-1"></a><span class="co"># Gerar os valores x para a densidade teórica</span></span>
+<span id="cb480-2"><a href="distribuições-univariadas-no-r.html#cb480-2" tabindex="-1"></a>x_vals <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
+<span id="cb480-3"><a href="distribuições-univariadas-no-r.html#cb480-3" tabindex="-1"></a></span>
+<span id="cb480-4"><a href="distribuições-univariadas-no-r.html#cb480-4" tabindex="-1"></a><span class="co"># Calcular a densidade teórica para os valores x</span></span>
+<span id="cb480-5"><a href="distribuições-univariadas-no-r.html#cb480-5" tabindex="-1"></a>y_vals <span class="ot">&lt;-</span> <span class="fu">dexp</span>(x_vals, <span class="at">rate=</span><span class="dv">1</span>)</span>
+<span id="cb480-6"><a href="distribuições-univariadas-no-r.html#cb480-6" tabindex="-1"></a></span>
+<span id="cb480-7"><a href="distribuições-univariadas-no-r.html#cb480-7" tabindex="-1"></a><span class="co"># Desenhar o gráfico da função densidade de probabilidade</span></span>
+<span id="cb480-8"><a href="distribuições-univariadas-no-r.html#cb480-8" tabindex="-1"></a><span class="fu">plot</span>(x_vals, y_vals, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, </span>
+<span id="cb480-9"><a href="distribuições-univariadas-no-r.html#cb480-9" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, </span>
+<span id="cb480-10"><a href="distribuições-univariadas-no-r.html#cb480-10" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Densidade da Distribuição Exponencial(1)&quot;</span>,</span>
+<span id="cb480-11"><a href="distribuições-univariadas-no-r.html#cb480-11" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Valor&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Densidade&quot;</span>)</span></code></pre></div>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-132-1.png" width="672" /></p>
 </div>
 <div id="função-densidade-de-probabilidade-simulação-1" class="section level3 hasAnchor" number="17.5.3">
 <h3><span class="header-section-number">17.5.3</span> Função densidade de probabilidade (simulação)<a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade-simulação-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="distribuições-univariadas-no-r.html#cb474-1" tabindex="-1"></a><span class="co"># Definir o tamanho da amostra</span></span>
-<span id="cb474-2"><a href="distribuições-univariadas-no-r.html#cb474-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
-<span id="cb474-3"><a href="distribuições-univariadas-no-r.html#cb474-3" tabindex="-1"></a></span>
-<span id="cb474-4"><a href="distribuições-univariadas-no-r.html#cb474-4" tabindex="-1"></a><span class="co"># Fixar a semente para reprodutibilidade</span></span>
-<span id="cb474-5"><a href="distribuições-univariadas-no-r.html#cb474-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb474-6"><a href="distribuições-univariadas-no-r.html#cb474-6" tabindex="-1"></a></span>
-<span id="cb474-7"><a href="distribuições-univariadas-no-r.html#cb474-7" tabindex="-1"></a><span class="co"># Gerar a variável aleatória com distribuição exponencial(1)</span></span>
-<span id="cb474-8"><a href="distribuições-univariadas-no-r.html#cb474-8" tabindex="-1"></a>expo_data <span class="ot">&lt;-</span> <span class="fu">rexp</span>(n, <span class="at">rate=</span><span class="dv">1</span>)</span>
-<span id="cb474-9"><a href="distribuições-univariadas-no-r.html#cb474-9" tabindex="-1"></a></span>
-<span id="cb474-10"><a href="distribuições-univariadas-no-r.html#cb474-10" tabindex="-1"></a><span class="co"># Criar um histograma da amostra </span></span>
-<span id="cb474-11"><a href="distribuições-univariadas-no-r.html#cb474-11" tabindex="-1"></a><span class="fu">hist</span>(expo_data, <span class="at">probability =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb474-12"><a href="distribuições-univariadas-no-r.html#cb474-12" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Histograma da Densidade - Exponencial(1)&quot;</span>, </span>
-<span id="cb474-13"><a href="distribuições-univariadas-no-r.html#cb474-13" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Valor&quot;</span>, </span>
-<span id="cb474-14"><a href="distribuições-univariadas-no-r.html#cb474-14" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Densidade&quot;</span>, </span>
-<span id="cb474-15"><a href="distribuições-univariadas-no-r.html#cb474-15" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>, </span>
-<span id="cb474-16"><a href="distribuições-univariadas-no-r.html#cb474-16" tabindex="-1"></a>     <span class="at">border =</span> <span class="st">&quot;darkblue&quot;</span>)</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="distribuições-univariadas-no-r.html#cb481-1" tabindex="-1"></a><span class="co"># Definir o tamanho da amostra</span></span>
+<span id="cb481-2"><a href="distribuições-univariadas-no-r.html#cb481-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb481-3"><a href="distribuições-univariadas-no-r.html#cb481-3" tabindex="-1"></a></span>
+<span id="cb481-4"><a href="distribuições-univariadas-no-r.html#cb481-4" tabindex="-1"></a><span class="co"># Fixar a semente para reprodutibilidade</span></span>
+<span id="cb481-5"><a href="distribuições-univariadas-no-r.html#cb481-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb481-6"><a href="distribuições-univariadas-no-r.html#cb481-6" tabindex="-1"></a></span>
+<span id="cb481-7"><a href="distribuições-univariadas-no-r.html#cb481-7" tabindex="-1"></a><span class="co"># Gerar a variável aleatória com distribuição exponencial(1)</span></span>
+<span id="cb481-8"><a href="distribuições-univariadas-no-r.html#cb481-8" tabindex="-1"></a>expo_data <span class="ot">&lt;-</span> <span class="fu">rexp</span>(n, <span class="at">rate=</span><span class="dv">1</span>)</span>
+<span id="cb481-9"><a href="distribuições-univariadas-no-r.html#cb481-9" tabindex="-1"></a></span>
+<span id="cb481-10"><a href="distribuições-univariadas-no-r.html#cb481-10" tabindex="-1"></a><span class="co"># Criar um histograma da amostra </span></span>
+<span id="cb481-11"><a href="distribuições-univariadas-no-r.html#cb481-11" tabindex="-1"></a><span class="fu">hist</span>(expo_data, <span class="at">probability =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb481-12"><a href="distribuições-univariadas-no-r.html#cb481-12" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Histograma da Densidade - Exponencial(1)&quot;</span>, </span>
+<span id="cb481-13"><a href="distribuições-univariadas-no-r.html#cb481-13" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Valor&quot;</span>, </span>
+<span id="cb481-14"><a href="distribuições-univariadas-no-r.html#cb481-14" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Densidade&quot;</span>, </span>
+<span id="cb481-15"><a href="distribuições-univariadas-no-r.html#cb481-15" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>, </span>
+<span id="cb481-16"><a href="distribuições-univariadas-no-r.html#cb481-16" tabindex="-1"></a>     <span class="at">border =</span> <span class="st">&quot;darkblue&quot;</span>)</span></code></pre></div>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-133-1.png" width="672" /></p>
 </div>
 <div id="comparação-3" class="section level3 hasAnchor" number="17.5.4">
 <h3><span class="header-section-number">17.5.4</span> Comparação<a href="distribuições-univariadas-no-r.html#comparação-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="distribuições-univariadas-no-r.html#cb475-1" tabindex="-1"></a><span class="co"># Definir o tamanho da amostra</span></span>
-<span id="cb475-2"><a href="distribuições-univariadas-no-r.html#cb475-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
-<span id="cb475-3"><a href="distribuições-univariadas-no-r.html#cb475-3" tabindex="-1"></a></span>
-<span id="cb475-4"><a href="distribuições-univariadas-no-r.html#cb475-4" tabindex="-1"></a><span class="co"># Fixar a semente para reprodutibilidade</span></span>
-<span id="cb475-5"><a href="distribuições-univariadas-no-r.html#cb475-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb475-6"><a href="distribuições-univariadas-no-r.html#cb475-6" tabindex="-1"></a></span>
-<span id="cb475-7"><a href="distribuições-univariadas-no-r.html#cb475-7" tabindex="-1"></a><span class="co"># Gerar a variável aleatória com distribuição exponencial(1)</span></span>
-<span id="cb475-8"><a href="distribuições-univariadas-no-r.html#cb475-8" tabindex="-1"></a>expo_data <span class="ot">&lt;-</span> <span class="fu">rexp</span>(n, <span class="at">rate=</span><span class="dv">1</span>)</span>
-<span id="cb475-9"><a href="distribuições-univariadas-no-r.html#cb475-9" tabindex="-1"></a></span>
-<span id="cb475-10"><a href="distribuições-univariadas-no-r.html#cb475-10" tabindex="-1"></a><span class="co"># Criar um histograma da amostra </span></span>
-<span id="cb475-11"><a href="distribuições-univariadas-no-r.html#cb475-11" tabindex="-1"></a><span class="fu">hist</span>(expo_data, <span class="at">probability =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb475-12"><a href="distribuições-univariadas-no-r.html#cb475-12" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Comparação da Densidade - Exponencial(1)&quot;</span>, </span>
-<span id="cb475-13"><a href="distribuições-univariadas-no-r.html#cb475-13" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Valor&quot;</span>, </span>
-<span id="cb475-14"><a href="distribuições-univariadas-no-r.html#cb475-14" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Densidade&quot;</span>, </span>
-<span id="cb475-15"><a href="distribuições-univariadas-no-r.html#cb475-15" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>, </span>
-<span id="cb475-16"><a href="distribuições-univariadas-no-r.html#cb475-16" tabindex="-1"></a>     <span class="at">border =</span> <span class="st">&quot;darkblue&quot;</span>)</span>
-<span id="cb475-17"><a href="distribuições-univariadas-no-r.html#cb475-17" tabindex="-1"></a></span>
-<span id="cb475-18"><a href="distribuições-univariadas-no-r.html#cb475-18" tabindex="-1"></a><span class="co"># Adicionar curva da densidade teórica</span></span>
-<span id="cb475-19"><a href="distribuições-univariadas-no-r.html#cb475-19" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dexp</span>(x,<span class="at">rate=</span><span class="dv">1</span>),</span>
-<span id="cb475-20"><a href="distribuições-univariadas-no-r.html#cb475-20" tabindex="-1"></a>      <span class="at">add=</span><span class="cn">TRUE</span>,</span>
-<span id="cb475-21"><a href="distribuições-univariadas-no-r.html#cb475-21" tabindex="-1"></a>      <span class="at">col=</span><span class="st">&quot;red&quot;</span>,</span>
-<span id="cb475-22"><a href="distribuições-univariadas-no-r.html#cb475-22" tabindex="-1"></a>      <span class="at">lwd=</span><span class="dv">2</span>)</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-130-1.png" width="672" /></p>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="distribuições-univariadas-no-r.html#cb482-1" tabindex="-1"></a><span class="co"># Definir o tamanho da amostra</span></span>
+<span id="cb482-2"><a href="distribuições-univariadas-no-r.html#cb482-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb482-3"><a href="distribuições-univariadas-no-r.html#cb482-3" tabindex="-1"></a></span>
+<span id="cb482-4"><a href="distribuições-univariadas-no-r.html#cb482-4" tabindex="-1"></a><span class="co"># Fixar a semente para reprodutibilidade</span></span>
+<span id="cb482-5"><a href="distribuições-univariadas-no-r.html#cb482-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb482-6"><a href="distribuições-univariadas-no-r.html#cb482-6" tabindex="-1"></a></span>
+<span id="cb482-7"><a href="distribuições-univariadas-no-r.html#cb482-7" tabindex="-1"></a><span class="co"># Gerar a variável aleatória com distribuição exponencial(1)</span></span>
+<span id="cb482-8"><a href="distribuições-univariadas-no-r.html#cb482-8" tabindex="-1"></a>expo_data <span class="ot">&lt;-</span> <span class="fu">rexp</span>(n, <span class="at">rate=</span><span class="dv">1</span>)</span>
+<span id="cb482-9"><a href="distribuições-univariadas-no-r.html#cb482-9" tabindex="-1"></a></span>
+<span id="cb482-10"><a href="distribuições-univariadas-no-r.html#cb482-10" tabindex="-1"></a><span class="co"># Criar um histograma da amostra </span></span>
+<span id="cb482-11"><a href="distribuições-univariadas-no-r.html#cb482-11" tabindex="-1"></a><span class="fu">hist</span>(expo_data, <span class="at">probability =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb482-12"><a href="distribuições-univariadas-no-r.html#cb482-12" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Comparação da Densidade - Exponencial(1)&quot;</span>, </span>
+<span id="cb482-13"><a href="distribuições-univariadas-no-r.html#cb482-13" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Valor&quot;</span>, </span>
+<span id="cb482-14"><a href="distribuições-univariadas-no-r.html#cb482-14" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Densidade&quot;</span>, </span>
+<span id="cb482-15"><a href="distribuições-univariadas-no-r.html#cb482-15" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>, </span>
+<span id="cb482-16"><a href="distribuições-univariadas-no-r.html#cb482-16" tabindex="-1"></a>     <span class="at">border =</span> <span class="st">&quot;darkblue&quot;</span>)</span>
+<span id="cb482-17"><a href="distribuições-univariadas-no-r.html#cb482-17" tabindex="-1"></a></span>
+<span id="cb482-18"><a href="distribuições-univariadas-no-r.html#cb482-18" tabindex="-1"></a><span class="co"># Adicionar curva da densidade teórica</span></span>
+<span id="cb482-19"><a href="distribuições-univariadas-no-r.html#cb482-19" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dexp</span>(x,<span class="at">rate=</span><span class="dv">1</span>),</span>
+<span id="cb482-20"><a href="distribuições-univariadas-no-r.html#cb482-20" tabindex="-1"></a>      <span class="at">add=</span><span class="cn">TRUE</span>,</span>
+<span id="cb482-21"><a href="distribuições-univariadas-no-r.html#cb482-21" tabindex="-1"></a>      <span class="at">col=</span><span class="st">&quot;red&quot;</span>,</span>
+<span id="cb482-22"><a href="distribuições-univariadas-no-r.html#cb482-22" tabindex="-1"></a>      <span class="at">lwd=</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-134-1.png" width="672" /></p>
 </div>
 <div id="função-de-distribuição-3" class="section level3 hasAnchor" number="17.5.5">
 <h3><span class="header-section-number">17.5.5</span> Função de distribuição<a href="distribuições-univariadas-no-r.html#função-de-distribuição-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="distribuições-univariadas-no-r.html#cb476-1" tabindex="-1"></a><span class="co"># Gerar os valores x para a FD teórica</span></span>
-<span id="cb476-2"><a href="distribuições-univariadas-no-r.html#cb476-2" tabindex="-1"></a>x_vals <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
-<span id="cb476-3"><a href="distribuições-univariadas-no-r.html#cb476-3" tabindex="-1"></a></span>
-<span id="cb476-4"><a href="distribuições-univariadas-no-r.html#cb476-4" tabindex="-1"></a><span class="co"># Calcular a FD teórica para os valores x</span></span>
-<span id="cb476-5"><a href="distribuições-univariadas-no-r.html#cb476-5" tabindex="-1"></a>y_vals <span class="ot">&lt;-</span> <span class="fu">pexp</span>(x_vals, <span class="at">rate=</span><span class="dv">1</span>)</span>
-<span id="cb476-6"><a href="distribuições-univariadas-no-r.html#cb476-6" tabindex="-1"></a></span>
-<span id="cb476-7"><a href="distribuições-univariadas-no-r.html#cb476-7" tabindex="-1"></a><span class="co"># Desenhar o gráfico da FD</span></span>
-<span id="cb476-8"><a href="distribuições-univariadas-no-r.html#cb476-8" tabindex="-1"></a><span class="fu">plot</span>(x_vals, y_vals, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, </span>
-<span id="cb476-9"><a href="distribuições-univariadas-no-r.html#cb476-9" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, </span>
-<span id="cb476-10"><a href="distribuições-univariadas-no-r.html#cb476-10" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Função de Distribuição Exponencial(1)&quot;</span>,</span>
-<span id="cb476-11"><a href="distribuições-univariadas-no-r.html#cb476-11" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Valor&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;F(x)&quot;</span>)</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="distribuições-univariadas-no-r.html#cb483-1" tabindex="-1"></a><span class="co"># Gerar os valores x para a FD teórica</span></span>
+<span id="cb483-2"><a href="distribuições-univariadas-no-r.html#cb483-2" tabindex="-1"></a>x_vals <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
+<span id="cb483-3"><a href="distribuições-univariadas-no-r.html#cb483-3" tabindex="-1"></a></span>
+<span id="cb483-4"><a href="distribuições-univariadas-no-r.html#cb483-4" tabindex="-1"></a><span class="co"># Calcular a FD teórica para os valores x</span></span>
+<span id="cb483-5"><a href="distribuições-univariadas-no-r.html#cb483-5" tabindex="-1"></a>y_vals <span class="ot">&lt;-</span> <span class="fu">pexp</span>(x_vals, <span class="at">rate=</span><span class="dv">1</span>)</span>
+<span id="cb483-6"><a href="distribuições-univariadas-no-r.html#cb483-6" tabindex="-1"></a></span>
+<span id="cb483-7"><a href="distribuições-univariadas-no-r.html#cb483-7" tabindex="-1"></a><span class="co"># Desenhar o gráfico da FD</span></span>
+<span id="cb483-8"><a href="distribuições-univariadas-no-r.html#cb483-8" tabindex="-1"></a><span class="fu">plot</span>(x_vals, y_vals, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, </span>
+<span id="cb483-9"><a href="distribuições-univariadas-no-r.html#cb483-9" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, </span>
+<span id="cb483-10"><a href="distribuições-univariadas-no-r.html#cb483-10" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Função de Distribuição Exponencial(1)&quot;</span>,</span>
+<span id="cb483-11"><a href="distribuições-univariadas-no-r.html#cb483-11" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Valor&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;F(x)&quot;</span>)</span></code></pre></div>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-135-1.png" width="672" /></p>
 </div>
 <div id="função-de-distribuição-empírica-4" class="section level3 hasAnchor" number="17.5.6">
 <h3><span class="header-section-number">17.5.6</span> Função de distribuição empírica<a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="distribuições-univariadas-no-r.html#cb477-1" tabindex="-1"></a><span class="co"># Definir o tamanho da amostra</span></span>
-<span id="cb477-2"><a href="distribuições-univariadas-no-r.html#cb477-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
-<span id="cb477-3"><a href="distribuições-univariadas-no-r.html#cb477-3" tabindex="-1"></a></span>
-<span id="cb477-4"><a href="distribuições-univariadas-no-r.html#cb477-4" tabindex="-1"></a><span class="co"># Fixar a semente para reprodutibilidade</span></span>
-<span id="cb477-5"><a href="distribuições-univariadas-no-r.html#cb477-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb477-6"><a href="distribuições-univariadas-no-r.html#cb477-6" tabindex="-1"></a></span>
-<span id="cb477-7"><a href="distribuições-univariadas-no-r.html#cb477-7" tabindex="-1"></a><span class="co"># Gerar a variável aleatória com distribuição exponencial(1)</span></span>
-<span id="cb477-8"><a href="distribuições-univariadas-no-r.html#cb477-8" tabindex="-1"></a>expo_data <span class="ot">&lt;-</span> <span class="fu">rexp</span>(n, <span class="at">rate=</span><span class="dv">1</span>)</span>
-<span id="cb477-9"><a href="distribuições-univariadas-no-r.html#cb477-9" tabindex="-1"></a></span>
-<span id="cb477-10"><a href="distribuições-univariadas-no-r.html#cb477-10" tabindex="-1"></a><span class="co"># Função de distribuição empírica</span></span>
-<span id="cb477-11"><a href="distribuições-univariadas-no-r.html#cb477-11" tabindex="-1"></a>Fn <span class="ot">&lt;-</span> <span class="fu">ecdf</span>(expo_data)</span>
-<span id="cb477-12"><a href="distribuições-univariadas-no-r.html#cb477-12" tabindex="-1"></a></span>
-<span id="cb477-13"><a href="distribuições-univariadas-no-r.html#cb477-13" tabindex="-1"></a><span class="fu">plot</span>(Fn, <span class="at">main=</span><span class="st">&quot;Função de Distribuição Empírica&quot;</span>,</span>
-<span id="cb477-14"><a href="distribuições-univariadas-no-r.html#cb477-14" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;x&quot;</span>,</span>
-<span id="cb477-15"><a href="distribuições-univariadas-no-r.html#cb477-15" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Fn&quot;</span>,</span>
-<span id="cb477-16"><a href="distribuições-univariadas-no-r.html#cb477-16" tabindex="-1"></a>     <span class="at">col=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-132-1.png" width="672" /></p>
+<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="distribuições-univariadas-no-r.html#cb484-1" tabindex="-1"></a><span class="co"># Definir o tamanho da amostra</span></span>
+<span id="cb484-2"><a href="distribuições-univariadas-no-r.html#cb484-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb484-3"><a href="distribuições-univariadas-no-r.html#cb484-3" tabindex="-1"></a></span>
+<span id="cb484-4"><a href="distribuições-univariadas-no-r.html#cb484-4" tabindex="-1"></a><span class="co"># Fixar a semente para reprodutibilidade</span></span>
+<span id="cb484-5"><a href="distribuições-univariadas-no-r.html#cb484-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb484-6"><a href="distribuições-univariadas-no-r.html#cb484-6" tabindex="-1"></a></span>
+<span id="cb484-7"><a href="distribuições-univariadas-no-r.html#cb484-7" tabindex="-1"></a><span class="co"># Gerar a variável aleatória com distribuição exponencial(1)</span></span>
+<span id="cb484-8"><a href="distribuições-univariadas-no-r.html#cb484-8" tabindex="-1"></a>expo_data <span class="ot">&lt;-</span> <span class="fu">rexp</span>(n, <span class="at">rate=</span><span class="dv">1</span>)</span>
+<span id="cb484-9"><a href="distribuições-univariadas-no-r.html#cb484-9" tabindex="-1"></a></span>
+<span id="cb484-10"><a href="distribuições-univariadas-no-r.html#cb484-10" tabindex="-1"></a><span class="co"># Função de distribuição empírica</span></span>
+<span id="cb484-11"><a href="distribuições-univariadas-no-r.html#cb484-11" tabindex="-1"></a>Fn <span class="ot">&lt;-</span> <span class="fu">ecdf</span>(expo_data)</span>
+<span id="cb484-12"><a href="distribuições-univariadas-no-r.html#cb484-12" tabindex="-1"></a></span>
+<span id="cb484-13"><a href="distribuições-univariadas-no-r.html#cb484-13" tabindex="-1"></a><span class="fu">plot</span>(Fn, <span class="at">main=</span><span class="st">&quot;Função de Distribuição Empírica&quot;</span>,</span>
+<span id="cb484-14"><a href="distribuições-univariadas-no-r.html#cb484-14" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;x&quot;</span>,</span>
+<span id="cb484-15"><a href="distribuições-univariadas-no-r.html#cb484-15" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Fn&quot;</span>,</span>
+<span id="cb484-16"><a href="distribuições-univariadas-no-r.html#cb484-16" tabindex="-1"></a>     <span class="at">col=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
 </div>
 </div>
 <div id="gerando-uma-variável-aleatória-com-distribuição-normal" class="section level2 hasAnchor" number="17.6">
@@ -895,103 +896,103 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="função-densidade-de-probabilidade-teórica-1" class="section level3 hasAnchor" number="17.6.2">
 <h3><span class="header-section-number">17.6.2</span> Função densidade de probabilidade (teórica)<a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade-teórica-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="distribuições-univariadas-no-r.html#cb478-1" tabindex="-1"></a><span class="co"># Gerar os valores x para a densidade teórica</span></span>
-<span id="cb478-2"><a href="distribuições-univariadas-no-r.html#cb478-2" tabindex="-1"></a>x_vals <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
-<span id="cb478-3"><a href="distribuições-univariadas-no-r.html#cb478-3" tabindex="-1"></a></span>
-<span id="cb478-4"><a href="distribuições-univariadas-no-r.html#cb478-4" tabindex="-1"></a><span class="co"># Calcular a densidade teórica para os valores x</span></span>
-<span id="cb478-5"><a href="distribuições-univariadas-no-r.html#cb478-5" tabindex="-1"></a>y_vals <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x_vals, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
-<span id="cb478-6"><a href="distribuições-univariadas-no-r.html#cb478-6" tabindex="-1"></a></span>
-<span id="cb478-7"><a href="distribuições-univariadas-no-r.html#cb478-7" tabindex="-1"></a><span class="co"># Desenhar o gráfico da função densidade de probabilidade</span></span>
-<span id="cb478-8"><a href="distribuições-univariadas-no-r.html#cb478-8" tabindex="-1"></a><span class="fu">plot</span>(x_vals, y_vals, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, </span>
-<span id="cb478-9"><a href="distribuições-univariadas-no-r.html#cb478-9" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, </span>
-<span id="cb478-10"><a href="distribuições-univariadas-no-r.html#cb478-10" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Densidade da Distribuição Normal(0,1)&quot;</span>,</span>
-<span id="cb478-11"><a href="distribuições-univariadas-no-r.html#cb478-11" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Valor&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Densidade&quot;</span>)</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-133-1.png" width="672" /></p>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="distribuições-univariadas-no-r.html#cb485-1" tabindex="-1"></a><span class="co"># Gerar os valores x para a densidade teórica</span></span>
+<span id="cb485-2"><a href="distribuições-univariadas-no-r.html#cb485-2" tabindex="-1"></a>x_vals <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
+<span id="cb485-3"><a href="distribuições-univariadas-no-r.html#cb485-3" tabindex="-1"></a></span>
+<span id="cb485-4"><a href="distribuições-univariadas-no-r.html#cb485-4" tabindex="-1"></a><span class="co"># Calcular a densidade teórica para os valores x</span></span>
+<span id="cb485-5"><a href="distribuições-univariadas-no-r.html#cb485-5" tabindex="-1"></a>y_vals <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x_vals, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb485-6"><a href="distribuições-univariadas-no-r.html#cb485-6" tabindex="-1"></a></span>
+<span id="cb485-7"><a href="distribuições-univariadas-no-r.html#cb485-7" tabindex="-1"></a><span class="co"># Desenhar o gráfico da função densidade de probabilidade</span></span>
+<span id="cb485-8"><a href="distribuições-univariadas-no-r.html#cb485-8" tabindex="-1"></a><span class="fu">plot</span>(x_vals, y_vals, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, </span>
+<span id="cb485-9"><a href="distribuições-univariadas-no-r.html#cb485-9" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, </span>
+<span id="cb485-10"><a href="distribuições-univariadas-no-r.html#cb485-10" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Densidade da Distribuição Normal(0,1)&quot;</span>,</span>
+<span id="cb485-11"><a href="distribuições-univariadas-no-r.html#cb485-11" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Valor&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Densidade&quot;</span>)</span></code></pre></div>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-137-1.png" width="672" /></p>
 </div>
 <div id="função-densidade-de-probabilidade-simulação-2" class="section level3 hasAnchor" number="17.6.3">
 <h3><span class="header-section-number">17.6.3</span> Função densidade de probabilidade (simulação)<a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade-simulação-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="distribuições-univariadas-no-r.html#cb479-1" tabindex="-1"></a><span class="co"># Definir o tamanho da amostra</span></span>
-<span id="cb479-2"><a href="distribuições-univariadas-no-r.html#cb479-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
-<span id="cb479-3"><a href="distribuições-univariadas-no-r.html#cb479-3" tabindex="-1"></a></span>
-<span id="cb479-4"><a href="distribuições-univariadas-no-r.html#cb479-4" tabindex="-1"></a><span class="co"># Fixar a semente para reprodutibilidade</span></span>
-<span id="cb479-5"><a href="distribuições-univariadas-no-r.html#cb479-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb479-6"><a href="distribuições-univariadas-no-r.html#cb479-6" tabindex="-1"></a></span>
-<span id="cb479-7"><a href="distribuições-univariadas-no-r.html#cb479-7" tabindex="-1"></a><span class="co"># Gerar a variável aleatória com distribuição Normal(0,1)</span></span>
-<span id="cb479-8"><a href="distribuições-univariadas-no-r.html#cb479-8" tabindex="-1"></a>normal_data <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
-<span id="cb479-9"><a href="distribuições-univariadas-no-r.html#cb479-9" tabindex="-1"></a></span>
-<span id="cb479-10"><a href="distribuições-univariadas-no-r.html#cb479-10" tabindex="-1"></a><span class="co"># Criar um histograma da amostra com densidade</span></span>
-<span id="cb479-11"><a href="distribuições-univariadas-no-r.html#cb479-11" tabindex="-1"></a><span class="fu">hist</span>(normal_data, <span class="at">probability =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb479-12"><a href="distribuições-univariadas-no-r.html#cb479-12" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Comparação da Densidade - Normal(0,1)&quot;</span>, </span>
-<span id="cb479-13"><a href="distribuições-univariadas-no-r.html#cb479-13" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Valor&quot;</span>, </span>
-<span id="cb479-14"><a href="distribuições-univariadas-no-r.html#cb479-14" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Densidade&quot;</span>, </span>
-<span id="cb479-15"><a href="distribuições-univariadas-no-r.html#cb479-15" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>, </span>
-<span id="cb479-16"><a href="distribuições-univariadas-no-r.html#cb479-16" tabindex="-1"></a>     <span class="at">border =</span> <span class="st">&quot;darkblue&quot;</span>)</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-134-1.png" width="672" /></p>
+<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="distribuições-univariadas-no-r.html#cb486-1" tabindex="-1"></a><span class="co"># Definir o tamanho da amostra</span></span>
+<span id="cb486-2"><a href="distribuições-univariadas-no-r.html#cb486-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb486-3"><a href="distribuições-univariadas-no-r.html#cb486-3" tabindex="-1"></a></span>
+<span id="cb486-4"><a href="distribuições-univariadas-no-r.html#cb486-4" tabindex="-1"></a><span class="co"># Fixar a semente para reprodutibilidade</span></span>
+<span id="cb486-5"><a href="distribuições-univariadas-no-r.html#cb486-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb486-6"><a href="distribuições-univariadas-no-r.html#cb486-6" tabindex="-1"></a></span>
+<span id="cb486-7"><a href="distribuições-univariadas-no-r.html#cb486-7" tabindex="-1"></a><span class="co"># Gerar a variável aleatória com distribuição Normal(0,1)</span></span>
+<span id="cb486-8"><a href="distribuições-univariadas-no-r.html#cb486-8" tabindex="-1"></a>normal_data <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb486-9"><a href="distribuições-univariadas-no-r.html#cb486-9" tabindex="-1"></a></span>
+<span id="cb486-10"><a href="distribuições-univariadas-no-r.html#cb486-10" tabindex="-1"></a><span class="co"># Criar um histograma da amostra com densidade</span></span>
+<span id="cb486-11"><a href="distribuições-univariadas-no-r.html#cb486-11" tabindex="-1"></a><span class="fu">hist</span>(normal_data, <span class="at">probability =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb486-12"><a href="distribuições-univariadas-no-r.html#cb486-12" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Comparação da Densidade - Normal(0,1)&quot;</span>, </span>
+<span id="cb486-13"><a href="distribuições-univariadas-no-r.html#cb486-13" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Valor&quot;</span>, </span>
+<span id="cb486-14"><a href="distribuições-univariadas-no-r.html#cb486-14" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Densidade&quot;</span>, </span>
+<span id="cb486-15"><a href="distribuições-univariadas-no-r.html#cb486-15" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>, </span>
+<span id="cb486-16"><a href="distribuições-univariadas-no-r.html#cb486-16" tabindex="-1"></a>     <span class="at">border =</span> <span class="st">&quot;darkblue&quot;</span>)</span></code></pre></div>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-138-1.png" width="672" /></p>
 </div>
 <div id="comparação-4" class="section level3 hasAnchor" number="17.6.4">
 <h3><span class="header-section-number">17.6.4</span> Comparação<a href="distribuições-univariadas-no-r.html#comparação-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="distribuições-univariadas-no-r.html#cb480-1" tabindex="-1"></a><span class="co"># Definir o tamanho da amostra</span></span>
-<span id="cb480-2"><a href="distribuições-univariadas-no-r.html#cb480-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
-<span id="cb480-3"><a href="distribuições-univariadas-no-r.html#cb480-3" tabindex="-1"></a></span>
-<span id="cb480-4"><a href="distribuições-univariadas-no-r.html#cb480-4" tabindex="-1"></a><span class="co"># Fixar a semente para reprodutibilidade</span></span>
-<span id="cb480-5"><a href="distribuições-univariadas-no-r.html#cb480-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb480-6"><a href="distribuições-univariadas-no-r.html#cb480-6" tabindex="-1"></a></span>
-<span id="cb480-7"><a href="distribuições-univariadas-no-r.html#cb480-7" tabindex="-1"></a><span class="co"># Gerar a variável aleatória com distribuição Normal(0,1)</span></span>
-<span id="cb480-8"><a href="distribuições-univariadas-no-r.html#cb480-8" tabindex="-1"></a>normal_data <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
-<span id="cb480-9"><a href="distribuições-univariadas-no-r.html#cb480-9" tabindex="-1"></a></span>
-<span id="cb480-10"><a href="distribuições-univariadas-no-r.html#cb480-10" tabindex="-1"></a><span class="co"># Criar um histograma da amostra com densidade</span></span>
-<span id="cb480-11"><a href="distribuições-univariadas-no-r.html#cb480-11" tabindex="-1"></a><span class="fu">hist</span>(normal_data, <span class="at">probability =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb480-12"><a href="distribuições-univariadas-no-r.html#cb480-12" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Comparação da Densidade - Normal(0,1)&quot;</span>, </span>
-<span id="cb480-13"><a href="distribuições-univariadas-no-r.html#cb480-13" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Valor&quot;</span>, </span>
-<span id="cb480-14"><a href="distribuições-univariadas-no-r.html#cb480-14" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Densidade&quot;</span>, </span>
-<span id="cb480-15"><a href="distribuições-univariadas-no-r.html#cb480-15" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>, </span>
-<span id="cb480-16"><a href="distribuições-univariadas-no-r.html#cb480-16" tabindex="-1"></a>     <span class="at">border =</span> <span class="st">&quot;darkblue&quot;</span>)</span>
-<span id="cb480-17"><a href="distribuições-univariadas-no-r.html#cb480-17" tabindex="-1"></a></span>
-<span id="cb480-18"><a href="distribuições-univariadas-no-r.html#cb480-18" tabindex="-1"></a><span class="co"># Adicionar a curva da densidade teórica</span></span>
-<span id="cb480-19"><a href="distribuições-univariadas-no-r.html#cb480-19" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>), </span>
-<span id="cb480-20"><a href="distribuições-univariadas-no-r.html#cb480-20" tabindex="-1"></a>      <span class="at">add =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb480-21"><a href="distribuições-univariadas-no-r.html#cb480-21" tabindex="-1"></a>      <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, </span>
-<span id="cb480-22"><a href="distribuições-univariadas-no-r.html#cb480-22" tabindex="-1"></a>      <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-135-1.png" width="672" /></p>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="distribuições-univariadas-no-r.html#cb487-1" tabindex="-1"></a><span class="co"># Definir o tamanho da amostra</span></span>
+<span id="cb487-2"><a href="distribuições-univariadas-no-r.html#cb487-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb487-3"><a href="distribuições-univariadas-no-r.html#cb487-3" tabindex="-1"></a></span>
+<span id="cb487-4"><a href="distribuições-univariadas-no-r.html#cb487-4" tabindex="-1"></a><span class="co"># Fixar a semente para reprodutibilidade</span></span>
+<span id="cb487-5"><a href="distribuições-univariadas-no-r.html#cb487-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb487-6"><a href="distribuições-univariadas-no-r.html#cb487-6" tabindex="-1"></a></span>
+<span id="cb487-7"><a href="distribuições-univariadas-no-r.html#cb487-7" tabindex="-1"></a><span class="co"># Gerar a variável aleatória com distribuição Normal(0,1)</span></span>
+<span id="cb487-8"><a href="distribuições-univariadas-no-r.html#cb487-8" tabindex="-1"></a>normal_data <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb487-9"><a href="distribuições-univariadas-no-r.html#cb487-9" tabindex="-1"></a></span>
+<span id="cb487-10"><a href="distribuições-univariadas-no-r.html#cb487-10" tabindex="-1"></a><span class="co"># Criar um histograma da amostra com densidade</span></span>
+<span id="cb487-11"><a href="distribuições-univariadas-no-r.html#cb487-11" tabindex="-1"></a><span class="fu">hist</span>(normal_data, <span class="at">probability =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb487-12"><a href="distribuições-univariadas-no-r.html#cb487-12" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Comparação da Densidade - Normal(0,1)&quot;</span>, </span>
+<span id="cb487-13"><a href="distribuições-univariadas-no-r.html#cb487-13" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Valor&quot;</span>, </span>
+<span id="cb487-14"><a href="distribuições-univariadas-no-r.html#cb487-14" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Densidade&quot;</span>, </span>
+<span id="cb487-15"><a href="distribuições-univariadas-no-r.html#cb487-15" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>, </span>
+<span id="cb487-16"><a href="distribuições-univariadas-no-r.html#cb487-16" tabindex="-1"></a>     <span class="at">border =</span> <span class="st">&quot;darkblue&quot;</span>)</span>
+<span id="cb487-17"><a href="distribuições-univariadas-no-r.html#cb487-17" tabindex="-1"></a></span>
+<span id="cb487-18"><a href="distribuições-univariadas-no-r.html#cb487-18" tabindex="-1"></a><span class="co"># Adicionar a curva da densidade teórica</span></span>
+<span id="cb487-19"><a href="distribuições-univariadas-no-r.html#cb487-19" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>), </span>
+<span id="cb487-20"><a href="distribuições-univariadas-no-r.html#cb487-20" tabindex="-1"></a>      <span class="at">add =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb487-21"><a href="distribuições-univariadas-no-r.html#cb487-21" tabindex="-1"></a>      <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, </span>
+<span id="cb487-22"><a href="distribuições-univariadas-no-r.html#cb487-22" tabindex="-1"></a>      <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-139-1.png" width="672" /></p>
 </div>
 <div id="função-de-distribuição-4" class="section level3 hasAnchor" number="17.6.5">
 <h3><span class="header-section-number">17.6.5</span> Função de distribuição<a href="distribuições-univariadas-no-r.html#função-de-distribuição-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="distribuições-univariadas-no-r.html#cb481-1" tabindex="-1"></a><span class="co"># Gerar os valores x para a FD teórica</span></span>
-<span id="cb481-2"><a href="distribuições-univariadas-no-r.html#cb481-2" tabindex="-1"></a>x_vals <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
-<span id="cb481-3"><a href="distribuições-univariadas-no-r.html#cb481-3" tabindex="-1"></a></span>
-<span id="cb481-4"><a href="distribuições-univariadas-no-r.html#cb481-4" tabindex="-1"></a><span class="co"># Calcular a FD teórica para os valores x</span></span>
-<span id="cb481-5"><a href="distribuições-univariadas-no-r.html#cb481-5" tabindex="-1"></a>y_vals <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(x_vals, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
-<span id="cb481-6"><a href="distribuições-univariadas-no-r.html#cb481-6" tabindex="-1"></a></span>
-<span id="cb481-7"><a href="distribuições-univariadas-no-r.html#cb481-7" tabindex="-1"></a><span class="co"># Desenhar o gráfico da função de distribuição</span></span>
-<span id="cb481-8"><a href="distribuições-univariadas-no-r.html#cb481-8" tabindex="-1"></a><span class="fu">plot</span>(x_vals, y_vals, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, </span>
-<span id="cb481-9"><a href="distribuições-univariadas-no-r.html#cb481-9" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, </span>
-<span id="cb481-10"><a href="distribuições-univariadas-no-r.html#cb481-10" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Função de Distribuição Normal(0,1)&quot;</span>,</span>
-<span id="cb481-11"><a href="distribuições-univariadas-no-r.html#cb481-11" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Valor&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;F(x)&quot;</span>)</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
+<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="distribuições-univariadas-no-r.html#cb488-1" tabindex="-1"></a><span class="co"># Gerar os valores x para a FD teórica</span></span>
+<span id="cb488-2"><a href="distribuições-univariadas-no-r.html#cb488-2" tabindex="-1"></a>x_vals <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
+<span id="cb488-3"><a href="distribuições-univariadas-no-r.html#cb488-3" tabindex="-1"></a></span>
+<span id="cb488-4"><a href="distribuições-univariadas-no-r.html#cb488-4" tabindex="-1"></a><span class="co"># Calcular a FD teórica para os valores x</span></span>
+<span id="cb488-5"><a href="distribuições-univariadas-no-r.html#cb488-5" tabindex="-1"></a>y_vals <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(x_vals, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb488-6"><a href="distribuições-univariadas-no-r.html#cb488-6" tabindex="-1"></a></span>
+<span id="cb488-7"><a href="distribuições-univariadas-no-r.html#cb488-7" tabindex="-1"></a><span class="co"># Desenhar o gráfico da função de distribuição</span></span>
+<span id="cb488-8"><a href="distribuições-univariadas-no-r.html#cb488-8" tabindex="-1"></a><span class="fu">plot</span>(x_vals, y_vals, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, </span>
+<span id="cb488-9"><a href="distribuições-univariadas-no-r.html#cb488-9" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, </span>
+<span id="cb488-10"><a href="distribuições-univariadas-no-r.html#cb488-10" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Função de Distribuição Normal(0,1)&quot;</span>,</span>
+<span id="cb488-11"><a href="distribuições-univariadas-no-r.html#cb488-11" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Valor&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;F(x)&quot;</span>)</span></code></pre></div>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-140-1.png" width="672" /></p>
 </div>
 <div id="função-de-distribuição-empírica-5" class="section level3 hasAnchor" number="17.6.6">
 <h3><span class="header-section-number">17.6.6</span> Função de distribuição empírica<a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="distribuições-univariadas-no-r.html#cb482-1" tabindex="-1"></a><span class="co"># Definir o tamanho da amostra</span></span>
-<span id="cb482-2"><a href="distribuições-univariadas-no-r.html#cb482-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
-<span id="cb482-3"><a href="distribuições-univariadas-no-r.html#cb482-3" tabindex="-1"></a></span>
-<span id="cb482-4"><a href="distribuições-univariadas-no-r.html#cb482-4" tabindex="-1"></a><span class="co"># Fixar a semente para reprodutibilidade</span></span>
-<span id="cb482-5"><a href="distribuições-univariadas-no-r.html#cb482-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb482-6"><a href="distribuições-univariadas-no-r.html#cb482-6" tabindex="-1"></a></span>
-<span id="cb482-7"><a href="distribuições-univariadas-no-r.html#cb482-7" tabindex="-1"></a><span class="co"># Gerar a variável aleatória com distribuição Normal(0,1)</span></span>
-<span id="cb482-8"><a href="distribuições-univariadas-no-r.html#cb482-8" tabindex="-1"></a>normal_data <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
-<span id="cb482-9"><a href="distribuições-univariadas-no-r.html#cb482-9" tabindex="-1"></a></span>
-<span id="cb482-10"><a href="distribuições-univariadas-no-r.html#cb482-10" tabindex="-1"></a><span class="co"># Função de distribuição empírica</span></span>
-<span id="cb482-11"><a href="distribuições-univariadas-no-r.html#cb482-11" tabindex="-1"></a>Fn <span class="ot">&lt;-</span> <span class="fu">ecdf</span>(normal_data)</span>
-<span id="cb482-12"><a href="distribuições-univariadas-no-r.html#cb482-12" tabindex="-1"></a></span>
-<span id="cb482-13"><a href="distribuições-univariadas-no-r.html#cb482-13" tabindex="-1"></a><span class="fu">plot</span>(Fn, <span class="at">main=</span><span class="st">&quot;Função de Distribuição Empírica&quot;</span>,</span>
-<span id="cb482-14"><a href="distribuições-univariadas-no-r.html#cb482-14" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;x&quot;</span>,</span>
-<span id="cb482-15"><a href="distribuições-univariadas-no-r.html#cb482-15" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Fn&quot;</span>,</span>
-<span id="cb482-16"><a href="distribuições-univariadas-no-r.html#cb482-16" tabindex="-1"></a>     <span class="at">col=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-137-1.png" width="672" /></p>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="distribuições-univariadas-no-r.html#cb489-1" tabindex="-1"></a><span class="co"># Definir o tamanho da amostra</span></span>
+<span id="cb489-2"><a href="distribuições-univariadas-no-r.html#cb489-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb489-3"><a href="distribuições-univariadas-no-r.html#cb489-3" tabindex="-1"></a></span>
+<span id="cb489-4"><a href="distribuições-univariadas-no-r.html#cb489-4" tabindex="-1"></a><span class="co"># Fixar a semente para reprodutibilidade</span></span>
+<span id="cb489-5"><a href="distribuições-univariadas-no-r.html#cb489-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb489-6"><a href="distribuições-univariadas-no-r.html#cb489-6" tabindex="-1"></a></span>
+<span id="cb489-7"><a href="distribuições-univariadas-no-r.html#cb489-7" tabindex="-1"></a><span class="co"># Gerar a variável aleatória com distribuição Normal(0,1)</span></span>
+<span id="cb489-8"><a href="distribuições-univariadas-no-r.html#cb489-8" tabindex="-1"></a>normal_data <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb489-9"><a href="distribuições-univariadas-no-r.html#cb489-9" tabindex="-1"></a></span>
+<span id="cb489-10"><a href="distribuições-univariadas-no-r.html#cb489-10" tabindex="-1"></a><span class="co"># Função de distribuição empírica</span></span>
+<span id="cb489-11"><a href="distribuições-univariadas-no-r.html#cb489-11" tabindex="-1"></a>Fn <span class="ot">&lt;-</span> <span class="fu">ecdf</span>(normal_data)</span>
+<span id="cb489-12"><a href="distribuições-univariadas-no-r.html#cb489-12" tabindex="-1"></a></span>
+<span id="cb489-13"><a href="distribuições-univariadas-no-r.html#cb489-13" tabindex="-1"></a><span class="fu">plot</span>(Fn, <span class="at">main=</span><span class="st">&quot;Função de Distribuição Empírica&quot;</span>,</span>
+<span id="cb489-14"><a href="distribuições-univariadas-no-r.html#cb489-14" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;x&quot;</span>,</span>
+<span id="cb489-15"><a href="distribuições-univariadas-no-r.html#cb489-15" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Fn&quot;</span>,</span>
+<span id="cb489-16"><a href="distribuições-univariadas-no-r.html#cb489-16" tabindex="-1"></a>     <span class="at">col=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-141-1.png" width="672" /></p>
 </div>
 </div>
-<div id="exercícios-11" class="section level2 hasAnchor" number="17.7">
-<h2><span class="header-section-number">17.7</span> Exercícios<a href="distribuições-univariadas-no-r.html#exercícios-11" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercícios-12" class="section level2 hasAnchor" number="17.7">
+<h2><span class="header-section-number">17.7</span> Exercícios<a href="distribuições-univariadas-no-r.html#exercícios-12" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
 <li><p>Usando o R e fixando a semente em 123, simule 1000 lançamentos de uma moeda com probabilidade de 0.5 de sair cara. Conte o número de caras em cada lançamento e plote um histograma dos resultados.</p></li>
 <li><p>Usando o R e fixando a semente em 123, gere uma amostra aleatória de 5000 observações de uma variável aleatória binomial com parâmetros <span class="math inline">\(n = 10\)</span> e <span class="math inline">\(p = 0.3\)</span>. Calcule a média e a variância das observações geradas.</p></li>

@@ -1905,6 +1905,74 @@ As constantes $a$ e $m$ a serem escolhidas devem satisfazer três critérios:
 
 ### A função `sample()`
 
+A função `sample()` em R é utilizada para gerar uma amostra aleatória a partir de um conjunto de dados ou uma sequência de números. Ela é extremamente flexível, permitindo que você defina o tamanho da amostra, se a amostragem é feita com ou sem reposição, e também se os elementos têm probabilidades diferentes de serem selecionados.
+
+```{r eval=FALSE}
+# Sintaxe
+
+sample(x, size, replace = FALSE, prob = NULL)
+```
+
+* **x**: Vetor de elementos a serem amostrados.
+
+* **size**: Tamanho da amostra.
+
+* **replace**: Indica se a amostragem é com reposição (`TRUE`) ou sem reposição (`FALSE`).
+
+* **prob**: Um vetor de probabilidades associadas a cada elemento em x.
+
+**Exemplo 1**: Amostragem Simples sem Reposição.
+
+```{r}
+# Suponha que temos uma população de 1 a 10
+pop <- 1:10
+
+# Queremos uma amostra de 5 elementos
+amostra <- sample(pop, size = 5, replace = FALSE)
+print(amostra)
+```
+
+**Exemplo 2**: Amostragem com Reposição.
+
+```{r}
+# Amostra com reposição
+amostra_repos <- sample(pop, size = 5, replace = TRUE)
+print(amostra_repos)
+```
+
+**Exemplo 3**: Amostragem com Probabilidades Diferentes.
+
+```{r}
+# Probabilidades associadas a cada elemento
+prob <- c(0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.05, 0.05)
+
+# Amostra com probabilidades diferentes
+amostra_prob <- sample(pop, size = 5, prob = prob)
+print(amostra_prob)
+```
+
+### Exercícios
+
+1. Crie um vetor com os números de 1 a 20. Utilize a função `sample()` para selecionar uma amostra aleatória de 5 elementos desse vetor. A amostragem deve ser feita sem reposição.
+
+2. Suponha que você tem uma população representada pelos números de 1 a 10. Utilize a função `sample()` para selecionar uma amostra de 10 elementos com reposição.
+
+3. Crie um vetor com as letras A, B, C, D, E. Aplique a função `sample()` para selecionar uma amostra de 3 letras, onde a probabilidade de cada letra ser selecionada é dada pelo vetor `c(0.1, 0.2, 0.3, 0.25, 0.15)`.
+
+4. Crie um vetor com os números de 1 a 10. Utilize a função `sample()` para reordenar aleatoriamente os elementos desse vetor.
+
+5. Crie um vetor com os nomes de cinco frutas: “Maçã”, “Banana”, “Laranja”, “Uva”, “Pera”. Utilizando a função `sample()`, selecione aleatoriamente uma fruta desse vetor. Em seguida, selecione uma amostra de 3 frutas.
+
+6. Você é responsável por realizar um teste de qualidade em uma fábrica. Há 1000 produtos fabricados, numerados de 1 a 1000. Selecione uma amostra aleatória de 50 produtos para inspeção, garantindo que não haja reposição na seleção.
+
+7. Simule o lançamento de dois dados justos 10000 vezes e registre as somas das faces resultantes. Utilize a função `sample()` para realizar a simulação. Em seguida, crie um histograma das somas obtidas.
+
+8. Você possui um vetor de 200 estudantes classificados em três turmas: A, B, e C. As turmas têm tamanhos diferentes (50, 100, e 50 alunos, respectivamente). Usando `sample()`, selecione uma amostra de 20 alunos, mantendo a proporção original das turmas.
+
+9. Um cartão de Bingo contém 24 números aleatórios entre 1 e 75 (excluindo o número central “free”). Crie 5 cartões de Bingo únicos usando a função `sample()`.
+
+10. Em um estudo clínico, 30 pacientes devem ser randomizados em dois grupos: tratamento e controle. O grupo de tratamento deve conter 20 pacientes e o grupo de controle 10. Usando `sample()`, faça a randomização dos pacientes. Dica: use a função `setdiff()`.
+
 ### Método da transformada inversa
 
 # Distribuições univariadas no R
