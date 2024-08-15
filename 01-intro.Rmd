@@ -1455,6 +1455,86 @@ produto(2,3)
 
 (c) Um programa que recorrendo ao script anterior, calcula a mediana, variância e o desvio padrão da amostra `amostra <- c(1,2,3,4,5,6,7)`
 
+# Leitura de dados
+
+R é uma linguagem poderosa para análise de dados e oferece várias funções para importar dados de diferentes formatos. Independentemente do formato, o processo básico de leitura de dados em R consiste em:
+
+- Especificar o caminho do arquivo.
+- Indicar as características do arquivo (como delimitador, presença de cabeçalhos, etc.).
+- Ler os dados e armazená-los em um objeto (geralmente um data frame).
+
+## Leitura de Arquivos de Texto
+
+### A Função `read.table()`
+
+`read.table()` é uma das funções mais versáteis em R para leitura de arquivos de texto. Esta função permite importar arquivos tabulares e configurá-los de acordo com as características do arquivo.
+
+```{r eval=FALSE}
+# Leitura de arquivo txt com read.table()
+dados <- read.table("dados.txt", header = TRUE, sep = " "
+```
+
+A função `read.table()` tem várias opções de argumentos.
+
+```{r}
+args(read.table)
+```
+
+Alguns importantes são:
+
+* `header`: Especifica se a primeira linha do arquivo contém nomes de coluna (cabeçalho). Se `header = TRUE`, a primeira linha é considerada como cabeçalho e os nomes das colunas são extraídos dessa linha. Se `header = FALSE`, a primeira linha é tratada como dados.
+* `sep`: Define o caractere usado para separar os campos (colunas) no arquivo. Por padrão, é uma vírgula (`,`), mas você pode especificar outros caracteres, como ponto e vírgula (`;`).
+* `dec`: Define o caractere usado para representar o separador decimal nos valores numéricos. Por exemplo, em alguns países, usa-se a vírgula (`,`), enquanto em outros, o ponto (`.`).
+* `nrows`: Permite especificar o número máximo de linhas a serem lidas do arquivo. Útil quando você deseja ler apenas uma parte do arquivo.
+* `na.strings`: Define os valores que devem ser tratados como NA (valores ausentes). Por exemplo, se você tiver “N/A” ou “NA” no arquivo, pode especificá-los aqui.
+* `skip`: Indica quantas linhas devem ser ignoradas no início do arquivo antes de começar a leitura. Útil para pular cabeçalhos ou linhas de comentário.
+* `comment.char`: Define o caractere usado para indicar comentários no arquivo. Linhas começando com esse caractere serão ignoradas.
+
+**Exemplo**:
+
+### A função `read.csv()`
+
+A função `read.csv()` é otimizada para a leitura de arquivos CSV (Comma-Separated Values). A principal diferença entre `read.table()` e `read.csv()` é que esta última tem o separador padrão como vírgula.
+
+```{r eval=FALSE}
+# Leitura de arquivo CSV com read.csv
+dados_csv <- read.csv("dados.csv", header = TRUE)
+```
+
+Os argumentos adicionais são semelhantes aos da função `read.table()`.
+
+### A função `read.csv2()`
+
+A função `read.csv2()` é semelhante à `read.csv()`, mas o separador padrão é um ponto e vírgula.
+
+```{r eval=FALSE}
+# Leitura de CSV com separador ponto e vírgula
+dados_csv2 <- read.csv2("dados.csv2", header = TRUE)
+```
+
+### A Função `read_excel()` do pacote `readxl`
+
+Para ler arquivos Excel (.xls e .xlsx), utilizamos a função `read_excel()` do pacote `readxl`.
+
+```{r eval=FALSE}
+library(readxl)
+# Leitura de arquivo Excel
+dados_excel <- read_excel("dados.xlsx", sheet = 1)
+```
+
+### Leitura de Dados Online
+
+É possível ler diretamente dados hospedados em URLs usando funções como `read.table()`.
+
+```{r eval=FALSE}
+# Leitura de dados online com read.table
+url <- "https://example.com/data.csv"
+dados_online <- read.table(url, header = TRUE, sep = ",")
+```
+
+
+
+
 # Loop while
 
 A instrução `while` em R é uma estrutura de controle de fluxo que permite executar um bloco de código repetidamente, enquanto uma condição especificada for verdadeira. É particularmente útil para situações em que o número de repetições não é conhecido antecipadamente, mas depende de alguma condição lógica.
