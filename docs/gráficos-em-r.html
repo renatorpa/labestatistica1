@@ -12,7 +12,7 @@ set in the _output.yml file.</p>" />
 
   <meta property="og:title" content="Capítulo 12 Gráficos em R | Introdução ao R" />
   <meta property="og:type" content="book" />
-  
+  <meta property="og:image" content="/path to the social sharing image like images/cover.jpg" />
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
@@ -24,7 +24,7 @@ set in the _output.yml file.</p>" />
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  
+  <meta name="twitter:image" content="/path to the social sharing image like images/cover.jpg" />
 
 <meta name="author" content="Renato de Paula" />
 
@@ -151,6 +151,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="2.1" data-path="r-e-rstudio.html"><a href="r-e-rstudio.html#instalação-e-funcionalidades-básicas"><i class="fa fa-check"></i><b>2.1</b> Instalação e funcionalidades básicas</a></li>
 <li class="chapter" data-level="2.2" data-path="r-e-rstudio.html"><a href="r-e-rstudio.html#navegando-no-rstudio"><i class="fa fa-check"></i><b>2.2</b> Navegando no RStudio</a></li>
+<li class="chapter" data-level="2.3" data-path="r-e-rstudio.html"><a href="r-e-rstudio.html#atalhos"><i class="fa fa-check"></i><b>2.3</b> Atalhos</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="r-como-uma-calculadora-e-operações-aritméticas.html"><a href="r-como-uma-calculadora-e-operações-aritméticas.html"><i class="fa fa-check"></i><b>3</b> R como uma calculadora e Operações Aritméticas</a>
 <ul>
@@ -361,7 +362,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb447-11"><a href="gráficos-em-r.html#cb447-11" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Cor&quot;</span>,         </span>
 <span id="cb447-12"><a href="gráficos-em-r.html#cb447-12" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;Frequência Absoluta&quot;</span>,         </span>
 <span id="cb447-13"><a href="gráficos-em-r.html#cb447-13" tabindex="-1"></a>  <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;green&quot;</span>)) </span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-110-1.png" width="672" /></p>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-119-1.png" width="672" /></p>
 <div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="gráficos-em-r.html#cb448-1" tabindex="-1"></a><span class="co"># Calcular as frequências relativas</span></span>
 <span id="cb448-2"><a href="gráficos-em-r.html#cb448-2" tabindex="-1"></a>frequencia_relativa <span class="ot">&lt;-</span> frequencia_absoluta <span class="sc">/</span> <span class="fu">length</span>(cores)  </span>
 <span id="cb448-3"><a href="gráficos-em-r.html#cb448-3" tabindex="-1"></a>    </span>
@@ -370,7 +371,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb448-6"><a href="gráficos-em-r.html#cb448-6" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">&quot;Gráfico de Barras&quot;</span>,         </span>
 <span id="cb448-7"><a href="gráficos-em-r.html#cb448-7" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Cor&quot;</span>,         </span>
 <span id="cb448-8"><a href="gráficos-em-r.html#cb448-8" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;Frequência Relativa&quot;</span>) </span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-120-1.png" width="672" /></p>
 </div>
 <div id="gráfico-circular-pizza" class="section level2 hasAnchor" number="12.2">
 <h2><span class="header-section-number">12.2</span> Gráfico circular (pizza)<a href="gráficos-em-r.html#gráfico-circular-pizza" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -378,7 +379,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="gráficos-em-r.html#cb449-1" tabindex="-1"></a><span class="co"># Criar gráfico circular</span></span>
 <span id="cb449-2"><a href="gráficos-em-r.html#cb449-2" tabindex="-1"></a><span class="fu">pie</span>(frequencia_relativa, <span class="at">main=</span><span class="st">&quot;Gráfico circular&quot;</span>,</span>
 <span id="cb449-3"><a href="gráficos-em-r.html#cb449-3" tabindex="-1"></a>  <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;green&quot;</span>,<span class="st">&quot;red&quot;</span>))</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-112-1.png" width="672" /></p>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-121-1.png" width="672" /></p>
 </div>
 <div id="histograma" class="section level2 hasAnchor" number="12.3">
 <h2><span class="header-section-number">12.3</span> Histograma<a href="gráficos-em-r.html#histograma" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -400,7 +401,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb450-9"><a href="gráficos-em-r.html#cb450-9" tabindex="-1"></a>  <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">12</span>),     </span>
 <span id="cb450-10"><a href="gráficos-em-r.html#cb450-10" tabindex="-1"></a>  <span class="at">labels =</span> <span class="cn">TRUE</span>,     </span>
 <span id="cb450-11"><a href="gráficos-em-r.html#cb450-11" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>)</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-113-1.png" width="672" /></p>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-122-1.png" width="672" /></p>
 <div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="gráficos-em-r.html#cb451-1" tabindex="-1"></a><span class="co"># Pontos limites das classes</span></span>
 <span id="cb451-2"><a href="gráficos-em-r.html#cb451-2" tabindex="-1"></a>h<span class="sc">$</span>breaks</span></code></pre></div>
 <pre><code>## [1]  3  4  5  6  7  8  9 10 11</code></pre>
@@ -415,16 +416,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb455-6"><a href="gráficos-em-r.html#cb455-6" tabindex="-1"></a>  <span class="at">freq =</span> <span class="cn">FALSE</span>,     </span>
 <span id="cb455-7"><a href="gráficos-em-r.html#cb455-7" tabindex="-1"></a>  <span class="at">labels =</span> <span class="cn">TRUE</span>,          </span>
 <span id="cb455-8"><a href="gráficos-em-r.html#cb455-8" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>)</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-114-1.png" width="672" /></p>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-123-1.png" width="672" /></p>
 </div>
 <div id="box-plot" class="section level2 hasAnchor" number="12.4">
 <h2><span class="header-section-number">12.4</span> Box-plot<a href="gráficos-em-r.html#box-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="gráficos-em-r.html#cb456-1" tabindex="-1"></a><span class="co"># Caixa de bigodes vertical</span></span>
 <span id="cb456-2"><a href="gráficos-em-r.html#cb456-2" tabindex="-1"></a><span class="fu">boxplot</span>(bicicletas, <span class="at">main =</span> <span class="st">&quot;Caixa de bigodes&quot;</span>, <span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-115-1.png" width="672" /></p>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-124-1.png" width="672" /></p>
 <div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="gráficos-em-r.html#cb457-1" tabindex="-1"></a><span class="co"># Caixa de bigodes horizontal</span></span>
 <span id="cb457-2"><a href="gráficos-em-r.html#cb457-2" tabindex="-1"></a><span class="fu">boxplot</span>(bicicletas, <span class="at">main =</span> <span class="st">&quot;Caixa de bigodes&quot;</span>, <span class="at">col=</span><span class="st">&quot;green&quot;</span>, <span class="at">horizontal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-116-1.png" width="672" /></p>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-125-1.png" width="672" /></p>
 <div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="gráficos-em-r.html#cb458-1" tabindex="-1"></a><span class="co"># Caixa de bigodes lado a lado</span></span>
 <span id="cb458-2"><a href="gráficos-em-r.html#cb458-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
 <span id="cb458-3"><a href="gráficos-em-r.html#cb458-3" tabindex="-1"></a></span>
@@ -433,7 +434,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb458-6"><a href="gráficos-em-r.html#cb458-6" tabindex="-1"></a></span>
 <span id="cb458-7"><a href="gráficos-em-r.html#cb458-7" tabindex="-1"></a><span class="co"># Caixa de bigodes horizontal</span></span>
 <span id="cb458-8"><a href="gráficos-em-r.html#cb458-8" tabindex="-1"></a><span class="fu">boxplot</span>(bicicletas,<span class="at">main =</span> <span class="st">&quot;Caixa de bigodes&quot;</span>,<span class="at">col =</span> <span class="st">&quot;green&quot;</span>,<span class="at">horizontal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="meuLivro2_files/figure-html/unnamed-chunk-117-1.png" width="672" /></p>
+<p><img src="meuLivro2_files/figure-html/unnamed-chunk-126-1.png" width="672" /></p>
 <div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="gráficos-em-r.html#cb459-1" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <pre><code>## null device 
 ##           1</code></pre>

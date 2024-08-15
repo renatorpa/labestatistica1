@@ -25,13 +25,33 @@ R é um conjunto integrado de recursos de software para manipulação de dados, 
 
 Existem quatro painéis de trabalho no RStudio:
 
--   **Painel de código-fonte**. Este painel é onde os scripts são gravados/carregados e exibidos. Possui realce de sintaxe e preenchimento automático, além de permitir passar o código linha por linha.
+-   **Editor/Scripts**. Este painel é onde os scripts são gravados/carregados e exibidos. Possui realce de sintaxe e preenchimento automático, além de permitir passar o código linha por linha.
 
--   **Painel do console do R**. É aqui que os comandos são executados e é essencialmente a aparência do console do R básico, só que melhor! O console possui realce de sintaxe, preenchimento de código e interface com outros painéis do RStudio.
+-   **Console**. É aqui que os comandos são executados e é essencialmente a aparência do console do R básico, só que melhor! O console possui realce de sintaxe, preenchimento de código e interface com outros painéis do RStudio.
 
--   **Workspace/Histórico**. A aba do espaço de trabalho exibe informações que normalmente ficam ocultas no R, como dados carregados, funções e outras variáveis. A aba histórico armazena todos os comandos (linhas de código) que foram analisados por meio do R.
+-   **Environment/Histórico**. A aba do espaço de trabalho exibe informações que normalmente ficam ocultas no R, como dados carregados, funções e outras variáveis. A aba histórico armazena todos os comandos (linhas de código) que foram analisados por meio do R.
 
 -   **Último painel**. Este painel inclui a aba de arquivos (lista todos os arquivos no diretório de trabalho atual), a aba de gráficos (quaisquer gráficos), a aba de pacotes (pacotes instalados) e a aba de ajuda (sistema de ajuda html embutido).
+
+## Atalhos
+
+* **CTRL+ENTER**: roda a(s) linha(s) selecionada(s) no script. 
+
+* **ALT+-**: cria no script um sinal de atribuição (<-). 
+
+* **CTRL+SHIFT+M**: (%>%) operador pipe. 
+
+* **CTRL+1**: altera cursor para o script.
+
+* **CTRL+2**: altera cursor para o console.
+
+* **CTRL+ALT+I**: cria um chunk no R Markdown.
+
+* **CTRL+SHIFT+K**: compila um arquivo no R Markdown.
+
+* **ALT+SHIFT+K**: janela com todos os atalhos disponíveis.
+
+No MacBook, os atalhos geralmente são os mesmos, substituindo o **CTRL** por **command** e o **ALT** por **option**.
 
 # R como uma calculadora e Operações Aritméticas
 
@@ -1530,6 +1550,12 @@ url <- "https://example.com/data.csv"
 dados_online <- read.table(url, header = TRUE, sep = ",")
 ```
 
+# Pipe
+
+## O operador pipe
+
+## Exercícios
+
 
 # Loop while
 
@@ -1821,7 +1847,7 @@ tapply(iris$Petal.Length, iris$Species, mean)
  
 ## Exercícios
 
-# Gráficos em R
+# Gráficos (R base)
 
 ## Gráfico de Barras
 
@@ -1971,7 +1997,7 @@ As constantes $a$ e $m$ a serem escolhidas devem satisfazer três critérios:
  
 * Para qualquer semente inicial, o número de variáveis que podem ser geradas antes da repetição ocorrer deve ser grande.
  
-* Os valores podem ser calculados eficientemente em um computador digital.
+* Os valores podem ser calculados eficientemente em um computador.
 
 ## A função `sample()`
 
@@ -2832,3 +2858,14 @@ plot(Fn, main="Função de Distribuição Empírica",
 (e) Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da média $\bar{X_{n}}$. Sobreponha no gráfico uma curva com distribuição normal com valor esperado $E(X)$ e desvio padrão $\sqrt{V(x)/n}$.
 
 (f) Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da média padronizada $$\frac{\bar{X}_{n}-E(\bar{X_{n}})}{\sqrt{V(\bar{X_{n}})}}$$ e sobreponha no gráfico com uma curva com distribuição Normal com valor esperado 0 e desvio padrão 1.
+
+# Relatórios
+
+## Markdown
+
+## R Markdown
+
+# Referências
+
+* https://cemapre.iseg.ulisboa.pt/~nbrites/CTA/index.html
+* https://livro.curso-r.com/

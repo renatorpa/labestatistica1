@@ -167,14 +167,37 @@ Existem quatro painéis de trabalho no RStudio:
 
 \begin{itemize}
 \item
-  \textbf{Painel de código-fonte}. Este painel é onde os scripts são gravados/carregados e exibidos. Possui realce de sintaxe e preenchimento automático, além de permitir passar o código linha por linha.
+  \textbf{Editor/Scripts}. Este painel é onde os scripts são gravados/carregados e exibidos. Possui realce de sintaxe e preenchimento automático, além de permitir passar o código linha por linha.
 \item
-  \textbf{Painel do console do R}. É aqui que os comandos são executados e é essencialmente a aparência do console do R básico, só que melhor! O console possui realce de sintaxe, preenchimento de código e interface com outros painéis do RStudio.
+  \textbf{Console}. É aqui que os comandos são executados e é essencialmente a aparência do console do R básico, só que melhor! O console possui realce de sintaxe, preenchimento de código e interface com outros painéis do RStudio.
 \item
-  \textbf{Workspace/Histórico}. A aba do espaço de trabalho exibe informações que normalmente ficam ocultas no R, como dados carregados, funções e outras variáveis. A aba histórico armazena todos os comandos (linhas de código) que foram analisados por meio do R.
+  \textbf{Environment/Histórico}. A aba do espaço de trabalho exibe informações que normalmente ficam ocultas no R, como dados carregados, funções e outras variáveis. A aba histórico armazena todos os comandos (linhas de código) que foram analisados por meio do R.
 \item
   \textbf{Último painel}. Este painel inclui a aba de arquivos (lista todos os arquivos no diretório de trabalho atual), a aba de gráficos (quaisquer gráficos), a aba de pacotes (pacotes instalados) e a aba de ajuda (sistema de ajuda html embutido).
 \end{itemize}
+
+\section{Atalhos}\label{atalhos}
+
+\begin{itemize}
+\item
+  \textbf{CTRL+ENTER}: roda a(s) linha(s) selecionada(s) no script.
+\item
+  \textbf{ALT+-}: cria no script um sinal de atribuição (\textless-).
+\item
+  \textbf{CTRL+SHIFT+M}: (\%\textgreater\%) operador pipe.
+\item
+  \textbf{CTRL+1}: altera cursor para o script.
+\item
+  \textbf{CTRL+2}: altera cursor para o console.
+\item
+  \textbf{CTRL+ALT+I}: cria um chunk no R Markdown.
+\item
+  \textbf{CTRL+SHIFT+K}: compila um arquivo no R Markdown.
+\item
+  \textbf{ALT+SHIFT+K}: janela com todos os atalhos disponíveis.
+\end{itemize}
+
+No MacBook, os atalhos geralmente são os mesmos, substituindo o \textbf{CTRL} por \textbf{command} e o \textbf{ALT} por \textbf{option}.
 
 \chapter{R como uma calculadora e Operações Aritméticas}\label{r-como-uma-calculadora-e-operauxe7uxf5es-aritmuxe9ticas}
 
@@ -2152,11 +2175,11 @@ Uma \textbf{matriz} é uma coleção de objetos do mesmo tipo (numérico, lógic
 \end{Shaded}
 
 \begin{verbatim}
-##        [,1]  [,2]   [,3]
-## [1,]  0.266  0.35 -0.655
-## [2,] -0.949 -1.02 -1.206
-## [3,]  2.601  1.55  0.226
-## [4,]  0.846 -1.23  0.642
+##        [,1]    [,2]   [,3]
+## [1,]  0.216  0.4300 -0.906
+## [2,]  0.645 -0.0482 -0.547
+## [3,] -1.413 -0.8728 -0.441
+## [4,] -0.463 -0.4017 -0.195
 \end{verbatim}
 
 \begin{Shaded}
@@ -2167,11 +2190,11 @@ Uma \textbf{matriz} é uma coleção de objetos do mesmo tipo (numérico, lógic
 \end{Shaded}
 
 \begin{verbatim}
-##      dados1 dados2 dados3
-## [1,]  0.266   0.35 -0.655
-## [2,] -0.949  -1.02 -1.206
-## [3,]  2.601   1.55  0.226
-## [4,]  0.846  -1.23  0.642
+##      dados1  dados2 dados3
+## [1,]  0.216  0.4300 -0.906
+## [2,]  0.645 -0.0482 -0.547
+## [3,] -1.413 -0.8728 -0.441
+## [4,] -0.463 -0.4017 -0.195
 \end{verbatim}
 
 \begin{Shaded}
@@ -2182,12 +2205,12 @@ Uma \textbf{matriz} é uma coleção de objetos do mesmo tipo (numérico, lógic
 \end{Shaded}
 
 \begin{verbatim}
-##        [,1]    [,2]     [,3]
-## [1,] -1.968  0.6436 -0.04299
-## [2,]  0.847  0.4699 -0.18013
-## [3,] -0.156  1.5838 -0.00541
-## [4,] -0.532  0.1108  1.13018
-## [5,] -0.178 -0.0992 -0.04728
+##         [,1]   [,2]    [,3]
+## [1,]  0.4446  0.119  0.3338
+## [2,]  1.5957  0.386 -0.1811
+## [3,] -0.0182 -0.734 -1.1146
+## [4,] -0.1067  0.416 -0.0533
+## [5,]  0.3021 -0.117 -0.7563
 \end{verbatim}
 
 \begin{Shaded}
@@ -2201,12 +2224,12 @@ Uma \textbf{matriz} é uma coleção de objetos do mesmo tipo (numérico, lógic
 \end{Shaded}
 
 \begin{verbatim}
-##        A       B        C
-## a -1.968  0.6436 -0.04299
-## b  0.847  0.4699 -0.18013
-## c -0.156  1.5838 -0.00541
-## d -0.532  0.1108  1.13018
-## e -0.178 -0.0992 -0.04728
+##         A      B       C
+## a  0.4446  0.119  0.3338
+## b  1.5957  0.386 -0.1811
+## c -0.0182 -0.734 -1.1146
+## d -0.1067  0.416 -0.0533
+## e  0.3021 -0.117 -0.7563
 \end{verbatim}
 
 \subsection{Multiplicação de matrizes}\label{multiplicauxe7uxe3o-de-matrizes}
@@ -2221,11 +2244,11 @@ Uma \textbf{matriz} é uma coleção de objetos do mesmo tipo (numérico, lógic
 \end{Shaded}
 
 \begin{verbatim}
-##        [,1]   [,2]  [,3]
-## [1,] -0.891  0.380 0.339
-## [2,] -1.378 -1.361 2.157
-## [3,] -0.447 -2.126 0.656
-## [4,] -1.300 -0.774 0.803
+##        [,1]    [,2]  [,3]
+## [1,]  0.311 -0.0938 -1.49
+## [2,]  2.836 -0.8051  2.13
+## [3,]  0.873  4.1783  2.54
+## [4,] -4.758  3.6254  1.40
 \end{verbatim}
 
 \subsection{Algumas outras funções}\label{algumas-outras-funuxe7uxf5es}
@@ -3643,6 +3666,12 @@ Para ler arquivos Excel (.xls e .xlsx), utilizamos a função \texttt{read\_exce
 \end{Highlighting}
 \end{Shaded}
 
+\chapter{Pipe}\label{pipe}
+
+\section{O operador pipe}\label{o-operador-pipe}
+
+\section{Exercícios}\label{exercuxedcios-7}
+
 \chapter{Loop while}\label{loop-while}
 
 A instrução \texttt{while} em R é uma estrutura de controle de fluxo que permite executar um bloco de código repetidamente, enquanto uma condição especificada for verdadeira. É particularmente útil para situações em que o número de repetições não é conhecido antecipadamente, mas depende de alguma condição lógica.
@@ -3754,7 +3783,7 @@ Explique porque o programa acima não termina. Qual o erro no nosso código?
   \textbf{Desempenho}: Loops \texttt{while} podem ser menos eficientes do que loops vetorizados em R, portanto, para grandes conjuntos de dados, considere outras abordagens, como aplicar funções vetorizadas (\texttt{apply}, \texttt{lapply}, etc.).
 \end{itemize}
 
-\section{Exercícios}\label{exercuxedcios-7}
+\section{Exercícios}\label{exercuxedcios-8}
 
 \chapter{Loop for}\label{loop-for}
 
@@ -3911,7 +3940,7 @@ A instrução \texttt{for} em R é uma estrutura de controle de fluxo que permit
 ## [1] 2 5 8
 \end{verbatim}
 
-\section{Exercícios}\label{exercuxedcios-8}
+\section{Exercícios}\label{exercuxedcios-9}
 
 \chapter{\texorpdfstring{Família \texttt{Xapply()}}{Família Xapply()}}\label{famuxedlia-xapply}
 
@@ -4318,9 +4347,9 @@ Aplica uma função a grupos de valores em um vetor. É ideal para operações e
 ##       1.46       4.26       5.55
 \end{verbatim}
 
-\section{Exercícios}\label{exercuxedcios-9}
+\section{Exercícios}\label{exercuxedcios-10}
 
-\chapter{Gráficos em R}\label{gruxe1ficos-em-r}
+\chapter{Gráficos (R base)}\label{gruxe1ficos-r-base}
 
 \section{Gráfico de Barras}\label{gruxe1fico-de-barras}
 
@@ -4497,7 +4526,7 @@ Por default, o R utiliza a frequência absoluta para construir o histograma. Se 
 
 O \texttt{dplyr} é um dos pacotes mais populares e amplamente utilizados no R para manipulação e transformação de dados. Ele faz parte do conjunto de pacotes ``tidyverse,'' que são projetados para simplificar o trabalho com dados no R. O \texttt{dplyr} oferece uma interface intuitiva e de fácil uso para realizar operações comuns em data frames, como seleção de colunas, filtragem de linhas, ordenação, resumo de dados e junção de data frames.
 
-\section{Exercícios}\label{exercuxedcios-10}
+\section{Exercícios}\label{exercuxedcios-11}
 
 \chapter{Simulação}\label{simulauxe7uxe3o}
 
@@ -4534,7 +4563,7 @@ As constantes \(a\) e \(m\) a serem escolhidas devem satisfazer três critérios
 \item
   Para qualquer semente inicial, o número de variáveis que podem ser geradas antes da repetição ocorrer deve ser grande.
 \item
-  Os valores podem ser calculados eficientemente em um computador digital.
+  Os valores podem ser calculados eficientemente em um computador.
 \end{itemize}
 
 \section{\texorpdfstring{A função \texttt{sample()}}{A função sample()}}\label{a-funuxe7uxe3o-sample}
@@ -4574,7 +4603,7 @@ A função \texttt{sample()} em R é utilizada para gerar uma amostra aleatória
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2 9 8 7 3
+## [1]  6  5 10  4  3
 \end{verbatim}
 
 \textbf{Exemplo 2}: Amostragem com Reposição.
@@ -4588,7 +4617,7 @@ A função \texttt{sample()} em R é utilizada para gerar uma amostra aleatória
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 9 9 7 4 4
+## [1] 8 5 1 8 6
 \end{verbatim}
 
 \textbf{Exemplo 3}: Amostragem com Probabilidades Diferentes.
@@ -4605,10 +4634,10 @@ A função \texttt{sample()} em R é utilizada para gerar uma amostra aleatória
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2 8 6 9 7
+## [1] 9 6 5 8 7
 \end{verbatim}
 
-\section{Exercícios}\label{exercuxedcios-11}
+\section{Exercícios}\label{exercuxedcios-12}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -5447,7 +5476,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 
 \includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-147-1.pdf}
 
-\section{Exercícios}\label{exercuxedcios-12}
+\section{Exercícios}\label{exercuxedcios-13}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -5657,6 +5686,22 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \item
   Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da média padronizada \[\frac{\bar{X}_{n}-E(\bar{X_{n}})}{\sqrt{V(\bar{X_{n}})}}\] e sobreponha no gráfico com uma curva com distribuição Normal com valor esperado 0 e desvio padrão 1.
 \end{enumerate}
+
+\chapter{Relatórios}\label{relatuxf3rios}
+
+\section{Markdown}\label{markdown}
+
+\section{R Markdown}\label{r-markdown}
+
+\chapter{Referências}\label{referuxeancias}
+
+\begin{itemize}
+\tightlist
+\item
+  \url{https://cemapre.iseg.ulisboa.pt/~nbrites/CTA/index.html}
+\item
+  \url{https://livro.curso-r.com/}
+\end{itemize}
 
   \bibliography{book.bib,packages.bib}
 
