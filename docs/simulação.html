@@ -271,12 +271,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="17" data-path="simulação.html"><a href="simulação.html"><i class="fa fa-check"></i><b>17</b> Simulação</a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="simulação.html"><a href="simulação.html#geração-de-números-pseudoaleatórios"><i class="fa fa-check"></i><b>17.1</b> Geração de números pseudoaleatórios</a>
-<ul>
-<li class="chapter" data-level="17.1.1" data-path="simulação.html"><a href="simulação.html#a-função-sample"><i class="fa fa-check"></i><b>17.1.1</b> A função <code>sample()</code></a></li>
-<li class="chapter" data-level="17.1.2" data-path="simulação.html"><a href="simulação.html#exercícios-11"><i class="fa fa-check"></i><b>17.1.2</b> Exercícios</a></li>
-<li class="chapter" data-level="17.1.3" data-path="simulação.html"><a href="simulação.html#método-da-transformada-inversa"><i class="fa fa-check"></i><b>17.1.3</b> Método da transformada inversa</a></li>
-</ul></li>
+<li class="chapter" data-level="17.1" data-path="simulação.html"><a href="simulação.html#geração-de-números-pseudoaleatórios"><i class="fa fa-check"></i><b>17.1</b> Geração de números pseudoaleatórios</a></li>
+<li class="chapter" data-level="17.2" data-path="simulação.html"><a href="simulação.html#a-função-sample"><i class="fa fa-check"></i><b>17.2</b> A função <code>sample()</code></a></li>
+<li class="chapter" data-level="17.3" data-path="simulação.html"><a href="simulação.html#exercícios-11"><i class="fa fa-check"></i><b>17.3</b> Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="18" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html"><i class="fa fa-check"></i><b>18</b> Distribuições univariadas no R</a>
 <ul>
@@ -373,8 +370,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Para qualquer semente inicial, o número de variáveis que podem ser geradas antes da repetição ocorrer deve ser grande.</p></li>
 <li><p>Os valores podem ser calculados eficientemente em um computador digital.</p></li>
 </ul>
-<div id="a-função-sample" class="section level3 hasAnchor" number="17.1.1">
-<h3><span class="header-section-number">17.1.1</span> A função <code>sample()</code><a href="simulação.html#a-função-sample" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="a-função-sample" class="section level2 hasAnchor" number="17.2">
+<h2><span class="header-section-number">17.2</span> A função <code>sample()</code><a href="simulação.html#a-função-sample" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A função <code>sample()</code> em R é utilizada para gerar uma amostra aleatória a partir de um conjunto de dados ou uma sequência de números. Ela é extremamente flexível, permitindo que você defina o tamanho da amostra, se a amostragem é feita com ou sem reposição, e também se os elementos têm probabilidades diferentes de serem selecionados.</p>
 <div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="simulação.html#cb461-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
 <span id="cb461-2"><a href="simulação.html#cb461-2" tabindex="-1"></a></span>
@@ -392,12 +390,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb462-4"><a href="simulação.html#cb462-4" tabindex="-1"></a><span class="co"># Queremos uma amostra de 5 elementos</span></span>
 <span id="cb462-5"><a href="simulação.html#cb462-5" tabindex="-1"></a>amostra <span class="ot">&lt;-</span> <span class="fu">sample</span>(pop, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb462-6"><a href="simulação.html#cb462-6" tabindex="-1"></a><span class="fu">print</span>(amostra)</span></code></pre></div>
-<pre><code>## [1]  5  8  9  4 10</code></pre>
+<pre><code>## [1]  9  8  6 10  1</code></pre>
 <p><strong>Exemplo 2</strong>: Amostragem com Reposição.</p>
 <div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="simulação.html#cb464-1" tabindex="-1"></a><span class="co"># Amostra com reposição</span></span>
 <span id="cb464-2"><a href="simulação.html#cb464-2" tabindex="-1"></a>amostra_repos <span class="ot">&lt;-</span> <span class="fu">sample</span>(pop, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb464-3"><a href="simulação.html#cb464-3" tabindex="-1"></a><span class="fu">print</span>(amostra_repos)</span></code></pre></div>
-<pre><code>## [1] 3 3 3 1 6</code></pre>
+<pre><code>## [1]  7  1  8 10  9</code></pre>
 <p><strong>Exemplo 3</strong>: Amostragem com Probabilidades Diferentes.</p>
 <div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="simulação.html#cb466-1" tabindex="-1"></a><span class="co"># Probabilidades associadas a cada elemento</span></span>
 <span id="cb466-2"><a href="simulação.html#cb466-2" tabindex="-1"></a>prob <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.05</span>, <span class="fl">0.05</span>)</span>
@@ -405,10 +403,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb466-4"><a href="simulação.html#cb466-4" tabindex="-1"></a><span class="co"># Amostra com probabilidades diferentes</span></span>
 <span id="cb466-5"><a href="simulação.html#cb466-5" tabindex="-1"></a>amostra_prob <span class="ot">&lt;-</span> <span class="fu">sample</span>(pop, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">prob =</span> prob)</span>
 <span id="cb466-6"><a href="simulação.html#cb466-6" tabindex="-1"></a><span class="fu">print</span>(amostra_prob)</span></code></pre></div>
-<pre><code>## [1] 5 1 8 7 3</code></pre>
+<pre><code>## [1] 2 5 1 3 4</code></pre>
 </div>
-<div id="exercícios-11" class="section level3 hasAnchor" number="17.1.2">
-<h3><span class="header-section-number">17.1.2</span> Exercícios<a href="simulação.html#exercícios-11" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercícios-11" class="section level2 hasAnchor" number="17.3">
+<h2><span class="header-section-number">17.3</span> Exercícios<a href="simulação.html#exercícios-11" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
 <li><p>Crie um vetor com os números de 1 a 20. Utilize a função <code>sample()</code> para selecionar uma amostra aleatória de 5 elementos desse vetor. A amostragem deve ser feita sem reposição.</p></li>
 <li><p>Suponha que você tem uma população representada pelos números de 1 a 10. Utilize a função <code>sample()</code> para selecionar uma amostra de 10 elementos com reposição.</p></li>
@@ -421,10 +419,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Um cartão de Bingo contém 24 números aleatórios entre 1 e 75 (excluindo o número central “free”). Crie 5 cartões de Bingo únicos usando a função <code>sample()</code>.</p></li>
 <li><p>Em um estudo clínico, 30 pacientes devem ser randomizados em dois grupos: tratamento e controle. O grupo de tratamento deve conter 20 pacientes e o grupo de controle 10. Usando <code>sample()</code>, faça a randomização dos pacientes. Dica: use a função <code>setdiff()</code>.</p></li>
 </ol>
-</div>
-<div id="método-da-transformada-inversa" class="section level3 hasAnchor" number="17.1.3">
-<h3><span class="header-section-number">17.1.3</span> Método da transformada inversa<a href="simulação.html#método-da-transformada-inversa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-</div>
 </div>
 </div>
             </section>
