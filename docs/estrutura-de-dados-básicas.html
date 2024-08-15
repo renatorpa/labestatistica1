@@ -230,14 +230,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html"><i class="fa fa-check"></i><b>8</b> Leitura de dados</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#leitura-de-arquivos-de-texto"><i class="fa fa-check"></i><b>8.1</b> Leitura de Arquivos de Texto</a>
-<ul>
-<li class="chapter" data-level="8.1.1" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.table"><i class="fa fa-check"></i><b>8.1.1</b> A Função <code>read.table()</code></a></li>
-<li class="chapter" data-level="8.1.2" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.csv"><i class="fa fa-check"></i><b>8.1.2</b> A função <code>read.csv()</code></a></li>
-<li class="chapter" data-level="8.1.3" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.csv2"><i class="fa fa-check"></i><b>8.1.3</b> A função <code>read.csv2()</code></a></li>
-<li class="chapter" data-level="8.1.4" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read_excel-do-pacote-readxl"><i class="fa fa-check"></i><b>8.1.4</b> A Função <code>read_excel()</code> do pacote <code>readxl</code></a></li>
-<li class="chapter" data-level="8.1.5" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#leitura-de-dados-online"><i class="fa fa-check"></i><b>8.1.5</b> Leitura de Dados Online</a></li>
-</ul></li>
+<li class="chapter" data-level="8.1" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.table"><i class="fa fa-check"></i><b>8.1</b> A Função <code>read.table()</code></a></li>
+<li class="chapter" data-level="8.2" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.csv"><i class="fa fa-check"></i><b>8.2</b> A função <code>read.csv()</code></a></li>
+<li class="chapter" data-level="8.3" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.csv2"><i class="fa fa-check"></i><b>8.3</b> A função <code>read.csv2()</code></a></li>
+<li class="chapter" data-level="8.4" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read_excel-do-pacote-readxl"><i class="fa fa-check"></i><b>8.4</b> A Função <code>read_excel()</code> do pacote <code>readxl</code></a></li>
+<li class="chapter" data-level="8.5" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#leitura-de-dados-online"><i class="fa fa-check"></i><b>8.5</b> Leitura de Dados Online</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="loop-while.html"><a href="loop-while.html"><i class="fa fa-check"></i><b>9</b> Loop while</a>
 <ul>
@@ -692,37 +689,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">4.3.3</span> Nomeando linhas e colunas numa matriz<a href="estrutura-de-dados-básicas.html#nomeando-linhas-e-colunas-numa-matriz" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="estrutura-de-dados-básicas.html#cb277-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">12</span>),<span class="at">nrow=</span><span class="dv">4</span>)</span>
 <span id="cb277-2"><a href="estrutura-de-dados-básicas.html#cb277-2" tabindex="-1"></a>x</span></code></pre></div>
-<pre><code>##       [,1]   [,2]   [,3]
-## [1,] 1.092 -0.837  1.604
-## [2,] 2.477 -0.776 -0.971
-## [3,] 0.564  0.521 -1.581
-## [4,] 1.194  0.859 -0.919</code></pre>
+<pre><code>##        [,1]   [,2]   [,3]
+## [1,] -1.538  0.228 -0.984
+## [2,] -0.977  0.140  0.554
+## [3,] -0.687 -0.220 -0.673
+## [4,] -0.330  1.397  1.657</code></pre>
 <div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="estrutura-de-dados-básicas.html#cb279-1" tabindex="-1"></a><span class="fu">colnames</span>(x) <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;dados&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
 <span id="cb279-2"><a href="estrutura-de-dados-básicas.html#cb279-2" tabindex="-1"></a>x</span></code></pre></div>
 <pre><code>##      dados1 dados2 dados3
-## [1,]  1.092 -0.837  1.604
-## [2,]  2.477 -0.776 -0.971
-## [3,]  0.564  0.521 -1.581
-## [4,]  1.194  0.859 -0.919</code></pre>
+## [1,] -1.538  0.228 -0.984
+## [2,] -0.977  0.140  0.554
+## [3,] -0.687 -0.220 -0.673
+## [4,] -0.330  1.397  1.657</code></pre>
 <div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="estrutura-de-dados-básicas.html#cb281-1" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">15</span>),<span class="at">nrow=</span><span class="dv">5</span>)</span>
 <span id="cb281-2"><a href="estrutura-de-dados-básicas.html#cb281-2" tabindex="-1"></a>y </span></code></pre></div>
 <pre><code>##        [,1]   [,2]   [,3]
-## [1,] -1.187  0.639 -0.688
-## [2,]  0.248  1.655 -0.328
-## [3,] -1.200 -0.164 -0.699
-## [4,]  1.388 -1.721 -0.503
-## [5,]  0.351 -1.445  0.151</code></pre>
+## [1,]  1.791 -0.625 -0.483
+## [2,]  0.336 -1.507 -0.714
+## [3,]  1.674  1.895  1.062
+## [4,] -0.133  0.804 -0.133
+## [5,]  0.251  0.584  0.195</code></pre>
 <div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="estrutura-de-dados-básicas.html#cb283-1" tabindex="-1"></a><span class="fu">colnames</span>(y) <span class="ot">&lt;-</span> LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(y)]</span>
 <span id="cb283-2"><a href="estrutura-de-dados-básicas.html#cb283-2" tabindex="-1"></a></span>
 <span id="cb283-3"><a href="estrutura-de-dados-básicas.html#cb283-3" tabindex="-1"></a><span class="fu">rownames</span>(y) <span class="ot">&lt;-</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(y)]</span>
 <span id="cb283-4"><a href="estrutura-de-dados-básicas.html#cb283-4" tabindex="-1"></a></span>
 <span id="cb283-5"><a href="estrutura-de-dados-básicas.html#cb283-5" tabindex="-1"></a>y</span></code></pre></div>
 <pre><code>##        A      B      C
-## a -1.187  0.639 -0.688
-## b  0.248  1.655 -0.328
-## c -1.200 -0.164 -0.699
-## d  1.388 -1.721 -0.503
-## e  0.351 -1.445  0.151</code></pre>
+## a  1.791 -0.625 -0.483
+## b  0.336 -1.507 -0.714
+## c  1.674  1.895  1.062
+## d -0.133  0.804 -0.133
+## e  0.251  0.584  0.195</code></pre>
 </div>
 <div id="multiplicação-de-matrizes" class="section level3 hasAnchor" number="4.3.4">
 <h3><span class="header-section-number">4.3.4</span> Multiplicação de matrizes<a href="estrutura-de-dados-básicas.html#multiplicação-de-matrizes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -730,11 +727,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb285-2"><a href="estrutura-de-dados-básicas.html#cb285-2" tabindex="-1"></a>N<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">15</span>),<span class="at">nrow=</span><span class="dv">5</span>,<span class="at">ncol=</span><span class="dv">3</span>)</span>
 <span id="cb285-3"><a href="estrutura-de-dados-básicas.html#cb285-3" tabindex="-1"></a></span>
 <span id="cb285-4"><a href="estrutura-de-dados-básicas.html#cb285-4" tabindex="-1"></a>M<span class="sc">%*%</span>N</span></code></pre></div>
-<pre><code>##        [,1]  [,2]   [,3]
-## [1,] -3.224 -0.59 -1.776
-## [2,]  2.460  3.37 -1.150
-## [3,] -0.244  1.26 -2.455
-## [4,]  3.917  3.90 -0.199</code></pre>
+<pre><code>##        [,1]   [,2]   [,3]
+## [1,]  0.378  0.039 -0.438
+## [2,] -5.082 -1.221 -1.827
+## [3,]  2.596  2.117  1.355
+## [4,] -3.841 -0.163  0.978</code></pre>
 </div>
 <div id="algumas-outras-funções" class="section level3 hasAnchor" number="4.3.5">
 <h3><span class="header-section-number">4.3.5</span> Algumas outras funções<a href="estrutura-de-dados-básicas.html#algumas-outras-funções" class="anchor-section" aria-label="Anchor link to header"></a></h3>

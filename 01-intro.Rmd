@@ -1463,9 +1463,7 @@ R é uma linguagem poderosa para análise de dados e oferece várias funções p
 - Indicar as características do arquivo (como delimitador, presença de cabeçalhos, etc.).
 - Ler os dados e armazená-los em um objeto (geralmente um data frame).
 
-## Leitura de Arquivos de Texto
-
-### A Função `read.table()`
+## A Função `read.table()`
 
 `read.table()` é uma das funções mais versáteis em R para leitura de arquivos de texto. Esta função permite importar arquivos tabulares e configurá-los de acordo com as características do arquivo.
 
@@ -1492,7 +1490,7 @@ Alguns importantes são:
 
 **Exemplo**:
 
-### A função `read.csv()`
+## A função `read.csv()`
 
 A função `read.csv()` é otimizada para a leitura de arquivos CSV (Comma-Separated Values). A principal diferença entre `read.table()` e `read.csv()` é que esta última tem o separador padrão como vírgula.
 
@@ -1503,7 +1501,7 @@ dados_csv <- read.csv("dados.csv", header = TRUE)
 
 Os argumentos adicionais são semelhantes aos da função `read.table()`.
 
-### A função `read.csv2()`
+## A função `read.csv2()`
 
 A função `read.csv2()` é semelhante à `read.csv()`, mas o separador padrão é um ponto e vírgula.
 
@@ -1512,7 +1510,7 @@ A função `read.csv2()` é semelhante à `read.csv()`, mas o separador padrão 
 dados_csv2 <- read.csv2("dados.csv2", header = TRUE)
 ```
 
-### A Função `read_excel()` do pacote `readxl`
+## A Função `read_excel()` do pacote `readxl`
 
 Para ler arquivos Excel (.xls e .xlsx), utilizamos a função `read_excel()` do pacote `readxl`.
 
@@ -1522,7 +1520,7 @@ library(readxl)
 dados_excel <- read_excel("dados.xlsx", sheet = 1)
 ```
 
-### Leitura de Dados Online
+## Leitura de Dados Online
 
 É possível ler diretamente dados hospedados em URLs usando funções como `read.table()`.
 
@@ -1531,8 +1529,6 @@ dados_excel <- read_excel("dados.xlsx", sheet = 1)
 url <- "https://example.com/data.csv"
 dados_online <- read.table(url, header = TRUE, sep = ",")
 ```
-
-
 
 
 # Loop while
