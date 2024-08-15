@@ -120,7 +120,7 @@
 
 \title{Introdução ao R}
 \author{Renato de Paula}
-\date{2024-08-14}
+\date{2024-08-15}
 
 \begin{document}
 \maketitle
@@ -2152,11 +2152,11 @@ Uma \textbf{matriz} é uma coleção de objetos do mesmo tipo (numérico, lógic
 \end{Shaded}
 
 \begin{verbatim}
-##          [,1]   [,2]   [,3]
-## [1,] -1.05598  0.546 -0.890
-## [2,]  0.00517  0.297 -0.433
-## [3,] -1.33501 -2.485  1.247
-## [4,] -0.54402  1.152  1.077
+##        [,1]   [,2]   [,3]
+## [1,]  1.150  0.381  1.387
+## [2,] -2.033 -1.551  2.280
+## [3,]  0.205 -0.520  1.916
+## [4,]  1.136  0.688 -0.138
 \end{verbatim}
 
 \begin{Shaded}
@@ -2167,11 +2167,11 @@ Uma \textbf{matriz} é uma coleção de objetos do mesmo tipo (numérico, lógic
 \end{Shaded}
 
 \begin{verbatim}
-##        dados1 dados2 dados3
-## [1,] -1.05598  0.546 -0.890
-## [2,]  0.00517  0.297 -0.433
-## [3,] -1.33501 -2.485  1.247
-## [4,] -0.54402  1.152  1.077
+##      dados1 dados2 dados3
+## [1,]  1.150  0.381  1.387
+## [2,] -2.033 -1.551  2.280
+## [3,]  0.205 -0.520  1.916
+## [4,]  1.136  0.688 -0.138
 \end{verbatim}
 
 \begin{Shaded}
@@ -2182,12 +2182,12 @@ Uma \textbf{matriz} é uma coleção de objetos do mesmo tipo (numérico, lógic
 \end{Shaded}
 
 \begin{verbatim}
-##         [,1]   [,2]    [,3]
-## [1,] -0.4697 -0.661  1.2657
-## [2,]  0.0585 -1.211 -0.0725
-## [3,]  1.9465 -0.945 -0.0500
-## [4,] -0.3565  0.149 -1.2568
-## [5,] -0.6331 -2.235 -0.3751
+##        [,1]   [,2]    [,3]
+## [1,] 1.0515 -2.311 -1.1922
+## [2,] 0.4516  1.051  0.0643
+## [3,] 1.1939 -0.555 -0.7000
+## [4,] 0.0422  0.484  0.2962
+## [5,] 3.3406 -1.115 -1.1095
 \end{verbatim}
 
 \begin{Shaded}
@@ -2201,12 +2201,12 @@ Uma \textbf{matriz} é uma coleção de objetos do mesmo tipo (numérico, lógic
 \end{Shaded}
 
 \begin{verbatim}
-##         A      B       C
-## a -0.4697 -0.661  1.2657
-## b  0.0585 -1.211 -0.0725
-## c  1.9465 -0.945 -0.0500
-## d -0.3565  0.149 -1.2568
-## e -0.6331 -2.235 -0.3751
+##        A      B       C
+## a 1.0515 -2.311 -1.1922
+## b 0.4516  1.051  0.0643
+## c 1.1939 -0.555 -0.7000
+## d 0.0422  0.484  0.2962
+## e 3.3406 -1.115 -1.1095
 \end{verbatim}
 
 \subsection{Multiplicação de matrizes}\label{multiplicauxe7uxe3o-de-matrizes}
@@ -2221,11 +2221,11 @@ Uma \textbf{matriz} é uma coleção de objetos do mesmo tipo (numérico, lógic
 \end{Shaded}
 
 \begin{verbatim}
-##        [,1]  [,2]   [,3]
-## [1,] -1.387  1.12  0.351
-## [2,]  0.625  1.55 -0.253
-## [3,] -1.788 -2.12 -0.681
-## [4,] -0.421 -1.10 -0.570
+##        [,1]    [,2]  [,3]
+## [1,]  3.256 -0.8547 -3.77
+## [2,]  0.809 -1.4834  1.32
+## [3,] -2.956  2.1947  1.99
+## [4,] -0.451  0.0882  3.33
 \end{verbatim}
 
 \subsection{Algumas outras funções}\label{algumas-outras-funuxe7uxf5es}
@@ -3528,6 +3528,121 @@ Quando você executa o comando \texttt{source()}, o R lê e executa todas as lin
   Um programa que recorrendo ao script anterior, calcula a mediana, variância e o desvio padrão da amostra \texttt{amostra\ \textless{}-\ c(1,2,3,4,5,6,7)}
 \end{enumerate}
 
+\chapter{Leitura de dados}\label{leitura-de-dados}
+
+R é uma linguagem poderosa para análise de dados e oferece várias funções para importar dados de diferentes formatos. Independentemente do formato, o processo básico de leitura de dados em R consiste em:
+
+\begin{itemize}
+\tightlist
+\item
+  Especificar o caminho do arquivo.
+\item
+  Indicar as características do arquivo (como delimitador, presença de cabeçalhos, etc.).
+\item
+  Ler os dados e armazená-los em um objeto (geralmente um data frame).
+\end{itemize}
+
+\section{\texorpdfstring{A Função \texttt{read.table()}}{A Função read.table()}}\label{a-funuxe7uxe3o-read.table}
+
+\texttt{read.table()} é uma das funções mais versáteis em R para leitura de arquivos de texto. Esta função permite importar arquivos tabulares e configurá-los de acordo com as características do arquivo.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Leitura de arquivo txt com read.table()}
+\NormalTok{dados }\OtherTok{\textless{}{-}} \FunctionTok{read.table}\NormalTok{(}\StringTok{"dados.txt"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{sep =} \StringTok{" "}
+\end{Highlighting}
+\end{Shaded}
+
+A função \texttt{read.table()} tem várias opções de argumentos.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{args}\NormalTok{(read.table)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## function (file, header = FALSE, sep = "", quote = "\"'", dec = ".", 
+##     numerals = c("allow.loss", "warn.loss", "no.loss"), row.names, 
+##     col.names, as.is = !stringsAsFactors, tryLogical = TRUE, 
+##     na.strings = "NA", colClasses = NA, nrows = -1, skip = 0, 
+##     check.names = TRUE, fill = !blank.lines.skip, strip.white = FALSE, 
+##     blank.lines.skip = TRUE, comment.char = "#", allowEscapes = FALSE, 
+##     flush = FALSE, stringsAsFactors = FALSE, fileEncoding = "", 
+##     encoding = "unknown", text, skipNul = FALSE) 
+## NULL
+\end{verbatim}
+
+Alguns importantes são:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{header}: Especifica se a primeira linha do arquivo contém nomes de coluna (cabeçalho). Se \texttt{header\ =\ TRUE}, a primeira linha é considerada como cabeçalho e os nomes das colunas são extraídos dessa linha. Se \texttt{header\ =\ FALSE}, a primeira linha é tratada como dados.
+\item
+  \texttt{sep}: Define o caractere usado para separar os campos (colunas) no arquivo. Por padrão, é uma vírgula (\texttt{,}), mas você pode especificar outros caracteres, como ponto e vírgula (\texttt{;}).
+\item
+  \texttt{dec}: Define o caractere usado para representar o separador decimal nos valores numéricos. Por exemplo, em alguns países, usa-se a vírgula (\texttt{,}), enquanto em outros, o ponto (\texttt{.}).
+\item
+  \texttt{nrows}: Permite especificar o número máximo de linhas a serem lidas do arquivo. Útil quando você deseja ler apenas uma parte do arquivo.
+\item
+  \texttt{na.strings}: Define os valores que devem ser tratados como NA (valores ausentes). Por exemplo, se você tiver ``N/A'' ou ``NA'' no arquivo, pode especificá-los aqui.
+\item
+  \texttt{skip}: Indica quantas linhas devem ser ignoradas no início do arquivo antes de começar a leitura. Útil para pular cabeçalhos ou linhas de comentário.
+\item
+  \texttt{comment.char}: Define o caractere usado para indicar comentários no arquivo. Linhas começando com esse caractere serão ignoradas.
+\end{itemize}
+
+\textbf{Exemplo}:
+
+\section{\texorpdfstring{A função \texttt{read.csv()}}{A função read.csv()}}\label{a-funuxe7uxe3o-read.csv}
+
+A função \texttt{read.csv()} é otimizada para a leitura de arquivos CSV (Comma-Separated Values). A principal diferença entre \texttt{read.table()} e \texttt{read.csv()} é que esta última tem o separador padrão como vírgula.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Leitura de arquivo CSV com read.csv}
+\NormalTok{dados\_csv }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"dados.csv"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Os argumentos adicionais são semelhantes aos da função \texttt{read.table()}.
+
+\section{\texorpdfstring{A função \texttt{read.csv2()}}{A função read.csv2()}}\label{a-funuxe7uxe3o-read.csv2}
+
+A função \texttt{read.csv2()} é semelhante à \texttt{read.csv()}, mas o separador padrão é um ponto e vírgula.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Leitura de CSV com separador ponto e vírgula}
+\NormalTok{dados\_csv2 }\OtherTok{\textless{}{-}} \FunctionTok{read.csv2}\NormalTok{(}\StringTok{"dados.csv2"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{\texorpdfstring{A Função \texttt{read\_excel()} do pacote \texttt{readxl}}{A Função read\_excel() do pacote readxl}}\label{a-funuxe7uxe3o-read_excel-do-pacote-readxl}
+
+Para ler arquivos Excel (.xls e .xlsx), utilizamos a função \texttt{read\_excel()} do pacote \texttt{readxl}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readxl)}
+\CommentTok{\# Leitura de arquivo Excel}
+\NormalTok{dados\_excel }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{"dados.xlsx"}\NormalTok{, }\AttributeTok{sheet =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Leitura de Dados Online}\label{leitura-de-dados-online}
+
+É possível ler diretamente dados hospedados em URLs usando funções como \texttt{read.table()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Leitura de dados online com read.table}
+\NormalTok{url }\OtherTok{\textless{}{-}} \StringTok{"https://example.com/data.csv"}
+\NormalTok{dados\_online }\OtherTok{\textless{}{-}} \FunctionTok{read.table}\NormalTok{(url, }\AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{sep =} \StringTok{","}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \chapter{Loop while}\label{loop-while}
 
 A instrução \texttt{while} em R é uma estrutura de controle de fluxo que permite executar um bloco de código repetidamente, enquanto uma condição especificada for verdadeira. É particularmente útil para situações em que o número de repetições não é conhecido antecipadamente, mas depende de alguma condição lógica.
@@ -4205,13 +4320,11 @@ Aplica uma função a grupos de valores em um vetor. É ideal para operações e
 
 \section{Exercícios}\label{exercuxedcios-9}
 
-\chapter{Leitura de Dados}\label{leitura-de-dados}
+\chapter{Leitura de Dados}\label{leitura-de-dados-1}
 
 \chapter{Manipulando dados}\label{manipulando-dados}
 
 \section{\texorpdfstring{\texttt{tapply()}, \texttt{aggregate()} e \texttt{by()}}{tapply(), aggregate() e by()}}\label{tapply-aggregate-e-by}
-
-\chapter{O package dplyr}\label{o-package-dplyr}
 
 \chapter{Gráficos em R}\label{gruxe1ficos-em-r}
 
@@ -4237,7 +4350,7 @@ Aplica uma função a grupos de valores em um vetor. É ideal para operações e
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-104-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-110-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4252,7 +4365,7 @@ Aplica uma função a grupos de valores em um vetor. É ideal para operações e
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-105-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-111-1.pdf}
 
 \section{Gráfico circular (pizza)}\label{gruxe1fico-circular-pizza}
 
@@ -4266,7 +4379,7 @@ Aplica uma função a grupos de valores em um vetor. É ideal para operações e
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-106-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-112-1.pdf}
 
 \section{Histograma}\label{histograma}
 
@@ -4299,7 +4412,7 @@ Por default, o R utiliza a frequência absoluta para construir o histograma. Se 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-107-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-113-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4336,7 +4449,7 @@ Por default, o R utiliza a frequência absoluta para construir o histograma. Se 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-108-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-114-1.pdf}
 
 \section{Box-plot}\label{box-plot}
 
@@ -4347,7 +4460,7 @@ Por default, o R utiliza a frequência absoluta para construir o histograma. Se 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-109-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-115-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4356,7 +4469,7 @@ Por default, o R utiliza a frequência absoluta para construir o histograma. Se 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-110-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-116-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4371,7 +4484,7 @@ Por default, o R utiliza a frequência absoluta para construir o histograma. Se 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-111-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-117-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4431,6 +4544,101 @@ As constantes \(a\) e \(m\) a serem escolhidas devem satisfazer três critérios
 \end{itemize}
 
 \subsection{\texorpdfstring{A função \texttt{sample()}}{A função sample()}}\label{a-funuxe7uxe3o-sample}
+
+A função \texttt{sample()} em R é utilizada para gerar uma amostra aleatória a partir de um conjunto de dados ou uma sequência de números. Ela é extremamente flexível, permitindo que você defina o tamanho da amostra, se a amostragem é feita com ou sem reposição, e também se os elementos têm probabilidades diferentes de serem selecionados.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Sintaxe}
+
+\FunctionTok{sample}\NormalTok{(x, size, }\AttributeTok{replace =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{prob =} \ConstantTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  \textbf{x}: Vetor de elementos a serem amostrados.
+\item
+  \textbf{size}: Tamanho da amostra.
+\item
+  \textbf{replace}: Indica se a amostragem é com reposição (\texttt{TRUE}) ou sem reposição (\texttt{FALSE}).
+\item
+  \textbf{prob}: Um vetor de probabilidades associadas a cada elemento em x.
+\end{itemize}
+
+\textbf{Exemplo 1}: Amostragem Simples sem Reposição.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Suponha que temos uma população de 1 a 10}
+\NormalTok{pop }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{:}\DecValTok{10}
+
+\CommentTok{\# Queremos uma amostra de 5 elementos}
+\NormalTok{amostra }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(pop, }\AttributeTok{size =} \DecValTok{5}\NormalTok{, }\AttributeTok{replace =} \ConstantTok{FALSE}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(amostra)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6 9 3 1 2
+\end{verbatim}
+
+\textbf{Exemplo 2}: Amostragem com Reposição.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Amostra com reposição}
+\NormalTok{amostra\_repos }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(pop, }\AttributeTok{size =} \DecValTok{5}\NormalTok{, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(amostra\_repos)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2 4 2 8 9
+\end{verbatim}
+
+\textbf{Exemplo 3}: Amostragem com Probabilidades Diferentes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Probabilidades associadas a cada elemento}
+\NormalTok{prob }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{0.1}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.05}\NormalTok{, }\FloatTok{0.05}\NormalTok{)}
+
+\CommentTok{\# Amostra com probabilidades diferentes}
+\NormalTok{amostra\_prob }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(pop, }\AttributeTok{size =} \DecValTok{5}\NormalTok{, }\AttributeTok{prob =}\NormalTok{ prob)}
+\FunctionTok{print}\NormalTok{(amostra\_prob)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3 8 7 2 5
+\end{verbatim}
+
+\subsection{Exercícios}\label{exercuxedcios-11}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Crie um vetor com os números de 1 a 20. Utilize a função \texttt{sample()} para selecionar uma amostra aleatória de 5 elementos desse vetor. A amostragem deve ser feita sem reposição.
+\item
+  Suponha que você tem uma população representada pelos números de 1 a 10. Utilize a função \texttt{sample()} para selecionar uma amostra de 10 elementos com reposição.
+\item
+  Crie um vetor com as letras A, B, C, D, E. Aplique a função \texttt{sample()} para selecionar uma amostra de 3 letras, onde a probabilidade de cada letra ser selecionada é dada pelo vetor \texttt{c(0.1,\ 0.2,\ 0.3,\ 0.25,\ 0.15)}.
+\item
+  Crie um vetor com os números de 1 a 10. Utilize a função \texttt{sample()} para reordenar aleatoriamente os elementos desse vetor.
+\item
+  Crie um vetor com os nomes de cinco frutas: ``Maçã'', ``Banana'', ``Laranja'', ``Uva'', ``Pera''. Utilizando a função \texttt{sample()}, selecione aleatoriamente uma fruta desse vetor. Em seguida, selecione uma amostra de 3 frutas.
+\item
+  Você é responsável por realizar um teste de qualidade em uma fábrica. Há 1000 produtos fabricados, numerados de 1 a 1000. Selecione uma amostra aleatória de 50 produtos para inspeção, garantindo que não haja reposição na seleção.
+\item
+  Simule o lançamento de dois dados justos 10000 vezes e registre as somas das faces resultantes. Utilize a função \texttt{sample()} para realizar a simulação. Em seguida, crie um histograma das somas obtidas.
+\item
+  Você possui um vetor de 200 estudantes classificados em três turmas: A, B, e C. As turmas têm tamanhos diferentes (50, 100, e 50 alunos, respectivamente). Usando \texttt{sample()}, selecione uma amostra de 20 alunos, mantendo a proporção original das turmas.
+\item
+  Um cartão de Bingo contém 24 números aleatórios entre 1 e 75 (excluindo o número central ``free''). Crie 5 cartões de Bingo únicos usando a função \texttt{sample()}.
+\item
+  Em um estudo clínico, 30 pacientes devem ser randomizados em dois grupos: tratamento e controle. O grupo de tratamento deve conter 20 pacientes e o grupo de controle 10. Usando \texttt{sample()}, faça a randomização dos pacientes. Dica: use a função \texttt{setdiff()}.
+\end{enumerate}
 
 \subsection{Método da transformada inversa}\label{muxe9todo-da-transformada-inversa}
 
@@ -4511,7 +4719,7 @@ A função \texttt{ecdf()} no R é usada para calcular a função de distribuiç
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-112-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-122-1.pdf}
 
 \section{Gerando uma variável aleatória com distribuição binomial}\label{gerando-uma-variuxe1vel-aleatuxf3ria-com-distribuiuxe7uxe3o-binomial}
 
@@ -4549,7 +4757,7 @@ Seja \(X\sim \text{Binomial}(n=20,p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-113-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-123-1.pdf}
 
 \subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o}
 
@@ -4574,7 +4782,7 @@ Seja \(X\sim \text{Binomial}(n=20,p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-114-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-124-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o}
 
@@ -4602,7 +4810,7 @@ Seja \(X\sim \text{Binomial}(n=20,p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-115-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-125-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o}
 
@@ -4625,7 +4833,7 @@ Seja \(X\sim \text{Binomial}(n=20,p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-116-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-126-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-1}
 
@@ -4648,7 +4856,7 @@ Seja \(X\sim \text{Binomial}(n=20,p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-117-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-127-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4657,7 +4865,7 @@ Seja \(X\sim \text{Binomial}(n=20,p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-117-2.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-127-2.pdf}
 
 \textbf{Cálculo de probabilidade}: Seja \(X \sim \text{Binomial}(n=10, p=0.5)\).
 
@@ -4711,7 +4919,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-118-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-128-1.pdf}
 
 \subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o-1}
 
@@ -4744,7 +4952,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-119-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-129-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-1}
 
@@ -4780,7 +4988,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-120-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-130-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-1}
 
@@ -4800,7 +5008,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-121-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-131-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-2}
 
@@ -4821,7 +5029,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-122-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-132-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4836,7 +5044,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-122-2.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-132-2.pdf}
 
 \textbf{Cálculo de probabilidades}: Seja \(X\sim\text{Poisson}(\lambda=5)\).
 
@@ -4875,7 +5083,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-123-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-133-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o}
 
@@ -4900,7 +5108,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-124-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-134-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-2}
 
@@ -4931,7 +5139,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-125-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-135-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-2}
 
@@ -4951,7 +5159,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-126-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-136-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-3}
 
@@ -4976,7 +5184,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-127-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-137-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5013,7 +5221,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-128-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-138-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-1}
 
@@ -5038,7 +5246,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-129-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-139-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-3}
 
@@ -5069,7 +5277,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-130-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-140-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-3}
 
@@ -5089,7 +5297,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-131-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-141-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-4}
 
@@ -5114,7 +5322,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-132-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-142-1.pdf}
 
 \section{Gerando uma variável aleatória com distribuição Normal}\label{gerando-uma-variuxe1vel-aleatuxf3ria-com-distribuiuxe7uxe3o-normal}
 
@@ -5144,7 +5352,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-133-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-143-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-2}
 
@@ -5169,7 +5377,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-134-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-144-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-4}
 
@@ -5200,7 +5408,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-135-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-145-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-4}
 
@@ -5220,7 +5428,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-136-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-146-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-5}
 
@@ -5245,9 +5453,9 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-137-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-147-1.pdf}
 
-\section{Exercícios}\label{exercuxedcios-11}
+\section{Exercícios}\label{exercuxedcios-12}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
