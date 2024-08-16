@@ -276,6 +276,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.4" data-path="o-pacote-dplyr.html"><a href="o-pacote-dplyr.html#exercícios-12"><i class="fa fa-check"></i><b>15.4</b> Exercícios</a></li>
 <li class="chapter" data-level="15.5" data-path="o-pacote-dplyr.html"><a href="o-pacote-dplyr.html#filtrando-linhas"><i class="fa fa-check"></i><b>15.5</b> Filtrando linhas</a></li>
 <li class="chapter" data-level="15.6" data-path="o-pacote-dplyr.html"><a href="o-pacote-dplyr.html#exercícios-13"><i class="fa fa-check"></i><b>15.6</b> Exercícios</a></li>
+<li class="chapter" data-level="15.7" data-path="o-pacote-dplyr.html"><a href="o-pacote-dplyr.html#modificando-e-criando-novas-colunas"><i class="fa fa-check"></i><b>15.7</b> Modificando e criando novas colunas</a></li>
+<li class="chapter" data-level="15.8" data-path="o-pacote-dplyr.html"><a href="o-pacote-dplyr.html#sumarizando-a-base"><i class="fa fa-check"></i><b>15.8</b> Sumarizando a base</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="simulação.html"><a href="simulação.html"><i class="fa fa-check"></i><b>16</b> Simulação</a>
 <ul>
@@ -746,7 +748,72 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>1.</strong> Crie um objeto chamado <code>personagem_grey</code> apenas com personagens que tenham cabelo cinza.</p>
 <p><strong>2.</strong> Crie um objeto chamado <code>novos_pesados</code> com personagens com 30 anos ou menos e massa maior do que 100.</p>
 <p><strong>3.</strong> Retorne tabelas (<code>tibbles</code>) apenas com:</p>
-<p><strong>a.</strong></p>
+<p><strong>a.</strong> personagens de olhos azuis com mais de 30 anos;</p>
+<p><strong>b.</strong> personagens com cor <code>light</code> ou <code>red</code></p>
+<p><strong>c.</strong> personagens com altura superior a 180 e selecione apenas as colunas <code>name</code>, <code>height</code>, e <code>species</code>.</p>
+<p><strong>d.</strong> personagens humanos (<code>species == "Human"</code>) e selecione apenas as colunas <code>name</code>, <code>gender</code>, <code>homeworld</code>, e <code>height</code>.</p>
+<p><strong>e.</strong> apenas os personagens <code>"Luke Skywalker"</code>, <code>"Darth Vader"</code>, e <code>"Leia Organa"</code>, selecionando as colunas <code>name</code>, <code>height</code>, <code>mass</code>, e <code>homeworld</code>.</p>
+<p><strong>f.</strong> todos os personagens ordenados pela sua altura (<code>height</code>) em ordem decrescente. Selecione as colunas <code>name</code>, <code>height</code>, e <code>species</code>.</p>
+</div>
+<div id="modificando-e-criando-novas-colunas" class="section level2 hasAnchor" number="15.7">
+<h2><span class="header-section-number">15.7</span> Modificando e criando novas colunas<a href="o-pacote-dplyr.html#modificando-e-criando-novas-colunas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para modificar uma coluna existente ou criar uma nova coluna, utilizamos a função <code>mutate()</code>. O código abaixo divide os valores da coluna <code>height</code> por 100, mudando a unidade de medida dessa variável de centímetros para metros.</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="o-pacote-dplyr.html#cb175-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">height =</span> height<span class="sc">/</span><span class="dv">100</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 14
+##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Luke Sk…   1.72    77 blond      fair       blue            19   male  mascu…
+##  2 C-3PO      1.67    75 &lt;NA&gt;       gold       yellow         112   none  mascu…
+##  3 R2-D2      0.96    32 &lt;NA&gt;       white, bl… red             33   none  mascu…
+##  4 Darth V…   2.02   136 none       white      yellow          41.9 male  mascu…
+##  5 Leia Or…   1.5     49 brown      light      brown           19   fema… femin…
+##  6 Owen La…   1.78   120 brown, gr… light      blue            52   male  mascu…
+##  7 Beru Wh…   1.65    75 brown      light      blue            47   fema… femin…
+##  8 R5-D4      0.97    32 &lt;NA&gt;       white, red red             NA   none  mascu…
+##  9 Biggs D…   1.83    84 black      light      brown           24   male  mascu…
+## 10 Obi-Wan…   1.82    77 auburn, w… fair       blue-gray       57   male  mascu…
+## # ℹ 77 more rows
+## # ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<p>Também poderíamos ter criado essa variável em uma nova coluna. Repare que a nova coluna <code>height_meters</code> é colocada no final da tabela.</p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="o-pacote-dplyr.html#cb177-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">height_meters =</span> height<span class="sc">/</span><span class="dv">100</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 15
+##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Luke Sk…    172    77 blond      fair       blue            19   male  mascu…
+##  2 C-3PO       167    75 &lt;NA&gt;       gold       yellow         112   none  mascu…
+##  3 R2-D2        96    32 &lt;NA&gt;       white, bl… red             33   none  mascu…
+##  4 Darth V…    202   136 none       white      yellow          41.9 male  mascu…
+##  5 Leia Or…    150    49 brown      light      brown           19   fema… femin…
+##  6 Owen La…    178   120 brown, gr… light      blue            52   male  mascu…
+##  7 Beru Wh…    165    75 brown      light      blue            47   fema… femin…
+##  8 R5-D4        97    32 &lt;NA&gt;       white, red red             NA   none  mascu…
+##  9 Biggs D…    183    84 black      light      brown           24   male  mascu…
+## 10 Obi-Wan…    182    77 auburn, w… fair       blue-gray       57   male  mascu…
+## # ℹ 77 more rows
+## # ℹ 6 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;, height_meters &lt;dbl&gt;</code></pre>
+<p>Podemos fazer qualquer operação com uma ou mais colunas. Abaixo vamos criar um tibble que contenha as colunas <code>name</code>, <code>height</code>, <code>mass</code>, e uma nova coluna <code>BMI</code>, que calcule o Índice de Massa Corporal (IMC) de cada personagem, usando a fórmula <code>mass / (height/100)^2</code>. Caso <code>height</code> ou <code>mass</code> seja <code>NA</code>, a coluna <code>BMI</code> deve ser <code>NA</code>.</p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="o-pacote-dplyr.html#cb179-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span></span>
+<span id="cb179-2"><a href="o-pacote-dplyr.html#cb179-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">BMI =</span> <span class="fu">ifelse</span>(<span class="sc">!</span><span class="fu">is.na</span>(height) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(mass), mass <span class="sc">/</span> (height<span class="sc">/</span><span class="dv">100</span>)<span class="sc">^</span><span class="dv">2</span>, <span class="cn">NA</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb179-3"><a href="o-pacote-dplyr.html#cb179-3" tabindex="-1"></a>  <span class="fu">select</span>(name, height, mass, BMI)</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 4
+##    name               height  mass   BMI
+##    &lt;chr&gt;               &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 Luke Skywalker        172    77  26.0
+##  2 C-3PO                 167    75  26.9
+##  3 R2-D2                  96    32  34.7
+##  4 Darth Vader           202   136  33.3
+##  5 Leia Organa           150    49  21.8
+##  6 Owen Lars             178   120  37.9
+##  7 Beru Whitesun Lars    165    75  27.5
+##  8 R5-D4                  97    32  34.0
+##  9 Biggs Darklighter     183    84  25.1
+## 10 Obi-Wan Kenobi        182    77  23.2
+## # ℹ 77 more rows</code></pre>
+</div>
+<div id="sumarizando-a-base" class="section level2 hasAnchor" number="15.8">
+<h2><span class="header-section-number">15.8</span> Sumarizando a base<a href="o-pacote-dplyr.html#sumarizando-a-base" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 </div>
 </div>
             </section>

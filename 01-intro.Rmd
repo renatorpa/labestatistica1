@@ -3076,7 +3076,43 @@ Utilize a base `sw` nos exercícios a seguir.
 
 **3.** Retorne tabelas (`tibbles`) apenas com:
 
-**a.** 
+**a.** personagens de olhos azuis com mais de 30 anos;
+
+**b.** personagens com cor `light` ou `red`
+
+**c.** personagens com altura superior a 180 e selecione apenas as colunas `name`, `height`, e `species`.
+
+**d.** personagens humanos (`species == "Human"`) e selecione apenas as colunas `name`, `gender`, `homeworld`, e `height`.
+
+**e.** apenas os personagens `"Luke Skywalker"`, `"Darth Vader"`, e `"Leia Organa"`, selecionando as colunas `name`, `height`, `mass`, e `homeworld`.
+
+**f.** todos os personagens ordenados pela sua altura (`height`) em ordem decrescente. Selecione as colunas `name`, `height`, e `species`.
+
+## Modificando e criando novas colunas
+
+Para modificar uma coluna existente ou criar uma nova coluna, utilizamos a função `mutate()`. O código abaixo divide os valores da coluna `height` por 100, mudando a unidade de medida dessa variável de centímetros para metros.
+
+```{r}
+sw %>% mutate(height = height/100)
+```
+
+Também poderíamos ter criado essa variável em uma nova coluna. Repare que a nova coluna `height_meters` é colocada no final da tabela.
+
+```{r}
+sw %>% mutate(height_meters = height/100)
+```
+
+Podemos fazer qualquer operação com uma ou mais colunas. Abaixo vamos criar um tibble que contenha as colunas `name`, `height`, `mass`, e uma nova coluna `BMI`, que calcule o Índice de Massa Corporal (IMC) de cada personagem, usando a fórmula `mass / (height/100)^2`. Caso `height` ou `mass` seja `NA`, a coluna `BMI` deve ser `NA`.
+
+```{r}
+sw %>%
+  mutate(BMI = ifelse(!is.na(height) & !is.na(mass), mass / (height/100)^2, NA)) %>%
+  select(name, height, mass, BMI)
+```
+
+## Sumarizando a base
+
+
 
 
 # Simulação
