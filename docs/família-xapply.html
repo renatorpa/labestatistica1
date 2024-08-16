@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Renato de Paula" />
 
 
-<meta name="date" content="2024-08-15" />
+<meta name="date" content="2024-08-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -409,22 +409,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="função-apply" class="section level2 hasAnchor" number="12.1">
 <h2><span class="header-section-number">12.1</span> Função <code>apply()</code><a href="família-xapply.html#função-apply" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Aplica uma função a margens (linhas ou colunas) de uma matriz ou data frame e fornece saída em vetor, lista ou array. É usada para evitar loops (ciclos).</p>
-<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="família-xapply.html#cb423-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
-<span id="cb423-2"><a href="família-xapply.html#cb423-2" tabindex="-1"></a><span class="fu">apply</span>(X, MARGIN, FUN)</span></code></pre></div>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="família-xapply.html#cb439-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
+<span id="cb439-2"><a href="família-xapply.html#cb439-2" tabindex="-1"></a><span class="fu">apply</span>(X, MARGIN, FUN)</span></code></pre></div>
 <ul>
 <li><p><code>X</code>: A matriz ou data frame.</p></li>
 <li><p><code>MARGIN</code>: Indica se a função deve ser aplicada a linha (1) ou coluna (2).</p></li>
 <li><p><code>FUN</code>: A função a ser aplicada.</p></li>
 </ul>
 <p><strong>Exemplo</strong>: Calcular a soma, a média e a raíz quadrada de cada coluna de uma matriz.</p>
-<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="família-xapply.html#cb424-1" tabindex="-1"></a>matriz <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">nrow =</span> <span class="dv">3</span>)</span>
-<span id="cb424-2"><a href="família-xapply.html#cb424-2" tabindex="-1"></a></span>
-<span id="cb424-3"><a href="família-xapply.html#cb424-3" tabindex="-1"></a><span class="fu">apply</span>(matriz, <span class="dv">2</span>, sum)</span></code></pre></div>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="família-xapply.html#cb440-1" tabindex="-1"></a>matriz <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">nrow =</span> <span class="dv">3</span>)</span>
+<span id="cb440-2"><a href="família-xapply.html#cb440-2" tabindex="-1"></a></span>
+<span id="cb440-3"><a href="família-xapply.html#cb440-3" tabindex="-1"></a><span class="fu">apply</span>(matriz, <span class="dv">2</span>, sum)</span></code></pre></div>
 <pre><code>## [1]  6 15 24</code></pre>
-<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="família-xapply.html#cb426-1" tabindex="-1"></a><span class="fu">apply</span>(matriz, <span class="dv">2</span>, mean)</span></code></pre></div>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="família-xapply.html#cb442-1" tabindex="-1"></a><span class="fu">apply</span>(matriz, <span class="dv">2</span>, mean)</span></code></pre></div>
 <pre><code>## [1] 2 5 8</code></pre>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="família-xapply.html#cb428-1" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">sqrt</span>(x)</span>
-<span id="cb428-2"><a href="família-xapply.html#cb428-2" tabindex="-1"></a><span class="fu">apply</span>(matriz, <span class="dv">2</span>, f)</span></code></pre></div>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="família-xapply.html#cb444-1" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">sqrt</span>(x)</span>
+<span id="cb444-2"><a href="família-xapply.html#cb444-2" tabindex="-1"></a><span class="fu">apply</span>(matriz, <span class="dv">2</span>, f)</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,] 1.00 2.00 2.65
 ## [2,] 1.41 2.24 2.83
@@ -433,15 +433,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="função-lapply" class="section level2 hasAnchor" number="12.2">
 <h2><span class="header-section-number">12.2</span> Função <code>lapply()</code><a href="família-xapply.html#função-lapply" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Aplica uma função a cada elemento de uma lista ou vetor e retorna uma lista. É útil quando você precisa manter a estrutura de saída como uma lista.</p>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="família-xapply.html#cb430-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
-<span id="cb430-2"><a href="família-xapply.html#cb430-2" tabindex="-1"></a><span class="fu">lapply</span>(X, FUN, ...)</span></code></pre></div>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="família-xapply.html#cb446-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
+<span id="cb446-2"><a href="família-xapply.html#cb446-2" tabindex="-1"></a><span class="fu">lapply</span>(X, FUN, ...)</span></code></pre></div>
 <ul>
 <li><p><code>X</code>: A lista ou vetor.</p></li>
 <li><p><code>FUN</code>: A função a ser aplicada.</p></li>
 </ul>
 <p><strong>Exemplo 1:</strong></p>
-<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="família-xapply.html#cb431-1" tabindex="-1"></a>nomes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ANA&quot;</span>, <span class="st">&quot;JOAO&quot;</span>, <span class="st">&quot;PAULO&quot;</span>, <span class="st">&quot;FILIPA&quot;</span>)</span>
-<span id="cb431-2"><a href="família-xapply.html#cb431-2" tabindex="-1"></a>(nomes_minusc <span class="ot">&lt;-</span> <span class="fu">lapply</span>(nomes, tolower))</span></code></pre></div>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="família-xapply.html#cb447-1" tabindex="-1"></a>nomes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ANA&quot;</span>, <span class="st">&quot;JOAO&quot;</span>, <span class="st">&quot;PAULO&quot;</span>, <span class="st">&quot;FILIPA&quot;</span>)</span>
+<span id="cb447-2"><a href="família-xapply.html#cb447-2" tabindex="-1"></a>(nomes_minusc <span class="ot">&lt;-</span> <span class="fu">lapply</span>(nomes, tolower))</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] &quot;ana&quot;
 ## 
@@ -453,16 +453,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## [[4]]
 ## [1] &quot;filipa&quot;</code></pre>
-<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="família-xapply.html#cb433-1" tabindex="-1"></a><span class="fu">str</span>(nomes_minusc) </span></code></pre></div>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="família-xapply.html#cb449-1" tabindex="-1"></a><span class="fu">str</span>(nomes_minusc) </span></code></pre></div>
 <pre><code>## List of 4
 ##  $ : chr &quot;ana&quot;
 ##  $ : chr &quot;joao&quot;
 ##  $ : chr &quot;paulo&quot;
 ##  $ : chr &quot;filipa&quot;</code></pre>
 <p><strong>Exemplo 2:</strong></p>
-<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="família-xapply.html#cb435-1" tabindex="-1"></a><span class="co"># Aplicar a função sqrt a cada elemento de uma lista</span></span>
-<span id="cb435-2"><a href="família-xapply.html#cb435-2" tabindex="-1"></a>vetor_dados <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">a =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">b =</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">8</span>)</span>
-<span id="cb435-3"><a href="família-xapply.html#cb435-3" tabindex="-1"></a><span class="fu">lapply</span>(vetor_dados, sqrt)</span></code></pre></div>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="família-xapply.html#cb451-1" tabindex="-1"></a><span class="co"># Aplicar a função sqrt a cada elemento de uma lista</span></span>
+<span id="cb451-2"><a href="família-xapply.html#cb451-2" tabindex="-1"></a>vetor_dados <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">a =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">b =</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">8</span>)</span>
+<span id="cb451-3"><a href="família-xapply.html#cb451-3" tabindex="-1"></a><span class="fu">lapply</span>(vetor_dados, sqrt)</span></code></pre></div>
 <pre><code>## $a
 ## [1] 1.00 1.41 1.73 2.00
 ## 
@@ -472,13 +472,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="função-sapply" class="section level2 hasAnchor" number="12.3">
 <h2><span class="header-section-number">12.3</span> Função <code>sapply()</code><a href="família-xapply.html#função-sapply" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Similar ao <code>lapply()</code>, aplica uma função a cada elemento de uma lista, vetor ou data frame, mas tenta simplificar o resultado(saída) para um vetor ou matriz.</p>
-<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="família-xapply.html#cb437-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
-<span id="cb437-2"><a href="família-xapply.html#cb437-2" tabindex="-1"></a><span class="fu">sapply</span>(X, FUN, ...)</span></code></pre></div>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="família-xapply.html#cb453-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
+<span id="cb453-2"><a href="família-xapply.html#cb453-2" tabindex="-1"></a><span class="fu">sapply</span>(X, FUN, ...)</span></code></pre></div>
 <p><strong>Exemplo</strong></p>
-<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="família-xapply.html#cb438-1" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
-<span id="cb438-2"><a href="família-xapply.html#cb438-2" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb438-3"><a href="família-xapply.html#cb438-3" tabindex="-1"></a></span>
-<span id="cb438-4"><a href="família-xapply.html#cb438-4" tabindex="-1"></a><span class="fu">lapply</span>(dados, f)</span></code></pre></div>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="família-xapply.html#cb454-1" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
+<span id="cb454-2"><a href="família-xapply.html#cb454-2" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb454-3"><a href="família-xapply.html#cb454-3" tabindex="-1"></a></span>
+<span id="cb454-4"><a href="família-xapply.html#cb454-4" tabindex="-1"></a><span class="fu">lapply</span>(dados, f)</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] 1
 ## 
@@ -493,21 +493,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## [[5]]
 ## [1] 25</code></pre>
-<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="família-xapply.html#cb440-1" tabindex="-1"></a><span class="fu">sapply</span>(dados, f)</span></code></pre></div>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="família-xapply.html#cb456-1" tabindex="-1"></a><span class="fu">sapply</span>(dados, f)</span></code></pre></div>
 <pre><code>## [1]  1  4  9 16 25</code></pre>
 </div>
 <div id="função-tapply" class="section level2 hasAnchor" number="12.4">
 <h2><span class="header-section-number">12.4</span> Função <code>tapply()</code><a href="família-xapply.html#função-tapply" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Aplica uma função a grupos de valores em um vetor. É ideal para operações em subconjuntos de dados categorizados.</p>
-<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="família-xapply.html#cb442-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
-<span id="cb442-2"><a href="família-xapply.html#cb442-2" tabindex="-1"></a><span class="fu">tapply</span>(X, INDEX, FUN, ...)</span></code></pre></div>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="família-xapply.html#cb458-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
+<span id="cb458-2"><a href="família-xapply.html#cb458-2" tabindex="-1"></a><span class="fu">tapply</span>(X, INDEX, FUN, ...)</span></code></pre></div>
 <ul>
 <li><p><code>X</code>: O vetor de dados</p></li>
 <li><p><code>INDEX</code>: Um fator ou lista de fatores que definem os grupos.</p></li>
 <li><p><code>FUN</code>: A função a ser aplicada</p></li>
 </ul>
 <p><strong>Exemplo:</strong> O dataset <code>iris</code> no R é um dos conjuntos de dados mais conhecidos e frequentemente utilizados para exemplificar análises estatísticas e técnicas de aprendizado de máquina. Foi introduzido por Ronald A. Fisher em 1936 em seu artigo sobre a utilização de modelos estatísticos para discriminação de espécies de plantas. O objetivo deste conjunto de dados é prever a classe de cada uma das três espécies de flores (fatores): Setosa, Versicolor, Virginica. O conjunto de dados coleta informações para cada espécie sobre seu comprimento e largura.</p>
-<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="família-xapply.html#cb443-1" tabindex="-1"></a>iris</span></code></pre></div>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="família-xapply.html#cb459-1" tabindex="-1"></a>iris</span></code></pre></div>
 <pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
 ## 1            5.1         3.5          1.4         0.2     setosa
 ## 2            4.9         3.0          1.4         0.2     setosa
@@ -659,7 +659,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 148          6.5         3.0          5.2         2.0  virginica
 ## 149          6.2         3.4          5.4         2.3  virginica
 ## 150          5.9         3.0          5.1         1.8  virginica</code></pre>
-<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="família-xapply.html#cb445-1" tabindex="-1"></a><span class="fu">tapply</span>(iris<span class="sc">$</span>Petal.Length, iris<span class="sc">$</span>Species, mean)</span></code></pre></div>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="família-xapply.html#cb461-1" tabindex="-1"></a><span class="fu">tapply</span>(iris<span class="sc">$</span>Petal.Length, iris<span class="sc">$</span>Species, mean)</span></code></pre></div>
 <pre><code>##     setosa versicolor  virginica 
 ##       1.46       4.26       5.55</code></pre>
 </div>

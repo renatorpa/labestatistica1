@@ -35,7 +35,7 @@ Existem quatro painéis de trabalho no RStudio:
 
 ## Atalhos
 
-* **CTRL+ENTER**: roda a(s) linha(s) selecionada(s) no script. 
+* **CTRL+ENTER**: compila a(s) linha(s) selecionada(s) no script. 
 
 * **ALT+-**: cria no script um sinal de atribuição (<-). 
 
@@ -1554,8 +1554,113 @@ dados_online <- read.table(url, header = TRUE, sep = ",")
 
 ## O operador pipe
 
+O operador pipe (`%>%`) em R é uma ferramenta essencial para escrever código de maneira mais limpa e legível, permitindo que os resultados de uma função sejam passados diretamente como entrada para a próxima função, sem a necessidade de criar variáveis intermediárias.
+
+O operador pipe foi popularizado pelo pacote `magrittr`, desenvolvido por Stefan Milton Bache e lançado em 2014. O nome “magrittr” é uma referência ao artista surrealista René Magritte, famoso pela pintura “Ceci n’est pas une pipe” (Isto não é um cachimbo), que inspirou a ideia de que o operador pipe permite que dados fluam através de uma sequência de operações de maneira intuitiva e sem a necessidade de variáveis temporárias.
+
+Para começar a utilizar o pipe, instale e carregue o pacote `magrittr`.
+
+```{r eval=FALSE}
+install.packages("magrittr")
+library(magrittr)
+```
+
+O operador pipe `%>%` permite que o valor de uma expressão à esquerda seja passado como o primeiro argumento para a função à direita. Isto permite que o código seja lido de cima para baixo, em vez de dentro para fora, facilitando a compreensão e o fluxo de dados. Por exemplo:
+
+```{r}
+library(magrittr)
+x <- c(1, 2, 3, 4)
+sqrt(sum(x))
+
+# Com o pipe
+x %>% sum() %>% sqrt()
+```
+
+Outro exemplo
+
+```{r eval=FALSE}
+resultado <- sqrt(sum(log(abs(x))))
+```
+
+Com o operador pipe, o mesmo código pode ser reescrito de forma mais clara:
+
+```{r eval=FALSE}
+resultado <- x %>% 
+  abs() %>% 
+  log() %>% 
+  sum() %>% 
+  sqrt()
+```
+
+Às vezes, desejamos que o resultado do lado esquerdo do operador pipe seja inserido em um argumento diferente do primeiro na função do lado direito. Nesses casos, usamos um ponto (`.`) como um marcador para indicar onde o valor deve ser colocado.
+
+```{r}
+# Queremos que o dataset seja recebido pelo segundo argumento (data=) da função "lm".
+
+airquality %>%
+  na.omit() %>%
+  lm(Ozone ~ Wind + Temp + Solar.R, data = .) %>%
+  summary()
+```
+
 ## Exercícios
 
+1. Reescreva a expressão abaixo utilizando o ` %>% `,
+
+```{r eval=FALSE}
+round(mean(sum(1:10)/3), digits = 1)
+```
+
+**Dica**: utilize a função `magrittr::divide_by()`, Veja o help da função para mais informações.
+
+```{r}
+1:10 %>% 
+  sum() %>% 
+  magrittr::divide_by(3) %>% 
+  mean() %>% 
+  round(digits=1)
+```
+
+
+2. Reescreva o código abaixo utilizando o `%>%`.
+
+```{r}
+
+x <- rnorm(100)
+
+x.pos <- x[x>0]
+
+media <- mean(x.pos)
+
+saida <- round(media, 2)
+```
+
+**Dica**: utilize a função `magrittr::extract()`. Veja o help da função para mais informações.
+
+```{r}
+rnorm(100) %>% 
+  magrittr::extract(.>0) %>% 
+  mean() %>% 
+  round(digits = 2)
+```
+
+3. Sem rodar, diga qual a saída do código abaixo. Consulte o help das funções caso precise.
+
+```{r eval=FALSE}
+2 %>%
+  add(2) %>%
+  c(6, NA) %>%
+  mean(na.rm = T) %>%
+  equals(5)
+```
+
+* Primeiro, somamos 2 com 2, gerando o valor 4.
+
+* Então colocamos esse valor em um vetor com os valores 6 e `NA`.
+
+* Em seguida, tiramos a média desse vetor, desconsiderando o `NA`, obtendo o valor 5.
+
+* Por fim, testemos se o valor é igual a 5, obtendo o valor `TRUE`.
 
 # Loop while
 

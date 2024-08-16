@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Renato de Paula" />
 
 
-<meta name="date" content="2024-08-15" />
+<meta name="date" content="2024-08-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -381,9 +381,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="a-função-sample" class="section level2 hasAnchor" number="16.2">
 <h2><span class="header-section-number">16.2</span> A função <code>sample()</code><a href="simulação.html#a-função-sample" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A função <code>sample()</code> em R é utilizada para gerar uma amostra aleatória a partir de um conjunto de dados ou uma sequência de números. Ela é extremamente flexível, permitindo que você defina o tamanho da amostra, se a amostragem é feita com ou sem reposição, e também se os elementos têm probabilidades diferentes de serem selecionados.</p>
-<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="simulação.html#cb461-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
-<span id="cb461-2"><a href="simulação.html#cb461-2" tabindex="-1"></a></span>
-<span id="cb461-3"><a href="simulação.html#cb461-3" tabindex="-1"></a><span class="fu">sample</span>(x, size, <span class="at">replace =</span> <span class="cn">FALSE</span>, <span class="at">prob =</span> <span class="cn">NULL</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="simulação.html#cb477-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
+<span id="cb477-2"><a href="simulação.html#cb477-2" tabindex="-1"></a></span>
+<span id="cb477-3"><a href="simulação.html#cb477-3" tabindex="-1"></a><span class="fu">sample</span>(x, size, <span class="at">replace =</span> <span class="cn">FALSE</span>, <span class="at">prob =</span> <span class="cn">NULL</span>)</span></code></pre></div>
 <ul>
 <li><p><strong>x</strong>: Vetor de elementos a serem amostrados.</p></li>
 <li><p><strong>size</strong>: Tamanho da amostra.</p></li>
@@ -391,26 +391,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><strong>prob</strong>: Um vetor de probabilidades associadas a cada elemento em x.</p></li>
 </ul>
 <p><strong>Exemplo 1</strong>: Amostragem Simples sem Reposição.</p>
-<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="simulação.html#cb462-1" tabindex="-1"></a><span class="co"># Suponha que temos uma população de 1 a 10</span></span>
-<span id="cb462-2"><a href="simulação.html#cb462-2" tabindex="-1"></a>pop <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb462-3"><a href="simulação.html#cb462-3" tabindex="-1"></a></span>
-<span id="cb462-4"><a href="simulação.html#cb462-4" tabindex="-1"></a><span class="co"># Queremos uma amostra de 5 elementos</span></span>
-<span id="cb462-5"><a href="simulação.html#cb462-5" tabindex="-1"></a>amostra <span class="ot">&lt;-</span> <span class="fu">sample</span>(pop, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb462-6"><a href="simulação.html#cb462-6" tabindex="-1"></a><span class="fu">print</span>(amostra)</span></code></pre></div>
-<pre><code>## [1] 8 4 9 1 5</code></pre>
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="simulação.html#cb478-1" tabindex="-1"></a><span class="co"># Suponha que temos uma população de 1 a 10</span></span>
+<span id="cb478-2"><a href="simulação.html#cb478-2" tabindex="-1"></a>pop <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb478-3"><a href="simulação.html#cb478-3" tabindex="-1"></a></span>
+<span id="cb478-4"><a href="simulação.html#cb478-4" tabindex="-1"></a><span class="co"># Queremos uma amostra de 5 elementos</span></span>
+<span id="cb478-5"><a href="simulação.html#cb478-5" tabindex="-1"></a>amostra <span class="ot">&lt;-</span> <span class="fu">sample</span>(pop, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb478-6"><a href="simulação.html#cb478-6" tabindex="-1"></a><span class="fu">print</span>(amostra)</span></code></pre></div>
+<pre><code>## [1] 2 5 7 1 9</code></pre>
 <p><strong>Exemplo 2</strong>: Amostragem com Reposição.</p>
-<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="simulação.html#cb464-1" tabindex="-1"></a><span class="co"># Amostra com reposição</span></span>
-<span id="cb464-2"><a href="simulação.html#cb464-2" tabindex="-1"></a>amostra_repos <span class="ot">&lt;-</span> <span class="fu">sample</span>(pop, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb464-3"><a href="simulação.html#cb464-3" tabindex="-1"></a><span class="fu">print</span>(amostra_repos)</span></code></pre></div>
-<pre><code>## [1] 10  4  2  5  9</code></pre>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="simulação.html#cb480-1" tabindex="-1"></a><span class="co"># Amostra com reposição</span></span>
+<span id="cb480-2"><a href="simulação.html#cb480-2" tabindex="-1"></a>amostra_repos <span class="ot">&lt;-</span> <span class="fu">sample</span>(pop, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb480-3"><a href="simulação.html#cb480-3" tabindex="-1"></a><span class="fu">print</span>(amostra_repos)</span></code></pre></div>
+<pre><code>## [1] 5 8 9 6 9</code></pre>
 <p><strong>Exemplo 3</strong>: Amostragem com Probabilidades Diferentes.</p>
-<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="simulação.html#cb466-1" tabindex="-1"></a><span class="co"># Probabilidades associadas a cada elemento</span></span>
-<span id="cb466-2"><a href="simulação.html#cb466-2" tabindex="-1"></a>prob <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.05</span>, <span class="fl">0.05</span>)</span>
-<span id="cb466-3"><a href="simulação.html#cb466-3" tabindex="-1"></a></span>
-<span id="cb466-4"><a href="simulação.html#cb466-4" tabindex="-1"></a><span class="co"># Amostra com probabilidades diferentes</span></span>
-<span id="cb466-5"><a href="simulação.html#cb466-5" tabindex="-1"></a>amostra_prob <span class="ot">&lt;-</span> <span class="fu">sample</span>(pop, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">prob =</span> prob)</span>
-<span id="cb466-6"><a href="simulação.html#cb466-6" tabindex="-1"></a><span class="fu">print</span>(amostra_prob)</span></code></pre></div>
-<pre><code>## [1] 1 5 2 3 6</code></pre>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="simulação.html#cb482-1" tabindex="-1"></a><span class="co"># Probabilidades associadas a cada elemento</span></span>
+<span id="cb482-2"><a href="simulação.html#cb482-2" tabindex="-1"></a>prob <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.05</span>, <span class="fl">0.05</span>)</span>
+<span id="cb482-3"><a href="simulação.html#cb482-3" tabindex="-1"></a></span>
+<span id="cb482-4"><a href="simulação.html#cb482-4" tabindex="-1"></a><span class="co"># Amostra com probabilidades diferentes</span></span>
+<span id="cb482-5"><a href="simulação.html#cb482-5" tabindex="-1"></a>amostra_prob <span class="ot">&lt;-</span> <span class="fu">sample</span>(pop, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">prob =</span> prob)</span>
+<span id="cb482-6"><a href="simulação.html#cb482-6" tabindex="-1"></a><span class="fu">print</span>(amostra_prob)</span></code></pre></div>
+<pre><code>## [1]  8  1  7 10  9</code></pre>
 </div>
 <div id="exercícios-12" class="section level2 hasAnchor" number="16.3">
 <h2><span class="header-section-number">16.3</span> Exercícios<a href="simulação.html#exercícios-12" class="anchor-section" aria-label="Anchor link to header"></a></h2>

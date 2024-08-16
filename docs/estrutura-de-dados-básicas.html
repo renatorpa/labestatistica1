@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Renato de Paula" />
 
 
-<meta name="date" content="2024-08-15" />
+<meta name="date" content="2024-08-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -693,37 +693,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">4.3.3</span> Nomeando linhas e colunas numa matriz<a href="estrutura-de-dados-básicas.html#nomeando-linhas-e-colunas-numa-matriz" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="estrutura-de-dados-básicas.html#cb277-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">12</span>),<span class="at">nrow=</span><span class="dv">4</span>)</span>
 <span id="cb277-2"><a href="estrutura-de-dados-básicas.html#cb277-2" tabindex="-1"></a>x</span></code></pre></div>
-<pre><code>##        [,1]   [,2]   [,3]
-## [1,] -1.258  0.757 -0.588
-## [2,] -1.869  0.727 -0.904
-## [3,] -0.325 -0.533 -2.303
-## [4,] -2.527  1.047  0.380</code></pre>
+<pre><code>##        [,1]   [,2]    [,3]
+## [1,] -0.678 -1.132  0.0695
+## [2,]  0.759 -0.829  0.4646
+## [3,] -0.837  0.411 -0.4731
+## [4,] -0.516  1.993 -0.4199</code></pre>
 <div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="estrutura-de-dados-básicas.html#cb279-1" tabindex="-1"></a><span class="fu">colnames</span>(x) <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;dados&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
 <span id="cb279-2"><a href="estrutura-de-dados-básicas.html#cb279-2" tabindex="-1"></a>x</span></code></pre></div>
-<pre><code>##      dados1 dados2 dados3
-## [1,] -1.258  0.757 -0.588
-## [2,] -1.869  0.727 -0.904
-## [3,] -0.325 -0.533 -2.303
-## [4,] -2.527  1.047  0.380</code></pre>
+<pre><code>##      dados1 dados2  dados3
+## [1,] -0.678 -1.132  0.0695
+## [2,]  0.759 -0.829  0.4646
+## [3,] -0.837  0.411 -0.4731
+## [4,] -0.516  1.993 -0.4199</code></pre>
 <div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="estrutura-de-dados-básicas.html#cb281-1" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">15</span>),<span class="at">nrow=</span><span class="dv">5</span>)</span>
 <span id="cb281-2"><a href="estrutura-de-dados-básicas.html#cb281-2" tabindex="-1"></a>y </span></code></pre></div>
-<pre><code>##         [,1]   [,2]   [,3]
-## [1,]  0.0311 -0.345 -1.460
-## [2,] -1.5335 -0.162  0.239
-## [3,] -0.9827 -1.633 -0.111
-## [4,] -0.7396  1.095  0.514
-## [5,] -0.2407  0.303 -1.280</code></pre>
+<pre><code>##        [,1]   [,2]   [,3]
+## [1,]  1.757  1.136 -1.277
+## [2,]  0.263  0.733  0.756
+## [3,] -1.505  0.336 -0.175
+## [4,]  0.859 -0.192 -1.042
+## [5,] -0.160 -0.385  1.613</code></pre>
 <div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="estrutura-de-dados-básicas.html#cb283-1" tabindex="-1"></a><span class="fu">colnames</span>(y) <span class="ot">&lt;-</span> LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(y)]</span>
 <span id="cb283-2"><a href="estrutura-de-dados-básicas.html#cb283-2" tabindex="-1"></a></span>
 <span id="cb283-3"><a href="estrutura-de-dados-básicas.html#cb283-3" tabindex="-1"></a><span class="fu">rownames</span>(y) <span class="ot">&lt;-</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(y)]</span>
 <span id="cb283-4"><a href="estrutura-de-dados-básicas.html#cb283-4" tabindex="-1"></a></span>
 <span id="cb283-5"><a href="estrutura-de-dados-básicas.html#cb283-5" tabindex="-1"></a>y</span></code></pre></div>
-<pre><code>##         A      B      C
-## a  0.0311 -0.345 -1.460
-## b -1.5335 -0.162  0.239
-## c -0.9827 -1.633 -0.111
-## d -0.7396  1.095  0.514
-## e -0.2407  0.303 -1.280</code></pre>
+<pre><code>##        A      B      C
+## a  1.757  1.136 -1.277
+## b  0.263  0.733  0.756
+## c -1.505  0.336 -0.175
+## d  0.859 -0.192 -1.042
+## e -0.160 -0.385  1.613</code></pre>
 </div>
 <div id="multiplicação-de-matrizes" class="section level3 hasAnchor" number="4.3.4">
 <h3><span class="header-section-number">4.3.4</span> Multiplicação de matrizes<a href="estrutura-de-dados-básicas.html#multiplicação-de-matrizes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -731,11 +731,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb285-2"><a href="estrutura-de-dados-básicas.html#cb285-2" tabindex="-1"></a>N<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">15</span>),<span class="at">nrow=</span><span class="dv">5</span>,<span class="at">ncol=</span><span class="dv">3</span>)</span>
 <span id="cb285-3"><a href="estrutura-de-dados-básicas.html#cb285-3" tabindex="-1"></a></span>
 <span id="cb285-4"><a href="estrutura-de-dados-básicas.html#cb285-4" tabindex="-1"></a>M<span class="sc">%*%</span>N</span></code></pre></div>
-<pre><code>##       [,1]  [,2]   [,3]
-## [1,] -2.31  2.56  1.979
-## [2,]  2.11 -1.71 -1.211
-## [3,]  2.62 -3.18  0.780
-## [4,]  2.67 -2.98 -0.213</code></pre>
+<pre><code>##        [,1]   [,2]  [,3]
+## [1,]  2.202 -1.829  3.32
+## [2,]  0.448  0.996  0.43
+## [3,] -0.875  0.498 -1.96
+## [4,]  0.572 -0.663  0.81</code></pre>
 </div>
 <div id="algumas-outras-funções" class="section level3 hasAnchor" number="4.3.5">
 <h3><span class="header-section-number">4.3.5</span> Algumas outras funções<a href="estrutura-de-dados-básicas.html#algumas-outras-funções" class="anchor-section" aria-label="Anchor link to header"></a></h3>
