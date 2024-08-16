@@ -90,11 +90,11 @@ example(sum)
 
 mostra exemplos de aplicação da respetiva função.
 
-## Objetos
+## Objetos e variáveis
 
 Um **objeto** em R é uma unidade de armazenamento que contém valores ou funções e pode ser referenciado por um nome. Esses valores podem ser números, caracteres, vetores, matrizes, data frames, listas, ou até mesmo funções. Objetos são criados e manipulados através de comandos e podem ser reutilizados em qualquer parte do código. Tudo o que é criado ou carregado na sessão de R, como dados ou funções, é considerado um objeto.
 
-## O que é uma variável?
+### O que é uma variável?
 
 Refere-se a um **nome** ou um identificador que é atribuído a um objeto. A variável armazena a referência ao objeto em si. Em outras palavras, uma variável é o nome que você usa para acessar os dados ou a função armazenada no objeto.
 
@@ -136,7 +136,7 @@ ls()
 
 No RStudio a aba *Environment* mostra os valores.
 
-## Regras para definição de variáveis
+### Regras para definição de variáveis
 
 Os nomes de variáveis em R devem começar com uma letra ou ponto final (seguido de uma letra) e podem conter letras, números, pontos e sublinhados.
 
@@ -153,7 +153,7 @@ idade <- 20
 Idade <- 30
 ```
 
-## Tipos de dados
+### Tipos de dados
 
 Variáveis em R podem armazenar vários tipos de dados, incluindo:
 
@@ -185,7 +185,7 @@ c <- 3<2
 d <- c(1,2,3)
 ```
 
-## Comandos importantes
+### Comandos importantes
 
 ```{r eval=FALSE}
 ls() #exibe a lista de variáveis na memória
@@ -251,7 +251,7 @@ exp(1)
 
 Ao contrário da função `ls()`, a maioria das funções requer um ou mais *argumentos*. Note que usamos acima as funções predefinidas do R `sqrt()`, `log()`, `log10()` e `exp()` com seus respetivos argumentos.
 
-## Quantidade de digitos
+### Quantidade de digitos
 
 ```{r eval=FALSE}
 exp(1)
@@ -266,7 +266,7 @@ exp(1)
 ## [1] 2.72
 ```
 
-## Objetos predefinidos, Infinito, indefinido e valores ausentes
+### Objetos predefinidos, Infinito, indefinido e valores ausentes
 
 Existem vários conjuntos de dados incluídos para os usuários praticarem e testarem funções. Você pode ver todos os conjuntos de dados disponíveis digitando:
 
@@ -349,7 +349,7 @@ sum(y, na.rm = TRUE)  # Exibe: 12, ignora NA na soma
 
 -   **NA** significa **"Not Available"** e é usado para representar dados ausentes ou valores que não estão disponíveis em um conjunto de dados.
 
-## Escrita dinâmica
+### Escrita dinâmica
 
 O R determina dinamicamente o tipo de uma variável com base no valor atribuído a ela.
 
@@ -401,7 +401,7 @@ typeof(w)
 ## [1] "list"
 ```
 
-## Conversão entre tipos de dados
+### Conversão entre tipos de dados
 
 ```{r eval=FALSE}
 # Convertendo inteiro em string 
@@ -435,7 +435,7 @@ print(w)
 
 -   A função `cat()` é usada para concatenar e exibir uma ou mais strings ou valores de uma forma mais direta, sem estruturas de formatação adicionais.
 
-**Ex1:**
+**Exemplo 1:**
 
 ```{r eval=FALSE}
 nome1 <- "faculdade"
@@ -444,7 +444,7 @@ print(paste(nome1, nome2))
 ## [1] "faculdade ciências"
 ```
 
-**Ex2:**
+**Exemplo 2:**
 
 ```{r eval=FALSE}
 # Solicitar entrada do usuário
@@ -457,7 +457,7 @@ n <- as.integer(n)
 print(n+1)
 ```
 
-**Ex3:**
+**Exemplo 3:**
 
 ```{r eval=FALSE}
 # Solicitar entrada do usuário
@@ -467,7 +467,7 @@ nome <- readline(prompt = "Entre com o seu nome: ")
 cat("Olá, ",nome, "!")
 ```
 
-**Ex4:**
+**Exemplo 4:**
 
 ```{r eval=FALSE}
 # Solicitar ao usuário a entrada numérica
@@ -2885,7 +2885,199 @@ dev.off()
 
 O `dplyr` é um dos pacotes mais populares e amplamente utilizados no R para manipulação e transformação de dados. Ele faz parte do conjunto de pacotes “tidyverse,” que são projetados para simplificar o trabalho com dados no R. O `dplyr` oferece uma interface intuitiva e de fácil uso para realizar operações comuns em data frames, como seleção de colunas, filtragem de linhas, ordenação, resumo de dados e junção de data frames.
 
+As principais funções do `dplyr` são:
+
+* `select()` - seleciona colunas
+* `arrange()` - ordena a base
+* `filter()` - filtra linhas
+* `mutate()` - cria/modifica colunas
+* `group_by()` - agrupa a base
+* `summarise()` - sumariza a base
+
+Neste capítulo, vamos trabalhar com uma base de dados do Star Wars. Essa base está disponível dentro do pacote `dplyr` no R e pode ser acessada através do comando `starwars`.
+
+Assim, utilizaremos o objeto `sw` para acessar os dados.
+
+```{r}
+library(dplyr)
+sw <- starwars
+sw
+```
+
+## Selecionando colunas
+
+Para selecionar colunas, utilizamos a função `select()`. Repare que não precisamos colocar o nome da coluna entre aspas.
+
+```{r}
+select(sw, name)
+```
+
+Também podemos selecionar várias colunas
+
+```{r}
+select(sw, name, mass, hair_color)
+```
+
+Podemos usar o operador `:` para selecionar colunas consecutivas.
+
+```{r}
+select(sw, name:hair_color)
+```
+
+O `dplyr` possui um conjunto de funções auxiliares muito úteis para seleção de colunas. As principais são:
+
+* `starts_with()`: para colunas que começam com um texto padrão
+* `ends_with()`: para colunas que terminam com um texto padrão
+* `contains()`: para colunas que contêm um texto padrão
+
+```{r}
+select(sw, ends_with("color"))
+```
+
+Para remover colunas basta acrescentar um `-` antes da seleção.
+
+```{r}
+select(sw, -name, -hair_color)
+```
+
+```{r}
+select(sw, -ends_with("color"))
+```
+
 ## Exercícios
+
+Utilize a base `sw` nos exercícios a seguir.
+
+1. Teste aplicar a função `glimpse()` do pacote {dplyr} à base `sw`. O que ela faz?
+
+2. Crie uma tabela com apenas as colunas `name`, `gender`, e `films`. Salve em um objeto chamado `sw_simples`.
+
+3. Selecione apenas as colunas `hair_color`, `skin_color` e `eye_color` usando a função auxiliar `contains()`.
+
+4. Usando a função `select()` (e suas funções auxiliares), escreva códigos que retornem a base `sw` sem as colunas `hair_color`, `skin_color` e `eye_color`. Escreva todas as soluções diferentes que você conseguir pensar.
+
+## Ordenando a base
+
+Para ordenar linhas, utilizamos a função `arrange()`. O primeiro argumento é a base de dados. Os demais argumentos são as colunas pelas quais queremos ordenar as linhas. 
+
+```{r}
+arrange(sw, mass)
+```
+
+Também podemos ordenar de forma decrescente usando a função `desc()`.
+
+```{r}
+arrange(sw, desc(mass))
+```
+
+Ordenar segundo duas ou mais colunas.
+
+```{r}
+arrange(sw, desc(height), desc(mass))
+```
+
+## Exercícios
+
+1. Ordene `mass` em ordem crescente e `birth_year` em ordem decrescente e salve em um objeto chamado `sw_ordenados`.
+
+```{r eval=FALSE}
+sw_ordenados <- arrange(sw, mass, desc(birth_year))
+sw_ordenados
+```
+
+2. Selecione apenas as colunas `name` e `birth_year` e então ordene de forma decrescente pelo `birth_year`.
+
+```{r eval=FALSE}
+# Aninhando funções
+arrange(select(sw, name, birth_year), desc(birth_year))
+
+# Criando um objeto intermediário
+sw_aux <- select(sw, name, birth_year)
+arrange(sw_aux, desc(birth_year))
+
+# Pipe
+sw %>% 
+  select(name, birth_year) %>% 
+  arrange(desc(birth_year))
+
+```
+
+## Filtrando linhas
+
+Para filtrar valores de uma coluna da base, utilizamos a função `filter()`.
+
+```{r}
+# filter(sw, height > 170)
+# Ou
+sw %>% filter(height > 170)
+```
+
+Podemos selecionar apenas as colunas `name` e `height` para visualizarmos as alturas:
+
+```{r}
+sw %>% 
+  filter(height > 170) %>% 
+  select(name, height)
+```
+
+Podemos estender o filtro para duas ou mais colunas. 
+
+```{r}
+filter(sw, height>170, mass>80)
+```
+
+```{r}
+sw %>% filter(height > 170, mass > 80)
+```
+
+Podemos filtrar colunas categóricas. O exemplo abaixo retorna uma tabela apenas com os personagens com cabelo preto ou castanho.
+
+```{r}
+filter(sw, hair_color == "black" | hair_color == "brown")
+```
+
+```{r}
+sw %>% filter(hair_color %in% c("black","brown"))
+```
+
+Para filtrar textos sem correspondência exata, podemos utilizar a função auxiliar `str_detect()` do pacote `{stringr}`. Ela serve para verificar se cada string de um vetor contém um determinado padrão de texto.
+
+```{r}
+library(stringr)
+
+str_detect(
+  string = c("a", "aa","abc", "bc", "A", NA), 
+  pattern = "a"
+)
+```
+
+Podemos utilizá-la para filtrar apenas os personagens com cabelo `grey`.
+
+```{r}
+# Podemos detectar se o cabelo grey aparece na string
+str_detect(
+  string = sw$hair_color,
+  pattern = "grey"
+)
+```
+
+```{r}
+library(stringr)
+sw %>% filter(str_detect(hair_color,"grey"))
+```
+
+## Exercícios
+
+Utilize a base `sw` nos exercícios a seguir.
+
+**1.**  Crie um objeto chamado `personagem_grey` apenas com personagens que tenham cabelo cinza.
+
+**2.** Crie um objeto chamado `novos_pesados` com personagens com 30 anos ou menos e massa maior do que 100.
+
+**3.** Retorne tabelas (`tibbles`) apenas com:
+
+**a.** 
+
 
 # Simulação
 
