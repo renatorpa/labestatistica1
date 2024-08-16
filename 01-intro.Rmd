@@ -2881,7 +2881,9 @@ dev.off()
 
 # Manipulando dados
 
-# O pacote `dplyr`
+## Tibbles
+
+## O pacote `dplyr`
 
 O `dplyr` é um dos pacotes mais populares e amplamente utilizados no R para manipulação e transformação de dados. Ele faz parte do conjunto de pacotes “tidyverse,” que são projetados para simplificar o trabalho com dados no R. O `dplyr` oferece uma interface intuitiva e de fácil uso para realizar operações comuns em data frames, como seleção de colunas, filtragem de linhas, ordenação, resumo de dados e junção de data frames.
 
@@ -2904,7 +2906,7 @@ sw <- starwars
 sw
 ```
 
-## Selecionando colunas
+### Selecionando colunas
 
 Para selecionar colunas, utilizamos a função `select()`. Repare que não precisamos colocar o nome da coluna entre aspas.
 
@@ -2944,7 +2946,7 @@ select(sw, -name, -hair_color)
 select(sw, -ends_with("color"))
 ```
 
-## Exercícios
+### Exercícios
 
 Utilize a base `sw` nos exercícios a seguir.
 
@@ -2956,7 +2958,7 @@ Utilize a base `sw` nos exercícios a seguir.
 
 4. Usando a função `select()` (e suas funções auxiliares), escreva códigos que retornem a base `sw` sem as colunas `hair_color`, `skin_color` e `eye_color`. Escreva todas as soluções diferentes que você conseguir pensar.
 
-## Ordenando a base
+### Ordenando a base
 
 Para ordenar linhas, utilizamos a função `arrange()`. O primeiro argumento é a base de dados. Os demais argumentos são as colunas pelas quais queremos ordenar as linhas. 
 
@@ -2976,16 +2978,16 @@ Ordenar segundo duas ou mais colunas.
 arrange(sw, desc(height), desc(mass))
 ```
 
-## Exercícios
+### Exercícios
 
-1. Ordene `mass` em ordem crescente e `birth_year` em ordem decrescente e salve em um objeto chamado `sw_ordenados`.
+**1.** Ordene `mass` em ordem crescente e `birth_year` em ordem decrescente e salve em um objeto chamado `sw_ordenados`.
 
 ```{r eval=FALSE}
 sw_ordenados <- arrange(sw, mass, desc(birth_year))
 sw_ordenados
 ```
 
-2. Selecione apenas as colunas `name` e `birth_year` e então ordene de forma decrescente pelo `birth_year`.
+**2.** Selecione apenas as colunas `name` e `birth_year` e então ordene de forma decrescente pelo `birth_year`.
 
 ```{r eval=FALSE}
 # Aninhando funções
@@ -3002,7 +3004,7 @@ sw %>%
 
 ```
 
-## Filtrando linhas
+### Filtrando linhas
 
 Para filtrar valores de uma coluna da base, utilizamos a função `filter()`.
 
@@ -3066,7 +3068,7 @@ library(stringr)
 sw %>% filter(str_detect(hair_color,"grey"))
 ```
 
-## Exercícios
+### Exercícios
 
 Utilize a base `sw` nos exercícios a seguir.
 
@@ -3088,7 +3090,7 @@ Utilize a base `sw` nos exercícios a seguir.
 
 **f.** todos os personagens ordenados pela sua altura (`height`) em ordem decrescente. Selecione as colunas `name`, `height`, e `species`.
 
-## Modificando e criando novas colunas
+### Modificando e criando novas colunas
 
 Para modificar uma coluna existente ou criar uma nova coluna, utilizamos a função `mutate()`. O código abaixo divide os valores da coluna `height` por 100, mudando a unidade de medida dessa variável de centímetros para metros.
 
@@ -3110,9 +3112,9 @@ sw %>%
   select(name, height, mass, BMI)
 ```
 
-## Sumarizando a base
+### Sumarizando a base
 
-
+### Juntando duas bases
 
 
 # Simulação
@@ -3889,126 +3891,124 @@ plot(Fn, main="Função de Distribuição Empírica",
 
 ## Exercícios
 
-1. Usando o R e fixando a semente em 123, simule 1000 lançamentos de uma moeda com probabilidade de 0.5 de sair cara. Conte o número de caras em cada lançamento e plote um histograma dos resultados.
+**1.** Usando o R e fixando a semente em 123, simule 1000 lançamentos de uma moeda com probabilidade de 0.5 de sair cara. Conte o número de caras em cada lançamento e plote um histograma dos resultados.
+
+**2.** Usando o R e fixando a semente em 123, gere uma amostra aleatória de 5000 observações de uma variável aleatória binomial com parâmetros  $n = 10$  e  $p = 0.3$. Calcule a média e a variância das observações geradas.
+
+**3.** Usando o R e fixando a semente em 123, gere uma amostra aleatória de 2300 observações de uma variável aleatória de Poisson com parâmetro $\lambda = 4$. Calcule a média e o desvio padrão das observações geradas.
 
 
-2. Usando o R e fixando a semente em 123, gere uma amostra aleatória de 5000 observações de uma variável aleatória binomial com parâmetros  $n = 10$  e  $p = 0.3$. Calcule a média e a variância das observações geradas.
+**4.** Em um processo de qualidade, considere uma variável aleatória $X$ que representa o número de produtos defeituosos em um lote de 50 produtos, onde a probabilidade de um produto ser defeituoso é 0.1. Usando o R e fixando a semente em 123 gere uma amostra aleatória de 10000 observações de  $X$. Conte a frequência de lotes com exatamente 5 produtos defeituosos. Calcule a proporção de lotes com exatamente 5 produtos defeituosos e compare o valor obtido com a probabilidade  $P(X=5)$, onde  $X \sim \text{Binomial}(50, 0.1)$.
 
 
-3. Usando o R e fixando a semente em 123, gere uma amostra aleatória de 2300 observações de uma variável aleatória de Poisson com parâmetro $\lambda = 4$. Calcule a média e o desvio padrão das observações geradas.
+**5.** Usando o R e fixando a semente em 123, gere uma amostra aleatória de 5000 observações de uma variável aleatória $X$ binomial com parâmetros  $n = 20$  e  $p = 0.7$. 
+
+**(a)** Faça um histograma de frequência relativa associado aos valores amostrais. Sobreponha no gráfico a distribuição de probabilidade de $X$.
+
+**(b)** Use a função de distribuição empírica para estimar $P(X\leq 10)$ e compare com o valor teórico.
 
 
-4. Em um processo de qualidade, considere uma variável aleatória $X$ que representa o número de produtos defeituosos em um lote de 50 produtos, onde a probabilidade de um produto ser defeituoso é 0.1. Usando o R e fixando a semente em 123 gere uma amostra aleatória de 10000 observações de  $X$. Conte a frequência de lotes com exatamente 5 produtos defeituosos. Calcule a proporção de lotes com exatamente 5 produtos defeituosos e compare o valor obtido com a probabilidade  $P(X=5)$, onde  $X \sim \text{Binomial}(50, 0.1)$.
+**6.** Usando o R e fixando a semente em 543, gere uma amostra aleatória de 2400 observações de uma variável aleatória $Y$ de Poisson com parâmetro $\lambda = 6$. 
 
-
-5. Usando o R e fixando a semente em 123, gere uma amostra aleatória de 5000 observações de uma variável aleatória $X$ binomial com parâmetros  $n = 20$  e  $p = 0.7$. 
-
-(a) Faça um histograma de frequência relativa associado aos valores amostrais. Sobreponha no gráfico a distribuição de probabilidade de $X$.
-
-(b) Use a função de distribuição empírica para estimar $P(X\leq 10)$ e compare com o valor teórico.
-
-
-6. Usando o R e fixando a semente em 543, gere uma amostra aleatória de 2400 observações de uma variável aleatória $Y$ de Poisson com parâmetro $\lambda = 6$. 
-
-(a) Faça um histograma de frequência relativa associado aos valores amostrais. Sobreponha no gráfico a distribuição de probabilidade de $X$.
+**(a)** Faça um histograma de frequência relativa associado aos valores amostrais. Sobreponha no gráfico a distribuição de probabilidade de $X$.
  
-(b) Use a função de distribuição empírica para estimar $P(Y > 5)$ e compare com o valor teórico.
+**(b)** Use a função de distribuição empírica para estimar $P(Y > 5)$ e compare com o valor teórico.
 
 
-7. Usando o R e fixando a semente em 345, gere uma amostra aleatória de 3450 observações de uma variável aleatória $Z$ uniforme no intervalo $[0, 1]$. Use a função de distribuição empírica para estimar $P(Z \leq 0.5)$ e compare com o valor teórico.
+**7.** Usando o R e fixando a semente em 345, gere uma amostra aleatória de 3450 observações de uma variável aleatória $Z$ uniforme no intervalo $[0, 1]$. Use a função de distribuição empírica para estimar $P(Z \leq 0.5)$ e compare com o valor teórico.
 
 
-8. Usando o R e fixando a semente em 123, gere uma amostra aleatória de 3467 observações de uma variável aleatória $W$ normal com média $\mu = 0$ e desvio padrão $\sigma = 1$. 
+**8.** Usando o R e fixando a semente em 123, gere uma amostra aleatória de 3467 observações de uma variável aleatória $W$ normal com média $\mu = 0$ e desvio padrão $\sigma = 1$. 
 
-(a) Faça um histograma de frequência relativa associado aos valores amostrais. Sobreponha no gráfico a distribuição de $X$.	
+**(a)** Faça um histograma de frequência relativa associado aos valores amostrais. Sobreponha no gráfico a distribuição de $X$.	
 
-(b) Use a função de distribuição empírica para estimar $P(W > 1)$ e compare com o valor teórico.
+**(b)** Use a função de distribuição empírica para estimar $P(W > 1)$ e compare com o valor teórico.
 
 
-9. Usando o R e fixando a semente em 123, gere uma amostra aleatória de 1234 observações de uma variável aleatória $V$ exponencial com parâmetro $\lambda = 0.5$. 
+**9.** Usando o R e fixando a semente em 123, gere uma amostra aleatória de 1234 observações de uma variável aleatória $V$ exponencial com parâmetro $\lambda = 0.5$. 
 
-(a) Faça um histograma de frequência relativa associado aos valores amostrais. Sobreponha no gráfico a distribuição de probabilidade de $X$.
+**(a)** Faça um histograma de frequência relativa associado aos valores amostrais. Sobreponha no gráfico a distribuição de probabilidade de $X$.
  
-(b) Use a função de distribuição empírica para estimar $P(V > 2)$ e compare com o valor teórico.
+**(b)** Use a função de distribuição empírica para estimar $P(V > 2)$ e compare com o valor teórico.
 
 
-10. O número de acertos num alvo em 30 tentativas onde a probabilidade de acerto é 0.4, é modelado por uma variável aleatória $X$ com distruibuição Binomial de parâmetros $n=30$ e $p=0.4$. Usando o R e fixando a semente em 123, gere uma amostra de dimensão $n=700$ dessa variável. Para essa amostra: 
+**10.** O número de acertos num alvo em 30 tentativas onde a probabilidade de acerto é 0.4, é modelado por uma variável aleatória $X$ com distruibuição Binomial de parâmetros $n=30$ e $p=0.4$. Usando o R e fixando a semente em 123, gere uma amostra de dimensão $n=700$ dessa variável. Para essa amostra: 
 
-(a) Faça um histograma de frequência relativa associado aos valores amostrais. Sobreponha no gráfico a distribuição de probabilidade de $X$.
+**(a)** Faça um histograma de frequência relativa associado aos valores amostrais. Sobreponha no gráfico a distribuição de probabilidade de $X$.
   
-(b) Calcule a função de distribuição empírica e com base nessa função estime a probabilidade do número de acertos no alvo, em 30 tentativas, ser maior que 15. Calcule ainda o valor teórico dessa probabilidade.
+**(b)** Calcule a função de distribuição empírica e com base nessa função estime a probabilidade do número de acertos no alvo, em 30 tentativas, ser maior que 15. Calcule ainda o valor teórico dessa probabilidade.
 
 
-11. Usando o R e fixando a semente em 123, gere amostras de tamanho crescente $n = 100, 1000, 10000, 100000$ de uma variável aleatória $X$ com distribuição de Poisson com parâmetro $\lambda = 3$. Para cada tamanho de amostra, calcule a média amostral e compare-a com o valor esperado teórico. Observe e comente a convergência das médias amostrais.
+**11.** Usando o R e fixando a semente em 123, gere amostras de tamanho crescente $n = 100, 1000, 10000, 100000$ de uma variável aleatória $X$ com distribuição de Poisson com parâmetro $\lambda = 3$. Para cada tamanho de amostra, calcule a média amostral e compare-a com o valor esperado teórico. Observe e comente a convergência das médias amostrais.
 
 
-12. Usando o R e fixando a semente em 123, gere amostras de tamanho crescente $n = 100, 1000, 10000, 100000$ de uma variável aleatória W com distribuição uniforme no intervalo $[0, 1]$. Para cada tamanho de amostra, calcule a média amostral e compare-a com o valor esperado teórico. Observe e comente a convergência das médias amostrais.
+**12.** Usando o R e fixando a semente em 123, gere amostras de tamanho crescente $n = 100, 1000, 10000, 100000$ de uma variável aleatória W com distribuição uniforme no intervalo $[0, 1]$. Para cada tamanho de amostra, calcule a média amostral e compare-a com o valor esperado teórico. Observe e comente a convergência das médias amostrais.
 
 
-13. Um grupo de estudantes de Estatística está realizando uma pesquisa para avaliar o grau de satisfação dos alunos com um novo curso oferecido pela universidade. Cada estudante responde a uma pergunta onde pode indicar se está satisfeito ou insatisfeito com o curso. A probabilidade de um estudante estar satisfeito é de $0.75$.
+**13.** Um grupo de estudantes de Estatística está realizando uma pesquisa para avaliar o grau de satisfação dos alunos com um novo curso oferecido pela universidade. Cada estudante responde a uma pergunta onde pode indicar se está satisfeito ou insatisfeito com o curso. A probabilidade de um estudante estar satisfeito é de $0.75$.
 
 * Usando o R e fixando a semente em 42, simule amostras de tamanho crescente $n = 100, 500, 1000, 5000, 10000$ de uma variável aleatória $X$ com distribuição binomial, onde $X$ representa o número de estudantes satisfeitos. Para cada tamanho de amostra, calcule a proporção de estudantes satisfeitos e compare-a com a probabilidade teórica de satisfação (0.75).
 
 
-14. Usando o R e fixando a semente em 1058, gere 9060 amostras de dimensão 9 de uma população, $X\sim \text{Binomial}(41,0.81)$. Calcule a média de cada uma dessas amostras, obtendo uma amostra de médias. Calcule ainda o valor esperado da distribuição teórica de $X$ e compare com a média da amostra de médias.
+**14.** Usando o R e fixando a semente em 1058, gere 9060 amostras de dimensão 9 de uma população, $X\sim \text{Binomial}(41,0.81)$. Calcule a média de cada uma dessas amostras, obtendo uma amostra de médias. Calcule ainda o valor esperado da distribuição teórica de $X$ e compare com a média da amostra de médias.
 
 
-15. Em um hospital, o tempo de atendimento de pacientes segue uma distribuição exponencial com média de 30 minutos. Um pesquisador deseja estimar o tempo médio de atendimento coletando amostras de diferentes tamanhos.
+**15.** Em um hospital, o tempo de atendimento de pacientes segue uma distribuição exponencial com média de 30 minutos. Um pesquisador deseja estimar o tempo médio de atendimento coletando amostras de diferentes tamanhos.
 
 * Usando o R e fixando a semente em 456, simule 1000 amostras de tamanho 50, 100 e 1000 do tempo de atendimento. Para cada tamanho de amostra, calcule a média de cada amostra e plote o histograma das médias amostrais para cada tamanho. Compare essas distribuições com a distribuição normal com média $E(X)$ e desvio padrão $\sqrt{V(X)n}$ e comente sobre a aplicação do Teorema do Limite Central.
 
 
-16. O tempo de espera (em minutos) para o atendimento no setor de informações de um banco é modelado por uma variável aleatória X com distribuição \text{Uniforme}($a=5, b=20$). Usando o R e fixando a semente em 1430, gere 8000 amostras de dimensão $n=100$ dessa variável. Para essas amostras: 
+**16.** O tempo de espera (em minutos) para o atendimento no setor de informações de um banco é modelado por uma variável aleatória X com distribuição \text{Uniforme}($a=5, b=20$). Usando o R e fixando a semente em 1430, gere 8000 amostras de dimensão $n=100$ dessa variável. Para essas amostras: 
  
-(a) Calcule a soma de cada uma das amostras obtendo assim valores da distribuição da soma $S_{n} = \sum_{i=1}^{n}X_{n}$.
+**(a)** Calcule a soma de cada uma das amostras obtendo assim valores da distribuição da soma $S_{n} = \sum_{i=1}^{n}X_{n}$.
  
-(b) Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da soma e sobreponha no gráfico uma curva com distribuição normal de valor esperado $nE(X)$ e desvio padrão $\sqrt{V(X)n}$.
+**(b)** Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da soma e sobreponha no gráfico uma curva com distribuição normal de valor esperado $nE(X)$ e desvio padrão $\sqrt{V(X)n}$.
  
-(c) Calcule a média de cada uma das amostras obtendo assim valores da distribuição da média $\bar{X_{n}}$.
+**(c)** Calcule a média de cada uma das amostras obtendo assim valores da distribuição da média $\bar{X_{n}}$.
 
-(d) Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da média $\bar{X_{n}}$. Sobreponha no gráfico uma curva com distribuição normal com valor esperado $E(X)$ e desvio padrão $\sqrt{V(x)/n}$.
-
-
-17. O tempo de atendimento (em minutos), de doentes graves num determinado hospital, é modelado por uma variável aleatória $X$ com distribuição Exponencial($\lambda=0.21$). Usando o R e fixando a semente em 1580, gere 1234 amostras de dimensão $n=50$ dessa variável. Para essas amostras: 
- 
-(a) Calcule a soma de cada uma das amostras obtendo assim valores da distribuição da soma $S_{n} = \sum_{i=1}^{n}X_{n}$.
- 
-(b) Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da soma e sobreponha no gráfico uma curva com distribuição normal de valor esperado $nE(X)$ e desvio padrão $\sqrt{V(X)n}$.
- 
-(c) Calcule agora a soma padronizada $$\frac{S_{n}-E(S_{n})}{\sqrt{V(S_{n})}}$$ e faça um histograma de frequência relativa associado aos valores obtidos da distribuição da soma padronizada. Sobreponha no gráfico uma curva com distribuição normal de valor esperado 0 e desvio padrão 1.
-
-(d) Calcule a média de cada uma das amostras obtendo assim valores da distribuição da média $\bar{X_{n}}$.
-
-(e) Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da média $\bar{X_{n}}$. Sobreponha no gráfico uma curva com distribuição normal com valor esperado $E(X)$ e desvio padrão $\sqrt{V(x)/n}$.
+**(d)** Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da média $\bar{X_{n}}$. Sobreponha no gráfico uma curva com distribuição normal com valor esperado $E(X)$ e desvio padrão $\sqrt{V(x)/n}$.
 
 
-18. A altura (em centímetros) dos alunos de uma escola é modelada por uma variável aleatória X com distribuição \text{Normal}($\mu=170, \sigma=10$). Usando o R e fixando a semente em 678, gere 9876 amostras de dimensão $n=80$ dessa variável. Para essas amostras:
+**17.** O tempo de atendimento (em minutos), de doentes graves num determinado hospital, é modelado por uma variável aleatória $X$ com distribuição Exponencial($\lambda=0.21$). Usando o R e fixando a semente em 1580, gere 1234 amostras de dimensão $n=50$ dessa variável. Para essas amostras: 
+ 
+**(a)** Calcule a soma de cada uma das amostras obtendo assim valores da distribuição da soma $S_{n} = \sum_{i=1}^{n}X_{n}$.
+ 
+**(b)** Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da soma e sobreponha no gráfico uma curva com distribuição normal de valor esperado $nE(X)$ e desvio padrão $\sqrt{V(X)n}$.
+ 
+**(c)** Calcule agora a soma padronizada $$\frac{S_{n}-E(S_{n})}{\sqrt{V(S_{n})}}$$ e faça um histograma de frequência relativa associado aos valores obtidos da distribuição da soma padronizada. Sobreponha no gráfico uma curva com distribuição normal de valor esperado 0 e desvio padrão 1.
 
-(a) Calcule a soma de cada uma das amostras obtendo assim valores da distribuição da soma $S_{n} = \sum_{i=1}^{n}X_{n}$.
- 
-(b) Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da soma e sobreponha no gráfico uma curva com distribuição normal de valor esperado $nE(X)$ e desvio padrão $\sqrt{V(X)n}$.
- 
-(c) Calcule agora a soma padronizada $$\frac{S_{n}-E(S_{n})}{\sqrt{V(S_{n})}}$$ e faça um histograma de frequência relativa associado aos valores obtidos da distribuição da soma padronizada. Sobreponha no gráfico uma curva com distribuição normal de valor esperado 0 e desvio padrão 1.
- 
-(d) Calcule a média de cada uma das amostras obtendo assim valores da distribuição da média $\bar{X_{n}}$.
- 
-(e) Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da média $\bar{X_{n}}$. Sobreponha no gráfico uma curva com distribuição normal com valor esperado $E(X)$ e desvio padrão $\sqrt{V(x)/n}$.
+**(d)** Calcule a média de cada uma das amostras obtendo assim valores da distribuição da média $\bar{X_{n}}$.
 
-(f) Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da média padronizada $$\frac{\bar{X}_{n}-E(\bar{X_{n}})}{\sqrt{V(\bar{X_{n}})}}$$ e sobreponha no gráfico com uma curva com distribuição Normal com valor esperado 0 e desvio padrão 1.
+**(e)** Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da média $\bar{X_{n}}$. Sobreponha no gráfico uma curva com distribuição normal com valor esperado $E(X)$ e desvio padrão $\sqrt{V(x)/n}$.
 
-19. A chegada de clientes em uma loja durante 1 hora, assumindo uma taxa média de 20 clientes por hora pode ser modelada por uma variável aleatória $X$ com distribuição de Poisson($\lambda=20$). Usando o R e fixando a semente em 1222, gere 8050 amostras de dimensão 30 de $X$. 
 
-(a) Calcule a soma de cada uma das amostras obtendo assim valores da distribuição da soma $S_{n} = \sum_{i=1}^{n}X_{n}$.
+**18.** A altura (em centímetros) dos alunos de uma escola é modelada por uma variável aleatória X com distribuição \text{Normal}($\mu=170, \sigma=10$). Usando o R e fixando a semente em 678, gere 9876 amostras de dimensão $n=80$ dessa variável. Para essas amostras:
+
+**(a)** Calcule a soma de cada uma das amostras obtendo assim valores da distribuição da soma $S_{n} = \sum_{i=1}^{n}X_{n}$.
  
-(b) Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da soma e sobreponha no gráfico uma curva com distribuição normal de valor esperado $nE(X)$ e desvio padrão $\sqrt{V(X)n}$.
-
-(c) Calcule agora a soma padronizada $$\frac{S_{n}-E(S_{n})}{\sqrt{V(S_{n})}}$$ e faça um histograma de frequência relativa associado aos valores obtidos da distribuição da soma padronizada. Sobreponha no gráfico uma curva com distribuição normal de valor esperado 0 e desvio padrão 1.
+**(b)** Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da soma e sobreponha no gráfico uma curva com distribuição normal de valor esperado $nE(X)$ e desvio padrão $\sqrt{V(X)n}$.
  
-(d) Calcule a média de cada uma das amostras obtendo assim valores da distribuição da média $\bar{X_{n}}$.
+**(c)** Calcule agora a soma padronizada $$\frac{S_{n}-E(S_{n})}{\sqrt{V(S_{n})}}$$ e faça um histograma de frequência relativa associado aos valores obtidos da distribuição da soma padronizada. Sobreponha no gráfico uma curva com distribuição normal de valor esperado 0 e desvio padrão 1.
  
-(e) Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da média $\bar{X_{n}}$. Sobreponha no gráfico uma curva com distribuição normal com valor esperado $E(X)$ e desvio padrão $\sqrt{V(x)/n}$.
+**(d)** Calcule a média de cada uma das amostras obtendo assim valores da distribuição da média $\bar{X_{n}}$.
+ 
+**(e)** Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da média $\bar{X_{n}}$. Sobreponha no gráfico uma curva com distribuição normal com valor esperado $E(X)$ e desvio padrão $\sqrt{V(x)/n}$.
 
-(f) Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da média padronizada $$\frac{\bar{X}_{n}-E(\bar{X_{n}})}{\sqrt{V(\bar{X_{n}})}}$$ e sobreponha no gráfico com uma curva com distribuição Normal com valor esperado 0 e desvio padrão 1.
+**(f)** Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da média padronizada $$\frac{\bar{X}_{n}-E(\bar{X_{n}})}{\sqrt{V(\bar{X_{n}})}}$$ e sobreponha no gráfico com uma curva com distribuição Normal com valor esperado 0 e desvio padrão 1.
+
+**19.** A chegada de clientes em uma loja durante 1 hora, assumindo uma taxa média de 20 clientes por hora pode ser modelada por uma variável aleatória $X$ com distribuição de Poisson($\lambda=20$). Usando o R e fixando a semente em 1222, gere 8050 amostras de dimensão 30 de $X$. 
+
+**(a)** Calcule a soma de cada uma das amostras obtendo assim valores da distribuição da soma $S_{n} = \sum_{i=1}^{n}X_{n}$.
+ 
+**(b)** Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da soma e sobreponha no gráfico uma curva com distribuição normal de valor esperado $nE(X)$ e desvio padrão $\sqrt{V(X)n}$.
+
+**(c)** Calcule agora a soma padronizada $$\frac{S_{n}-E(S_{n})}{\sqrt{V(S_{n})}}$$ e faça um histograma de frequência relativa associado aos valores obtidos da distribuição da soma padronizada. Sobreponha no gráfico uma curva com distribuição normal de valor esperado 0 e desvio padrão 1.
+ 
+**(d)** Calcule a média de cada uma das amostras obtendo assim valores da distribuição da média $\bar{X_{n}}$.
+ 
+**(e)** Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da média $\bar{X_{n}}$. Sobreponha no gráfico uma curva com distribuição normal com valor esperado $E(X)$ e desvio padrão $\sqrt{V(x)/n}$.
+
+**(f)** Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da média padronizada $$\frac{\bar{X}_{n}-E(\bar{X_{n}})}{\sqrt{V(\bar{X_{n}})}}$$ e sobreponha no gráfico com uma curva com distribuição Normal com valor esperado 0 e desvio padrão 1.
 
 # Relatórios
 
