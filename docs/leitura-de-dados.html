@@ -366,10 +366,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="a-função-read.table" class="section level2 hasAnchor" number="8.1">
 <h2><span class="header-section-number">8.1</span> A Função <code>read.table()</code><a href="leitura-de-dados.html#a-função-read.table" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><code>read.table()</code> é uma das funções mais versáteis em R para leitura de arquivos de texto. Esta função permite importar arquivos tabulares e configurá-los de acordo com as características do arquivo.</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="leitura-de-dados.html#cb202-1" tabindex="-1"></a><span class="co"># Leitura de arquivo txt com read.table()</span></span>
-<span id="cb202-2"><a href="leitura-de-dados.html#cb202-2" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;dados.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot; &quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="leitura-de-dados.html#cb84-1" tabindex="-1"></a><span class="co"># Leitura de arquivo txt com read.table()</span></span>
+<span id="cb84-2"><a href="leitura-de-dados.html#cb84-2" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;dados.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot; &quot;</span></span></code></pre></div>
 <p>A função <code>read.table()</code> tem várias opções de argumentos.</p>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="leitura-de-dados.html#cb203-1" tabindex="-1"></a><span class="fu">args</span>(read.table)</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="leitura-de-dados.html#cb85-1" tabindex="-1"></a><span class="fu">args</span>(read.table)</span></code></pre></div>
 <pre><code>## function (file, header = FALSE, sep = &quot;&quot;, quote = &quot;\&quot;&#39;&quot;, dec = &quot;.&quot;, 
 ##     numerals = c(&quot;allow.loss&quot;, &quot;warn.loss&quot;, &quot;no.loss&quot;), row.names, 
 ##     col.names, as.is = !stringsAsFactors, tryLogical = TRUE, 
@@ -394,29 +394,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="a-função-read.csv" class="section level2 hasAnchor" number="8.2">
 <h2><span class="header-section-number">8.2</span> A função <code>read.csv()</code><a href="leitura-de-dados.html#a-função-read.csv" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A função <code>read.csv()</code> é otimizada para a leitura de arquivos CSV (Comma-Separated Values). A principal diferença entre <code>read.table()</code> e <code>read.csv()</code> é que esta última tem o separador padrão como vírgula.</p>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="leitura-de-dados.html#cb205-1" tabindex="-1"></a><span class="co"># Leitura de arquivo CSV com read.csv</span></span>
-<span id="cb205-2"><a href="leitura-de-dados.html#cb205-2" tabindex="-1"></a>dados_csv <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;dados.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="leitura-de-dados.html#cb87-1" tabindex="-1"></a><span class="co"># Leitura de arquivo CSV com read.csv</span></span>
+<span id="cb87-2"><a href="leitura-de-dados.html#cb87-2" tabindex="-1"></a>dados_csv <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;dados.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Os argumentos adicionais são semelhantes aos da função <code>read.table()</code>.</p>
 </div>
 <div id="a-função-read.csv2" class="section level2 hasAnchor" number="8.3">
 <h2><span class="header-section-number">8.3</span> A função <code>read.csv2()</code><a href="leitura-de-dados.html#a-função-read.csv2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A função <code>read.csv2()</code> é semelhante à <code>read.csv()</code>, mas o separador padrão é um ponto e vírgula.</p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="leitura-de-dados.html#cb206-1" tabindex="-1"></a><span class="co"># Leitura de CSV com separador ponto e vírgula</span></span>
-<span id="cb206-2"><a href="leitura-de-dados.html#cb206-2" tabindex="-1"></a>dados_csv2 <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">&quot;dados.csv2&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="leitura-de-dados.html#cb88-1" tabindex="-1"></a><span class="co"># Leitura de CSV com separador ponto e vírgula</span></span>
+<span id="cb88-2"><a href="leitura-de-dados.html#cb88-2" tabindex="-1"></a>dados_csv2 <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">&quot;dados.csv2&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 <div id="a-função-read_excel-do-pacote-readxl" class="section level2 hasAnchor" number="8.4">
 <h2><span class="header-section-number">8.4</span> A Função <code>read_excel()</code> do pacote <code>readxl</code><a href="leitura-de-dados.html#a-função-read_excel-do-pacote-readxl" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Para ler arquivos Excel (.xls e .xlsx), utilizamos a função <code>read_excel()</code> do pacote <code>readxl</code>.</p>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="leitura-de-dados.html#cb207-1" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb207-2"><a href="leitura-de-dados.html#cb207-2" tabindex="-1"></a><span class="co"># Leitura de arquivo Excel</span></span>
-<span id="cb207-3"><a href="leitura-de-dados.html#cb207-3" tabindex="-1"></a>dados_excel <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;dados.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="leitura-de-dados.html#cb89-1" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb89-2"><a href="leitura-de-dados.html#cb89-2" tabindex="-1"></a><span class="co"># Leitura de arquivo Excel</span></span>
+<span id="cb89-3"><a href="leitura-de-dados.html#cb89-3" tabindex="-1"></a>dados_excel <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;dados.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="dv">1</span>)</span></code></pre></div>
 </div>
 <div id="leitura-de-dados-online" class="section level2 hasAnchor" number="8.5">
 <h2><span class="header-section-number">8.5</span> Leitura de Dados Online<a href="leitura-de-dados.html#leitura-de-dados-online" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>É possível ler diretamente dados hospedados em URLs usando funções como <code>read.table()</code>.</p>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="leitura-de-dados.html#cb208-1" tabindex="-1"></a><span class="co"># Leitura de dados online com read.table</span></span>
-<span id="cb208-2"><a href="leitura-de-dados.html#cb208-2" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://example.com/data.csv&quot;</span></span>
-<span id="cb208-3"><a href="leitura-de-dados.html#cb208-3" tabindex="-1"></a>dados_online <span class="ot">&lt;-</span> <span class="fu">read.table</span>(url, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="leitura-de-dados.html#cb90-1" tabindex="-1"></a><span class="co"># Leitura de dados online com read.table</span></span>
+<span id="cb90-2"><a href="leitura-de-dados.html#cb90-2" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://example.com/data.csv&quot;</span></span>
+<span id="cb90-3"><a href="leitura-de-dados.html#cb90-3" tabindex="-1"></a>dados_online <span class="ot">&lt;-</span> <span class="fu">read.table</span>(url, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
 </div>
 </div>
             </section>

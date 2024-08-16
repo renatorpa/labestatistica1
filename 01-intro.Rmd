@@ -61,8 +61,9 @@ A estatística tem uma relação estreita com a álgebra: os conjuntos de dados 
 
 O R possui uma interface de linha de comando e aceitará comandos simples. Isso é marcado por um símbolo \>, chamado **prompt**. Se você digitar um comando e pressionar Enter, o R irá avaliá-lo e imprimir o resultado para você.
 
-```{r}
+```{r eval=FALSE}
 print("Meu primeiro comando no R!")
+## [1] "Meu primeiro comando no R!"
 ```
 
 Observe que nestas notas, caixas cinzas são usadas para mostrar o código R digitado no console R. O símbolo ##[1] é usado para denotar o output do console R.
@@ -212,45 +213,57 @@ save.image('nome-do-arquivo.RData') #salvar
 
 **Exemplos:**
 
-```{r}
+```{r eval=FALSE}
 1+1
-	
+## [1] 2
+
 5-2
-	
+## [1] 3
+
 5*21
-	
+## [1] 105
+
 sqrt(9)
+## [1] 3
 
 3^3
-	
+## [1] 27
+
 3**3
-	
+## [1] 27
+
 log(9)
-	
+## [1] 2.197225
+
 log10(9)
+## [1] 0.9542425
 
 exp(1)
-	
+## [1] 2.718282
+
 # prioridade de resolução
 19 + 26 /4 -2 *10
-	
+## [1] 5.5
+
 ((19 + 26) /(4 -2))*10
+## [1] 225
 ```
 
 Ao contrário da função `ls()`, a maioria das funções requer um ou mais *argumentos*. Note que usamos acima as funções predefinidas do R `sqrt()`, `log()`, `log10()` e `exp()` com seus respetivos argumentos.
 
 ## Quantidade de digitos
 
-```{r}
+```{r eval=FALSE}
 exp(1)
+## [1] 2.718282
 
 options(digits = 20)
-
 exp(1)
+## [1] 2.7182818284590450908
 
 options(digits = 3)
-
 exp(1)
+## [1] 2.72
 ```
 
 ## Objetos predefinidos, Infinito, indefinido e valores ausentes
@@ -271,42 +284,65 @@ R mostrará dados de concentração atmosférica de CO2 de Mauna Loa.
 
 Outros objetos predefinidos são quantidades matemáticas, como $\pi$ e $\infty$.
 
-```{r}
+```{r eval=FALSE}
 pi
+## [1] 3.14
 
 1/0  
+## [1] Inf
 
 2*Inf
-	
+## [1] Inf
+
 -1/0
-	
+## [1] -Inf
+
 0/0
-	
+## [1] NaN
+
 0*Inf
-	
+## [1] NaN
+
 sqrt(-1)
+## Warning in sqrt(-1): NaNs produced
+## [1] NaN
 	
 c(1,2,3,NA,5)
-	
+## [1]  1  2  3 NA  5
+
 mean(c(1,2,3,NA,5))
-	
+## [1] NA
+
 mean(c(1,2,3,NA,5), na.rm = TRUE)
+## [1] 2.75
 	
 x <- c(1, 2, NaN, 4, 5)
 y <- c(1, 2, NA, 4, 5)
 	
-is.na(x)  
+is.na(x)
+## [1] FALSE FALSE  TRUE FALSE FALSE
+
 is.nan(x) 
-	
-is.na(y) 
+## [1] FALSE FALSE  TRUE FALSE FALSE
+
+is.na(y)
+## [1] FALSE FALSE  TRUE FALSE FALSE
+
 is.nan(y)
-	
+## [1] FALSE FALSE FALSE FALSE FALSE
+
 # Operações com NaN e NA
 sum(x)  # Exibe: NaN, porque a soma envolve um NaN
+## [1] NaN
+
 sum(y)  # Exibe: NA, porque a soma envolve um NA
+## [1] NA
 	
 sum(x, na.rm = TRUE)  # Exibe: 12, ignora NaN na soma
+## [1] 12
+
 sum(y, na.rm = TRUE)  # Exibe: 12, ignora NA na soma
+## [1] 12
 ```
 
 -   **NaN** significa **"Not a Number"** e é usado para representar resultados indefinidos de operações matemáticas.
@@ -317,56 +353,74 @@ sum(y, na.rm = TRUE)  # Exibe: 12, ignora NA na soma
 
 O R determina dinamicamente o tipo de uma variável com base no valor atribuído a ela.
 
-```{r}
+```{r eval=FALSE}
 x <- 5         
 class(x) 
+## [1] "numeric"
 
 y <- "Cinco"   
 class(y) 
+## [1] "character"
 
 z <- TRUE  
 class(z) 
+## [1] "logical"
 ```
 
 -   A função `class()` retorna a classe de um objeto em R. A classe de um objeto determina como ele será tratado pelas funções que operam sobre ele. Por exemplo, vetores, matrizes, data frames e listas são todas classes de objetos em R.
 
 -   A função `typeof()` em R é usada para retornar o tipo de armazenamento interno de um objeto. Ela fornece informações detalhadas sobre como os dados são representados na memória.
 
-```{r}
+```{r eval=FALSE}
 x <- 1:10
-class(x) 
+class(x)
+## [1] "integer"
+
 typeof(x) 
+## [1] "integer"
 
 y <- c(1.1, 2.2, 3.3)
 class(y) 
+## [1] "numeric"
+
 typeof(y) 
+## [1] "double"
 
 z <- data.frame(a = 1:3, b = c("A", "B", "C"))
-class(z) 
+class(z)
+## [1] "data.frame"
+
 typeof(z) 
+## [1] "list"
 
 w <- list(a = 1, b = "text")
 class(w) 
+## [1] "list"
+
 typeof(w) 
+## [1] "list"
 ```
 
 ## Conversão entre tipos de dados
 
-```{r}
+```{r eval=FALSE}
 # Convertendo inteiro em string 
 a <- 15
 b <- as.character(15)
 print(b)
+## [1] "15"
 	
 # Convertendo float em inteiro
 x <- 1.5
 y <- as.integer(x)
 print(y)
+## [1] 1
 
 # Convertendo string em float
 z <- "10"
 w <- as.numeric(z)
 print(w)
+## [1] 10
 ```
 
 ## Funções `print()`, `readline()`, `paste()` e `cat()`
@@ -383,10 +437,11 @@ print(w)
 
 **Ex1:**
 
-```{r}
+```{r eval=FALSE}
 nome1 <- "faculdade"
 nome2 <- "ciências"
 print(paste(nome1, nome2))
+## [1] "faculdade ciências"
 ```
 
 **Ex2:**
@@ -431,55 +486,62 @@ cat("Entrada inválida. Insira um valor numérico.\n")
 
 **Concatenando duas palavras simples**
 
-```{r}
+```{r eval=FALSE}
 result <- paste("Hello", "World")
 print(result)
+## [1] "Hello World"
 ```
 
 **Concatenando várias strings**
 
-```{r}
+```{r eval=FALSE}
 result <- paste("Data", "Science", "with", "R")
 print(result)
+## [1] "Data Science with R"
 ```
 
 **Concatenando com um separador específico**
 
-```{r}
+```{r eval=FALSE}
 result <- paste("2024", "04", "28", sep="-")
 print(result)
+## [1] "2024-04-28"
 ```
 
 **Concatenando vetor de strings**
 
-```{r}
+```{r eval=FALSE}
 first_names <- c("Anna", "Bruno", "Carlos")
 last_names <- c("Smith", "Oliveira", "Santos")
 result <- paste(first_names, last_names)
 print(result)
+## [1] "Anna Smith"     "Bruno Oliveira" "Carlos Santos"
 ```
 
 **Concatene com cada elemento de um vetor**
 
-```{r}
+```{r eval=FALSE}
 numbers <- 1:3
 result <- paste("Number", numbers)
 print(result)
+## [1] "Number 1" "Number 2" "Number 3"
 ```
 
 **Usando `paste0()` para concatenar sem espaço**
 
-```{r}
+```{r eval=FALSE}
 result <- paste0("Hello", "World")
 print(result)
+## [1] "HelloWorld"
 ```
 
 **Concatenando strings com números**
 
-```{r}
+```{r eval=FALSE}
 age <- 25
 result <- paste("I am", age, "years old")
 print(result)
+## [1] "I am 25 years old"
 ```
 
 ## Operadores Lógicos e Relacionais
@@ -498,12 +560,15 @@ Os operadores lógicos são usados para combinar ou modificar condições lógic
 
 **Exemplos:**
 
-```{r}
-(5 > 3) & (4 > 2) 
+```{r eval=FALSE}
+(5 > 3) & (4 > 2)
+## [1] TRUE
 
 (5 < 3) | (4 > 2) 
+## [1] TRUE
 
-!(5 > 3)  
+!(5 > 3)
+## [1] FALSE
 ```
 
 ### Operadores Relacionais
@@ -521,32 +586,41 @@ Os operadores relacionais são usados para comparar valores e retornam valores l
 
 **Exemplos:**
 
-```{r}
+```{r eval=FALSE}
 # maior que 
 2 > 1
+## [1] TRUE
 
 1 > 2
+## [1] FALSE
 
 # menor que
 1 < 2
+## [1] TRUE
 
 # maior ou igual a
 0 >= (2+(-2))
+## [1] TRUE
 
 # menor ou igual a 
 1 <= 3
+## [1] TRUE
 
 # conjunção E
 9 > 11 & 0 < 1
+## [1] FALSE
 
 # ou
 6 < 5 | 0>-1
+## [1] TRUE
 
 # igual a
 1 == 2/2
+## [1] TRUE
 
 # diferente de
 1 != 2
+## [1] TRUE
 ```
 
 ## Exercícios 
