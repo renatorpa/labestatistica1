@@ -409,259 +409,264 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="função-apply" class="section level2 hasAnchor" number="12.1">
 <h2><span class="header-section-number">12.1</span> Função <code>apply()</code><a href="família-xapply.html#função-apply" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Aplica uma função a margens (linhas ou colunas) de uma matriz ou data frame e fornece saída em vetor, lista ou array. É usada para evitar loops (ciclos).</p>
-<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="família-xapply.html#cb439-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
-<span id="cb439-2"><a href="família-xapply.html#cb439-2" tabindex="-1"></a><span class="fu">apply</span>(X, MARGIN, FUN)</span></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="família-xapply.html#cb229-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
+<span id="cb229-2"><a href="família-xapply.html#cb229-2" tabindex="-1"></a><span class="fu">apply</span>(X, MARGIN, FUN)</span></code></pre></div>
 <ul>
 <li><p><code>X</code>: A matriz ou data frame.</p></li>
 <li><p><code>MARGIN</code>: Indica se a função deve ser aplicada a linha (1) ou coluna (2).</p></li>
 <li><p><code>FUN</code>: A função a ser aplicada.</p></li>
 </ul>
 <p><strong>Exemplo</strong>: Calcular a soma, a média e a raíz quadrada de cada coluna de uma matriz.</p>
-<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="família-xapply.html#cb440-1" tabindex="-1"></a>matriz <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">nrow =</span> <span class="dv">3</span>)</span>
-<span id="cb440-2"><a href="família-xapply.html#cb440-2" tabindex="-1"></a></span>
-<span id="cb440-3"><a href="família-xapply.html#cb440-3" tabindex="-1"></a><span class="fu">apply</span>(matriz, <span class="dv">2</span>, sum)</span></code></pre></div>
-<pre><code>## [1]  6 15 24</code></pre>
-<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="família-xapply.html#cb442-1" tabindex="-1"></a><span class="fu">apply</span>(matriz, <span class="dv">2</span>, mean)</span></code></pre></div>
-<pre><code>## [1] 2 5 8</code></pre>
-<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="família-xapply.html#cb444-1" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">sqrt</span>(x)</span>
-<span id="cb444-2"><a href="família-xapply.html#cb444-2" tabindex="-1"></a><span class="fu">apply</span>(matriz, <span class="dv">2</span>, f)</span></code></pre></div>
-<pre><code>##      [,1] [,2] [,3]
-## [1,] 1.00 2.00 2.65
-## [2,] 1.41 2.24 2.83
-## [3,] 1.73 2.45 3.00</code></pre>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="família-xapply.html#cb230-1" tabindex="-1"></a>matriz <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">nrow =</span> <span class="dv">3</span>)</span>
+<span id="cb230-2"><a href="família-xapply.html#cb230-2" tabindex="-1"></a></span>
+<span id="cb230-3"><a href="família-xapply.html#cb230-3" tabindex="-1"></a><span class="fu">apply</span>(matriz, <span class="dv">2</span>, sum)</span>
+<span id="cb230-4"><a href="família-xapply.html#cb230-4" tabindex="-1"></a><span class="do">## [1]  6 15 24</span></span>
+<span id="cb230-5"><a href="família-xapply.html#cb230-5" tabindex="-1"></a></span>
+<span id="cb230-6"><a href="família-xapply.html#cb230-6" tabindex="-1"></a><span class="fu">apply</span>(matriz, <span class="dv">2</span>, mean)</span>
+<span id="cb230-7"><a href="família-xapply.html#cb230-7" tabindex="-1"></a><span class="do">## [1] 2 5 8</span></span>
+<span id="cb230-8"><a href="família-xapply.html#cb230-8" tabindex="-1"></a></span>
+<span id="cb230-9"><a href="família-xapply.html#cb230-9" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">sqrt</span>(x)</span>
+<span id="cb230-10"><a href="família-xapply.html#cb230-10" tabindex="-1"></a><span class="fu">apply</span>(matriz, <span class="dv">2</span>, f)</span>
+<span id="cb230-11"><a href="família-xapply.html#cb230-11" tabindex="-1"></a><span class="do">##      [,1] [,2] [,3]</span></span>
+<span id="cb230-12"><a href="família-xapply.html#cb230-12" tabindex="-1"></a><span class="do">## [1,] 1.00 2.00 2.65</span></span>
+<span id="cb230-13"><a href="família-xapply.html#cb230-13" tabindex="-1"></a><span class="do">## [2,] 1.41 2.24 2.83</span></span>
+<span id="cb230-14"><a href="família-xapply.html#cb230-14" tabindex="-1"></a><span class="do">## [3,] 1.73 2.45 3.00</span></span></code></pre></div>
 </div>
 <div id="função-lapply" class="section level2 hasAnchor" number="12.2">
 <h2><span class="header-section-number">12.2</span> Função <code>lapply()</code><a href="família-xapply.html#função-lapply" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Aplica uma função a cada elemento de uma lista ou vetor e retorna uma lista. É útil quando você precisa manter a estrutura de saída como uma lista.</p>
-<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="família-xapply.html#cb446-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
-<span id="cb446-2"><a href="família-xapply.html#cb446-2" tabindex="-1"></a><span class="fu">lapply</span>(X, FUN, ...)</span></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="família-xapply.html#cb231-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
+<span id="cb231-2"><a href="família-xapply.html#cb231-2" tabindex="-1"></a><span class="fu">lapply</span>(X, FUN, ...)</span></code></pre></div>
 <ul>
 <li><p><code>X</code>: A lista ou vetor.</p></li>
 <li><p><code>FUN</code>: A função a ser aplicada.</p></li>
 </ul>
 <p><strong>Exemplo 1:</strong></p>
-<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="família-xapply.html#cb447-1" tabindex="-1"></a>nomes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ANA&quot;</span>, <span class="st">&quot;JOAO&quot;</span>, <span class="st">&quot;PAULO&quot;</span>, <span class="st">&quot;FILIPA&quot;</span>)</span>
-<span id="cb447-2"><a href="família-xapply.html#cb447-2" tabindex="-1"></a>(nomes_minusc <span class="ot">&lt;-</span> <span class="fu">lapply</span>(nomes, tolower))</span></code></pre></div>
-<pre><code>## [[1]]
-## [1] &quot;ana&quot;
-## 
-## [[2]]
-## [1] &quot;joao&quot;
-## 
-## [[3]]
-## [1] &quot;paulo&quot;
-## 
-## [[4]]
-## [1] &quot;filipa&quot;</code></pre>
-<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="família-xapply.html#cb449-1" tabindex="-1"></a><span class="fu">str</span>(nomes_minusc) </span></code></pre></div>
-<pre><code>## List of 4
-##  $ : chr &quot;ana&quot;
-##  $ : chr &quot;joao&quot;
-##  $ : chr &quot;paulo&quot;
-##  $ : chr &quot;filipa&quot;</code></pre>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="família-xapply.html#cb232-1" tabindex="-1"></a>nomes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ANA&quot;</span>, <span class="st">&quot;JOAO&quot;</span>, <span class="st">&quot;PAULO&quot;</span>, <span class="st">&quot;FILIPA&quot;</span>)</span>
+<span id="cb232-2"><a href="família-xapply.html#cb232-2" tabindex="-1"></a>(nomes_minusc <span class="ot">&lt;-</span> <span class="fu">lapply</span>(nomes, tolower))</span>
+<span id="cb232-3"><a href="família-xapply.html#cb232-3" tabindex="-1"></a><span class="do">## [[1]]</span></span>
+<span id="cb232-4"><a href="família-xapply.html#cb232-4" tabindex="-1"></a><span class="do">## [1] &quot;ana&quot;</span></span>
+<span id="cb232-5"><a href="família-xapply.html#cb232-5" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb232-6"><a href="família-xapply.html#cb232-6" tabindex="-1"></a><span class="do">## [[2]]</span></span>
+<span id="cb232-7"><a href="família-xapply.html#cb232-7" tabindex="-1"></a><span class="do">## [1] &quot;joao&quot;</span></span>
+<span id="cb232-8"><a href="família-xapply.html#cb232-8" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb232-9"><a href="família-xapply.html#cb232-9" tabindex="-1"></a><span class="do">## [[3]]</span></span>
+<span id="cb232-10"><a href="família-xapply.html#cb232-10" tabindex="-1"></a><span class="do">## [1] &quot;paulo&quot;</span></span>
+<span id="cb232-11"><a href="família-xapply.html#cb232-11" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb232-12"><a href="família-xapply.html#cb232-12" tabindex="-1"></a><span class="do">## [[4]]</span></span>
+<span id="cb232-13"><a href="família-xapply.html#cb232-13" tabindex="-1"></a><span class="do">## [1] &quot;filipa&quot;</span></span>
+<span id="cb232-14"><a href="família-xapply.html#cb232-14" tabindex="-1"></a></span>
+<span id="cb232-15"><a href="família-xapply.html#cb232-15" tabindex="-1"></a><span class="fu">str</span>(nomes_minusc) </span>
+<span id="cb232-16"><a href="família-xapply.html#cb232-16" tabindex="-1"></a><span class="do">## List of 4</span></span>
+<span id="cb232-17"><a href="família-xapply.html#cb232-17" tabindex="-1"></a><span class="do">##  $ : chr &quot;ana&quot;</span></span>
+<span id="cb232-18"><a href="família-xapply.html#cb232-18" tabindex="-1"></a><span class="do">##  $ : chr &quot;joao&quot;</span></span>
+<span id="cb232-19"><a href="família-xapply.html#cb232-19" tabindex="-1"></a><span class="do">##  $ : chr &quot;paulo&quot;</span></span>
+<span id="cb232-20"><a href="família-xapply.html#cb232-20" tabindex="-1"></a><span class="do">##  $ : chr &quot;filipa&quot;</span></span></code></pre></div>
 <p><strong>Exemplo 2:</strong></p>
-<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="família-xapply.html#cb451-1" tabindex="-1"></a><span class="co"># Aplicar a função sqrt a cada elemento de uma lista</span></span>
-<span id="cb451-2"><a href="família-xapply.html#cb451-2" tabindex="-1"></a>vetor_dados <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">a =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">b =</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">8</span>)</span>
-<span id="cb451-3"><a href="família-xapply.html#cb451-3" tabindex="-1"></a><span class="fu">lapply</span>(vetor_dados, sqrt)</span></code></pre></div>
-<pre><code>## $a
-## [1] 1.00 1.41 1.73 2.00
-## 
-## $b
-## [1] 2.24 2.45 2.65 2.83</code></pre>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="família-xapply.html#cb233-1" tabindex="-1"></a><span class="co"># Aplicar a função sqrt a cada elemento de uma lista</span></span>
+<span id="cb233-2"><a href="família-xapply.html#cb233-2" tabindex="-1"></a>vetor_dados <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">a =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">b =</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">8</span>)</span>
+<span id="cb233-3"><a href="família-xapply.html#cb233-3" tabindex="-1"></a><span class="fu">lapply</span>(vetor_dados, sqrt)</span>
+<span id="cb233-4"><a href="família-xapply.html#cb233-4" tabindex="-1"></a><span class="do">## $a</span></span>
+<span id="cb233-5"><a href="família-xapply.html#cb233-5" tabindex="-1"></a><span class="do">## [1] 1.00 1.41 1.73 2.00</span></span>
+<span id="cb233-6"><a href="família-xapply.html#cb233-6" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb233-7"><a href="família-xapply.html#cb233-7" tabindex="-1"></a><span class="do">## $b</span></span>
+<span id="cb233-8"><a href="família-xapply.html#cb233-8" tabindex="-1"></a><span class="do">## [1] 2.24 2.45 2.65 2.83</span></span></code></pre></div>
 </div>
 <div id="função-sapply" class="section level2 hasAnchor" number="12.3">
 <h2><span class="header-section-number">12.3</span> Função <code>sapply()</code><a href="família-xapply.html#função-sapply" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Similar ao <code>lapply()</code>, aplica uma função a cada elemento de uma lista, vetor ou data frame, mas tenta simplificar o resultado(saída) para um vetor ou matriz.</p>
-<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="família-xapply.html#cb453-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
-<span id="cb453-2"><a href="família-xapply.html#cb453-2" tabindex="-1"></a><span class="fu">sapply</span>(X, FUN, ...)</span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="família-xapply.html#cb234-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
+<span id="cb234-2"><a href="família-xapply.html#cb234-2" tabindex="-1"></a><span class="fu">sapply</span>(X, FUN, ...)</span></code></pre></div>
 <p><strong>Exemplo</strong></p>
-<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="família-xapply.html#cb454-1" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
-<span id="cb454-2"><a href="família-xapply.html#cb454-2" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb454-3"><a href="família-xapply.html#cb454-3" tabindex="-1"></a></span>
-<span id="cb454-4"><a href="família-xapply.html#cb454-4" tabindex="-1"></a><span class="fu">lapply</span>(dados, f)</span></code></pre></div>
-<pre><code>## [[1]]
-## [1] 1
-## 
-## [[2]]
-## [1] 4
-## 
-## [[3]]
-## [1] 9
-## 
-## [[4]]
-## [1] 16
-## 
-## [[5]]
-## [1] 25</code></pre>
-<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="família-xapply.html#cb456-1" tabindex="-1"></a><span class="fu">sapply</span>(dados, f)</span></code></pre></div>
-<pre><code>## [1]  1  4  9 16 25</code></pre>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="família-xapply.html#cb235-1" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
+<span id="cb235-2"><a href="família-xapply.html#cb235-2" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb235-3"><a href="família-xapply.html#cb235-3" tabindex="-1"></a></span>
+<span id="cb235-4"><a href="família-xapply.html#cb235-4" tabindex="-1"></a><span class="fu">lapply</span>(dados, f)</span>
+<span id="cb235-5"><a href="família-xapply.html#cb235-5" tabindex="-1"></a><span class="do">## [[1]]</span></span>
+<span id="cb235-6"><a href="família-xapply.html#cb235-6" tabindex="-1"></a><span class="do">## [1] 1</span></span>
+<span id="cb235-7"><a href="família-xapply.html#cb235-7" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb235-8"><a href="família-xapply.html#cb235-8" tabindex="-1"></a><span class="do">## [[2]]</span></span>
+<span id="cb235-9"><a href="família-xapply.html#cb235-9" tabindex="-1"></a><span class="do">## [1] 4</span></span>
+<span id="cb235-10"><a href="família-xapply.html#cb235-10" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb235-11"><a href="família-xapply.html#cb235-11" tabindex="-1"></a><span class="do">## [[3]]</span></span>
+<span id="cb235-12"><a href="família-xapply.html#cb235-12" tabindex="-1"></a><span class="do">## [1] 9</span></span>
+<span id="cb235-13"><a href="família-xapply.html#cb235-13" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb235-14"><a href="família-xapply.html#cb235-14" tabindex="-1"></a><span class="do">## [[4]]</span></span>
+<span id="cb235-15"><a href="família-xapply.html#cb235-15" tabindex="-1"></a><span class="do">## [1] 16</span></span>
+<span id="cb235-16"><a href="família-xapply.html#cb235-16" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb235-17"><a href="família-xapply.html#cb235-17" tabindex="-1"></a><span class="do">## [[5]]</span></span>
+<span id="cb235-18"><a href="família-xapply.html#cb235-18" tabindex="-1"></a><span class="do">## [1] 25</span></span>
+<span id="cb235-19"><a href="família-xapply.html#cb235-19" tabindex="-1"></a></span>
+<span id="cb235-20"><a href="família-xapply.html#cb235-20" tabindex="-1"></a><span class="fu">sapply</span>(dados, f)</span>
+<span id="cb235-21"><a href="família-xapply.html#cb235-21" tabindex="-1"></a><span class="do">## [1]  1  4  9 16 25</span></span></code></pre></div>
 </div>
 <div id="função-tapply" class="section level2 hasAnchor" number="12.4">
 <h2><span class="header-section-number">12.4</span> Função <code>tapply()</code><a href="família-xapply.html#função-tapply" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Aplica uma função a grupos de valores em um vetor. É ideal para operações em subconjuntos de dados categorizados.</p>
-<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="família-xapply.html#cb458-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
-<span id="cb458-2"><a href="família-xapply.html#cb458-2" tabindex="-1"></a><span class="fu">tapply</span>(X, INDEX, FUN, ...)</span></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="família-xapply.html#cb236-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
+<span id="cb236-2"><a href="família-xapply.html#cb236-2" tabindex="-1"></a><span class="fu">tapply</span>(X, INDEX, FUN, ...)</span></code></pre></div>
 <ul>
 <li><p><code>X</code>: O vetor de dados</p></li>
 <li><p><code>INDEX</code>: Um fator ou lista de fatores que definem os grupos.</p></li>
 <li><p><code>FUN</code>: A função a ser aplicada</p></li>
 </ul>
 <p><strong>Exemplo:</strong> O dataset <code>iris</code> no R é um dos conjuntos de dados mais conhecidos e frequentemente utilizados para exemplificar análises estatísticas e técnicas de aprendizado de máquina. Foi introduzido por Ronald A. Fisher em 1936 em seu artigo sobre a utilização de modelos estatísticos para discriminação de espécies de plantas. O objetivo deste conjunto de dados é prever a classe de cada uma das três espécies de flores (fatores): Setosa, Versicolor, Virginica. O conjunto de dados coleta informações para cada espécie sobre seu comprimento e largura.</p>
-<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="família-xapply.html#cb459-1" tabindex="-1"></a>iris</span></code></pre></div>
-<pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
-## 1            5.1         3.5          1.4         0.2     setosa
-## 2            4.9         3.0          1.4         0.2     setosa
-## 3            4.7         3.2          1.3         0.2     setosa
-## 4            4.6         3.1          1.5         0.2     setosa
-## 5            5.0         3.6          1.4         0.2     setosa
-## 6            5.4         3.9          1.7         0.4     setosa
-## 7            4.6         3.4          1.4         0.3     setosa
-## 8            5.0         3.4          1.5         0.2     setosa
-## 9            4.4         2.9          1.4         0.2     setosa
-## 10           4.9         3.1          1.5         0.1     setosa
-## 11           5.4         3.7          1.5         0.2     setosa
-## 12           4.8         3.4          1.6         0.2     setosa
-## 13           4.8         3.0          1.4         0.1     setosa
-## 14           4.3         3.0          1.1         0.1     setosa
-## 15           5.8         4.0          1.2         0.2     setosa
-## 16           5.7         4.4          1.5         0.4     setosa
-## 17           5.4         3.9          1.3         0.4     setosa
-## 18           5.1         3.5          1.4         0.3     setosa
-## 19           5.7         3.8          1.7         0.3     setosa
-## 20           5.1         3.8          1.5         0.3     setosa
-## 21           5.4         3.4          1.7         0.2     setosa
-## 22           5.1         3.7          1.5         0.4     setosa
-## 23           4.6         3.6          1.0         0.2     setosa
-## 24           5.1         3.3          1.7         0.5     setosa
-## 25           4.8         3.4          1.9         0.2     setosa
-## 26           5.0         3.0          1.6         0.2     setosa
-## 27           5.0         3.4          1.6         0.4     setosa
-## 28           5.2         3.5          1.5         0.2     setosa
-## 29           5.2         3.4          1.4         0.2     setosa
-## 30           4.7         3.2          1.6         0.2     setosa
-## 31           4.8         3.1          1.6         0.2     setosa
-## 32           5.4         3.4          1.5         0.4     setosa
-## 33           5.2         4.1          1.5         0.1     setosa
-## 34           5.5         4.2          1.4         0.2     setosa
-## 35           4.9         3.1          1.5         0.2     setosa
-## 36           5.0         3.2          1.2         0.2     setosa
-## 37           5.5         3.5          1.3         0.2     setosa
-## 38           4.9         3.6          1.4         0.1     setosa
-## 39           4.4         3.0          1.3         0.2     setosa
-## 40           5.1         3.4          1.5         0.2     setosa
-## 41           5.0         3.5          1.3         0.3     setosa
-## 42           4.5         2.3          1.3         0.3     setosa
-## 43           4.4         3.2          1.3         0.2     setosa
-## 44           5.0         3.5          1.6         0.6     setosa
-## 45           5.1         3.8          1.9         0.4     setosa
-## 46           4.8         3.0          1.4         0.3     setosa
-## 47           5.1         3.8          1.6         0.2     setosa
-## 48           4.6         3.2          1.4         0.2     setosa
-## 49           5.3         3.7          1.5         0.2     setosa
-## 50           5.0         3.3          1.4         0.2     setosa
-## 51           7.0         3.2          4.7         1.4 versicolor
-## 52           6.4         3.2          4.5         1.5 versicolor
-## 53           6.9         3.1          4.9         1.5 versicolor
-## 54           5.5         2.3          4.0         1.3 versicolor
-## 55           6.5         2.8          4.6         1.5 versicolor
-## 56           5.7         2.8          4.5         1.3 versicolor
-## 57           6.3         3.3          4.7         1.6 versicolor
-## 58           4.9         2.4          3.3         1.0 versicolor
-## 59           6.6         2.9          4.6         1.3 versicolor
-## 60           5.2         2.7          3.9         1.4 versicolor
-## 61           5.0         2.0          3.5         1.0 versicolor
-## 62           5.9         3.0          4.2         1.5 versicolor
-## 63           6.0         2.2          4.0         1.0 versicolor
-## 64           6.1         2.9          4.7         1.4 versicolor
-## 65           5.6         2.9          3.6         1.3 versicolor
-## 66           6.7         3.1          4.4         1.4 versicolor
-## 67           5.6         3.0          4.5         1.5 versicolor
-## 68           5.8         2.7          4.1         1.0 versicolor
-## 69           6.2         2.2          4.5         1.5 versicolor
-## 70           5.6         2.5          3.9         1.1 versicolor
-## 71           5.9         3.2          4.8         1.8 versicolor
-## 72           6.1         2.8          4.0         1.3 versicolor
-## 73           6.3         2.5          4.9         1.5 versicolor
-## 74           6.1         2.8          4.7         1.2 versicolor
-## 75           6.4         2.9          4.3         1.3 versicolor
-## 76           6.6         3.0          4.4         1.4 versicolor
-## 77           6.8         2.8          4.8         1.4 versicolor
-## 78           6.7         3.0          5.0         1.7 versicolor
-## 79           6.0         2.9          4.5         1.5 versicolor
-## 80           5.7         2.6          3.5         1.0 versicolor
-## 81           5.5         2.4          3.8         1.1 versicolor
-## 82           5.5         2.4          3.7         1.0 versicolor
-## 83           5.8         2.7          3.9         1.2 versicolor
-## 84           6.0         2.7          5.1         1.6 versicolor
-## 85           5.4         3.0          4.5         1.5 versicolor
-## 86           6.0         3.4          4.5         1.6 versicolor
-## 87           6.7         3.1          4.7         1.5 versicolor
-## 88           6.3         2.3          4.4         1.3 versicolor
-## 89           5.6         3.0          4.1         1.3 versicolor
-## 90           5.5         2.5          4.0         1.3 versicolor
-## 91           5.5         2.6          4.4         1.2 versicolor
-## 92           6.1         3.0          4.6         1.4 versicolor
-## 93           5.8         2.6          4.0         1.2 versicolor
-## 94           5.0         2.3          3.3         1.0 versicolor
-## 95           5.6         2.7          4.2         1.3 versicolor
-## 96           5.7         3.0          4.2         1.2 versicolor
-## 97           5.7         2.9          4.2         1.3 versicolor
-## 98           6.2         2.9          4.3         1.3 versicolor
-## 99           5.1         2.5          3.0         1.1 versicolor
-## 100          5.7         2.8          4.1         1.3 versicolor
-## 101          6.3         3.3          6.0         2.5  virginica
-## 102          5.8         2.7          5.1         1.9  virginica
-## 103          7.1         3.0          5.9         2.1  virginica
-## 104          6.3         2.9          5.6         1.8  virginica
-## 105          6.5         3.0          5.8         2.2  virginica
-## 106          7.6         3.0          6.6         2.1  virginica
-## 107          4.9         2.5          4.5         1.7  virginica
-## 108          7.3         2.9          6.3         1.8  virginica
-## 109          6.7         2.5          5.8         1.8  virginica
-## 110          7.2         3.6          6.1         2.5  virginica
-## 111          6.5         3.2          5.1         2.0  virginica
-## 112          6.4         2.7          5.3         1.9  virginica
-## 113          6.8         3.0          5.5         2.1  virginica
-## 114          5.7         2.5          5.0         2.0  virginica
-## 115          5.8         2.8          5.1         2.4  virginica
-## 116          6.4         3.2          5.3         2.3  virginica
-## 117          6.5         3.0          5.5         1.8  virginica
-## 118          7.7         3.8          6.7         2.2  virginica
-## 119          7.7         2.6          6.9         2.3  virginica
-## 120          6.0         2.2          5.0         1.5  virginica
-## 121          6.9         3.2          5.7         2.3  virginica
-## 122          5.6         2.8          4.9         2.0  virginica
-## 123          7.7         2.8          6.7         2.0  virginica
-## 124          6.3         2.7          4.9         1.8  virginica
-## 125          6.7         3.3          5.7         2.1  virginica
-## 126          7.2         3.2          6.0         1.8  virginica
-## 127          6.2         2.8          4.8         1.8  virginica
-## 128          6.1         3.0          4.9         1.8  virginica
-## 129          6.4         2.8          5.6         2.1  virginica
-## 130          7.2         3.0          5.8         1.6  virginica
-## 131          7.4         2.8          6.1         1.9  virginica
-## 132          7.9         3.8          6.4         2.0  virginica
-## 133          6.4         2.8          5.6         2.2  virginica
-## 134          6.3         2.8          5.1         1.5  virginica
-## 135          6.1         2.6          5.6         1.4  virginica
-## 136          7.7         3.0          6.1         2.3  virginica
-## 137          6.3         3.4          5.6         2.4  virginica
-## 138          6.4         3.1          5.5         1.8  virginica
-## 139          6.0         3.0          4.8         1.8  virginica
-## 140          6.9         3.1          5.4         2.1  virginica
-## 141          6.7         3.1          5.6         2.4  virginica
-## 142          6.9         3.1          5.1         2.3  virginica
-## 143          5.8         2.7          5.1         1.9  virginica
-## 144          6.8         3.2          5.9         2.3  virginica
-## 145          6.7         3.3          5.7         2.5  virginica
-## 146          6.7         3.0          5.2         2.3  virginica
-## 147          6.3         2.5          5.0         1.9  virginica
-## 148          6.5         3.0          5.2         2.0  virginica
-## 149          6.2         3.4          5.4         2.3  virginica
-## 150          5.9         3.0          5.1         1.8  virginica</code></pre>
-<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="família-xapply.html#cb461-1" tabindex="-1"></a><span class="fu">tapply</span>(iris<span class="sc">$</span>Petal.Length, iris<span class="sc">$</span>Species, mean)</span></code></pre></div>
-<pre><code>##     setosa versicolor  virginica 
-##       1.46       4.26       5.55</code></pre>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="família-xapply.html#cb237-1" tabindex="-1"></a>iris</span>
+<span id="cb237-2"><a href="família-xapply.html#cb237-2" tabindex="-1"></a><span class="do">##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species</span></span>
+<span id="cb237-3"><a href="família-xapply.html#cb237-3" tabindex="-1"></a><span class="do">## 1            5.1         3.5          1.4         0.2     setosa</span></span>
+<span id="cb237-4"><a href="família-xapply.html#cb237-4" tabindex="-1"></a><span class="do">## 2            4.9         3.0          1.4         0.2     setosa</span></span>
+<span id="cb237-5"><a href="família-xapply.html#cb237-5" tabindex="-1"></a><span class="do">## 3            4.7         3.2          1.3         0.2     setosa</span></span>
+<span id="cb237-6"><a href="família-xapply.html#cb237-6" tabindex="-1"></a><span class="do">## 4            4.6         3.1          1.5         0.2     setosa</span></span>
+<span id="cb237-7"><a href="família-xapply.html#cb237-7" tabindex="-1"></a><span class="do">## 5            5.0         3.6          1.4         0.2     setosa</span></span>
+<span id="cb237-8"><a href="família-xapply.html#cb237-8" tabindex="-1"></a><span class="do">## 6            5.4         3.9          1.7         0.4     setosa</span></span>
+<span id="cb237-9"><a href="família-xapply.html#cb237-9" tabindex="-1"></a><span class="do">## 7            4.6         3.4          1.4         0.3     setosa</span></span>
+<span id="cb237-10"><a href="família-xapply.html#cb237-10" tabindex="-1"></a><span class="do">## 8            5.0         3.4          1.5         0.2     setosa</span></span>
+<span id="cb237-11"><a href="família-xapply.html#cb237-11" tabindex="-1"></a><span class="do">## 9            4.4         2.9          1.4         0.2     setosa</span></span>
+<span id="cb237-12"><a href="família-xapply.html#cb237-12" tabindex="-1"></a><span class="do">## 10           4.9         3.1          1.5         0.1     setosa</span></span>
+<span id="cb237-13"><a href="família-xapply.html#cb237-13" tabindex="-1"></a><span class="do">## 11           5.4         3.7          1.5         0.2     setosa</span></span>
+<span id="cb237-14"><a href="família-xapply.html#cb237-14" tabindex="-1"></a><span class="do">## 12           4.8         3.4          1.6         0.2     setosa</span></span>
+<span id="cb237-15"><a href="família-xapply.html#cb237-15" tabindex="-1"></a><span class="do">## 13           4.8         3.0          1.4         0.1     setosa</span></span>
+<span id="cb237-16"><a href="família-xapply.html#cb237-16" tabindex="-1"></a><span class="do">## 14           4.3         3.0          1.1         0.1     setosa</span></span>
+<span id="cb237-17"><a href="família-xapply.html#cb237-17" tabindex="-1"></a><span class="do">## 15           5.8         4.0          1.2         0.2     setosa</span></span>
+<span id="cb237-18"><a href="família-xapply.html#cb237-18" tabindex="-1"></a><span class="do">## 16           5.7         4.4          1.5         0.4     setosa</span></span>
+<span id="cb237-19"><a href="família-xapply.html#cb237-19" tabindex="-1"></a><span class="do">## 17           5.4         3.9          1.3         0.4     setosa</span></span>
+<span id="cb237-20"><a href="família-xapply.html#cb237-20" tabindex="-1"></a><span class="do">## 18           5.1         3.5          1.4         0.3     setosa</span></span>
+<span id="cb237-21"><a href="família-xapply.html#cb237-21" tabindex="-1"></a><span class="do">## 19           5.7         3.8          1.7         0.3     setosa</span></span>
+<span id="cb237-22"><a href="família-xapply.html#cb237-22" tabindex="-1"></a><span class="do">## 20           5.1         3.8          1.5         0.3     setosa</span></span>
+<span id="cb237-23"><a href="família-xapply.html#cb237-23" tabindex="-1"></a><span class="do">## 21           5.4         3.4          1.7         0.2     setosa</span></span>
+<span id="cb237-24"><a href="família-xapply.html#cb237-24" tabindex="-1"></a><span class="do">## 22           5.1         3.7          1.5         0.4     setosa</span></span>
+<span id="cb237-25"><a href="família-xapply.html#cb237-25" tabindex="-1"></a><span class="do">## 23           4.6         3.6          1.0         0.2     setosa</span></span>
+<span id="cb237-26"><a href="família-xapply.html#cb237-26" tabindex="-1"></a><span class="do">## 24           5.1         3.3          1.7         0.5     setosa</span></span>
+<span id="cb237-27"><a href="família-xapply.html#cb237-27" tabindex="-1"></a><span class="do">## 25           4.8         3.4          1.9         0.2     setosa</span></span>
+<span id="cb237-28"><a href="família-xapply.html#cb237-28" tabindex="-1"></a><span class="do">## 26           5.0         3.0          1.6         0.2     setosa</span></span>
+<span id="cb237-29"><a href="família-xapply.html#cb237-29" tabindex="-1"></a><span class="do">## 27           5.0         3.4          1.6         0.4     setosa</span></span>
+<span id="cb237-30"><a href="família-xapply.html#cb237-30" tabindex="-1"></a><span class="do">## 28           5.2         3.5          1.5         0.2     setosa</span></span>
+<span id="cb237-31"><a href="família-xapply.html#cb237-31" tabindex="-1"></a><span class="do">## 29           5.2         3.4          1.4         0.2     setosa</span></span>
+<span id="cb237-32"><a href="família-xapply.html#cb237-32" tabindex="-1"></a><span class="do">## 30           4.7         3.2          1.6         0.2     setosa</span></span>
+<span id="cb237-33"><a href="família-xapply.html#cb237-33" tabindex="-1"></a><span class="do">## 31           4.8         3.1          1.6         0.2     setosa</span></span>
+<span id="cb237-34"><a href="família-xapply.html#cb237-34" tabindex="-1"></a><span class="do">## 32           5.4         3.4          1.5         0.4     setosa</span></span>
+<span id="cb237-35"><a href="família-xapply.html#cb237-35" tabindex="-1"></a><span class="do">## 33           5.2         4.1          1.5         0.1     setosa</span></span>
+<span id="cb237-36"><a href="família-xapply.html#cb237-36" tabindex="-1"></a><span class="do">## 34           5.5         4.2          1.4         0.2     setosa</span></span>
+<span id="cb237-37"><a href="família-xapply.html#cb237-37" tabindex="-1"></a><span class="do">## 35           4.9         3.1          1.5         0.2     setosa</span></span>
+<span id="cb237-38"><a href="família-xapply.html#cb237-38" tabindex="-1"></a><span class="do">## 36           5.0         3.2          1.2         0.2     setosa</span></span>
+<span id="cb237-39"><a href="família-xapply.html#cb237-39" tabindex="-1"></a><span class="do">## 37           5.5         3.5          1.3         0.2     setosa</span></span>
+<span id="cb237-40"><a href="família-xapply.html#cb237-40" tabindex="-1"></a><span class="do">## 38           4.9         3.6          1.4         0.1     setosa</span></span>
+<span id="cb237-41"><a href="família-xapply.html#cb237-41" tabindex="-1"></a><span class="do">## 39           4.4         3.0          1.3         0.2     setosa</span></span>
+<span id="cb237-42"><a href="família-xapply.html#cb237-42" tabindex="-1"></a><span class="do">## 40           5.1         3.4          1.5         0.2     setosa</span></span>
+<span id="cb237-43"><a href="família-xapply.html#cb237-43" tabindex="-1"></a><span class="do">## 41           5.0         3.5          1.3         0.3     setosa</span></span>
+<span id="cb237-44"><a href="família-xapply.html#cb237-44" tabindex="-1"></a><span class="do">## 42           4.5         2.3          1.3         0.3     setosa</span></span>
+<span id="cb237-45"><a href="família-xapply.html#cb237-45" tabindex="-1"></a><span class="do">## 43           4.4         3.2          1.3         0.2     setosa</span></span>
+<span id="cb237-46"><a href="família-xapply.html#cb237-46" tabindex="-1"></a><span class="do">## 44           5.0         3.5          1.6         0.6     setosa</span></span>
+<span id="cb237-47"><a href="família-xapply.html#cb237-47" tabindex="-1"></a><span class="do">## 45           5.1         3.8          1.9         0.4     setosa</span></span>
+<span id="cb237-48"><a href="família-xapply.html#cb237-48" tabindex="-1"></a><span class="do">## 46           4.8         3.0          1.4         0.3     setosa</span></span>
+<span id="cb237-49"><a href="família-xapply.html#cb237-49" tabindex="-1"></a><span class="do">## 47           5.1         3.8          1.6         0.2     setosa</span></span>
+<span id="cb237-50"><a href="família-xapply.html#cb237-50" tabindex="-1"></a><span class="do">## 48           4.6         3.2          1.4         0.2     setosa</span></span>
+<span id="cb237-51"><a href="família-xapply.html#cb237-51" tabindex="-1"></a><span class="do">## 49           5.3         3.7          1.5         0.2     setosa</span></span>
+<span id="cb237-52"><a href="família-xapply.html#cb237-52" tabindex="-1"></a><span class="do">## 50           5.0         3.3          1.4         0.2     setosa</span></span>
+<span id="cb237-53"><a href="família-xapply.html#cb237-53" tabindex="-1"></a><span class="do">## 51           7.0         3.2          4.7         1.4 versicolor</span></span>
+<span id="cb237-54"><a href="família-xapply.html#cb237-54" tabindex="-1"></a><span class="do">## 52           6.4         3.2          4.5         1.5 versicolor</span></span>
+<span id="cb237-55"><a href="família-xapply.html#cb237-55" tabindex="-1"></a><span class="do">## 53           6.9         3.1          4.9         1.5 versicolor</span></span>
+<span id="cb237-56"><a href="família-xapply.html#cb237-56" tabindex="-1"></a><span class="do">## 54           5.5         2.3          4.0         1.3 versicolor</span></span>
+<span id="cb237-57"><a href="família-xapply.html#cb237-57" tabindex="-1"></a><span class="do">## 55           6.5         2.8          4.6         1.5 versicolor</span></span>
+<span id="cb237-58"><a href="família-xapply.html#cb237-58" tabindex="-1"></a><span class="do">## 56           5.7         2.8          4.5         1.3 versicolor</span></span>
+<span id="cb237-59"><a href="família-xapply.html#cb237-59" tabindex="-1"></a><span class="do">## 57           6.3         3.3          4.7         1.6 versicolor</span></span>
+<span id="cb237-60"><a href="família-xapply.html#cb237-60" tabindex="-1"></a><span class="do">## 58           4.9         2.4          3.3         1.0 versicolor</span></span>
+<span id="cb237-61"><a href="família-xapply.html#cb237-61" tabindex="-1"></a><span class="do">## 59           6.6         2.9          4.6         1.3 versicolor</span></span>
+<span id="cb237-62"><a href="família-xapply.html#cb237-62" tabindex="-1"></a><span class="do">## 60           5.2         2.7          3.9         1.4 versicolor</span></span>
+<span id="cb237-63"><a href="família-xapply.html#cb237-63" tabindex="-1"></a><span class="do">## 61           5.0         2.0          3.5         1.0 versicolor</span></span>
+<span id="cb237-64"><a href="família-xapply.html#cb237-64" tabindex="-1"></a><span class="do">## 62           5.9         3.0          4.2         1.5 versicolor</span></span>
+<span id="cb237-65"><a href="família-xapply.html#cb237-65" tabindex="-1"></a><span class="do">## 63           6.0         2.2          4.0         1.0 versicolor</span></span>
+<span id="cb237-66"><a href="família-xapply.html#cb237-66" tabindex="-1"></a><span class="do">## 64           6.1         2.9          4.7         1.4 versicolor</span></span>
+<span id="cb237-67"><a href="família-xapply.html#cb237-67" tabindex="-1"></a><span class="do">## 65           5.6         2.9          3.6         1.3 versicolor</span></span>
+<span id="cb237-68"><a href="família-xapply.html#cb237-68" tabindex="-1"></a><span class="do">## 66           6.7         3.1          4.4         1.4 versicolor</span></span>
+<span id="cb237-69"><a href="família-xapply.html#cb237-69" tabindex="-1"></a><span class="do">## 67           5.6         3.0          4.5         1.5 versicolor</span></span>
+<span id="cb237-70"><a href="família-xapply.html#cb237-70" tabindex="-1"></a><span class="do">## 68           5.8         2.7          4.1         1.0 versicolor</span></span>
+<span id="cb237-71"><a href="família-xapply.html#cb237-71" tabindex="-1"></a><span class="do">## 69           6.2         2.2          4.5         1.5 versicolor</span></span>
+<span id="cb237-72"><a href="família-xapply.html#cb237-72" tabindex="-1"></a><span class="do">## 70           5.6         2.5          3.9         1.1 versicolor</span></span>
+<span id="cb237-73"><a href="família-xapply.html#cb237-73" tabindex="-1"></a><span class="do">## 71           5.9         3.2          4.8         1.8 versicolor</span></span>
+<span id="cb237-74"><a href="família-xapply.html#cb237-74" tabindex="-1"></a><span class="do">## 72           6.1         2.8          4.0         1.3 versicolor</span></span>
+<span id="cb237-75"><a href="família-xapply.html#cb237-75" tabindex="-1"></a><span class="do">## 73           6.3         2.5          4.9         1.5 versicolor</span></span>
+<span id="cb237-76"><a href="família-xapply.html#cb237-76" tabindex="-1"></a><span class="do">## 74           6.1         2.8          4.7         1.2 versicolor</span></span>
+<span id="cb237-77"><a href="família-xapply.html#cb237-77" tabindex="-1"></a><span class="do">## 75           6.4         2.9          4.3         1.3 versicolor</span></span>
+<span id="cb237-78"><a href="família-xapply.html#cb237-78" tabindex="-1"></a><span class="do">## 76           6.6         3.0          4.4         1.4 versicolor</span></span>
+<span id="cb237-79"><a href="família-xapply.html#cb237-79" tabindex="-1"></a><span class="do">## 77           6.8         2.8          4.8         1.4 versicolor</span></span>
+<span id="cb237-80"><a href="família-xapply.html#cb237-80" tabindex="-1"></a><span class="do">## 78           6.7         3.0          5.0         1.7 versicolor</span></span>
+<span id="cb237-81"><a href="família-xapply.html#cb237-81" tabindex="-1"></a><span class="do">## 79           6.0         2.9          4.5         1.5 versicolor</span></span>
+<span id="cb237-82"><a href="família-xapply.html#cb237-82" tabindex="-1"></a><span class="do">## 80           5.7         2.6          3.5         1.0 versicolor</span></span>
+<span id="cb237-83"><a href="família-xapply.html#cb237-83" tabindex="-1"></a><span class="do">## 81           5.5         2.4          3.8         1.1 versicolor</span></span>
+<span id="cb237-84"><a href="família-xapply.html#cb237-84" tabindex="-1"></a><span class="do">## 82           5.5         2.4          3.7         1.0 versicolor</span></span>
+<span id="cb237-85"><a href="família-xapply.html#cb237-85" tabindex="-1"></a><span class="do">## 83           5.8         2.7          3.9         1.2 versicolor</span></span>
+<span id="cb237-86"><a href="família-xapply.html#cb237-86" tabindex="-1"></a><span class="do">## 84           6.0         2.7          5.1         1.6 versicolor</span></span>
+<span id="cb237-87"><a href="família-xapply.html#cb237-87" tabindex="-1"></a><span class="do">## 85           5.4         3.0          4.5         1.5 versicolor</span></span>
+<span id="cb237-88"><a href="família-xapply.html#cb237-88" tabindex="-1"></a><span class="do">## 86           6.0         3.4          4.5         1.6 versicolor</span></span>
+<span id="cb237-89"><a href="família-xapply.html#cb237-89" tabindex="-1"></a><span class="do">## 87           6.7         3.1          4.7         1.5 versicolor</span></span>
+<span id="cb237-90"><a href="família-xapply.html#cb237-90" tabindex="-1"></a><span class="do">## 88           6.3         2.3          4.4         1.3 versicolor</span></span>
+<span id="cb237-91"><a href="família-xapply.html#cb237-91" tabindex="-1"></a><span class="do">## 89           5.6         3.0          4.1         1.3 versicolor</span></span>
+<span id="cb237-92"><a href="família-xapply.html#cb237-92" tabindex="-1"></a><span class="do">## 90           5.5         2.5          4.0         1.3 versicolor</span></span>
+<span id="cb237-93"><a href="família-xapply.html#cb237-93" tabindex="-1"></a><span class="do">## 91           5.5         2.6          4.4         1.2 versicolor</span></span>
+<span id="cb237-94"><a href="família-xapply.html#cb237-94" tabindex="-1"></a><span class="do">## 92           6.1         3.0          4.6         1.4 versicolor</span></span>
+<span id="cb237-95"><a href="família-xapply.html#cb237-95" tabindex="-1"></a><span class="do">## 93           5.8         2.6          4.0         1.2 versicolor</span></span>
+<span id="cb237-96"><a href="família-xapply.html#cb237-96" tabindex="-1"></a><span class="do">## 94           5.0         2.3          3.3         1.0 versicolor</span></span>
+<span id="cb237-97"><a href="família-xapply.html#cb237-97" tabindex="-1"></a><span class="do">## 95           5.6         2.7          4.2         1.3 versicolor</span></span>
+<span id="cb237-98"><a href="família-xapply.html#cb237-98" tabindex="-1"></a><span class="do">## 96           5.7         3.0          4.2         1.2 versicolor</span></span>
+<span id="cb237-99"><a href="família-xapply.html#cb237-99" tabindex="-1"></a><span class="do">## 97           5.7         2.9          4.2         1.3 versicolor</span></span>
+<span id="cb237-100"><a href="família-xapply.html#cb237-100" tabindex="-1"></a><span class="do">## 98           6.2         2.9          4.3         1.3 versicolor</span></span>
+<span id="cb237-101"><a href="família-xapply.html#cb237-101" tabindex="-1"></a><span class="do">## 99           5.1         2.5          3.0         1.1 versicolor</span></span>
+<span id="cb237-102"><a href="família-xapply.html#cb237-102" tabindex="-1"></a><span class="do">## 100          5.7         2.8          4.1         1.3 versicolor</span></span>
+<span id="cb237-103"><a href="família-xapply.html#cb237-103" tabindex="-1"></a><span class="do">## 101          6.3         3.3          6.0         2.5  virginica</span></span>
+<span id="cb237-104"><a href="família-xapply.html#cb237-104" tabindex="-1"></a><span class="do">## 102          5.8         2.7          5.1         1.9  virginica</span></span>
+<span id="cb237-105"><a href="família-xapply.html#cb237-105" tabindex="-1"></a><span class="do">## 103          7.1         3.0          5.9         2.1  virginica</span></span>
+<span id="cb237-106"><a href="família-xapply.html#cb237-106" tabindex="-1"></a><span class="do">## 104          6.3         2.9          5.6         1.8  virginica</span></span>
+<span id="cb237-107"><a href="família-xapply.html#cb237-107" tabindex="-1"></a><span class="do">## 105          6.5         3.0          5.8         2.2  virginica</span></span>
+<span id="cb237-108"><a href="família-xapply.html#cb237-108" tabindex="-1"></a><span class="do">## 106          7.6         3.0          6.6         2.1  virginica</span></span>
+<span id="cb237-109"><a href="família-xapply.html#cb237-109" tabindex="-1"></a><span class="do">## 107          4.9         2.5          4.5         1.7  virginica</span></span>
+<span id="cb237-110"><a href="família-xapply.html#cb237-110" tabindex="-1"></a><span class="do">## 108          7.3         2.9          6.3         1.8  virginica</span></span>
+<span id="cb237-111"><a href="família-xapply.html#cb237-111" tabindex="-1"></a><span class="do">## 109          6.7         2.5          5.8         1.8  virginica</span></span>
+<span id="cb237-112"><a href="família-xapply.html#cb237-112" tabindex="-1"></a><span class="do">## 110          7.2         3.6          6.1         2.5  virginica</span></span>
+<span id="cb237-113"><a href="família-xapply.html#cb237-113" tabindex="-1"></a><span class="do">## 111          6.5         3.2          5.1         2.0  virginica</span></span>
+<span id="cb237-114"><a href="família-xapply.html#cb237-114" tabindex="-1"></a><span class="do">## 112          6.4         2.7          5.3         1.9  virginica</span></span>
+<span id="cb237-115"><a href="família-xapply.html#cb237-115" tabindex="-1"></a><span class="do">## 113          6.8         3.0          5.5         2.1  virginica</span></span>
+<span id="cb237-116"><a href="família-xapply.html#cb237-116" tabindex="-1"></a><span class="do">## 114          5.7         2.5          5.0         2.0  virginica</span></span>
+<span id="cb237-117"><a href="família-xapply.html#cb237-117" tabindex="-1"></a><span class="do">## 115          5.8         2.8          5.1         2.4  virginica</span></span>
+<span id="cb237-118"><a href="família-xapply.html#cb237-118" tabindex="-1"></a><span class="do">## 116          6.4         3.2          5.3         2.3  virginica</span></span>
+<span id="cb237-119"><a href="família-xapply.html#cb237-119" tabindex="-1"></a><span class="do">## 117          6.5         3.0          5.5         1.8  virginica</span></span>
+<span id="cb237-120"><a href="família-xapply.html#cb237-120" tabindex="-1"></a><span class="do">## 118          7.7         3.8          6.7         2.2  virginica</span></span>
+<span id="cb237-121"><a href="família-xapply.html#cb237-121" tabindex="-1"></a><span class="do">## 119          7.7         2.6          6.9         2.3  virginica</span></span>
+<span id="cb237-122"><a href="família-xapply.html#cb237-122" tabindex="-1"></a><span class="do">## 120          6.0         2.2          5.0         1.5  virginica</span></span>
+<span id="cb237-123"><a href="família-xapply.html#cb237-123" tabindex="-1"></a><span class="do">## 121          6.9         3.2          5.7         2.3  virginica</span></span>
+<span id="cb237-124"><a href="família-xapply.html#cb237-124" tabindex="-1"></a><span class="do">## 122          5.6         2.8          4.9         2.0  virginica</span></span>
+<span id="cb237-125"><a href="família-xapply.html#cb237-125" tabindex="-1"></a><span class="do">## 123          7.7         2.8          6.7         2.0  virginica</span></span>
+<span id="cb237-126"><a href="família-xapply.html#cb237-126" tabindex="-1"></a><span class="do">## 124          6.3         2.7          4.9         1.8  virginica</span></span>
+<span id="cb237-127"><a href="família-xapply.html#cb237-127" tabindex="-1"></a><span class="do">## 125          6.7         3.3          5.7         2.1  virginica</span></span>
+<span id="cb237-128"><a href="família-xapply.html#cb237-128" tabindex="-1"></a><span class="do">## 126          7.2         3.2          6.0         1.8  virginica</span></span>
+<span id="cb237-129"><a href="família-xapply.html#cb237-129" tabindex="-1"></a><span class="do">## 127          6.2         2.8          4.8         1.8  virginica</span></span>
+<span id="cb237-130"><a href="família-xapply.html#cb237-130" tabindex="-1"></a><span class="do">## 128          6.1         3.0          4.9         1.8  virginica</span></span>
+<span id="cb237-131"><a href="família-xapply.html#cb237-131" tabindex="-1"></a><span class="do">## 129          6.4         2.8          5.6         2.1  virginica</span></span>
+<span id="cb237-132"><a href="família-xapply.html#cb237-132" tabindex="-1"></a><span class="do">## 130          7.2         3.0          5.8         1.6  virginica</span></span>
+<span id="cb237-133"><a href="família-xapply.html#cb237-133" tabindex="-1"></a><span class="do">## 131          7.4         2.8          6.1         1.9  virginica</span></span>
+<span id="cb237-134"><a href="família-xapply.html#cb237-134" tabindex="-1"></a><span class="do">## 132          7.9         3.8          6.4         2.0  virginica</span></span>
+<span id="cb237-135"><a href="família-xapply.html#cb237-135" tabindex="-1"></a><span class="do">## 133          6.4         2.8          5.6         2.2  virginica</span></span>
+<span id="cb237-136"><a href="família-xapply.html#cb237-136" tabindex="-1"></a><span class="do">## 134          6.3         2.8          5.1         1.5  virginica</span></span>
+<span id="cb237-137"><a href="família-xapply.html#cb237-137" tabindex="-1"></a><span class="do">## 135          6.1         2.6          5.6         1.4  virginica</span></span>
+<span id="cb237-138"><a href="família-xapply.html#cb237-138" tabindex="-1"></a><span class="do">## 136          7.7         3.0          6.1         2.3  virginica</span></span>
+<span id="cb237-139"><a href="família-xapply.html#cb237-139" tabindex="-1"></a><span class="do">## 137          6.3         3.4          5.6         2.4  virginica</span></span>
+<span id="cb237-140"><a href="família-xapply.html#cb237-140" tabindex="-1"></a><span class="do">## 138          6.4         3.1          5.5         1.8  virginica</span></span>
+<span id="cb237-141"><a href="família-xapply.html#cb237-141" tabindex="-1"></a><span class="do">## 139          6.0         3.0          4.8         1.8  virginica</span></span>
+<span id="cb237-142"><a href="família-xapply.html#cb237-142" tabindex="-1"></a><span class="do">## 140          6.9         3.1          5.4         2.1  virginica</span></span>
+<span id="cb237-143"><a href="família-xapply.html#cb237-143" tabindex="-1"></a><span class="do">## 141          6.7         3.1          5.6         2.4  virginica</span></span>
+<span id="cb237-144"><a href="família-xapply.html#cb237-144" tabindex="-1"></a><span class="do">## 142          6.9         3.1          5.1         2.3  virginica</span></span>
+<span id="cb237-145"><a href="família-xapply.html#cb237-145" tabindex="-1"></a><span class="do">## 143          5.8         2.7          5.1         1.9  virginica</span></span>
+<span id="cb237-146"><a href="família-xapply.html#cb237-146" tabindex="-1"></a><span class="do">## 144          6.8         3.2          5.9         2.3  virginica</span></span>
+<span id="cb237-147"><a href="família-xapply.html#cb237-147" tabindex="-1"></a><span class="do">## 145          6.7         3.3          5.7         2.5  virginica</span></span>
+<span id="cb237-148"><a href="família-xapply.html#cb237-148" tabindex="-1"></a><span class="do">## 146          6.7         3.0          5.2         2.3  virginica</span></span>
+<span id="cb237-149"><a href="família-xapply.html#cb237-149" tabindex="-1"></a><span class="do">## 147          6.3         2.5          5.0         1.9  virginica</span></span>
+<span id="cb237-150"><a href="família-xapply.html#cb237-150" tabindex="-1"></a><span class="do">## 148          6.5         3.0          5.2         2.0  virginica</span></span>
+<span id="cb237-151"><a href="família-xapply.html#cb237-151" tabindex="-1"></a><span class="do">## 149          6.2         3.4          5.4         2.3  virginica</span></span>
+<span id="cb237-152"><a href="família-xapply.html#cb237-152" tabindex="-1"></a><span class="do">## 150          5.9         3.0          5.1         1.8  virginica</span></span>
+<span id="cb237-153"><a href="família-xapply.html#cb237-153" tabindex="-1"></a></span>
+<span id="cb237-154"><a href="família-xapply.html#cb237-154" tabindex="-1"></a><span class="fu">tapply</span>(iris<span class="sc">$</span>Petal.Length, iris<span class="sc">$</span>Species, mean)</span>
+<span id="cb237-155"><a href="família-xapply.html#cb237-155" tabindex="-1"></a><span class="do">##     setosa versicolor  virginica </span></span>
+<span id="cb237-156"><a href="família-xapply.html#cb237-156" tabindex="-1"></a><span class="do">##       1.46       4.26       5.55</span></span></code></pre></div>
 </div>
 <div id="exercícios-10" class="section level2 hasAnchor" number="12.5">
 <h2><span class="header-section-number">12.5</span> Exercícios<a href="família-xapply.html#exercícios-10" class="anchor-section" aria-label="Anchor link to header"></a></h2>
