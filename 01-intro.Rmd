@@ -3080,7 +3080,7 @@ Utilize a base `sw` nos exercícios a seguir.
 
 **a.** personagens de olhos azuis com mais de 30 anos;
 
-**b.** personagens com cor `light` ou `red`
+**b.** personagens com cor `light` ou `red`.
 
 **c.** personagens com altura superior a 180 e selecione apenas as colunas `name`, `height`, e `species`.
 
@@ -3114,8 +3114,61 @@ sw %>%
 
 ### Sumarizando a base
 
-### Juntando duas bases
+A função `summarize()`no R é utilizada para criar resumos estatísticos de dados dentro de um data frame ou tibble. Ela é frequentemente usada para calcular estatísticas agregadas, como médias, somas, contagens, entre outras.
 
+O código abaixo resume a coluna `mass` pela sua média.
+```{r}
+sw %>% summarize(media_massa = mean(mass, na.rm = TRUE))
+```
+
+Podemos calcular ao mesmo tempo sumarizações diferentes.
+
+```{r}
+sw %>% summarize(
+  media_massa = mean(mass, na.rm = TRUE),
+  mediana_massa = median(mass, na.rm = TRUE),
+  variancia_massa = var(mass, na.rm = TRUE)
+)
+```
+
+Podemos também sumarizar diversas colunas.
+
+```{r}
+sw %>% summarize(
+  media_massa = mean(mass, na.rm = TRUE),
+  media_altura = mean(height, na.rm = TRUE),
+  media_ano = mean(birth_year, na.rm = TRUE)
+)
+```
+
+Para sumarizar uma coluna agrupada pelas categorias de uma segunda coluna usamos além do `summarize()` a função `group_by()`.
+
+O código a abaixo calcula a altura média dos personagens para cada categoria da coluna `hair_color`.
+
+```{r}
+sw %>% 
+  filter(!is.na(hair_color), !is.na(height)) %>% 
+  group_by(hair_color) %>% 
+  summarize(media_altura = mean(height, na.rm = TRUE))
+```
+
+## Exerícios
+
+Utilize a base `sw` nos exercícios a seguir.
+
+**1.** Calcule a altura média e mediana dos personagens.
+
+**2.** Calcule a massa média dos personagens cuja altura é maior que 175 cm.
+
+**3.** Apresente na mesma tabela a massa média dos personagens com altura menor que 175 cm e a massa média dos personagens com altura maior ou igual a 175 cm.
+
+**4.** Retorne tabelas (`tibbles`) apenas com:
+
+**a.** A altura média dos personagens por espécie.
+**b.** A massa média e mediana dos personagens por espécie.
+**c.** Apenas o nome dos personagens que participaram de mais de 2 filmes.
+
+### Juntando duas bases
 
 # Simulação
 

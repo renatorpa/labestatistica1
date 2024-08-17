@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Renato de Paula" />
 
 
-<meta name="date" content="2024-08-16" />
+<meta name="date" content="2024-08-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -280,7 +280,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.2.6" data-path="manipulando-dados.html"><a href="manipulando-dados.html#exercícios-13"><i class="fa fa-check"></i><b>14.2.6</b> Exercícios</a></li>
 <li class="chapter" data-level="14.2.7" data-path="manipulando-dados.html"><a href="manipulando-dados.html#modificando-e-criando-novas-colunas"><i class="fa fa-check"></i><b>14.2.7</b> Modificando e criando novas colunas</a></li>
 <li class="chapter" data-level="14.2.8" data-path="manipulando-dados.html"><a href="manipulando-dados.html#sumarizando-a-base"><i class="fa fa-check"></i><b>14.2.8</b> Sumarizando a base</a></li>
-<li class="chapter" data-level="14.2.9" data-path="manipulando-dados.html"><a href="manipulando-dados.html#juntando-duas-bases"><i class="fa fa-check"></i><b>14.2.9</b> Juntando duas bases</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="manipulando-dados.html"><a href="manipulando-dados.html#exerícios"><i class="fa fa-check"></i><b>14.3</b> Exerícios</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="manipulando-dados.html"><a href="manipulando-dados.html#juntando-duas-bases"><i class="fa fa-check"></i><b>14.3.1</b> Juntando duas bases</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="simulação.html"><a href="simulação.html"><i class="fa fa-check"></i><b>15</b> Simulação</a>
@@ -394,9 +397,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="a-função-sample" class="section level2 hasAnchor" number="15.2">
 <h2><span class="header-section-number">15.2</span> A função <code>sample()</code><a href="simulação.html#a-função-sample" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A função <code>sample()</code> em R é utilizada para gerar uma amostra aleatória a partir de um conjunto de dados ou uma sequência de números. Ela é extremamente flexível, permitindo que você defina o tamanho da amostra, se a amostragem é feita com ou sem reposição, e também se os elementos têm probabilidades diferentes de serem selecionados.</p>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="simulação.html#cb181-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
-<span id="cb181-2"><a href="simulação.html#cb181-2" tabindex="-1"></a></span>
-<span id="cb181-3"><a href="simulação.html#cb181-3" tabindex="-1"></a><span class="fu">sample</span>(x, size, <span class="at">replace =</span> <span class="cn">FALSE</span>, <span class="at">prob =</span> <span class="cn">NULL</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="simulação.html#cb189-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
+<span id="cb189-2"><a href="simulação.html#cb189-2" tabindex="-1"></a></span>
+<span id="cb189-3"><a href="simulação.html#cb189-3" tabindex="-1"></a><span class="fu">sample</span>(x, size, <span class="at">replace =</span> <span class="cn">FALSE</span>, <span class="at">prob =</span> <span class="cn">NULL</span>)</span></code></pre></div>
 <ul>
 <li><p><strong>x</strong>: Vetor de elementos a serem amostrados.</p></li>
 <li><p><strong>size</strong>: Tamanho da amostra.</p></li>
@@ -404,26 +407,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><strong>prob</strong>: Um vetor de probabilidades associadas a cada elemento em x.</p></li>
 </ul>
 <p><strong>Exemplo 1</strong>: Amostragem Simples sem Reposição.</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="simulação.html#cb182-1" tabindex="-1"></a><span class="co"># Suponha que temos uma população de 1 a 10</span></span>
-<span id="cb182-2"><a href="simulação.html#cb182-2" tabindex="-1"></a>pop <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb182-3"><a href="simulação.html#cb182-3" tabindex="-1"></a></span>
-<span id="cb182-4"><a href="simulação.html#cb182-4" tabindex="-1"></a><span class="co"># Queremos uma amostra de 5 elementos</span></span>
-<span id="cb182-5"><a href="simulação.html#cb182-5" tabindex="-1"></a>amostra <span class="ot">&lt;-</span> <span class="fu">sample</span>(pop, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb182-6"><a href="simulação.html#cb182-6" tabindex="-1"></a><span class="fu">print</span>(amostra)</span>
-<span id="cb182-7"><a href="simulação.html#cb182-7" tabindex="-1"></a><span class="do">## [1]  5  2  4 10  8</span></span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="simulação.html#cb190-1" tabindex="-1"></a><span class="co"># Suponha que temos uma população de 1 a 10</span></span>
+<span id="cb190-2"><a href="simulação.html#cb190-2" tabindex="-1"></a>pop <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb190-3"><a href="simulação.html#cb190-3" tabindex="-1"></a></span>
+<span id="cb190-4"><a href="simulação.html#cb190-4" tabindex="-1"></a><span class="co"># Queremos uma amostra de 5 elementos</span></span>
+<span id="cb190-5"><a href="simulação.html#cb190-5" tabindex="-1"></a>amostra <span class="ot">&lt;-</span> <span class="fu">sample</span>(pop, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb190-6"><a href="simulação.html#cb190-6" tabindex="-1"></a><span class="fu">print</span>(amostra)</span>
+<span id="cb190-7"><a href="simulação.html#cb190-7" tabindex="-1"></a><span class="do">## [1]  5  2  4 10  8</span></span></code></pre></div>
 <p><strong>Exemplo 2</strong>: Amostragem com Reposição.</p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="simulação.html#cb183-1" tabindex="-1"></a><span class="co"># Amostra com reposição</span></span>
-<span id="cb183-2"><a href="simulação.html#cb183-2" tabindex="-1"></a>amostra_repos <span class="ot">&lt;-</span> <span class="fu">sample</span>(pop, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb183-3"><a href="simulação.html#cb183-3" tabindex="-1"></a><span class="fu">print</span>(amostra_repos)</span>
-<span id="cb183-4"><a href="simulação.html#cb183-4" tabindex="-1"></a><span class="do">## [1] 6 8 9 9 6</span></span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="simulação.html#cb191-1" tabindex="-1"></a><span class="co"># Amostra com reposição</span></span>
+<span id="cb191-2"><a href="simulação.html#cb191-2" tabindex="-1"></a>amostra_repos <span class="ot">&lt;-</span> <span class="fu">sample</span>(pop, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb191-3"><a href="simulação.html#cb191-3" tabindex="-1"></a><span class="fu">print</span>(amostra_repos)</span>
+<span id="cb191-4"><a href="simulação.html#cb191-4" tabindex="-1"></a><span class="do">## [1] 6 8 9 9 6</span></span></code></pre></div>
 <p><strong>Exemplo 3</strong>: Amostragem com Probabilidades Diferentes.</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="simulação.html#cb184-1" tabindex="-1"></a><span class="co"># Probabilidades associadas a cada elemento</span></span>
-<span id="cb184-2"><a href="simulação.html#cb184-2" tabindex="-1"></a>prob <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.05</span>, <span class="fl">0.05</span>)</span>
-<span id="cb184-3"><a href="simulação.html#cb184-3" tabindex="-1"></a></span>
-<span id="cb184-4"><a href="simulação.html#cb184-4" tabindex="-1"></a><span class="co"># Amostra com probabilidades diferentes</span></span>
-<span id="cb184-5"><a href="simulação.html#cb184-5" tabindex="-1"></a>amostra_prob <span class="ot">&lt;-</span> <span class="fu">sample</span>(pop, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">prob =</span> prob)</span>
-<span id="cb184-6"><a href="simulação.html#cb184-6" tabindex="-1"></a><span class="fu">print</span>(amostra_prob)</span>
-<span id="cb184-7"><a href="simulação.html#cb184-7" tabindex="-1"></a><span class="do">## [1] 2 4 6 5 3</span></span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="simulação.html#cb192-1" tabindex="-1"></a><span class="co"># Probabilidades associadas a cada elemento</span></span>
+<span id="cb192-2"><a href="simulação.html#cb192-2" tabindex="-1"></a>prob <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.05</span>, <span class="fl">0.05</span>)</span>
+<span id="cb192-3"><a href="simulação.html#cb192-3" tabindex="-1"></a></span>
+<span id="cb192-4"><a href="simulação.html#cb192-4" tabindex="-1"></a><span class="co"># Amostra com probabilidades diferentes</span></span>
+<span id="cb192-5"><a href="simulação.html#cb192-5" tabindex="-1"></a>amostra_prob <span class="ot">&lt;-</span> <span class="fu">sample</span>(pop, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">prob =</span> prob)</span>
+<span id="cb192-6"><a href="simulação.html#cb192-6" tabindex="-1"></a><span class="fu">print</span>(amostra_prob)</span>
+<span id="cb192-7"><a href="simulação.html#cb192-7" tabindex="-1"></a><span class="do">## [1] 2 4 6 5 3</span></span></code></pre></div>
 </div>
 <div id="exercícios-14" class="section level2 hasAnchor" number="15.3">
 <h2><span class="header-section-number">15.3</span> Exercícios<a href="simulação.html#exercícios-14" class="anchor-section" aria-label="Anchor link to header"></a></h2>

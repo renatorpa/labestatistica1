@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Renato de Paula" />
 
 
-<meta name="date" content="2024-08-16" />
+<meta name="date" content="2024-08-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -280,7 +280,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.2.6" data-path="manipulando-dados.html"><a href="manipulando-dados.html#exercícios-13"><i class="fa fa-check"></i><b>14.2.6</b> Exercícios</a></li>
 <li class="chapter" data-level="14.2.7" data-path="manipulando-dados.html"><a href="manipulando-dados.html#modificando-e-criando-novas-colunas"><i class="fa fa-check"></i><b>14.2.7</b> Modificando e criando novas colunas</a></li>
 <li class="chapter" data-level="14.2.8" data-path="manipulando-dados.html"><a href="manipulando-dados.html#sumarizando-a-base"><i class="fa fa-check"></i><b>14.2.8</b> Sumarizando a base</a></li>
-<li class="chapter" data-level="14.2.9" data-path="manipulando-dados.html"><a href="manipulando-dados.html#juntando-duas-bases"><i class="fa fa-check"></i><b>14.2.9</b> Juntando duas bases</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="manipulando-dados.html"><a href="manipulando-dados.html#exerícios"><i class="fa fa-check"></i><b>14.3</b> Exerícios</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="manipulando-dados.html"><a href="manipulando-dados.html#juntando-duas-bases"><i class="fa fa-check"></i><b>14.3.1</b> Juntando duas bases</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="simulação.html"><a href="simulação.html"><i class="fa fa-check"></i><b>15</b> Simulação</a>
@@ -754,7 +757,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>2.</strong> Crie um objeto chamado <code>novos_pesados</code> com personagens com 30 anos ou menos e massa maior do que 100.</p>
 <p><strong>3.</strong> Retorne tabelas (<code>tibbles</code>) apenas com:</p>
 <p><strong>a.</strong> personagens de olhos azuis com mais de 30 anos;</p>
-<p><strong>b.</strong> personagens com cor <code>light</code> ou <code>red</code></p>
+<p><strong>b.</strong> personagens com cor <code>light</code> ou <code>red</code>.</p>
 <p><strong>c.</strong> personagens com altura superior a 180 e selecione apenas as colunas <code>name</code>, <code>height</code>, e <code>species</code>.</p>
 <p><strong>d.</strong> personagens humanos (<code>species == "Human"</code>) e selecione apenas as colunas <code>name</code>, <code>gender</code>, <code>homeworld</code>, e <code>height</code>.</p>
 <p><strong>e.</strong> apenas os personagens <code>"Luke Skywalker"</code>, <code>"Darth Vader"</code>, e <code>"Leia Organa"</code>, selecionando as colunas <code>name</code>, <code>height</code>, <code>mass</code>, e <code>homeworld</code>.</p>
@@ -819,9 +822,67 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="sumarizando-a-base" class="section level3 hasAnchor" number="14.2.8">
 <h3><span class="header-section-number">14.2.8</span> Sumarizando a base<a href="manipulando-dados.html#sumarizando-a-base" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A função <code>summarize()</code>no R é utilizada para criar resumos estatísticos de dados dentro de um data frame ou tibble. Ela é frequentemente usada para calcular estatísticas agregadas, como médias, somas, contagens, entre outras.</p>
+<p>O código abaixo resume a coluna <code>mass</code> pela sua média.</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="manipulando-dados.html#cb181-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">media_massa =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 1
+##   media_massa
+##         &lt;dbl&gt;
+## 1        97.3</code></pre>
+<p>Podemos calcular ao mesmo tempo sumarizações diferentes.</p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="manipulando-dados.html#cb183-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(</span>
+<span id="cb183-2"><a href="manipulando-dados.html#cb183-2" tabindex="-1"></a>  <span class="at">media_massa =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb183-3"><a href="manipulando-dados.html#cb183-3" tabindex="-1"></a>  <span class="at">mediana_massa =</span> <span class="fu">median</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb183-4"><a href="manipulando-dados.html#cb183-4" tabindex="-1"></a>  <span class="at">variancia_massa =</span> <span class="fu">var</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb183-5"><a href="manipulando-dados.html#cb183-5" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 3
+##   media_massa mediana_massa variancia_massa
+##         &lt;dbl&gt;         &lt;dbl&gt;           &lt;dbl&gt;
+## 1        97.3            79          28716.</code></pre>
+<p>Podemos também sumarizar diversas colunas.</p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="manipulando-dados.html#cb185-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(</span>
+<span id="cb185-2"><a href="manipulando-dados.html#cb185-2" tabindex="-1"></a>  <span class="at">media_massa =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb185-3"><a href="manipulando-dados.html#cb185-3" tabindex="-1"></a>  <span class="at">media_altura =</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb185-4"><a href="manipulando-dados.html#cb185-4" tabindex="-1"></a>  <span class="at">media_ano =</span> <span class="fu">mean</span>(birth_year, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb185-5"><a href="manipulando-dados.html#cb185-5" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 3
+##   media_massa media_altura media_ano
+##         &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt;
+## 1        97.3         175.      87.6</code></pre>
+<p>Para sumarizar uma coluna agrupada pelas categorias de uma segunda coluna usamos além do <code>summarize()</code> a função <code>group_by()</code>.</p>
+<p>O código a abaixo calcula a altura média dos personagens para cada categoria da coluna <code>hair_color</code>.</p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="manipulando-dados.html#cb187-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> </span>
+<span id="cb187-2"><a href="manipulando-dados.html#cb187-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(hair_color), <span class="sc">!</span><span class="fu">is.na</span>(height)) <span class="sc">%&gt;%</span> </span>
+<span id="cb187-3"><a href="manipulando-dados.html#cb187-3" tabindex="-1"></a>  <span class="fu">group_by</span>(hair_color) <span class="sc">%&gt;%</span> </span>
+<span id="cb187-4"><a href="manipulando-dados.html#cb187-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">media_altura =</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 11 × 2
+##    hair_color    media_altura
+##    &lt;chr&gt;                &lt;dbl&gt;
+##  1 auburn                150 
+##  2 auburn, grey          180 
+##  3 auburn, white         182 
+##  4 black                 174.
+##  5 blond                 177.
+##  6 blonde                168 
+##  7 brown                 177.
+##  8 brown, grey           178 
+##  9 grey                  170 
+## 10 none                  181.
+## 11 white                 156</code></pre>
 </div>
-<div id="juntando-duas-bases" class="section level3 hasAnchor" number="14.2.9">
-<h3><span class="header-section-number">14.2.9</span> Juntando duas bases<a href="manipulando-dados.html#juntando-duas-bases" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="exerícios" class="section level2 hasAnchor" number="14.3">
+<h2><span class="header-section-number">14.3</span> Exerícios<a href="manipulando-dados.html#exerícios" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Utilize a base <code>sw</code> nos exercícios a seguir.</p>
+<p><strong>1.</strong> Calcule a altura média e mediana dos personagens.</p>
+<p><strong>2.</strong> Calcule a massa média dos personagens cuja altura é maior que 175 cm.</p>
+<p><strong>3.</strong> Apresente na mesma tabela a massa média dos personagens com altura menor que 175 cm e a massa média dos personagens com altura maior ou igual a 175 cm.</p>
+<p><strong>4.</strong> Retorne tabelas (<code>tibbles</code>) apenas com:</p>
+<p><strong>a.</strong> A altura média dos personagens por espécie.
+<strong>b.</strong> A massa média e mediana dos personagens por espécie.
+<strong>c.</strong> Apenas o nome dos personagens que participaram de mais de 2 filmes.</p>
+<div id="juntando-duas-bases" class="section level3 hasAnchor" number="14.3.1">
+<h3><span class="header-section-number">14.3.1</span> Juntando duas bases<a href="manipulando-dados.html#juntando-duas-bases" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>
 </div>
 </div>
