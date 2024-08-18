@@ -2883,6 +2883,7 @@ dev.off()
 
 ## Tibbles
 
+
 ## O pacote `dplyr`
 
 O `dplyr` é um dos pacotes mais populares e amplamente utilizados no R para manipulação e transformação de dados. Ele faz parte do conjunto de pacotes “tidyverse,” que são projetados para simplificar o trabalho com dados no R. O `dplyr` oferece uma interface intuitiva e de fácil uso para realizar operações comuns em data frames, como seleção de colunas, filtragem de linhas, ordenação, resumo de dados e junção de data frames.
@@ -3180,6 +3181,17 @@ Utilize a base `sw` nos exercícios a seguir.
 **c.** Apenas o nome dos personagens que participaram de mais de 2 filmes.
 
 ### Juntando duas bases
+
+# Visualização
+
+# O pacote `ggplot2`
+
+O `ggplot2` é um dos pacotes mais populares do R para criar gráficos. Ele implementa o conceito de *Grammar of Graphics*, que oferece uma maneira sistemática de descrever e construir gráficos. Este conceito está apresentado no livro [The Grammar of graphics](https://link.springer.com/book/10.1007/0-387-28695-0).
+
+Para este capítulo vamos seguir o material disponível em [link](https://livro.curso-r.com/8-graficos.html). O ficheiro com a base de filmes IMDB está disponível no fénix
+
+
+
 
 # Simulação
 
@@ -4258,13 +4270,57 @@ Utilize a base `sw` nos exercícios a seguir.
 
 **1.** Calcule a altura média e mediana dos personagens.
 
+```{r}
+summarize(sw, 
+          media_altura = mean(height, na.rm=TRUE),
+          mediana_altura = median(height, na.rm = TRUE))
+```
+
 **2.** Calcule a massa média dos personagens cuja altura é maior que 175 cm.
 
+```{r}
+sw %>% 
+  filter(height > 175) %>% 
+  summarize(media_massa = mean(mass, na.rm = TRUE))
+```
+
 **3.** Apresente na mesma tabela a massa média dos personagens com altura menor que 175 cm e a massa média dos personagens com altura maior ou igual a 175 cm.
+
+```{r}
+sw %>% 
+  mutate(alturas = ifelse(height < 175, "menor 175", "maior 175")) %>%
+  filter(!is.na(height)) %>% 
+  group_by(alturas) %>% 
+  summarize(altura_media = mean(height, na.rm=TRUE)
+  )
+  
+```
 
 **4.** Retorne tabelas (`tibbles`) apenas com:
 
 **a.** A altura média dos personagens por espécie.
+
+```{r}
+sw %>% 
+  group_by(species) %>% 
+  summarize(altura_media = mean(height, na.rm = TRUE))
+```
+
 **b.** A massa média e mediana dos personagens por espécie.
+
+```{r}
+sw %>%
+  filter(!is.na(mass)) %>% 
+  group_by(species) %>% 
+  summarize(massa_media = mean(mass, na.rm = TRUE),
+            massa_mediana = median(mass, na.rm = TRUE))
+```
+
 **c.** Apenas o nome dos personagens que participaram de mais de 2 filmes.
+
+```{r}
+sw %>% 
+  filter(length(films) > 2) %>% 
+  select(name)
+```
 
