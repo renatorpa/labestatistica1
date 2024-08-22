@@ -120,7 +120,7 @@
 
 \title{Introdução ao R}
 \author{Renato de Paula}
-\date{2024-08-17}
+\date{2024-08-22}
 
 \begin{document}
 \maketitle
@@ -135,9 +135,16 @@ Material utilizado no curso \textbf{Laboratório de Estatística I} da Faculdade
 
 \chapter{R e RStudio}\label{r-e-rstudio}
 
-O software de código aberto R foi desenvolvido como uma implementação livre da linguagem S, que foi projetada como uma linguagem para computação estatística, programação estatística e gráficos. A intenção principal era permitir aos usuários explorar os dados de uma forma fácil e interativa, apoiada em representações gráficas significativas. O software estatístico R foi originalmente criado por Ross Ihaka e Robert Gentleman (Universidade de Auckland, Nova Zelândia).
+O software de código aberto R foi desenvolvido como uma implementação
+livre da linguagem S, que foi projetada como uma linguagem para
+computação estatística, programação estatística e gráficos. A intenção
+principal era permitir aos usuários explorar os dados de uma forma fácil
+e interativa, apoiada em representações gráficas significativas. O
+software estatístico R foi originalmente criado por Ross Ihaka e Robert
+Gentleman (Universidade de Auckland, Nova Zelândia).
 
-R é um conjunto integrado de recursos de software para manipulação de dados, cálculo e exibição gráfica. Ele inclui:
+R é um conjunto integrado de recursos de software para manipulação de
+dados, cálculo e exibição gráfica. Ele inclui:
 
 \begin{itemize}
 \item
@@ -145,20 +152,35 @@ R é um conjunto integrado de recursos de software para manipulação de dados, 
 \item
   Um conjunto de operadores para cálculos em arrays/matrizes;
 \item
-  Uma coleção grande, coerente e integrada de ferramentas intermediárias para análise de dados;
+  Uma coleção grande, coerente e integrada de ferramentas
+  intermediárias para análise de dados;
 \item
-  Recursos gráficos para análise e exibição de dados na tela ou em cópia impressa;
+  Recursos gráficos para análise e exibição de dados na tela ou em
+  cópia impressa;
 \item
-  Uma linguagem de programação bem desenvolvida, simples e eficaz que inclui condicionais, loops, funções recursivas definidas pelo usuário e recursos de entrada e saída.
+  Uma linguagem de programação bem desenvolvida, simples e eficaz que
+  inclui condicionais, loops, funções recursivas definidas pelo
+  usuário e recursos de entrada e saída.
 \end{itemize}
 
 \section{Instalação e funcionalidades básicas}\label{instalauxe7uxe3o-e-funcionalidades-buxe1sicas}
 
 \begin{itemize}
 \item
-  A versão ``base'' do R, ou seja, o software com seus comandos mais relevantes, pode ser baixado em \url{https://www.r-project.org/}. Após instalar o R, é recomendável instalar também um editor. Um editor permite ao usuário salvar e exibir convenientemente o código R, enviar esse código ao R Console e controlar as configurações e a saída. Uma escolha popular de editor é o RStudio (gratuito), que pode ser baixado em \url{https://www.rstudio.com/}.
+  A versão ``base'' do R, ou seja, o software com seus comandos mais
+  relevantes, pode ser baixado em \url{https://www.r-project.org/}. Após
+  instalar o R, é recomendável instalar também um editor. Um editor
+  permite ao usuário salvar e exibir convenientemente o código R,
+  enviar esse código ao R Console e controlar as configurações e a
+  saída. Uma escolha popular de editor é o RStudio (gratuito), que
+  pode ser baixado em \url{https://www.rstudio.com/}.
 \item
-  Muitos pacotes adicionais escritos pelo usuário estão disponíveis online e podem ser instalados no console R ou usando o menu R. Dentro do console, a função \texttt{install.packages(“pacote\ para\ instalar”)} pode ser usada. Observe que é necessária uma conexão com a Internet.Você pode ver todos os pacotes instalados usando a função \texttt{installed.packages()}.
+  Muitos pacotes adicionais escritos pelo usuário estão disponíveis
+  online e podem ser instalados no console R ou usando o menu R.
+  Dentro do console, a função
+  \texttt{install.packages(“pacote\ para\ instalar”)} pode ser usada. Observe
+  que é necessária uma conexão com a Internet.Você pode ver todos os
+  pacotes instalados usando a função \texttt{installed.packages()}.
 \end{itemize}
 
 \section{Navegando no RStudio}\label{navegando-no-rstudio}
@@ -167,13 +189,26 @@ Existem quatro painéis de trabalho no RStudio:
 
 \begin{itemize}
 \item
-  \textbf{Editor/Scripts}. Este painel é onde os scripts são gravados/carregados e exibidos. Possui realce de sintaxe e preenchimento automático, além de permitir passar o código linha por linha.
+  \textbf{Editor/Scripts}. Este painel é onde os scripts são
+  gravados/carregados e exibidos. Possui realce de sintaxe e
+  preenchimento automático, além de permitir passar o código linha por
+  linha.
 \item
-  \textbf{Console}. É aqui que os comandos são executados e é essencialmente a aparência do console do R básico, só que melhor! O console possui realce de sintaxe, preenchimento de código e interface com outros painéis do RStudio.
+  \textbf{Console}. É aqui que os comandos são executados e é
+  essencialmente a aparência do console do R básico, só que melhor! O
+  console possui realce de sintaxe, preenchimento de código e
+  interface com outros painéis do RStudio.
 \item
-  \textbf{Environment/Histórico}. A aba do espaço de trabalho exibe informações que normalmente ficam ocultas no R, como dados carregados, funções e outras variáveis. A aba histórico armazena todos os comandos (linhas de código) que foram analisados por meio do R.
+  \textbf{Environment/Histórico}. A aba do espaço de trabalho exibe
+  informações que normalmente ficam ocultas no R, como dados
+  carregados, funções e outras variáveis. A aba histórico armazena
+  todos os comandos (linhas de código) que foram analisados por meio
+  do R.
 \item
-  \textbf{Último painel}. Este painel inclui a aba de arquivos (lista todos os arquivos no diretório de trabalho atual), a aba de gráficos (quaisquer gráficos), a aba de pacotes (pacotes instalados) e a aba de ajuda (sistema de ajuda html embutido).
+  \textbf{Último painel}. Este painel inclui a aba de arquivos (lista todos
+  os arquivos no diretório de trabalho atual), a aba de gráficos
+  (quaisquer gráficos), a aba de pacotes (pacotes instalados) e a aba
+  de ajuda (sistema de ajuda html embutido).
 \end{itemize}
 
 \section{Atalhos}\label{atalhos}
@@ -197,15 +232,23 @@ Existem quatro painéis de trabalho no RStudio:
   \textbf{ALT+SHIFT+K}: janela com todos os atalhos disponíveis.
 \end{itemize}
 
-No MacBook, os atalhos geralmente são os mesmos, substituindo o \textbf{CTRL} por \textbf{command} e o \textbf{ALT} por \textbf{option}.
+No MacBook, os atalhos geralmente são os mesmos, substituindo o \textbf{CTRL}
+por \textbf{command} e o \textbf{ALT} por \textbf{option}.
 
 \chapter{R como uma calculadora e Operações Aritméticas}\label{r-como-uma-calculadora-e-operauxe7uxf5es-aritmuxe9ticas}
 
-A estatística tem uma relação estreita com a álgebra: os conjuntos de dados podem ser vistos como matrizes e as variáveis como vetores. O R faz uso dessas estruturas e é por isso que primeiro apresentamos funcionalidades de estrutura de dados antes de explicar alguns dos comandos estatísticos básicos mais relevantes.
+A estatística tem uma relação estreita com a álgebra: os conjuntos de
+dados podem ser vistos como matrizes e as variáveis como vetores. O R
+faz uso dessas estruturas e é por isso que primeiro apresentamos
+funcionalidades de estrutura de dados antes de explicar alguns dos
+comandos estatísticos básicos mais relevantes.
 
 \section{O prompt}\label{o-prompt}
 
-O R possui uma interface de linha de comando e aceitará comandos simples. Isso é marcado por um símbolo \textgreater, chamado \textbf{prompt}. Se você digitar um comando e pressionar Enter, o R irá avaliá-lo e imprimir o resultado para você.
+O R possui uma interface de linha de comando e aceitará comandos
+simples. Isso é marcado por um símbolo \textgreater, chamado \textbf{prompt}. Se você
+digitar um comando e pressionar Enter, o R irá avaliá-lo e imprimir o
+resultado para você.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -214,9 +257,13 @@ O R possui uma interface de linha de comando e aceitará comandos simples. Isso 
 \end{Highlighting}
 \end{Shaded}
 
-Observe que nestas notas, caixas cinzas são usadas para mostrar o código R digitado no console R. O símbolo \#\#{[}1{]} é usado para denotar o output do console R.
+Observe que nestas notas, caixas cinzas são usadas para mostrar o código
+R digitado no console R. O símbolo \#\#{[}1{]} é usado para denotar o output
+do console R.
 
-O caractere \texttt{\#} marca o início de um comentário. Todos os caracteres até o final da linha são ignorados pelo R. Usamos \texttt{\#} para comentar nosso código R.
+O caractere \texttt{\#} marca o início de um comentário. Todos os caracteres até
+o final da linha são ignorados pelo R. Usamos \texttt{\#} para comentar nosso
+código R.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -224,7 +271,9 @@ O caractere \texttt{\#} marca o início de um comentário. Todos os caracteres a
 \end{Highlighting}
 \end{Shaded}
 
-Se soubermos o nome de um comando que gostaríamos de usar e quisermos aprender sobre a sua funcionalidade, basta digitar \texttt{?command} no prompt da linha de comando do R que ele exibe uma página de ajuda. Por exemplo
+Se soubermos o nome de um comando que gostaríamos de usar e quisermos
+aprender sobre a sua funcionalidade, basta digitar \texttt{?command} no prompt
+da linha de comando do R que ele exibe uma página de ajuda. Por exemplo
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -250,19 +299,33 @@ mostra exemplos de aplicação da respetiva função.
 
 \section{Objetos e variáveis}\label{objetos-e-variuxe1veis}
 
-Um \textbf{objeto} em R é uma unidade de armazenamento que contém valores ou funções e pode ser referenciado por um nome. Esses valores podem ser números, caracteres, vetores, matrizes, data frames, listas, ou até mesmo funções. Objetos são criados e manipulados através de comandos e podem ser reutilizados em qualquer parte do código. Tudo o que é criado ou carregado na sessão de R, como dados ou funções, é considerado um objeto.
+Um \textbf{objeto} em R é uma unidade de armazenamento que contém valores ou
+funções e pode ser referenciado por um nome. Esses valores podem ser
+números, caracteres, vetores, matrizes, data frames, listas, ou até
+mesmo funções. Objetos são criados e manipulados através de comandos e
+podem ser reutilizados em qualquer parte do código. Tudo o que é criado
+ou carregado na sessão de R, como dados ou funções, é considerado um
+objeto.
 
 \subsection{O que é uma variável?}\label{o-que-uxe9-uma-variuxe1vel}
 
-Refere-se a um \textbf{nome} ou um identificador que é atribuído a um objeto. A variável armazena a referência ao objeto em si. Em outras palavras, uma variável é o nome que você usa para acessar os dados ou a função armazenada no objeto.
+Refere-se a um \textbf{nome} ou um identificador que é atribuído a um objeto.
+A variável armazena a referência ao objeto em si. Em outras palavras,
+uma variável é o nome que você usa para acessar os dados ou a função
+armazenada no objeto.
 
 \subsection{Atribuições}\label{atribuiuxe7uxf5es}
 
 \begin{itemize}
 \item
-  A expressão \texttt{x\textless{}-10} cria uma variável \(x\) e atribui o valor 10 a \(x\). Observe que a variável à esquerda é atribuída ao valor à direita. O lado esquerdo deve conter apenas um único nome de variável.
+  A expressão \texttt{x\textless{}-10} cria uma variável \(x\) e atribui o valor 10 a
+  \(x\). Observe que a variável à esquerda é atribuída ao valor à
+  direita. O lado esquerdo deve conter apenas um único nome de
+  variável.
 \item
-  Também se pode atribuir usando = (ou \texttt{-\textgreater{}}). Porém, para evitar confusão, é comum usar \texttt{\textless{}-} para distinguir do operador de igualdade =.
+  Também se pode atribuir usando = (ou \texttt{-\textgreater{}}). Porém, para evitar
+  confusão, é comum usar \texttt{\textless{}-} para distinguir do operador de igualdade
+  =.
 \end{itemize}
 
 \begin{Shaded}
@@ -283,7 +346,8 @@ Refere-se a um \textbf{nome} ou um identificador que é atribuído a um objeto. 
 
 \begin{itemize}
 \item
-  O comando \texttt{c(1,2,3,4,5)} combina os números 1, 2, 3, 4 e 5 em um vetor.
+  O comando \texttt{c(1,2,3,4,5)} combina os números 1, 2, 3, 4 e 5 em um
+  vetor.
 \item
   Os vetores podem ser atribuídos a um ``objeto''. Por exemplo,
 \end{itemize}
@@ -294,9 +358,13 @@ Refere-se a um \textbf{nome} ou um identificador que é atribuído a um objeto. 
 \end{Highlighting}
 \end{Shaded}
 
-atribui um vetor numérico de comprimento 4 ao objeto \texttt{X}. Observe que o R diferencia maiúsculas de minúsculas, ou seja, \texttt{X} e \texttt{x} são dois nomes de variáveis diferentes.
+atribui um vetor numérico de comprimento 4 ao objeto \texttt{X}. Observe que o
+R diferencia maiúsculas de minúsculas, ou seja, \texttt{X} e \texttt{x} são dois nomes
+de variáveis diferentes.
 
-À medida que definimos objetos no console, estamos na verdade alterando o espaço de trabalho. Você pode ver todas as variáveis salvas em seu espaço de trabalho digitando:
+À medida que definimos objetos no console, estamos na verdade alterando
+o espaço de trabalho. Você pode ver todas as variáveis salvas em seu
+espaço de trabalho digitando:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -308,17 +376,29 @@ No RStudio a aba \emph{Environment} mostra os valores.
 
 \subsection{Regras para definição de variáveis}\label{regras-para-definiuxe7uxe3o-de-variuxe1veis}
 
-Os nomes de variáveis em R devem começar com uma letra ou ponto final (seguido de uma letra) e podem conter letras, números, pontos e sublinhados.
+Os nomes de variáveis em R devem começar com uma letra ou ponto final
+(seguido de uma letra) e podem conter letras, números, pontos e
+sublinhados.
 
 \begin{itemize}
 \item
-  O nome da variável não pode conter espaços ou outro caracter especial (como @, \#, \$, \%). Devemos usar apenas letras, números e sublinhados (\_). Ex: \texttt{nome\_cliente2}.
+  O nome da variável não pode conter espaços ou outro caracter
+  especial (como @, \#, \$, \%). Devemos usar apenas letras, números e
+  sublinhados (\_). Ex: \texttt{nome\_cliente2}.
 \item
-  Ao nomear variáveis, você não pode usar palavras reservadas do R. Palavras reservadas são termos que possuem significados específicos e não podem ser redefinidos (por exemplo, \texttt{if,\ else,\ for,\ while,\ class,\ FALSE,\ TRUE,\ exp,\ sum}).
+  Ao nomear variáveis, você não pode usar palavras reservadas do R.
+  Palavras reservadas são termos que possuem significados específicos
+  e não podem ser redefinidos (por exemplo,
+  \texttt{if,\ else,\ for,\ while,\ class,\ FALSE,\ TRUE,\ exp,\ sum}).
 \item
-  Como já mencionado, o R diferencia letras maiúsculas de minúsculas, o que significa que \texttt{fcul} e \texttt{Fcul} são tratados como duas variáveis diferentes. É uma convenção comum em R usar letras minúsculas para nomes de variáveis e separar palavras com sublinhados. Ex: \texttt{faculdade\_de\_ciencias}.
+  Como já mencionado, o R diferencia letras maiúsculas de minúsculas,
+  o que significa que \texttt{fcul} e \texttt{Fcul} são tratados como duas variáveis
+  diferentes. É uma convenção comum em R usar letras minúsculas para
+  nomes de variáveis e separar palavras com sublinhados. Ex:
+  \texttt{faculdade\_de\_ciencias}.
 \item
-  Escolha nomes que descrevam claramente a finalidade da variável para que o código seja mais compreensível. Ex: \texttt{nome} em vez de \texttt{x}.
+  Escolha nomes que descrevam claramente a finalidade da variável para
+  que o código seja mais compreensível. Ex: \texttt{nome} em vez de \texttt{x}.
 \end{itemize}
 
 \begin{Shaded}
@@ -340,7 +420,8 @@ Variáveis em R podem armazenar vários tipos de dados, incluindo:
 \item
   \textbf{Logical}: valores booleanos. Ex: \texttt{TRUE} ou \texttt{FALSE}
 \item
-  \textbf{Vectors}: coleções de elementos do mesmo tipo. Ex: \texttt{c(1,\ 2,\ 3)}, \texttt{\$c("a","b","c")\$}
+  \textbf{Vectors}: coleções de elementos do mesmo tipo. Ex: \texttt{c(1,\ 2,\ 3)},
+  \texttt{c("a","b","c")}
 \item
   \textbf{Data Frames}: estruturas de dados tabulares com linhas e colunas
 \item
@@ -448,7 +529,9 @@ Variáveis em R podem armazenar vários tipos de dados, incluindo:
 \end{Highlighting}
 \end{Shaded}
 
-Ao contrário da função \texttt{ls()}, a maioria das funções requer um ou mais \emph{argumentos}. Note que usamos acima as funções predefinidas do R \texttt{sqrt()}, \texttt{log()}, \texttt{log10()} e \texttt{exp()} com seus respetivos argumentos.
+Ao contrário da função \texttt{ls()}, a maioria das funções requer um ou mais
+\emph{argumentos}. Note que usamos acima as funções predefinidas do R
+\texttt{sqrt()}, \texttt{log()}, \texttt{log10()} e \texttt{exp()} com seus respetivos argumentos.
 
 \subsection{Quantidade de digitos}\label{quantidade-de-digitos}
 
@@ -469,7 +552,8 @@ Ao contrário da função \texttt{ls()}, a maioria das funções requer um ou ma
 
 \subsection{Objetos predefinidos, Infinito, indefinido e valores ausentes}\label{objetos-predefinidos-infinito-indefinido-e-valores-ausentes}
 
-Existem vários conjuntos de dados incluídos para os usuários praticarem e testarem funções. Você pode ver todos os conjuntos de dados disponíveis digitando:
+Existem vários conjuntos de dados incluídos para os usuários praticarem e testarem funções. Você pode ver todos os conjuntos de dados
+disponíveis digitando:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -477,7 +561,8 @@ Existem vários conjuntos de dados incluídos para os usuários praticarem e tes
 \end{Highlighting}
 \end{Shaded}
 
-Isso mostra o nome do objeto para esses conjuntos de dados. Esses conjuntos de dados são objetos que podem ser usados simplesmente digitando o nome. Por exemplo, se você digitar:
+Isso mostra o nome do objeto para cada um dos conjuntos de dados. Esses conjuntos de dados são objetos que podem ser usados simplesmente
+digitando o seu nome. Por exemplo, se você digitar:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -485,9 +570,10 @@ Isso mostra o nome do objeto para esses conjuntos de dados. Esses conjuntos de d
 \end{Highlighting}
 \end{Shaded}
 
-R mostrará dados de concentração atmosférica de CO2 de Mauna Loa.
+O R mostrará dados de concentração atmosférica de CO2 de Mauna Loa.
 
-Outros objetos predefinidos são quantidades matemáticas, como \(\pi\) e \(\infty\).
+Outros objetos predefinidos são quantidades matemáticas, como \(\pi\) e
+\(\infty\).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -554,14 +640,18 @@ Outros objetos predefinidos são quantidades matemáticas, como \(\pi\) e \(\inf
 
 \begin{itemize}
 \item
-  \textbf{NaN} significa \textbf{``Not a Number''} e é usado para representar resultados indefinidos de operações matemáticas.
+  \textbf{NaN} significa \textbf{``Not a Number''} e é usado para representar
+  resultados indefinidos de operações matemáticas.
 \item
-  \textbf{NA} significa \textbf{``Not Available''} e é usado para representar dados ausentes ou valores que não estão disponíveis em um conjunto de dados.
+  \textbf{NA} significa \textbf{``Not Available''} e é usado para representar
+  dados ausentes ou valores que não estão disponíveis em um conjunto
+  de dados.
 \end{itemize}
 
 \subsection{Escrita dinâmica}\label{escrita-dinuxe2mica}
 
-O R determina dinamicamente o tipo de uma variável com base no valor atribuído a ela.
+O R determina dinamicamente o tipo de uma variável com base no valor
+atribuído a ela.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -581,9 +671,14 @@ O R determina dinamicamente o tipo de uma variável com base no valor atribuído
 
 \begin{itemize}
 \item
-  A função \texttt{class()} retorna a classe de um objeto em R. A classe de um objeto determina como ele será tratado pelas funções que operam sobre ele. Por exemplo, vetores, matrizes, data frames e listas são todas classes de objetos em R.
+  A função \texttt{class()} retorna a classe de um objeto em R. A classe de
+  um objeto determina como ele será tratado pelas funções que operam
+  sobre ele. Por exemplo, vetores, matrizes, data frames e listas são
+  todas classes de objetos em R.
 \item
-  A função \texttt{typeof()} em R é usada para retornar o tipo de armazenamento interno de um objeto. Ela fornece informações detalhadas sobre como os dados são representados na memória.
+  A função \texttt{typeof()} em R é usada para retornar o tipo de
+  armazenamento interno de um objeto. Ela fornece informações
+  detalhadas sobre como os dados são representados na memória.
 \end{itemize}
 
 \begin{Shaded}
@@ -646,15 +741,21 @@ O R determina dinamicamente o tipo de uma variável com base no valor atribuído
 
 \begin{itemize}
 \item
-  A função \texttt{print()} é utilizada para exibir valores e resultados de expressões no console.
+  A função \texttt{print()} é utilizada para exibir valores e resultados de
+  expressões no console.
 \item
-  A função \texttt{readline()} é usada para receber entradas do usuário por meio do teclado.
+  A função \texttt{readline()} é usada para receber entradas do usuário por
+  meio do teclado.
 \item
-  A função \texttt{paste()} é utilizada para concatenar sequências de caracteres (strings) com um separador específico.
+  A função \texttt{paste()} é utilizada para concatenar sequências de
+  caracteres (strings) com um separador específico.
 \item
-  A função \texttt{paste0()} é utilizada para concatenar strings sem nenhum separador específico.
+  A função \texttt{paste0()} é utilizada para concatenar strings sem nenhum
+  separador específico.
 \item
-  A função \texttt{cat()} é usada para concatenar e exibir uma ou mais strings ou valores de uma forma mais direta, sem estruturas de formatação adicionais.
+  A função \texttt{cat()} é usada para concatenar e exibir uma ou mais
+  strings ou valores de uma forma mais direta, sem estruturas de
+  formatação adicionais.
 \end{itemize}
 
 \textbf{Exemplo 1:}
@@ -790,19 +891,27 @@ O R determina dinamicamente o tipo de uma variável com base no valor atribuído
 
 \section{Operadores Lógicos e Relacionais}\label{operadores-luxf3gicos-e-relacionais}
 
-No R, operadores lógicos e relacionais são utilizados para realizar comparações e tomar decisões com base nos resultados dessas comparações. Estes operadores são fundamentais para a construção de estruturas de controle de fluxo, como instruções condicionais (\texttt{if}, \texttt{else}) e loops (\texttt{for}, \texttt{while}).
+No R, operadores lógicos e relacionais são utilizados para realizar
+comparações e tomar decisões com base nos resultados dessas comparações.
+Estes operadores são fundamentais para a construção de estruturas de
+controle de fluxo, como instruções condicionais (\texttt{if}, \texttt{else}) e loops
+(\texttt{for}, \texttt{while}).
 
 \subsection{Operadores Lógicos}\label{operadores-luxf3gicos}
 
-Os operadores lógicos são usados para combinar ou modificar condições lógicas.
+Os operadores lógicos são usados para combinar ou modificar condições
+lógicas.
 
 \begin{itemize}
 \item
-  O operador \texttt{\&} (E lógico) retorna \texttt{TRUE} se todas as expressões forem verdadeiras.
+  O operador \texttt{\&} (E lógico) retorna \texttt{TRUE} se todas as expressões
+  forem verdadeiras.
 \item
-  O operador \texttt{\textbar{}} (OU lógico) retorna \texttt{TRUE} se pelo menos uma das expressões for verdadeira.
+  O operador \texttt{\textbar{}} (OU lógico) retorna \texttt{TRUE} se pelo menos uma das
+  expressões for verdadeira.
 \item
-  O operador \texttt{!} (Não lógico) inverte o valor de uma expressão booleana, transformando \texttt{TRUE} em \texttt{FALSE} e vice-versa.
+  O operador \texttt{!} (Não lógico) inverte o valor de uma expressão
+  booleana, transformando \texttt{TRUE} em \texttt{FALSE} e vice-versa.
 \end{itemize}
 
 \textbf{Exemplos:}
@@ -822,7 +931,8 @@ Os operadores lógicos são usados para combinar ou modificar condições lógic
 
 \subsection{Operadores Relacionais}\label{operadores-relacionais}
 
-Os operadores relacionais são usados para comparar valores e retornam valores lógicos (\texttt{TRUE} ou \texttt{FALSE}) com base na comparação.
+Os operadores relacionais são usados para comparar valores e retornam
+valores lógicos (\texttt{TRUE} ou \texttt{FALSE}) com base na comparação.
 
 \begin{itemize}
 \tightlist
@@ -887,6 +997,34 @@ Os operadores relacionais são usados para comparar valores e retornam valores l
 
 \section{Exercícios}\label{exercuxedcios}
 
+\textbf{1.} Escreva um programa em R que leia dois inteiros e imprima sua soma, produto, a diferença do primeiro menos o segundo, a divisão do primeiro pelo segundo, o resto da divisão do primeiro pelo segundo, e o primeiro elevado à potência do segundo.
+
+\textbf{2.} Escreva um programa em R que leia dois números de ponto flutuante e imprima sua soma, diferença, produto e o primeiro elevado à potência do segundo.
+
+\textbf{3.} Escreva um programa em R que leia a quilometragem em milhas e a converta para quilômetros. A fórmula é \(K = M*1,609344\).
+
+\textbf{4.} Escreva um programa em R que leia três inteiros correspondentes ao comprimento, largura e altura de um paralelepípedo e imprima seu volume.
+
+\textbf{5.} Escreva um programa em R que leia três inteiros e imprima sua média.
+
+\textbf{6.} Escreva um programa em R que leia uma temperatura em graus Fahrenheit e imprima a temperatura correspondente em graus Celsius. A fórmula usada para a conversão de Fahrenheit para Celsius é: \(C = \frac{F - 32}{1,8}\).
+
+\textbf{7.} Escreva um programa em R que leia uma hora no formato de 24 horas e imprima a hora correspondente no formato de 12 horas.
+
+\textbf{8.} Você olha para um relógio e são exatamente 14h. Você definiu um alarme para tocar em 51 horas. A que horas o alarme tocará?
+
+\textbf{9.} Escreva um programa em R que resolva a versão geral do problema acima. Peça ao usuário para inserir a hora atual (em horas) e o número de horas de espera antes que o alarme toque. Seu programa deve imprimir a hora em que o alarme tocará.
+
+\textbf{10.} Escreva um programa que leia um número inteiro fornecido pelo utilizador e verifique se esse número é maior que 10. O programa deve imprimir \texttt{TRUE} se o número é maior que 10 ou \texttt{FALSE} caso contrário.
+
+\textbf{11.} Escreva um programa que leia dois números fornecidos pelo utilizador e verifique se eles são iguais. O programa deve imprimir \texttt{TRUE} se os números são iguais ou \texttt{FALSE} caso contrário.
+
+\textbf{12.} Escreva um programa que peça ao utilizador para inserir dois números e verifique se o primeiro número é maior ou igual ao segundo. O programa deve imprimir \texttt{TRUE} ou \texttt{FALSE}.
+
+\textbf{13.} Escreva um programa que peça ao utilizador para inserir um número e verifique se esse número está entre 0 e 100, inclusive. O programa deve imprimir \texttt{TRUE} se o número está no intervalo e \texttt{FALSE} caso contrário.
+
+\textbf{14.} Escreva um programa que leia três números fornecidos pelo utilizador e verifique se o primeiro número é menor que o segundo e se o segundo é menor que o terceiro. O programa deve imprimir uma mensagem indicando se a condição é verdadeira ou falsa.
+
 \chapter{Estrutura de Dados Básicas}\label{estrutura-de-dados-buxe1sicas}
 
 Em R temos objetos que são funções e objetos que são dados.
@@ -931,7 +1069,10 @@ Em R temos objetos que são funções e objetos que são dados.
 
 \section{Vetor}\label{vetor}
 
-Um vetor é uma estrutura de dados básica que pode armazenar uma sequência de objetos do mesmo tipo. Vetores podem conter dados numéricos, caracteres, valores lógicos (\texttt{TRUE}/\texttt{FALSE}), números complexos, entre outros.
+Um vetor é uma estrutura de dados básica que pode armazenar uma
+sequência de objetos do mesmo tipo. Vetores podem conter dados
+numéricos, caracteres, valores lógicos (\texttt{TRUE}/\texttt{FALSE}), números
+complexos, entre outros.
 
 \begin{itemize}
 \item
@@ -939,7 +1080,8 @@ Um vetor é uma estrutura de dados básica que pode armazenar uma sequência de 
 \item
   Os elementos de um vetor são indexados a partir de 1.
 \item
-  Vetores podem ser facilmente manipulados e transformados usando uma ampla gama de funções.
+  Vetores podem ser facilmente manipulados e transformados usando uma
+  ampla gama de funções.
 \item
   Vetores podem ser criados usando a função \texttt{c()} (concatenate).
 \end{itemize}
@@ -982,12 +1124,16 @@ Um vetor é uma estrutura de dados básica que pode armazenar uma sequência de 
 \NormalTok{x}
 \DocumentationTok{\#\#  [1]  1  2  3  4  5  6  7  8  9 10}
 
+\NormalTok{b }\OtherTok{\textless{}{-}} \DecValTok{10}\SpecialCharTok{:}\DecValTok{1}
+\NormalTok{b}
+\DocumentationTok{\#\#  [1]  10  9  8  7  6  5  4  3  2 1}
+
 \CommentTok{\# Sequência de 0 a 50 de 10 em 10}
 \NormalTok{a }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\AttributeTok{from =} \DecValTok{0}\NormalTok{, }\AttributeTok{to =} \DecValTok{50}\NormalTok{, }\AttributeTok{by=}\DecValTok{10}\NormalTok{)}
 \NormalTok{a}
 \DocumentationTok{\#\# [1]  0 10 20 30 40 50}
 
-\CommentTok{\# Sequência de 11 números de 0 a 1}
+\CommentTok{\# Sequência de 15 números de 0 a 1}
 \NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{, }\AttributeTok{length=}\DecValTok{15}\NormalTok{)}
 \NormalTok{y}
 \DocumentationTok{\#\#  [1] 0.0000 0.0714 0.1429 0.2143 0.2857 0.3571 0.4286 0.5000 0.5714 0.6429}
@@ -998,6 +1144,7 @@ Um vetor é uma estrutura de dados básica que pode armazenar uma sequência de 
 \NormalTok{z}
 \DocumentationTok{\#\#  [1] 1 2 3 1 2 3 1 2 3 1 2 3}
 
+\CommentTok{\# Cada elemento do vetor 4 vezes}
 \NormalTok{t }\OtherTok{\textless{}{-}} \FunctionTok{rep}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{, }\AttributeTok{each=}\DecValTok{4}\NormalTok{)}
 \NormalTok{t}
 \DocumentationTok{\#\#  [1] 1 1 1 1 2 2 2 2 3 3 3 3}
@@ -1014,7 +1161,7 @@ Um vetor é uma estrutura de dados básica que pode armazenar uma sequência de 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Defina um vetor com inteiros de ({-}5) a 5 e extraia os números com valor absoluto menor que 3:}
-\NormalTok{x}\OtherTok{\textless{}{-}}\NormalTok{ (}\SpecialCharTok{{-}}\DecValTok{5}\NormalTok{)}\SpecialCharTok{:}\DecValTok{5}
+\NormalTok{x }\OtherTok{\textless{}{-}}\NormalTok{ (}\SpecialCharTok{{-}}\DecValTok{5}\NormalTok{)}\SpecialCharTok{:}\DecValTok{5}
 \NormalTok{x}
 \DocumentationTok{\#\#  [1] {-}5 {-}4 {-}3 {-}2 {-}1  0  1  2  3  4  5}
 
@@ -1027,7 +1174,7 @@ Um vetor é uma estrutura de dados básica que pode armazenar uma sequência de 
 \DocumentationTok{\#\# [1] {-}2 {-}1  0  1  2}
 
 \CommentTok{\# Um vetor lógico pode ser definido por:}
-\NormalTok{index}\OtherTok{\textless{}{-}}\FunctionTok{abs}\NormalTok{(x)}\SpecialCharTok{\textless{}}\DecValTok{3}
+\NormalTok{index }\OtherTok{\textless{}{-}} \FunctionTok{abs}\NormalTok{(x)}\SpecialCharTok{\textless{}}\DecValTok{3}
 \NormalTok{index }
 \DocumentationTok{\#\#  [1] FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE}
 
@@ -1126,7 +1273,9 @@ Um vetor é uma estrutura de dados básica que pode armazenar uma sequência de 
 \end{Highlighting}
 \end{Shaded}
 
-Os últimos quatro comandos mostram a ``propriedade de reciclagem'' do R. Ele tenta combinar os vetores em relação ao comprimento, se possível. Na verdade,
+Os últimos quatro comandos mostram a ``propriedade de reciclagem'' do R.
+Ele tenta combinar os vetores em relação ao comprimento, se possível. Na
+verdade,
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1144,7 +1293,10 @@ Os últimos quatro comandos mostram a ``propriedade de reciclagem'' do R. Ele te
 \end{Highlighting}
 \end{Shaded}
 
-O último exemplo mostra que o R dá um aviso se o comprimento do vetor mais curto não puder ser expandido para o comprimento do vetor mais longo por uma simples multiplicação com um número natural (2, 3, 4,\ldots). Aqui
+O último exemplo mostra que o R dá um aviso se o comprimento do vetor
+mais curto não puder ser expandido para o comprimento do vetor mais
+longo por uma simples multiplicação com um número natural (2, 3, 4,\ldots).
+Aqui
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1168,17 +1320,89 @@ de modo que nem todos os elementos de \texttt{c(2,3,4)} são ``reciclados'\,'.
 
 \subsection{Exercícios}\label{exercuxedcios-1}
 
+\textbf{1.} Crie os vetores:
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  \((1,2,3,\ldots,19,20)\)
+\item
+  \((20,19,\ldots,2,1)\)
+\item
+  \((1,2,3,\ldots,19,20,19,18,\ldots,2,1)\)
+\item
+  \((10,20,30,\ldots,90,10)\)
+\item
+  \((1,1,\ldots,1,2,2,\ldots,2,3,3,\ldots,3)\) onde existem 10 ocorrências do 1, 20 ocorrências do 2 e 30 ocorrências do 3.
+\end{enumerate}
+
+\textbf{2.} Use a função \texttt{paste()} para criar o seguinte vetor de caracteres de tamanho 20:
+
+(``nome 1'', ``nome 2'', \(\ldots\), ``nome 20'')
+
+\textbf{3.} Crie um vetor \(x_1\) igual a ``A'' ``A'' ``B'' ``B'' ``C'' ``C'' ``D'' ``D'' ``E'' ``E''
+
+\textbf{4.} Crie um vetor \(x_2\) igual a ``a'' ``b'' ``c'' ``d'' ``e'' ``a'' ``b'' ``c'' ``d'' ``e''
+
+\textbf{5.} Crie um vetor \(x_3\) igual as palavras ``uva'' 10 vezes, ``maçã'' 9 vezes, ``laranja'' 6 vezes e ``banana'' 1 vez.
+
+\textbf{6.} Crie um vetor de 15 números aleatórios entre 1 e 100 (use a função \texttt{sample()}). Ordene esse vetor em ordem crescente e depois em ordem decrescente. Encontre o menor e o maior valor no vetor.
+
+\textbf{7.} Crie um vetor de 20 números aleatórios entre 1 e 50 (use a função \texttt{sample()}). Calcule a soma, a média, o desvio padrão e o produto de todos os elementos do vetor.
+
+\textbf{8.} Crie um vetor de 10 números aleatórios entre 1 e 100 (use a função \texttt{sample()}). Extraia os elementos do vetor que são maiores que 50. Em seguida, substitua os valores menores que 30 por 0.
+
+\textbf{9.} Crie um vetor de 10 números. Verifique quais elementos são maiores que 5 e quais são pares. Crie um novo vetor que contenha apenas os números que atendem a ambas as condições.
+
+\textbf{10.} Crie um vetor com 10 números inteiros. Multiplique os elementos nas posições 2, 4 e 6 por 2. Substitua o último elemento por 100.
+
+\textbf{11.} Calcule a média dos vetores:
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  \(x = (1,0,NA, 5,7)\)
+\item
+  \(y = (-Inf,0,1,NA,2,7,Inf)\)
+\end{enumerate}
+
+\textbf{12.} Crie:
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  um vetor com valores \(e^{x} \sin(x)\) nos pontos \(x=2,2.1,2.2,\ldots,6\)
+\item
+  um vetor com valores \(\left(3,\frac{3^2}{2},\frac{3^3}{3},\ldots,\frac{3^{30}}{30}\right)\)
+\end{enumerate}
+
+\textbf{13.} Calcule:
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  \[\sum_{i=10}^{100}i^{3}+4j^{2}\]
+\item
+  \[\sum_{i=1}^{25}\frac{2^{i}}{i} + \frac{3^{i}}{i^2}\]
+\end{enumerate}
+
 \section{Fatores}\label{fatores}
 
-Em R, um ``factor'' (ou ``fator'', em português) é uma estrutura de dados usada para representar dados categóricos. Fatores são muito úteis em análises estatísticas e visualizações, pois permitem que você trate dados categóricos de forma eficiente e consistente.
+Em R, um ``factor'' (ou ``fator'', em português) é uma estrutura de dados
+usada para representar dados categóricos. Fatores são muito úteis em
+análises estatísticas e visualizações, pois permitem que você trate
+dados categóricos de forma eficiente e consistente.
 
 \begin{itemize}
 \item
-  Fatores têm \textbf{níveis}, que são os valores distintos que a variável categórica pode assumir.
+  Fatores têm \textbf{níveis}, que são os valores distintos que a variável
+  categórica pode assumir.
 \item
-  Internamente, os fatores são armazenados como inteiros que correspondem aos níveis, mas são exibidos como rótulos (labels).
+  Internamente, os fatores são armazenados como inteiros que
+  correspondem aos níveis, mas são exibidos como rótulos (labels).
 \item
-  Fatores podem ser ordenados (ordered factors) ou não ordenados (unordered factors).
+  Fatores podem ser ordenados (ordered factors) ou não ordenados
+  (unordered factors).
 \end{itemize}
 
 \begin{Shaded}
@@ -1219,15 +1443,16 @@ Em R, um ``factor'' (ou ``fator'', em português) é uma estrutura de dados usad
 
 \section{Matriz e array}\label{matriz-e-array}
 
-Uma \textbf{matriz} é uma coleção de objetos do mesmo tipo (numérico, lógico, etc.) organizada em um formato bidimensional, ou seja, em linhas e colunas.
+Uma \textbf{matriz} é uma coleção de objetos do mesmo tipo (numérico, lógico,
+etc.) organizada em um formato bidimensional, ou seja, em linhas e
+colunas.
 
 \begin{itemize}
-\tightlist
 \item
   \textbf{nrow}: corresponde ao número de linhas;
+\item
+  \textbf{ncol}: corresponde ao número de colunas.
 \end{itemize}
-
-\textbf{ncol}: corresponde ao número de colunas.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1265,9 +1490,15 @@ Uma \textbf{matriz} é uma coleção de objetos do mesmo tipo (numérico, lógic
 
 \begin{itemize}
 \item
-  O comando \texttt{rbind} (row bind) é usado para combinar objetos por linhas. Isso significa que os vetores ou matrizes fornecidos serão empilhados verticalmente, criando novas linhas na estrutura de dados resultante.
+  O comando \texttt{rbind} (row bind) é usado para combinar objetos por
+  linhas. Isso significa que os vetores ou matrizes fornecidos serão
+  empilhados verticalmente, criando novas linhas na estrutura de dados
+  resultante.
 \item
-  O comando \texttt{cbind} (column bind) é usado para combinar objetos por colunas. Isso significa que os vetores ou matrizes fornecidos serão combinados horizontalmente, criando novas colunas na estrutura de dados resultante.
+  O comando \texttt{cbind} (column bind) é usado para combinar objetos por
+  colunas. Isso significa que os vetores ou matrizes fornecidos serão
+  combinados horizontalmente, criando novas colunas na estrutura de
+  dados resultante.
 \end{itemize}
 
 \textbf{Exemplo com vetores}
@@ -1451,16 +1682,71 @@ Seja \(M\) uma matriz quadrada.
 \item
   média dos elementos de uma matriz \(\to\) \texttt{mean(M)}
 \item
-  aplicar uma função a cada linha ou coluna \(\to\) \texttt{apply(M,1,\ sum)\ \#\ soma\ de\ cada\ linha}
+  aplicar uma função a cada linha ou coluna \(\to\)
+  \texttt{apply(M,1,\ sum)\ \#\ soma\ de\ cada\ linha}
 \item
-  aplicar uma função a cada linha ou coluna \(\to\) \texttt{apply(M,2,\ mean)\ \#\ média\ de\ cada\ coluna}
+  aplicar uma função a cada linha ou coluna \(\to\)
+  \texttt{apply(M,2,\ mean)\ \#\ média\ de\ cada\ coluna}
 \end{itemize}
 
 \subsection{Exercícios}\label{exercuxedcios-2}
 
+\textbf{1.} Crie uma matriz \(3 \times 4\) com os números de 1 a 12, preenchendo a matriz por colunas. Exiba a matriz e determine a soma dos elementos da segunda coluna.
+
+\textbf{2.} Crie duas matrizes \(2 \times 3\) chamadas \(A\) e \(B\), cada uma preenchida com números aleatórios inteiros de 1 a 10. Em seguida, some as duas matrizes e multiplique-as elemento por elemento.
+
+\textbf{3.} Crie uma matriz \(3 \times 3\) chamada \(M\) com números aleatórios entre 1 e 9. Crie também um vetor de comprimento 3 chamado \(v\). Realize a multiplicação entre a matriz \(M\) e o vetor \(v\) (ou seja, \(M \times v\)).
+
+\textbf{4.} Crie uma matriz \(4 \times 2\) chamada \(N\) com números sequenciais de 1 a 8. Transponha a matriz e calcule a soma dos elementos de cada linha da matriz transposta.
+
+\textbf{5.} Crie uma matriz \(3 \times 3\) chamada \(P\) com valores de sua escolha. Calcule o determinante da matriz \(P\). Caso o determinante seja diferente de zero, calcule também a matriz inversa de \(P\).
+
+\textbf{6.} Crie uma matriz \(5 \times 5\) chamada \(Q\) com números aleatórios de 1 a 25. Extraia a submatriz composta pelas 2ª, 3ª e 4ª linhas e colunas.
+
+\textbf{7.} Crie uma matriz \(3 \times 3\) com valores sequenciais de 1 a 9. Calcule a soma de todos os elementos da primeira linha e a soma de todos os elementos da terceira coluna.
+
+\textbf{8.} Considere a matriz
+\[A = \left[
+\begin{matrix}
+    1 & 1 & 3 \\
+    5 & 2 & 6 \\
+    -2 & -1 & -3
+\end{matrix}
+\right]\]
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Verifique que \(A^3=0\).
+\item
+  Troque a terceira coluna pela soma da coluna 1 e coluna 3.
+\item
+  Considere a matriz
+  \[
+  M = \left[
+  \begin{matrix}
+  20 & 22 & 23 \\
+  34 & 55 & 57 \\
+  99 & 97 & 71 \\
+  12 & 16 & 19 \\
+  10 & 53 & 24 \\
+  14 & 21 & 28
+  \end{matrix}
+  \right],
+  \]
+  e troque os números pares por 0.
+\end{enumerate}
+
 \section{Data-frame}\label{data-frame}
 
-Um data frame em R é uma estrutura de dados bidimensional que é usada para armazenar dados tabulares. Cada coluna em um data frame pode conter valores de diferentes tipos (numéricos, caracteres, fatores, etc.), mas todos os elementos dentro de uma coluna devem ser do mesmo tipo. Um data frame é similar a uma tabela em um banco de dados ou uma planilha em um programa de planilhas como o Excel. Podemos criar data frames lendo dados de arquivos ou usando a função \texttt{as.data.frame()} em um conjunto de vetores.
+Um data frame em R é uma estrutura de dados bidimensional que é usada
+para armazenar dados tabulares. Cada coluna em um data frame pode conter
+valores de diferentes tipos (numéricos, caracteres, fatores, etc.), mas
+todos os elementos dentro de uma coluna devem ser do mesmo tipo. Um data
+frame é similar a uma tabela em um banco de dados ou uma planilha em um
+programa de planilhas como o Excel. Podemos criar data frames lendo
+dados de arquivos ou usando a função \texttt{as.data.frame()} em um conjunto de
+vetores.
 
 \subsection{Criando um data frame}\label{criando-um-data-frame}
 
@@ -1890,7 +2176,10 @@ Um data frame em R é uma estrutura de dados bidimensional que é usada para arm
 
 \subsection{\texorpdfstring{A função \texttt{summary()}}{A função summary()}}\label{a-funuxe7uxe3o-summary}
 
-A função \texttt{summary()} no R é usada para gerar resumos estatísticos de objetos. O comportamento da função varia dependendo do tipo de objeto que você passa para ela, mas geralmente fornece uma visão geral das características principais do objeto.
+A função \texttt{summary()} no R é usada para gerar resumos estatísticos de
+objetos. O comportamento da função varia dependendo do tipo de objeto
+que você passa para ela, mas geralmente fornece uma visão geral das
+características principais do objeto.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1918,17 +2207,29 @@ A função \texttt{summary()} no R é usada para gerar resumos estatísticos de 
 
 \subsection{Exercícios}\label{exercuxedcios-3}
 
+\textbf{1.} Crie um data frame chamado \texttt{estudantes} com as colunas: Nome (caracteres), Idade (números inteiros), Curso (caracteres) e Nota (números decimais). Adicione os dados de cinco estudantes fictícios e exiba o data frame.
+
+\textbf{2.} Utilize o data frame \texttt{estudantes} criado no exercício anterior. Acesse a coluna Nota e aumente todas as notas em 0.5. Substitua o valor da coluna Curso para ``Estatística'' para todos os estudantes com nota superior a 8.0.
+
+\textbf{3.} Dado o data frame \texttt{mtcars} embutido no R, filtre as linhas onde o Number of cylinders (\texttt{cyl}) é igual a 6 e a potência (\texttt{hp}) é maior que 100. Crie um novo data frame com essas informações.
+
+\textbf{4.} Adicione uma nova coluna ao data frame \texttt{mtcars} chamada Peso\_KG que converta o peso dos carros (\texttt{wt}) de mil libras para quilogramas (multiplicando por 453.592).
+
 \section{Listas}\label{listas}
 
-Uma lista em R é uma estrutura de dados que permite armazenar elementos de diferentes tipos, como vetores, matrizes, data frames, funções e até outras listas. Essa flexibilidade distingue as listas de outras estruturas, como vetores, que são homogêneos e podem conter apenas elementos de um único tipo.
+Uma lista em R é uma estrutura de dados que permite armazenar elementos
+de diferentes tipos, como vetores, matrizes, data frames, funções e até
+outras listas. Essa flexibilidade distingue as listas de outras
+estruturas, como vetores, que são homogêneos e podem conter apenas
+elementos de um único tipo.
 
 \begin{itemize}
+\tightlist
 \item
-  \textbf{Heterogeneidade}: Uma lista pode conter elementos de diferentes tipos. Por exemplo, você pode ter um vetor numérico, um vetor de caracteres, uma matriz e um data frame, todos na mesma lista.
-\item
-  \textbf{Indexação}: Os elementos de uma lista podem ser acessados usando colchetes duplos {[}{[} {]}{]} ou utilizando o operador \$ para acessar elementos nomeados. Além disso, o índice simples {[} {]} retorna uma sublista.
-\item
-  \textbf{Flexibilidade}: As listas podem ser usadas para armazenar saídas complexas de funções ou para estruturar dados que requerem uma organização mais flexível.
+  \textbf{Indexação}: Os elementos de uma lista podem ser acessados usando
+  colchetes duplos {[}{[} {]}{]} ou utilizando o operador \$ para acessar
+  elementos nomeados. Além disso, o índice simples {[} {]} retorna uma
+  sublista.
 \end{itemize}
 
 \begin{Shaded}
@@ -1988,13 +2289,113 @@ Uma lista em R é uma estrutura de dados que permite armazenar elementos de dife
 \end{Highlighting}
 \end{Shaded}
 
+\subsection{Exercícios}\label{exercuxedcios-4}
+
+\textbf{1.} Crie uma lista em R chamada \texttt{dados\_estudante} que contenha as seguintes informações sobre um estudante:
+
+\begin{itemize}
+\tightlist
+\item
+  Nome: ``João''
+\item
+  Idade: 21
+\item
+  Notas: Um vetor com as notas em Estatística (85), Matemática (90), e Computação (95).
+\end{itemize}
+
+Depois de criar a lista, acesse e imprima:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  O nome do estudante.
+\item
+  A idade do estudante.
+\item
+  A nota em Computação.
+\end{enumerate}
+
+\textbf{2.} Considere a lista \texttt{dados\_estudante} criada no exercício anterior. Adicione um novo elemento à lista que contenha o status de aprovação do estudante, com valor ``Aprovado''. Em seguida, substitua a nota de Estatística para 88. Por fim, imprima a lista completa.
+
+\textbf{3.} Crie duas listas chamadas \texttt{estudante1} e \texttt{estudante2} com as mesmas estruturas da lista \texttt{dados\_estudante}. Em \texttt{estudante1}, use os valores:
+
+\begin{itemize}
+\tightlist
+\item
+  Nome: ``Maria''
+\item
+  Idade: 22
+\item
+  Notas: 78, 85, 90
+\item
+  Status: ``Aprovado''
+\end{itemize}
+
+Em \texttt{estudante2}, use os valores:
+
+\begin{itemize}
+\tightlist
+\item
+  Nome: ``Carlos''
+\item
+  Idade: 23
+\item
+  Notas: 70, 75, 80
+\item
+  Status: ``Aprovado''
+\end{itemize}
+
+Agora, combine \texttt{estudante1} e \texttt{estudante2} em uma nova lista chamada \texttt{turma}, e imprima a lista \texttt{turma}.
+
+\textbf{4.} Utilizando a lista \texttt{turma} criada no exercício anterior, faça as seguintes operações:
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Extraia e imprima o nome do segundo estudante.
+\item
+  Calcule a média das notas do primeiro estudante.
+\item
+  Altere o status do segundo estudante para ``Reprovado'' e imprima a lista atualizada.
+\end{enumerate}
+
+\textbf{5.} Crie uma lista chamada \texttt{estatistica\_aplicada} que contenha duas listas internas: \texttt{turma1} e \texttt{turma2}. Cada uma dessas listas internas deve conter as informações de dois estudantes (com as mesmas estruturas utilizadas anteriormente). Por exemplo:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{turma1}: Contendo \texttt{estudante1} e \texttt{estudante2}.
+\item
+  \texttt{turma2}: Contendo dois novos estudantes de sua escolha.
+\end{itemize}
+
+Acesse e imprima:
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  O nome do primeiro estudante da \texttt{turma2}.
+\item
+  A média das notas do segundo estudante da \texttt{turma1}.
+\item
+  A lista completa \texttt{estatistica\_aplicada}.
+\end{enumerate}
+
 \chapter{Estruturas de Seleção}\label{estruturas-de-seleuxe7uxe3o}
 
-Em R, as estruturas de seleção ou decisão são usadas para controlar o fluxo de execução do código com base em condições específicas. Estas estruturas permitem executar diferentes blocos de código dependendo de valores ou condições lógicas. As estruturas de seleção mais comuns em R são if, \texttt{if}, \texttt{else}, \texttt{else\ if}.
+Em R, as estruturas de seleção ou decisão são usadas para controlar o
+fluxo de execução do código com base em condições específicas. Estas
+estruturas permitem executar diferentes blocos de código dependendo de
+valores ou condições lógicas. As estruturas de seleção mais comuns em R
+são if, \texttt{if}, \texttt{else}, \texttt{else\ if}.
 
 \section{\texorpdfstring{Condicional \texttt{if}}{Condicional if}}\label{condicional-if}
 
-A instrução \texttt{if} executa um bloco de código se uma condição for verdadeira.
+A instrução \texttt{if} executa um bloco de código se uma condição for
+verdadeira.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2020,7 +2421,8 @@ A instrução \texttt{if} executa um bloco de código se uma condição for verd
 
 \section{\texorpdfstring{Condicional \texttt{if...else}}{Condicional if...else}}\label{condicional-if...else}
 
-A estrutura \texttt{if...else} permite executar um bloco de código quando a condição é verdadeira e outro bloco de código quando a condição é falsa.
+A estrutura \texttt{if...else} permite executar um bloco de código quando a
+condição é verdadeira e outro bloco de código quando a condição é falsa.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2050,7 +2452,9 @@ A estrutura \texttt{if...else} permite executar um bloco de código quando a con
 
 \section{\texorpdfstring{Condicional \texttt{if...else\ if...else}}{Condicional if...else if...else}}\label{condicional-if...else-if...else}
 
-A estrutura \texttt{if...else\ if...else} permite testar múltiplas condições em sequência. Executa o bloco de código do primeiro teste que resulta em verdadeiro.
+A estrutura \texttt{if...else\ if...else} permite testar múltiplas condições em
+sequência. Executa o bloco de código do primeiro teste que resulta em
+verdadeiro.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2084,7 +2488,9 @@ A estrutura \texttt{if...else\ if...else} permite testar múltiplas condições 
 
 \section{\texorpdfstring{A função \texttt{ifelse()}}{A função ifelse()}}\label{a-funuxe7uxe3o-ifelse}
 
-A função \texttt{ifelse} é uma versão vetorizada de if\ldots else que retorna valores dependendo de uma condição. É muito útil para aplicar condições a vetores. Veremos mais sobre isso após falarmos sobre vetores.
+A função \texttt{ifelse} é uma versão vetorizada de if\ldots else que retorna
+valores dependendo de uma condição. É muito útil para aplicar condições
+a vetores. Veremos mais sobre isso após falarmos sobre vetores.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2185,7 +2591,8 @@ Código correto
 \item
   Se \texttt{x=1} qual será o valor de \texttt{x} no final da execução?
 \item
-  Qual teria de ser o valor de \texttt{x} para que no final da execução fosse -1?
+  Qual teria de ser o valor de \texttt{x} para que no final da execução fosse
+  -1?
 \item
   Há uma parte do programa que nunca é executada: qual é e porquê?
 \end{itemize}
@@ -2205,17 +2612,82 @@ Código correto
 \end{Highlighting}
 \end{Shaded}
 
-\section{Exercícios}\label{exercuxedcios-4}
+\section{Exercícios}\label{exercuxedcios-5}
+
+\textbf{1.} Escreva um programa em R que leia um número do usuário e exiba ``O número é positivo'' se for maior que zero.
+
+\textbf{2.} Crie um programa em R que leia um número inteiro do usuário e imprima ``Par'' se o número for par e ``Ímpar'' caso contrário.
+
+\textbf{3.} Escreva um programa em R que leia um número e exiba se ele está no intervalo {[}0, 10{]}, {[}11, 20{]}, ou maior que 20.
+
+\textbf{4.} Escreva um programa em R que leia a idade de uma pessoa e classifique-a como ``Criança'', ``Adolescente'', ``Adulto'' ou ``Idoso''. Considere:
+
+\begin{itemize}
+\tightlist
+\item
+  Criança: 0-12 anos
+\item
+  Adolescente: 13-17 anos
+\item
+  Adulto: 18-64 anos
+\item
+  Idoso: 65 anos ou mais
+\end{itemize}
+
+\textbf{5.} Escreva um programa em R que leia o preço original de um produto e aplique um desconto com base no seguinte critério:
+
+\begin{itemize}
+\tightlist
+\item
+  Desconto de 5\% se o preço for inferior a \$100
+\item
+  Desconto de 10\% se o preço estiver entre \$100 e \$500
+\item
+  Desconto de 15\% se o preço for superior a \$500
+\end{itemize}
+
+\textbf{6.} Escreva um programa em R que leia as coordenadas (x, y) de um ponto e determine em qual quadrante o ponto está localizado.
+
+\textbf{7.} Escreva um programa em R que leia um ano e determine se é um ano bissexto. Um ano é bissexto se:
+
+\begin{itemize}
+\tightlist
+\item
+  É divisível por 4, mas não divisível por 100, exceto quando divisível por 400.
+\end{itemize}
+
+\textbf{8.} Escreva um programa que leia um número inteiro entre 0 e 999, e o descreva em termos do número de centenas, número de dezenas e número de unidades. Por exemplo, para 304 o resultado pretendido é ``3 centenas 0 dezenas e 4 unidades''. Caso o número inteiro não pertença ao intervalo {[}0;999{]} deverá imprimir um aviso ``Número fora do intervalo''.
+
+\textbf{9.} Escreva um programa em R que leia um número inteiro positivo (menor ou igual a 5) e escreva no ecrã a sua representação em numeração romana.
+
+\textbf{10.} Escreva um programa em R que leia quatro números inteiros (um de cada vez) e escreva após cada interação qual o menor número lido até ao momento. Segue-se um exemplo da interação com o computador.
+
+\texttt{Introduza\ um\ numero\ inteiro:\ 4}
+
+\begin{verbatim}
+``O menor numero introduzido até agora é 4.``
+
+``Introduza um numero inteiro: 6``
+
+``O menor numero introduzido até agora é 4.``
+
+``Introduza um numero inteiro: 2``
+
+``O menor numero introduzido até agora é 2.``
+\end{verbatim}
 
 \chapter{Funções}\label{funuxe7uxf5es}
 
 \begin{itemize}
 \item
-  Uma \textbf{função} é um bloco de código que realiza tarefas específicas e que só é executado quando é chamada.
+  Uma \textbf{função} é um bloco de código que realiza tarefas específicas
+  e que só é executado quando é chamada.
 \item
-  São reutilizáveis e podem ser chamadas várias vezes dentro de um script.
+  São reutilizáveis e podem ser chamadas várias vezes dentro de um
+  script.
 \item
-  Podem ser passados dados para uma função, conhecidos como parâmetros ou argumentos.
+  Podem ser passados dados para uma função, conhecidos como parâmetros
+  ou argumentos.
 \end{itemize}
 
 \begin{Shaded}
@@ -2240,7 +2712,11 @@ Código correto
   \textbf{Return}: Valor que a função devolve.
 \end{itemize}
 
-As funções como objetivo principal a modularização (dividir o código em partes menores e gerenciáveis) e a reutilização de código, facilitando a organização e a legibilidade dos scripts. Ao encapsular um bloco de código em uma função, podemos executá-lo múltiplas vezes com diferentes parâmetros, reduzindo a redundância e o tempo de desenvolvimento.
+As funções como objetivo principal a modularização (dividir o código em
+partes menores e gerenciáveis) e a reutilização de código, facilitando a
+organização e a legibilidade dos scripts. Ao encapsular um bloco de
+código em uma função, podemos executá-lo múltiplas vezes com diferentes
+parâmetros, reduzindo a redundância e o tempo de desenvolvimento.
 
 \textbf{Exemplo:} Função para calcular a área de um objeto retangular
 
@@ -2263,11 +2739,17 @@ As funções como objetivo principal a modularização (dividir o código em par
 
 \begin{itemize}
 \item
-  \textbf{Variáveis locais}: As variáveis \texttt{largura} e \texttt{altura} são locais. Estas variáveis só existem quando a função está a ser executada. Quando a execução da função termina, as variáveis locais são destruídas.
+  \textbf{Variáveis locais}: As variáveis \texttt{largura} e \texttt{altura} são locais.
+  Estas variáveis só existem quando a função está a ser executada.
+  Quando a execução da função termina, as variáveis locais são
+  destruídas.
 \item
-  \textbf{Variáveis globais}: As variáveis \texttt{largura\_obj} e \texttt{altura\_obj} são variáveis globais. Estas variáveis são acessíveis a todo o script e representam a largura e altura do objeto inserido pelo utilizador.
+  \textbf{Variáveis globais}: As variáveis \texttt{largura\_obj} e \texttt{altura\_obj} são
+  variáveis globais. Estas variáveis são acessíveis a todo o script e
+  representam a largura e altura do objeto inserido pelo utilizador.
 \item
-  As variáveis locais e globais devem ter nomes \textbf{diferentes} para que o código seja mais legível.
+  As variáveis locais e globais devem ter nomes \textbf{diferentes} para
+  que o código seja mais legível.
 \end{itemize}
 
 \textbf{Passagem de argumento: valores de argumentos por omissão (default)}
@@ -2312,7 +2794,8 @@ As funções como objetivo principal a modularização (dividir o código em par
 \begin{itemize}
 \tightlist
 \item
-  Se os argumentos forem passados por palavra chave, a ordem dos argumentos pode ser trocada.
+  Se os argumentos forem passados por palavra chave, a ordem dos
+  argumentos pode ser trocada.
 \end{itemize}
 
 \textbf{Exemplo:}
@@ -2332,11 +2815,15 @@ As funções como objetivo principal a modularização (dividir o código em par
 
 \begin{itemize}
 \item
-  O \texttt{stop} é usado para interromper a execução de uma função ou de um script, gerando um erro.
+  O \texttt{stop} é usado para interromper a execução de uma função ou de um
+  script, gerando um erro.
 \item
-  Ele pode ser usado em qualquer lugar do código, dentro ou fora de loops, para gerar um erro e parar a execução do código.
+  Ele pode ser usado em qualquer lugar do código, dentro ou fora de
+  loops, para gerar um erro e parar a execução do código.
 \item
-  Quando \texttt{stop} é chamado, ele pode exibir uma mensagem de erro personalizada, e a execução do script ou função é completamente interrompida.
+  Quando \texttt{stop} é chamado, ele pode exibir uma mensagem de erro
+  personalizada, e a execução do script ou função é completamente
+  interrompida.
 \end{itemize}
 
 \textbf{Exercício 1:} Qual será o output do script abaixo?
@@ -2355,7 +2842,8 @@ As funções como objetivo principal a modularização (dividir o código em par
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Exercício 2:} Qual é o resultado da chamada da função \texttt{dados\_estudante}?
+\textbf{Exercício 2:} Qual é o resultado da chamada da função
+\texttt{dados\_estudante}?
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2367,7 +2855,8 @@ As funções como objetivo principal a modularização (dividir o código em par
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Exercício 3:} Qual é a sintaxe correta para definir uma função em R que soma dois números?
+\textbf{Exercício 3:} Qual é a sintaxe correta para definir uma função em R
+que soma dois números?
 
 \begin{enumerate}
 \def\labelenumi{(\alph{enumi})}
@@ -2397,7 +2886,12 @@ As funções como objetivo principal a modularização (dividir o código em par
 \end{Highlighting}
 \end{Shaded}
 
-\texttt{dados\_estudante(160)} - Esta chamada está errada porque 160 será interpretado como nome, e altura usará seu valor padrão, 167. Isso resultará na impressão: \texttt{"O(A)\ estudante\ 160\ tem\ 167\ centímetros\ de\ altura."} A chamada está tecnicamente correta no sentido de sintaxe, mas o resultado não faz sentido lógico, já que 160 não é um nome válido para um estudante.
+\texttt{dados\_estudante(160)} - Esta chamada está errada porque 160 será
+interpretado como nome, e altura usará seu valor padrão, 167. Isso
+resultará na impressão:
+\texttt{"O(A)\ estudante\ 160\ tem\ 167\ centímetros\ de\ altura."} A chamada está
+tecnicamente correta no sentido de sintaxe, mas o resultado não faz
+sentido lógico, já que 160 não é um nome válido para um estudante.
 
 \textbf{Exercício 5:} Qual o resultado do seguinte programa?
 
@@ -2411,14 +2905,51 @@ As funções como objetivo principal a modularização (dividir o código em par
 \end{Highlighting}
 \end{Shaded}
 
-\section{Exercícios}\label{exercuxedcios-5}
+\section{Exercícios}\label{exercuxedcios-6}
+
+\textbf{1.} Crie uma função chamada \texttt{quadrado()} que recebe um único argumento numérico \texttt{x} e retorna o quadrado de \texttt{x}. Em seguida, teste a função com os valores 3, 5 e 7.
+
+\textbf{2.} Implemente uma função chamada \texttt{hipotenusa()} que calcula a hipotenusa de um triângulo retângulo dado os comprimentos dos dois catetos, a e b. A função deve retornar o comprimento da hipotenusa usando o Teorema de Pitágoras. Teste a função com os catetos de comprimentos 3 e 4.
+
+\textbf{3.} Escreva uma função chamada \texttt{divisao\_segura()} que aceita dois argumentos numéricos, numerador e denominador, e retorna o resultado da divisão. A função deve verificar se o denominador é zero e retornar uma mensagem de erro apropriada em vez de tentar realizar a divisão. Teste a função com os valores 10 e 2, e novamente com 10 e 0.
+
+\textbf{4.} Escreva uma função que receba dois inteiros e devolva o maior deles. Teste a função escrevendo um programa que recebe dois números inteiros do utilizador e imprime o resultado de chamada à função. Como teria de fazer para determinar o menor de dois números com uma segunda função que tirasse partido de chamar a primeira?
+
+\textbf{5.} Escreva uma função que devolva o maior de três números inteiros, recorrendo à função implementada no exercício anterior. Teste a função escrevendo um programa que recebe três números inteiros do utilizador e imprime o resultado de chamada à função.
+
+\textbf{6.} Crie uma função chamada \texttt{analise\_vetor()} que recebe um vetor numérico e retorna outro vetor contendo a soma, a média, o desvio padrão e o valor máximo do vetor. Use a função para analisar o vetor \texttt{c(4,\ 8,\ 15,\ 16,\ 23,\ 42)}. Funções auxiliares \texttt{sum(),mean(),sd(),max()}.
+
+\textbf{7.} Implemente uma função chamada \texttt{classificar\_numero()} que aceita um número inteiro e retorna ``positivo'', ``negativo'', ou ``zero'' com base no valor do número fornecido. Teste a função com os valores -5, 0, e 7.
+
+\textbf{8.} Escreva uma função que calcule o IMC (Índice de Massa Corporal) com base no peso (kg) e altura (m) fornecidos como argumentos. Teste a função e escreva um programa que receba a altura e o peso do utilizador e imprima a classificação de acordo com a seguinte tabela:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+\textbf{IMC (kg/m\^{}2)} & \textbf{Classificação} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Menor que 18.5 & Baixo peso \\
+De 18.5 a 24.9 & Peso normal \\
+De 25 a 29.9 & Sobrepeso \\
+De 30 a 34.9 & Obesidade grau I \\
+De 35 a 39.9 & Obesidade grau II \\
+Igual ou maior que 40 & Obesidade grau III \\
+\end{longtable}
+
+Lembre que IMC = \(\frac{\text{Peso}}{\text{Altura}^2}\).
+
+\textbf{9.} Crie funções em R para converter valores entre diferentes moedas com base em taxas de câmbio. Implemente e teste as funções, e escreva um programa que solicite ao utilizador um valor em euros e imprima a conversão desse valor para algumas das principais moedas, como dólar, libra, iene e real.
 
 \chapter{Scripts}\label{scripts}
 
-Um \textbf{script} é um ficheiro que contém um conjunto de definições (variáveis, funções e blocos de código) que podem ser reutilizadas noutros programas R.
+Um \textbf{script} é um ficheiro que contém um conjunto de definições
+(variáveis, funções e blocos de código) que podem ser reutilizadas
+noutros programas R.
 
-\textbf{Criação do scrip:}
-Para criar um script, basta guardar o seu código num ficheiro R com a extensão ``.R''
+\textbf{Criação do scrip:} Para criar um script, basta guardar o seu código
+num ficheiro R com a extensão ``.R''
 
 \textbf{Exemplo:} Guarde o seguinte código no ficheiro \texttt{meu\_script.R}
 
@@ -2432,7 +2963,8 @@ Para criar um script, basta guardar o seu código num ficheiro R com a extensão
 
 \textbf{Utilização do script}
 
-Para executar o script, use a função \texttt{source()} no console do R ou dentro de outro script:
+Para executar o script, use a função \texttt{source()} no console do R ou
+dentro de outro script:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2440,7 +2972,8 @@ Para executar o script, use a função \texttt{source()} no console do R ou dent
 \end{Highlighting}
 \end{Shaded}
 
-Se o ficheiro \texttt{meu\_script.R} não estiver no diretório de trabalho atual, você pode fornecer o caminho completo:
+Se o ficheiro \texttt{meu\_script.R} não estiver no diretório de trabalho atual,
+você pode fornecer o caminho completo:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2450,7 +2983,11 @@ Se o ficheiro \texttt{meu\_script.R} não estiver no diretório de trabalho atua
 
 \textbf{Resultado:}
 
-Quando você executa o comando \texttt{source()}, o R lê e executa todas as linhas do script, e os resultados (por exemplo, impressões de mensagens, funções\ldots) serão exibidos no console. Qualquer função ou variável definida no script ficará disponível no ambiente de trabalho após a execução do \texttt{source()}.
+Quando você executa o comando \texttt{source()}, o R lê e executa todas as
+linhas do script, e os resultados (por exemplo, impressões de mensagens,
+funções\ldots) serão exibidos no console. Qualquer função ou variável
+definida no script ficará disponível no ambiente de trabalho após a
+execução do \texttt{source()}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2464,45 +3001,53 @@ Quando você executa o comando \texttt{source()}, o R lê e executa todas as lin
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Diretório de trabalho}: Para verificar ou alterar o diretório de trabalho em R, você pode usar as funções \texttt{getwd()} para ver o diretório atual e \texttt{setwd("caminho/do/diretorio")} para definir um novo diretório de trabalho.
+  \textbf{Diretório de trabalho}: Para verificar ou alterar o diretório de
+  trabalho em R, você pode usar as funções \texttt{getwd()} para ver o
+  diretório atual e \texttt{setwd("caminho/do/diretorio")} para definir um
+  novo diretório de trabalho.
 \end{itemize}
 
-\section{Exercícios}\label{exercuxedcios-6}
+\section{Exercícios}\label{exercuxedcios-7}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Construa o seguinte:
-\end{enumerate}
+\textbf{1.} Construa o seguinte:
 
 \begin{enumerate}
 \def\labelenumi{(\alph{enumi})}
 \item
-  Um script \texttt{quadrado.R} que disponibiliza funções que permitem calcular o perímetro e a área do quadrado dado o comprimento do lado. Use \texttt{quadrado.R} num outro script qualquer.
+  Um script \texttt{quadrado.R} que disponibiliza funções que permitem
+  calcular o perímetro e a área do quadrado dado o comprimento do
+  lado. Use \texttt{quadrado.R} num outro script qualquer.
 \item
-  Um script \texttt{estatistica.R} que disponibiliza funções que permitem ordenar uma amostra e calcular a média, calcular a variância e o desvio padrão.
+  Um script \texttt{estatistica.R} que disponibiliza funções que permitem
+  ordenar uma amostra e calcular a média, calcular a variância e o
+  desvio padrão.
 \item
-  Um programa que recorrendo ao script anterior, calcula a mediana, variância e o desvio padrão da amostra \texttt{amostra\ \textless{}-\ c(1,2,3,4,5,6,7)}
+  Um programa que recorrendo ao script anterior, calcula a mediana,
+  variância e o desvio padrão da amostra \texttt{amostra\ \textless{}-\ c(1,2,3,4,5,6,7)}
 \end{enumerate}
 
 \chapter{Leitura de dados}\label{leitura-de-dados}
 
-R é uma linguagem poderosa para análise de dados e oferece várias funções para importar dados de diferentes formatos. Independentemente do formato, o processo básico de leitura de dados em R consiste em:
+R é uma linguagem poderosa para análise de dados e oferece várias
+funções para importar dados de diferentes formatos. Independentemente do
+formato, o processo básico de leitura de dados em R consiste em:
 
 \begin{itemize}
 \tightlist
 \item
   Especificar o caminho do arquivo.
 \item
-  Indicar as características do arquivo (como delimitador, presença de cabeçalhos, etc.).
+  Indicar as características do arquivo (como delimitador, presença de
+  cabeçalhos, etc.).
 \item
   Ler os dados e armazená-los em um objeto (geralmente um data frame).
 \end{itemize}
 
 \section{\texorpdfstring{A Função \texttt{read.table()}}{A Função read.table()}}\label{a-funuxe7uxe3o-read.table}
 
-\texttt{read.table()} é uma das funções mais versáteis em R para leitura de arquivos de texto. Esta função permite importar arquivos tabulares e configurá-los de acordo com as características do arquivo.
+\texttt{read.table()} é uma das funções mais versáteis em R para leitura de
+arquivos de texto. Esta função permite importar arquivos tabulares e
+configurá-los de acordo com as características do arquivo.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2536,26 +3081,42 @@ Alguns importantes são:
 \begin{itemize}
 \tightlist
 \item
-  \texttt{header}: Especifica se a primeira linha do arquivo contém nomes de coluna (cabeçalho). Se \texttt{header\ =\ TRUE}, a primeira linha é considerada como cabeçalho e os nomes das colunas são extraídos dessa linha. Se \texttt{header\ =\ FALSE}, a primeira linha é tratada como dados.
+  \texttt{header}: Especifica se a primeira linha do arquivo contém nomes de
+  coluna (cabeçalho). Se \texttt{header\ =\ TRUE}, a primeira linha é
+  considerada como cabeçalho e os nomes das colunas são extraídos
+  dessa linha. Se \texttt{header\ =\ FALSE}, a primeira linha é tratada como
+  dados.
 \item
-  \texttt{sep}: Define o caractere usado para separar os campos (colunas) no arquivo. Por padrão, é uma vírgula (\texttt{,}), mas você pode especificar outros caracteres, como ponto e vírgula (\texttt{;}).
+  \texttt{sep}: Define o caractere usado para separar os campos (colunas) no
+  arquivo. Por padrão, é uma vírgula (\texttt{,}), mas você pode especificar
+  outros caracteres, como ponto e vírgula (\texttt{;}).
 \item
-  \texttt{dec}: Define o caractere usado para representar o separador decimal nos valores numéricos. Por exemplo, em alguns países, usa-se a vírgula (\texttt{,}), enquanto em outros, o ponto (\texttt{.}).
+  \texttt{dec}: Define o caractere usado para representar o separador decimal
+  nos valores numéricos. Por exemplo, em alguns países, usa-se a
+  vírgula (\texttt{,}), enquanto em outros, o ponto (\texttt{.}).
 \item
-  \texttt{nrows}: Permite especificar o número máximo de linhas a serem lidas do arquivo. Útil quando você deseja ler apenas uma parte do arquivo.
+  \texttt{nrows}: Permite especificar o número máximo de linhas a serem lidas
+  do arquivo. Útil quando você deseja ler apenas uma parte do arquivo.
 \item
-  \texttt{na.strings}: Define os valores que devem ser tratados como NA (valores ausentes). Por exemplo, se você tiver ``N/A'' ou ``NA'' no arquivo, pode especificá-los aqui.
+  \texttt{na.strings}: Define os valores que devem ser tratados como NA
+  (valores ausentes). Por exemplo, se você tiver ``N/A'' ou ``NA'' no
+  arquivo, pode especificá-los aqui.
 \item
-  \texttt{skip}: Indica quantas linhas devem ser ignoradas no início do arquivo antes de começar a leitura. Útil para pular cabeçalhos ou linhas de comentário.
+  \texttt{skip}: Indica quantas linhas devem ser ignoradas no início do
+  arquivo antes de começar a leitura. Útil para pular cabeçalhos ou
+  linhas de comentário.
 \item
-  \texttt{comment.char}: Define o caractere usado para indicar comentários no arquivo. Linhas começando com esse caractere serão ignoradas.
+  \texttt{comment.char}: Define o caractere usado para indicar comentários no
+  arquivo. Linhas começando com esse caractere serão ignoradas.
 \end{itemize}
 
 \textbf{Exemplo}:
 
 \section{\texorpdfstring{A função \texttt{read.csv()}}{A função read.csv()}}\label{a-funuxe7uxe3o-read.csv}
 
-A função \texttt{read.csv()} é otimizada para a leitura de arquivos CSV (Comma-Separated Values). A principal diferença entre \texttt{read.table()} e \texttt{read.csv()} é que esta última tem o separador padrão como vírgula.
+A função \texttt{read.csv()} é otimizada para a leitura de arquivos CSV
+(Comma-Separated Values). A principal diferença entre \texttt{read.table()} e
+\texttt{read.csv()} é que esta última tem o separador padrão como vírgula.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2568,7 +3129,8 @@ Os argumentos adicionais são semelhantes aos da função \texttt{read.table()}.
 
 \section{\texorpdfstring{A função \texttt{read.csv2()}}{A função read.csv2()}}\label{a-funuxe7uxe3o-read.csv2}
 
-A função \texttt{read.csv2()} é semelhante à \texttt{read.csv()}, mas o separador padrão é um ponto e vírgula.
+A função \texttt{read.csv2()} é semelhante à \texttt{read.csv()}, mas o separador
+padrão é um ponto e vírgula.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2579,7 +3141,8 @@ A função \texttt{read.csv2()} é semelhante à \texttt{read.csv()}, mas o sepa
 
 \section{\texorpdfstring{A Função \texttt{read\_excel()} do pacote \texttt{readxl}}{A Função read\_excel() do pacote readxl}}\label{a-funuxe7uxe3o-read_excel-do-pacote-readxl}
 
-Para ler arquivos Excel (.xls e .xlsx), utilizamos a função \texttt{read\_excel()} do pacote \texttt{readxl}.
+Para ler arquivos Excel (.xls e .xlsx), utilizamos a função
+\texttt{read\_excel()} do pacote \texttt{readxl}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2591,7 +3154,8 @@ Para ler arquivos Excel (.xls e .xlsx), utilizamos a função \texttt{read\_exce
 
 \section{Leitura de Dados Online}\label{leitura-de-dados-online}
 
-É possível ler diretamente dados hospedados em URLs usando funções como \texttt{read.table()}.
+É possível ler diretamente dados hospedados em URLs usando funções como
+\texttt{read.table()}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2605,9 +3169,18 @@ Para ler arquivos Excel (.xls e .xlsx), utilizamos a função \texttt{read\_exce
 
 \section{O operador pipe}\label{o-operador-pipe}
 
-O operador pipe (\texttt{\%\textgreater{}\%}) em R é uma ferramenta essencial para escrever código de maneira mais limpa e legível, permitindo que os resultados de uma função sejam passados diretamente como entrada para a próxima função, sem a necessidade de criar variáveis intermediárias.
+O operador pipe (\texttt{\%\textgreater{}\%}) em R é uma ferramenta essencial para escrever
+código de maneira mais limpa e legível, permitindo que os resultados de
+uma função sejam passados diretamente como entrada para a próxima
+função, sem a necessidade de criar variáveis intermediárias.
 
-O operador pipe foi popularizado pelo pacote \texttt{magrittr}, desenvolvido por Stefan Milton Bache e lançado em 2014. O nome ``magrittr'' é uma referência ao artista surrealista René Magritte, famoso pela pintura ``Ceci n'est pas une pipe'' (Isto não é um cachimbo), que inspirou a ideia de que o operador pipe permite que dados fluam através de uma sequência de operações de maneira intuitiva e sem a necessidade de variáveis temporárias.
+O operador pipe foi popularizado pelo pacote \texttt{magrittr}, desenvolvido
+por Stefan Milton Bache e lançado em 2014. O nome ``magrittr'' é uma
+referência ao artista surrealista René Magritte, famoso pela pintura
+``Ceci n'est pas une pipe'' (Isto não é um cachimbo), que inspirou a ideia
+de que o operador pipe permite que dados fluam através de uma sequência
+de operações de maneira intuitiva e sem a necessidade de variáveis
+temporárias.
 
 Para começar a utilizar o pipe, instale e carregue o pacote \texttt{magrittr}.
 
@@ -2618,7 +3191,10 @@ Para começar a utilizar o pipe, instale e carregue o pacote \texttt{magrittr}.
 \end{Highlighting}
 \end{Shaded}
 
-O operador pipe \texttt{\%\textgreater{}\%} permite que o valor de uma expressão à esquerda seja passado como o primeiro argumento para a função à direita. Isto permite que o código seja lido de cima para baixo, em vez de dentro para fora, facilitando a compreensão e o fluxo de dados. Por exemplo:
+O operador pipe \texttt{\%\textgreater{}\%} permite que o valor de uma expressão à esquerda
+seja passado como o primeiro argumento para a função à direita. Isto
+permite que o código seja lido de cima para baixo, em vez de dentro para
+fora, facilitando a compreensão e o fluxo de dados. Por exemplo:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2641,7 +3217,8 @@ Outro exemplo
 \end{Highlighting}
 \end{Shaded}
 
-Com o operador pipe, o mesmo código pode ser reescrito de forma mais clara:
+Com o operador pipe, o mesmo código pode ser reescrito de forma mais
+clara:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2653,7 +3230,10 @@ Com o operador pipe, o mesmo código pode ser reescrito de forma mais clara:
 \end{Highlighting}
 \end{Shaded}
 
-Às vezes, desejamos que o resultado do lado esquerdo do operador pipe seja inserido em um argumento diferente do primeiro na função do lado direito. Nesses casos, usamos um ponto (\texttt{.}) como um marcador para indicar onde o valor deve ser colocado.
+Às vezes, desejamos que o resultado do lado esquerdo do operador pipe
+seja inserido em um argumento diferente do primeiro na função do lado
+direito. Nesses casos, usamos um ponto (\texttt{.}) como um marcador para
+indicar onde o valor deve ser colocado.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2686,14 +3266,9 @@ Com o operador pipe, o mesmo código pode ser reescrito de forma mais clara:
 \end{Highlighting}
 \end{Shaded}
 
-\section{Exercícios}\label{exercuxedcios-7}
+\section{Exercícios}\label{exercuxedcios-8}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Reescreva a expressão abaixo utilizando o \texttt{\%\textgreater{}\%},
-\end{enumerate}
+\textbf{1.} Reescreva a expressão abaixo utilizando o \texttt{\%\textgreater{}\%},
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2701,7 +3276,8 @@ Com o operador pipe, o mesmo código pode ser reescrito de forma mais clara:
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Dica}: utilize a função \texttt{magrittr::divide\_by()}, Veja o help da função para mais informações.
+\textbf{Dica}: utilize a função \texttt{magrittr::divide\_by()}, Veja o help da
+função para mais informações.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2714,13 +3290,7 @@ Com o operador pipe, o mesmo código pode ser reescrito de forma mais clara:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{1}
-\tightlist
-\item
-  Reescreva o código abaixo utilizando o \texttt{\%\textgreater{}\%}.
-\end{enumerate}
+\textbf{2.} Reescreva o código abaixo utilizando o \texttt{\%\textgreater{}\%}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2734,7 +3304,8 @@ Com o operador pipe, o mesmo código pode ser reescrito de forma mais clara:
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Dica}: utilize a função \texttt{magrittr::extract()}. Veja o help da função para mais informações.
+\textbf{Dica}: utilize a função \texttt{magrittr::extract()}. Veja o help da função
+para mais informações.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2747,13 +3318,8 @@ Com o operador pipe, o mesmo código pode ser reescrito de forma mais clara:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{2}
-\tightlist
-\item
-  Sem rodar, diga qual a saída do código abaixo. Consulte o help das funções caso precise.
-\end{enumerate}
+\textbf{3.} Sem rodar, diga qual a saída do código abaixo. Consulte o help das
+funções caso precise.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2771,14 +3337,19 @@ Com o operador pipe, o mesmo código pode ser reescrito de forma mais clara:
 \item
   Então colocamos esse valor em um vetor com os valores 6 e \texttt{NA}.
 \item
-  Em seguida, tiramos a média desse vetor, desconsiderando o \texttt{NA}, obtendo o valor 5.
+  Em seguida, tiramos a média desse vetor, desconsiderando o \texttt{NA},
+  obtendo o valor 5.
 \item
   Por fim, testemos se o valor é igual a 5, obtendo o valor \texttt{TRUE}.
 \end{itemize}
 
 \chapter{Loop while}\label{loop-while}
 
-A instrução \texttt{while} em R é uma estrutura de controle de fluxo que permite executar um bloco de código repetidamente, enquanto uma condição especificada for verdadeira. É particularmente útil para situações em que o número de repetições não é conhecido antecipadamente, mas depende de alguma condição lógica.
+A instrução \texttt{while} em R é uma estrutura de controle de fluxo que
+permite executar um bloco de código repetidamente, enquanto uma condição
+especificada for verdadeira. É particularmente útil para situações em
+que o número de repetições não é conhecido antecipadamente, mas depende
+de alguma condição lógica.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2791,20 +3362,28 @@ A instrução \texttt{while} em R é uma estrutura de controle de fluxo que perm
 
 \begin{itemize}
 \item
-  \textbf{condição}: Uma expressão lógica que é avaliada antes de cada iteração do loop. Enquanto essa condição for \texttt{TRUE}, o bloco de código dentro do while será executado.
+  \textbf{condição}: Uma expressão lógica que é avaliada antes de cada
+  iteração do loop. Enquanto essa condição for \texttt{TRUE}, o bloco de
+  código dentro do while será executado.
 \item
-  \textbf{Bloco de código}: As instruções que devem ser repetidamente executadas enquanto a condição for verdadeira.
+  \textbf{Bloco de código}: As instruções que devem ser repetidamente
+  executadas enquanto a condição for verdadeira.
 \end{itemize}
 
 \textbf{Como funciona o while}
 
 \begin{itemize}
 \item
-  \textbf{Avaliação da Condição}: Antes de cada execução do bloco de código, a condição é avaliada.
+  \textbf{Avaliação da Condição}: Antes de cada execução do bloco de
+  código, a condição é avaliada.
 \item
-  \textbf{Execução do Bloco de Código}: Se a condição for \texttt{TRUE}, o bloco de código dentro do \texttt{while} é executado.
+  \textbf{Execução do Bloco de Código}: Se a condição for \texttt{TRUE}, o bloco
+  de código dentro do \texttt{while} é executado.
 \item
-  \textbf{Reavaliação}: Após a execução do bloco de código, a condição é reavaliada. Se continuar a ser \texttt{TRUE}, o ciclo se repete. Se a condição for \texttt{FALSE}, o loop termina e o controle do programa continua com a próxima instrução após o \texttt{while}.
+  \textbf{Reavaliação}: Após a execução do bloco de código, a condição é
+  reavaliada. Se continuar a ser \texttt{TRUE}, o ciclo se repete. Se a
+  condição for \texttt{FALSE}, o loop termina e o controle do programa
+  continua com a próxima instrução após o \texttt{while}.
 \end{itemize}
 
 \textbf{Exemplo 1:} Somando números até um limite.
@@ -2840,7 +3419,8 @@ A instrução \texttt{while} em R é uma estrutura de controle de fluxo que perm
 \end{Highlighting}
 \end{Shaded}
 
-Explique porque o programa acima não termina. Qual o erro no nosso código?
+Explique porque o programa acima não termina. Qual o erro no nosso
+código?
 
 \textbf{Exemplo 3:}
 
@@ -2867,25 +3447,67 @@ Explique porque o programa acima não termina. Qual o erro no nosso código?
 \begin{itemize}
 \tightlist
 \item
-  \textbf{break} é uma instrução utilizada em ciclos para interromper a sua execução (sair de um ciclo antes de ter sido percorrido completamente). Quando o \texttt{break} é chamado, o loop é imediatamente interrompido, e o fluxo de execução continua na próxima linha de código após o loop.
+  \textbf{break} é uma instrução utilizada em ciclos para interromper a sua
+  execução (sair de um ciclo antes de ter sido percorrido
+  completamente). Quando o \texttt{break} é chamado, o loop é imediatamente
+  interrompido, e o fluxo de execução continua na próxima linha de
+  código após o loop.
 \end{itemize}
 
 \textbf{Considerações importantes sobre o uso do \texttt{while()}}
 
 \begin{itemize}
 \item
-  \textbf{Condição de Parada}: É crucial garantir que a condição do \texttt{while} se torne \texttt{FALSE} em algum ponto para evitar loops infinitos que podem fazer o programa parar de responder.
+  \textbf{Condição de Parada}: É crucial garantir que a condição do \texttt{while}
+  se torne \texttt{FALSE} em algum ponto para evitar loops infinitos que
+  podem fazer o programa parar de responder.
 \item
-  \textbf{Incremento/Decremento}: Certifique-se de que a variável que controla a condição seja atualizada adequadamente dentro do loop para evitar loops infinitos.
+  \textbf{Incremento/Decremento}: Certifique-se de que a variável que
+  controla a condição seja atualizada adequadamente dentro do loop
+  para evitar loops infinitos.
 \item
-  \textbf{Desempenho}: Loops \texttt{while} podem ser menos eficientes do que loops vetorizados em R, portanto, para grandes conjuntos de dados, considere outras abordagens, como aplicar funções vetorizadas (\texttt{apply}, \texttt{lapply}, etc.).
+  \textbf{Desempenho}: Loops \texttt{while} podem ser menos eficientes do que
+  loops vetorizados em R, portanto, para grandes conjuntos de dados,
+  considere outras abordagens, como aplicar funções vetorizadas
+  (\texttt{apply}, \texttt{lapply}, etc.).
 \end{itemize}
 
-\section{Exercícios}\label{exercuxedcios-8}
+\section{Exercícios}\label{exercuxedcios-9}
+
+\textbf{1.} Escreva um programa em R que peça ao utilizador um número inteiro \(n\) e escreva no ecrã os números inteiros de 0 a \(n\), um por linha.
+
+\textbf{2.} Escreva um programa em R que peça ao utilizador um número inteiro e escreva no ecrã o seu quadrado, perguntando em seguida se o utilizador quer terminar a utilização do programa.
+
+\textbf{3.} Escreva um programa em R que peça ao utilizador um número inteiro \(n\) e escreva no ecrã o resultado do somatório dos primeiros \(n\) inteiros.
+
+\textbf{4.} Escreva um programa em R que peça ao utilizador um número inteiro \(n\) e escreva no ecrã o número de pares no intervalo de 0 a \(n\).
+
+\textbf{5.} Usar um loop \texttt{while} para somar números inteiros positivos até que um número negativo seja inserido.
+
+Escreva um programa em R que leia números do utilizador e some-os. O loop deve terminar quando o usuário inserir um número negativo. O programa deve então imprimir a soma dos números positivos inseridos.
+
+\textbf{6.} Usar um loop while para implementar uma contagem regressiva.
+
+Crie um programa em R que peça ao utilizador para inserir um número positivo e, em seguida, conte regressivamente até zero, imprimindo cada número no console.
+
+\textbf{7.} Crie um programa em R que peça ao utilizador para inserir um número negativo e, em seguida, conte progressivamente até zero, imprimindo cada número no console.
+
+\textbf{8.} Crie um programa em R que peça ao utilizador para inserir um número e, em seguida, contar regressivamente até zero, se o número for positivo e progressivamente se o número for negativo, imprimindo cada número no console.
+
+\textbf{9.} Escreva um programa em R que leia um número inteiro não negativo do utilizador e calcule seu fatorial usando um loop \texttt{while}. Lembre que \(0! = 1\) e que \(4! = 4\cdot3\cdot2\cdot1\).
+
+\textbf{10.} Escreva um programa em R que leia um número inteiro positivo e calcule a soma de seus dígitos usando um loop \texttt{while}. Por exemplo, 23 \(\to\) \(2+3 = 5\).
+
+\textbf{11.} Crie um programa em R que gere e imprima os números da sequência de Fibonacci até um valor máximo especificado pelo utilizador. 1 1 2 3 5 8 13\ldots{}
 
 \chapter{Loop for}\label{loop-for}
 
-A instrução \texttt{for} em R é uma estrutura de controle de fluxo que permite executar repetidamente um bloco de código para cada elemento em um conjunto de elementos. É especialmente útil para situações em que se conhece o número de iterações a serem realizadas com antecedência. A instrução for é amplamente utilizada em R para iterar sobre vetores, listas, data frames e outras estruturas de dados.
+A instrução \texttt{for} em R é uma estrutura de controle de fluxo que permite
+executar repetidamente um bloco de código para cada elemento em um
+conjunto de elementos. É especialmente útil para situações em que se
+conhece o número de iterações a serem realizadas com antecedência. A
+instrução for é amplamente utilizada em R para iterar sobre vetores,
+listas, data frames e outras estruturas de dados.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2898,24 +3520,31 @@ A instrução \texttt{for} em R é uma estrutura de controle de fluxo que permit
 
 \begin{itemize}
 \item
-  \textbf{variável}: Uma variável que assume o valor de cada elemento na sequência em cada iteração do loop.
+  \textbf{variável}: Uma variável que assume o valor de cada elemento na
+  sequência em cada iteração do loop.
 \item
-  \textbf{sequência}: Um vetor, lista ou qualquer estrutura de dados sobre a qual se deseja iterar.
+  \textbf{sequência}: Um vetor, lista ou qualquer estrutura de dados sobre
+  a qual se deseja iterar.
 \item
-  \textbf{bloco de código}: O conjunto de instruções que serão executadas para cada elemento da sequência.
+  \textbf{bloco de código}: O conjunto de instruções que serão executadas
+  para cada elemento da sequência.
 \end{itemize}
 
 \textbf{Como funciona o \texttt{for()}}
 
 \begin{itemize}
 \item
-  \textbf{Inicialização}: Antes do loop começar, a variável de controle é inicializada com o primeiro elemento da sequência.
+  \textbf{Inicialização}: Antes do loop começar, a variável de controle é
+  inicializada com o primeiro elemento da sequência.
 \item
-  \textbf{Iteração}: Em cada iteração do loop, a variável de controle assume o próximo valor da sequência.
+  \textbf{Iteração}: Em cada iteração do loop, a variável de controle
+  assume o próximo valor da sequência.
 \item
-  \textbf{Execução do Bloco de Código}: O bloco de código dentro do loop é executado uma vez para cada elemento da sequência.
+  \textbf{Execução do Bloco de Código}: O bloco de código dentro do loop é
+  executado uma vez para cada elemento da sequência.
 \item
-  \textbf{Finalização}: O loop termina quando todos os elementos da sequência forem processados.
+  \textbf{Finalização}: O loop termina quando todos os elementos da
+  sequência forem processados.
 \end{itemize}
 
 \textbf{Exemplo 1:} Imprima os números de 0 a 10 no ecrã.
@@ -2955,7 +3584,10 @@ A instrução \texttt{for} em R é uma estrutura de controle de fluxo que permit
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Exemplo 3:} Uso do \texttt{for} com índices. Você também pode usar o loop for para iterar sobre índices de vetores ou listas, o que pode ser útil quando se deseja acessar ou modificar elementos em posições específicas. Multiplique por 2 os elementos do vetor.
+\textbf{Exemplo 3:} Uso do \texttt{for} com índices. Você também pode usar o loop
+for para iterar sobre índices de vetores ou listas, o que pode ser útil
+quando se deseja acessar ou modificar elementos em posições específicas.
+Multiplique por 2 os elementos do vetor.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2973,7 +3605,8 @@ A instrução \texttt{for} em R é uma estrutura de controle de fluxo que permit
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Exemplo 4:} Exemplo com matrizes. O loop for também pode ser usado para iterar sobre elementos de uma matriz, seja por linha ou por coluna.
+\textbf{Exemplo 4:} Exemplo com matrizes. O loop for também pode ser usado
+para iterar sobre elementos de uma matriz, seja por linha ou por coluna.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3016,18 +3649,75 @@ A instrução \texttt{for} em R é uma estrutura de controle de fluxo que permit
 \end{Highlighting}
 \end{Shaded}
 
-\section{Exercícios}\label{exercuxedcios-9}
+\section{Exercícios}\label{exercuxedcios-10}
+
+\textbf{1.} Escreva um programa em R que use um loop \texttt{for} para imprimir todos os números de 1 a 10.
+
+\textbf{2.} Escreva um programa em R que use um loop \texttt{for} para imprimir o quadrado de cada número de 1 a 5.
+
+\textbf{3.} Escreva um programa em R que some todos os elementos do vetor \texttt{numeros\ \textless{}-\ c(2,\ 4,\ 6,\ 8,\ 10)} usando um loop \texttt{for}.
+
+\textbf{4.} Escreva um programa em R que calcule a média das notas no vetor \texttt{notas\ \textless{}-\ c(85,\ 90,\ 78,\ 92,\ 88)} usando um loop \texttt{for}.
+
+\textbf{5.} Escreva um programa em R que imprima todos os números ímpares do vetor \texttt{valores\ \textless{}-\ c(1,\ 3,\ 4,\ 6,\ 9,\ 11,\ 14)}. Utilize um loop \texttt{for}.
+
+\textbf{6.} Escreva um programa em R que leia um número inteiro e use um loop \texttt{for} para imprimir sua tabuada de 1 a 10.
+
+\textbf{7.} Escreva um programa em R que leia um número inteiro e use um loop \texttt{for} para dizer se o número é perfeito ou não. Um número perfeito é aquele cuja soma de seus divisores próprios é igual ao próprio número. Exemplo: 6 tem 1,2,3 como divisores próprios e 1+2+3=6.
+
+\textbf{8.} Escreva um programa em R que use um loop \texttt{for} para encontrar e imprimir todos os números perfeitos entre 1 e 1000.
+
+\textbf{9.} Escreva um programa em R que leia um inteiro \(n\) e um inteiro \(m\) e escreva os números entre \(0\) e \(n\), inclusive, de \(m\) em \(m\). Utilize um ciclo \texttt{for} para o efeito.
+
+\textbf{10.} Escreva um programa que calcule a média de um conjunto de notas fornecidas pelo utilizador. O número de notas que irão ser inseridas são previamente indicadas pelo utilizador. Utilize um loop \texttt{for} para o efeito. Segue-se um exemplo da interação com o computador.
+
+\texttt{Digite\ o\ número\ de\ notas\ que\ serão\ inseridas:\ 4}
+
+\texttt{Digite\ a\ nota:\ 12}
+
+\texttt{Digite\ a\ nota:\ 13}
+
+\texttt{Digite\ a\ nota:\ 15.5}
+
+\texttt{Digite\ a\ nota:\ 16}
+
+\texttt{A\ média\ das\ notas\ é\ 14.125}
+
+\textbf{11.} Crie uma matriz \(4\times4\) com números de 1 a 16. Utilizando o comando de repetição \texttt{for} calcule:
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  a média da terceira coluna da matriz.
+\item
+  a média da terceira linha da matriz.
+\item
+  a média de cada coluna da matriz.
+\item
+  a média de cada linha da matriz.
+\item
+  a média dos números pares de cada coluna da matriz.
+\item
+  a média dos números ímpares de cada linha da matriz.
+\end{enumerate}
+
+\textbf{Obs:} Use comandos de decisão (\texttt{if}\ldots{}\texttt{else}\ldots) sempre que necessário.
 
 \chapter{\texorpdfstring{Família \texttt{Xapply()}}{Família Xapply()}}\label{famuxedlia-xapply}
 
-A família \texttt{Xapply()} no R refere-se a um conjunto de funções que são usadas para iterar sobre objetos de forma eficiente, substituindo a necessidade de ciclos explícitos como \texttt{for}. Essas funções são muito úteis para realizar operações repetitivas em listas, vetores, matrizes, data frames e outros objetos, de maneira concisa e muitas vezes mais rápida.
+A família \texttt{Xapply()} no R refere-se a um conjunto de funções que são
+usadas para iterar sobre objetos de forma eficiente, substituindo a
+necessidade de ciclos explícitos como \texttt{for}. Essas funções são muito
+úteis para realizar operações repetitivas em listas, vetores, matrizes,
+data frames e outros objetos, de maneira concisa e muitas vezes mais
+rápida.
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1846}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2462}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2154}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1692}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1846}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 \textbf{Função}
@@ -3052,7 +3742,9 @@ A família \texttt{Xapply()} no R refere-se a um conjunto de funções que são 
 
 \section{\texorpdfstring{Função \texttt{apply()}}{Função apply()}}\label{funuxe7uxe3o-apply}
 
-Aplica uma função a margens (linhas ou colunas) de uma matriz ou data frame e fornece saída em vetor, lista ou array. É usada para evitar loops (ciclos).
+Aplica uma função a margens (linhas ou colunas) de uma matriz ou data
+frame e fornece saída em vetor, lista ou array. É usada para evitar
+loops (ciclos).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3065,12 +3757,14 @@ Aplica uma função a margens (linhas ou colunas) de uma matriz ou data frame e 
 \item
   \texttt{X}: A matriz ou data frame.
 \item
-  \texttt{MARGIN}: Indica se a função deve ser aplicada a linha (1) ou coluna (2).
+  \texttt{MARGIN}: Indica se a função deve ser aplicada a linha (1) ou coluna
+  (2).
 \item
   \texttt{FUN}: A função a ser aplicada.
 \end{itemize}
 
-\textbf{Exemplo}: Calcular a soma, a média e a raíz quadrada de cada coluna de uma matriz.
+\textbf{Exemplo}: Calcular a soma, a média e a raíz quadrada de cada coluna
+de uma matriz.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3093,7 +3787,9 @@ Aplica uma função a margens (linhas ou colunas) de uma matriz ou data frame e 
 
 \section{\texorpdfstring{Função \texttt{lapply()}}{Função lapply()}}\label{funuxe7uxe3o-lapply}
 
-Aplica uma função a cada elemento de uma lista ou vetor e retorna uma lista. É útil quando você precisa manter a estrutura de saída como uma lista.
+Aplica uma função a cada elemento de uma lista ou vetor e retorna uma
+lista. É útil quando você precisa manter a estrutura de saída como uma
+lista.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3153,7 +3849,9 @@ Aplica uma função a cada elemento de uma lista ou vetor e retorna uma lista. �
 
 \section{\texorpdfstring{Função \texttt{sapply()}}{Função sapply()}}\label{funuxe7uxe3o-sapply}
 
-Similar ao \texttt{lapply()}, aplica uma função a cada elemento de uma lista, vetor ou data frame, mas tenta simplificar o resultado(saída) para um vetor ou matriz.
+Similar ao \texttt{lapply()}, aplica uma função a cada elemento de uma lista,
+vetor ou data frame, mas tenta simplificar o resultado(saída) para um
+vetor ou matriz.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3192,7 +3890,8 @@ Similar ao \texttt{lapply()}, aplica uma função a cada elemento de uma lista, 
 
 \section{\texorpdfstring{Função \texttt{tapply()}}{Função tapply()}}\label{funuxe7uxe3o-tapply}
 
-Aplica uma função a grupos de valores em um vetor. É ideal para operações em subconjuntos de dados categorizados.
+Aplica uma função a grupos de valores em um vetor. É ideal para
+operações em subconjuntos de dados categorizados.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3210,7 +3909,14 @@ Aplica uma função a grupos de valores em um vetor. É ideal para operações e
   \texttt{FUN}: A função a ser aplicada
 \end{itemize}
 
-\textbf{Exemplo:} O dataset \texttt{iris} no R é um dos conjuntos de dados mais conhecidos e frequentemente utilizados para exemplificar análises estatísticas e técnicas de aprendizado de máquina. Foi introduzido por Ronald A. Fisher em 1936 em seu artigo sobre a utilização de modelos estatísticos para discriminação de espécies de plantas. O objetivo deste conjunto de dados é prever a classe de cada uma das três espécies de flores (fatores): Setosa, Versicolor, Virginica. O conjunto de dados coleta informações para cada espécie sobre seu comprimento e largura.
+\textbf{Exemplo:} O dataset \texttt{iris} no R é um dos conjuntos de dados mais
+conhecidos e frequentemente utilizados para exemplificar análises
+estatísticas e técnicas de aprendizado de máquina. Foi introduzido por
+Ronald A. Fisher em 1936 em seu artigo sobre a utilização de modelos
+estatísticos para discriminação de espécies de plantas. O objetivo deste
+conjunto de dados é prever a classe de cada uma das três espécies de
+flores (fatores): Setosa, Versicolor, Virginica. O conjunto de dados
+coleta informações para cada espécie sobre seu comprimento e largura.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3373,13 +4079,16 @@ Aplica uma função a grupos de valores em um vetor. É ideal para operações e
 \end{Highlighting}
 \end{Shaded}
 
-\section{Exercícios}\label{exercuxedcios-10}
+\section{Exercícios}\label{exercuxedcios-11}
 
 \chapter{Gráficos (R base)}\label{gruxe1ficos-r-base}
 
 \section{Gráfico de Barras}\label{gruxe1fico-de-barras}
 
-\textbf{Gráfico de barras}: Conjunto de barras verticais ou horizontais. Cada barra representa uma categoria, e a altura da barra mostra a frequência sbsoluta ou relativa dessa categoria. A largura das barras não tem significado.
+\textbf{Gráfico de barras}: Conjunto de barras verticais ou horizontais. Cada
+barra representa uma categoria, e a altura da barra mostra a frequência
+sbsoluta ou relativa dessa categoria. A largura das barras não tem
+significado.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3418,7 +4127,10 @@ Aplica uma função a grupos de valores em um vetor. É ideal para operações e
 
 \section{Gráfico circular (pizza)}\label{gruxe1fico-circular-pizza}
 
-\textbf{Gráfico circular}: Exibe as proporções ou percentagens de diferentes categorias de dados em relação a um todo. Cada categoria é representada como uma ``fatia'' do círculo, e o tamanho de cada fatia é proporcional à sua contribuição para o total.
+\textbf{Gráfico circular}: Exibe as proporções ou percentagens de diferentes
+categorias de dados em relação a um todo. Cada categoria é representada
+como uma ``fatia'' do círculo, e o tamanho de cada fatia é proporcional à
+sua contribuição para o total.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3432,7 +4144,9 @@ Aplica uma função a grupos de valores em um vetor. É ideal para operações e
 
 \section{Histograma}\label{histograma}
 
-Histograma é uma representação gráfica dos dados em que se marcam as classes (intervalos) no eixo horizontal e as frequências (absuluta ou relativa) no eixo vertical.
+Histograma é uma representação gráfica dos dados em que se marcam as
+classes (intervalos) no eixo horizontal e as frequências (absuluta ou
+relativa) no eixo vertical.
 
 \begin{itemize}
 \item
@@ -3440,10 +4154,14 @@ Histograma é uma representação gráfica dos dados em que se marcam as classes
 \item
   A largura de cada retângulo é igual à amplitude da classe
 \item
-  Se as classes tiverem todas a mesma amplitude, a altura do retângulo é proporcional à frequência.
+  Se as classes tiverem todas a mesma amplitude, a altura do retângulo
+  é proporcional à frequência.
 \end{itemize}
 
-Por default, o R utiliza a frequência absoluta para construir o histograma. Se tiver interesse em representar as frequências relativas, utilize a opção \texttt{freq=FALSE} nos argumentos da função \texttt{hist()}. O padrão de intervalo de classe no R é \((a, b]\).
+Por default, o R utiliza a frequência absoluta para construir o
+histograma. Se tiver interesse em representar as frequências relativas,
+utilize a opção \texttt{freq=FALSE} nos argumentos da função \texttt{hist()}. O padrão
+de intervalo de classe no R é \((a, b]\).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3542,7 +4260,12 @@ Por default, o R utiliza a frequência absoluta para construir o histograma. Se 
 
 \section{\texorpdfstring{O pacote \texttt{dplyr}}{O pacote dplyr}}\label{o-pacote-dplyr}
 
-O \texttt{dplyr} é um dos pacotes mais populares e amplamente utilizados no R para manipulação e transformação de dados. Ele faz parte do conjunto de pacotes ``tidyverse,'' que são projetados para simplificar o trabalho com dados no R. O \texttt{dplyr} oferece uma interface intuitiva e de fácil uso para realizar operações comuns em data frames, como seleção de colunas, filtragem de linhas, ordenação, resumo de dados e junção de data frames.
+O \texttt{dplyr} é um dos pacotes mais populares e amplamente utilizados no R
+para manipulação e transformação de dados. Ele faz parte do conjunto de
+pacotes ``tidyverse,'' que são projetados para simplificar o trabalho com
+dados no R. O \texttt{dplyr} oferece uma interface intuitiva e de fácil uso
+para realizar operações comuns em data frames, como seleção de colunas,
+filtragem de linhas, ordenação, resumo de dados e junção de data frames.
 
 As principais funções do \texttt{dplyr} são:
 
@@ -3562,7 +4285,9 @@ As principais funções do \texttt{dplyr} são:
   \texttt{summarise()} - sumariza a base
 \end{itemize}
 
-Neste capítulo, vamos trabalhar com uma base de dados do Star Wars. Essa base está disponível dentro do pacote \texttt{dplyr} no R e pode ser acessada através do comando \texttt{starwars}.
+Neste capítulo, vamos trabalhar com uma base de dados do Star Wars. Essa
+base está disponível dentro do pacote \texttt{dplyr} no R e pode ser acessada
+através do comando \texttt{starwars}.
 
 Assim, utilizaremos o objeto \texttt{sw} para acessar os dados.
 
@@ -3617,7 +4342,8 @@ Assim, utilizaremos o objeto \texttt{sw} para acessar os dados.
 
 \subsection{Selecionando colunas}\label{selecionando-colunas}
 
-Para selecionar colunas, utilizamos a função \texttt{select()}. Repare que não precisamos colocar o nome da coluna entre aspas.
+Para selecionar colunas, utilizamos a função \texttt{select()}. Repare que não
+precisamos colocar o nome da coluna entre aspas.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3692,7 +4418,8 @@ Podemos usar o operador \texttt{:} para selecionar colunas consecutivas.
 ## # i 77 more rows
 \end{verbatim}
 
-O \texttt{dplyr} possui um conjunto de funções auxiliares muito úteis para seleção de colunas. As principais são:
+O \texttt{dplyr} possui um conjunto de funções auxiliares muito úteis para
+seleção de colunas. As principais são:
 
 \begin{itemize}
 \tightlist
@@ -3777,21 +4504,29 @@ Para remover colunas basta acrescentar um \texttt{-} antes da seleção.
 ## # i 1 more variable: starships <list>
 \end{verbatim}
 
-\subsection{Exercícios}\label{exercuxedcios-11}
+\subsection{Exercícios}\label{exercuxedcios-12}
 
 Utilize a base \texttt{sw} nos exercícios a seguir.
 
-\textbf{1.} Teste aplicar a função \texttt{glimpse()} do pacote `\texttt{dplyr} à base \texttt{sw}. O que ela faz?
+\textbf{1.} Teste aplicar a função \texttt{glimpse()} do pacote `\texttt{dplyr} à base
+\texttt{sw}. O que ela faz?
 
-\textbf{2.} Crie uma tabela com apenas as colunas \texttt{name}, \texttt{gender}, e \texttt{films}. Salve em um objeto chamado \texttt{sw\_simples}.
+\textbf{2.} Crie uma tabela com apenas as colunas \texttt{name}, \texttt{gender}, e
+\texttt{films}. Salve em um objeto chamado \texttt{sw\_simples}.
 
-\textbf{3.} Selecione apenas as colunas \texttt{hair\_color}, \texttt{skin\_color} e \texttt{eye\_color} usando a função auxiliar \texttt{contains()}.
+\textbf{3.} Selecione apenas as colunas \texttt{hair\_color}, \texttt{skin\_color} e
+\texttt{eye\_color} usando a função auxiliar \texttt{contains()}.
 
-\textbf{4.} Usando a função \texttt{select()} (e suas funções auxiliares), escreva códigos que retornem a base \texttt{sw} sem as colunas \texttt{hair\_color}, \texttt{skin\_color} e \texttt{eye\_color}. Escreva todas as soluções diferentes que você conseguir pensar.
+\textbf{4.} Usando a função \texttt{select()} (e suas funções auxiliares), escreva
+códigos que retornem a base \texttt{sw} sem as colunas \texttt{hair\_color},
+\texttt{skin\_color} e \texttt{eye\_color}. Escreva todas as soluções diferentes que
+você conseguir pensar.
 
 \subsection{Ordenando a base}\label{ordenando-a-base}
 
-Para ordenar linhas, utilizamos a função \texttt{arrange()}. O primeiro argumento é a base de dados. Os demais argumentos são as colunas pelas quais queremos ordenar as linhas.
+Para ordenar linhas, utilizamos a função \texttt{arrange()}. O primeiro
+argumento é a base de dados. Os demais argumentos são as colunas pelas
+quais queremos ordenar as linhas.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3872,9 +4607,10 @@ Ordenar segundo duas ou mais colunas.
 ## #   vehicles <list>, starships <list>
 \end{verbatim}
 
-\subsection{Exercícios}\label{exercuxedcios-12}
+\subsection{Exercícios}\label{exercuxedcios-13}
 
-\textbf{1.} Ordene \texttt{mass} em ordem crescente e \texttt{birth\_year} em ordem decrescente e salve em um objeto chamado \texttt{sw\_ordenados}.
+\textbf{1.} Ordene \texttt{mass} em ordem crescente e \texttt{birth\_year} em ordem
+decrescente e salve em um objeto chamado \texttt{sw\_ordenados}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3883,7 +4619,8 @@ Ordenar segundo duas ou mais colunas.
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{2.} Selecione apenas as colunas \texttt{name} e \texttt{birth\_year} e então ordene de forma decrescente pelo \texttt{birth\_year}.
+\textbf{2.} Selecione apenas as colunas \texttt{name} e \texttt{birth\_year} e então ordene
+de forma decrescente pelo \texttt{birth\_year}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3903,7 +4640,8 @@ Ordenar segundo duas ou mais colunas.
 
 \subsection{Filtrando linhas}\label{filtrando-linhas}
 
-Para filtrar valores de uma coluna da base, utilizamos a função \texttt{filter()}.
+Para filtrar valores de uma coluna da base, utilizamos a função
+\texttt{filter()}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3932,7 +4670,8 @@ Para filtrar valores de uma coluna da base, utilizamos a função \texttt{filter
 ## #   vehicles <list>, starships <list>
 \end{verbatim}
 
-Podemos selecionar apenas as colunas \texttt{name} e \texttt{height} para visualizarmos as alturas:
+Podemos selecionar apenas as colunas \texttt{name} e \texttt{height} para
+visualizarmos as alturas:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4011,7 +4750,8 @@ Podemos estender o filtro para duas ou mais colunas.
 ## #   vehicles <list>, starships <list>
 \end{verbatim}
 
-Podemos filtrar colunas categóricas. O exemplo abaixo retorna uma tabela apenas com os personagens com cabelo preto ou castanho.
+Podemos filtrar colunas categóricas. O exemplo abaixo retorna uma tabela
+apenas com os personagens com cabelo preto ou castanho.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4063,7 +4803,9 @@ Podemos filtrar colunas categóricas. O exemplo abaixo retorna uma tabela apenas
 ## #   vehicles <list>, starships <list>
 \end{verbatim}
 
-Para filtrar textos sem correspondência exata, podemos utilizar a função auxiliar \texttt{str\_detect()} do pacote \texttt{\{stringr\}}. Ela serve para verificar se cada string de um vetor contém um determinado padrão de texto.
+Para filtrar textos sem correspondência exata, podemos utilizar a função
+auxiliar \texttt{str\_detect()} do pacote \texttt{\{stringr\}}. Ela serve para verificar
+se cada string de um vetor contém um determinado padrão de texto.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4121,29 +4863,39 @@ Podemos utilizá-la para filtrar apenas os personagens com cabelo \texttt{grey}.
 ## #   vehicles <list>, starships <list>
 \end{verbatim}
 
-\subsection{Exercícios}\label{exercuxedcios-13}
+\subsection{Exercícios}\label{exercuxedcios-14}
 
 Utilize a base \texttt{sw} nos exercícios a seguir.
 
-\textbf{1.} Crie um objeto chamado \texttt{humanos} apenas com personagens que sejam humanos.
+\textbf{1.} Crie um objeto chamado \texttt{humanos} apenas com personagens que sejam
+humanos.
 
-\textbf{2.} Crie um objeto chamado \texttt{altos\_fortes} com personagens que tenham mais de 200 cm de altura e peso maior que 100 kg.
+\textbf{2.} Crie um objeto chamado \texttt{altos\_fortes} com personagens que tenham
+mais de 200 cm de altura e peso maior que 100 kg.
 
 \textbf{3.} Retorne tabelas (\texttt{tibbles}) apenas com:
 
-\textbf{a.} Personagens humanos que nasceram antes de 100 anos antes da batalha de Yavin (\texttt{birth\_year\ \textless{}\ 100}).
+\textbf{a.} Personagens humanos que nasceram antes de 100 anos antes da
+batalha de Yavin (\texttt{birth\_year\ \textless{}\ 100}).
 
 \textbf{b.} Personagens com cor \texttt{light} ou \texttt{red}.
 
-\textbf{c.} Personagens com massa maior que 100 kg, ordenados de forma decrescente por altura, mostrando apenas as colunas \texttt{name}, \texttt{mass} e \texttt{height}.
+\textbf{c.} Personagens com massa maior que 100 kg, ordenados de forma
+decrescente por altura, mostrando apenas as colunas \texttt{name}, \texttt{mass} e
+\texttt{height}.
 
-\textbf{d.} Personagens que sejam ``Humano'' ou ``Droid'', e tenham uma altura maior que 170 cm.
+\textbf{d.} Personagens que sejam ``Humano'' ou ``Droid'', e tenham uma altura
+maior que 170 cm.
 
-\textbf{e.} Personagens que não possuem informação tanto de altura (height) quanto de massa (mass), ou seja, possuem NA em ambas as colunas.
+\textbf{e.} Personagens que não possuem informação tanto de altura (height)
+quanto de massa (mass), ou seja, possuem NA em ambas as colunas.
 
 \subsection{Modificando e criando novas colunas}\label{modificando-e-criando-novas-colunas}
 
-Para modificar uma coluna existente ou criar uma nova coluna, utilizamos a função \texttt{mutate()}. O código abaixo divide os valores da coluna \texttt{height} por 100, mudando a unidade de medida dessa variável de centímetros para metros.
+Para modificar uma coluna existente ou criar uma nova coluna, utilizamos
+a função \texttt{mutate()}. O código abaixo divide os valores da coluna
+\texttt{height} por 100, mudando a unidade de medida dessa variável de
+centímetros para metros.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4170,7 +4922,8 @@ Para modificar uma coluna existente ou criar uma nova coluna, utilizamos a funç
 ## #   vehicles <list>, starships <list>
 \end{verbatim}
 
-Também poderíamos ter criado essa variável em uma nova coluna. Repare que a nova coluna \texttt{height\_meters} é colocada no final da tabela.
+Também poderíamos ter criado essa variável em uma nova coluna. Repare
+que a nova coluna \texttt{height\_meters} é colocada no final da tabela.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4197,7 +4950,11 @@ Também poderíamos ter criado essa variável em uma nova coluna. Repare que a n
 ## #   vehicles <list>, starships <list>, height_meters <dbl>
 \end{verbatim}
 
-Podemos fazer qualquer operação com uma ou mais colunas. Abaixo vamos criar um tibble que contenha as colunas \texttt{name}, \texttt{height}, \texttt{mass}, e uma nova coluna \texttt{BMI}, que calcule o Índice de Massa Corporal (IMC) de cada personagem, usando a fórmula \texttt{mass\ /\ (height/100)\^{}2}. Caso \texttt{height} ou \texttt{mass} seja \texttt{NA}, a coluna \texttt{BMI} deve ser \texttt{NA}.
+Podemos fazer qualquer operação com uma ou mais colunas. Abaixo vamos
+criar um tibble que contenha as colunas \texttt{name}, \texttt{height}, \texttt{mass}, e uma
+nova coluna \texttt{BMI}, que calcule o Índice de Massa Corporal (IMC) de cada
+personagem, usando a fórmula \texttt{mass\ /\ (height/100)\^{}2}. Caso \texttt{height} ou
+\texttt{mass} seja \texttt{NA}, a coluna \texttt{BMI} deve ser \texttt{NA}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4224,23 +4981,33 @@ Podemos fazer qualquer operação com uma ou mais colunas. Abaixo vamos criar um
 ## # i 77 more rows
 \end{verbatim}
 
-\subsection{Exercícios}\label{exercuxedcios-14}
+\subsection{Exercícios}\label{exercuxedcios-15}
 
-\textbf{1.} Crie uma coluna chamada \texttt{dif\_peso\_altura} (diferença entre altura e peso) e salve a nova tabela em um objeto chamado \texttt{starwars\_dif}. Em seguida, filtre apenas os personagens que têm altura maior que o peso e ordene a tabela por ordem crescente de \texttt{dif\_peso\_altura}.
+\textbf{1.} Crie uma coluna chamada \texttt{dif\_peso\_altura} (diferença entre altura
+e peso) e salve a nova tabela em um objeto chamado \texttt{starwars\_dif}. Em
+seguida, filtre apenas os personagens que têm altura maior que o peso e
+ordene a tabela por ordem crescente de \texttt{dif\_peso\_altura}.
 
 \textbf{a.} \texttt{indice\_massa\_altura} = \texttt{mass} / \texttt{height}
 
 \textbf{b.} \texttt{indice\_massa\_medio} = \texttt{mean(mass,\ na.rm\ =\ TRUE)}
 
-\textbf{c.} \texttt{indice\_relativo} = \texttt{(indice\_massa\_altura\ -\ indice\_massa\_medio)\ /\ indice\_massa\_medio}
+\textbf{c.} \texttt{indice\_relativo} =
+\texttt{(indice\_massa\_altura\ -\ indice\_massa\_medio)\ /\ indice\_massa\_medio}
 
-\textbf{d.} \texttt{acima\_media} = \texttt{ifelse(indice\_massa\_altura\ \textgreater{}\ indice\_massa\_medio,\ “sim”,\ “não”)}
+\textbf{d.} \texttt{acima\_media} =
+\texttt{ifelse(indice\_massa\_altura\ \textgreater{}\ indice\_massa\_medio,\ “sim”,\ “não”)}
 
-\textbf{3.} Crie uma nova coluna que classifique o personagem em ``recente'' (nascido após 100 anos antes da batalha de Yavin) e ``antigo'' (nascido há 100 anos ou mais).
+\textbf{3.} Crie uma nova coluna que classifique o personagem em ``recente''
+(nascido após 100 anos antes da batalha de Yavin) e ``antigo'' (nascido há
+100 anos ou mais).
 
 \subsection{Sumarizando a base}\label{sumarizando-a-base}
 
-A função \texttt{summarize()}no R é utilizada para criar resumos estatísticos de dados dentro de um data frame ou tibble. Ela é frequentemente usada para calcular estatísticas agregadas, como médias, somas, contagens, entre outras.
+A função \texttt{summarize()}no R é utilizada para criar resumos estatísticos
+de dados dentro de um data frame ou tibble. Ela é frequentemente usada
+para calcular estatísticas agregadas, como médias, somas, contagens,
+entre outras.
 
 O código abaixo resume a coluna \texttt{mass} pela sua média.
 
@@ -4295,9 +5062,11 @@ Podemos também sumarizar diversas colunas.
 ## 1        97.3         175.      87.6
 \end{verbatim}
 
-Para sumarizar uma coluna agrupada pelas categorias de uma segunda coluna usamos além do \texttt{summarize()} a função \texttt{group\_by()}.
+Para sumarizar uma coluna agrupada pelas categorias de uma segunda
+coluna usamos além do \texttt{summarize()} a função \texttt{group\_by()}.
 
-O código a abaixo calcula a altura média dos personagens para cada categoria da coluna \texttt{hair\_color}.
+O código a abaixo calcula a altura média dos personagens para cada
+categoria da coluna \texttt{hair\_color}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4331,59 +5100,206 @@ Utilize a base \texttt{sw} nos exercícios a seguir.
 
 \textbf{1.} Calcule a altura média e mediana dos personagens.
 
-\textbf{2.} Calcule a massa média dos personagens cuja altura é maior que 175 cm.
+\textbf{2.} Calcule a massa média dos personagens cuja altura é maior que 175
+cm.
 
-\textbf{3.} Apresente na mesma tabela a massa média dos personagens com altura menor que 175 cm e a massa média dos personagens com altura maior ou igual a 175 cm.
+\textbf{3.} Apresente na mesma tabela a massa média dos personagens com
+altura menor que 175 cm e a massa média dos personagens com altura maior
+ou igual a 175 cm.
 
 \textbf{4.} Retorne tabelas (\texttt{tibbles}) apenas com:
 
-\textbf{a.} A altura média dos personagens por espécie.
-\textbf{b.} A massa média e mediana dos personagens por espécie.
-\textbf{c.} Apenas o nome dos personagens que participaram de mais de 2 filmes.
+\textbf{a.} A altura média dos personagens por espécie. \textbf{b.} A massa média
+e mediana dos personagens por espécie. \textbf{c.} Apenas o nome dos
+personagens que participaram de mais de 2 filmes.
 
 \subsection{Juntando duas bases}\label{juntando-duas-bases}
 
+\chapter{Visualização}\label{visualizauxe7uxe3o}
+
+\chapter{\texorpdfstring{O pacote \texttt{ggplot2}}{O pacote ggplot2}}\label{o-pacote-ggplot2}
+
+O \texttt{ggplot2} é um dos pacotes mais populares do R para criar gráficos.
+Ele implementa o conceito de \emph{Grammar of Graphics}, que oferece uma
+maneira sistemática de descrever e construir gráficos. Este conceito
+está apresentado no livro \href{https://link.springer.com/book/10.1007/0-387-28695-0}{The Grammar of
+graphics}.
+
+Para este capítulo vamos seguir o material disponível em
+\href{https://livro.curso-r.com/8-graficos.html}{link}. O ficheiro com a base
+de filmes IMDB está disponível no fénix
+
 \chapter{Simulação}\label{simulauxe7uxe3o}
+
+A simulação é uma poderosa ferramenta que aproveita a capacidade dos
+computadores modernos para realizar cálculos que, de outra forma, seriam
+difíceis ou até impossíveis de serem feitos analiticamente. A Lei dos
+Grandes Números nos assegura que, ao observarmos uma grande amostra de
+variáveis aleatórias independentes e identicamente distribuídas (i.i.d.)
+com média finita, a média dessas observações tende a se aproximar da
+média real da distribuição. Em vez de nos esforçarmos para encontrar
+essa média através de métodos analíticos complexos, podemos utilizar o
+poder de processamento de um computador para gerar uma amostra
+suficientemente grande dessas variáveis aleatórias. A partir dessa
+amostra, calculamos a média observada, que serve como uma estimativa
+confiável da média verdadeira. No entanto, a eficácia desse método
+depende de três fatores cruciais: identificar corretamente os tipos de
+variáveis aleatórias necessárias para o problema em questão, garantir
+que o computador seja capaz de gerar essas variáveis de forma precisa, e
+determinar o tamanho adequado da amostra para que possamos confiar nos
+resultados obtidos. A simulação, portanto, não só simplifica o processo
+de resolução de problemas complexos, como também oferece uma abordagem
+prática e eficiente para explorar cenários onde o cálculo analítico
+tradicional é impraticável.
+
+Iniciamos com alguns exemplos básicos de simulação para resolver
+questões cujas respostas já conhecemos de forma analítica, apenas para
+demonstrar que a simulação cumpre o que promete. Além disso, esses
+exemplos introdutórios ajudarão a destacar alguns pontos importantes que
+precisam ser considerados ao tentar resolver problemas mais complexos
+utilizando simulação.
+
+\textbf{Exemplo 1 (A média de uma distribuição)}: A média da distribuição
+uniforme no intervalo {[}0,1{]} é conhecida por ser 1/2. Se tivéssemos
+disponível um grande número de variáveis aleatórias i.i.d. uniformes no
+intervalo {[}0,1{]}, digamos, \(X_{1},\ldots,X_{n}\), a Lei dos Grandes
+Números nos diz que \(\overline{X}=\frac{1}{n}\sum_{i=1}^{n}X_{i}\) deve
+estar próximo da média 1/2. A Tabela abaixo fornece as médias de várias
+amostras simuladas diferentes de tamanho \(n\) a partir da distribuição
+uniforme em {[}0,1{]} para vários valores diferentes de \(n\). Não é difícil
+ver que as médias estão próximas de 0.5 na maioria dos casos, mas há
+bastante variação, especialmente para \(n = 100\). Parece haver menos
+variação para \(n = 1000\), e ainda menos para os dois maiores valores de
+\(n\).
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule\noalign{}
+n & Replicações da Simulação & & & & \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+100 & 0.485 & 0.481 & 0.484 & 0.569 & 0.441 \\
+1.000 & 0.497 & 0.506 & 0.480 & 0.498 & 0.499 \\
+10.000 & 0.502 & 0.501 & 0.499 & 0.498 & 0.498 \\
+100.000 & 0.502 & 0.499 & 0.500 & 0.498 & 0.499 \\
+\end{longtable}
+
+A maneira que obtemos a amostra aleatória uniforme foi usando a função \texttt{runif}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{runif}\NormalTok{(}\DecValTok{100}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Como mencionamos anteriormente, não há necessidade de simulação no exemplo acima. Esta foi apenas para ilustrar que a simulação pode fazer o que afirma. Porém, é preciso estar ciente de que, por maior que seja a amostra simulada, a média de uma amostra de variáveis aleatórias i.i.d. não será necessariamente igual à sua média. É preciso ser capaz de levar em conta a variabilidade.
+
+\textbf{Exemplo onde a simulação pode ajudar}
+
+A seguir, apresentamos um exemplo em que as questões básicas são relativamente simples de descrever, mas a solução analítica seria, na melhor das hipóteses, entediante.
+
+\textbf{Esperando por uma pausa}. Dois atendentes, A e B, em um restaurante fast-food começam a servir
+clientes ao mesmo tempo. Eles concordam em se encontrar para um intervalo depois que cada um deles atender 10 clientes. Presumivelmente, um deles terminará antes do outro e terá que esperar. Quanto tempo, em média, um dos atendentes terá que esperar pelo outro?
+
+Suponha que modelemos todos os tempos de serviço, independentemente do atendente, como variáveis aleatórias i.i.d. tendo distribuição exponencial com parâmetro 0.3 clientes por minuto. Então, o tempo que um atendente leva para atender 10 clientes tem a distribuição gama com parâmetros 10 e 0.3. Seja \(X\) o tempo que A leva para atender 10 clientes e seja Y o tempo que B leva para atender 10 clientes. Somos solicitados a calcular a média de \(|X − Y|\). A maneira mais direta de encontrar esta média analiticamente exigiria um integral bidimensional sobre a união de duas regiões não retangulares.
+
+Por outro lado, suponha que um computador possa nos fornecer tantas variáveis aleatórias gama independentes quantas desejarmos. Podemos então obter um par \((X, Y)\) e calcular \(Z = |X − Y|\). Em seguida, repetimos esse processo independentemente quantas vezes quisermos e calculamos a média de todos os valores \(Z\) observados. A média deve ficar próxima da média de \(Z\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{rgamma}\NormalTok{(}\DecValTok{10000}\NormalTok{, }\DecValTok{10}\NormalTok{, }\FloatTok{0.3}\NormalTok{)}
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{rgamma}\NormalTok{(}\DecValTok{10000}\NormalTok{, }\DecValTok{10}\NormalTok{, }\FloatTok{0.3}\NormalTok{)}
+\NormalTok{z }\OtherTok{\textless{}{-}} \FunctionTok{abs}\NormalTok{(x}\SpecialCharTok{{-}}\NormalTok{y)}
+\FunctionTok{mean}\NormalTok{(z)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 11.75882
+\end{verbatim}
+
+Temos então um tempo médio de 11.75 minutos.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{hist}\NormalTok{(z, }\AttributeTok{xlab =} \StringTok{"Tempo de espera Z"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Freq Abs"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-159-1.pdf}
 
 \section{Geração de números pseudoaleatórios}\label{gerauxe7uxe3o-de-nuxfameros-pseudoaleatuxf3rios}
 
 \textbf{Números Aleatórios}
 
-Números aleatórios são valores que são gerados de forma imprevisível e não seguem nenhum padrão determinado. Em outras palavras, cada número em uma sequência de números aleatórios é escolhido de maneira independente dos outros, sem qualquer correlação entre eles. Na prática, os números aleatórios são usados em diversas áreas, como criptografia, simulações, estatísticas, jogos de azar, entre outros, onde é crucial que os números não possam ser antecipados.
+Números aleatórios são valores que são gerados de forma imprevisível e
+não seguem nenhum padrão determinado. Em outras palavras, cada número em
+uma sequência de números aleatórios é escolhido de maneira independente
+dos outros, sem qualquer correlação entre eles. Na prática, os números
+aleatórios são usados em diversas áreas, como criptografia, simulações,
+estatísticas, jogos de azar, entre outros, onde é crucial que os números
+não possam ser antecipados.
 
-A verdadeira aleatoriedade é geralmente derivada de processos físicos que são inerentemente imprevisíveis, como a radiação cósmica, ruído térmico em circuitos eletrônicos, ou o decaimento radioativo. Em computação, no entanto, obter números verdadeiramente aleatórios é difícil e muitas vezes desnecessário.
+A verdadeira aleatoriedade é geralmente derivada de processos físicos
+que são inerentemente imprevisíveis, como a radiação cósmica, ruído
+térmico em circuitos eletrônicos, ou o decaimento radioativo. Em
+computação, no entanto, obter números verdadeiramente aleatórios é
+difícil e muitas vezes desnecessário.
 
 \textbf{Números Pseudoaleatórios}
 
-Números pseudoaleatórios, por outro lado, são números que são gerados por algoritmos que produzem sequências que parecem aleatórias, mas são, na verdade, determinadas por um valor inicial chamado semente (ou ``seed'' em inglês). Se o algoritmo é iniciado com a mesma semente, ele produzirá exatamente a mesma sequência de números.
+Números pseudoaleatórios, por outro lado, são números que são gerados
+por algoritmos que produzem sequências que parecem aleatórias, mas são,
+na verdade, determinadas por um valor inicial chamado semente (ou ``seed''
+em inglês). Se o algoritmo é iniciado com a mesma semente, ele produzirá
+exatamente a mesma sequência de números.
 
-Embora sejam determinísticos, os números pseudoaleatórios são amplamente utilizados porque podem ser gerados rapidamente e, para muitas aplicações, eles são suficientemente aleatórios. A principal vantagem é que, ao usar a mesma semente, é possível replicar experimentos ou simulações, o que é útil em pesquisas e depurações.
+Embora sejam determinísticos, os números pseudoaleatórios são amplamente
+utilizados porque podem ser gerados rapidamente e, para muitas
+aplicações, eles são suficientemente aleatórios. A principal vantagem é
+que, ao usar a mesma semente, é possível replicar experimentos ou
+simulações, o que é útil em pesquisas e depurações.
 
-Uma das aproximações mais comuns para gerar números pseudoaleatórios é o método \emph{congruencial multiplicativo}:
+Uma das aproximações mais comuns para gerar números pseudoaleatórios é o
+método \emph{congruencial multiplicativo}:
 
 \begin{itemize}
 \item
   Considere um valor inicial \(x_0\), chamado semente;
 \item
-  Recursivamente calcule os valores sucessivos \(x_{n}\), \(n\geq 1\), usando: \[x_{n} = ax_{n-1} \, \text{mod}\, m,\] onde \(a\) e \(m\) são inteiros positivos dados. Ou seja, \(x_{n}\) é o resto da divisão inteira de \(ax_{n-1}\) por m;
+  Recursivamente calcule os valores sucessivos \(x_{n}\), \(n\geq 1\),
+  usando: \[x_{n} = ax_{n-1} \, \text{mod}\, m,\] onde \(a\) e \(m\) são
+  inteiros positivos dados. Ou seja, \(x_{n}\) é o resto da divisão
+  inteira de \(ax_{n-1}\) por m;
 \item
-  A quantidade \(x_{n}/m\) é chamada um número pseudoaleatório, ou seja, é uma aproximação para o valor de uma variável aleatória uniforme.
+  A quantidade \(x_{n}/m\) é chamada um número pseudoaleatório, ou seja,
+  é uma aproximação para o valor de uma variável aleatória uniforme.
 \end{itemize}
 
-As constantes \(a\) e \(m\) a serem escolhidas devem satisfazer três critérios:
+As constantes \(a\) e \(m\) a serem escolhidas devem satisfazer três
+critérios:
 
 \begin{itemize}
 \item
-  Para qualquer semente inicial, a sequência resultante deve ter a ``aparência'' de uma sequência de variáveis aleatórias uniformes \((0,1)\) independentes.
+  Para qualquer semente inicial, a sequência resultante deve ter a
+  ``aparência'' de uma sequência de variáveis aleatórias uniformes
+  \((0,1)\) independentes.
 \item
-  Para qualquer semente inicial, o número de variáveis que podem ser geradas antes da repetição ocorrer deve ser grande.
+  Para qualquer semente inicial, o número de variáveis que podem ser
+  geradas antes da repetição ocorrer deve ser grande.
 \item
   Os valores podem ser calculados eficientemente em um computador.
 \end{itemize}
 
 \section{\texorpdfstring{A função \texttt{sample()}}{A função sample()}}\label{a-funuxe7uxe3o-sample}
 
-A função \texttt{sample()} em R é utilizada para gerar uma amostra aleatória a partir de um conjunto de dados ou uma sequência de números. Ela é extremamente flexível, permitindo que você defina o tamanho da amostra, se a amostragem é feita com ou sem reposição, e também se os elementos têm probabilidades diferentes de serem selecionados.
+A função \texttt{sample()} em R é utilizada para gerar uma amostra aleatória a
+partir de um conjunto de dados ou uma sequência de números. Ela é
+extremamente flexível, permitindo que você defina o tamanho da amostra,
+se a amostragem é feita com ou sem reposição, e também se os elementos
+têm probabilidades diferentes de serem selecionados.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4399,9 +5315,17 @@ A função \texttt{sample()} em R é utilizada para gerar uma amostra aleatória
 \item
   \textbf{size}: Tamanho da amostra.
 \item
-  \textbf{replace}: Indica se a amostragem é com reposição (\texttt{TRUE}) ou sem reposição (\texttt{FALSE}).
+  \textbf{replace}: Indica se a amostragem é com reposição (\texttt{TRUE}) ou sem
+  reposição (\texttt{FALSE}).
 \item
-  \textbf{prob}: Um vetor de probabilidades associadas a cada elemento em x.
+  \textbf{prob}: Um vetor de probabilidades associadas a cada elemento em
+
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi}.}
+  \setcounter{enumi}{23}
+  \tightlist
+  \item
+  \end{enumerate}
 \end{itemize}
 
 \textbf{Exemplo 1}: Amostragem Simples sem Reposição.
@@ -4443,39 +5367,61 @@ A função \texttt{sample()} em R é utilizada para gerar uma amostra aleatória
 \end{Highlighting}
 \end{Shaded}
 
-\section{Exercícios}\label{exercuxedcios-15}
+\section{Exercícios}\label{exercuxedcios-16}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  Crie um vetor com os números de 1 a 20. Utilize a função \texttt{sample()} para selecionar uma amostra aleatória de 5 elementos desse vetor. A amostragem deve ser feita sem reposição.
-\item
-  Suponha que você tem uma população representada pelos números de 1 a 10. Utilize a função \texttt{sample()} para selecionar uma amostra de 10 elementos com reposição.
-\item
-  Crie um vetor com as letras A, B, C, D, E. Aplique a função \texttt{sample()} para selecionar uma amostra de 3 letras, onde a probabilidade de cada letra ser selecionada é dada pelo vetor \texttt{c(0.1,\ 0.2,\ 0.3,\ 0.25,\ 0.15)}.
-\item
-  Crie um vetor com os números de 1 a 10. Utilize a função \texttt{sample()} para reordenar aleatoriamente os elementos desse vetor.
-\item
-  Crie um vetor com os nomes de cinco frutas: ``Maçã'', ``Banana'', ``Laranja'', ``Uva'', ``Pera''. Utilizando a função \texttt{sample()}, selecione aleatoriamente uma fruta desse vetor. Em seguida, selecione uma amostra de 3 frutas.
-\item
-  Você é responsável por realizar um teste de qualidade em uma fábrica. Há 1000 produtos fabricados, numerados de 1 a 1000. Selecione uma amostra aleatória de 50 produtos para inspeção, garantindo que não haja reposição na seleção.
-\item
-  Simule o lançamento de dois dados justos 10000 vezes e registre as somas das faces resultantes. Utilize a função \texttt{sample()} para realizar a simulação. Em seguida, crie um histograma das somas obtidas.
-\item
-  Você possui um vetor de 200 estudantes classificados em três turmas: A, B, e C. As turmas têm tamanhos diferentes (50, 100, e 50 alunos, respectivamente). Usando \texttt{sample()}, selecione uma amostra de 20 alunos, mantendo a proporção original das turmas.
-\item
-  Um cartão de Bingo contém 24 números aleatórios entre 1 e 75 (excluindo o número central ``free''). Crie 5 cartões de Bingo únicos usando a função \texttt{sample()}.
-\item
-  Em um estudo clínico, 30 pacientes devem ser randomizados em dois grupos: tratamento e controle. O grupo de tratamento deve conter 20 pacientes e o grupo de controle 10. Usando \texttt{sample()}, faça a randomização dos pacientes. Dica: use a função \texttt{setdiff()}.
-\end{enumerate}
+\textbf{1.} Crie um vetor com os números de 1 a 20. Utilize a função \texttt{sample()}
+para selecionar uma amostra aleatória de 5 elementos desse vetor. A
+amostragem deve ser feita sem reposição.
+
+\textbf{2.} Suponha que você tem uma população representada pelos números de 1
+a 10. Utilize a função \texttt{sample()} para selecionar uma amostra de 10
+elementos com reposição.
+
+\textbf{3.} Crie um vetor com as letras A, B, C, D, E. Aplique a função
+\texttt{sample()} para selecionar uma amostra de 3 letras, onde a
+probabilidade de cada letra ser selecionada é dada pelo vetor
+\texttt{c(0.1,\ 0.2,\ 0.3,\ 0.25,\ 0.15)}.
+
+\textbf{4.} Crie um vetor com os números de 1 a 10. Utilize a função \texttt{sample()}
+para reordenar aleatoriamente os elementos desse vetor.
+
+\textbf{5.} Crie um vetor com os nomes de cinco frutas: ``Maçã'', ``Banana'',
+``Laranja'', ``Uva'', ``Pera''. Utilizando a função \texttt{sample()}, selecione
+aleatoriamente uma fruta desse vetor. Em seguida, selecione uma
+amostra de 3 frutas.
+
+\textbf{6.} Você é responsável por realizar um teste de qualidade em uma
+fábrica. Há 1000 produtos fabricados, numerados de 1 a 1000.
+Selecione uma amostra aleatória de 50 produtos para inspeção,
+garantindo que não haja reposição na seleção.
+
+\textbf{7.} Simule o lançamento de dois dados justos 10000 vezes e registre as
+somas das faces resultantes. Utilize a função \texttt{sample()} para
+realizar a simulação. Em seguida, crie um histograma das somas
+obtidas.
+
+\textbf{8.} Você possui um vetor de 200 estudantes classificados em três turmas:
+A, B, e C. As turmas têm tamanhos diferentes (50, 100, e 50 alunos,
+respectivamente). Usando \texttt{sample()}, selecione uma amostra de 20
+alunos, mantendo a proporção original das turmas.
+
+\textbf{9.} Um cartão de Bingo contém 24 números aleatórios entre 1 e 75
+(excluindo o número central ``free''). Crie 5 cartões de Bingo únicos
+usando a função \texttt{sample()}.
+
+\textbf{10.} Em um estudo clínico, 30 pacientes devem ser randomizados em dois
+grupos: tratamento e controle. O grupo de tratamento deve conter 20
+pacientes e o grupo de controle 10. Usando \texttt{sample()}, faça a
+randomização dos pacientes. Dica: use a função \texttt{setdiff()}.
 
 \chapter{Distribuições univariadas no R}\label{distribuiuxe7uxf5es-univariadas-no-r}
 
-No R temos acesso as mais comuns distribuições univariadas. Todas as funções tem as seguintes formas:
+No R temos acesso as mais comuns distribuições univariadas. Todas as
+funções tem as seguintes formas:
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.6667}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.3611}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.6389}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 \textbf{Função}
@@ -4492,18 +5438,26 @@ No R temos acesso as mais comuns distribuições univariadas. Todas as funções
 \textbf{r}nome( \ldots) & geração de números aleatórios com a distribuição especificada \\
 \end{longtable}
 
-o \textbf{nome} é uma abreviatura do nome usual da distribuição (\texttt{binom}, \texttt{geom}, \texttt{pois}, \texttt{unif}, \texttt{exp}, \texttt{norm}, \ldots).
+o \textbf{nome} é uma abreviatura do nome usual da distribuição (\texttt{binom},
+\texttt{geom}, \texttt{pois}, \texttt{unif}, \texttt{exp}, \texttt{norm}, \ldots).
 
 \section{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica}
 
-A função de distribuição empírica é uma função de distribuição acumulada que descreve a proporção ou contagem de observações em um conjunto de dados que são menores ou iguais a um determinado valor. É uma ferramenta útil para visualizar a distribuição de dados observados e comparar distribuições amostrais.
+A função de distribuição empírica é uma função de distribuição acumulada
+que descreve a proporção ou contagem de observações em um conjunto de
+dados que são menores ou iguais a um determinado valor. É uma ferramenta
+útil para visualizar a distribuição de dados observados e comparar
+distribuições amostrais.
 
 \begin{itemize}
 \item
-  É uma função definida para todo número real \(x\) e que para cada \(x\) dá a proporção de elementos da amostra menores ou iguais a \(x\):
+  É uma função definida para todo número real \(x\) e que para cada \(x\)
+  dá a proporção de elementos da amostra menores ou iguais a \(x\):
   \[F_{n}(x) = \frac{\# \, \text{observações} \leq x}{n}\]
 \item
-  Para construir a função de distribuição empírica precisamos primeiramente ordenar os dados em ordem crescente: \((x_{(1)},\ldots,x_{(n)})\)
+  Para construir a função de distribuição empírica precisamos
+  primeiramente ordenar os dados em ordem crescente:
+  \((x_{(1)},\ldots,x_{(n)})\)
 \item
   A definição da função de distribuição empírica é
   \[F_{n}(x) = \begin{cases}
@@ -4517,21 +5471,30 @@ A função de distribuição empírica é uma função de distribuição acumula
   \begin{itemize}
   \tightlist
   \item
-    Inicie desenhando a função do valor mais à esquerda para o mais à direita.
+    Inicie desenhando a função do valor mais à esquerda para o mais
+    à direita.
   \item
-    Atribua o valor 0 para todos os valores menores que o menor valor da amostra, \(x_{(1)}\) .
+    Atribua o valor 0 para todos os valores menores que o menor
+    valor da amostra, \(x_{(1)}\) .
   \item
-    Atribua o valor \(\frac{1}{n}\) para o intervalo entre \(x_{(1)}\) e \(x_{(2)}\), o valor \(\frac{2}{n}\) para o intervalo entre \(x_{(2)}\) e \(x_{(3)}\), e assim por diante, até atingir todos os valores da amostra.
+    Atribua o valor \(\frac{1}{n}\) para o intervalo entre \(x_{(1)}\) e
+    \(x_{(2)}\), o valor \(\frac{2}{n}\) para o intervalo entre
+    \(x_{(2)}\) e \(x_{(3)}\), e assim por diante, até atingir todos os
+    valores da amostra.
   \item
-    Para valores iguais ou superiores ao maior valor da amostra, \(x_{(n)}\), a função tomará o valor 1.
+    Para valores iguais ou superiores ao maior valor da amostra,
+    \(x_{(n)}\), a função tomará o valor 1.
   \item
-    Se um valor na amostra se repetir \(k\) vezes, o salto da função para esse ponto será \(\frac{k}{n}\), em vez de \(\frac{1}{n}\).
+    Se um valor na amostra se repetir \(k\) vezes, o salto da função
+    para esse ponto será \(\frac{k}{n}\), em vez de \(\frac{1}{n}\).
   \end{itemize}
 \end{itemize}
 
 \subsection{\texorpdfstring{Função de distribuição empírica no R, função \texttt{ecdf()}}{Função de distribuição empírica no R, função ecdf()}}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-no-r-funuxe7uxe3o-ecdf}
 
-A função \texttt{ecdf()} no R é usada para calcular a função de distribuição empírica (Empirical Cumulative Distribution Function - ECDF) de um conjunto de dados.
+A função \texttt{ecdf()} no R é usada para calcular a função de distribuição
+empírica (Empirical Cumulative Distribution Function - ECDF) de um
+conjunto de dados.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4546,7 +5509,7 @@ A função \texttt{ecdf()} no R é usada para calcular a função de distribuiç
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-161-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-164-1.pdf}
 
 \section{Gerando uma variável aleatória com distribuição binomial}\label{gerando-uma-variuxe1vel-aleatuxf3ria-com-distribuiuxe7uxe3o-binomial}
 
@@ -4584,7 +5547,7 @@ Seja \(X\sim \text{Binomial}(n=20,p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-162-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-165-1.pdf}
 
 \subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o}
 
@@ -4609,7 +5572,7 @@ Seja \(X\sim \text{Binomial}(n=20,p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-163-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-166-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o}
 
@@ -4637,7 +5600,7 @@ Seja \(X\sim \text{Binomial}(n=20,p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-164-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-167-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o}
 
@@ -4660,7 +5623,7 @@ Seja \(X\sim \text{Binomial}(n=20,p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-165-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-168-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-1}
 
@@ -4683,7 +5646,7 @@ Seja \(X\sim \text{Binomial}(n=20,p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-166-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-169-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4692,9 +5655,10 @@ Seja \(X\sim \text{Binomial}(n=20,p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-166-2.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-169-2.pdf}
 
-\textbf{Cálculo de probabilidade}: Seja \(X \sim \text{Binomial}(n=10, p=0.5)\).
+\textbf{Cálculo de probabilidade}: Seja
+\(X \sim \text{Binomial}(n=10, p=0.5)\).
 
 \(P(X \leq 4) =\) \texttt{pbinom(4,10,0.5)} = 0.377
 
@@ -4708,11 +5672,9 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 
 \(P(X =4) \to\) \texttt{dpois(4,5)} = 0.1755
 
-\noindent
-\(P(X\leq 4) \to\) \texttt{ppois(4,5)} = 0.4405
+\noindent \(P(X\leq 4) \to\) \texttt{ppois(4,5)} = 0.4405
 
-\noindent
-\(P(X > 4)\to\) \texttt{ppois(4,5,lower.tail=FALSE)}= 0.5595
+\noindent \(P(X > 4)\to\) \texttt{ppois(4,5,lower.tail=FALSE)}= 0.5595
 
 \subsection{Função massa de probabilidade (teórica)}\label{funuxe7uxe3o-massa-de-probabilidade-teuxf3rica-1}
 
@@ -4761,7 +5723,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-167-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-170-1.pdf}
 
 \subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o-1}
 
@@ -4794,7 +5756,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-168-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-171-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-1}
 
@@ -4830,7 +5792,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-169-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-172-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-1}
 
@@ -4850,7 +5812,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-170-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-173-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-2}
 
@@ -4871,7 +5833,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-171-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-174-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4886,7 +5848,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-171-2.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-174-2.pdf}
 
 \textbf{Cálculo de probabilidades}: Seja \(X\sim\text{Poisson}(\lambda=5)\).
 
@@ -4904,7 +5866,8 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \item
   \(P(X\leq 0.5) \to\) \texttt{punif(0.5,\ min\ =\ 0,\ max\ =\ 1)} = 0.5
 \item
-  \(P(X > 0.5) \to\) \texttt{punif(0.5,\ min\ =\ 0,\ max\ =\ 1,\ lower.tail\ =\ FALSE)} = 0.5
+  \(P(X > 0.5) \to\) \texttt{punif(0.5,\ min\ =\ 0,\ max\ =\ 1,\ lower.tail\ =\ FALSE)}
+  = 0.5
 \end{itemize}
 
 \subsection{Função densidade de probabilidade}\label{funuxe7uxe3o-densidade-de-probabilidade}
@@ -4925,7 +5888,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-172-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-175-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o}
 
@@ -4950,7 +5913,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-173-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-176-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-2}
 
@@ -4981,7 +5944,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-174-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-177-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-2}
 
@@ -5001,7 +5964,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-175-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-178-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-3}
 
@@ -5026,7 +5989,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-176-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-179-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5063,7 +6026,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-177-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-180-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-1}
 
@@ -5088,7 +6051,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-178-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-181-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-3}
 
@@ -5119,7 +6082,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-179-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-182-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-3}
 
@@ -5139,7 +6102,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-180-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-183-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-4}
 
@@ -5164,7 +6127,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-181-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-184-1.pdf}
 
 \section{Gerando uma variável aleatória com distribuição Normal}\label{gerando-uma-variuxe1vel-aleatuxf3ria-com-distribuiuxe7uxe3o-normal}
 
@@ -5194,7 +6157,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-182-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-185-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-2}
 
@@ -5219,7 +6182,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-183-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-186-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-4}
 
@@ -5250,7 +6213,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-184-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-187-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-4}
 
@@ -5270,7 +6233,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-185-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-188-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-5}
 
@@ -5295,121 +6258,260 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-186-1.pdf}
+\includegraphics{meuLivro2_files/figure-latex/unnamed-chunk-189-1.pdf}
 
-\section{Exercícios}\label{exercuxedcios-16}
+\section{Exercícios}\label{exercuxedcios-17}
 
-\textbf{1.} Usando o R e fixando a semente em 123, simule 1000 lançamentos de uma moeda com probabilidade de 0.5 de sair cara. Conte o número de caras em cada lançamento e plote um histograma dos resultados.
+\textbf{1.} Usando o R e fixando a semente em 123, simule 1000 lançamentos de
+uma moeda com probabilidade de 0.5 de sair cara. Conte o número de caras
+em cada lançamento e plote um histograma dos resultados.
 
-\textbf{2.} Usando o R e fixando a semente em 123, gere uma amostra aleatória de 5000 observações de uma variável aleatória binomial com parâmetros \(n = 10\) e \(p = 0.3\). Calcule a média e a variância das observações geradas.
+\textbf{2.} Usando o R e fixando a semente em 123, gere uma amostra aleatória
+de 5000 observações de uma variável aleatória binomial com parâmetros
+\(n = 10\) e \(p = 0.3\). Calcule a média e a variância das observações
+geradas.
 
-\textbf{3.} Usando o R e fixando a semente em 123, gere uma amostra aleatória de 2300 observações de uma variável aleatória de Poisson com parâmetro \(\lambda = 4\). Calcule a média e o desvio padrão das observações geradas.
+\textbf{3.} Usando o R e fixando a semente em 123, gere uma amostra aleatória
+de 2300 observações de uma variável aleatória de Poisson com parâmetro
+\(\lambda = 4\). Calcule a média e o desvio padrão das observações
+geradas.
 
-\textbf{4.} Em um processo de qualidade, considere uma variável aleatória \(X\) que representa o número de produtos defeituosos em um lote de 50 produtos, onde a probabilidade de um produto ser defeituoso é 0.1. Usando o R e fixando a semente em 123 gere uma amostra aleatória de 10000 observações de \(X\). Conte a frequência de lotes com exatamente 5 produtos defeituosos. Calcule a proporção de lotes com exatamente 5 produtos defeituosos e compare o valor obtido com a probabilidade \(P(X=5)\), onde \(X \sim \text{Binomial}(50, 0.1)\).
+\textbf{4.} Em um processo de qualidade, considere uma variável aleatória \(X\)
+que representa o número de produtos defeituosos em um lote de 50
+produtos, onde a probabilidade de um produto ser defeituoso é 0.1.
+Usando o R e fixando a semente em 123 gere uma amostra aleatória de
+10000 observações de \(X\). Conte a frequência de lotes com exatamente 5
+produtos defeituosos. Calcule a proporção de lotes com exatamente 5
+produtos defeituosos e compare o valor obtido com a probabilidade
+\(P(X=5)\), onde \(X \sim \text{Binomial}(50, 0.1)\).
 
-\textbf{5.} Usando o R e fixando a semente em 123, gere uma amostra aleatória de 5000 observações de uma variável aleatória \(X\) binomial com parâmetros \(n = 20\) e \(p = 0.7\).
+\textbf{5.} Usando o R e fixando a semente em 123, gere uma amostra aleatória
+de 5000 observações de uma variável aleatória \(X\) binomial com
+parâmetros \(n = 20\) e \(p = 0.7\).
 
-\textbf{(a)} Faça um histograma de frequência relativa associado aos valores amostrais. Sobreponha no gráfico a distribuição de probabilidade de \(X\).
+\textbf{(a)} Faça um histograma de frequência relativa associado aos valores
+amostrais. Sobreponha no gráfico a distribuição de probabilidade de \(X\).
 
-\textbf{(b)} Use a função de distribuição empírica para estimar \(P(X\leq 10)\) e compare com o valor teórico.
+\textbf{(b)} Use a função de distribuição empírica para estimar \(P(X\leq 10)\)
+e compare com o valor teórico.
 
-\textbf{6.} Usando o R e fixando a semente em 543, gere uma amostra aleatória de 2400 observações de uma variável aleatória \(Y\) de Poisson com parâmetro \(\lambda = 6\).
+\textbf{6.} Usando o R e fixando a semente em 543, gere uma amostra aleatória
+de 2400 observações de uma variável aleatória \(Y\) de Poisson com
+parâmetro \(\lambda = 6\).
 
-\textbf{(a)} Faça um histograma de frequência relativa associado aos valores amostrais. Sobreponha no gráfico a distribuição de probabilidade de \(X\).
+\textbf{(a)} Faça um histograma de frequência relativa associado aos valores
+amostrais. Sobreponha no gráfico a distribuição de probabilidade de \(X\).
 
-\textbf{(b)} Use a função de distribuição empírica para estimar \(P(Y > 5)\) e compare com o valor teórico.
+\textbf{(b)} Use a função de distribuição empírica para estimar \(P(Y > 5)\) e
+compare com o valor teórico.
 
-\textbf{7.} Usando o R e fixando a semente em 345, gere uma amostra aleatória de 3450 observações de uma variável aleatória \(Z\) uniforme no intervalo \([0, 1]\). Use a função de distribuição empírica para estimar \(P(Z \leq 0.5)\) e compare com o valor teórico.
+\textbf{7.} Usando o R e fixando a semente em 345, gere uma amostra aleatória
+de 3450 observações de uma variável aleatória \(Z\) uniforme no intervalo
+\([0, 1]\). Use a função de distribuição empírica para estimar
+\(P(Z \leq 0.5)\) e compare com o valor teórico.
 
-\textbf{8.} Usando o R e fixando a semente em 123, gere uma amostra aleatória de 3467 observações de uma variável aleatória \(W\) normal com média \(\mu = 0\) e desvio padrão \(\sigma = 1\).
+\textbf{8.} Usando o R e fixando a semente em 123, gere uma amostra aleatória
+de 3467 observações de uma variável aleatória \(W\) normal com média
+\(\mu = 0\) e desvio padrão \(\sigma = 1\).
 
-\textbf{(a)} Faça um histograma de frequência relativa associado aos valores amostrais. Sobreponha no gráfico a distribuição de \(X\).
+\textbf{(a)} Faça um histograma de frequência relativa associado aos valores
+amostrais. Sobreponha no gráfico a distribuição de \(X\).
 
-\textbf{(b)} Use a função de distribuição empírica para estimar \(P(W > 1)\) e compare com o valor teórico.
+\textbf{(b)} Use a função de distribuição empírica para estimar \(P(W > 1)\) e
+compare com o valor teórico.
 
-\textbf{9.} Usando o R e fixando a semente em 123, gere uma amostra aleatória de 1234 observações de uma variável aleatória \(V\) exponencial com parâmetro \(\lambda = 0.5\).
+\textbf{9.} Usando o R e fixando a semente em 123, gere uma amostra aleatória
+de 1234 observações de uma variável aleatória \(V\) exponencial com
+parâmetro \(\lambda = 0.5\).
 
-\textbf{(a)} Faça um histograma de frequência relativa associado aos valores amostrais. Sobreponha no gráfico a distribuição de probabilidade de \(X\).
+\textbf{(a)} Faça um histograma de frequência relativa associado aos valores
+amostrais. Sobreponha no gráfico a distribuição de probabilidade de \(X\).
 
-\textbf{(b)} Use a função de distribuição empírica para estimar \(P(V > 2)\) e compare com o valor teórico.
+\textbf{(b)} Use a função de distribuição empírica para estimar \(P(V > 2)\) e
+compare com o valor teórico.
 
-\textbf{10.} O número de acertos num alvo em 30 tentativas onde a probabilidade de acerto é 0.4, é modelado por uma variável aleatória \(X\) com distruibuição Binomial de parâmetros \(n=30\) e \(p=0.4\). Usando o R e fixando a semente em 123, gere uma amostra de dimensão \(n=700\) dessa variável. Para essa amostra:
+\textbf{10.} O número de acertos num alvo em 30 tentativas onde a
+probabilidade de acerto é 0.4, é modelado por uma variável aleatória \(X\)
+com distruibuição Binomial de parâmetros \(n=30\) e \(p=0.4\). Usando o R e
+fixando a semente em 123, gere uma amostra de dimensão \(n=700\) dessa
+variável. Para essa amostra:
 
-\textbf{(a)} Faça um histograma de frequência relativa associado aos valores amostrais. Sobreponha no gráfico a distribuição de probabilidade de \(X\).
+\textbf{(a)} Faça um histograma de frequência relativa associado aos valores
+amostrais. Sobreponha no gráfico a distribuição de probabilidade de \(X\).
 
-\textbf{(b)} Calcule a função de distribuição empírica e com base nessa função estime a probabilidade do número de acertos no alvo, em 30 tentativas, ser maior que 15. Calcule ainda o valor teórico dessa probabilidade.
+\textbf{(b)} Calcule a função de distribuição empírica e com base nessa
+função estime a probabilidade do número de acertos no alvo, em 30
+tentativas, ser maior que 15. Calcule ainda o valor teórico dessa
+probabilidade.
 
-\textbf{11.} Usando o R e fixando a semente em 123, gere amostras de tamanho crescente \(n = 100, 1000, 10000, 100000\) de uma variável aleatória \(X\) com distribuição de Poisson com parâmetro \(\lambda = 3\). Para cada tamanho de amostra, calcule a média amostral e compare-a com o valor esperado teórico. Observe e comente a convergência das médias amostrais.
+\textbf{11.} Usando o R e fixando a semente em 123, gere amostras de tamanho
+crescente \(n = 100, 1000, 10000, 100000\) de uma variável aleatória \(X\)
+com distribuição de Poisson com parâmetro \(\lambda = 3\). Para cada
+tamanho de amostra, calcule a média amostral e compare-a com o valor
+esperado teórico. Observe e comente a convergência das médias amostrais.
 
-\textbf{12.} Usando o R e fixando a semente em 123, gere amostras de tamanho crescente \(n = 100, 1000, 10000, 100000\) de uma variável aleatória W com distribuição uniforme no intervalo \([0, 1]\). Para cada tamanho de amostra, calcule a média amostral e compare-a com o valor esperado teórico. Observe e comente a convergência das médias amostrais.
+\textbf{12.} Usando o R e fixando a semente em 123, gere amostras de tamanho
+crescente \(n = 100, 1000, 10000, 100000\) de uma variável aleatória W com
+distribuição uniforme no intervalo \([0, 1]\). Para cada tamanho de
+amostra, calcule a média amostral e compare-a com o valor esperado
+teórico. Observe e comente a convergência das médias amostrais.
 
-\textbf{13.} Um grupo de estudantes de Estatística está realizando uma pesquisa para avaliar o grau de satisfação dos alunos com um novo curso oferecido pela universidade. Cada estudante responde a uma pergunta onde pode indicar se está satisfeito ou insatisfeito com o curso. A probabilidade de um estudante estar satisfeito é de \(0.75\).
+\textbf{13.} Um grupo de estudantes de Estatística está realizando uma
+pesquisa para avaliar o grau de satisfação dos alunos com um novo curso
+oferecido pela universidade. Cada estudante responde a uma pergunta onde
+pode indicar se está satisfeito ou insatisfeito com o curso. A
+probabilidade de um estudante estar satisfeito é de \(0.75\).
 
 \begin{itemize}
 \tightlist
 \item
-  Usando o R e fixando a semente em 42, simule amostras de tamanho crescente \(n = 100, 500, 1000, 5000, 10000\) de uma variável aleatória \(X\) com distribuição binomial, onde \(X\) representa o número de estudantes satisfeitos. Para cada tamanho de amostra, calcule a proporção de estudantes satisfeitos e compare-a com a probabilidade teórica de satisfação (0.75).
+  Usando o R e fixando a semente em 42, simule amostras de tamanho
+  crescente \(n = 100, 500, 1000, 5000, 10000\) de uma variável
+  aleatória \(X\) com distribuição binomial, onde \(X\) representa o
+  número de estudantes satisfeitos. Para cada tamanho de amostra,
+  calcule a proporção de estudantes satisfeitos e compare-a com a
+  probabilidade teórica de satisfação (0.75).
 \end{itemize}
 
-\textbf{14.} Usando o R e fixando a semente em 1058, gere 9060 amostras de dimensão 9 de uma população, \(X\sim \text{Binomial}(41,0.81)\). Calcule a média de cada uma dessas amostras, obtendo uma amostra de médias. Calcule ainda o valor esperado da distribuição teórica de \(X\) e compare com a média da amostra de médias.
+\textbf{14.} Usando o R e fixando a semente em 1058, gere 9060 amostras de
+dimensão 9 de uma população, \(X\sim \text{Binomial}(41,0.81)\). Calcule a
+média de cada uma dessas amostras, obtendo uma amostra de médias.
+Calcule ainda o valor esperado da distribuição teórica de \(X\) e compare
+com a média da amostra de médias.
 
-\textbf{15.} Em um hospital, o tempo de atendimento de pacientes segue uma distribuição exponencial com média de 30 minutos. Um pesquisador deseja estimar o tempo médio de atendimento coletando amostras de diferentes tamanhos.
+\textbf{15.} Em um hospital, o tempo de atendimento de pacientes segue uma
+distribuição exponencial com média de 30 minutos. Um pesquisador deseja
+estimar o tempo médio de atendimento coletando amostras de diferentes
+tamanhos.
 
 \begin{itemize}
 \tightlist
 \item
-  Usando o R e fixando a semente em 456, simule 1000 amostras de tamanho 50, 100 e 1000 do tempo de atendimento. Para cada tamanho de amostra, calcule a média de cada amostra e plote o histograma das médias amostrais para cada tamanho. Compare essas distribuições com a distribuição normal com média \(E(X)\) e desvio padrão \(\sqrt{V(X)n}\) e comente sobre a aplicação do Teorema do Limite Central.
+  Usando o R e fixando a semente em 456, simule 1000 amostras de
+  tamanho 50, 100 e 1000 do tempo de atendimento. Para cada tamanho de
+  amostra, calcule a média de cada amostra e plote o histograma das
+  médias amostrais para cada tamanho. Compare essas distribuições com
+  a distribuição normal com média \(E(X)\) e desvio padrão
+  \(\sqrt{V(X)n}\) e comente sobre a aplicação do Teorema do Limite
+  Central.
 \end{itemize}
 
-\textbf{16.} O tempo de espera (em minutos) para o atendimento no setor de informações de um banco é modelado por uma variável aleatória X com distribuição \text{Uniforme}(\(a=5, b=20\)). Usando o R e fixando a semente em 1430, gere 8000 amostras de dimensão \(n=100\) dessa variável. Para essas amostras:
+\textbf{16.} O tempo de espera (em minutos) para o atendimento no setor de
+informações de um banco é modelado por uma variável aleatória X com
+distribuição \text{Uniforme}(\(a=5, b=20\)). Usando o R e fixando a
+semente em 1430, gere 8000 amostras de dimensão \(n=100\) dessa variável.
+Para essas amostras:
 
-\textbf{(a)} Calcule a soma de cada uma das amostras obtendo assim valores da distribuição da soma \(S_{n} = \sum_{i=1}^{n}X_{n}\).
+\textbf{(a)} Calcule a soma de cada uma das amostras obtendo assim valores da
+distribuição da soma \(S_{n} = \sum_{i=1}^{n}X_{n}\).
 
-\textbf{(b)} Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da soma e sobreponha no gráfico uma curva com distribuição normal de valor esperado \(nE(X)\) e desvio padrão \(\sqrt{V(X)n}\).
+\textbf{(b)} Faça um histograma de frequência relativa associado aos valores
+obtidos da distribuição da soma e sobreponha no gráfico uma curva com
+distribuição normal de valor esperado \(nE(X)\) e desvio padrão
+\(\sqrt{V(X)n}\).
 
-\textbf{(c)} Calcule a média de cada uma das amostras obtendo assim valores da distribuição da média \(\bar{X_{n}}\).
+\textbf{(c)} Calcule a média de cada uma das amostras obtendo assim valores
+da distribuição da média \(\bar{X_{n}}\).
 
-\textbf{(d)} Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da média \(\bar{X_{n}}\). Sobreponha no gráfico uma curva com distribuição normal com valor esperado \(E(X)\) e desvio padrão \(\sqrt{V(x)/n}\).
+\textbf{(d)} Faça um histograma de frequência relativa associado aos valores
+obtidos da distribuição da média \(\bar{X_{n}}\). Sobreponha no gráfico
+uma curva com distribuição normal com valor esperado \(E(X)\) e desvio
+padrão \(\sqrt{V(x)/n}\).
 
-\textbf{17.} O tempo de atendimento (em minutos), de doentes graves num determinado hospital, é modelado por uma variável aleatória \(X\) com distribuição Exponencial(\(\lambda=0.21\)). Usando o R e fixando a semente em 1580, gere 1234 amostras de dimensão \(n=50\) dessa variável. Para essas amostras:
+\textbf{17.} O tempo de atendimento (em minutos), de doentes graves num
+determinado hospital, é modelado por uma variável aleatória \(X\) com
+distribuição Exponencial(\(\lambda=0.21\)). Usando o R e fixando a semente
+em 1580, gere 1234 amostras de dimensão \(n=50\) dessa variável. Para
+essas amostras:
 
-\textbf{(a)} Calcule a soma de cada uma das amostras obtendo assim valores da distribuição da soma \(S_{n} = \sum_{i=1}^{n}X_{n}\).
+\textbf{(a)} Calcule a soma de cada uma das amostras obtendo assim valores da
+distribuição da soma \(S_{n} = \sum_{i=1}^{n}X_{n}\).
 
-\textbf{(b)} Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da soma e sobreponha no gráfico uma curva com distribuição normal de valor esperado \(nE(X)\) e desvio padrão \(\sqrt{V(X)n}\).
+\textbf{(b)} Faça um histograma de frequência relativa associado aos valores
+obtidos da distribuição da soma e sobreponha no gráfico uma curva com
+distribuição normal de valor esperado \(nE(X)\) e desvio padrão
+\(\sqrt{V(X)n}\).
 
-\textbf{(c)} Calcule agora a soma padronizada \[\frac{S_{n}-E(S_{n})}{\sqrt{V(S_{n})}}\] e faça um histograma de frequência relativa associado aos valores obtidos da distribuição da soma padronizada. Sobreponha no gráfico uma curva com distribuição normal de valor esperado 0 e desvio padrão 1.
+\textbf{(c)} Calcule agora a soma padronizada
+\[\frac{S_{n}-E(S_{n})}{\sqrt{V(S_{n})}}\] e faça um histograma de
+frequência relativa associado aos valores obtidos da distribuição da
+soma padronizada. Sobreponha no gráfico uma curva com distribuição
+normal de valor esperado 0 e desvio padrão 1.
 
-\textbf{(d)} Calcule a média de cada uma das amostras obtendo assim valores da distribuição da média \(\bar{X_{n}}\).
+\textbf{(d)} Calcule a média de cada uma das amostras obtendo assim valores
+da distribuição da média \(\bar{X_{n}}\).
 
-\textbf{(e)} Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da média \(\bar{X_{n}}\). Sobreponha no gráfico uma curva com distribuição normal com valor esperado \(E(X)\) e desvio padrão \(\sqrt{V(x)/n}\).
+\textbf{(e)} Faça um histograma de frequência relativa associado aos valores
+obtidos da distribuição da média \(\bar{X_{n}}\). Sobreponha no gráfico
+uma curva com distribuição normal com valor esperado \(E(X)\) e desvio
+padrão \(\sqrt{V(x)/n}\).
 
-\textbf{18.} A altura (em centímetros) dos alunos de uma escola é modelada por uma variável aleatória X com distribuição \text{Normal}(\(\mu=170, \sigma=10\)). Usando o R e fixando a semente em 678, gere 9876 amostras de dimensão \(n=80\) dessa variável. Para essas amostras:
+\textbf{18.} A altura (em centímetros) dos alunos de uma escola é modelada
+por uma variável aleatória X com distribuição
+\text{Normal}(\(\mu=170, \sigma=10\)). Usando o R e fixando a semente em
+678, gere 9876 amostras de dimensão \(n=80\) dessa variável. Para essas
+amostras:
 
-\textbf{(a)} Calcule a soma de cada uma das amostras obtendo assim valores da distribuição da soma \(S_{n} = \sum_{i=1}^{n}X_{n}\).
+\textbf{(a)} Calcule a soma de cada uma das amostras obtendo assim valores da
+distribuição da soma \(S_{n} = \sum_{i=1}^{n}X_{n}\).
 
-\textbf{(b)} Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da soma e sobreponha no gráfico uma curva com distribuição normal de valor esperado \(nE(X)\) e desvio padrão \(\sqrt{V(X)n}\).
+\textbf{(b)} Faça um histograma de frequência relativa associado aos valores
+obtidos da distribuição da soma e sobreponha no gráfico uma curva com
+distribuição normal de valor esperado \(nE(X)\) e desvio padrão
+\(\sqrt{V(X)n}\).
 
-\textbf{(c)} Calcule agora a soma padronizada \[\frac{S_{n}-E(S_{n})}{\sqrt{V(S_{n})}}\] e faça um histograma de frequência relativa associado aos valores obtidos da distribuição da soma padronizada. Sobreponha no gráfico uma curva com distribuição normal de valor esperado 0 e desvio padrão 1.
+\textbf{(c)} Calcule agora a soma padronizada
+\[\frac{S_{n}-E(S_{n})}{\sqrt{V(S_{n})}}\] e faça um histograma de
+frequência relativa associado aos valores obtidos da distribuição da
+soma padronizada. Sobreponha no gráfico uma curva com distribuição
+normal de valor esperado 0 e desvio padrão 1.
 
-\textbf{(d)} Calcule a média de cada uma das amostras obtendo assim valores da distribuição da média \(\bar{X_{n}}\).
+\textbf{(d)} Calcule a média de cada uma das amostras obtendo assim valores
+da distribuição da média \(\bar{X_{n}}\).
 
-\textbf{(e)} Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da média \(\bar{X_{n}}\). Sobreponha no gráfico uma curva com distribuição normal com valor esperado \(E(X)\) e desvio padrão \(\sqrt{V(x)/n}\).
+\textbf{(e)} Faça um histograma de frequência relativa associado aos valores
+obtidos da distribuição da média \(\bar{X_{n}}\). Sobreponha no gráfico
+uma curva com distribuição normal com valor esperado \(E(X)\) e desvio
+padrão \(\sqrt{V(x)/n}\).
 
-\textbf{(f)} Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da média padronizada \[\frac{\bar{X}_{n}-E(\bar{X_{n}})}{\sqrt{V(\bar{X_{n}})}}\] e sobreponha no gráfico com uma curva com distribuição Normal com valor esperado 0 e desvio padrão 1.
+\textbf{(f)} Faça um histograma de frequência relativa associado aos valores
+obtidos da distribuição da média padronizada
+\[\frac{\bar{X}_{n}-E(\bar{X_{n}})}{\sqrt{V(\bar{X_{n}})}}\] e
+sobreponha no gráfico com uma curva com distribuição Normal com valor
+esperado 0 e desvio padrão 1.
 
-\textbf{19.} A chegada de clientes em uma loja durante 1 hora, assumindo uma taxa média de 20 clientes por hora pode ser modelada por uma variável aleatória \(X\) com distribuição de Poisson(\(\lambda=20\)). Usando o R e fixando a semente em 1222, gere 8050 amostras de dimensão 30 de \(X\).
+\textbf{19.} A chegada de clientes em uma loja durante 1 hora, assumindo uma
+taxa média de 20 clientes por hora pode ser modelada por uma variável
+aleatória \(X\) com distribuição de Poisson(\(\lambda=20\)). Usando o R e
+fixando a semente em 1222, gere 8050 amostras de dimensão 30 de \(X\).
 
-\textbf{(a)} Calcule a soma de cada uma das amostras obtendo assim valores da distribuição da soma \(S_{n} = \sum_{i=1}^{n}X_{n}\).
+\textbf{(a)} Calcule a soma de cada uma das amostras obtendo assim valores da
+distribuição da soma \(S_{n} = \sum_{i=1}^{n}X_{n}\).
 
-\textbf{(b)} Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da soma e sobreponha no gráfico uma curva com distribuição normal de valor esperado \(nE(X)\) e desvio padrão \(\sqrt{V(X)n}\).
+\textbf{(b)} Faça um histograma de frequência relativa associado aos valores
+obtidos da distribuição da soma e sobreponha no gráfico uma curva com
+distribuição normal de valor esperado \(nE(X)\) e desvio padrão
+\(\sqrt{V(X)n}\).
 
-\textbf{(c)} Calcule agora a soma padronizada \[\frac{S_{n}-E(S_{n})}{\sqrt{V(S_{n})}}\] e faça um histograma de frequência relativa associado aos valores obtidos da distribuição da soma padronizada. Sobreponha no gráfico uma curva com distribuição normal de valor esperado 0 e desvio padrão 1.
+\textbf{(c)} Calcule agora a soma padronizada
+\[\frac{S_{n}-E(S_{n})}{\sqrt{V(S_{n})}}\] e faça um histograma de
+frequência relativa associado aos valores obtidos da distribuição da
+soma padronizada. Sobreponha no gráfico uma curva com distribuição
+normal de valor esperado 0 e desvio padrão 1.
 
-\textbf{(d)} Calcule a média de cada uma das amostras obtendo assim valores da distribuição da média \(\bar{X_{n}}\).
+\textbf{(d)} Calcule a média de cada uma das amostras obtendo assim valores
+da distribuição da média \(\bar{X_{n}}\).
 
-\textbf{(e)} Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da média \(\bar{X_{n}}\). Sobreponha no gráfico uma curva com distribuição normal com valor esperado \(E(X)\) e desvio padrão \(\sqrt{V(x)/n}\).
+\textbf{(e)} Faça um histograma de frequência relativa associado aos valores
+obtidos da distribuição da média \(\bar{X_{n}}\). Sobreponha no gráfico
+uma curva com distribuição normal com valor esperado \(E(X)\) e desvio
+padrão \(\sqrt{V(x)/n}\).
 
-\textbf{(f)} Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da média padronizada \[\frac{\bar{X}_{n}-E(\bar{X_{n}})}{\sqrt{V(\bar{X_{n}})}}\] e sobreponha no gráfico com uma curva com distribuição Normal com valor esperado 0 e desvio padrão 1.
+\textbf{(f)} Faça um histograma de frequência relativa associado aos valores
+obtidos da distribuição da média padronizada
+\[\frac{\bar{X}_{n}-E(\bar{X_{n}})}{\sqrt{V(\bar{X_{n}})}}\] e
+sobreponha no gráfico com uma curva com distribuição Normal com valor
+esperado 0 e desvio padrão 1.
 
 \chapter{Relatórios}\label{relatuxf3rios}
 
@@ -5433,7 +6535,8 @@ Seja \(X\sim \text{Normal}(0,1)\).
 
 \subsection{Selecionando colunas}\label{selecionando-colunas-1}
 
-\textbf{1.} Teste aplicar a função \texttt{glimpse()} do pacote `\texttt{dplyr} à base \texttt{sw}. O que ela faz?
+\textbf{1.} Teste aplicar a função \texttt{glimpse()} do pacote `\texttt{dplyr} à base
+\texttt{sw}. O que ela faz?
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5460,9 +6563,11 @@ Seja \(X\sim \text{Normal}(0,1)\).
 ## $ starships  <list> <"X-wing", "Imperial shuttle">, <>, <>, "TIE Advanced x1",~
 \end{verbatim}
 
-Mostra os nomes das variáveis, os tipos de dados e os primeiros valores de cada coluna em uma única visualização, tudo de forma horizontal.
+Mostra os nomes das variáveis, os tipos de dados e os primeiros valores
+de cada coluna em uma única visualização, tudo de forma horizontal.
 
-\textbf{2.} Crie uma tabela com apenas as colunas \texttt{name}, \texttt{gender}, e \texttt{films}. Salve em um objeto chamado \texttt{sw\_simples}.
+\textbf{2.} Crie uma tabela com apenas as colunas \texttt{name}, \texttt{gender}, e
+\texttt{films}. Salve em um objeto chamado \texttt{sw\_simples}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5488,7 +6593,8 @@ Mostra os nomes das variáveis, os tipos de dados e os primeiros valores de cada
 ## # i 77 more rows
 \end{verbatim}
 
-\textbf{3.} Selecione apenas as colunas \texttt{hair\_color}, \texttt{skin\_color} e \texttt{eye\_color} usando a função auxiliar \texttt{contains()}.
+\textbf{3.} Selecione apenas as colunas \texttt{hair\_color}, \texttt{skin\_color} e
+\texttt{eye\_color} usando a função auxiliar \texttt{contains()}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5513,7 +6619,10 @@ Mostra os nomes das variáveis, os tipos de dados e os primeiros valores de cada
 ## # i 77 more rows
 \end{verbatim}
 
-\textbf{4.} Usando a função \texttt{select()} (e suas funções auxiliares), escreva códigos que retornem a base \texttt{sw} sem as colunas \texttt{hair\_color}, \texttt{skin\_color} e \texttt{eye\_color}. Escreva todas as soluções diferentes que você conseguir pensar.
+\textbf{4.} Usando a função \texttt{select()} (e suas funções auxiliares), escreva
+códigos que retornem a base \texttt{sw} sem as colunas \texttt{hair\_color},
+\texttt{skin\_color} e \texttt{eye\_color}. Escreva todas as soluções diferentes que
+você conseguir pensar.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5529,7 +6638,8 @@ Mostra os nomes das variáveis, os tipos de dados e os primeiros valores de cada
 
 \subsection{Ordenando a base}\label{ordenando-a-base-1}
 
-\textbf{1.} Ordene \texttt{mass} em ordem crescente e \texttt{birth\_year} em ordem decrescente e salve em um objeto chamado \texttt{sw\_ordenados}.
+\textbf{1.} Ordene \texttt{mass} em ordem crescente e \texttt{birth\_year} em ordem
+decrescente e salve em um objeto chamado \texttt{sw\_ordenados}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5557,7 +6667,8 @@ Mostra os nomes das variáveis, os tipos de dados e os primeiros valores de cada
 ## #   vehicles <list>, starships <list>
 \end{verbatim}
 
-\textbf{2.} Selecione apenas as colunas \texttt{name} e \texttt{birth\_year} e então ordene de forma decrescente pelo \texttt{birth\_year}.
+\textbf{2.} Selecione apenas as colunas \texttt{name} e \texttt{birth\_year} e então ordene
+de forma decrescente pelo \texttt{birth\_year}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5579,7 +6690,8 @@ Mostra os nomes das variáveis, os tipos de dados e os primeiros valores de cada
 
 Utilize a base \texttt{sw} nos exercícios a seguir.
 
-\textbf{1.} Crie um objeto chamado \texttt{humanos} apenas com personagens que sejam humanos.
+\textbf{1.} Crie um objeto chamado \texttt{humanos} apenas com personagens que sejam
+humanos.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5591,7 +6703,8 @@ Utilize a base \texttt{sw} nos exercícios a seguir.
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{2.} Crie um objeto chamado \texttt{altos\_fortes} com personagens que tenham mais de 200 cm de altura e peso maior que 100 kg.
+\textbf{2.} Crie um objeto chamado \texttt{altos\_fortes} com personagens que tenham
+mais de 200 cm de altura e peso maior que 100 kg.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5601,7 +6714,8 @@ Utilize a base \texttt{sw} nos exercícios a seguir.
 
 \textbf{3.} Retorne tabelas (\texttt{tibbles}) apenas com:
 
-\textbf{a.} Personagens humanos que nasceram antes de 100 anos antes da batalha de Yavin (\texttt{birth\_year\ \textless{}\ 100}).
+\textbf{a.} Personagens humanos que nasceram antes de 100 anos antes da
+batalha de Yavin (\texttt{birth\_year\ \textless{}\ 100}).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5617,7 +6731,9 @@ Utilize a base \texttt{sw} nos exercícios a seguir.
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{c.} Personagens com massa maior que 100 kg, ordenados de forma decrescente por altura, mostrando apenas as colunas \texttt{name}, \texttt{mass} e \texttt{height}.
+\textbf{c.} Personagens com massa maior que 100 kg, ordenados de forma
+decrescente por altura, mostrando apenas as colunas \texttt{name}, \texttt{mass} e
+\texttt{height}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5631,7 +6747,8 @@ Utilize a base \texttt{sw} nos exercícios a seguir.
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{d.} Personagens que sejam ``Humano'' ou ``Droid'', e tenham uma altura maior que 170 cm.
+\textbf{d.} Personagens que sejam ``Humano'' ou ``Droid'', e tenham uma altura
+maior que 170 cm.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5643,7 +6760,8 @@ Utilize a base \texttt{sw} nos exercícios a seguir.
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{e.} Personagens que não possuem informação tanto de altura quanto de massa, ou seja, possuem NA em ambas as colunas.
+\textbf{e.} Personagens que não possuem informação tanto de altura quanto de
+massa, ou seja, possuem NA em ambas as colunas.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5653,7 +6771,10 @@ Utilize a base \texttt{sw} nos exercícios a seguir.
 
 \subsection{Modificando e criando novas colunas}\label{modificando-e-criando-novas-colunas-1}
 
-\textbf{1.} Crie uma coluna chamada \texttt{dif\_peso\_altura} (diferença entre altura e peso) e salve a nova tabela em um objeto chamado \texttt{sw\_dif}. Em seguida, filtre apenas os personagens que têm altura maior que o peso e ordene a tabela por ordem crescente de \texttt{dif\_peso\_altura}.
+\textbf{1.} Crie uma coluna chamada \texttt{dif\_peso\_altura} (diferença entre altura
+e peso) e salve a nova tabela em um objeto chamado \texttt{sw\_dif}. Em seguida,
+filtre apenas os personagens que têm altura maior que o peso e ordene a
+tabela por ordem crescente de \texttt{dif\_peso\_altura}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5671,15 +6792,18 @@ Utilize a base \texttt{sw} nos exercícios a seguir.
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{2.} Fazendo apenas uma chamada da função \texttt{mutate()}, crie as seguintes colunas novas na base \texttt{sw}:
+\textbf{2.} Fazendo apenas uma chamada da função \texttt{mutate()}, crie as
+seguintes colunas novas na base \texttt{sw}:
 
 \textbf{a.} \texttt{indice\_massa\_altura} = \texttt{mass} / \texttt{height}
 
 \textbf{b.} \texttt{indice\_massa\_medio} = \texttt{mean(mass,\ na.rm\ =\ TRUE)}
 
-\textbf{c.} \texttt{indice\_relativo} = \texttt{(indice\_massa\_altura\ -\ indice\_massa\_medio)\ /\ indice\_massa\_medio}
+\textbf{c.} \texttt{indice\_relativo} =
+\texttt{(indice\_massa\_altura\ -\ indice\_massa\_medio)\ /\ indice\_massa\_medio}
 
-\textbf{d.} \texttt{acima\_media} = \texttt{ifelse(indice\_massa\_altura\ \textgreater{}\ indice\_massa\_medio,\ “sim”,\ “não”)}
+\textbf{d.} \texttt{acima\_media} =
+\texttt{ifelse(indice\_massa\_altura\ \textgreater{}\ indice\_massa\_medio,\ “sim”,\ “não”)}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5697,15 +6821,147 @@ Utilize a base \texttt{sw} nos exercícios a seguir.
 
 \textbf{1.} Calcule a altura média e mediana dos personagens.
 
-\textbf{2.} Calcule a massa média dos personagens cuja altura é maior que 175 cm.
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summarize}\NormalTok{(sw, }
+          \AttributeTok{media\_altura =} \FunctionTok{mean}\NormalTok{(height, }\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{),}
+          \AttributeTok{mediana\_altura =} \FunctionTok{median}\NormalTok{(height, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
 
-\textbf{3.} Apresente na mesma tabela a massa média dos personagens com altura menor que 175 cm e a massa média dos personagens com altura maior ou igual a 175 cm.
+\begin{verbatim}
+## # A tibble: 1 x 2
+##   media_altura mediana_altura
+##          <dbl>          <int>
+## 1         175.            180
+\end{verbatim}
+
+\textbf{2.} Calcule a massa média dos personagens cuja altura é maior que 175
+cm.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sw }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(height }\SpecialCharTok{\textgreater{}} \DecValTok{175}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{media\_massa =} \FunctionTok{mean}\NormalTok{(mass, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 1
+##   media_massa
+##         <dbl>
+## 1        87.2
+\end{verbatim}
+
+\textbf{3.} Apresente na mesma tabela a massa média dos personagens com
+altura menor que 175 cm e a massa média dos personagens com altura maior
+ou igual a 175 cm.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sw }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{alturas =} \FunctionTok{ifelse}\NormalTok{(height }\SpecialCharTok{\textless{}} \DecValTok{175}\NormalTok{, }\StringTok{"menor 175"}\NormalTok{, }\StringTok{"maior 175"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(height)) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(alturas) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{altura\_media =} \FunctionTok{mean}\NormalTok{(height, }\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 2
+##   alturas   altura_media
+##   <chr>            <dbl>
+## 1 maior 175         193.
+## 2 menor 175         142.
+\end{verbatim}
 
 \textbf{4.} Retorne tabelas (\texttt{tibbles}) apenas com:
 
 \textbf{a.} A altura média dos personagens por espécie.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sw }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(species) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{altura\_media =} \FunctionTok{mean}\NormalTok{(height, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 38 x 2
+##    species   altura_media
+##    <chr>            <dbl>
+##  1 Aleena             79 
+##  2 Besalisk          198 
+##  3 Cerean            198 
+##  4 Chagrian          196 
+##  5 Clawdite          168 
+##  6 Droid             131.
+##  7 Dug               112 
+##  8 Ewok               88 
+##  9 Geonosian         183 
+## 10 Gungan            209.
+## # i 28 more rows
+\end{verbatim}
+
 \textbf{b.} A massa média e mediana dos personagens por espécie.
-\textbf{c.} Apenas o nome dos personagens que participaram de mais de 2 filmes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sw }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(mass)) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(species) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{massa\_media =} \FunctionTok{mean}\NormalTok{(mass, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+            \AttributeTok{massa\_mediana =} \FunctionTok{median}\NormalTok{(mass, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 32 x 3
+##    species   massa_media massa_mediana
+##    <chr>           <dbl>         <dbl>
+##  1 Aleena           15            15  
+##  2 Besalisk        102           102  
+##  3 Cerean           82            82  
+##  4 Clawdite         55            55  
+##  5 Droid            69.8          53.5
+##  6 Dug              40            40  
+##  7 Ewok             20            20  
+##  8 Geonosian        80            80  
+##  9 Gungan           74            74  
+## 10 Human            81.3          79  
+## # i 22 more rows
+\end{verbatim}
+
+\textbf{c.} Apenas o nome dos personagens que participaram de mais de 2
+filmes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sw }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(}\FunctionTok{length}\NormalTok{(films) }\SpecialCharTok{\textgreater{}} \DecValTok{2}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(name)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 87 x 1
+##    name              
+##    <chr>             
+##  1 Luke Skywalker    
+##  2 C-3PO             
+##  3 R2-D2             
+##  4 Darth Vader       
+##  5 Leia Organa       
+##  6 Owen Lars         
+##  7 Beru Whitesun Lars
+##  8 R5-D4             
+##  9 Biggs Darklighter 
+## 10 Obi-Wan Kenobi    
+## # i 77 more rows
+\end{verbatim}
 
   \bibliography{book.bib,packages.bib}
 
