@@ -1818,6 +1818,14 @@ summary(iris)
 
 ### Exercícios
 
+**1.** Crie um data frame chamado `estudantes` com as colunas: Nome (caracteres), Idade (números inteiros), Curso (caracteres) e Nota (números decimais). Adicione os dados de cinco estudantes fictícios e exiba o data frame.
+
+**2.** Utilize o data frame `estudantes` criado no exercício anterior. Acesse a coluna Nota e aumente todas as notas em 0.5. Substitua o valor da coluna Curso para “Estatística” para todos os estudantes com nota superior a 8.0.
+
+**3.** Dado o data frame `mtcars` embutido no R, filtre as linhas onde o Number of cylinders (`cyl`) é igual a 6 e a potência (`hp`) é maior que 100. Crie um novo data frame com essas informações.
+
+**4.** Adicione uma nova coluna ao data frame `mtcars` chamada Peso_KG que converta o peso dos carros (`wt`) de mil libras para quilogramas (multiplicando por 453.592).
+
 ## Listas
 
 Uma lista em R é uma estrutura de dados que permite armazenar elementos
@@ -2134,6 +2142,50 @@ if (x == 1){
 
 ## Exercícios
 
+**1.** Escreva um programa em R que leia um número do usuário e exiba “O número é positivo” se for maior que zero.
+
+**2.** Crie um programa em R que leia um número inteiro do usuário e imprima “Par” se o número for par e “Ímpar” caso contrário.
+
+**3.** Escreva um programa em R que leia um número e exiba se ele está no intervalo [0, 10], [11, 20], ou maior que 20.
+
+**4.** Escreva um programa em R que leia a idade de uma pessoa e classifique-a como “Criança”, “Adolescente”, “Adulto” ou “Idoso”. Considere:
+
+* Criança: 0-12 anos
+* Adolescente: 13-17 anos
+* Adulto: 18-64 anos
+* Idoso: 65 anos ou mais
+
+**5.**  Escreva um programa em R que leia o preço original de um produto e aplique um desconto com base no seguinte critério:
+
+* Desconto de 5% se o preço for inferior a \$100
+* Desconto de 10% se o preço estiver entre \$100 e \$500
+* Desconto de 15% se o preço for superior a \$500
+
+**6.** Escreva um programa em R que leia as coordenadas (x, y) de um ponto e determine em qual quadrante o ponto está localizado.
+
+**7.** Escreva um programa em R que leia um ano e determine se é um ano bissexto. Um ano é bissexto se:
+
+* É divisível por 4, mas não divisível por 100, exceto quando divisível por 400.		
+
+**8.** Escreva um programa que leia um número inteiro entre 0 e 999, e o descreva em termos do número de centenas, número de dezenas e número de unidades. Por exemplo, para 304 o resultado pretendido é “3 centenas 0 dezenas e 4 unidades”. Caso o número inteiro não pertença ao intervalo [0;999] deverá imprimir um aviso “Número fora do intervalo”.
+
+**9.** Escreva um programa em R que leia um número inteiro positivo (menor ou igual a 5) e escreva no ecrã a sua representação em numeração romana. 
+
+**10.** Escreva um programa em R que leia quatro números inteiros (um de cada vez) e escreva após cada interação qual o menor número lido até ao momento. Segue-se um exemplo da interação com o computador.
+
+  ``Introduza um numero inteiro: 4``
+  
+	``O menor numero introduzido até agora é 4.``
+	
+	``Introduza um numero inteiro: 6``
+	
+	``O menor numero introduzido até agora é 4.``
+	
+	``Introduza um numero inteiro: 2``
+	
+	``O menor numero introduzido até agora é 2.``
+
+
 # Funções
 
 -   Uma **função** é um bloco de código que realiza tarefas específicas
@@ -2324,6 +2376,36 @@ resultado <- adi(3,2)
 
 ## Exercícios
 
+**1.** Crie uma função chamada `quadrado()` que recebe um único argumento numérico `x` e retorna o quadrado de `x`. Em seguida, teste a função com os valores 3, 5 e 7.
+
+**2.** Implemente uma função chamada `hipotenusa()` que calcula a hipotenusa de um triângulo retângulo dado os comprimentos dos dois catetos, a e b. A função deve retornar o comprimento da hipotenusa usando o Teorema de Pitágoras. Teste a função com os catetos de comprimentos 3 e 4.
+
+**3.** Escreva uma função chamada `divisao_segura()` que aceita dois argumentos numéricos, numerador e denominador, e retorna o resultado da divisão. A função deve verificar se o denominador é zero e retornar uma mensagem de erro apropriada em vez de tentar realizar a divisão. Teste a função com os valores 10 e 2, e novamente com 10 e 0.
+
+**4.** Escreva uma função que receba dois inteiros e devolva o maior deles. Teste a função escrevendo um programa que recebe dois números inteiros do utilizador e imprime o resultado de chamada à função. Como teria de fazer para determinar o menor de dois números com uma segunda função que tirasse partido de chamar a primeira?
+
+**5.** Escreva uma função que devolva o maior de três números inteiros, recorrendo à função implementada no exercício anterior. Teste a função escrevendo um programa que recebe três números inteiros do utilizador e imprime o resultado de chamada à função.
+
+**6.** Crie uma função chamada `analise_vetor()` que recebe um vetor numérico e retorna outro vetor contendo a soma, a média, o desvio padrão e o valor máximo do vetor. Use a função para analisar o vetor `c(4, 8, 15, 16, 23, 42)`. Funções auxiliares `sum(),mean(),sd(),max()`.
+
+**7.** Implemente uma função chamada `classificar_numero()` que aceita um número inteiro e retorna "positivo", "negativo", ou "zero" com base no valor do número fornecido. Teste a função com os valores -5, 0, e 7.
+
+**8.** Escreva uma função que calcule o IMC (Índice de Massa Corporal) com base no peso (kg) e altura (m) fornecidos como argumentos. Teste a função e escreva um programa que receba a altura e o peso do utilizador e imprima a classificação de acordo com a seguinte tabela:
+
+| **IMC (kg/m^2)**         | **Classificação**       |
+|--------------------------|-------------------------|
+| Menor que 18.5           | Baixo peso              |
+| De 18.5 a 24.9           | Peso normal             |
+| De 25 a 29.9             | Sobrepeso               |
+| De 30 a 34.9             | Obesidade grau I        |
+| De 35 a 39.9             | Obesidade grau II       |
+| Igual ou maior que 40    | Obesidade grau III      |
+
+Lembre que IMC = $\frac{\text{Peso}}{\text{Altura}^2}$.
+
+**9.** Crie funções em R para converter valores entre diferentes moedas com base em taxas de câmbio. Implemente e teste as funções, e escreva um programa que solicite ao utilizador um valor em euros e imprima a conversão desse valor para algumas das principais moedas, como dólar, libra, iene e real.
+
+
 # Scripts
 
 Um **script** é um ficheiro que contém um conjunto de definições
@@ -2379,7 +2461,7 @@ produto(2,3)
 
 ## Exercícios
 
-1.  Construa o seguinte:
+**1.**  Construa o seguinte:
 
 <!-- -->
 
@@ -2586,7 +2668,7 @@ airquality %>%
 
 ## Exercícios
 
-1.  Reescreva a expressão abaixo utilizando o `%>%`,
+**1.**  Reescreva a expressão abaixo utilizando o `%>%`,
 
 ```{r eval=FALSE}
 round(mean(sum(1:10)/3), digits = 1)
@@ -2604,7 +2686,7 @@ função para mais informações.
 ## [1] 18.3
 ```
 
-2.  Reescreva o código abaixo utilizando o `%>%`.
+**2.**  Reescreva o código abaixo utilizando o `%>%`.
 
 ```{r}
 x <- rnorm(100)
@@ -2628,7 +2710,7 @@ rnorm(100) %>%
 ## [1] 0.79
 ```
 
-3.  Sem rodar, diga qual a saída do código abaixo. Consulte o help das
+**3.**  Sem rodar, diga qual a saída do código abaixo. Consulte o help das
     funções caso precise.
 
 ```{r eval=FALSE}
@@ -2757,6 +2839,32 @@ while (contador <= limite) {
     (`apply`, `lapply`, etc.).
 
 ## Exercícios
+
+**1.** Escreva um programa em R que peça ao utilizador um número inteiro $n$ e escreva no ecrã os números inteiros de 0 a $n$, um por linha.
+
+**2.** Escreva um programa em R que peça ao utilizador um número inteiro e escreva no ecrã o seu quadrado, perguntando em seguida se o utilizador quer terminar a utilização do programa.
+
+**3.** Escreva um programa em R que peça ao utilizador um número inteiro $n$ e escreva no ecrã o resultado do somatório dos primeiros $n$ inteiros.
+
+**4.** Escreva um programa em R que peça ao utilizador um número inteiro $n$ e escreva no ecrã o número de pares no intervalo de 0 a $n$.
+
+**5.** Usar um loop `while` para somar números inteiros positivos até que um número negativo seja inserido.
+
+Escreva um programa em R que leia números do utilizador e some-os. O loop deve terminar quando o usuário inserir um número negativo. O programa deve então imprimir a soma dos números positivos inseridos.
+
+**6.** Usar um loop while para implementar uma contagem regressiva.
+
+Crie um programa em R que peça ao utilizador para inserir um número positivo e, em seguida, conte regressivamente até zero, imprimindo cada número no console.
+
+**7.** Crie um programa em R que peça ao utilizador para inserir um número negativo e, em seguida, conte progressivamente até zero, imprimindo cada número no console.
+
+**8.** Crie um programa em R que peça ao utilizador para inserir um número e, em seguida, contar regressivamente até zero, se o número for positivo e progressivamente se o número for negativo, imprimindo cada número no console.
+
+**9.** Escreva um programa em R que leia um número inteiro não negativo do utilizador e calcule seu fatorial usando um loop `while`. Lembre que $0! = 1$ e que $4! = 4\cdot3\cdot2\cdot1$.
+
+**10.** Escreva um programa em R que leia um número inteiro positivo e calcule a soma de seus dígitos usando um loop `while`. Por exemplo, 23 $\to$ $2+3 = 5$.
+
+**11.** Crie um programa em R que gere e imprima os números da sequência de Fibonacci até um valor máximo especificado pelo utilizador. 1 1 2 3 5 8 13...
 
 # Loop for
 
@@ -2890,6 +2998,55 @@ print(medias)
 ```
 
 ## Exercícios
+
+**1.** Escreva um programa em R que use um loop `for` para imprimir todos os números de 1 a 10.
+
+**2.** Escreva um programa em R que use um loop `for` para imprimir o quadrado de cada número de 1 a 5.
+
+**3.** Escreva um programa em R que some todos os elementos do vetor `numeros <- c(2, 4, 6, 8, 10)` usando um loop `for`.
+
+**4.** Escreva um programa em R que calcule a média das notas no vetor `notas <- c(85, 90, 78, 92, 88)` usando um loop `for`.
+
+**5.** Escreva um programa em R que imprima todos os números ímpares do vetor `valores <- c(1, 3, 4, 6, 9, 11, 14)`. Utilize um loop `for`.
+
+**6.** Escreva um programa em R que leia um número inteiro e use um loop `for` para imprimir sua tabuada de 1 a 10.
+
+**7.** Escreva um programa em R que leia um número inteiro e use um loop `for` para dizer se o número é perfeito ou não. Um número perfeito é aquele cuja soma de seus divisores próprios é igual ao próprio número. Exemplo: 6 tem 1,2,3 como divisores próprios e 1+2+3=6.
+
+**8.** Escreva um programa em R que use um loop `for` para encontrar e imprimir todos os números perfeitos entre 1 e 1000. 
+
+**9.** Escreva um programa em R que leia um inteiro $n$ e um inteiro $m$ e escreva os números entre $0$ e $n$, inclusive, de $m$ em $m$. Utilize um ciclo `for` para o efeito.
+
+**10.** Escreva um programa que calcule a média de um conjunto de notas fornecidas pelo utilizador. O número de notas que irão ser inseridas são previamente indicadas pelo utilizador. Utilize um loop `for` para o efeito. Segue-se um exemplo da interação com o computador.
+
+`Digite o número de notas que serão inseridas: 4`
+
+`Digite a nota: 12`
+
+`Digite a nota: 13`
+
+`Digite a nota: 15.5`
+
+`Digite a nota: 16`
+
+`A média das notas é 14.125`
+
+**11.** Crie uma matriz $4\times4$ com números de 1 a 16. Utilizando o comando de repetição `for` calcule: 
+
+(a) a média da terceira coluna da matriz.
+
+(b) a média da terceira linha da matriz.
+
+(c) a média de cada coluna da matriz.
+
+(d) a média de cada linha da matriz.
+
+(e) a média dos números pares de cada coluna da matriz.
+
+(f) a média dos números ímpares de cada linha da matriz.
+
+**Obs:** Use comandos de decisão (`if`...`else`...) sempre que necessário.
+
 
 # Família `Xapply()`
 
@@ -3921,47 +4078,47 @@ print(amostra_prob)
 
 ## Exercícios
 
-1.  Crie um vetor com os números de 1 a 20. Utilize a função `sample()`
+**1.**  Crie um vetor com os números de 1 a 20. Utilize a função `sample()`
     para selecionar uma amostra aleatória de 5 elementos desse vetor. A
     amostragem deve ser feita sem reposição.
 
-2.  Suponha que você tem uma população representada pelos números de 1
+**2.**  Suponha que você tem uma população representada pelos números de 1
     a 10. Utilize a função `sample()` para selecionar uma amostra de 10
     elementos com reposição.
 
-3.  Crie um vetor com as letras A, B, C, D, E. Aplique a função
+**3.**  Crie um vetor com as letras A, B, C, D, E. Aplique a função
     `sample()` para selecionar uma amostra de 3 letras, onde a
     probabilidade de cada letra ser selecionada é dada pelo vetor
     `c(0.1, 0.2, 0.3, 0.25, 0.15)`.
 
-4.  Crie um vetor com os números de 1 a 10. Utilize a função `sample()`
+**4.**  Crie um vetor com os números de 1 a 10. Utilize a função `sample()`
     para reordenar aleatoriamente os elementos desse vetor.
 
-5.  Crie um vetor com os nomes de cinco frutas: “Maçã”, “Banana”,
+**5.**  Crie um vetor com os nomes de cinco frutas: “Maçã”, “Banana”,
     “Laranja”, “Uva”, “Pera”. Utilizando a função `sample()`, selecione
     aleatoriamente uma fruta desse vetor. Em seguida, selecione uma
     amostra de 3 frutas.
 
-6.  Você é responsável por realizar um teste de qualidade em uma
+**6.**  Você é responsável por realizar um teste de qualidade em uma
     fábrica. Há 1000 produtos fabricados, numerados de 1 a 1000.
     Selecione uma amostra aleatória de 50 produtos para inspeção,
     garantindo que não haja reposição na seleção.
 
-7.  Simule o lançamento de dois dados justos 10000 vezes e registre as
+**7.**  Simule o lançamento de dois dados justos 10000 vezes e registre as
     somas das faces resultantes. Utilize a função `sample()` para
     realizar a simulação. Em seguida, crie um histograma das somas
     obtidas.
 
-8.  Você possui um vetor de 200 estudantes classificados em três turmas:
+**8.**  Você possui um vetor de 200 estudantes classificados em três turmas:
     A, B, e C. As turmas têm tamanhos diferentes (50, 100, e 50 alunos,
     respectivamente). Usando `sample()`, selecione uma amostra de 20
     alunos, mantendo a proporção original das turmas.
 
-9.  Um cartão de Bingo contém 24 números aleatórios entre 1 e 75
+**9.**  Um cartão de Bingo contém 24 números aleatórios entre 1 e 75
     (excluindo o número central “free”). Crie 5 cartões de Bingo únicos
     usando a função `sample()`.
 
-10. Em um estudo clínico, 30 pacientes devem ser randomizados em dois
+**10.** Em um estudo clínico, 30 pacientes devem ser randomizados em dois
     grupos: tratamento e controle. O grupo de tratamento deve conter 20
     pacientes e o grupo de controle 10. Usando `sample()`, faça a
     randomização dos pacientes. Dica: use a função `setdiff()`.

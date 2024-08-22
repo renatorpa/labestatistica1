@@ -394,10 +394,10 @@ conjunto de elementos. É especialmente útil para situações em que se
 conhece o número de iterações a serem realizadas com antecedência. A
 instrução for é amplamente utilizada em R para iterar sobre vetores,
 listas, data frames e outras estruturas de dados.</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="loop-for.html#cb105-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
-<span id="cb105-2"><a href="loop-for.html#cb105-2" tabindex="-1"></a><span class="cf">for</span> (variável <span class="cf">in</span> sequência) {</span>
-<span id="cb105-3"><a href="loop-for.html#cb105-3" tabindex="-1"></a>  <span class="co"># Bloco de código a ser executado</span></span>
-<span id="cb105-4"><a href="loop-for.html#cb105-4" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="loop-for.html#cb106-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
+<span id="cb106-2"><a href="loop-for.html#cb106-2" tabindex="-1"></a><span class="cf">for</span> (variável <span class="cf">in</span> sequência) {</span>
+<span id="cb106-3"><a href="loop-for.html#cb106-3" tabindex="-1"></a>  <span class="co"># Bloco de código a ser executado</span></span>
+<span id="cb106-4"><a href="loop-for.html#cb106-4" tabindex="-1"></a>}</span></code></pre></div>
 <ul>
 <li><p><strong>variável</strong>: Uma variável que assume o valor de cada elemento na
 sequência em cada iteração do loop.</p></li>
@@ -418,79 +418,105 @@ executado uma vez para cada elemento da sequência.</p></li>
 sequência forem processados.</p></li>
 </ul>
 <p><strong>Exemplo 1:</strong> Imprima os números de 0 a 10 no ecrã.</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="loop-for.html#cb106-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>) {</span>
-<span id="cb106-2"><a href="loop-for.html#cb106-2" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
-<span id="cb106-3"><a href="loop-for.html#cb106-3" tabindex="-1"></a>}</span>
-<span id="cb106-4"><a href="loop-for.html#cb106-4" tabindex="-1"></a><span class="do">## [1] 0</span></span>
-<span id="cb106-5"><a href="loop-for.html#cb106-5" tabindex="-1"></a><span class="do">## [1] 1</span></span>
-<span id="cb106-6"><a href="loop-for.html#cb106-6" tabindex="-1"></a><span class="do">## [1] 2</span></span>
-<span id="cb106-7"><a href="loop-for.html#cb106-7" tabindex="-1"></a><span class="do">## [1] 3</span></span>
-<span id="cb106-8"><a href="loop-for.html#cb106-8" tabindex="-1"></a><span class="do">## [1] 4</span></span>
-<span id="cb106-9"><a href="loop-for.html#cb106-9" tabindex="-1"></a><span class="do">## [1] 5</span></span>
-<span id="cb106-10"><a href="loop-for.html#cb106-10" tabindex="-1"></a><span class="do">## [1] 6</span></span>
-<span id="cb106-11"><a href="loop-for.html#cb106-11" tabindex="-1"></a><span class="do">## [1] 7</span></span>
-<span id="cb106-12"><a href="loop-for.html#cb106-12" tabindex="-1"></a><span class="do">## [1] 8</span></span>
-<span id="cb106-13"><a href="loop-for.html#cb106-13" tabindex="-1"></a><span class="do">## [1] 9</span></span>
-<span id="cb106-14"><a href="loop-for.html#cb106-14" tabindex="-1"></a><span class="do">## [1] 10</span></span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="loop-for.html#cb107-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>) {</span>
+<span id="cb107-2"><a href="loop-for.html#cb107-2" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
+<span id="cb107-3"><a href="loop-for.html#cb107-3" tabindex="-1"></a>}</span>
+<span id="cb107-4"><a href="loop-for.html#cb107-4" tabindex="-1"></a><span class="do">## [1] 0</span></span>
+<span id="cb107-5"><a href="loop-for.html#cb107-5" tabindex="-1"></a><span class="do">## [1] 1</span></span>
+<span id="cb107-6"><a href="loop-for.html#cb107-6" tabindex="-1"></a><span class="do">## [1] 2</span></span>
+<span id="cb107-7"><a href="loop-for.html#cb107-7" tabindex="-1"></a><span class="do">## [1] 3</span></span>
+<span id="cb107-8"><a href="loop-for.html#cb107-8" tabindex="-1"></a><span class="do">## [1] 4</span></span>
+<span id="cb107-9"><a href="loop-for.html#cb107-9" tabindex="-1"></a><span class="do">## [1] 5</span></span>
+<span id="cb107-10"><a href="loop-for.html#cb107-10" tabindex="-1"></a><span class="do">## [1] 6</span></span>
+<span id="cb107-11"><a href="loop-for.html#cb107-11" tabindex="-1"></a><span class="do">## [1] 7</span></span>
+<span id="cb107-12"><a href="loop-for.html#cb107-12" tabindex="-1"></a><span class="do">## [1] 8</span></span>
+<span id="cb107-13"><a href="loop-for.html#cb107-13" tabindex="-1"></a><span class="do">## [1] 9</span></span>
+<span id="cb107-14"><a href="loop-for.html#cb107-14" tabindex="-1"></a><span class="do">## [1] 10</span></span></code></pre></div>
 <p><strong>Exemplo 2:</strong> Soma dos elementos de um vetor</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="loop-for.html#cb107-1" tabindex="-1"></a>numeros <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
-<span id="cb107-2"><a href="loop-for.html#cb107-2" tabindex="-1"></a>soma <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb107-3"><a href="loop-for.html#cb107-3" tabindex="-1"></a></span>
-<span id="cb107-4"><a href="loop-for.html#cb107-4" tabindex="-1"></a><span class="cf">for</span> (num <span class="cf">in</span> numeros) {</span>
-<span id="cb107-5"><a href="loop-for.html#cb107-5" tabindex="-1"></a>  soma <span class="ot">&lt;-</span> soma <span class="sc">+</span> num</span>
-<span id="cb107-6"><a href="loop-for.html#cb107-6" tabindex="-1"></a>}</span>
-<span id="cb107-7"><a href="loop-for.html#cb107-7" tabindex="-1"></a></span>
-<span id="cb107-8"><a href="loop-for.html#cb107-8" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;A soma dos números é:&quot;</span>, soma))</span>
-<span id="cb107-9"><a href="loop-for.html#cb107-9" tabindex="-1"></a><span class="do">## [1] &quot;A soma dos números é: 15&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="loop-for.html#cb108-1" tabindex="-1"></a>numeros <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb108-2"><a href="loop-for.html#cb108-2" tabindex="-1"></a>soma <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb108-3"><a href="loop-for.html#cb108-3" tabindex="-1"></a></span>
+<span id="cb108-4"><a href="loop-for.html#cb108-4" tabindex="-1"></a><span class="cf">for</span> (num <span class="cf">in</span> numeros) {</span>
+<span id="cb108-5"><a href="loop-for.html#cb108-5" tabindex="-1"></a>  soma <span class="ot">&lt;-</span> soma <span class="sc">+</span> num</span>
+<span id="cb108-6"><a href="loop-for.html#cb108-6" tabindex="-1"></a>}</span>
+<span id="cb108-7"><a href="loop-for.html#cb108-7" tabindex="-1"></a></span>
+<span id="cb108-8"><a href="loop-for.html#cb108-8" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;A soma dos números é:&quot;</span>, soma))</span>
+<span id="cb108-9"><a href="loop-for.html#cb108-9" tabindex="-1"></a><span class="do">## [1] &quot;A soma dos números é: 15&quot;</span></span></code></pre></div>
 <p><strong>Exemplo 3:</strong> Uso do <code>for</code> com índices. Você também pode usar o loop
 for para iterar sobre índices de vetores ou listas, o que pode ser útil
 quando se deseja acessar ou modificar elementos em posições específicas.
 Multiplique por 2 os elementos do vetor.</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="loop-for.html#cb108-1" tabindex="-1"></a>numeros <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>)</span>
-<span id="cb108-2"><a href="loop-for.html#cb108-2" tabindex="-1"></a></span>
-<span id="cb108-3"><a href="loop-for.html#cb108-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(numeros)) {</span>
-<span id="cb108-4"><a href="loop-for.html#cb108-4" tabindex="-1"></a>  numeros[i] <span class="ot">&lt;-</span> numeros[i] <span class="sc">*</span> <span class="dv">2</span></span>
-<span id="cb108-5"><a href="loop-for.html#cb108-5" tabindex="-1"></a>}</span>
-<span id="cb108-6"><a href="loop-for.html#cb108-6" tabindex="-1"></a></span>
-<span id="cb108-7"><a href="loop-for.html#cb108-7" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Elementos do vetor multiplicados por 2:&quot;</span>)</span>
-<span id="cb108-8"><a href="loop-for.html#cb108-8" tabindex="-1"></a><span class="do">## [1] &quot;Elementos do vetor multiplicados por 2:&quot;</span></span>
-<span id="cb108-9"><a href="loop-for.html#cb108-9" tabindex="-1"></a></span>
-<span id="cb108-10"><a href="loop-for.html#cb108-10" tabindex="-1"></a><span class="fu">print</span>(numeros)</span>
-<span id="cb108-11"><a href="loop-for.html#cb108-11" tabindex="-1"></a><span class="do">## [1]  20  40  60  80 100</span></span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="loop-for.html#cb109-1" tabindex="-1"></a>numeros <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>)</span>
+<span id="cb109-2"><a href="loop-for.html#cb109-2" tabindex="-1"></a></span>
+<span id="cb109-3"><a href="loop-for.html#cb109-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(numeros)) {</span>
+<span id="cb109-4"><a href="loop-for.html#cb109-4" tabindex="-1"></a>  numeros[i] <span class="ot">&lt;-</span> numeros[i] <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb109-5"><a href="loop-for.html#cb109-5" tabindex="-1"></a>}</span>
+<span id="cb109-6"><a href="loop-for.html#cb109-6" tabindex="-1"></a></span>
+<span id="cb109-7"><a href="loop-for.html#cb109-7" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Elementos do vetor multiplicados por 2:&quot;</span>)</span>
+<span id="cb109-8"><a href="loop-for.html#cb109-8" tabindex="-1"></a><span class="do">## [1] &quot;Elementos do vetor multiplicados por 2:&quot;</span></span>
+<span id="cb109-9"><a href="loop-for.html#cb109-9" tabindex="-1"></a></span>
+<span id="cb109-10"><a href="loop-for.html#cb109-10" tabindex="-1"></a><span class="fu">print</span>(numeros)</span>
+<span id="cb109-11"><a href="loop-for.html#cb109-11" tabindex="-1"></a><span class="do">## [1]  20  40  60  80 100</span></span></code></pre></div>
 <p><strong>Exemplo 4:</strong> Exemplo com matrizes. O loop for também pode ser usado
 para iterar sobre elementos de uma matriz, seja por linha ou por coluna.</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="loop-for.html#cb109-1" tabindex="-1"></a>matriz <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">nrow=</span><span class="dv">3</span>, <span class="at">ncol=</span><span class="dv">3</span>)</span>
-<span id="cb109-2"><a href="loop-for.html#cb109-2" tabindex="-1"></a>soma_linhas <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="fu">nrow</span>(matriz))</span>
-<span id="cb109-3"><a href="loop-for.html#cb109-3" tabindex="-1"></a></span>
-<span id="cb109-4"><a href="loop-for.html#cb109-4" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(matriz)) {</span>
-<span id="cb109-5"><a href="loop-for.html#cb109-5" tabindex="-1"></a>  soma_linhas[i] <span class="ot">&lt;-</span> <span class="fu">sum</span>(matriz[i, ])</span>
-<span id="cb109-6"><a href="loop-for.html#cb109-6" tabindex="-1"></a>}</span>
-<span id="cb109-7"><a href="loop-for.html#cb109-7" tabindex="-1"></a></span>
-<span id="cb109-8"><a href="loop-for.html#cb109-8" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Soma dos elementos de cada linha:&quot;</span>)</span>
-<span id="cb109-9"><a href="loop-for.html#cb109-9" tabindex="-1"></a><span class="do">## [1] &quot;Soma dos elementos de cada linha:&quot;</span></span>
-<span id="cb109-10"><a href="loop-for.html#cb109-10" tabindex="-1"></a></span>
-<span id="cb109-11"><a href="loop-for.html#cb109-11" tabindex="-1"></a><span class="fu">print</span>(soma_linhas)</span>
-<span id="cb109-12"><a href="loop-for.html#cb109-12" tabindex="-1"></a><span class="do">## [1] 12 15 18</span></span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="loop-for.html#cb110-1" tabindex="-1"></a>matriz <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">nrow=</span><span class="dv">3</span>, <span class="at">ncol=</span><span class="dv">3</span>)</span>
+<span id="cb110-2"><a href="loop-for.html#cb110-2" tabindex="-1"></a>soma_linhas <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="fu">nrow</span>(matriz))</span>
+<span id="cb110-3"><a href="loop-for.html#cb110-3" tabindex="-1"></a></span>
+<span id="cb110-4"><a href="loop-for.html#cb110-4" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(matriz)) {</span>
+<span id="cb110-5"><a href="loop-for.html#cb110-5" tabindex="-1"></a>  soma_linhas[i] <span class="ot">&lt;-</span> <span class="fu">sum</span>(matriz[i, ])</span>
+<span id="cb110-6"><a href="loop-for.html#cb110-6" tabindex="-1"></a>}</span>
+<span id="cb110-7"><a href="loop-for.html#cb110-7" tabindex="-1"></a></span>
+<span id="cb110-8"><a href="loop-for.html#cb110-8" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Soma dos elementos de cada linha:&quot;</span>)</span>
+<span id="cb110-9"><a href="loop-for.html#cb110-9" tabindex="-1"></a><span class="do">## [1] &quot;Soma dos elementos de cada linha:&quot;</span></span>
+<span id="cb110-10"><a href="loop-for.html#cb110-10" tabindex="-1"></a></span>
+<span id="cb110-11"><a href="loop-for.html#cb110-11" tabindex="-1"></a><span class="fu">print</span>(soma_linhas)</span>
+<span id="cb110-12"><a href="loop-for.html#cb110-12" tabindex="-1"></a><span class="do">## [1] 12 15 18</span></span></code></pre></div>
 <p><strong>Exemplo 5:</strong> Cálculo de Médias de Colunas em um Data Frame</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="loop-for.html#cb110-1" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb110-2"><a href="loop-for.html#cb110-2" tabindex="-1"></a><span class="at">A =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
-<span id="cb110-3"><a href="loop-for.html#cb110-3" tabindex="-1"></a><span class="at">B =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>),</span>
-<span id="cb110-4"><a href="loop-for.html#cb110-4" tabindex="-1"></a><span class="at">C =</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>)</span>
-<span id="cb110-5"><a href="loop-for.html#cb110-5" tabindex="-1"></a>)</span>
-<span id="cb110-6"><a href="loop-for.html#cb110-6" tabindex="-1"></a></span>
-<span id="cb110-7"><a href="loop-for.html#cb110-7" tabindex="-1"></a>medias <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="fu">ncol</span>(dados))</span>
-<span id="cb110-8"><a href="loop-for.html#cb110-8" tabindex="-1"></a></span>
-<span id="cb110-9"><a href="loop-for.html#cb110-9" tabindex="-1"></a><span class="cf">for</span> (col <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(dados)) {</span>
-<span id="cb110-10"><a href="loop-for.html#cb110-10" tabindex="-1"></a>  medias[col] <span class="ot">&lt;-</span> <span class="fu">mean</span>(dados[, col])</span>
-<span id="cb110-11"><a href="loop-for.html#cb110-11" tabindex="-1"></a>}</span>
-<span id="cb110-12"><a href="loop-for.html#cb110-12" tabindex="-1"></a></span>
-<span id="cb110-13"><a href="loop-for.html#cb110-13" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Médias das colunas do data frame:&quot;</span>)</span>
-<span id="cb110-14"><a href="loop-for.html#cb110-14" tabindex="-1"></a><span class="do">## [1] &quot;Médias das colunas do data frame:&quot;</span></span>
-<span id="cb110-15"><a href="loop-for.html#cb110-15" tabindex="-1"></a></span>
-<span id="cb110-16"><a href="loop-for.html#cb110-16" tabindex="-1"></a><span class="fu">print</span>(medias)</span>
-<span id="cb110-17"><a href="loop-for.html#cb110-17" tabindex="-1"></a><span class="do">## [1] 2 5 8</span></span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="loop-for.html#cb111-1" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb111-2"><a href="loop-for.html#cb111-2" tabindex="-1"></a><span class="at">A =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
+<span id="cb111-3"><a href="loop-for.html#cb111-3" tabindex="-1"></a><span class="at">B =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>),</span>
+<span id="cb111-4"><a href="loop-for.html#cb111-4" tabindex="-1"></a><span class="at">C =</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>)</span>
+<span id="cb111-5"><a href="loop-for.html#cb111-5" tabindex="-1"></a>)</span>
+<span id="cb111-6"><a href="loop-for.html#cb111-6" tabindex="-1"></a></span>
+<span id="cb111-7"><a href="loop-for.html#cb111-7" tabindex="-1"></a>medias <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="fu">ncol</span>(dados))</span>
+<span id="cb111-8"><a href="loop-for.html#cb111-8" tabindex="-1"></a></span>
+<span id="cb111-9"><a href="loop-for.html#cb111-9" tabindex="-1"></a><span class="cf">for</span> (col <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(dados)) {</span>
+<span id="cb111-10"><a href="loop-for.html#cb111-10" tabindex="-1"></a>  medias[col] <span class="ot">&lt;-</span> <span class="fu">mean</span>(dados[, col])</span>
+<span id="cb111-11"><a href="loop-for.html#cb111-11" tabindex="-1"></a>}</span>
+<span id="cb111-12"><a href="loop-for.html#cb111-12" tabindex="-1"></a></span>
+<span id="cb111-13"><a href="loop-for.html#cb111-13" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Médias das colunas do data frame:&quot;</span>)</span>
+<span id="cb111-14"><a href="loop-for.html#cb111-14" tabindex="-1"></a><span class="do">## [1] &quot;Médias das colunas do data frame:&quot;</span></span>
+<span id="cb111-15"><a href="loop-for.html#cb111-15" tabindex="-1"></a></span>
+<span id="cb111-16"><a href="loop-for.html#cb111-16" tabindex="-1"></a><span class="fu">print</span>(medias)</span>
+<span id="cb111-17"><a href="loop-for.html#cb111-17" tabindex="-1"></a><span class="do">## [1] 2 5 8</span></span></code></pre></div>
 <div id="exercícios-10" class="section level2 hasAnchor" number="11.1">
 <h2><span class="header-section-number">11.1</span> Exercícios<a href="loop-for.html#exercícios-10" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>1.</strong> Escreva um programa em R que use um loop <code>for</code> para imprimir todos os números de 1 a 10.</p>
+<p><strong>2.</strong> Escreva um programa em R que use um loop <code>for</code> para imprimir o quadrado de cada número de 1 a 5.</p>
+<p><strong>3.</strong> Escreva um programa em R que some todos os elementos do vetor <code>numeros &lt;- c(2, 4, 6, 8, 10)</code> usando um loop <code>for</code>.</p>
+<p><strong>4.</strong> Escreva um programa em R que calcule a média das notas no vetor <code>notas &lt;- c(85, 90, 78, 92, 88)</code> usando um loop <code>for</code>.</p>
+<p><strong>5.</strong> Escreva um programa em R que imprima todos os números ímpares do vetor <code>valores &lt;- c(1, 3, 4, 6, 9, 11, 14)</code>. Utilize um loop <code>for</code>.</p>
+<p><strong>6.</strong> Escreva um programa em R que leia um número inteiro e use um loop <code>for</code> para imprimir sua tabuada de 1 a 10.</p>
+<p><strong>7.</strong> Escreva um programa em R que leia um número inteiro e use um loop <code>for</code> para dizer se o número é perfeito ou não. Um número perfeito é aquele cuja soma de seus divisores próprios é igual ao próprio número. Exemplo: 6 tem 1,2,3 como divisores próprios e 1+2+3=6.</p>
+<p><strong>8.</strong> Escreva um programa em R que use um loop <code>for</code> para encontrar e imprimir todos os números perfeitos entre 1 e 1000.</p>
+<p><strong>9.</strong> Escreva um programa em R que leia um inteiro <span class="math inline">\(n\)</span> e um inteiro <span class="math inline">\(m\)</span> e escreva os números entre <span class="math inline">\(0\)</span> e <span class="math inline">\(n\)</span>, inclusive, de <span class="math inline">\(m\)</span> em <span class="math inline">\(m\)</span>. Utilize um ciclo <code>for</code> para o efeito.</p>
+<p><strong>10.</strong> Escreva um programa que calcule a média de um conjunto de notas fornecidas pelo utilizador. O número de notas que irão ser inseridas são previamente indicadas pelo utilizador. Utilize um loop <code>for</code> para o efeito. Segue-se um exemplo da interação com o computador.</p>
+<p><code>Digite o número de notas que serão inseridas: 4</code></p>
+<p><code>Digite a nota: 12</code></p>
+<p><code>Digite a nota: 13</code></p>
+<p><code>Digite a nota: 15.5</code></p>
+<p><code>Digite a nota: 16</code></p>
+<p><code>A média das notas é 14.125</code></p>
+<p><strong>11.</strong> Crie uma matriz <span class="math inline">\(4\times4\)</span> com números de 1 a 16. Utilizando o comando de repetição <code>for</code> calcule:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>a média da terceira coluna da matriz.</p></li>
+<li><p>a média da terceira linha da matriz.</p></li>
+<li><p>a média de cada coluna da matriz.</p></li>
+<li><p>a média de cada linha da matriz.</p></li>
+<li><p>a média dos números pares de cada coluna da matriz.</p></li>
+<li><p>a média dos números ímpares de cada linha da matriz.</p></li>
+</ol>
+<p><strong>Obs:</strong> Use comandos de decisão (<code>if</code>…<code>else</code>…) sempre que necessário.</p>
 </div>
 </div>
             </section>

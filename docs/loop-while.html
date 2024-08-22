@@ -393,10 +393,10 @@ permite executar um bloco de código repetidamente, enquanto uma condição
 especificada for verdadeira. É particularmente útil para situações em
 que o número de repetições não é conhecido antecipadamente, mas depende
 de alguma condição lógica.</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="loop-while.html#cb101-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
-<span id="cb101-2"><a href="loop-while.html#cb101-2" tabindex="-1"></a><span class="cf">while</span> (condição) {</span>
-<span id="cb101-3"><a href="loop-while.html#cb101-3" tabindex="-1"></a>  <span class="co"># Bloco de código a ser executado</span></span>
-<span id="cb101-4"><a href="loop-while.html#cb101-4" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="loop-while.html#cb102-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
+<span id="cb102-2"><a href="loop-while.html#cb102-2" tabindex="-1"></a><span class="cf">while</span> (condição) {</span>
+<span id="cb102-3"><a href="loop-while.html#cb102-3" tabindex="-1"></a>  <span class="co"># Bloco de código a ser executado</span></span>
+<span id="cb102-4"><a href="loop-while.html#cb102-4" tabindex="-1"></a>}</span></code></pre></div>
 <ul>
 <li><p><strong>condição</strong>: Uma expressão lógica que é avaliada antes de cada
 iteração do loop. Enquanto essa condição for <code>TRUE</code>, o bloco de
@@ -416,44 +416,44 @@ condição for <code>FALSE</code>, o loop termina e o controle do programa
 continua com a próxima instrução após o <code>while</code>.</p></li>
 </ul>
 <p><strong>Exemplo 1:</strong> Somando números até um limite.</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="loop-while.html#cb102-1" tabindex="-1"></a>limite <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb102-2"><a href="loop-while.html#cb102-2" tabindex="-1"></a>soma <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb102-3"><a href="loop-while.html#cb102-3" tabindex="-1"></a>contador <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb102-4"><a href="loop-while.html#cb102-4" tabindex="-1"></a></span>
-<span id="cb102-5"><a href="loop-while.html#cb102-5" tabindex="-1"></a><span class="cf">while</span> (contador <span class="sc">&lt;=</span> limite) {</span>
-<span id="cb102-6"><a href="loop-while.html#cb102-6" tabindex="-1"></a>  soma <span class="ot">&lt;-</span> soma <span class="sc">+</span> contador</span>
-<span id="cb102-7"><a href="loop-while.html#cb102-7" tabindex="-1"></a>  contador <span class="ot">&lt;-</span> contador <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb102-8"><a href="loop-while.html#cb102-8" tabindex="-1"></a>}</span>
-<span id="cb102-9"><a href="loop-while.html#cb102-9" tabindex="-1"></a></span>
-<span id="cb102-10"><a href="loop-while.html#cb102-10" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;A soma dos números de 1 a&quot;</span>, limite, <span class="st">&quot;é:&quot;</span>, soma))</span>
-<span id="cb102-11"><a href="loop-while.html#cb102-11" tabindex="-1"></a><span class="do">## [1] &quot;A soma dos números de 1 a 10 é: 55&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="loop-while.html#cb103-1" tabindex="-1"></a>limite <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb103-2"><a href="loop-while.html#cb103-2" tabindex="-1"></a>soma <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb103-3"><a href="loop-while.html#cb103-3" tabindex="-1"></a>contador <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb103-4"><a href="loop-while.html#cb103-4" tabindex="-1"></a></span>
+<span id="cb103-5"><a href="loop-while.html#cb103-5" tabindex="-1"></a><span class="cf">while</span> (contador <span class="sc">&lt;=</span> limite) {</span>
+<span id="cb103-6"><a href="loop-while.html#cb103-6" tabindex="-1"></a>  soma <span class="ot">&lt;-</span> soma <span class="sc">+</span> contador</span>
+<span id="cb103-7"><a href="loop-while.html#cb103-7" tabindex="-1"></a>  contador <span class="ot">&lt;-</span> contador <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb103-8"><a href="loop-while.html#cb103-8" tabindex="-1"></a>}</span>
+<span id="cb103-9"><a href="loop-while.html#cb103-9" tabindex="-1"></a></span>
+<span id="cb103-10"><a href="loop-while.html#cb103-10" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;A soma dos números de 1 a&quot;</span>, limite, <span class="st">&quot;é:&quot;</span>, soma))</span>
+<span id="cb103-11"><a href="loop-while.html#cb103-11" tabindex="-1"></a><span class="do">## [1] &quot;A soma dos números de 1 a 10 é: 55&quot;</span></span></code></pre></div>
 <p><strong>Exemplo 2:</strong> Escrevendo a tabuada de um número inteiro</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="loop-while.html#cb103-1" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">readline</span>(<span class="st">&quot;Digite um número inteiro: &quot;</span>))</span>
-<span id="cb103-2"><a href="loop-while.html#cb103-2" tabindex="-1"></a></span>
-<span id="cb103-3"><a href="loop-while.html#cb103-3" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Tabuada do&quot;</span>,n, <span class="st">&quot;:&quot;</span>))</span>
-<span id="cb103-4"><a href="loop-while.html#cb103-4" tabindex="-1"></a>i<span class="ot">=</span><span class="dv">1</span></span>
-<span id="cb103-5"><a href="loop-while.html#cb103-5" tabindex="-1"></a><span class="cf">while</span> (i <span class="sc">&lt;=</span> <span class="dv">10</span>){  </span>
-<span id="cb103-6"><a href="loop-while.html#cb103-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(n,<span class="st">&quot;x&quot;</span>,i, <span class="st">&quot;=&quot;</span>, n<span class="sc">*</span>i))  </span>
-<span id="cb103-7"><a href="loop-while.html#cb103-7" tabindex="-1"></a>  i <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb103-8"><a href="loop-while.html#cb103-8" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="loop-while.html#cb104-1" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">readline</span>(<span class="st">&quot;Digite um número inteiro: &quot;</span>))</span>
+<span id="cb104-2"><a href="loop-while.html#cb104-2" tabindex="-1"></a></span>
+<span id="cb104-3"><a href="loop-while.html#cb104-3" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Tabuada do&quot;</span>,n, <span class="st">&quot;:&quot;</span>))</span>
+<span id="cb104-4"><a href="loop-while.html#cb104-4" tabindex="-1"></a>i<span class="ot">=</span><span class="dv">1</span></span>
+<span id="cb104-5"><a href="loop-while.html#cb104-5" tabindex="-1"></a><span class="cf">while</span> (i <span class="sc">&lt;=</span> <span class="dv">10</span>){  </span>
+<span id="cb104-6"><a href="loop-while.html#cb104-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(n,<span class="st">&quot;x&quot;</span>,i, <span class="st">&quot;=&quot;</span>, n<span class="sc">*</span>i))  </span>
+<span id="cb104-7"><a href="loop-while.html#cb104-7" tabindex="-1"></a>  i <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb104-8"><a href="loop-while.html#cb104-8" tabindex="-1"></a>}</span></code></pre></div>
 <p>Explique porque o programa acima não termina. Qual o erro no nosso
 código?</p>
 <p><strong>Exemplo 3:</strong></p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="loop-while.html#cb104-1" tabindex="-1"></a>limite <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb104-2"><a href="loop-while.html#cb104-2" tabindex="-1"></a>soma <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb104-3"><a href="loop-while.html#cb104-3" tabindex="-1"></a>contador <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb104-4"><a href="loop-while.html#cb104-4" tabindex="-1"></a></span>
-<span id="cb104-5"><a href="loop-while.html#cb104-5" tabindex="-1"></a><span class="cf">while</span> (contador <span class="sc">&lt;=</span> limite) {  </span>
-<span id="cb104-6"><a href="loop-while.html#cb104-6" tabindex="-1"></a>  soma <span class="ot">&lt;-</span> soma <span class="sc">+</span> contador  </span>
-<span id="cb104-7"><a href="loop-while.html#cb104-7" tabindex="-1"></a>  <span class="fu">print</span>(contador)  </span>
-<span id="cb104-8"><a href="loop-while.html#cb104-8" tabindex="-1"></a>  <span class="cf">if</span> (contador <span class="sc">==</span> <span class="dv">3</span>){    </span>
-<span id="cb104-9"><a href="loop-while.html#cb104-9" tabindex="-1"></a>    <span class="cf">break</span>  </span>
-<span id="cb104-10"><a href="loop-while.html#cb104-10" tabindex="-1"></a>  }  </span>
-<span id="cb104-11"><a href="loop-while.html#cb104-11" tabindex="-1"></a>  contador <span class="ot">&lt;-</span> contador <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb104-12"><a href="loop-while.html#cb104-12" tabindex="-1"></a>}</span>
-<span id="cb104-13"><a href="loop-while.html#cb104-13" tabindex="-1"></a><span class="do">## [1] 1</span></span>
-<span id="cb104-14"><a href="loop-while.html#cb104-14" tabindex="-1"></a><span class="do">## [1] 2</span></span>
-<span id="cb104-15"><a href="loop-while.html#cb104-15" tabindex="-1"></a><span class="do">## [1] 3</span></span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="loop-while.html#cb105-1" tabindex="-1"></a>limite <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb105-2"><a href="loop-while.html#cb105-2" tabindex="-1"></a>soma <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb105-3"><a href="loop-while.html#cb105-3" tabindex="-1"></a>contador <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb105-4"><a href="loop-while.html#cb105-4" tabindex="-1"></a></span>
+<span id="cb105-5"><a href="loop-while.html#cb105-5" tabindex="-1"></a><span class="cf">while</span> (contador <span class="sc">&lt;=</span> limite) {  </span>
+<span id="cb105-6"><a href="loop-while.html#cb105-6" tabindex="-1"></a>  soma <span class="ot">&lt;-</span> soma <span class="sc">+</span> contador  </span>
+<span id="cb105-7"><a href="loop-while.html#cb105-7" tabindex="-1"></a>  <span class="fu">print</span>(contador)  </span>
+<span id="cb105-8"><a href="loop-while.html#cb105-8" tabindex="-1"></a>  <span class="cf">if</span> (contador <span class="sc">==</span> <span class="dv">3</span>){    </span>
+<span id="cb105-9"><a href="loop-while.html#cb105-9" tabindex="-1"></a>    <span class="cf">break</span>  </span>
+<span id="cb105-10"><a href="loop-while.html#cb105-10" tabindex="-1"></a>  }  </span>
+<span id="cb105-11"><a href="loop-while.html#cb105-11" tabindex="-1"></a>  contador <span class="ot">&lt;-</span> contador <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb105-12"><a href="loop-while.html#cb105-12" tabindex="-1"></a>}</span>
+<span id="cb105-13"><a href="loop-while.html#cb105-13" tabindex="-1"></a><span class="do">## [1] 1</span></span>
+<span id="cb105-14"><a href="loop-while.html#cb105-14" tabindex="-1"></a><span class="do">## [1] 2</span></span>
+<span id="cb105-15"><a href="loop-while.html#cb105-15" tabindex="-1"></a><span class="do">## [1] 3</span></span></code></pre></div>
 <ul>
 <li><strong>break</strong> é uma instrução utilizada em ciclos para interromper a sua
 execução (sair de um ciclo antes de ter sido percorrido
@@ -476,6 +476,19 @@ considere outras abordagens, como aplicar funções vetorizadas
 </ul>
 <div id="exercícios-9" class="section level2 hasAnchor" number="10.1">
 <h2><span class="header-section-number">10.1</span> Exercícios<a href="loop-while.html#exercícios-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>1.</strong> Escreva um programa em R que peça ao utilizador um número inteiro <span class="math inline">\(n\)</span> e escreva no ecrã os números inteiros de 0 a <span class="math inline">\(n\)</span>, um por linha.</p>
+<p><strong>2.</strong> Escreva um programa em R que peça ao utilizador um número inteiro e escreva no ecrã o seu quadrado, perguntando em seguida se o utilizador quer terminar a utilização do programa.</p>
+<p><strong>3.</strong> Escreva um programa em R que peça ao utilizador um número inteiro <span class="math inline">\(n\)</span> e escreva no ecrã o resultado do somatório dos primeiros <span class="math inline">\(n\)</span> inteiros.</p>
+<p><strong>4.</strong> Escreva um programa em R que peça ao utilizador um número inteiro <span class="math inline">\(n\)</span> e escreva no ecrã o número de pares no intervalo de 0 a <span class="math inline">\(n\)</span>.</p>
+<p><strong>5.</strong> Usar um loop <code>while</code> para somar números inteiros positivos até que um número negativo seja inserido.</p>
+<p>Escreva um programa em R que leia números do utilizador e some-os. O loop deve terminar quando o usuário inserir um número negativo. O programa deve então imprimir a soma dos números positivos inseridos.</p>
+<p><strong>6.</strong> Usar um loop while para implementar uma contagem regressiva.</p>
+<p>Crie um programa em R que peça ao utilizador para inserir um número positivo e, em seguida, conte regressivamente até zero, imprimindo cada número no console.</p>
+<p><strong>7.</strong> Crie um programa em R que peça ao utilizador para inserir um número negativo e, em seguida, conte progressivamente até zero, imprimindo cada número no console.</p>
+<p><strong>8.</strong> Crie um programa em R que peça ao utilizador para inserir um número e, em seguida, contar regressivamente até zero, se o número for positivo e progressivamente se o número for negativo, imprimindo cada número no console.</p>
+<p><strong>9.</strong> Escreva um programa em R que leia um número inteiro não negativo do utilizador e calcule seu fatorial usando um loop <code>while</code>. Lembre que <span class="math inline">\(0! = 1\)</span> e que <span class="math inline">\(4! = 4\cdot3\cdot2\cdot1\)</span>.</p>
+<p><strong>10.</strong> Escreva um programa em R que leia um número inteiro positivo e calcule a soma de seus dígitos usando um loop <code>while</code>. Por exemplo, 23 <span class="math inline">\(\to\)</span> <span class="math inline">\(2+3 = 5\)</span>.</p>
+<p><strong>11.</strong> Crie um programa em R que gere e imprima os números da sequência de Fibonacci até um valor máximo especificado pelo utilizador. 1 1 2 3 5 8 13…</p>
 </div>
 </div>
             </section>
