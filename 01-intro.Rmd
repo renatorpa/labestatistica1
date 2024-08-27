@@ -394,6 +394,9 @@ pi
 0*Inf
 ## [1] NaN
 
+Inf - Inf
+## [1] NaN
+
 sqrt(-1)
 ## Warning in sqrt(-1): NaNs produced
 ## [1] NaN
@@ -409,7 +412,15 @@ mean(c(1,2,3,NA,5), na.rm = TRUE)
 	
 x <- c(1, 2, NaN, 4, 5)
 y <- c(1, 2, NA, 4, 5)
-	
+
+# Note que isso não funciona
+y == NA
+## [1] NA NA NA NA NA
+
+# E isso também não
+y == "NA"
+## [1] FALSE FALSE    NA FALSE FALSE
+
 is.na(x)
 ## [1] FALSE FALSE  TRUE FALSE FALSE
 
@@ -810,10 +821,6 @@ complexos, entre outros.
 c(1.1, 2.2, 3.3)
 ## [1] 1.1 2.2 3.3
 
-# vetor inteiro
-c(1L, 2L, 3L) 
-## [1] 1 2 3
-
 # vetor de caracteres
 c("a", "b", "c")
 ## [1] "a" "b" "c"
@@ -885,6 +892,10 @@ x[4:8]
 x[-c(1:3,9:11)]
 ## [1] -2 -1  0  1  2
 
+# todos menos o último
+x[-length(x)]
+## [1] -5 -4 -3 -2 -1  0  1  2  3  4
+
 # Um vetor lógico pode ser definido por:
 index <- abs(x)<3
 index 
@@ -931,6 +942,14 @@ num_vector <- c(2.2, 1.1, 3.3)
 length(num_vector)
 ## [1] 3
 
+# Calcula o máximo
+max(num_vector)
+## [1] 3.3
+
+# Calcula o mínimo
+min(num_vector)
+## [1] 1.1
+
 # Calcula a soma dos elementos de um vetor
 sum(num_vector)
 ## [1] 6.6
@@ -938,6 +957,31 @@ sum(num_vector)
 # Calcula a média dos elementos de um vetor
 mean(num_vector)
 ## [1] 2.2
+
+# Calcula a mediana
+median(num_vector)
+## [1] 2.2
+
+# Vetor com mínimo e máximo
+range(num_vector)
+## [1] 1.1 3.3
+
+# Variância amostral
+var(num_vector)
+## [1] 1.21
+
+# Quantis
+quantile(num_vector,type = 2)
+##   0%  25%  50%  75% 100% 
+## 1.1  1.1  2.2  3.3  3.3 
+
+# Soma de todos os elementos até aquele ponto
+cumsum(num_vector)
+## [1] 2.2 3.3 6.6
+
+# Produto de todos os elementos até aquele ponto
+cumprod(num_vector)
+## [1] 2.20 2.42 7.99
 
 # Ordena os elementos de um vetor
 sort(num_vector)
@@ -950,6 +994,26 @@ sort(num_vector,decreasing = TRUE)
 duplicate_vector <- c(1, 2, 2, 3, 3, 3)
 unique(duplicate_vector)
 ## [1] 1 2 3
+```
+
+Existe uma função importante chamada `which` para encontrar índices dentro de vetores. 
+
+```{r eval=FALSE}
+y <- c(8,3,5,7,6,6,8,9,2,3,9,4,10,4,11)
+```
+
+Suponha que queiramos saber quais elementos de `y` contêm valores maiores que 5. Digitamos:
+
+```{r eval=FALSE}
+which(y>5)
+## [1]  1  4  5  6  7  8 11 13 15
+```
+
+Observe que a resposta a essa pergunta é um conjunto de índices Não usamos índices dentro da função `which` em si. A função é aplicada a todo o array. Para ver os valores de `y` que são maiores que 5, simplesmente digitamos:
+
+```{r eval=FALSE}
+y[y>5]
+## [1]  8  7  6  6  8  9  9 10 11
 ```
 
 ### Operações com Vetores
@@ -1118,6 +1182,26 @@ print(factor_data)
 ## [1] Low    Medium High   Medium Low    High
 ## Levels: Low Medium High
 ```
+
+A função `gl` (‘generate levels’) é útil quando você quer codificar vetores longos de níveis de fator.
+
+```{r eval=FALSE}
+gl(4,3)
+##  [1] 1 1 1 2 2 2 3 3 3 4 4 4
+## Levels: 1 2 3 4
+
+gl(2, 10, labels = c("mulher", "homem"))
+##  [1] mulher mulher mulher mulher mulher mulher mulher mulher mulher mulher
+## [11] homem  homem  homem  homem  homem  homem  homem  homem  homem  homem 
+## Levels: mulher homem
+
+# Também podemos fazer
+as.factor(c(rep("mulher", 10), rep("homem", 10)))
+##  [1] mulher mulher mulher mulher mulher mulher mulher mulher mulher mulher
+## [11] homem  homem  homem  homem  homem  homem  homem  homem  homem  homem 
+## Levels: homem mulher
+```
+
 
 ## Matriz e array
 
@@ -1321,6 +1405,30 @@ M%*%N
 ## [3,] -0.83679 -0.2961  0.140
 ## [4,] -0.00563 -0.0709 -0.113
 ```
+
+### Adicionando linhas e colunas a matriz
+
+```{r eval=FALSE}
+X <- matrix(c(1,2,3,4,5,6),nrow=2)
+X
+##      [,1] [,2] [,3]
+## [1,]    1    3    5
+## [2,]    2    4    6
+
+# Coluna
+cbind(X, c(7,8))
+##      [,1] [,2] [,3] [,4]
+## [1,]    1    3    5    7
+## [2,]    2    4    6    8
+
+# Linha
+rbind(X, c(7,8,9))
+##      [,1] [,2] [,3]
+## [1,]    1    3    5
+## [2,]    2    4    6
+## [3,]    7    8    9
+```
+
 
 ### Algumas outras funções
 

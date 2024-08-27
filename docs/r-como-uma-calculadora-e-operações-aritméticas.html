@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Renato de Paula" />
 
 
-<meta name="date" content="2024-08-22" />
+<meta name="date" content="2024-08-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -146,7 +146,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Laboratório de Estatistica I</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prefácio</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> https://renatorpa.github.io/labestatistica1/</a></li>
 <li class="chapter" data-level="2" data-path="r-e-rstudio.html"><a href="r-e-rstudio.html"><i class="fa fa-check"></i><b>2</b> R e RStudio</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="r-e-rstudio.html"><a href="r-e-rstudio.html#instalação-e-funcionalidades-básicas"><i class="fa fa-check"></i><b>2.1</b> Instalação e funcionalidades básicas</a></li>
@@ -197,8 +197,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3.2" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#índice-e-índice-lógico"><i class="fa fa-check"></i><b>4.3.2</b> Índice e índice lógico</a></li>
 <li class="chapter" data-level="4.3.3" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#nomeando-linhas-e-colunas-numa-matriz"><i class="fa fa-check"></i><b>4.3.3</b> Nomeando linhas e colunas numa matriz</a></li>
 <li class="chapter" data-level="4.3.4" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#multiplicação-de-matrizes"><i class="fa fa-check"></i><b>4.3.4</b> Multiplicação de matrizes</a></li>
-<li class="chapter" data-level="4.3.5" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#algumas-outras-funções"><i class="fa fa-check"></i><b>4.3.5</b> Algumas outras funções</a></li>
-<li class="chapter" data-level="4.3.6" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#exercícios-2"><i class="fa fa-check"></i><b>4.3.6</b> Exercícios</a></li>
+<li class="chapter" data-level="4.3.5" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#adicionando-linhas-e-colunas-a-matriz"><i class="fa fa-check"></i><b>4.3.5</b> Adicionando linhas e colunas a matriz</a></li>
+<li class="chapter" data-level="4.3.6" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#algumas-outras-funções"><i class="fa fa-check"></i><b>4.3.6</b> Algumas outras funções</a></li>
+<li class="chapter" data-level="4.3.7" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#exercícios-2"><i class="fa fa-check"></i><b>4.3.7</b> Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#data-frame"><i class="fa fa-check"></i><b>4.4</b> Data-frame</a>
 <ul>
@@ -662,46 +663,57 @@ digitando o seu nome. Por exemplo, se você digitar:</p>
 <span id="cb16-16"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-16" tabindex="-1"></a><span class="dv">0</span><span class="sc">*</span><span class="cn">Inf</span></span>
 <span id="cb16-17"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-17" tabindex="-1"></a><span class="do">## [1] NaN</span></span>
 <span id="cb16-18"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-18" tabindex="-1"></a></span>
-<span id="cb16-19"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-19" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="sc">-</span><span class="dv">1</span>)</span>
-<span id="cb16-20"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-20" tabindex="-1"></a><span class="do">## Warning in sqrt(-1): NaNs produced</span></span>
-<span id="cb16-21"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-21" tabindex="-1"></a><span class="do">## [1] NaN</span></span>
-<span id="cb16-22"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-22" tabindex="-1"></a>    </span>
-<span id="cb16-23"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-23" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="cn">NA</span>,<span class="dv">5</span>)</span>
-<span id="cb16-24"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-24" tabindex="-1"></a><span class="do">## [1]  1  2  3 NA  5</span></span>
-<span id="cb16-25"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-25" tabindex="-1"></a></span>
-<span id="cb16-26"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-26" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="cn">NA</span>,<span class="dv">5</span>))</span>
-<span id="cb16-27"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-27" tabindex="-1"></a><span class="do">## [1] NA</span></span>
+<span id="cb16-19"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-19" tabindex="-1"></a><span class="cn">Inf</span> <span class="sc">-</span> <span class="cn">Inf</span></span>
+<span id="cb16-20"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-20" tabindex="-1"></a><span class="do">## [1] NaN</span></span>
+<span id="cb16-21"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-21" tabindex="-1"></a></span>
+<span id="cb16-22"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-22" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb16-23"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-23" tabindex="-1"></a><span class="do">## Warning in sqrt(-1): NaNs produced</span></span>
+<span id="cb16-24"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-24" tabindex="-1"></a><span class="do">## [1] NaN</span></span>
+<span id="cb16-25"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-25" tabindex="-1"></a>    </span>
+<span id="cb16-26"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-26" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="cn">NA</span>,<span class="dv">5</span>)</span>
+<span id="cb16-27"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-27" tabindex="-1"></a><span class="do">## [1]  1  2  3 NA  5</span></span>
 <span id="cb16-28"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-28" tabindex="-1"></a></span>
-<span id="cb16-29"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-29" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="cn">NA</span>,<span class="dv">5</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb16-30"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-30" tabindex="-1"></a><span class="do">## [1] 2.75</span></span>
-<span id="cb16-31"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-31" tabindex="-1"></a>    </span>
-<span id="cb16-32"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-32" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NaN</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
-<span id="cb16-33"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-33" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NA</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb16-29"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-29" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="cn">NA</span>,<span class="dv">5</span>))</span>
+<span id="cb16-30"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-30" tabindex="-1"></a><span class="do">## [1] NA</span></span>
+<span id="cb16-31"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-31" tabindex="-1"></a></span>
+<span id="cb16-32"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-32" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="cn">NA</span>,<span class="dv">5</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-33"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-33" tabindex="-1"></a><span class="do">## [1] 2.75</span></span>
 <span id="cb16-34"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-34" tabindex="-1"></a>    </span>
-<span id="cb16-35"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-35" tabindex="-1"></a><span class="fu">is.na</span>(x)</span>
-<span id="cb16-36"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-36" tabindex="-1"></a><span class="do">## [1] FALSE FALSE  TRUE FALSE FALSE</span></span>
+<span id="cb16-35"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-35" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NaN</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb16-36"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-36" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NA</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
 <span id="cb16-37"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-37" tabindex="-1"></a></span>
-<span id="cb16-38"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-38" tabindex="-1"></a><span class="fu">is.nan</span>(x) </span>
-<span id="cb16-39"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-39" tabindex="-1"></a><span class="do">## [1] FALSE FALSE  TRUE FALSE FALSE</span></span>
-<span id="cb16-40"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-40" tabindex="-1"></a></span>
-<span id="cb16-41"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-41" tabindex="-1"></a><span class="fu">is.na</span>(y)</span>
-<span id="cb16-42"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-42" tabindex="-1"></a><span class="do">## [1] FALSE FALSE  TRUE FALSE FALSE</span></span>
-<span id="cb16-43"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-43" tabindex="-1"></a></span>
-<span id="cb16-44"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-44" tabindex="-1"></a><span class="fu">is.nan</span>(y)</span>
-<span id="cb16-45"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-45" tabindex="-1"></a><span class="do">## [1] FALSE FALSE FALSE FALSE FALSE</span></span>
-<span id="cb16-46"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-46" tabindex="-1"></a></span>
-<span id="cb16-47"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-47" tabindex="-1"></a><span class="co"># Operações com NaN e NA</span></span>
-<span id="cb16-48"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-48" tabindex="-1"></a><span class="fu">sum</span>(x)  <span class="co"># Exibe: NaN, porque a soma envolve um NaN</span></span>
-<span id="cb16-49"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-49" tabindex="-1"></a><span class="do">## [1] NaN</span></span>
-<span id="cb16-50"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-50" tabindex="-1"></a></span>
-<span id="cb16-51"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-51" tabindex="-1"></a><span class="fu">sum</span>(y)  <span class="co"># Exibe: NA, porque a soma envolve um NA</span></span>
-<span id="cb16-52"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-52" tabindex="-1"></a><span class="do">## [1] NA</span></span>
-<span id="cb16-53"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-53" tabindex="-1"></a>    </span>
-<span id="cb16-54"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-54" tabindex="-1"></a><span class="fu">sum</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)  <span class="co"># Exibe: 12, ignora NaN na soma</span></span>
-<span id="cb16-55"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-55" tabindex="-1"></a><span class="do">## [1] 12</span></span>
-<span id="cb16-56"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-56" tabindex="-1"></a></span>
-<span id="cb16-57"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-57" tabindex="-1"></a><span class="fu">sum</span>(y, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)  <span class="co"># Exibe: 12, ignora NA na soma</span></span>
-<span id="cb16-58"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-58" tabindex="-1"></a><span class="do">## [1] 12</span></span></code></pre></div>
+<span id="cb16-38"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-38" tabindex="-1"></a><span class="co"># Note que isso não funciona</span></span>
+<span id="cb16-39"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-39" tabindex="-1"></a>y <span class="sc">==</span> <span class="cn">NA</span></span>
+<span id="cb16-40"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-40" tabindex="-1"></a><span class="do">## [1] NA NA NA NA NA</span></span>
+<span id="cb16-41"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-41" tabindex="-1"></a></span>
+<span id="cb16-42"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-42" tabindex="-1"></a><span class="co"># E isso também não</span></span>
+<span id="cb16-43"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-43" tabindex="-1"></a>y <span class="sc">==</span> <span class="st">&quot;NA&quot;</span></span>
+<span id="cb16-44"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-44" tabindex="-1"></a><span class="do">## [1] FALSE FALSE    NA FALSE FALSE</span></span>
+<span id="cb16-45"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-45" tabindex="-1"></a></span>
+<span id="cb16-46"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-46" tabindex="-1"></a><span class="fu">is.na</span>(x)</span>
+<span id="cb16-47"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-47" tabindex="-1"></a><span class="do">## [1] FALSE FALSE  TRUE FALSE FALSE</span></span>
+<span id="cb16-48"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-48" tabindex="-1"></a></span>
+<span id="cb16-49"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-49" tabindex="-1"></a><span class="fu">is.nan</span>(x) </span>
+<span id="cb16-50"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-50" tabindex="-1"></a><span class="do">## [1] FALSE FALSE  TRUE FALSE FALSE</span></span>
+<span id="cb16-51"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-51" tabindex="-1"></a></span>
+<span id="cb16-52"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-52" tabindex="-1"></a><span class="fu">is.na</span>(y)</span>
+<span id="cb16-53"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-53" tabindex="-1"></a><span class="do">## [1] FALSE FALSE  TRUE FALSE FALSE</span></span>
+<span id="cb16-54"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-54" tabindex="-1"></a></span>
+<span id="cb16-55"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-55" tabindex="-1"></a><span class="fu">is.nan</span>(y)</span>
+<span id="cb16-56"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-56" tabindex="-1"></a><span class="do">## [1] FALSE FALSE FALSE FALSE FALSE</span></span>
+<span id="cb16-57"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-57" tabindex="-1"></a></span>
+<span id="cb16-58"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-58" tabindex="-1"></a><span class="co"># Operações com NaN e NA</span></span>
+<span id="cb16-59"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-59" tabindex="-1"></a><span class="fu">sum</span>(x)  <span class="co"># Exibe: NaN, porque a soma envolve um NaN</span></span>
+<span id="cb16-60"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-60" tabindex="-1"></a><span class="do">## [1] NaN</span></span>
+<span id="cb16-61"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-61" tabindex="-1"></a></span>
+<span id="cb16-62"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-62" tabindex="-1"></a><span class="fu">sum</span>(y)  <span class="co"># Exibe: NA, porque a soma envolve um NA</span></span>
+<span id="cb16-63"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-63" tabindex="-1"></a><span class="do">## [1] NA</span></span>
+<span id="cb16-64"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-64" tabindex="-1"></a>    </span>
+<span id="cb16-65"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-65" tabindex="-1"></a><span class="fu">sum</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)  <span class="co"># Exibe: 12, ignora NaN na soma</span></span>
+<span id="cb16-66"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-66" tabindex="-1"></a><span class="do">## [1] 12</span></span>
+<span id="cb16-67"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-67" tabindex="-1"></a></span>
+<span id="cb16-68"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-68" tabindex="-1"></a><span class="fu">sum</span>(y, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)  <span class="co"># Exibe: 12, ignora NA na soma</span></span>
+<span id="cb16-69"><a href="r-como-uma-calculadora-e-operações-aritméticas.html#cb16-69" tabindex="-1"></a><span class="do">## [1] 12</span></span></code></pre></div>
 <ul>
 <li><p><strong>NaN</strong> significa <strong>“Not a Number”</strong> e é usado para representar
 resultados indefinidos de operações matemáticas.</p></li>
@@ -1010,7 +1022,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["meuLivro2.pdf", "meuLivro2.epub"],
+"download": ["introR.pdf", "introR.epub"],
 "search": {
 "engine": "fuse",
 "options": null
