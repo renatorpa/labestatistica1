@@ -1429,7 +1429,6 @@ rbind(X, c(7,8,9))
 ## [3,]    7    8    9
 ```
 
-
 ### Algumas outras funções
 
 Seja $M$ uma matriz quadrada.
@@ -2628,12 +2627,19 @@ formato, o processo básico de leitura de dados em R consiste em:
 
 `read.table()` é uma das funções mais versáteis em R para leitura de
 arquivos de texto. Esta função permite importar arquivos tabulares e
-configurá-los de acordo com as características do arquivo.
+configurá-los de acordo com as características do arquivo. Faça o download do arquivo `dados.txt` em [link](https://renatorpaula.wixsite.com/renato/laboratorio-estatistica)
 
 ```{r eval=FALSE}
 # Leitura de arquivo txt com read.table()
-dados <- read.table("dados.txt", header = TRUE, sep = " ")
+dados <- read.table(file = "dados.txt", header = TRUE, sep = "")
+print(dados)
 ```
+
+* `file = "dados.txt"`: Estamos especificando o arquivo `"data.txt"` para leitura.
+
+* `header = TRUE`: Indicamos que a primeira linha do arquivo é o cabeçalho, contendo os nomes das colunas.
+
+`sep = ""`: Como os dados são separados por espaço, definimos o separador como "".
 
 A função `read.table()` tem várias opções de argumentos.
 
@@ -2665,7 +2671,11 @@ Alguns importantes são:
 -   `comment.char`: Define o caractere usado para indicar comentários no
     arquivo. Linhas começando com esse caractere serão ignoradas.
 
-**Exemplo**:
+Se o arquivo fosse um CSV (valores separados por vírgula), poderíamos usar:
+
+```{r eval=FALSE}
+dados_csv <- read.table("dados.csv", header = TRUE, sep = ",")
+```
 
 ## A função `read.csv()`
 
@@ -2693,12 +2703,35 @@ dados_csv2 <- read.csv2("dados.csv2", header = TRUE)
 ## A Função `read_excel()` do pacote `readxl`
 
 Para ler arquivos Excel (.xls e .xlsx), utilizamos a função
-`read_excel()` do pacote `readxl`.
+`read_excel()` do pacote `readxl`. 
 
 ```{r eval=FALSE}
 library(readxl)
-# Leitura de arquivo Excel
-dados_excel <- read_excel("dados.xlsx", sheet = 1)
+# Sintaxe básica
+read_excel(path, sheet = NULL, range = NULL, col_names = TRUE,
+           col_types = NULL, na = "", trim_ws = TRUE, skip = 0, n_max = Inf,
+           guess_max = min(1000, n_max), progress = readxl_progress())
+```
+
+Principais parâmetros
+
+* `path`: O caminho do arquivo Excel a ser lido. Este é um argumento obrigatório. Pode ser um caminho local ou uma URL.
+* `sheet`: O nome ou o índice da aba (planilha) do Excel a ser lida. Se não especificado, a função lerá a primeira aba.
+* `range`: Um intervalo específico a ser lido, como "A1:D10". Se `NULL` (padrão), a função lê toda a aba.
+* `col_names`: Um argumento lógico (`TRUE` ou `FALSE`) que indica se a primeira linha da planilha deve ser usada como nomes das colunas no data frame. O padrão é `TRUE`.
+* `col_types`: Um vetor de tipos de colunas que podem ser `"blank"`, `"numeric"`, `"date"`, `"text"`, ou `"guess"`. O padrão é `NULL`, o que permite que a função adivinhe os tipos de coluna automaticamente.
+* `na`: Um vetor de strings que devem ser interpretadas como valores ausentes (`NA`). O padrão é "" (string vazia).
+* `trim_ws`: Um argumento lógico (`TRUE` ou `FALSE`) que indica se os espaços em branco devem ser removidos do início e do fim dos valores de texto. O padrão é `TRUE`.
+* `skip`: Número de linhas a serem ignoradas antes de começar a leitura. O padrão é 0.
+* `n_max`: Número máximo de linhas a serem lidas. O padrão é `Inf`, o que significa que todas as linhas são lidas.
+
+Vamos considerar um exemplo em que temos um arquivo Excel chamado `"instragram.xlsx"` com três planilhas: `"Sheet1"`, `"Sheet2"` e `"Sheet3"`. Este arquivo pode ser baixado em [link](https://renatorpaula.wixsite.com/renato/laboratorio-estatistica). Vamos ler a primeira planilha (`Sheet1`):
+
+```{r eval=FALSE}
+dados <- read_excel(path = "instagram.xlsx",
+                    sheet = "Sheet1",
+                    col_names = TRUE,
+                    trim_ws = TRUE)
 ```
 
 ## Leitura de Dados Online
