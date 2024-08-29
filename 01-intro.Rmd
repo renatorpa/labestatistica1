@@ -2623,6 +2623,66 @@ formato, o processo básico de leitura de dados em R consiste em:
     cabeçalhos, etc.).
 -   Ler os dados e armazená-los em um objeto (geralmente um data frame).
 
+
+## Leitura de dados da entrada do usuário
+
+A função `scan()` lê dados de entrada de um arquivo ou da entrada padrão e retorna um vetor. Um uso básico do `scan()` é para entrada de dados manual:
+
+```{r eval=FALSE}
+# Solicita ao usuário para digitar números
+numeros <- scan()
+```
+
+Após digitar `scan()`, o usuário pode inserir uma série de números separados por espaços e pressionar Enter para concluir.
+
+## Diretório de trabalho
+
+O working directory (diretório de trabalho) em R é o diretório atual onde o R está configurado para ler e gravar arquivos. Quando você importa dados de um arquivo ou salva um gráfico, por exemplo, o R usa o diretório de trabalho como o ponto de referência para encontrar ou salvar esses arquivos. Ter um diretório de trabalho configurado corretamente é crucial para garantir que você consiga acessar arquivos de dados e salvar saídas de forma eficiente.
+
+Funções principais: `getwd()` e `setwd()`
+
+* `getwd()`: Retorna o caminho do diretório atual de trabalho.
+* `setwd()`: Define o diretório de trabalho para um diretório especificado.
+
+Para saber qual é o diretório de trabalho atual, você pode usar a função `getwd()`:
+
+```{r eval=FALSE}
+getwd()
+```
+
+A saída esperada (por exemplo, em um sistema Windows (Mac)) seria:
+
+```{r eval=FALSE}
+# Windows
+## [1] "C:/Users/Usuario/Documents"
+
+# Mac
+## [1] "/Users/Usuario/Documents"
+```
+
+Suponha que você queira alterar o diretório de trabalho para uma pasta chamada “ProjetosR” localizada em “C:/Users/Usuario/Documents/ProjetosR”. Você pode usar a função `setwd()` para fazer isso:
+
+```{r eval=FALSE}
+# Define o diretório de trabalho para "C:/Users/Usuario/Documents/ProjetosR"
+setwd("C:/Users/Usuario/Documents/ProjetosR")
+
+# Verifica se o diretório de trabalho foi alterado
+print(getwd())
+
+# Saída Esperada
+## [1] "C:/Users/Usuario/Documents/ProjetosR"
+```
+
+Ao definir corretamente o diretório de trabalho, você pode importar arquivos sem precisar especificar o caminho completo. Por exemplo, se você tiver um arquivo `“dados.csv”` na pasta de `“ProjetosR”`, você pode lê-lo diretamente:
+
+```{r eval=FALSE}
+# Lê o arquivo "dados.csv" no diretório de trabalho atual
+dados <- read.csv("dados.csv")
+
+# Exibe as primeiras linhas do conjunto de dados
+head(dados)
+```
+
 ## A Função `read.table()`
 
 `read.table()` é uma das funções mais versáteis em R para leitura de

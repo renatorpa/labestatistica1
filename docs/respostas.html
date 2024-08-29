@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Renato de Paula" />
 
 
-<meta name="date" content="2024-08-28" />
+<meta name="date" content="2024-08-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -237,11 +237,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html"><i class="fa fa-check"></i><b>8</b> Leitura de dados</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.table"><i class="fa fa-check"></i><b>8.1</b> A Função <code>read.table()</code></a></li>
-<li class="chapter" data-level="8.2" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.csv"><i class="fa fa-check"></i><b>8.2</b> A função <code>read.csv()</code></a></li>
-<li class="chapter" data-level="8.3" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.csv2"><i class="fa fa-check"></i><b>8.3</b> A função <code>read.csv2()</code></a></li>
-<li class="chapter" data-level="8.4" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read_excel-do-pacote-readxl"><i class="fa fa-check"></i><b>8.4</b> A Função <code>read_excel()</code> do pacote <code>readxl</code></a></li>
-<li class="chapter" data-level="8.5" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#leitura-de-dados-online"><i class="fa fa-check"></i><b>8.5</b> Leitura de Dados Online</a></li>
+<li class="chapter" data-level="8.1" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#leitura-de-dados-da-entrada-do-usuário"><i class="fa fa-check"></i><b>8.1</b> Leitura de dados da entrada do usuário</a></li>
+<li class="chapter" data-level="8.2" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#diretório-de-trabalho"><i class="fa fa-check"></i><b>8.2</b> Diretório de trabalho</a></li>
+<li class="chapter" data-level="8.3" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.table"><i class="fa fa-check"></i><b>8.3</b> A Função <code>read.table()</code></a></li>
+<li class="chapter" data-level="8.4" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.csv"><i class="fa fa-check"></i><b>8.4</b> A função <code>read.csv()</code></a></li>
+<li class="chapter" data-level="8.5" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.csv2"><i class="fa fa-check"></i><b>8.5</b> A função <code>read.csv2()</code></a></li>
+<li class="chapter" data-level="8.6" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read_excel-do-pacote-readxl"><i class="fa fa-check"></i><b>8.6</b> A Função <code>read_excel()</code> do pacote <code>readxl</code></a></li>
+<li class="chapter" data-level="8.7" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#leitura-de-dados-online"><i class="fa fa-check"></i><b>8.7</b> Leitura de Dados Online</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>9</b> Pipe</a>
 <ul>
@@ -395,7 +397,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">21.1.1</span> Selecionando colunas<a href="respostas.html#selecionando-colunas-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>1.</strong> Teste aplicar a função <code>glimpse()</code> do pacote `<code>dplyr</code> à base
 <code>sw</code>. O que ela faz?</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="respostas.html#cb237-1" tabindex="-1"></a><span class="fu">glimpse</span>(sw)</span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="respostas.html#cb242-1" tabindex="-1"></a><span class="fu">glimpse</span>(sw)</span></code></pre></div>
 <pre><code>## Rows: 87
 ## Columns: 14
 ## $ name       &lt;chr&gt; &quot;Luke Skywalker&quot;, &quot;C-3PO&quot;, &quot;R2-D2&quot;, &quot;Darth Vader&quot;, &quot;Leia Or…
@@ -416,8 +418,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 de cada coluna em uma única visualização, tudo de forma horizontal.</p>
 <p><strong>2.</strong> Crie uma tabela com apenas as colunas <code>name</code>, <code>gender</code>, e
 <code>films</code>. Salve em um objeto chamado <code>sw_simples</code>.</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="respostas.html#cb239-1" tabindex="-1"></a>sw_simples <span class="ot">&lt;-</span> <span class="fu">select</span>(sw, name, gender, films)</span>
-<span id="cb239-2"><a href="respostas.html#cb239-2" tabindex="-1"></a>sw_simples</span></code></pre></div>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="respostas.html#cb244-1" tabindex="-1"></a>sw_simples <span class="ot">&lt;-</span> <span class="fu">select</span>(sw, name, gender, films)</span>
+<span id="cb244-2"><a href="respostas.html#cb244-2" tabindex="-1"></a>sw_simples</span></code></pre></div>
 <pre><code>## # A tibble: 87 × 3
 ##    name               gender    films    
 ##    &lt;chr&gt;              &lt;chr&gt;     &lt;list&gt;   
@@ -434,7 +436,7 @@ de cada coluna em uma única visualização, tudo de forma horizontal.</p>
 ## # ℹ 77 more rows</code></pre>
 <p><strong>3.</strong> Selecione apenas as colunas <code>hair_color</code>, <code>skin_color</code> e
 <code>eye_color</code> usando a função auxiliar <code>contains()</code>.</p>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="respostas.html#cb241-1" tabindex="-1"></a><span class="fu">select</span>(sw, <span class="fu">contains</span>(<span class="st">&quot;color&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="respostas.html#cb246-1" tabindex="-1"></a><span class="fu">select</span>(sw, <span class="fu">contains</span>(<span class="st">&quot;color&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 87 × 3
 ##    hair_color    skin_color  eye_color
 ##    &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;    
@@ -453,20 +455,20 @@ de cada coluna em uma única visualização, tudo de forma horizontal.</p>
 códigos que retornem a base <code>sw</code> sem as colunas <code>hair_color</code>,
 <code>skin_color</code> e <code>eye_color</code>. Escreva todas as soluções diferentes que
 você conseguir pensar.</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="respostas.html#cb243-1" tabindex="-1"></a><span class="fu">select</span>(sw, <span class="sc">-</span>hair_color, <span class="sc">-</span>skin_color, <span class="sc">-</span>eye_color)</span>
-<span id="cb243-2"><a href="respostas.html#cb243-2" tabindex="-1"></a></span>
-<span id="cb243-3"><a href="respostas.html#cb243-3" tabindex="-1"></a><span class="fu">select</span>(sw, <span class="sc">-</span><span class="fu">contains</span>(<span class="st">&quot;color&quot;</span>))</span>
-<span id="cb243-4"><a href="respostas.html#cb243-4" tabindex="-1"></a></span>
-<span id="cb243-5"><a href="respostas.html#cb243-5" tabindex="-1"></a><span class="fu">select</span>(sw, <span class="sc">-</span><span class="fu">ends_with</span>(<span class="st">&quot;color&quot;</span>))</span>
-<span id="cb243-6"><a href="respostas.html#cb243-6" tabindex="-1"></a></span>
-<span id="cb243-7"><a href="respostas.html#cb243-7" tabindex="-1"></a><span class="fu">select</span>(sw, name<span class="sc">:</span>mass, birth_year<span class="sc">:</span>starships)</span></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="respostas.html#cb248-1" tabindex="-1"></a><span class="fu">select</span>(sw, <span class="sc">-</span>hair_color, <span class="sc">-</span>skin_color, <span class="sc">-</span>eye_color)</span>
+<span id="cb248-2"><a href="respostas.html#cb248-2" tabindex="-1"></a></span>
+<span id="cb248-3"><a href="respostas.html#cb248-3" tabindex="-1"></a><span class="fu">select</span>(sw, <span class="sc">-</span><span class="fu">contains</span>(<span class="st">&quot;color&quot;</span>))</span>
+<span id="cb248-4"><a href="respostas.html#cb248-4" tabindex="-1"></a></span>
+<span id="cb248-5"><a href="respostas.html#cb248-5" tabindex="-1"></a><span class="fu">select</span>(sw, <span class="sc">-</span><span class="fu">ends_with</span>(<span class="st">&quot;color&quot;</span>))</span>
+<span id="cb248-6"><a href="respostas.html#cb248-6" tabindex="-1"></a></span>
+<span id="cb248-7"><a href="respostas.html#cb248-7" tabindex="-1"></a><span class="fu">select</span>(sw, name<span class="sc">:</span>mass, birth_year<span class="sc">:</span>starships)</span></code></pre></div>
 </div>
 <div id="ordenando-a-base-1" class="section level3 hasAnchor" number="21.1.2">
 <h3><span class="header-section-number">21.1.2</span> Ordenando a base<a href="respostas.html#ordenando-a-base-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>1.</strong> Ordene <code>mass</code> em ordem crescente e <code>birth_year</code> em ordem
 decrescente e salve em um objeto chamado <code>sw_ordenados</code>.</p>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="respostas.html#cb244-1" tabindex="-1"></a>sw_ordenados <span class="ot">&lt;-</span> <span class="fu">arrange</span>(sw, mass, <span class="fu">desc</span>(birth_year))</span>
-<span id="cb244-2"><a href="respostas.html#cb244-2" tabindex="-1"></a>sw_ordenados</span></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="respostas.html#cb249-1" tabindex="-1"></a>sw_ordenados <span class="ot">&lt;-</span> <span class="fu">arrange</span>(sw, mass, <span class="fu">desc</span>(birth_year))</span>
+<span id="cb249-2"><a href="respostas.html#cb249-2" tabindex="-1"></a>sw_ordenados</span></code></pre></div>
 <pre><code>## # A tibble: 87 × 14
 ##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
 ##    &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
@@ -485,57 +487,57 @@ decrescente e salve em um objeto chamado <code>sw_ordenados</code>.</p>
 ## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
 <p><strong>2.</strong> Selecione apenas as colunas <code>name</code> e <code>birth_year</code> e então ordene
 de forma decrescente pelo <code>birth_year</code>.</p>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="respostas.html#cb246-1" tabindex="-1"></a><span class="co"># Aninhando funções</span></span>
-<span id="cb246-2"><a href="respostas.html#cb246-2" tabindex="-1"></a><span class="fu">arrange</span>(<span class="fu">select</span>(sw, name, birth_year), <span class="fu">desc</span>(birth_year))</span>
-<span id="cb246-3"><a href="respostas.html#cb246-3" tabindex="-1"></a></span>
-<span id="cb246-4"><a href="respostas.html#cb246-4" tabindex="-1"></a><span class="co"># Criando um objeto intermediário</span></span>
-<span id="cb246-5"><a href="respostas.html#cb246-5" tabindex="-1"></a>sw_aux <span class="ot">&lt;-</span> <span class="fu">select</span>(sw, name, birth_year)</span>
-<span id="cb246-6"><a href="respostas.html#cb246-6" tabindex="-1"></a><span class="fu">arrange</span>(sw_aux, <span class="fu">desc</span>(birth_year))</span>
-<span id="cb246-7"><a href="respostas.html#cb246-7" tabindex="-1"></a></span>
-<span id="cb246-8"><a href="respostas.html#cb246-8" tabindex="-1"></a><span class="co"># Usando pipe</span></span>
-<span id="cb246-9"><a href="respostas.html#cb246-9" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> </span>
-<span id="cb246-10"><a href="respostas.html#cb246-10" tabindex="-1"></a>  <span class="fu">select</span>(name, birth_year) <span class="sc">%&gt;%</span></span>
-<span id="cb246-11"><a href="respostas.html#cb246-11" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(birth_year))</span></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="respostas.html#cb251-1" tabindex="-1"></a><span class="co"># Aninhando funções</span></span>
+<span id="cb251-2"><a href="respostas.html#cb251-2" tabindex="-1"></a><span class="fu">arrange</span>(<span class="fu">select</span>(sw, name, birth_year), <span class="fu">desc</span>(birth_year))</span>
+<span id="cb251-3"><a href="respostas.html#cb251-3" tabindex="-1"></a></span>
+<span id="cb251-4"><a href="respostas.html#cb251-4" tabindex="-1"></a><span class="co"># Criando um objeto intermediário</span></span>
+<span id="cb251-5"><a href="respostas.html#cb251-5" tabindex="-1"></a>sw_aux <span class="ot">&lt;-</span> <span class="fu">select</span>(sw, name, birth_year)</span>
+<span id="cb251-6"><a href="respostas.html#cb251-6" tabindex="-1"></a><span class="fu">arrange</span>(sw_aux, <span class="fu">desc</span>(birth_year))</span>
+<span id="cb251-7"><a href="respostas.html#cb251-7" tabindex="-1"></a></span>
+<span id="cb251-8"><a href="respostas.html#cb251-8" tabindex="-1"></a><span class="co"># Usando pipe</span></span>
+<span id="cb251-9"><a href="respostas.html#cb251-9" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> </span>
+<span id="cb251-10"><a href="respostas.html#cb251-10" tabindex="-1"></a>  <span class="fu">select</span>(name, birth_year) <span class="sc">%&gt;%</span></span>
+<span id="cb251-11"><a href="respostas.html#cb251-11" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(birth_year))</span></code></pre></div>
 </div>
 <div id="filtrando-linhas-1" class="section level3 hasAnchor" number="21.1.3">
 <h3><span class="header-section-number">21.1.3</span> Filtrando linhas<a href="respostas.html#filtrando-linhas-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Utilize a base <code>sw</code> nos exercícios a seguir.</p>
 <p><strong>1.</strong> Crie um objeto chamado <code>humanos</code> apenas com personagens que sejam
 humanos.</p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="respostas.html#cb247-1" tabindex="-1"></a>humanos <span class="ot">&lt;-</span> <span class="fu">filter</span>(sw, species <span class="sc">==</span> <span class="st">&quot;Human&quot;</span>)</span>
-<span id="cb247-2"><a href="respostas.html#cb247-2" tabindex="-1"></a></span>
-<span id="cb247-3"><a href="respostas.html#cb247-3" tabindex="-1"></a><span class="co"># O pipe</span></span>
-<span id="cb247-4"><a href="respostas.html#cb247-4" tabindex="-1"></a>humanos <span class="ot">&lt;-</span> sw <span class="sc">%&gt;%</span> </span>
-<span id="cb247-5"><a href="respostas.html#cb247-5" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">&quot;Human&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="respostas.html#cb252-1" tabindex="-1"></a>humanos <span class="ot">&lt;-</span> <span class="fu">filter</span>(sw, species <span class="sc">==</span> <span class="st">&quot;Human&quot;</span>)</span>
+<span id="cb252-2"><a href="respostas.html#cb252-2" tabindex="-1"></a></span>
+<span id="cb252-3"><a href="respostas.html#cb252-3" tabindex="-1"></a><span class="co"># O pipe</span></span>
+<span id="cb252-4"><a href="respostas.html#cb252-4" tabindex="-1"></a>humanos <span class="ot">&lt;-</span> sw <span class="sc">%&gt;%</span> </span>
+<span id="cb252-5"><a href="respostas.html#cb252-5" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">&quot;Human&quot;</span>)</span></code></pre></div>
 <p><strong>2.</strong> Crie um objeto chamado <code>altos_fortes</code> com personagens que tenham
 mais de 200 cm de altura e peso maior que 100 kg.</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="respostas.html#cb248-1" tabindex="-1"></a>altos_fortes <span class="ot">&lt;-</span> <span class="fu">filter</span>(sw, height <span class="sc">&gt;</span> <span class="dv">200</span>, mass <span class="sc">&gt;</span> <span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="respostas.html#cb253-1" tabindex="-1"></a>altos_fortes <span class="ot">&lt;-</span> <span class="fu">filter</span>(sw, height <span class="sc">&gt;</span> <span class="dv">200</span>, mass <span class="sc">&gt;</span> <span class="dv">100</span>)</span></code></pre></div>
 <p><strong>3.</strong> Retorne tabelas (<code>tibbles</code>) apenas com:</p>
 <p><strong>a.</strong> Personagens humanos que nasceram antes de 100 anos antes da
 batalha de Yavin (<code>birth_year &lt; 100</code>).</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="respostas.html#cb249-1" tabindex="-1"></a><span class="fu">filter</span>(sw, species <span class="sc">==</span> <span class="st">&quot;Human&quot;</span>, birth_year <span class="sc">&lt;</span> <span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="respostas.html#cb254-1" tabindex="-1"></a><span class="fu">filter</span>(sw, species <span class="sc">==</span> <span class="st">&quot;Human&quot;</span>, birth_year <span class="sc">&lt;</span> <span class="dv">100</span>)</span></code></pre></div>
 <p><strong>b.</strong> Personagens com cor <code>light</code> ou <code>red</code>.</p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="respostas.html#cb250-1" tabindex="-1"></a><span class="fu">filter</span>(sw, skin_color <span class="sc">==</span> <span class="st">&quot;light&quot;</span> <span class="sc">|</span> skin_color <span class="sc">==</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="respostas.html#cb255-1" tabindex="-1"></a><span class="fu">filter</span>(sw, skin_color <span class="sc">==</span> <span class="st">&quot;light&quot;</span> <span class="sc">|</span> skin_color <span class="sc">==</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 <p><strong>c.</strong> Personagens com massa maior que 100 kg, ordenados de forma
 decrescente por altura, mostrando apenas as colunas <code>name</code>, <code>mass</code> e
 <code>height</code>.</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="respostas.html#cb251-1" tabindex="-1"></a><span class="fu">select</span>(<span class="fu">arrange</span>(<span class="fu">filter</span>(sw, mass <span class="sc">&gt;</span> <span class="dv">100</span>), <span class="fu">desc</span>(height)), name, mass, height)</span>
-<span id="cb251-2"><a href="respostas.html#cb251-2" tabindex="-1"></a></span>
-<span id="cb251-3"><a href="respostas.html#cb251-3" tabindex="-1"></a><span class="co"># usando o pipe</span></span>
-<span id="cb251-4"><a href="respostas.html#cb251-4" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> </span>
-<span id="cb251-5"><a href="respostas.html#cb251-5" tabindex="-1"></a>  <span class="fu">filter</span>(mass <span class="sc">&gt;</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb251-6"><a href="respostas.html#cb251-6" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(height)) <span class="sc">%&gt;%</span> </span>
-<span id="cb251-7"><a href="respostas.html#cb251-7" tabindex="-1"></a>  <span class="fu">select</span>(name, mass, height)</span></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="respostas.html#cb256-1" tabindex="-1"></a><span class="fu">select</span>(<span class="fu">arrange</span>(<span class="fu">filter</span>(sw, mass <span class="sc">&gt;</span> <span class="dv">100</span>), <span class="fu">desc</span>(height)), name, mass, height)</span>
+<span id="cb256-2"><a href="respostas.html#cb256-2" tabindex="-1"></a></span>
+<span id="cb256-3"><a href="respostas.html#cb256-3" tabindex="-1"></a><span class="co"># usando o pipe</span></span>
+<span id="cb256-4"><a href="respostas.html#cb256-4" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> </span>
+<span id="cb256-5"><a href="respostas.html#cb256-5" tabindex="-1"></a>  <span class="fu">filter</span>(mass <span class="sc">&gt;</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb256-6"><a href="respostas.html#cb256-6" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(height)) <span class="sc">%&gt;%</span> </span>
+<span id="cb256-7"><a href="respostas.html#cb256-7" tabindex="-1"></a>  <span class="fu">select</span>(name, mass, height)</span></code></pre></div>
 <p><strong>d.</strong> Personagens que sejam “Humano” ou “Droid”, e tenham uma altura
 maior que 170 cm.</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="respostas.html#cb252-1" tabindex="-1"></a><span class="fu">filter</span>(sw, species <span class="sc">==</span> <span class="st">&quot;Human&quot;</span> <span class="sc">|</span> species <span class="sc">==</span> <span class="st">&quot;Droid&quot;</span>, height <span class="sc">&gt;</span> <span class="dv">170</span>)</span>
-<span id="cb252-2"><a href="respostas.html#cb252-2" tabindex="-1"></a></span>
-<span id="cb252-3"><a href="respostas.html#cb252-3" tabindex="-1"></a><span class="co"># usando o pipe</span></span>
-<span id="cb252-4"><a href="respostas.html#cb252-4" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> </span>
-<span id="cb252-5"><a href="respostas.html#cb252-5" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Human&quot;</span>, <span class="st">&quot;Droid&quot;</span>), height <span class="sc">&gt;</span> <span class="dv">170</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="respostas.html#cb257-1" tabindex="-1"></a><span class="fu">filter</span>(sw, species <span class="sc">==</span> <span class="st">&quot;Human&quot;</span> <span class="sc">|</span> species <span class="sc">==</span> <span class="st">&quot;Droid&quot;</span>, height <span class="sc">&gt;</span> <span class="dv">170</span>)</span>
+<span id="cb257-2"><a href="respostas.html#cb257-2" tabindex="-1"></a></span>
+<span id="cb257-3"><a href="respostas.html#cb257-3" tabindex="-1"></a><span class="co"># usando o pipe</span></span>
+<span id="cb257-4"><a href="respostas.html#cb257-4" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> </span>
+<span id="cb257-5"><a href="respostas.html#cb257-5" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Human&quot;</span>, <span class="st">&quot;Droid&quot;</span>), height <span class="sc">&gt;</span> <span class="dv">170</span>)</span></code></pre></div>
 <p><strong>e.</strong> Personagens que não possuem informação tanto de altura quanto de
 massa, ou seja, possuem NA em ambas as colunas.</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="respostas.html#cb253-1" tabindex="-1"></a><span class="fu">filter</span>(sw, <span class="fu">is.na</span>(height), <span class="fu">is.na</span>(mass))</span></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="respostas.html#cb258-1" tabindex="-1"></a><span class="fu">filter</span>(sw, <span class="fu">is.na</span>(height), <span class="fu">is.na</span>(mass))</span></code></pre></div>
 </div>
 <div id="modificando-e-criando-novas-colunas-1" class="section level3 hasAnchor" number="21.1.4">
 <h3><span class="header-section-number">21.1.4</span> Modificando e criando novas colunas<a href="respostas.html#modificando-e-criando-novas-colunas-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -543,17 +545,17 @@ massa, ou seja, possuem NA em ambas as colunas.</p>
 e peso) e salve a nova tabela em um objeto chamado <code>sw_dif</code>. Em seguida,
 filtre apenas os personagens que têm altura maior que o peso e ordene a
 tabela por ordem crescente de <code>dif_peso_altura</code>.</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="respostas.html#cb254-1" tabindex="-1"></a>sw_dif <span class="ot">&lt;-</span> <span class="fu">mutate</span>(sw, <span class="at">dif_peso_altura =</span> height<span class="sc">-</span>mass)</span>
-<span id="cb254-2"><a href="respostas.html#cb254-2" tabindex="-1"></a></span>
-<span id="cb254-3"><a href="respostas.html#cb254-3" tabindex="-1"></a><span class="fu">arrange</span>(<span class="fu">filter</span>(sw_dif, height <span class="sc">&gt;</span> mass), dif_peso_altura)</span>
-<span id="cb254-4"><a href="respostas.html#cb254-4" tabindex="-1"></a></span>
-<span id="cb254-5"><a href="respostas.html#cb254-5" tabindex="-1"></a><span class="co"># usando o pipe</span></span>
-<span id="cb254-6"><a href="respostas.html#cb254-6" tabindex="-1"></a>sw_dif <span class="ot">&lt;-</span> sw <span class="sc">%&gt;%</span> </span>
-<span id="cb254-7"><a href="respostas.html#cb254-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dif_peso_altura =</span> height<span class="sc">-</span>mass)</span>
-<span id="cb254-8"><a href="respostas.html#cb254-8" tabindex="-1"></a></span>
-<span id="cb254-9"><a href="respostas.html#cb254-9" tabindex="-1"></a>sw_dif <span class="sc">%&gt;%</span> </span>
-<span id="cb254-10"><a href="respostas.html#cb254-10" tabindex="-1"></a>  <span class="fu">filter</span>(height <span class="sc">&gt;</span> mass) <span class="sc">%&gt;%</span> </span>
-<span id="cb254-11"><a href="respostas.html#cb254-11" tabindex="-1"></a>  <span class="fu">arrange</span>(dif_peso_altura)</span></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="respostas.html#cb259-1" tabindex="-1"></a>sw_dif <span class="ot">&lt;-</span> <span class="fu">mutate</span>(sw, <span class="at">dif_peso_altura =</span> height<span class="sc">-</span>mass)</span>
+<span id="cb259-2"><a href="respostas.html#cb259-2" tabindex="-1"></a></span>
+<span id="cb259-3"><a href="respostas.html#cb259-3" tabindex="-1"></a><span class="fu">arrange</span>(<span class="fu">filter</span>(sw_dif, height <span class="sc">&gt;</span> mass), dif_peso_altura)</span>
+<span id="cb259-4"><a href="respostas.html#cb259-4" tabindex="-1"></a></span>
+<span id="cb259-5"><a href="respostas.html#cb259-5" tabindex="-1"></a><span class="co"># usando o pipe</span></span>
+<span id="cb259-6"><a href="respostas.html#cb259-6" tabindex="-1"></a>sw_dif <span class="ot">&lt;-</span> sw <span class="sc">%&gt;%</span> </span>
+<span id="cb259-7"><a href="respostas.html#cb259-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dif_peso_altura =</span> height<span class="sc">-</span>mass)</span>
+<span id="cb259-8"><a href="respostas.html#cb259-8" tabindex="-1"></a></span>
+<span id="cb259-9"><a href="respostas.html#cb259-9" tabindex="-1"></a>sw_dif <span class="sc">%&gt;%</span> </span>
+<span id="cb259-10"><a href="respostas.html#cb259-10" tabindex="-1"></a>  <span class="fu">filter</span>(height <span class="sc">&gt;</span> mass) <span class="sc">%&gt;%</span> </span>
+<span id="cb259-11"><a href="respostas.html#cb259-11" tabindex="-1"></a>  <span class="fu">arrange</span>(dif_peso_altura)</span></code></pre></div>
 <p><strong>2.</strong> Fazendo apenas uma chamada da função <code>mutate()</code>, crie as
 seguintes colunas novas na base <code>sw</code>:</p>
 <p><strong>a.</strong> <code>indice_massa_altura</code> = <code>mass</code> / <code>height</code></p>
@@ -562,28 +564,28 @@ seguintes colunas novas na base <code>sw</code>:</p>
 <code>(indice_massa_altura - indice_massa_medio) / indice_massa_medio</code></p>
 <p><strong>d.</strong> <code>acima_media</code> =
 <code>ifelse(indice_massa_altura &gt; indice_massa_medio, “sim”, “não”)</code></p>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="respostas.html#cb255-1" tabindex="-1"></a><span class="fu">mutate</span>(sw, </span>
-<span id="cb255-2"><a href="respostas.html#cb255-2" tabindex="-1"></a>       <span class="at">indice_massa_altura =</span> mass<span class="sc">/</span>height,</span>
-<span id="cb255-3"><a href="respostas.html#cb255-3" tabindex="-1"></a>       <span class="at">indice_massa_medio =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb255-4"><a href="respostas.html#cb255-4" tabindex="-1"></a>       <span class="at">indice_relativo =</span> (indice_massa_altura <span class="sc">-</span> indice_massa_medio) <span class="sc">/</span> indice_massa_medio,</span>
-<span id="cb255-5"><a href="respostas.html#cb255-5" tabindex="-1"></a>       <span class="at">acima_media =</span> <span class="fu">ifelse</span>(indice_massa_altura <span class="sc">&gt;</span> indice_massa_medio, <span class="st">&quot;sim&quot;</span>, <span class="st">&quot;não&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="respostas.html#cb260-1" tabindex="-1"></a><span class="fu">mutate</span>(sw, </span>
+<span id="cb260-2"><a href="respostas.html#cb260-2" tabindex="-1"></a>       <span class="at">indice_massa_altura =</span> mass<span class="sc">/</span>height,</span>
+<span id="cb260-3"><a href="respostas.html#cb260-3" tabindex="-1"></a>       <span class="at">indice_massa_medio =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb260-4"><a href="respostas.html#cb260-4" tabindex="-1"></a>       <span class="at">indice_relativo =</span> (indice_massa_altura <span class="sc">-</span> indice_massa_medio) <span class="sc">/</span> indice_massa_medio,</span>
+<span id="cb260-5"><a href="respostas.html#cb260-5" tabindex="-1"></a>       <span class="at">acima_media =</span> <span class="fu">ifelse</span>(indice_massa_altura <span class="sc">&gt;</span> indice_massa_medio, <span class="st">&quot;sim&quot;</span>, <span class="st">&quot;não&quot;</span>))</span></code></pre></div>
 </div>
 <div id="sumarizando-a-base-1" class="section level3 hasAnchor" number="21.1.5">
 <h3><span class="header-section-number">21.1.5</span> Sumarizando a base<a href="respostas.html#sumarizando-a-base-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Utilize a base <code>sw</code> nos exercícios a seguir.</p>
 <p><strong>1.</strong> Calcule a altura média e mediana dos personagens.</p>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="respostas.html#cb256-1" tabindex="-1"></a><span class="fu">summarize</span>(sw, </span>
-<span id="cb256-2"><a href="respostas.html#cb256-2" tabindex="-1"></a>          <span class="at">media_altura =</span> <span class="fu">mean</span>(height, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb256-3"><a href="respostas.html#cb256-3" tabindex="-1"></a>          <span class="at">mediana_altura =</span> <span class="fu">median</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="respostas.html#cb261-1" tabindex="-1"></a><span class="fu">summarize</span>(sw, </span>
+<span id="cb261-2"><a href="respostas.html#cb261-2" tabindex="-1"></a>          <span class="at">media_altura =</span> <span class="fu">mean</span>(height, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb261-3"><a href="respostas.html#cb261-3" tabindex="-1"></a>          <span class="at">mediana_altura =</span> <span class="fu">median</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 2
 ##   media_altura mediana_altura
 ##          &lt;dbl&gt;          &lt;int&gt;
 ## 1         175.            180</code></pre>
 <p><strong>2.</strong> Calcule a massa média dos personagens cuja altura é maior que 175
 cm.</p>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="respostas.html#cb258-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> </span>
-<span id="cb258-2"><a href="respostas.html#cb258-2" tabindex="-1"></a>  <span class="fu">filter</span>(height <span class="sc">&gt;</span> <span class="dv">175</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb258-3"><a href="respostas.html#cb258-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">media_massa =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="respostas.html#cb263-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> </span>
+<span id="cb263-2"><a href="respostas.html#cb263-2" tabindex="-1"></a>  <span class="fu">filter</span>(height <span class="sc">&gt;</span> <span class="dv">175</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb263-3"><a href="respostas.html#cb263-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">media_massa =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 1
 ##   media_massa
 ##         &lt;dbl&gt;
@@ -591,12 +593,12 @@ cm.</p>
 <p><strong>3.</strong> Apresente na mesma tabela a massa média dos personagens com
 altura menor que 175 cm e a massa média dos personagens com altura maior
 ou igual a 175 cm.</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="respostas.html#cb260-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> </span>
-<span id="cb260-2"><a href="respostas.html#cb260-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">alturas =</span> <span class="fu">ifelse</span>(height <span class="sc">&lt;</span> <span class="dv">175</span>, <span class="st">&quot;menor 175&quot;</span>, <span class="st">&quot;maior 175&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb260-3"><a href="respostas.html#cb260-3" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(height)) <span class="sc">%&gt;%</span> </span>
-<span id="cb260-4"><a href="respostas.html#cb260-4" tabindex="-1"></a>  <span class="fu">group_by</span>(alturas) <span class="sc">%&gt;%</span> </span>
-<span id="cb260-5"><a href="respostas.html#cb260-5" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">altura_media =</span> <span class="fu">mean</span>(height, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb260-6"><a href="respostas.html#cb260-6" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="respostas.html#cb265-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> </span>
+<span id="cb265-2"><a href="respostas.html#cb265-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">alturas =</span> <span class="fu">ifelse</span>(height <span class="sc">&lt;</span> <span class="dv">175</span>, <span class="st">&quot;menor 175&quot;</span>, <span class="st">&quot;maior 175&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb265-3"><a href="respostas.html#cb265-3" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(height)) <span class="sc">%&gt;%</span> </span>
+<span id="cb265-4"><a href="respostas.html#cb265-4" tabindex="-1"></a>  <span class="fu">group_by</span>(alturas) <span class="sc">%&gt;%</span> </span>
+<span id="cb265-5"><a href="respostas.html#cb265-5" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">altura_media =</span> <span class="fu">mean</span>(height, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb265-6"><a href="respostas.html#cb265-6" tabindex="-1"></a>  )</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 2
 ##   alturas   altura_media
 ##   &lt;chr&gt;            &lt;dbl&gt;
@@ -604,9 +606,9 @@ ou igual a 175 cm.</p>
 ## 2 menor 175         142.</code></pre>
 <p><strong>4.</strong> Retorne tabelas (<code>tibbles</code>) apenas com:</p>
 <p><strong>a.</strong> A altura média dos personagens por espécie.</p>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="respostas.html#cb262-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> </span>
-<span id="cb262-2"><a href="respostas.html#cb262-2" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
-<span id="cb262-3"><a href="respostas.html#cb262-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">altura_media =</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="respostas.html#cb267-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> </span>
+<span id="cb267-2"><a href="respostas.html#cb267-2" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
+<span id="cb267-3"><a href="respostas.html#cb267-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">altura_media =</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 38 × 2
 ##    species   altura_media
 ##    &lt;chr&gt;            &lt;dbl&gt;
@@ -622,11 +624,11 @@ ou igual a 175 cm.</p>
 ## 10 Gungan            209.
 ## # ℹ 28 more rows</code></pre>
 <p><strong>b.</strong> A massa média e mediana dos personagens por espécie.</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="respostas.html#cb264-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span></span>
-<span id="cb264-2"><a href="respostas.html#cb264-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(mass)) <span class="sc">%&gt;%</span> </span>
-<span id="cb264-3"><a href="respostas.html#cb264-3" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
-<span id="cb264-4"><a href="respostas.html#cb264-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">massa_media =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb264-5"><a href="respostas.html#cb264-5" tabindex="-1"></a>            <span class="at">massa_mediana =</span> <span class="fu">median</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="respostas.html#cb269-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span></span>
+<span id="cb269-2"><a href="respostas.html#cb269-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(mass)) <span class="sc">%&gt;%</span> </span>
+<span id="cb269-3"><a href="respostas.html#cb269-3" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
+<span id="cb269-4"><a href="respostas.html#cb269-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">massa_media =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb269-5"><a href="respostas.html#cb269-5" tabindex="-1"></a>            <span class="at">massa_mediana =</span> <span class="fu">median</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 32 × 3
 ##    species   massa_media massa_mediana
 ##    &lt;chr&gt;           &lt;dbl&gt;         &lt;dbl&gt;
@@ -643,9 +645,9 @@ ou igual a 175 cm.</p>
 ## # ℹ 22 more rows</code></pre>
 <p><strong>c.</strong> Apenas o nome dos personagens que participaram de mais de 2
 filmes.</p>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="respostas.html#cb266-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> </span>
-<span id="cb266-2"><a href="respostas.html#cb266-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">length</span>(films) <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb266-3"><a href="respostas.html#cb266-3" tabindex="-1"></a>  <span class="fu">select</span>(name)</span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="respostas.html#cb271-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> </span>
+<span id="cb271-2"><a href="respostas.html#cb271-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">length</span>(films) <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb271-3"><a href="respostas.html#cb271-3" tabindex="-1"></a>  <span class="fu">select</span>(name)</span></code></pre></div>
 <pre><code>## # A tibble: 87 × 1
 ##    name              
 ##    &lt;chr&gt;             
