@@ -3735,9 +3735,68 @@ boxplot(bicicletas,main = "Caixa de bigodes",col = "green",horizontal = TRUE)
 dev.off()
 ```
 
-# Manipulando dados
+# Manipulação de dados
 
 ## Tibbles
+
+**Tibbles** são uma versão aprimorada dos data frames no R, introduzida pelo pacote `tibble`, que faz parte do `tidyverse`, um conjunto de pacotes projetados para a ciência de dados. Um tibble fornece uma estrutura de dados mais moderna e amigável, melhorando a experiência de manipulação de dados no R.
+
+**Diferenças Principais entre Tibble e Data Frame**
+
+| Característica                        | Data Frame                                     | Tibble                                           |
+|---------------------------------------|------------------------------------------------|--------------------------------------------------|
+| Impressão no Console                  | Exibe todos os dados | Exibe um resumo com 10 linhas e colunas visíveis  |
+| Conversão de Strings                  | Converte strings para fatores por padrão         | Mantém strings como caracteres                    |
+| Manuseio de Colunas                   | Apenas vetores, listas podem ser problemáticas   | Permite listas, funções, outros tibbles           |
+| Nomes de Colunas                      | Nomes devem ser únicos e sem espaços             | Nomes podem ter espaços, ser duplicados, etc.     |
+| Retorno de Subsetting (`[`)           | Pode retornar um vetor ou data frame             | Sempre retorna um tibble                          |
+| Compatibilidade e Integração          | Totalmente compatível com base R                 | Compatível, mas otimizado para uso com tidyverse  |
+| Manipulação de Dados                  | Pode ser menos intuitivo para algumas operações  | Mais amigável e intuitivo, especialmente com pipes|
+
+```{r eval=FALSE}
+library(tibble)
+
+# Criando um tibble
+tb <- tibble(
+  x = 1:5,
+  y = c("A", "B", "C", "D", "E"),
+  z = x * 2
+)
+
+print(tb)
+## # A tibble: 5 × 3
+##       x y         z
+##   <int> <chr> <dbl>
+## 1     1 A         2
+## 2     2 B         4
+## 3     3 C         6
+## 4     4 D         8
+## 5     5 E        10
+```
+
+Conversão de data frame pra tibble:
+
+```{r eval=FALSE}
+# Criando um data frame
+df <- data.frame(
+  x = 1:5,
+  y = c("A", "B", "C", "D", "E")
+)
+
+# Convertendo para tibble
+tb <- as_tibble(df)
+
+print(tb)
+## # A tibble: 5 × 2
+##       x y    
+##   <int> <chr>
+## 1     1 A    
+## 2     2 B    
+## 3     3 C    
+## 4     4 D    
+## 5     5 E
+```
+
 
 ## O pacote `dplyr`
 
@@ -4091,6 +4150,112 @@ e mediana dos personagens por espécie. **c.** Apenas o nome dos
 personagens que participaram de mais de 2 filmes.
 
 ### Juntando duas bases
+
+Podemos juntar duas tabelas (data frame ou tibble) a partir de uma coluna utilizando as funções `left_join()`, `right_join()` ou `full_join()`. 
+
+* `left_join()`: Mantém todas as linhas da tabela à esquerda e adiciona colunas da tabela à direita onde existe uma correspondência.
+* `right_join()`: Mantém todas as linhas da tabela à direita e adiciona colunas da tabela à esquerda onde existe uma correspondência.
+* `full_join()`: Mantém todas as linhas de ambas as tabelas e adiciona `NA` onde não existe correspondência.
+
+Para ilustrar o uso das funções de junção, vamos criar dois subconjuntos de dados da base `sw`:
+
+1.	Tabela de personagens altos (`personagens_altos`) - personagens com altura superior a 180 cm.
+
+2.	Tabela de personagens humanos (`personagens_humanos`).
+
+```{r}
+# Criar subconjunto de personagens altos
+personagens_altos <- sw %>%
+  filter(height > 180) %>%
+  select(name, height)
+
+# Criar subconjunto de personagens humanos
+personagens_humanos <- sw %>%
+  filter(species == "Human") %>%
+  select(name, species)
+```
+
+Agora, com essas duas tabelas, podemos usar as funções `left_join()`, `right_join()`, e `full_join()`.
+
+A função `left_join()` junta duas tabelas, mantendo todas as linhas da tabela à esquerda (primeira tabela) e adicionando colunas da tabela à direita (segunda tabela) para as quais existe uma correspondência. Valores sem correspondência entre as bases receberão `NA` na nova base.
+
+```{r}
+# Usar left_join para combinar os personagens altos com os humanos
+humanos_altos_left_join <- left_join(personagens_altos, personagens_humanos, by = "name")
+
+# Visualizar o resultado
+print(humanos_altos_left_join)
+```
+
+Neste exemplo, a tabela resultante `humanos_altos_left_join` mantém todas as linhas de `personagens_altos` e adiciona informações da tabela `personagens_humanos` quando há uma correspondência pelo nome do personagem.
+
+A função `right_join()` faz o oposto de `left_join()`: mantém todas as linhas da tabela à direita e adiciona colunas da tabela à esquerda para as quais existe uma correspondência.
+
+```{r}
+# Usar right_join para combinar humanos com personagens altos
+humanos_altos_right_join <- right_join(personagens_altos, personagens_humanos, by = "name")
+
+# Visualizar o resultado
+print(humanos_altos_right_join)
+```
+
+Aqui, a tabela resultante `humanos_altos_right_join` mantém todas as linhas de `personagens_humanos` e adiciona informações de `personagens_altos` quando há uma correspondência pelo nome.
+
+A função `full_join()` junta as duas tabelas, mantendo todas as linhas de ambas as tabelas e adicionando `NA` (valores ausentes) para correspondências inexistentes.
+
+```{r}
+# Usar full_join para combinar todas as informações de personagens altos e humanos
+humanos_altos_full_join <- full_join(personagens_altos, personagens_humanos, by = "name")
+
+# Visualizar o resultado
+print(humanos_altos_full_join)
+```
+
+A tabela resultante `humanos_altos_full_join` contém todas as linhas de ambas as tabelas `personagens_altos` e `personagens_humanos`. Se um personagem é encontrado em apenas uma das tabelas, as colunas da tabela ausente serão preenchidas com `NA`.
+
+### Exercícios
+
+**1.** Crie uma tabela `personagens_altos` que contenha apenas personagens com altura superior a 180 cm e uma outra tabela `personagens_leves` que contenha apenas personagens com massa inferior a 75 kg. Use `left_join()` para combinar as duas tabelas com base no nome do personagem.
+
+```{r eval=FALSE}
+personagens_altos <- sw %>% 
+  filter(height > 180) %>% 
+  select(name, height)
+
+personagens_leves <- sw %>% 
+  filter(mass < 75) %>% 
+  select(name, mass)
+
+left_join(personagens_altos, personagens_leves, by = "name")
+```
+
+**2.** Crie uma tabela `personagens_humanos` que contenha apenas personagens humanos e uma outra tabela `cor_cabelo` que contenha apenas personagens com cor de cabelo diferente de `NA`. Use `right_join()` para combinar `personagens_humanos` e `cor_cabelo` com base no nome do personagem.
+
+```{r eval=FALSE}
+personagens_humanos <- sw %>% 
+  filter(species == "Human") %>% 
+  select(name, species)
+
+cor_cabelo <- sw %>% 
+  filter(!is.na(hair_color)) %>% 
+  select(name, hair_color,)
+
+right_join(personagens_humanos, cor_cabelo, by = "name")
+```
+
+**3.** Crie uma tabela `especies_personagens` que contenha apenas personagens de espécies conhecidas (não `NA`) e uma outra tabela `cor_olhos` que contenha apenas personagens com cor de olho conhecida (não `NA`). Use `full_join()` para combinar as duas tabelas com base no nome do personagem.
+
+```{r eval=FALSE}
+especies_personagens <- sw %>% 
+  filter(!is.na(species)) %>% 
+  select(name, species)
+
+cor_olhos <- sw %>% 
+  filter(!is.na(eye_color)) %>% 
+  select(name, eye_color)
+
+full_join(especies_personagens, cor_olhos, by = "name")
+```
 
 # Visualização
 
