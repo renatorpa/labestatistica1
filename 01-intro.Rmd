@@ -4533,6 +4533,121 @@ funções tem as seguintes formas:
 o **nome** é uma abreviatura do nome usual da distribuição (`binom`,
 `geom`, `pois`, `unif`, `exp`, `norm`, ...).
 
+**Exempo 1**: Simule o lançamento de três moedas honestas e a contagem do número de caras X.
+
+**(a)** Use a sua simulação para estimar $P(X=1)$ e $E(X)$.
+
+**(b)** Modifique a alínea anterior para permitir uma moeda viciada onde $P(cara)=3/4$.
+
+```{r}
+set.seed(123)
+n <- 10000
+sim1 <- numeric(n)
+sim2 <- numeric(n)
+for (i in 1:n) {
+  moedas <- sample(0:1,3,replace=T)
+  sim1[i] <- if (sum(moedas)==1) 1 else 0
+  sim2[i] <- sum(moedas)
+}
+# P(X=1)
+mean(sim1)
+# E(X)
+mean(sim2)
+```
+
+```{r}
+set.seed(123)
+n <- 10000
+sim1 <- numeric(n)
+sim2 <- numeric(n)
+for (i in 1:n) {
+  moedas <- sample(c(0,1),3,prob=c(1/4,3/4),replace=T)
+  sim1[i] <- if (sum(moedas)==1) 1 else 0
+  sim2[i] <- sum(moedas)
+}
+# P(X=1)
+mean(sim1)
+# E(X)
+mean(sim2)
+```
+
+Sabemos também que $X-$ número de caras no lançamneto de três moedas honestas tem distribuição $Binomial(n=3,p=0.5)$. Assim, podemos resolver a questão da seguinte maneira
+
+```{r}
+set.seed(123)
+valores <- rbinom(10000,3,0.5)
+# P(X=1)
+sum(valores == 1)/length(valores)
+# E(X)
+sum(valores)/length(valores)
+mean(valores)
+```
+
+No segundo caso teremos $X \sim Binomial(n=3,p=3/4)$.
+
+```{r}
+set.seed(123)
+valores <- rbinom(10000,3,3/4)
+# P(X=1)
+sum(valores == 1)/length(valores)
+# E(X)
+sum(valores)/length(valores)
+mean(valores)
+```
+
+
+**Exemplo 2**: O tempo até a chegada de um autocarro tem uma distribuição exponencial com média de 30 minutos. 
+
+**(a)** Use o comando `rexp()` para simular a probabilidade do autocarro chegar nos primeiros 20 minutos.
+
+**(b)** Use o comando `pexp()` para comparar com a probabilidade exata.
+
+```{r}
+set.seed(123)
+valores <- rexp(10000, 1/30)
+# Probabilidade P(X <=20)
+sum( valores < 20)/length(valores)
+# Probabilidade exata
+pexp(20, 1/30)
+```
+
+**Exemplo 3**: As cartas são retiradas de um baralho padrão, com reposição, até que um ás apareça. Simule a média e a variância do número de cartas necessárias.
+
+```{r}
+set.seed(123)
+n <- 10000
+# Denote os ases por 1,2,3,4 
+simlist <- numeric(n)
+
+for (i in 1:n) {
+  ct <- 0
+  as <- 0
+  while (as == 0) {
+    carta <- sample(1:52,1,replace=T)
+    ct <- ct + 1
+    if (carta <= 4){
+      as <- 1
+    }
+  }
+  simlist[i] <- ct
+}
+mean(simlist)
+var(simlist)
+```
+
+Podemos notar aqui tambném que $X-$ número de provas de Bernoulli até o primeiro sucesso (aparecer um ás), que tem distribuição $Geométrica(p=4/52)$. Lembre que o R trabalha com a geométrica como sendo $X-$ número de insucessos até o primeiro sucesso.
+
+```{r}
+set.seed(123)
+
+valores <- rgeom(10000, 4/52) + 1
+
+# Média e variância
+mean(valores)
+var(valores)
+```
+
+
 ## Função de distribuição empírica
 
 A função de distribuição empírica é uma função de distribuição acumulada
@@ -4588,17 +4703,18 @@ Fn <- ecdf(dados)
 plot(Fn, main = "Função de Distribuição Empírica", xlab = "x", ylab = "Fn(x)", col = "blue", lwd = 2)
 ```
 
-## Gerando uma variável aleatória com distribuição binomial
 
-### Cálculo de probabilidades
+**Exemplo 1**: Resolva o exemplo 1 usando a função de distribuição empírica.
 
-Seja $X\sim \text{Binomial}(n=20,p=0.1)$.
-
-$P(X = 4) \to$ `dbinom(4,20,0.1)` = 0.08978
-
-$P(X \leq 4) \to$ `pbinom(4,20,0.1)` = 0.9568
-
-$P(X > 4)\to$ `pbinom(4,20,0.1,lower.tail=FALSE)` = 0.04317
+```{r}
+valores <- rexp(10000, 1/30)
+# Função de distribuição empírica
+Fn <- ecdf(valores)
+# Probabilidade P(X<=20)
+Fn(20)
+# Probabilidade exata
+pexp(20, 1/30)
+```
 
 ### Função massa de probabilidade (teórica)
 

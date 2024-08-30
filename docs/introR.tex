@@ -120,7 +120,7 @@
 
 \title{Introdução ao R}
 \author{Renato de Paula}
-\date{2024-08-29}
+\date{2024-08-30}
 
 \begin{document}
 \maketitle
@@ -4501,9 +4501,86 @@ de intervalo de classe no R é \((a, b]\).
 ##           1
 \end{verbatim}
 
-\chapter{Manipulando dados}\label{manipulando-dados}
+\chapter{Manipulação de dados}\label{manipulauxe7uxe3o-de-dados}
 
 \section{Tibbles}\label{tibbles}
+
+\textbf{Tibbles} são uma versão aprimorada dos data frames no R, introduzida pelo pacote \texttt{tibble}, que faz parte do \texttt{tidyverse}, um conjunto de pacotes projetados para a ciência de dados. Um tibble fornece uma estrutura de dados mais moderna e amigável, melhorando a experiência de manipulação de dados no R.
+
+\textbf{Diferenças Principais entre Tibble e Data Frame}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2847}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3504}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3650}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Característica
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Data Frame
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Tibble
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Impressão no Console & Exibe todos os dados & Exibe um resumo com 10 linhas e colunas visíveis \\
+Conversão de Strings & Converte strings para fatores por padrão & Mantém strings como caracteres \\
+Manuseio de Colunas & Apenas vetores, listas podem ser problemáticas & Permite listas, funções, outros tibbles \\
+Nomes de Colunas & Nomes devem ser únicos e sem espaços & Nomes podem ter espaços, ser duplicados, etc. \\
+Retorno de Subsetting (\texttt{{[}}) & Pode retornar um vetor ou data frame & Sempre retorna um tibble \\
+Compatibilidade e Integração & Totalmente compatível com base R & Compatível, mas otimizado para uso com tidyverse \\
+Manipulação de Dados & Pode ser menos intuitivo para algumas operações & Mais amigável e intuitivo, especialmente com pipes \\
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tibble)}
+
+\CommentTok{\# Criando um tibble}
+\NormalTok{tb }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}
+  \AttributeTok{x =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{,}
+  \AttributeTok{y =} \FunctionTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{, }\StringTok{"B"}\NormalTok{, }\StringTok{"C"}\NormalTok{, }\StringTok{"D"}\NormalTok{, }\StringTok{"E"}\NormalTok{),}
+  \AttributeTok{z =}\NormalTok{ x }\SpecialCharTok{*} \DecValTok{2}
+\NormalTok{)}
+
+\FunctionTok{print}\NormalTok{(tb)}
+\DocumentationTok{\#\# \# A tibble: 5 × 3}
+\DocumentationTok{\#\#       x y         z}
+\DocumentationTok{\#\#   \textless{}int\textgreater{} \textless{}chr\textgreater{} \textless{}dbl\textgreater{}}
+\DocumentationTok{\#\# 1     1 A         2}
+\DocumentationTok{\#\# 2     2 B         4}
+\DocumentationTok{\#\# 3     3 C         6}
+\DocumentationTok{\#\# 4     4 D         8}
+\DocumentationTok{\#\# 5     5 E        10}
+\end{Highlighting}
+\end{Shaded}
+
+Conversão de data frame pra tibble:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Criando um data frame}
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{x =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{,}
+  \AttributeTok{y =} \FunctionTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{, }\StringTok{"B"}\NormalTok{, }\StringTok{"C"}\NormalTok{, }\StringTok{"D"}\NormalTok{, }\StringTok{"E"}\NormalTok{)}
+\NormalTok{)}
+
+\CommentTok{\# Convertendo para tibble}
+\NormalTok{tb }\OtherTok{\textless{}{-}} \FunctionTok{as\_tibble}\NormalTok{(df)}
+
+\FunctionTok{print}\NormalTok{(tb)}
+\DocumentationTok{\#\# \# A tibble: 5 × 2}
+\DocumentationTok{\#\#       x y    }
+\DocumentationTok{\#\#   \textless{}int\textgreater{} \textless{}chr\textgreater{}}
+\DocumentationTok{\#\# 1     1 A    }
+\DocumentationTok{\#\# 2     2 B    }
+\DocumentationTok{\#\# 3     3 C    }
+\DocumentationTok{\#\# 4     4 D    }
+\DocumentationTok{\#\# 5     5 E}
+\end{Highlighting}
+\end{Shaded}
 
 \section{\texorpdfstring{O pacote \texttt{dplyr}}{O pacote dplyr}}\label{o-pacote-dplyr}
 
@@ -5362,6 +5439,187 @@ personagens que participaram de mais de 2 filmes.
 
 \subsection{Juntando duas bases}\label{juntando-duas-bases}
 
+Podemos juntar duas tabelas (data frame ou tibble) a partir de uma coluna utilizando as funções \texttt{left\_join()}, \texttt{right\_join()} ou \texttt{full\_join()}.
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{left\_join()}: Mantém todas as linhas da tabela à esquerda e adiciona colunas da tabela à direita onde existe uma correspondência.
+\item
+  \texttt{right\_join()}: Mantém todas as linhas da tabela à direita e adiciona colunas da tabela à esquerda onde existe uma correspondência.
+\item
+  \texttt{full\_join()}: Mantém todas as linhas de ambas as tabelas e adiciona \texttt{NA} onde não existe correspondência.
+\end{itemize}
+
+Para ilustrar o uso das funções de junção, vamos criar dois subconjuntos de dados da base \texttt{sw}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Tabela de personagens altos (\texttt{personagens\_altos}) - personagens com altura superior a 180 cm.
+\item
+  Tabela de personagens humanos (\texttt{personagens\_humanos}).
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Criar subconjunto de personagens altos}
+\NormalTok{personagens\_altos }\OtherTok{\textless{}{-}}\NormalTok{ sw }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(height }\SpecialCharTok{\textgreater{}} \DecValTok{180}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(name, height)}
+
+\CommentTok{\# Criar subconjunto de personagens humanos}
+\NormalTok{personagens\_humanos }\OtherTok{\textless{}{-}}\NormalTok{ sw }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(species }\SpecialCharTok{==} \StringTok{"Human"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(name, species)}
+\end{Highlighting}
+\end{Shaded}
+
+Agora, com essas duas tabelas, podemos usar as funções \texttt{left\_join()}, \texttt{right\_join()}, e \texttt{full\_join()}.
+
+A função \texttt{left\_join()} junta duas tabelas, mantendo todas as linhas da tabela à esquerda (primeira tabela) e adicionando colunas da tabela à direita (segunda tabela) para as quais existe uma correspondência. Valores sem correspondência entre as bases receberão \texttt{NA} na nova base.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Usar left\_join para combinar os personagens altos com os humanos}
+\NormalTok{humanos\_altos\_left\_join }\OtherTok{\textless{}{-}} \FunctionTok{left\_join}\NormalTok{(personagens\_altos, personagens\_humanos, }\AttributeTok{by =} \StringTok{"name"}\NormalTok{)}
+
+\CommentTok{\# Visualizar o resultado}
+\FunctionTok{print}\NormalTok{(humanos\_altos\_left\_join)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 39 x 3
+##    name              height species
+##    <chr>              <int> <chr>  
+##  1 Darth Vader          202 Human  
+##  2 Biggs Darklighter    183 Human  
+##  3 Obi-Wan Kenobi       182 Human  
+##  4 Anakin Skywalker     188 Human  
+##  5 Chewbacca            228 <NA>   
+##  6 Boba Fett            183 Human  
+##  7 IG-88                200 <NA>   
+##  8 Bossk                190 <NA>   
+##  9 Qui-Gon Jinn         193 Human  
+## 10 Nute Gunray          191 <NA>   
+## # i 29 more rows
+\end{verbatim}
+
+Neste exemplo, a tabela resultante \texttt{humanos\_altos\_left\_join} mantém todas as linhas de \texttt{personagens\_altos} e adiciona informações da tabela \texttt{personagens\_humanos} quando há uma correspondência pelo nome do personagem.
+
+A função \texttt{right\_join()} faz o oposto de \texttt{left\_join()}: mantém todas as linhas da tabela à direita e adiciona colunas da tabela à esquerda para as quais existe uma correspondência.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Usar right\_join para combinar humanos com personagens altos}
+\NormalTok{humanos\_altos\_right\_join }\OtherTok{\textless{}{-}} \FunctionTok{right\_join}\NormalTok{(personagens\_altos, personagens\_humanos, }\AttributeTok{by =} \StringTok{"name"}\NormalTok{)}
+
+\CommentTok{\# Visualizar o resultado}
+\FunctionTok{print}\NormalTok{(humanos\_altos\_right\_join)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 35 x 3
+##    name              height species
+##    <chr>              <int> <chr>  
+##  1 Darth Vader          202 Human  
+##  2 Biggs Darklighter    183 Human  
+##  3 Obi-Wan Kenobi       182 Human  
+##  4 Anakin Skywalker     188 Human  
+##  5 Boba Fett            183 Human  
+##  6 Qui-Gon Jinn         193 Human  
+##  7 Padmé Amidala        185 Human  
+##  8 Ric Olié             183 Human  
+##  9 Quarsh Panaka        183 Human  
+## 10 Mace Windu           188 Human  
+## # i 25 more rows
+\end{verbatim}
+
+Aqui, a tabela resultante \texttt{humanos\_altos\_right\_join} mantém todas as linhas de \texttt{personagens\_humanos} e adiciona informações de \texttt{personagens\_altos} quando há uma correspondência pelo nome.
+
+A função \texttt{full\_join()} junta as duas tabelas, mantendo todas as linhas de ambas as tabelas e adicionando \texttt{NA} (valores ausentes) para correspondências inexistentes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Usar full\_join para combinar todas as informações de personagens altos e humanos}
+\NormalTok{humanos\_altos\_full\_join }\OtherTok{\textless{}{-}} \FunctionTok{full\_join}\NormalTok{(personagens\_altos, personagens\_humanos, }\AttributeTok{by =} \StringTok{"name"}\NormalTok{)}
+
+\CommentTok{\# Visualizar o resultado}
+\FunctionTok{print}\NormalTok{(humanos\_altos\_full\_join)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 59 x 3
+##    name              height species
+##    <chr>              <int> <chr>  
+##  1 Darth Vader          202 Human  
+##  2 Biggs Darklighter    183 Human  
+##  3 Obi-Wan Kenobi       182 Human  
+##  4 Anakin Skywalker     188 Human  
+##  5 Chewbacca            228 <NA>   
+##  6 Boba Fett            183 Human  
+##  7 IG-88                200 <NA>   
+##  8 Bossk                190 <NA>   
+##  9 Qui-Gon Jinn         193 Human  
+## 10 Nute Gunray          191 <NA>   
+## # i 49 more rows
+\end{verbatim}
+
+A tabela resultante \texttt{humanos\_altos\_full\_join} contém todas as linhas de ambas as tabelas \texttt{personagens\_altos} e \texttt{personagens\_humanos}. Se um personagem é encontrado em apenas uma das tabelas, as colunas da tabela ausente serão preenchidas com \texttt{NA}.
+
+\subsection{Exercícios}\label{exercuxedcios-16}
+
+\textbf{1.} Crie uma tabela \texttt{personagens\_altos} que contenha apenas personagens com altura superior a 180 cm e uma outra tabela \texttt{personagens\_leves} que contenha apenas personagens com massa inferior a 75 kg. Use \texttt{left\_join()} para combinar as duas tabelas com base no nome do personagem.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{personagens\_altos }\OtherTok{\textless{}{-}}\NormalTok{ sw }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(height }\SpecialCharTok{\textgreater{}} \DecValTok{180}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(name, height)}
+
+\NormalTok{personagens\_leves }\OtherTok{\textless{}{-}}\NormalTok{ sw }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(mass }\SpecialCharTok{\textless{}} \DecValTok{75}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(name, mass)}
+
+\FunctionTok{left\_join}\NormalTok{(personagens\_altos, personagens\_leves, }\AttributeTok{by =} \StringTok{"name"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{2.} Crie uma tabela \texttt{personagens\_humanos} que contenha apenas personagens humanos e uma outra tabela \texttt{cor\_cabelo} que contenha apenas personagens com cor de cabelo diferente de \texttt{NA}. Use \texttt{right\_join()} para combinar \texttt{personagens\_humanos} e \texttt{cor\_cabelo} com base no nome do personagem.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{personagens\_humanos }\OtherTok{\textless{}{-}}\NormalTok{ sw }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(species }\SpecialCharTok{==} \StringTok{"Human"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(name, species)}
+
+\NormalTok{cor\_cabelo }\OtherTok{\textless{}{-}}\NormalTok{ sw }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(hair\_color)) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(name, hair\_color,)}
+
+\FunctionTok{right\_join}\NormalTok{(personagens\_humanos, cor\_cabelo, }\AttributeTok{by =} \StringTok{"name"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{3.} Crie uma tabela \texttt{especies\_personagens} que contenha apenas personagens de espécies conhecidas (não \texttt{NA}) e uma outra tabela \texttt{cor\_olhos} que contenha apenas personagens com cor de olho conhecida (não \texttt{NA}). Use \texttt{full\_join()} para combinar as duas tabelas com base no nome do personagem.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{especies\_personagens }\OtherTok{\textless{}{-}}\NormalTok{ sw }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(species)) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(name, species)}
+
+\NormalTok{cor\_olhos }\OtherTok{\textless{}{-}}\NormalTok{ sw }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(eye\_color)) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(name, eye\_color)}
+
+\FunctionTok{full\_join}\NormalTok{(especies\_personagens, cor\_olhos, }\AttributeTok{by =} \StringTok{"name"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \chapter{Visualização}\label{visualizauxe7uxe3o}
 
 \chapter{\texorpdfstring{O pacote \texttt{ggplot2}}{O pacote ggplot2}}\label{o-pacote-ggplot2}
@@ -5475,7 +5733,7 @@ Temos então um tempo médio de 11.75 minutos.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-171-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-180-1.pdf}
 
 \section{Geração de números pseudoaleatórios}\label{gerauxe7uxe3o-de-nuxfameros-pseudoaleatuxf3rios}
 
@@ -5614,7 +5872,7 @@ têm probabilidades diferentes de serem selecionados.
 \end{Highlighting}
 \end{Shaded}
 
-\section{Exercícios}\label{exercuxedcios-16}
+\section{Exercícios}\label{exercuxedcios-17}
 
 \textbf{1.} Crie um vetor com os números de 1 a 20. Utilize a função \texttt{sample()}
 para selecionar uma amostra aleatória de 5 elementos desse vetor. A
@@ -5688,6 +5946,242 @@ funções tem as seguintes formas:
 o \textbf{nome} é uma abreviatura do nome usual da distribuição (\texttt{binom},
 \texttt{geom}, \texttt{pois}, \texttt{unif}, \texttt{exp}, \texttt{norm}, \ldots).
 
+\textbf{Exempo 1}: Simule o lançamento de três moedas honestas e a contagem do número de caras X.
+
+\textbf{(a)} Use a sua simulação para estimar \(P(X=1)\) e \(E(X)\).
+
+\textbf{(b)} Modifique a alínea anterior para permitir uma moeda viciada onde \(P(cara)=3/4\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{10000}
+\NormalTok{sim1 }\OtherTok{\textless{}{-}} \FunctionTok{numeric}\NormalTok{(n)}
+\NormalTok{sim2 }\OtherTok{\textless{}{-}} \FunctionTok{numeric}\NormalTok{(n)}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{n) \{}
+\NormalTok{  moedas }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\DecValTok{0}\SpecialCharTok{:}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{,}\AttributeTok{replace=}\NormalTok{T)}
+\NormalTok{  sim1[i] }\OtherTok{\textless{}{-}} \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{sum}\NormalTok{(moedas)}\SpecialCharTok{==}\DecValTok{1}\NormalTok{) }\DecValTok{1} \ControlFlowTok{else} \DecValTok{0}
+\NormalTok{  sim2[i] }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(moedas)}
+\NormalTok{\}}
+\CommentTok{\# P(X=1)}
+\FunctionTok{mean}\NormalTok{(sim1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.3821
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# E(X)}
+\FunctionTok{mean}\NormalTok{(sim2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.4928
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{10000}
+\NormalTok{sim1 }\OtherTok{\textless{}{-}} \FunctionTok{numeric}\NormalTok{(n)}
+\NormalTok{sim2 }\OtherTok{\textless{}{-}} \FunctionTok{numeric}\NormalTok{(n)}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{n) \{}
+\NormalTok{  moedas }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}\DecValTok{3}\NormalTok{,}\AttributeTok{prob=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\DecValTok{4}\NormalTok{,}\DecValTok{3}\SpecialCharTok{/}\DecValTok{4}\NormalTok{),}\AttributeTok{replace=}\NormalTok{T)}
+\NormalTok{  sim1[i] }\OtherTok{\textless{}{-}} \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{sum}\NormalTok{(moedas)}\SpecialCharTok{==}\DecValTok{1}\NormalTok{) }\DecValTok{1} \ControlFlowTok{else} \DecValTok{0}
+\NormalTok{  sim2[i] }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(moedas)}
+\NormalTok{\}}
+\CommentTok{\# P(X=1)}
+\FunctionTok{mean}\NormalTok{(sim1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.1384
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# E(X)}
+\FunctionTok{mean}\NormalTok{(sim2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.2503
+\end{verbatim}
+
+Sabemos também que \(X-\) número de caras no lançamneto de três moedas honestas tem distribuição \(Binomial(n=3,p=0.5)\). Assim, podemos resolver a questão da seguinte maneira
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{valores }\OtherTok{\textless{}{-}} \FunctionTok{rbinom}\NormalTok{(}\DecValTok{10000}\NormalTok{,}\DecValTok{3}\NormalTok{,}\FloatTok{0.5}\NormalTok{)}
+\CommentTok{\# P(X=1)}
+\FunctionTok{sum}\NormalTok{(valores }\SpecialCharTok{==} \DecValTok{1}\NormalTok{)}\SpecialCharTok{/}\FunctionTok{length}\NormalTok{(valores)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.383
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# E(X)}
+\FunctionTok{sum}\NormalTok{(valores)}\SpecialCharTok{/}\FunctionTok{length}\NormalTok{(valores)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.4897
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(valores)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.4897
+\end{verbatim}
+
+No segundo caso teremos \(X \sim Binomial(n=3,p=3/4)\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{valores }\OtherTok{\textless{}{-}} \FunctionTok{rbinom}\NormalTok{(}\DecValTok{10000}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{3}\SpecialCharTok{/}\DecValTok{4}\NormalTok{)}
+\CommentTok{\# P(X=1)}
+\FunctionTok{sum}\NormalTok{(valores }\SpecialCharTok{==} \DecValTok{1}\NormalTok{)}\SpecialCharTok{/}\FunctionTok{length}\NormalTok{(valores)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.1365
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# E(X)}
+\FunctionTok{sum}\NormalTok{(valores)}\SpecialCharTok{/}\FunctionTok{length}\NormalTok{(valores)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.2558
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(valores)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.2558
+\end{verbatim}
+
+\textbf{Exemplo 2}: O tempo até a chegada de um autocarro tem uma distribuição exponencial com média de 30 minutos.
+
+\textbf{(a)} Use o comando \texttt{rexp()} para simular a probabilidade do autocarro chegar nos primeiros 20 minutos.
+
+\textbf{(b)} Use o comando \texttt{pexp()} para comparar com a probabilidade exata.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{valores }\OtherTok{\textless{}{-}} \FunctionTok{rexp}\NormalTok{(}\DecValTok{10000}\NormalTok{, }\DecValTok{1}\SpecialCharTok{/}\DecValTok{30}\NormalTok{)}
+\CommentTok{\# Probabilidade P(X \textless{}=20)}
+\FunctionTok{sum}\NormalTok{( valores }\SpecialCharTok{\textless{}} \DecValTok{20}\NormalTok{)}\SpecialCharTok{/}\FunctionTok{length}\NormalTok{(valores)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.4832
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Probabilidade exata}
+\FunctionTok{pexp}\NormalTok{(}\DecValTok{20}\NormalTok{, }\DecValTok{1}\SpecialCharTok{/}\DecValTok{30}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.4865829
+\end{verbatim}
+
+\textbf{Exemplo 3}: As cartas são retiradas de um baralho padrão, com reposição, até que um ás apareça. Simule a média e a variância do número de cartas necessárias.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{10000}
+\CommentTok{\# Denote os ases por 1,2,3,4 }
+\NormalTok{simlist }\OtherTok{\textless{}{-}} \FunctionTok{numeric}\NormalTok{(n)}
+
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{n) \{}
+\NormalTok{  ct }\OtherTok{\textless{}{-}} \DecValTok{0}
+\NormalTok{  as }\OtherTok{\textless{}{-}} \DecValTok{0}
+  \ControlFlowTok{while}\NormalTok{ (as }\SpecialCharTok{==} \DecValTok{0}\NormalTok{) \{}
+\NormalTok{    carta }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{52}\NormalTok{,}\DecValTok{1}\NormalTok{,}\AttributeTok{replace=}\NormalTok{T)}
+\NormalTok{    ct }\OtherTok{\textless{}{-}}\NormalTok{ ct }\SpecialCharTok{+} \DecValTok{1}
+    \ControlFlowTok{if}\NormalTok{ (carta }\SpecialCharTok{\textless{}=} \DecValTok{4}\NormalTok{)\{}
+\NormalTok{      as }\OtherTok{\textless{}{-}} \DecValTok{1}
+\NormalTok{    \}}
+\NormalTok{  \}}
+\NormalTok{  simlist[i] }\OtherTok{\textless{}{-}}\NormalTok{ ct}
+\NormalTok{\}}
+\FunctionTok{mean}\NormalTok{(simlist)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 12.8081
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{var}\NormalTok{(simlist)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 147.5318
+\end{verbatim}
+
+Podemos notar aqui tambném que \(X-\) número de provas de Bernoulli até o primeiro sucesso (aparecer um ás), que tem distribuição \(Geométrica(p=4/52)\). Lembre que o R trabalha com a geométrica como sendo \(X-\) número de insucessos até o primeiro sucesso.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\NormalTok{valores }\OtherTok{\textless{}{-}} \FunctionTok{rgeom}\NormalTok{(}\DecValTok{10000}\NormalTok{, }\DecValTok{4}\SpecialCharTok{/}\DecValTok{52}\NormalTok{) }\SpecialCharTok{+} \DecValTok{1}
+
+\CommentTok{\# Média e variância}
+\FunctionTok{mean}\NormalTok{(valores)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 13.0108
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{var}\NormalTok{(valores)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 152.0335
+\end{verbatim}
+
 \section{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica}
 
 A função de distribuição empírica é uma função de distribuição acumulada
@@ -5756,19 +6250,34 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-176-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-192-1.pdf}
 
-\section{Gerando uma variável aleatória com distribuição binomial}\label{gerando-uma-variuxe1vel-aleatuxf3ria-com-distribuiuxe7uxe3o-binomial}
+\textbf{Exemplo 1}: Resolva o exemplo 1 usando a função de distribuição empírica.
 
-\subsection{Cálculo de probabilidades}\label{cuxe1lculo-de-probabilidades}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{valores }\OtherTok{\textless{}{-}} \FunctionTok{rexp}\NormalTok{(}\DecValTok{10000}\NormalTok{, }\DecValTok{1}\SpecialCharTok{/}\DecValTok{30}\NormalTok{)}
+\CommentTok{\# Função de distribuição empírica}
+\NormalTok{Fn }\OtherTok{\textless{}{-}} \FunctionTok{ecdf}\NormalTok{(valores)}
+\CommentTok{\# Probabilidade P(X\textless{}=20)}
+\FunctionTok{Fn}\NormalTok{(}\DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
-Seja \(X\sim \text{Binomial}(n=20,p=0.1)\).
+\begin{verbatim}
+## [1] 0.4874
+\end{verbatim}
 
-\(P(X = 4) \to\) \texttt{dbinom(4,20,0.1)} = 0.08978
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Probabilidade exata}
+\FunctionTok{pexp}\NormalTok{(}\DecValTok{20}\NormalTok{, }\DecValTok{1}\SpecialCharTok{/}\DecValTok{30}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
-\(P(X \leq 4) \to\) \texttt{pbinom(4,20,0.1)} = 0.9568
-
-\(P(X > 4)\to\) \texttt{pbinom(4,20,0.1,lower.tail=FALSE)} = 0.04317
+\begin{verbatim}
+## [1] 0.4865829
+\end{verbatim}
 
 \subsection{Função massa de probabilidade (teórica)}\label{funuxe7uxe3o-massa-de-probabilidade-teuxf3rica}
 
@@ -5794,7 +6303,7 @@ Seja \(X\sim \text{Binomial}(n=20,p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-177-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-194-1.pdf}
 
 \subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o}
 
@@ -5819,7 +6328,7 @@ Seja \(X\sim \text{Binomial}(n=20,p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-178-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-195-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o}
 
@@ -5847,7 +6356,7 @@ Seja \(X\sim \text{Binomial}(n=20,p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-179-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-196-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o}
 
@@ -5870,7 +6379,7 @@ Seja \(X\sim \text{Binomial}(n=20,p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-180-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-197-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-1}
 
@@ -5893,7 +6402,7 @@ Seja \(X\sim \text{Binomial}(n=20,p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-181-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-198-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5902,7 +6411,7 @@ Seja \(X\sim \text{Binomial}(n=20,p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-181-2.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-198-2.pdf}
 
 \textbf{Cálculo de probabilidade}: Seja
 \(X \sim \text{Binomial}(n=10, p=0.5)\).
@@ -5913,7 +6422,7 @@ Seja \(X\sim \text{Binomial}(n=20,p=0.1)\).
 
 \section{Gerando uma variável aleatória com distribuição de Poisson}\label{gerando-uma-variuxe1vel-aleatuxf3ria-com-distribuiuxe7uxe3o-de-poisson}
 
-\subsection{Cálculo de probabilidades}\label{cuxe1lculo-de-probabilidades-1}
+\subsection{Cálculo de probabilidades}\label{cuxe1lculo-de-probabilidades}
 
 Seja \(X\sim\text{Poisson}(\lambda=5)\).
 
@@ -5970,7 +6479,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-182-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-199-1.pdf}
 
 \subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o-1}
 
@@ -6003,7 +6512,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-183-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-200-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-1}
 
@@ -6039,7 +6548,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-184-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-201-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-1}
 
@@ -6059,7 +6568,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-185-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-202-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-2}
 
@@ -6080,7 +6589,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-186-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-203-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6095,7 +6604,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-186-2.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-203-2.pdf}
 
 \textbf{Cálculo de probabilidades}: Seja \(X\sim\text{Poisson}(\lambda=5)\).
 
@@ -6105,7 +6614,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 
 \section{Gerando uma variável aleatória com distribuição de Uniforme}\label{gerando-uma-variuxe1vel-aleatuxf3ria-com-distribuiuxe7uxe3o-de-uniforme}
 
-\subsection{Cálculo de probabilidades}\label{cuxe1lculo-de-probabilidades-2}
+\subsection{Cálculo de probabilidades}\label{cuxe1lculo-de-probabilidades-1}
 
 Seja \(X\sim \text{Uniforme}(0,1)\)
 
@@ -6135,7 +6644,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-187-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-204-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o}
 
@@ -6160,7 +6669,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-188-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-205-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-2}
 
@@ -6191,7 +6700,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-189-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-206-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-2}
 
@@ -6211,7 +6720,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-190-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-207-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-3}
 
@@ -6236,7 +6745,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-191-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-208-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6247,7 +6756,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 
 \section{Gerando uma variável aleatória com distribuição Exponencial}\label{gerando-uma-variuxe1vel-aleatuxf3ria-com-distribuiuxe7uxe3o-exponencial}
 
-\subsection{Cálculo de probabilidades}\label{cuxe1lculo-de-probabilidades-3}
+\subsection{Cálculo de probabilidades}\label{cuxe1lculo-de-probabilidades-2}
 
 Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 
@@ -6273,7 +6782,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-192-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-209-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-1}
 
@@ -6298,7 +6807,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-193-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-210-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-3}
 
@@ -6329,7 +6838,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-194-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-211-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-3}
 
@@ -6349,7 +6858,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-195-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-212-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-4}
 
@@ -6374,11 +6883,11 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-196-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-213-1.pdf}
 
 \section{Gerando uma variável aleatória com distribuição Normal}\label{gerando-uma-variuxe1vel-aleatuxf3ria-com-distribuiuxe7uxe3o-normal}
 
-\subsection{Cálculo de probabilidades}\label{cuxe1lculo-de-probabilidades-4}
+\subsection{Cálculo de probabilidades}\label{cuxe1lculo-de-probabilidades-3}
 
 Seja \(X\sim \text{Normal}(0,1)\).
 
@@ -6404,7 +6913,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-197-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-214-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-2}
 
@@ -6429,7 +6938,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-198-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-215-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-4}
 
@@ -6460,7 +6969,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-199-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-216-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-4}
 
@@ -6480,7 +6989,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-200-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-217-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-5}
 
@@ -6505,9 +7014,9 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-201-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-218-1.pdf}
 
-\section{Exercícios}\label{exercuxedcios-17}
+\section{Exercícios}\label{exercuxedcios-18}
 
 \textbf{1.} Usando o R e fixando a semente em 123, simule 1000 lançamentos de
 uma moeda com probabilidade de 0.5 de sair cara. Conte o número de caras
