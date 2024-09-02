@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 22 Referências | Introdução ao R</title>
+  <title>Capítulo 18 Método da transformada inversa | Introdução ao R</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 22 Referências | Introdução ao R" />
+  <meta property="og:title" content="Capítulo 18 Método da transformada inversa | Introdução ao R" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/docs/ciencias.png" />
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
@@ -19,7 +19,7 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 22 Referências | Introdução ao R" />
+  <meta name="twitter:title" content="Capítulo 18 Método da transformada inversa | Introdução ao R" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
@@ -36,8 +36,8 @@ set in the _output.yml file.</p>" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="relatórios.html"/>
-<link rel="next" href="respostas.html"/>
+<link rel="prev" href="simulação.html"/>
+<link rel="next" href="método-da-aceitação-rejeição.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -392,20 +392,106 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="referências" class="section level1 hasAnchor" number="22">
-<h1><span class="header-section-number">Capítulo 22</span> Referências<a href="referências.html#referências" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<ul>
-<li><a href="https://cemapre.iseg.ulisboa.pt/~nbrites/CTA/index.html" class="uri">https://cemapre.iseg.ulisboa.pt/~nbrites/CTA/index.html</a></li>
-<li><a href="https://livro.curso-r.com/" class="uri">https://livro.curso-r.com/</a></li>
-</ul>
+<div id="método-da-transformada-inversa" class="section level1 hasAnchor" number="18">
+<h1><span class="header-section-number">Capítulo 18</span> Método da transformada inversa<a href="método-da-transformada-inversa.html#método-da-transformada-inversa" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="variável-aleatória-discreta" class="section level2 hasAnchor" number="18.1">
+<h2><span class="header-section-number">18.1</span> Variável aleatória discreta<a href="método-da-transformada-inversa.html#variável-aleatória-discreta" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Suponha que se quer gerar o valor de uma variável aleatória discreta <span class="math inline">\(X\)</span> com função massa de probabilidade <span class="math inline">\(P(X = x_{i}) = p_{i}\)</span>, <span class="math inline">\(i=0,1,\ldots\)</span>, <span class="math inline">\(\sum_{i}p_{i}=1\)</span>. Para isso, basta gerar um número aleatório <span class="math inline">\(U \sim U(0,1)\)</span> e considerar:
+<span class="math display">\[X = \begin{cases}
+x_{0},&amp; \quad \text{se} \quad U&lt;p_{0} \\
+x_{1},&amp; \quad \text{se} \quad p_{0}\leq U &lt;p_{0}+p_{1}\\
+\vdots&amp; \\
+x_{i},&amp; \quad \text{se} \quad \sum_{j=0}^{i-1}p_{j}\leq U &lt; \sum_{j=0}^{i}p_{j} \\
+\vdots
+\end{cases}\]</span></p>
+<p><strong>Exemplo 1</strong>: Seja <span class="math inline">\(X\)</span> uma variável aleatória discreta assumindo os valores: <span class="math inline">\(1,2,\ldots,10\)</span> com probabilidade <span class="math inline">\(1/10\)</span> para <span class="math inline">\(x=1,2,\ldots,10\)</span>. Gerar 5000 valores dessa variável aleatória. Representar graficamente e determinar: média, desvio padrão e mediana.</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="método-da-transformada-inversa.html#cb222-1" tabindex="-1"></a>gerar_va_inversa <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb222-2"><a href="método-da-transformada-inversa.html#cb222-2" tabindex="-1"></a>  <span class="co"># Gerar número aleatório entre 0 e 1</span></span>
+<span id="cb222-3"><a href="método-da-transformada-inversa.html#cb222-3" tabindex="-1"></a>  u <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb222-4"><a href="método-da-transformada-inversa.html#cb222-4" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">10</span> <span class="co"># primeira probabilidade P(X=1)</span></span>
+<span id="cb222-5"><a href="método-da-transformada-inversa.html#cb222-5" tabindex="-1"></a>  F <span class="ot">&lt;-</span> p <span class="co"># inicializar a função de distribuição acumulada</span></span>
+<span id="cb222-6"><a href="método-da-transformada-inversa.html#cb222-6" tabindex="-1"></a>  X <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># inicializar o valor da va X</span></span>
+<span id="cb222-7"><a href="método-da-transformada-inversa.html#cb222-7" tabindex="-1"></a>  </span>
+<span id="cb222-8"><a href="método-da-transformada-inversa.html#cb222-8" tabindex="-1"></a>  <span class="cf">while</span>(u <span class="sc">&gt;</span> F){</span>
+<span id="cb222-9"><a href="método-da-transformada-inversa.html#cb222-9" tabindex="-1"></a>    X <span class="ot">&lt;-</span> X<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb222-10"><a href="método-da-transformada-inversa.html#cb222-10" tabindex="-1"></a>    F <span class="ot">&lt;-</span> F<span class="sc">+</span>p</span>
+<span id="cb222-11"><a href="método-da-transformada-inversa.html#cb222-11" tabindex="-1"></a>  }</span>
+<span id="cb222-12"><a href="método-da-transformada-inversa.html#cb222-12" tabindex="-1"></a>  <span class="fu">return</span>(X)</span>
+<span id="cb222-13"><a href="método-da-transformada-inversa.html#cb222-13" tabindex="-1"></a>}</span>
+<span id="cb222-14"><a href="método-da-transformada-inversa.html#cb222-14" tabindex="-1"></a>valores <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">5000</span>,<span class="fu">gerar_va_inversa</span>())</span>
+<span id="cb222-15"><a href="método-da-transformada-inversa.html#cb222-15" tabindex="-1"></a><span class="fu">hist</span>(valores, <span class="at">freq =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-184-1.png" width="672" /></p>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="método-da-transformada-inversa.html#cb223-1" tabindex="-1"></a><span class="fu">mean</span>(valores)</span></code></pre></div>
+<pre><code>## [1] 5.5388</code></pre>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="método-da-transformada-inversa.html#cb225-1" tabindex="-1"></a><span class="fu">sd</span>(valores)</span></code></pre></div>
+<pre><code>## [1] 2.878985</code></pre>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="método-da-transformada-inversa.html#cb227-1" tabindex="-1"></a><span class="fu">median</span>(valores)</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<p><strong>Exemplo 2</strong>: Geração de uma variável aleatória com distribuição de Poisson. A variável aleatória <span class="math inline">\(X\)</span> é de Poisson com média <span class="math inline">\(\lambda\)</span> se <span class="math display">\[p_{i} = P(X = i) = \frac{e^{-\lambda}\lambda^i}{i!}, \quad i=0,1,\ldots\]</span></p>
+<p>A chave para usar o método da transformada inversa para gerar uma tal variável aleatória é dada pela seguinte identidade: <span class="math display">\[p_{i+1}=\frac{\lambda}{i+1}p_{i}, \quad i\geq 0.\]</span></p>
+<p>Ao utilizar a recursão acima para calcular as probabilidades de Poisson quando elas são necessárias, o algoritmo da transformada inversa para gerar uma variável aleatória de Poisson com média <span class="math inline">\(\lambda\)</span> pode ser expresso como segue.</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="método-da-transformada-inversa.html#cb229-1" tabindex="-1"></a><span class="co"># Gerando uma va com distribuição de Poisson</span></span>
+<span id="cb229-2"><a href="método-da-transformada-inversa.html#cb229-2" tabindex="-1"></a></span>
+<span id="cb229-3"><a href="método-da-transformada-inversa.html#cb229-3" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="dv">3</span>  <span class="co"># exemplo com lambda = 3</span></span>
+<span id="cb229-4"><a href="método-da-transformada-inversa.html#cb229-4" tabindex="-1"></a></span>
+<span id="cb229-5"><a href="método-da-transformada-inversa.html#cb229-5" tabindex="-1"></a><span class="co"># Função para gerar uma variável aleatória de Poisson usando o método da transformada inversa</span></span>
+<span id="cb229-6"><a href="método-da-transformada-inversa.html#cb229-6" tabindex="-1"></a>gerar_poisson_inversa <span class="ot">&lt;-</span> <span class="cf">function</span>(lambda) {</span>
+<span id="cb229-7"><a href="método-da-transformada-inversa.html#cb229-7" tabindex="-1"></a>  U <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>)  <span class="co"># Gerar um número aleatório uniforme entre 0 e 1</span></span>
+<span id="cb229-8"><a href="método-da-transformada-inversa.html#cb229-8" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="sc">-</span>lambda)  <span class="co"># Inicializar a primeira probabilidade P(X=0)</span></span>
+<span id="cb229-9"><a href="método-da-transformada-inversa.html#cb229-9" tabindex="-1"></a>  F <span class="ot">&lt;-</span> p  <span class="co"># Inicializar a função de distribuição acumulada (CDF)</span></span>
+<span id="cb229-10"><a href="método-da-transformada-inversa.html#cb229-10" tabindex="-1"></a>  X <span class="ot">&lt;-</span> <span class="dv">0</span>  <span class="co"># Inicializar o valor da variável aleatória</span></span>
+<span id="cb229-11"><a href="método-da-transformada-inversa.html#cb229-11" tabindex="-1"></a>  </span>
+<span id="cb229-12"><a href="método-da-transformada-inversa.html#cb229-12" tabindex="-1"></a>  <span class="co"># Acumular probabilidades até que a CDF exceda U</span></span>
+<span id="cb229-13"><a href="método-da-transformada-inversa.html#cb229-13" tabindex="-1"></a>  <span class="cf">while</span> (U <span class="sc">&gt;</span> F) {</span>
+<span id="cb229-14"><a href="método-da-transformada-inversa.html#cb229-14" tabindex="-1"></a>    X <span class="ot">&lt;-</span> X <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb229-15"><a href="método-da-transformada-inversa.html#cb229-15" tabindex="-1"></a>    p <span class="ot">&lt;-</span> p <span class="sc">*</span> lambda <span class="sc">/</span> X  <span class="co"># Atualizar a probabilidade P(X=k)</span></span>
+<span id="cb229-16"><a href="método-da-transformada-inversa.html#cb229-16" tabindex="-1"></a>    F <span class="ot">&lt;-</span> F <span class="sc">+</span> p  <span class="co"># Atualizar a CDF</span></span>
+<span id="cb229-17"><a href="método-da-transformada-inversa.html#cb229-17" tabindex="-1"></a>  }</span>
+<span id="cb229-18"><a href="método-da-transformada-inversa.html#cb229-18" tabindex="-1"></a>  </span>
+<span id="cb229-19"><a href="método-da-transformada-inversa.html#cb229-19" tabindex="-1"></a>  <span class="fu">return</span>(X)</span>
+<span id="cb229-20"><a href="método-da-transformada-inversa.html#cb229-20" tabindex="-1"></a>}</span>
+<span id="cb229-21"><a href="método-da-transformada-inversa.html#cb229-21" tabindex="-1"></a></span>
+<span id="cb229-22"><a href="método-da-transformada-inversa.html#cb229-22" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">replicate</span>(<span class="dv">10000</span>,<span class="fu">gerar_poisson_inversa</span>(<span class="dv">3</span>)),<span class="at">freq =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb229-23"><a href="método-da-transformada-inversa.html#cb229-23" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="fu">dpois</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="dv">3</span>))</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-185-1.png" width="672" /></p>
+</div>
+<div id="variável-aleatória-contínua" class="section level2 hasAnchor" number="18.2">
+<h2><span class="header-section-number">18.2</span> Variável aleatória contínua<a href="método-da-transformada-inversa.html#variável-aleatória-contínua" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Suponha agora que se quer gerar uma variável aleatória contínua tendo função distribuição
+<span class="math inline">\(F\)</span>.</p>
+<p><strong>Proposição</strong>: Seja <span class="math inline">\(U\)</span> uma variável aleatória uniforme <span class="math inline">\((0,1)\)</span>. Para qualquer função de distribuição contínua <span class="math inline">\(F\)</span>, a variável aleatória <span class="math inline">\(X\)</span> definida por <span class="math inline">\(X = F^{-1}(U)\)</span> tem distribuição <span class="math inline">\(F\)</span>. [<span class="math inline">\(F^{-1}(u)\)</span> é tal que <span class="math inline">\(F(x)=u\)</span>].</p>
+<p>Note que</p>
+<p><span class="math inline">\(\begin{align*}
+P(X \leq x) &amp;= P(F^{-1}(U)\leq x) = P(FF^{-1}(U) \leq F(x)) \\
+&amp;= P(U \leq F(x)) = P(0\leq U \leq F(x)) \\
+&amp;= F(x)-0 \\
+&amp;= F(x).
+\end{align*}\)</span></p>
+<p>A última igualdade segue do facto de que <span class="math inline">\(U\sim U(0,1)\)</span> e <span class="math inline">\(0\leq F(x) \leq 1\)</span>.</p>
+<p>Essa proposição mostra que pode-se gerar uma variável aleatória <span class="math inline">\(X\)</span> de uma função de distribuição contínua <span class="math inline">\(F\)</span> gerando um número aleatório <span class="math inline">\(U\)</span> e tomando <span class="math inline">\(X = F^{-1}(U)\)</span>.</p>
+<p><strong>Exemplo</strong>: Geração de uma variável aleatória exponencial. Seja <span class="math inline">\(X\)</span> uma variável aleatória exponencial com taxa 1, então sua função de distribuição é dada por <span class="math display">\[F(x)=1-e^{x}.\]</span>
+Como <span class="math inline">\(0\leq F(x)\leq 1\)</span>, tomando <span class="math inline">\(F(x)=u\)</span>, onde <span class="math inline">\(u\sim U(0,1)\)</span> tem-se: <span class="math display">\[u=F(x)=1-e^{x}\]</span> ou <span class="math display">\[1-u=e^{-x}\]</span> ou, aplicando o logaritmo <span class="math display">\[x=-ln(1-u).\]</span> Daí, pode-se gerar uma exponencial com parâmetro 1 gerando um número aleatório <span class="math inline">\(U\)</span> e em seguida fazendo <span class="math display">\[X = F^{-1}(U) = -ln(1-U).\]</span> Uma pequena economia de tempo pode ser obtida notando que <span class="math inline">\(1-U\)</span> também é uniforme em <span class="math inline">\((0,1)\)</span> e assim, <span class="math inline">\(-ln(1-U)\)</span> tem a mesma distribuição que <span class="math inline">\(-ln(U)\)</span>. Isto é, o logaritmo negativo de um número aleatório é exponencialmente distribuído com taxa 1.</p>
+<p>Além disso, note que se <span class="math inline">\(X\)</span> é uma exponencial com média 1, então para qualquer constante <span class="math inline">\(c\)</span>, <span class="math inline">\(cX\)</span> é uma exponencial com média <span class="math inline">\(c\)</span>. Assim, uma variável aleatória exponencial <span class="math inline">\(X\)</span> com taxa <span class="math inline">\(\lambda\)</span> (média <span class="math inline">\(\frac{1}{\lambda}\)</span>) pode ser gerada através da geração de um número aleatório <span class="math inline">\(U\)</span> e fazendo <span class="math display">\[X = -\frac{1}{\lambda}ln U.\]</span></p>
+<p><strong>Exercício</strong>: Seja <span class="math inline">\(X\)</span> uma variável aleatória com distribuição <span class="math inline">\(W(\alpha, \beta)\)</span>. Assim a fdp de <span class="math inline">\(X\)</span> é
+<span class="math display">\[f(x) = \begin{cases}
+\alpha \beta^{-\alpha} x^{\alpha -1} e^{-(x/\beta)^\alpha},&amp; \quad \text{se} \quad x&gt;0 \\
+0,&amp; \quad \text{se} \quad x\leq 0
+\end{cases}\]</span></p>
+<p>A função de distribuição de <span class="math inline">\(X\)</span> é:
+<span class="math display">\[F(x) = \int_{0}^{x}f(u)\, du = \begin{cases}
+1-e^{-(x/\beta)^\alpha},&amp; \quad \text{se} \quad x&gt;0\\
+0,&amp; \quad \text{se} \quad x\leq 0
+\end{cases}\]</span></p>
+<p>Mostre que <span class="math inline">\(X = \beta[-ln(U)]^{1/\alpha}\)</span>. Gere 10000 valores de uma <span class="math inline">\(W(2,3)\)</span>. Represente graficamente a distribuição.</p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="relatórios.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="respostas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="simulação.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="método-da-aceitação-rejeição.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

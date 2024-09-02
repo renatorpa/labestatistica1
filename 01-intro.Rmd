@@ -4518,6 +4518,118 @@ print(amostra_prob)
     pacientes e o grupo de controle 10. Usando `sample()`, faça a
     randomização dos pacientes. Dica: use a função `setdiff()`.
 
+# Método da transformada inversa
+
+## Variável aleatória discreta
+
+Suponha que se quer gerar o valor de uma variável aleatória discreta $X$ com função massa de probabilidade $P(X = x_{i}) = p_{i}$, $i=0,1,\ldots$, $\sum_{i}p_{i}=1$. Para isso, basta gerar um número aleatório $U \sim U(0,1)$ e considerar:
+$$X = \begin{cases}
+x_{0},& \quad \text{se} \quad U<p_{0} \\
+x_{1},& \quad \text{se} \quad p_{0}\leq U <p_{0}+p_{1}\\
+\vdots& \\
+x_{i},& \quad \text{se} \quad \sum_{j=0}^{i-1}p_{j}\leq U < \sum_{j=0}^{i}p_{j} \\
+\vdots
+\end{cases}$$
+
+**Exemplo 1**: Seja $X$ uma variável aleatória discreta assumindo os valores: $1,2,\ldots,10$ com probabilidade $1/10$ para $x=1,2,\ldots,10$. Gerar 5000 valores dessa variável aleatória. Representar graficamente e determinar: média, desvio padrão e mediana.
+
+```{r}
+gerar_va_inversa <- function(){
+  # Gerar número aleatório entre 0 e 1
+  u <- runif(1,0,1)
+  p <- 1/10 # primeira probabilidade P(X=1)
+  F <- p # inicializar a função de distribuição acumulada
+  X <- 1 # inicializar o valor da va X
+  
+  while(u > F){
+    X <- X+1
+    F <- F+p
+  }
+  return(X)
+}
+valores <- replicate(5000,gerar_va_inversa())
+hist(valores, freq = FALSE)
+mean(valores)
+sd(valores)
+median(valores)
+```
+
+**Exemplo 2**: Geração de uma variável aleatória com distribuição de Poisson. A variável aleatória $X$ é de Poisson com média $\lambda$ se $$p_{i} = P(X = i) = \frac{e^{-\lambda}\lambda^i}{i!}, \quad i=0,1,\ldots$$
+
+A chave para usar o método da transformada inversa para gerar uma tal variável aleatória é dada pela seguinte identidade: $$p_{i+1}=\frac{\lambda}{i+1}p_{i}, \quad i\geq 0.$$
+
+Ao utilizar a recursão acima para calcular as probabilidades de Poisson quando elas são necessárias, o algoritmo da transformada inversa para gerar uma variável aleatória de Poisson com média $\lambda$ pode ser expresso como segue.
+
+```{r}
+# Gerando uma va com distribuição de Poisson
+
+lambda <- 3  # exemplo com lambda = 3
+
+# Função para gerar uma variável aleatória de Poisson usando o método da transformada inversa
+gerar_poisson_inversa <- function(lambda) {
+  U <- runif(1)  # Gerar um número aleatório uniforme entre 0 e 1
+  p <- exp(-lambda)  # Inicializar a primeira probabilidade P(X=0)
+  F <- p  # Inicializar a função de distribuição acumulada (CDF)
+  X <- 0  # Inicializar o valor da variável aleatória
+  
+  # Acumular probabilidades até que a CDF exceda U
+  while (U > F) {
+    X <- X + 1
+    p <- p * lambda / X  # Atualizar a probabilidade P(X=k)
+    F <- F + p  # Atualizar a CDF
+  }
+  
+  return(X)
+}
+
+hist(replicate(10000,gerar_poisson_inversa(3)),freq = FALSE)
+points(1:10,dpois(1:10,3))
+```
+
+## Variável aleatória contínua
+
+Suponha agora que se quer gerar uma variável aleatória contínua tendo função distribuição
+$F$.
+
+**Proposição**: Seja $U$ uma variável aleatória uniforme $(0,1)$. Para qualquer função de distribuição contínua $F$, a variável aleatória $X$ definida por $X = F^{-1}(U)$ tem distribuição $F$. [$F^{-1}(u)$ é tal que $F(x)=u$].
+
+Note que
+
+$\begin{align*}
+P(X \leq x) &= P(F^{-1}(U)\leq x) = P(FF^{-1}(U) \leq F(x)) \\
+&= P(U \leq F(x)) = P(0\leq U \leq F(x)) \\
+&= F(x)-0 \\
+&= F(x).
+\end{align*}$
+
+A última igualdade segue do facto de que $U\sim U(0,1)$ e $0\leq F(x) \leq 1$.
+
+Essa proposição mostra que pode-se gerar uma variável aleatória $X$ de uma função de distribuição contínua $F$ gerando um número aleatório $U$ e tomando $X = F^{-1}(U)$.
+
+**Exemplo**: Geração de uma variável aleatória exponencial. Seja $X$ uma variável aleatória exponencial com taxa 1, então sua função de distribuição é dada por $$F(x)=1-e^{x}.$$
+Como $0\leq F(x)\leq 1$, tomando $F(x)=u$, onde $u\sim U(0,1)$ tem-se: $$u=F(x)=1-e^{x}$$ ou $$1-u=e^{-x}$$ ou, aplicando o logaritmo $$x=-ln(1-u).$$ Daí, pode-se gerar uma exponencial com parâmetro 1 gerando um número aleatório $U$ e em seguida fazendo $$X = F^{-1}(U) = -ln(1-U).$$ Uma pequena economia de tempo pode ser obtida notando que $1-U$ também é uniforme em $(0,1)$ e assim, $-ln(1-U)$ tem a mesma distribuição que $-ln(U)$. Isto é, o logaritmo negativo de um número aleatório é exponencialmente distribuído com taxa 1.
+
+Além disso, note que se $X$ é uma exponencial com média 1, então para qualquer constante $c$, $cX$ é uma exponencial com média $c$. Assim, uma variável aleatória exponencial $X$ com taxa $\lambda$ (média $\frac{1}{\lambda}$) pode ser gerada através da geração de um número aleatório $U$ e fazendo $$X = -\frac{1}{\lambda}ln U.$$
+
+**Exercício**: Seja $X$ uma variável aleatória com distribuição $W(\alpha, \beta)$. Assim a fdp de $X$ é
+$$f(x) = \begin{cases}
+\alpha \beta^{-\alpha} x^{\alpha -1} e^{-(x/\beta)^\alpha},& \quad \text{se} \quad x>0 \\
+0,& \quad \text{se} \quad x\leq 0
+\end{cases}$$
+
+A função de distribuição de $X$ é:
+$$F(x) = \int_{0}^{x}f(u)\, du = \begin{cases}
+1-e^{-(x/\beta)^\alpha},& \quad \text{se} \quad x>0\\
+0,& \quad \text{se} \quad x\leq 0
+\end{cases}$$
+
+Mostre que $X = \beta[-ln(U)]^{1/\alpha}$. Gere 10000 valores de uma $W(2,3)$. Represente graficamente a distribuição.
+
+
+# Método da aceitação-rejeição
+
+
+
 # Distribuições univariadas no R
 
 No R temos acesso as mais comuns distribuições univariadas. Todas as
