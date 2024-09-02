@@ -4522,7 +4522,7 @@ print(amostra_prob)
 
 ## Variável aleatória discreta
 
-Suponha que se quer gerar o valor de uma variável aleatória discreta $X$ com função massa de probabilidade $P(X = x_{i}) = p_{i}$, $i=0,1,\ldots$, $\sum_{i}p_{i}=1$. Para isso, basta gerar um número aleatório $U \sim U(0,1)$ e considerar:
+Suponha que queremos gerar o valor de uma variável aleatória discreta $X$ com função massa de probabilidade $P(X = x_{i}) = p_{i}$, $i=0,1,\ldots$, $\sum_{i}p_{i}=1$. Para isso, basta gerar um número aleatório $U \sim U(0,1)$ e considerar:
 $$X = \begin{cases}
 x_{0},& \quad \text{se} \quad U<p_{0} \\
 x_{1},& \quad \text{se} \quad p_{0}\leq U <p_{0}+p_{1}\\
@@ -4531,7 +4531,49 @@ x_{i},& \quad \text{se} \quad \sum_{j=0}^{i-1}p_{j}\leq U < \sum_{j=0}^{i}p_{j} 
 \vdots
 \end{cases}$$
 
-**Exemplo 1**: Seja $X$ uma variável aleatória discreta assumindo os valores: $1,2,\ldots,10$ com probabilidade $1/10$ para $x=1,2,\ldots,10$. Gerar 5000 valores dessa variável aleatória. Representar graficamente e determinar: média, desvio padrão e mediana.
+Como, para $0<a<b<1$, $P(a\leq U<b)=b-a$, temos que $$P(X=x_{i}) = P\left( \sum_{j=0}^{i-1}p_{j} \leq U < \sum_{j=0}^{i}p_{j} \right) = p_{i.}$$
+
+Se os $x_{i}$, $i\geq 0$, estão ordenados $x_{0}<x_{1}<\cdots$ e se denotarmos por $F$ a função de distribuição de $X$, então $F(x_{k})=\sum_{i=0}^{k}p_{i}$ e assim $$X = x_{i} \quad \text{se} \quad F(x_{i-1})\leq U < F(x_{i})$$
+
+Em outras palavras, depois de gerar um número aleatório $U$ nós determinamos o valor de $X$ encontrando o intervalo $[F(x_{i-1}),F(x_{i})]$ no qual $U$ pertence (ou, equivalentemente, encontrando a inversa de $F(U)$).
+
+![](docs/transf_inversa1.png)
+**Exemplo 1**: Seja $X$ uma variável aleatória discreta tal que $p_{1}=0.20$, $p_{2}=0.15$, $p_{3}=0.25$, $p_{4}=0.40$ onde $p_{j}=P(X=j)$. Gere 1000 valores dessa variável aleatória.
+
+Para a variável aleatória $X$, a função de distribuição acumulada é dada pela soma cumulativa das probabilidades:
+
+\[
+F(x) = 
+\begin{cases} 
+0, & \text{se } x < 1 \\
+p_1, & \text{se } 1 \leq x < 2 \\
+p_1 + p_2, & \text{se } 2 \leq x < 3 \\
+p_1 + p_2 + p_3, & \text{se } 3 \leq x < 4 \\
+1, & \text{se } x \geq 4 
+\end{cases}
+\]
+
+Com os valores fornecidos:
+
+\[
+F(x) = 
+\begin{cases} 
+0, & \text{se } x < 1 \\
+0.20, & \text{se } 1 \leq x < 2 \\
+0.35, & \text{se } 2 \leq x < 3 \\
+0.60, & \text{se } 3 \leq x < 4 \\
+1, & \text{se } x \geq 4 
+\end{cases}
+\]
+
+Gerar um número aleatório uniforme $U$ no intervalo [0,1]. Para determinar o valor de $X$ correspondente a $U$:
+
+* Se $U <0.20$, então $X=1$
+* Se $0.20 \leq U < 0.35$, então $X=2$
+* Se $0.35\leq U < 0.60$, então $X=3$
+* Se $0.60 \leq U \leq 1$, então $X=4$
+
+**Exemplo 2**: Seja $X$ uma variável aleatória discreta assumindo os valores: $1,2,\ldots,10$ com probabilidade $1/10$ para $x=1,2,\ldots,10$. Gerar 5000 valores dessa variável aleatória. Representar graficamente e determinar: média, desvio padrão e mediana.
 
 ```{r}
 gerar_va_inversa <- function(){
@@ -4554,7 +4596,7 @@ sd(valores)
 median(valores)
 ```
 
-**Exemplo 2**: Geração de uma variável aleatória com distribuição de Poisson. A variável aleatória $X$ é de Poisson com média $\lambda$ se $$p_{i} = P(X = i) = \frac{e^{-\lambda}\lambda^i}{i!}, \quad i=0,1,\ldots$$
+**Exemplo 3**: Geração de uma variável aleatória com distribuição de Poisson. A variável aleatória $X$ é de Poisson com média $\lambda$ se $$p_{i} = P(X = i) = \frac{e^{-\lambda}\lambda^i}{i!}, \quad i=0,1,\ldots$$
 
 A chave para usar o método da transformada inversa para gerar uma tal variável aleatória é dada pela seguinte identidade: $$p_{i+1}=\frac{\lambda}{i+1}p_{i}, \quad i\geq 0.$$
 
@@ -4586,14 +4628,16 @@ hist(replicate(10000,gerar_poisson_inversa(3)),freq = FALSE)
 points(1:10,dpois(1:10,3))
 ```
 
+**Exemplo 4**: Gerando uma variável aleatória com distribuição binomial.
+
+
 ## Variável aleatória contínua
 
-Suponha agora que se quer gerar uma variável aleatória contínua tendo função distribuição
-$F$.
+Uma variável aleatória $X$ tem densidade $f(x)=2x$, para $0<x<1$, e 0, caso contrário. Suponha que queremos simular observações de $X$. Nesta secção, apresentaremos um método simples e flexível para simulação de uma distribuição contínua.
 
-**Proposição**: Seja $U$ uma variável aleatória uniforme $(0,1)$. Para qualquer função de distribuição contínua $F$, a variável aleatória $X$ definida por $X = F^{-1}(U)$ tem distribuição $F$. [$F^{-1}(u)$ é tal que $F(x)=u$].
+**Proposição**: Suponha que $X$ é uma variável aleatória com função de distribuição $F$, onde $F$ é invertível com função inversa $F^{-1}$. Seja $U$ uma variável aleatória uniforme $(0,1)$. Então a distribuição de $F^{-1}(U)$ é igual a distribuição de $X$, ou seja, a variável aleatória $X$ definida por $X=F^{-1}(U)$ tem distribuição $F$.
 
-Note que
+A prova desta proposição é fácil e rápida. Precisamos mostrar que $F^{-1}(U)$ tem a mesma distribuição que $X$. Assim,
 
 $\begin{align*}
 P(X \leq x) &= P(F^{-1}(U)\leq x) = P(FF^{-1}(U) \leq F(x)) \\
@@ -4606,10 +4650,24 @@ A última igualdade segue do facto de que $U\sim U(0,1)$ e $0\leq F(x) \leq 1$.
 
 Essa proposição mostra que pode-se gerar uma variável aleatória $X$ de uma função de distribuição contínua $F$ gerando um número aleatório $U$ e tomando $X = F^{-1}(U)$.
 
-**Exemplo**: Geração de uma variável aleatória exponencial. Seja $X$ uma variável aleatória exponencial com taxa 1, então sua função de distribuição é dada por $$F(x)=1-e^{x}.$$
+![](docs/transf_inversa2.png)
+
+**Exemplo 1**: Considere nossa varíavel aleatória $X$ com densidade $f(x)=2x$. A função de distribuição de $X$ é $$F(x)=P(X\leq x)=\int_{0}^{x}2t\, dt = x^2, \quad \text{para} \quad 0<x<1.$$
+
+A função $F(x)=x^2$ é invertível no intervalo $(0,1)$ e $F^{-1}(x)=\sqrt{x}$. O método da transformada inversa diz que se $U\sim U(0,1)$, então $F^{-1}(U)=\sqrt{U}$ tem a mesma distribuição que $X$. Portanto para simular $X$, basta gerar $\sqrt{U}$.
+
+```{r}
+n <- 10000
+simlist <- sqrt(runif(n))
+hist(simlist, prob=T, main="", xlab="")
+curve(2*x, 0,1, add=T)
+```
+
+
+**Exemplo 2**: Geração de uma variável aleatória exponencial. Seja $X$ uma variável aleatória exponencial com taxa 1, então sua função de distribuição é dada por $$F(x)=1-e^{x}.$$
 Como $0\leq F(x)\leq 1$, tomando $F(x)=u$, onde $u\sim U(0,1)$ tem-se: $$u=F(x)=1-e^{x}$$ ou $$1-u=e^{-x}$$ ou, aplicando o logaritmo $$x=-ln(1-u).$$ Daí, pode-se gerar uma exponencial com parâmetro 1 gerando um número aleatório $U$ e em seguida fazendo $$X = F^{-1}(U) = -ln(1-U).$$ Uma pequena economia de tempo pode ser obtida notando que $1-U$ também é uniforme em $(0,1)$ e assim, $-ln(1-U)$ tem a mesma distribuição que $-ln(U)$. Isto é, o logaritmo negativo de um número aleatório é exponencialmente distribuído com taxa 1.
 
-Além disso, note que se $X$ é uma exponencial com média 1, então para qualquer constante $c$, $cX$ é uma exponencial com média $c$. Assim, uma variável aleatória exponencial $X$ com taxa $\lambda$ (média $\frac{1}{\lambda}$) pode ser gerada através da geração de um número aleatório $U$ e fazendo $$X = -\frac{1}{\lambda}ln U.$$
+Além disso, note que se $X$ é uma exponencial com média 1, então para qualquer constante $c$, $cX$ é uma exponencial com média $c$. Assim, uma variável aleatória exponencial $X$ com taxa $\lambda$ (média $\frac{1}{\lambda}$) pode ser gerada através da geração de um número aleatório $U$ e fazendo $$X = -\frac{1}{\lambda}ln (U).$$
 
 **Exercício**: Seja $X$ uma variável aleatória com distribuição $W(\alpha, \beta)$. Assim a fdp de $X$ é
 $$f(x) = \begin{cases}
