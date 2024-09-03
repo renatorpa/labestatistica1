@@ -4596,7 +4596,68 @@ sd(valores)
 median(valores)
 ```
 
-**Exemplo 3**: Geração de uma variável aleatória com distribuição de Poisson. A variável aleatória $X$ é de Poisson com média $\lambda$ se $$p_{i} = P(X = i) = \frac{e^{-\lambda}\lambda^i}{i!}, \quad i=0,1,\ldots$$
+**Exemplo 3**: Geração de uma variável aleatória com distribuição de Bernoulli. A variável aleatória $X$ é de Bernoulli com parâmetro $p$ se $$P(X = x) = \begin{cases} 1-p,& \quad \text{se} \quad x=0\\
+p,& \quad \text{se} \quad x=1 \end{cases}$$ Para gerar uma Bernoulli(p) podemos usar o seguinte algoritmo que é equivalente ao método da transformada inversa
+
+1. Gerar um número aleatório $U$;
+2. Se $U \leq p$ então $X=1$ senão $X=0$.
+
+```{r}
+# Gerando uma variável aleatória com distribuição de Bernoulli(p)
+gerar_bernoulli_inversa <- function(p){
+  U <- runif(1)
+  if (U <= p){
+    X <- 1
+  } else {
+    X <- 0
+  }
+  return(X)
+}
+
+valores <- replicate(100,gerar_bernoulli_inversa(0.8))
+sum(valores)/100
+```
+
+**Exemplo 4**: Gerar uma variável aleatória com distribuição Binomial(n,p). Aqui podemos usar o facto de que se $X_{1},X_{2},\ldots,X_{n}$ são Bernoullis i.i.d., então $$X = X_{1}+X_{2}+\ldots+X_{n}$$ é uma Binomial(n,p).
+
+```{r}
+# Gerando uma variável aleatória com distribuição Binomial(n,p)
+
+gerar_binomial_inversa <- function(n,p){
+  X <- sum(replicate(n,gerar_bernoulli_inversa(p)))
+  return(X)
+}
+
+valores <- replicate(10000,gerar_binomial_inversa(10,0.5))
+hist(valores, freq = FALSE)
+points(1:10, dbinom(1:10,10,0.5))
+```
+
+**Exemplo 5**: Geração de uma variável aleatória com distribuição Geométrica(p). Seja $X\sim Geometrica(p)$. Lembre que $$P(X=x)=p(1-p)^{x-1}$$ e que $$F(x) = P(X\leq x) = \begin{cases} 0,& \quad \text{se} \quad x<1 \\
+1-(1-p)^x,& \quad \text{se} \quad x\geq 1\end{cases}$$
+O seguinte algoritmo é equivalente ao método da transformada inversa:
+
+1. Gerar um número aleatório $U$;
+
+2. Fazer $X = \lfloor ln(U)/ln(1-p)\rfloor$
+
+onde $\lfloor  \rfloor =$ maior inteiro.
+
+```{r}
+# Gerar uma variável aleatória com distribuição Geométrica(p)
+
+gerar_geometrica_inversa <- function(p){
+  U <- runif(1)
+  X <- round(log(U)/log(1-p))
+  return(X)
+}
+
+valores <- replicate(10000, gerar_geometrica_inversa(0.5))
+hist(valores, freq = FALSE)
+points(1:10, dgeom(1:10,0.5))
+```
+
+**Exemplo 6**: Geração de uma variável aleatória com distribuição de Poisson. A variável aleatória $X$ é de Poisson com média $\lambda$ se $$p_{i} = P(X = i) = \frac{e^{-\lambda}\lambda^i}{i!}, \quad i=0,1,\ldots$$
 
 A chave para usar o método da transformada inversa para gerar uma tal variável aleatória é dada pela seguinte identidade: $$p_{i+1}=\frac{\lambda}{i+1}p_{i}, \quad i\geq 0.$$
 
@@ -4628,8 +4689,6 @@ hist(replicate(10000,gerar_poisson_inversa(3)),freq = FALSE)
 points(1:10,dpois(1:10,3))
 ```
 
-**Exemplo 4**: Gerando uma variável aleatória com distribuição binomial.
-
 
 ## Variável aleatória contínua
 
@@ -4658,16 +4717,54 @@ A função $F(x)=x^2$ é invertível no intervalo $(0,1)$ e $F^{-1}(x)=\sqrt{x}$
 
 ```{r}
 n <- 10000
+set.seed(123)
 simlist <- sqrt(runif(n))
 hist(simlist, prob=T, main="", xlab="")
 curve(2*x, 0,1, add=T)
 ```
 
+**Exemplo 2**: Geração de uma variável aleatória uniforme(a,b). A geração é feita através de $$X = a+(b-a)U.$$
 
-**Exemplo 2**: Geração de uma variável aleatória exponencial. Seja $X$ uma variável aleatória exponencial com taxa 1, então sua função de distribuição é dada por $$F(x)=1-e^{x}.$$
+```{r}
+# Geração de uma va uniforme(-2,2)
+a <- -2
+b <- 2
+n <- 10000
+set.seed(123)
+simlist <- a+(b-a)*runif(n)
+hist(simlist, prob=T, main="",xlab="")
+```
+
+**Exemplo 3**: Geração de uma variável aleatória exponencial. Seja $X$ uma variável aleatória exponencial com taxa 1, então sua função de distribuição é dada por $$F(x)=1-e^{x}.$$
 Como $0\leq F(x)\leq 1$, tomando $F(x)=u$, onde $u\sim U(0,1)$ tem-se: $$u=F(x)=1-e^{x}$$ ou $$1-u=e^{-x}$$ ou, aplicando o logaritmo $$x=-ln(1-u).$$ Daí, pode-se gerar uma exponencial com parâmetro 1 gerando um número aleatório $U$ e em seguida fazendo $$X = F^{-1}(U) = -ln(1-U).$$ Uma pequena economia de tempo pode ser obtida notando que $1-U$ também é uniforme em $(0,1)$ e assim, $-ln(1-U)$ tem a mesma distribuição que $-ln(U)$. Isto é, o logaritmo negativo de um número aleatório é exponencialmente distribuído com taxa 1.
 
 Além disso, note que se $X$ é uma exponencial com média 1, então para qualquer constante $c$, $cX$ é uma exponencial com média $c$. Assim, uma variável aleatória exponencial $X$ com taxa $\lambda$ (média $\frac{1}{\lambda}$) pode ser gerada através da geração de um número aleatório $U$ e fazendo $$X = -\frac{1}{\lambda}ln (U).$$
+
+```{r}
+# Definir a sequência de valores x
+x <- seq(0,3, by = 0.02)
+
+# Definir o parâmetro lambda da distribuição exponencial
+lambda <- 3
+
+# Número de simulação
+n <- 10000
+
+# Simular valores de uma distribuição exponencial
+set.seed(123)
+simlist <- -log(runif(n))/lambda
+
+# Plotar o histograma da simulação com a densidade de probabilidade
+hist(simlist, probability = TRUE, main = "Comparação da Distribuição Exponencial Simulada e Teórica",
+     xlab = "Valores", ylab = "Densidade", col = "lightblue", border = "black")
+
+# Adicionar a curva de densidade teórica
+curve(dexp(x, rate = lambda), add = TRUE, col = "red", lwd = 2)
+
+# Adicionar uma legenda
+legend("topright", legend = c("Simulação", "Teórica"), col = c("lightblue", "red"), lwd = 2, fill = c("lightblue", NA))
+```
+
 
 **Exercício**: Seja $X$ uma variável aleatória com distribuição $W(\alpha, \beta)$. Assim a fdp de $X$ é
 $$f(x) = \begin{cases}
@@ -4682,7 +4779,6 @@ $$F(x) = \int_{0}^{x}f(u)\, du = \begin{cases}
 \end{cases}$$
 
 Mostre que $X = \beta[-ln(U)]^{1/\alpha}$. Gere 10000 valores de uma $W(2,3)$. Represente graficamente a distribuição.
-
 
 # Método da aceitação-rejeição
 
