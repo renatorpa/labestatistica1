@@ -761,53 +761,45 @@ Em R, temos dois tipos principais de objetos: funções e dados.
   + Exemplos de dados:
   
     + `23` (número)
-	  + `"Hello"` (texto ou string)
-	  + `TRUE` (valor lógico)
-	  + `c(1, 2, 3)` (vetor numérico)
-	  + `data.frame(nome = c("Alice", "Bob"), idade = c(25, 30))` (estrutura tabular)
-	  + `list(numero = 42, nome = "Alice", flag = TRUE)` (coleção de elementos de diferentes tipos)
-	  + `factor(c("homem", "mulher", "mulher", "homem"))` (dados categóricos)
+    + `"Hello"` (texto ou string)
+    + `TRUE` (valor lógico)
+    + `c(1, 2, 3)` (vetor numérico)
+    + `data.frame(nome = c("Alice", "Bob"), idade = c(25, 30))` (estrutura tabular)
+    + `list(numero = 42, nome = "Alice", flag = TRUE)` (coleção de elementos de diferentes tipos)
+    + `factor(c("homem", "mulher", "mulher", "homem"))` (dados categóricos)
 
 ## Vetor
 
-Um vetor é uma estrutura de dados básica que pode armazenar uma
-sequência de objetos do mesmo tipo. Vetores podem conter dados
-numéricos, caracteres, valores lógicos (`TRUE`/`FALSE`), números
-complexos, entre outros.
+Um **vetor** é uma estrutura de dados básica que armazena uma sequência de elementos do **mesmo tipo**. Vetores podem conter dados numéricos, caracteres, valores lógicos (`TRUE`/`FALSE`), números complexos, entre outros.
 
--   Todos os elementos de um vetor devem ser do mesmo tipo.
-
--   Os elementos de um vetor são indexados a partir de 1.
-
--   Vetores podem ser facilmente manipulados e transformados usando uma
-    ampla gama de funções.
-
--   Vetores podem ser criados usando a função `c()` (concatenate).
+* Todos os elementos de um vetor devem ser do mesmo tipo.
+* Os elementos de um vetor são indexados a partir de 1 (ou seja, o primeiro elemento está na posição 1).
+* Vetores podem ser criados usando a função `c()` (concatenate) e são facilmente manipulados com uma variedade de funções.
 
 ### Tipos Comuns de Vetores
 
 ```{r eval=FALSE}
-# vetor numérico
+# Vetor numérico
 c(1.1, 2.2, 3.3)
 ## [1] 1.1 2.2 3.3
 
-# vetor de caracteres
+# Vetor de caracteres
 c("a", "b", "c")
 ## [1] "a" "b" "c"
-#ou
+# ou
 c('a','b','c')
 ## [1] "a" "b" "c"
 
-# vetor lógico
+# Vetor lógico
 c(TRUE, 1==2)
 ## [1]  TRUE FALSE
 
-# Não podemos ter combinações...
-c(3, 1==2, "a") ## Observe que o R simplesmente transformou tudo em characters!
+# Não podemos misturar tipos de dados em um vetor...
+c(3, 1==2, "a") # Observe que o R converteu tudo para "character"!
 ## [1] "3"     "FALSE" "a"
 ```
 
-### Construindo vetores
+### Construindo Vetores
 
 ```{r eval=FALSE}
 # Inteiros de 1 a 10
@@ -819,7 +811,7 @@ b <- 10:1
 b
 ##  [1]  10  9  8  7  6  5  4  3  2 1
 
-# Sequência de 0 a 50 de 10 em 10
+# Sequência de 0 a 50 com incrementos de 10
 a <- seq(from = 0, to = 50, by=10)
 a
 ## [1]  0 10 20 30 40 50
@@ -830,12 +822,12 @@ y
 ##  [1] 0.0000 0.0714 0.1429 0.2143 0.2857 0.3571 0.4286 0.5000 0.5714 0.6429
 ## [11] 0.7143 0.7857 0.8571 0.9286 1.0000
 
-# O mesmo número ou o mesmo vetor várias vezes
+# Repetição de um vetor várias vezes
 z <- rep(1:3, times=4)
 z
 ##  [1] 1 2 3 1 2 3 1 2 3 1 2 3
 
-# Cada elemento do vetor 4 vezes
+# Repetição de cada elemento do vetor várias vezes
 t <- rep(1:3, each=4)
 t
 ##  [1] 1 1 1 1 2 2 2 2 3 3 3 3
@@ -848,37 +840,40 @@ w
 
 ### Acesso a Elementos de um Vetor
 
+Você pode acessar elementos específicos de um vetor usando colchetes [] e índices. R utiliza indexação baseada em 1, o que significa que o primeiro elemento de um vetor tem índice 1.
+
 ```{r eval=FALSE}
 # Defina um vetor com inteiros de (-5) a 5 e extraia os números com valor absoluto menor que 3:
 x <- (-5):5
 x
 ##  [1] -5 -4 -3 -2 -1  0  1  2  3  4  5
 
-# pelo seu índice no vetor:
+# Acessando por índice:
 x[4:8]
 ## [1] -2 -1  0  1  2
  
-# ou, por seleção negativa (coloque um sinal de menos na frente dos índices que não queremos):
+# Seleção negativa (excluindo elementos):
 x[-c(1:3,9:11)]
 ## [1] -2 -1  0  1  2
 
-# todos menos o último
+# Todos menos o último
 x[-length(x)]
 ## [1] -5 -4 -3 -2 -1  0  1  2  3  4
 
-# Um vetor lógico pode ser definido por:
+# Vetor lógico para seleção
 index <- abs(x)<3
 index 
 ##  [1] FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE
 
-# Agora este vetor pode ser usado para extrair os números desejados:
+# Usando o vetor lógico para extrair elementos desejados:
 x[index]
 ## [1] -2 -1  0  1  2
 
-# Que é a mesma coisa que...
+# Ou de forma compacta:
 x[abs(x) < 3]
 ## [1] -2 -1  0  1  2
 
+# Acessando elementos com vetores predefinidos
 letters[1:3]
 ## [1] "a" "b" "c"
 
@@ -892,31 +887,33 @@ y <- 1:10
 y[ (y>5) ] # seleciona qualquer número > 5
 ## [1]  6  7  8  9 10
 
-y[ (y%%2==0) ] # números que são divisíveis por 2
+y[ (y%%2==0) ] # números divisíveis por 2
 ## [1]  2  4  6  8 10
 
-y[ (y%%2==1) ] # números que não são divisíveis por 2
+y[ (y%%2==1) ] # números não divisíveis por 2
 ## [1] 1 3 5 7 9
 
 y[5] <- NA
-y[!is.na(y)] # todos y que não são NA
+y[!is.na(y)] # todos os valores de y que não são NA
 ## [1]  1  2  3  4  6  7  8  9 10
 ```
 
 ### Funções Comuns para Vetores
 
+Vetores são uma das estruturas de dados mais utilizadas no R, e existem diversas funções para manipular e obter informações sobre eles. Abaixo estão algumas das funções mais comuns usadas com vetores numéricos:
+
 ```{r eval=FALSE}
 num_vector <- c(2.2, 1.1, 3.3)
 
-# Obtém o comprimento de um vetor
+# Obtém o comprimento (número de elementos) de um vetor
 length(num_vector)
 ## [1] 3
 
-# Calcula o máximo
+# Calcula o valor máximo de um vetor
 max(num_vector)
 ## [1] 3.3
 
-# Calcula o mínimo
+# Calcula o valor mínimo de um vetor
 min(num_vector)
 ## [1] 1.1
 
@@ -924,40 +921,41 @@ min(num_vector)
 sum(num_vector)
 ## [1] 6.6
 
-# Calcula a média dos elementos de um vetor
+# Calcula a média (valor médio) dos elementos de um vetor
 mean(num_vector)
 ## [1] 2.2
 
-# Calcula a mediana
+# Calcula a mediana dos elementos de um vetor
 median(num_vector)
 ## [1] 2.2
 
-# Vetor com mínimo e máximo
+# Retorna um vetor contendo o mínimo e o máximo
 range(num_vector)
 ## [1] 1.1 3.3
 
-# Variância amostral
+# Calcula a variância amostral dos elementos de um vetor
 var(num_vector)
 ## [1] 1.21
 
-# Quantis
-quantile(num_vector,type = 2)
+# Calcula os quantis dos elementos de um vetor
+quantile(num_vector, type = 2)
 ##   0%  25%  50%  75% 100% 
 ## 1.1  1.1  2.2  3.3  3.3 
 
-# Soma de todos os elementos até aquele ponto
+# Calcula a soma cumulativa dos elementos de um vetor
 cumsum(num_vector)
 ## [1] 2.2 3.3 6.6
 
-# Produto de todos os elementos até aquele ponto
+# Calcula o produto cumulativo dos elementos de um vetor
 cumprod(num_vector)
 ## [1] 2.20 2.42 7.99
 
-# Ordena os elementos de um vetor
+# Ordena os elementos de um vetor em ordem crescente
 sort(num_vector)
 ## [1] 1.1 2.2 3.3
 
-sort(num_vector,decreasing = TRUE)
+# Ordena os elementos de um vetor em ordem decrescente
+sort(num_vector, decreasing = TRUE)
 ## [1] 3.3 2.2 1.1
 
 # Remove elementos duplicados de um vetor
@@ -966,20 +964,17 @@ unique(duplicate_vector)
 ## [1] 1 2 3
 ```
 
-Existe uma função importante chamada `which` para encontrar índices dentro de vetores. 
+A função `which` é usada para encontrar os índices dos elementos em um vetor que atendem a uma condição específica. Isso é útil quando você deseja localizar a posição de certos valores dentro de um vetor.
 
 ```{r eval=FALSE}
-y <- c(8,3,5,7,6,6,8,9,2,3,9,4,10,4,11)
-```
+y <- c(8, 3, 5, 7, 6, 6, 8, 9, 2, 3, 9, 4, 10, 4, 11)
 
-Suponha que queiramos saber quais elementos de `y` contêm valores maiores que 5. Digitamos:
-
-```{r eval=FALSE}
-which(y>5)
+# Encontrar os índices dos elementos que são maiores que 5
+which(y > 5)
 ## [1]  1  4  5  6  7  8 11 13 15
 ```
 
-Observe que a resposta a essa pergunta é um conjunto de índices Não usamos índices dentro da função `which` em si. A função é aplicada a todo o array. Para ver os valores de `y` que são maiores que 5, simplesmente digitamos:
+Aqui, a função `which(y > 5)` retorna os índices dos elementos em y que são maiores que 5. Se você quiser ver os valores em y que são maiores que 5, basta fazer:
 
 ```{r eval=FALSE}
 y[y>5]
@@ -988,52 +983,51 @@ y[y>5]
 
 ### Operações com Vetores
 
+Vetores no R suportam operações aritméticas e lógicas de forma elementar. Isso significa que as operações são aplicadas a cada elemento do vetor.
+
 ```{r eval=FALSE}
-# Adição
+# Adição de 1 a cada elemento do vetor
 num_vector + 1  
-## 3.2 2.1 4.3
+## [1] 3.2 2.1 4.3
 
-# Multiplicação
+# Multiplicação de cada elemento por 2
 num_vector * 2  
-## 4.4 2.2 6.6
+## [1] 4.4 2.2 6.6
 
-# Comparações
+# Comparações: verifica se cada elemento é maior que 2
 num_vector > 2  
-## TRUE FALSE  TRUE
+## [1]  TRUE FALSE  TRUE
 
-c(2,3,5,7)^2
-## 4  9 25 49
+# Exponenciação de elementos
+c(2, 3, 5, 7)^2
+## [1]  4  9 25 49
 
-c(2,3,5,7)^c(2,3)
-## 4  27  25 343
+c(2, 3, 5, 7)^c(2, 3)
+## [1]   4  27  25 343
 
-c(1,2,3,4,5,6)^c(2,3,4)
-## 1    8   81   16  125 1296
+c(1, 2, 3, 4, 5, 6)^c(2, 3, 4)
+## [1]    1    8   81   16  125 1296
 
-c(2,3,5,7)^c(2,3,4)
-## 4  27 625  49
+c(2, 3, 5, 7)^c(2, 3, 4)
+## [1]   4  27 625  49
 ```
 
-Os últimos quatro comandos mostram a “propriedade de reciclagem” do R.
-Ele tenta combinar os vetores em relação ao comprimento, se possível. Na
-verdade,
+Os exemplos acima ilustram a **propriedade de reciclagem** do R. Quando operações são realizadas entre vetores de diferentes comprimentos, o R “recicla” (ou repete) o vetor menor até que corresponda ao comprimento do vetor maior. Se o comprimento do vetor maior não for um múltiplo inteiro do comprimento do vetor menor, o R emitirá um aviso.
 
+Por exemplo:
 ```{r eval=FALSE}
 c(2,3,5,7)^c(2,3)
 ## [1]   4  27  25 343
 ```
 
-é expandido para
+Este comando é expandido internamente para:
 
 ```{r eval=FALSE}
 c(2,3,5,7)^c(2,3,2,3)
 ## [1]   4  27  25 343
 ```
 
-O último exemplo mostra que o R dá um aviso se o comprimento do vetor
-mais curto não puder ser expandido para o comprimento do vetor mais
-longo por uma simples multiplicação com um número natural (2, 3, 4,...).
-Aqui
+No entanto, se os vetores não puderem ser “reciclados” perfeitamente, o R dará um aviso:
 
 ```{r eval=FALSE}
 c(2,3,5,7)^c(2,3,4)
@@ -1042,14 +1036,13 @@ c(2,3,5,7)^c(2,3,4)
 ## [1]   4  27 625  49
 ```
 
-é expandido para
-
+Neste caso, `c(2,3,5,7)^c(2,3,4)` é expandido para:
 ```{r eval=FALSE}
 c(2,3,5,7)^c(2,3,4,2)
 ## [1]   4  27 625  49
 ```
 
-de modo que nem todos os elementos de `c(2,3,4)` são "reciclados''.
+Observe que o último elemento do vetor menor foi reciclado para corresponder ao comprimento do vetor maior, mas não completamente, resultando no aviso..
 
 ### Exercícios
 
@@ -1105,43 +1098,52 @@ de modo que nem todos os elementos de `c(2,3,4)` são "reciclados''.
 
 ## Fatores
 
-Em R, um “factor” (ou “fator”, em português) é uma estrutura de dados
-usada para representar dados categóricos. Fatores são muito úteis em
-análises estatísticas e visualizações, pois permitem que você trate
-dados categóricos de forma eficiente e consistente.
+Em R, um **fator** é uma estrutura de dados usada para representar dados **categóricos**, ou seja, dados que podem ser classificados em categorias distintas. Fatores são amplamente utilizados em análises estatísticas e visualizações de dados, pois permitem o tratamento eficiente e consistente de variáveis categóricas.
 
--   Fatores têm **níveis**, que são os valores distintos que a variável
-    categórica pode assumir.
+* **Níveis**: Fatores possuem **níveis** (ou **levels**), que representam os diferentes valores possíveis que a variável categórica pode assumir. Por exemplo, para uma variável categórica que representa tamanho de roupa, os níveis poderiam ser “Pequeno”, “Médio” e “Grande”.
+* **Armazenamento Interno**: Internamente, fatores são armazenados como inteiros, onde cada inteiro corresponde a um nível específico. No entanto, quando exibidos, os fatores mostram seus rótulos (labels) para facilitar a compreensão.
+* **Fatores Ordenados e Não Ordenados**: Fatores podem ser **ordenados** (quando há uma ordem lógica entre os níveis, como “Baixo”, “Médio”, “Alto”) ou **não ordenados** (quando os níveis não têm uma ordem intrínseca).
 
--   Internamente, os fatores são armazenados como inteiros que
-    correspondem aos níveis, mas são exibidos como rótulos (labels).
 
--   Fatores podem ser ordenados (ordered factors) ou não ordenados
-    (unordered factors).
+**Exemplos**:
 
 ```{r eval=FALSE}
 # Vetor de dados categóricos
 data <- c("low", "medium", "high", "medium", "low", "high")
 
-# Criar um fator
+# Criar um fator não ordenado a partir dos dados categóricos
 factor_data <- factor(data)
 
 print(factor_data)
 ## [1] low    medium high   medium low    high
 ## Levels: high low medium
+```
 
-# Especificar os níveis
+Por padrão, os níveis são ordenados alfabeticamente. Podemos especificar a ordem dos níveis de acordo com a lógica desejada:
+
+```{r eval=FALSE}
+# Especificar a ordem dos níveis do fator
 factor_data <- factor(data, levels = c("low", "medium", "high"))
 print(factor_data)
 ## [1] low    medium high   medium low    high
 ## Levels: low medium high
+```
 
+Para criar um fator ordenado, onde os níveis têm uma ordem específica, usamos o argumento ordered `= TRUE`:
+
+```{r eval=FALSE}
 # Criar um fator ordenado
 ordered_factor <- factor(data, levels = c("low", "medium", "high"), ordered = TRUE)
 print(ordered_factor)
 ## [1] low    medium high   medium low    high
 ## Levels: low < medium < high
+```
 
+### Manipulação de Fatores
+
+Podemos utilizar várias funções para verificar e modificar os níveis de um fator:
+
+```{r eval=FALSE}
 # Verificar Níveis
 levels(factor_data)
 ## [1] "low"    "medium" "high"
@@ -1153,13 +1155,17 @@ print(factor_data)
 ## Levels: Low Medium High
 ```
 
-A função `gl` (‘generate levels’) é útil quando você quer codificar vetores longos de níveis de fator.
+### Gerando Fatores com `gl()`
+
+A função `gl()` (generate levels) é usada para criar fatores de maneira eficiente, especialmente quando você deseja gerar fatores com padrões repetitivos.
 
 ```{r eval=FALSE}
+# Gerar níveis de fator com gl()
 gl(4,3)
 ##  [1] 1 1 1 2 2 2 3 3 3 4 4 4
 ## Levels: 1 2 3 4
 
+# Gerar fatores com labels personalizados
 gl(2, 10, labels = c("mulher", "homem"))
 ##  [1] mulher mulher mulher mulher mulher mulher mulher mulher mulher mulher
 ## [11] homem  homem  homem  homem  homem  homem  homem  homem  homem  homem 
@@ -1172,29 +1178,40 @@ as.factor(c(rep("mulher", 10), rep("homem", 10)))
 ## Levels: homem mulher
 ```
 
+## Matriz e Array
 
-## Matriz e array
+Em R, uma **matriz** é uma estrutura de dados bidimensional que contém elementos do mesmo tipo (como numérico, lógico, etc.), organizados em linhas e colunas. Já um **array** é uma generalização da matriz que pode ter mais de duas dimensões.
 
-Uma **matriz** é uma coleção de objetos do mesmo tipo (numérico, lógico,
-etc.) organizada em um formato bidimensional, ou seja, em linhas e
-colunas.
+- **nrow**: número de linhas;
 
-- **nrow**: corresponde ao número de linhas;
+- **ncol**: número de colunas.
 
-- **ncol**: corresponde ao número de colunas.
+### Criando matrizes
+
+Podemos criar uma matriz em R usando a função `matrix()`. Veja o exemplo abaixo:
 
 ```{r eval=FALSE}
 matrix(c(1,2,3,4,5,6)+exp(1),nrow=2)
 ##      [,1] [,2] [,3]
 ## [1,] 3.72 5.72 7.72
 ## [2,] 4.72 6.72 8.72
+```
 
+Podemos também realizar operações lógicas em matrizes:
+
+```{r eval=FALSE}
+# Verifica se os elementos da matriz são maiores que 6
 matrix(c(1,2,3,4,5,6)+exp(1),nrow=2) > 6
 ##       [,1]  [,2] [,3]
 ## [1,] FALSE FALSE TRUE
 ## [2,] FALSE  TRUE TRUE
+```
 
-# Também podemos criar matrizes de ordem superior
+### Criando um array
+Um array pode ter mais de duas dimensões e é criado usando a função `array()`:
+
+```{r eval=FALSE}
+# Criar um array com 4 linhas, 3 colunas, e 2 camadas
 array(c(1:24), dim=c(4,3,2))
 ## , , 1
 ## 
@@ -1213,19 +1230,12 @@ array(c(1:24), dim=c(4,3,2))
 ## [4,]   16   20   24
 ```
 
-### Construindo matrizes
+### Construindo Matrizes
 
--   O comando `rbind` (row bind) é usado para combinar objetos por
-    linhas. Isso significa que os vetores ou matrizes fornecidos serão
-    empilhados verticalmente, criando novas linhas na estrutura de dados
-    resultante.
+* `rbind()` (row bind): Combina objetos por linhas, empilhando-os verticalmente.
+* `cbind()` (column bind): Combina objetos por colunas, empilhando-os horizontalmente.
 
--   O comando `cbind` (column bind) é usado para combinar objetos por
-    colunas. Isso significa que os vetores ou matrizes fornecidos serão
-    combinados horizontalmente, criando novas colunas na estrutura de
-    dados resultante.
-
-**Exemplo com vetores**
+**Exemplo com Vetores**
 
 ```{r eval=FALSE}
 # Criar dois vetores
@@ -1246,24 +1256,9 @@ print(result)
 ## [1,]       1       4
 ## [2,]       2       5
 ## [3,]       3       6
-
-# Combinando linhas em uma matriz
-A <- rbind(1:3, c(1,1,2))
-A
-##      [,1] [,2] [,3]
-## [1,]    1    2    3
-## [2,]    1    1    2
-
-# Combinando colunas em uma matriz
-B <- cbind(1:3, c(1,1,2))
-B
-##      [,1] [,2]
-## [1,]    1    1
-## [2,]    2    1
-## [3,]    3    2
 ```
 
-**Exemplo com matrizes**
+**Exemplo com Matrizes**
 
 ```{r eval=FALSE}
 # Criar duas matrizes
@@ -1279,6 +1274,7 @@ print(result)
 ## [3,]    7    9   11
 ## [4,]    8   10   12
 
+# Combinar as matrizes por colunas
 result <- cbind(matrix1, matrix2)
 print(result)
 ##      [,1] [,2] [,3] [,4] [,5] [,6]
@@ -1286,44 +1282,48 @@ print(result)
 ## [2,]    2    4    6    8   10   12
 ```
 
-### Índice e índice lógico
+### Acessando Elementos de uma Matriz
+
+Podemos acessar elementos específicos de uma matriz usando índices ou expressões lógicas.
 
 ```{r eval=FALSE}
-A<-matrix((-4):5, nrow=2, ncol=5)
+# Criar uma matriz
+A <- matrix((-4):5, nrow=2, ncol=5)
 A
 ##      [,1] [,2] [,3] [,4] [,5]
 ## [1,]   -4   -2    0    2    4
 ## [2,]   -3   -1    1    3    5
 
-# Acessando as entradas de uma matriz
+# Acessando um elemento específico
 A[1,2]
 ## [1] -2
 
-# Valores negativos 
+# Selecionando elementos negativos
 A[A<0]
 ## [1] -4 -3 -2 -1
  
-# Atribuições
+# Atribuição condicional
 A[A<0]<-0
 A
 ##      [,1] [,2] [,3] [,4] [,5]
 ## [1,]    0    0    0    2    4
 ## [2,]    0    0    1    3    5
 
-# Selecionando as linhas de uma matriz
+# Selecionando uma linha específica
 A[2,]
 ## [1] 0 0 1 3 5
 
-# Selecionando as colunas de uma matriz
+# Selecionando colunas específicas
 A[,c(2,4)]
 ##      [,1] [,2]
 ## [1,]    0    2
 ## [2,]    0    3
 ```
 
-### Nomeando linhas e colunas numa matriz
+### Nomeando Linhas e Colunas em uma Matriz
 
 ```{r eval=FALSE}
+# Criar uma matriz
 x <- matrix(rnorm(12),nrow=4)
 x
 ##        [,1]   [,2]    [,3]
@@ -1332,6 +1332,7 @@ x
 ## [3,] -0.230  0.314 -1.9076
 ## [4,] -0.571  0.478 -0.5948
 
+# Nomeando colunas
 colnames(x) <- paste("dados",1:3,sep="")
 x
 ##      dados1 dados2  dados3
@@ -1340,6 +1341,7 @@ x
 ## [3,] -0.230  0.314 -1.9076
 ## [4,] -0.571  0.478 -0.5948
 
+# Nomeando linhas e colunas de outra matriz
 y <- matrix(rnorm(15),nrow=5)
 y 
 ##        [,1]   [,2]   [,3]
@@ -1368,6 +1370,7 @@ y
 M<-matrix(rnorm(20),nrow=4,ncol=5)
 N<-matrix(rnorm(15),nrow=5,ncol=3)
 
+# Multiplicação de matrizes
 M%*%N
 ##          [,1]    [,2]   [,3]
 ## [1,] -1.67927  0.8103 -3.405
@@ -1376,7 +1379,7 @@ M%*%N
 ## [4,] -0.00563 -0.0709 -0.113
 ```
 
-### Adicionando linhas e colunas a matriz
+### Adicionando Linhas e Colunas a uma Matriz
 
 ```{r eval=FALSE}
 X <- matrix(c(1,2,3,4,5,6),nrow=2)
@@ -1385,13 +1388,13 @@ X
 ## [1,]    1    3    5
 ## [2,]    2    4    6
 
-# Coluna
+# Adicionar uma coluna
 cbind(X, c(7,8))
 ##      [,1] [,2] [,3] [,4]
 ## [1,]    1    3    5    7
 ## [2,]    2    4    6    8
 
-# Linha
+# Adicionar uma linha
 rbind(X, c(7,8,9))
 ##      [,1] [,2] [,3]
 ## [1,]    1    3    5
@@ -1470,16 +1473,11 @@ e troque os números pares por 0.
 
 ## Data-frame
 
-Um data frame em R é uma estrutura de dados bidimensional que é usada
-para armazenar dados tabulares. Cada coluna em um data frame pode conter
-valores de diferentes tipos (numéricos, caracteres, fatores, etc.), mas
-todos os elementos dentro de uma coluna devem ser do mesmo tipo. Um data
-frame é similar a uma tabela em um banco de dados ou uma planilha em um
-programa de planilhas como o Excel. Podemos criar data frames lendo
-dados de arquivos ou usando a função `as.data.frame()` em um conjunto de
-vetores.
+Um data frame em R é uma estrutura de dados bidimensional usada para armazenar dados tabulares. Cada coluna em um data frame pode conter valores de diferentes tipos (como numéricos, caracteres, fatores, etc.), mas todos os elementos dentro de uma coluna devem ser do mesmo tipo. Um data frame é semelhante a uma tabela em um banco de dados ou uma planilha em programas como o Excel. Data frames podem ser criados a partir de arquivos de dados ou convertendo vetores usando a função `as.data.frame()`.
 
-### Criando um data frame
+### Criando um Data Frame
+
+Para criar um data frame, você pode usar a função `data.frame()`, especificando os nomes das colunas e os dados correspondentes:
 
 ```{r eval=FALSE}
 df <- data.frame(
@@ -1493,7 +1491,11 @@ df
 ## 2  2  Bruno    35    6000
 ## 3  3 Carlos    31    7000
 ## 4  4  Diana    28    8000
+```
 
+Um data frame pode parecer semelhante a uma matriz, mas há diferenças importantes. Veja o exemplo de uma matriz criada com os mesmos dados:
+
+```{r eval=FALSE}
 # Comparando com uma matriz
 cbind(id = 1:4,
 nome = c("Ana", "Bruno", "Carlos", "Diana"),
@@ -1506,31 +1508,35 @@ salario = c(5000, 6000, 7000, 8000))
 ## [4,] "4" "Diana"  "28"  "8000"
 ```
 
-### Acessando linhas e colunas
+Observe que na matriz, todos os dados são convertidos para o tipo `character`, enquanto em um data frame, cada coluna mantém seu próprio tipo de dados.
+
+### Acessando Linhas e Colunas
+
+Existem várias maneiras de acessar linhas e colunas em um data frame:
 
 ```{r eval=FALSE}
-# Acessando a coluna id
+# Acessando a coluna 'id' usando índice
 df[,1]
 ## [1] 1 2 3 4
 
-# Outra forma de acessar a coluna id
+# Acessando a coluna 'id' usando o nome da coluna
 df$id
 ## [1] 1 2 3 4
 
-# Outra forma de acessar a coluna id
+# Acessando a coluna 'id' usando double brackets
 df[["id"]]
 ## [1] 1 2 3 4
 
-# Acessando linhas e colunas por índice
-df[1, ] # Primeira linha
+# Acessando a primeira linha
+df[1, ] 
 ##   id nome idade salario
 ## 1  1  Ana    23    5000
 
-# Segunda coluna
+# Acessando a segunda coluna
 df[, 2] 
 ## [1] "Ana"    "Bruno"  "Carlos" "Diana"
 
-# Elemento na primeira linha, segunda coluna
+# Acessando o elemento na primeira linha, segunda coluna
 df[1, 2] 
 ## [1] "Ana"
 
@@ -1540,11 +1546,11 @@ df[1:2, 1:2]
 ## 1  1   Ana
 ## 2  2 Bruno
 
-# Acessando linhas e colunas por nome
-df[1, "nome"] # Elemento na primeira linha, coluna "nome"
+# Acessando uma entrada por nome de coluna
+df[1, "nome"] 
 ## [1] "Ana"
 
-# Colunas "nome" e "idade"
+# Acessando múltiplas colunas por nome
 df[c("nome", "idade")]
 ##     nome idade
 ## 1    Ana    23
@@ -1553,10 +1559,12 @@ df[c("nome", "idade")]
 ## 4  Diana    28
 ```
 
-### Adicionando e removendo colunas
+### Adicionando e Removendo Colunas
+
+Adicionar e remover colunas de um data frame é simples e direto:
 
 ```{r eval=FALSE}
-# Adicionar novas colunas
+# Adicionar uma nova coluna calculada
 df$novo_salario <- df$salario * 1.1 
 df
 ##   id   nome idade salario novo_salario
@@ -1565,7 +1573,7 @@ df
 ## 3  3 Carlos    31    7000         7700
 ## 4  4  Diana    28    8000         8800
 
-# Remover coluna
+# Remover uma coluna existente
 df$id <- NULL
 df
 ##     nome idade salario novo_salario
@@ -1575,24 +1583,17 @@ df
 ## 4  Diana    28    8000         8800
 ```
 
-### Fundindo dados
+### Fundindo Data Frames
+
+Data frames podem ser combinados ou fundidos usando a função `merge()`.
 
 ```{r eval=FALSE}
-df1 <- data.frame(curso=c("PE","LE","CAL"), horas=c(60,75,90))
-df1
-##   curso horas
-## 1    PE    60
-## 2    LE    75
-## 3   CAL    90
+# Criar dois data frames
+df1 <- data.frame(curso = c("PE", "LE", "CAL"), horas = c(60, 75, 90))
+df2 <- data.frame(curso = c("CAL", "PE", "LE"), creditos = c(8, 6, 7))
 
-df2 <- data.frame(curso=c("CAL","PE","LE"), creditos=c(8,6,7))
-df2 
-##   curso creditos
-## 1   CAL        8
-## 2    PE        6
-## 3    LE        7
-
-df12 <- merge(df1, df2, by="curso")
+# Fundir data frames pela variável 'curso'
+df12 <- merge(df1, df2, by = "curso")
 df12
 ##   curso horas creditos
 ## 1   CAL    90        8
@@ -1600,29 +1601,37 @@ df12
 ## 3    PE    60        6
 ```
 
-### Dimensão, informações de colunas e outros
+### Explorando o Data Frame
+
+Funções úteis para explorar e entender a estrutura de um data frame:
 
 ```{r eval=FALSE}
 df <- iris
+
+# Nomes das colunas
 names(df)
 ## [1] "Sepal.Length" "Sepal.Width"  "Petal.Length" "Petal.Width"  "Species"
 
+# Classe dos dados de uma coluna
 class(df$Sepal.Length)
 ## [1] "numeric"
 
 class(df$Species)
 ## [1] "factor"
 
+# Dimensão do data frame
 dim(df)
 ## [1] 150   5
 
+# Número de linhas
 nrow(df)
 ## [1] 150
 
+# Número de colunas
 ncol(df)
 ## [1] 5
 
-# Visão geral da estrutura do objeto
+# Estrutura do data frame
 str(df)
 ## 'data.frame':    150 obs. of  5 variables:
 ##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
@@ -1631,12 +1640,14 @@ str(df)
 ##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
 ##  $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
 
+# Visualização das primeiras linhas
 head(df, 3)
 ##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 ## 1          5.1         3.5          1.4         0.2  setosa
 ## 2          4.9         3.0          1.4         0.2  setosa
 ## 3          4.7         3.2          1.3         0.2  setosa
 
+# Visualização das últimas linhas
 tail(df, 5)
 ##     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
 ## 146          6.7         3.0          5.2         2.3 virginica
@@ -1648,7 +1659,13 @@ tail(df, 5)
 
 ### A função `subset()`
 
+A função `subset()` em R é usada para criar subconjuntos de um data frame com base em condições lógicas. Ela é particularmente útil quando você deseja filtrar linhas que atendem a certos critérios e selecionar colunas específicas ao mesmo tempo.
+
 ```{r eval=FALSE}
+# Carregar o conjunto de dados 'iris'
+df <- iris
+
+# Criar um subconjunto com Sepal.Width maior que 3, selecionando apenas as colunas Petal.Width e Species
 df1 <- df[df$Sepal.Width > 3, c("Petal.Width","Species")]
 head(df1)
 ##   Petal.Width Species
@@ -1658,7 +1675,8 @@ head(df1)
 ## 5         0.2  setosa
 ## 6         0.4  setosa
 ## 7         0.3  setosa
-  
+
+# Utilizando a função subset() para o mesmo subconjunto  
 (df2 <- subset(df, Sepal.Width > 3, select = c(Petal.Width, Species)))
 ##     Petal.Width    Species
 ## 1           0.2     setosa
@@ -1728,7 +1746,12 @@ head(df1)
 ## 144         2.3  virginica
 ## 145         2.5  virginica
 ## 149         2.3  virginica
+```
 
+No exemplo acima, ambas as abordagens (indexação direta e `subset()`) produzem o mesmo resultado, mas `subset()` é geralmente mais legível e conveniente quando se trata de filtragem condicional.
+
+```{r eval=FALSE}
+# Criar um subconjunto com Petal.Width igual a 0.3, excluindo a coluna Sepal.Width
 (df3 <- subset(df, Petal.Width == 0.3, select = -Sepal.Width))
 ##    Sepal.Length Petal.Length Petal.Width Species
 ## 7           4.6          1.4         0.3  setosa
@@ -1738,7 +1761,12 @@ head(df1)
 ## 41          5.0          1.3         0.3  setosa
 ## 42          4.5          1.3         0.3  setosa
 ## 46          4.8          1.4         0.3  setosa
+```
 
+Neste exemplo, `subset()` é usado para filtrar linhas onde `Petal.Width` é exatamente 0.3 e excluir a coluna `Sepal.Width`.
+
+```{r eval=FALSE}
+# Criar um subconjunto selecionando as colunas de Sepal.Width a Petal.Width
 (df4 <- subset(df, select = Sepal.Width:Petal.Width))
 ##     Sepal.Width Petal.Length Petal.Width
 ## 1           3.5          1.4         0.2
@@ -1893,23 +1921,25 @@ head(df1)
 ## 150         3.0          5.1         1.8
 ```
 
-### A função `summary()`
+Aqui, `subset()` é usado para selecionar todas as colunas desde `Sepal.Width` até `Petal.Width`.
 
-A função `summary()` no R é usada para gerar resumos estatísticos de
-objetos. O comportamento da função varia dependendo do tipo de objeto
-que você passa para ela, mas geralmente fornece uma visão geral das
-características principais do objeto.
+### A Função `summary()`
+
+A função `summary()` é amplamente utilizada em R para fornecer resumos estatísticos de dados. O comportamento de `summary()` varia de acordo com o tipo de objeto ao qual é aplicado.
 
 ```{r eval=FALSE}
+# Aplicando summary() a um vetor numérico
 x <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 summary(x)	
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    1.00    3.25    5.50    5.50    7.75   10.00
 
+# Aplicando summary() a uma coluna numérica de um data frame
 summary(iris$Sepal.Length)
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    4.30    5.10    5.80    5.84    6.40    7.90
 
+# Aplicando summary() a um data frame completo
 summary(iris) 
 ##   Sepal.Length   Sepal.Width    Petal.Length   Petal.Width        Species  
 ##  Min.   :4.30   Min.   :2.00   Min.   :1.00   Min.   :0.1   setosa    :50  
@@ -1919,6 +1949,8 @@ summary(iris)
 ##  3rd Qu.:6.40   3rd Qu.:3.30   3rd Qu.:5.10   3rd Qu.:1.8                  
 ##  Max.   :7.90   Max.   :4.40   Max.   :6.90   Max.   :2.5
 ```
+
+Aplicar `summary()` ao data frame iris inteiro fornece resumos estatísticos para todas as colunas, incluindo estatísticas descritivas para variáveis numéricas e uma contagem de frequências para variáveis categóricas (fatores).
 
 ### Valores faltantes
 
@@ -1932,18 +1964,29 @@ summary(iris)
 
 **4.** Adicione uma nova coluna ao data frame `mtcars` chamada Peso_KG que converta o peso dos carros (`wt`) de mil libras para quilogramas (multiplicando por 453.592).
 
+**5.** Utilizando o data frame `mtcars`, calcule a média, o mínimo e o máximo da potência (`hp`) para cada número diferente de cilindros (`cyl`). Utilize as funções `aggregate()` ou `dplyr` para realizar esta operação.
+
+**6.** Transforme a coluna `am` do data frame `mtcars` em um fator com rótulos significativos: "Automático" para 0 e "Manual" para 1. Depois, conte quantos carros existem para cada tipo de transmissão.
+
+**7.** Utilizando o data frame `mtcars`, aplique a função `sapply()` para calcular o desvio padrão de todas as colunas numéricas.
+
+**8.** Ordene o data frame `mtcars` pela coluna `mpg` em ordem decrescente. Mostre os 5 carros mais econômicos e os 5 menos econômicos.
+
+**9.** Crie dois data frames, `carros1` e `carros2`, que contenham diferentes subconjuntos de informações do data frame `mtcars`. Depois, use a função `merge()` para combinar esses data frames com base na coluna `car`.
+
 ## Listas
 
-Uma lista em R é uma estrutura de dados que permite armazenar elementos
-de diferentes tipos, como vetores, matrizes, data frames, funções e até
-outras listas. Essa flexibilidade distingue as listas de outras
-estruturas, como vetores, que são homogêneos e podem conter apenas
-elementos de um único tipo.
+Em R, uma **lista** é uma estrutura de dados versátil que pode armazenar elementos de diferentes tipos, como vetores, matrizes, data frames, funções e até outras listas. Essa flexibilidade torna as listas uma poderosa ferramenta para manipulação de dados complexos, permitindo armazenar uma coleção heterogênea de elementos em um único objeto.
 
--   **Indexação**: Os elementos de uma lista podem ser acessados usando
-    colchetes duplos [[ ]] ou utilizando o operador \$ para acessar
-    elementos nomeados. Além disso, o índice simples [ ] retorna uma
-    sublista.
+* **Flexibilidade**: Ao contrário de vetores, que são homogêneos e podem conter apenas elementos de um único tipo, as listas podem conter elementos de diferentes tipos e tamanhos.
+* **Indexação**: Os elementos de uma lista podem ser acessados de várias maneiras:
++ **Colchetes duplos [[ ]]**: Usados para acessar elementos específicos de uma lista.
++ **Operador $**: Usado para acessar elementos nomeados.
++ **Colchetes simples [ ]**: Retornam uma sublista contendo os elementos especificados.
+
+### Criando e Manipulando Listas
+
+Vamos criar uma lista que contém diferentes tipos de elementos, incluindo um vetor, um vetor de caracteres, uma matriz, e uma função:
 
 ```{r eval=FALSE}
 # Criando uma lista com diferentes tipos de elementos
@@ -1987,7 +2030,7 @@ print(minha_lista$nome)
 print(minha_lista[[1]])
 ## [1] "Estudante"
 
-# Acessando uma sublista
+# Acessando uma sublista contendo os dois primeiros elementos
 print(minha_lista[1:2])
 ## $nome
 ## [1] "Estudante"
@@ -1995,10 +2038,18 @@ print(minha_lista[1:2])
 ## $idade
 ## [1] 21
 
-# Acessando uma parte de um elemento, como o segundo valor do vetor "notas"
+# Acessando a segunda nota do vetor "notas" dentro da lista
 print(minha_lista$notas[2])
 ## [1] 90
 ```
+
+### Por que usar listas?
+
+Listas são extremamente úteis em R para:
+
+* **Armazenar resultados de diferentes tipos**: Em análises estatísticas complexas, os resultados frequentemente consistem em diferentes tipos de dados (como números, tabelas, gráficos e modelos estatísticos).
+* **Agrupar dados heterogêneos**: Quando você precisa manipular um conjunto de dados que inclui diversos tipos de informação (por exemplo, dados brutos, estatísticas resumidas, e resultados de modelos).
+* **Passar múltiplos argumentos para funções**: Listas são usadas para agrupar múltiplos parâmetros para funções, tornando-as uma ferramenta poderosa para programação funcional.
 
 ### Exercícios
 
@@ -2051,16 +2102,11 @@ Acesse e imprima:
 
 # Estruturas de Seleção
 
-Em R, as estruturas de seleção ou decisão são usadas para controlar o
-fluxo de execução do código com base em condições específicas. Estas
-estruturas permitem executar diferentes blocos de código dependendo de
-valores ou condições lógicas. As estruturas de seleção mais comuns em R
-são `if`, `else`, `else if`.
+Em R, as estruturas de seleção ou decisão são usadas para controlar o fluxo de execução do código com base em condições específicas. Essas estruturas permitem executar diferentes blocos de código dependendo de valores ou condições lógicas. As estruturas de seleção mais comuns em R são `if`, `else`, e `else if`.
 
 ## Condicional `if`
 
-A instrução `if` executa um bloco de código se uma condição for
-verdadeira.
+A instrução `if` executa um bloco de código somente se uma condição for verdadeira. Caso contrário, o bloco de código dentro do `if` é ignorado.
 
 ```{r eval=FALSE}
 # Sintaxe	
@@ -2080,10 +2126,11 @@ if (x > 5) {
 ## [1] "x é maior que 5"
 ```
 
+Neste exemplo, a condição `x > 5` é verdadeira, então o código dentro do bloco `if` é executado.
+
 ## Condicional `if...else`
 
-A estrutura `if...else` permite executar um bloco de código quando a
-condição é verdadeira e outro bloco de código quando a condição é falsa.
+A estrutura `if...else` permite executar um bloco de código quando a condição é verdadeira e outro bloco de código quando a condição é falsa.
 
 ```{r eval=FALSE}
 # Sintaxe
@@ -2107,10 +2154,11 @@ if (x > 5) {
 ## [1] "x não é maior que 5"
 ```
 
+Aqui, a condição `x > 5` é falsa, então o bloco de código dentro de `else` é executado.
+
 ## Condicional `if...else if...else`
 
-A estrutura `if...else if...else` permite testar múltiplas condições em
-sequência. Executa o bloco de código do primeiro teste que resulta em
+A estrutura `if...else if...else` permite testar múltiplas condições em sequência. Executa o bloco de código do primeiro teste que resulta em
 verdadeiro.
 
 ```{r eval=FALSE}
@@ -2139,11 +2187,11 @@ if (x > 10) {
 ## [1] "x é maior que 5, mas não maior que 10"
 ```
 
+Neste caso, a primeira condição `x > 10` é falsa, mas a segunda `x > 5` é verdadeira, então o segundo bloco de código é executado.
+
 ## A função `ifelse()`
 
-A função `ifelse` é uma versão vetorizada de if...else que retorna
-valores dependendo de uma condição. É muito útil para aplicar condições
-a vetores. 
+A função `ifelse` é uma versão vetorizada de if...else que retorna valores dependendo de uma condição. É especialmente útil para aplicar condições a vetores ou data frames.
 
 ```{r eval=FALSE}
 # Sintaxe
@@ -2159,6 +2207,8 @@ print(resultado)
 ## [1] "não é maior que 5" "maior que 5"       "maior que 5"      
 ## [4] "não é maior que 5"
 ```
+
+Aqui, `ifelse()` aplica a condição `valores > 5` a cada elemento do vetor valores e retorna “maior que 5” se a condição for verdadeira ou “não é maior que 5” caso contrário.
 
 ## Exemplos
 
@@ -2252,30 +2302,33 @@ if (x == 1){
 
 **2.** Crie um programa em R que leia um número inteiro do usuário e imprima “Par” se o número for par e “Ímpar” caso contrário.
 
-**3.** Escreva um programa em R que leia um número e exiba se ele está no intervalo [0, 10], [11, 20], ou maior que 20.
+**3.** Escreva um programa em R que leia um número e exiba se ele está no intervalo [0, 10], [11, 20], ou maior que 20. Considere que os intervalos [0, 10] e [11, 20] são inclusivos. Por exemplo, para o número 15, o programa deve exibir "O número está no intervalo [11, 20]".
 
-**4.** Escreva um programa em R que leia a idade de uma pessoa e classifique-a como “Criança”, “Adolescente”, “Adulto” ou “Idoso”. Considere:
-
+**4.** **Exercício 4:** Escreva um programa em R que leia a idade de uma pessoa e classifique-a como “Criança”, “Adolescente”, “Adulto” ou “Idoso”. Considere:
 * Criança: 0-12 anos
 * Adolescente: 13-17 anos
 * Adulto: 18-64 anos
 * Idoso: 65 anos ou mais
 
-**5.**  Escreva um programa em R que leia o preço original de um produto e aplique um desconto com base no seguinte critério:
+Se a idade inserida for negativa, o programa deve exibir "Idade inválida". Exemplo de entrada: 25; Saída esperada: "Adulto".
 
+**5.** Escreva um programa em R que leia o preço original de um produto e aplique um desconto com base no seguinte critério:
 * Desconto de 5% se o preço for inferior a \$100
-* Desconto de 10% se o preço estiver entre \$100 e \$500
+* Desconto de 10% se o preço estiver entre \$100 e \$500 (inclusive)
 * Desconto de 15% se o preço for superior a \$500
 
-**6.** Escreva um programa em R que leia as coordenadas (x, y) de um ponto e determine em qual quadrante o ponto está localizado.
+Se o preço inserido for negativo, o programa deve exibir "Preço inválido". Exemplo de entrada: 350; Saída esperada: "O preço com desconto é \$315".
+
+**6.** **Exercício 6:** Escreva um programa em R que leia as coordenadas (x, y) de um ponto e determine em qual quadrante o ponto está localizado. Se o ponto estiver em um dos eixos, o programa deve especificar "Eixo X" ou "Eixo Y". Exemplo de entrada: (x = -3, y = 2); Saída esperada: "Segundo quadrante".
 
 **7.** Escreva um programa em R que leia um ano e determine se é um ano bissexto. Um ano é bissexto se:
+* É divisível por 4, mas não divisível por 100, exceto quando divisível por 400.
 
-* É divisível por 4, mas não divisível por 100, exceto quando divisível por 400.		
+Se o ano inserido for negativo, o programa deve exibir "Ano inválido". Exemplo de entrada: 2000; Saída esperada: "Ano bissexto".		
 
-**8.** Escreva um programa que leia um número inteiro entre 0 e 999, e o descreva em termos do número de centenas, número de dezenas e número de unidades. Por exemplo, para 304 o resultado pretendido é “3 centenas 0 dezenas e 4 unidades”. Caso o número inteiro não pertença ao intervalo [0;999] deverá imprimir um aviso “Número fora do intervalo”.
+**8.** Escreva um programa que leia um número inteiro entre 0 e 999, e o descreva em termos do número de centenas, dezenas e unidades. Por exemplo, para 304, o programa deve exibir “3 centenas 0 dezenas e 4 unidades”. Caso o número inteiro não pertença ao intervalo [0;999], deverá imprimir um aviso “Número fora do intervalo”. Exemplo de entrada: 256; Saída esperada: "2 centenas 5 dezenas e 6 unidades".
 
-**9.** Escreva um programa em R que leia um número inteiro positivo (menor ou igual a 5) e escreva no ecrã a sua representação em numeração romana. 
+**9.** Escreva um programa em R que leia um número inteiro positivo (menor ou igual a 5) e escreva no ecrã a sua representação em numeração romana. Se o número inserido for maior que 5 ou menor que 1, o programa deve exibir "Número fora do intervalo". Exemplo de entrada: 3; Saída esperada: "III".
 
 **10.** Escreva um programa em R que leia quatro números inteiros (um de cada vez) e escreva após cada interação qual o menor número lido até ao momento. Segue-se um exemplo da interação com o computador.
 

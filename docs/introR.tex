@@ -120,7 +120,7 @@
 
 \title{Introdução ao R}
 \author{Renato de Paula}
-\date{2024-09-03}
+\date{2024-09-04}
 
 \begin{document}
 \maketitle
@@ -135,124 +135,92 @@ Este material, ``Introdução ao R'', foi desenvolvido com o objetivo de servir 
 
 Ao longo deste material, os leitores serão guiados através de uma série de tópicos essenciais, desde a instalação do software e a navegação no ambiente RStudio, até o manuseio de estruturas de dados complexas e a criação de gráficos sofisticados. Cada capítulo foi estruturado de forma a proporcionar uma compreensão sólida dos conceitos abordados, combinando explicações teóricas com exemplos práticos e exercícios que reforçam o aprendizado.
 
-Este material foi elaborado para atender às necessidades dos alunos, tanto aqueles que estão iniciando seus estudos em Estatística quanto aqueles que já possuem alguma experiência prévia. Acreditamos que, ao concluir este curso, os alunos estarão bem preparados para aplicar técnicas estatísticas em diversas áreas do conhecimento, utilizando o R como uma ferramenta indispensável para suas análises.
+Este material foi elaborado para atender às necessidades dos alunos, independentemente de seu nível de experiência prévia em Estatística. Seja para aqueles que estão começando seus estudos ou para aqueles que já têm alguma familiaridade com o tema, o material proporciona uma abordagem estruturada que facilita a compreensão e a aplicação dos conceitos estatísticos. Acreditamos que, ao final deste curso, os alunos terão adquirido uma base sólida que lhes permitirá aplicar técnicas estatísticas em diversas áreas do conhecimento, usando o R de forma eficiente como uma ferramenta essencial para suas análises de dados.
 
 \chapter{R e RStudio}\label{r-e-rstudio}
 
-O software de código aberto R foi desenvolvido como uma implementação
-livre da linguagem S, que foi projetada como uma linguagem para
-computação estatística, programação estatística e gráficos. A intenção
-principal era permitir aos usuários explorar os dados de uma forma fácil
-e interativa, apoiada em representações gráficas significativas. O
-software estatístico R foi originalmente criado por Ross Ihaka e Robert
-Gentleman (Universidade de Auckland, Nova Zelândia).
+O R é um software de código aberto desenvolvido como uma implementação gratuita da linguagem S, que foi concebida especificamente para computação estatística, programação estatística e geração de gráficos. A principal intenção era proporcionar aos usuários a capacidade de explorar dados de maneira intuitiva e interativa, utilizando representações gráficas significativas para facilitar a compreensão dos dados. O software estatístico R foi originalmente criado por Ross Ihaka e Robert Gentleman, da Universidade de Auckland, Nova Zelândia.
 
-R é um conjunto integrado de recursos de software para manipulação de
-dados, cálculo e exibição gráfica. Ele inclui:
+O R oferece um conjunto integrado de ferramentas para manipulação de dados, cálculo e visualização gráfica. Ele oferece:
 
 \begin{itemize}
+\tightlist
 \item
-  Manuseio eficaz de dados e facilidade de armazenamento;
+  Manipulação eficiente de dados e armazenamento flexível;
 \item
-  Um conjunto de operadores para cálculos em arrays/matrizes;
+  Operadores poderosos para cálculos em arrays e matrizes;
 \item
-  Uma coleção grande, coerente e integrada de ferramentas
-  intermediárias para análise de dados;
+  Uma coleção abrangente, coerente e integrada de ferramentas para análise de dados;
 \item
-  Recursos gráficos para análise e exibição de dados na tela ou em
-  cópia impressa;
+  Recursos gráficos avançados para análise e visualização de dados, seja na tela ou em cópia impressa;
 \item
-  Uma linguagem de programação bem desenvolvida, simples e eficaz que
-  inclui condicionais, loops, funções recursivas definidas pelo
-  usuário e recursos de entrada e saída.
+  Uma linguagem de programação robusta, intuitiva e eficaz, que inclui estruturas condicionais, loops, funções recursivas definidas pelo usuário, além de recursos de entrada e saída de dados.
 \end{itemize}
 
 \section{Instalação e funcionalidades básicas}\label{instalauxe7uxe3o-e-funcionalidades-buxe1sicas}
 
 \begin{itemize}
 \item
-  A versão ``base'' do R, ou seja, o software com seus comandos mais
-  relevantes, pode ser baixado em \url{https://www.r-project.org/}. Após
-  instalar o R, é recomendável instalar também um editor. Um editor
-  permite ao usuário salvar e exibir convenientemente o código R,
-  enviar esse código ao R Console e controlar as configurações e a
-  saída. Uma escolha popular de editor é o RStudio (gratuito), que
-  pode ser baixado em \url{https://www.rstudio.com/}.
+  A versão base do R, que inclui o conjunto fundamental de comandos e funções, pode ser baixada diretamente do site oficial: \url{https://www.r-project.org/}. Após instalar o R, é altamente recomendável instalar também um ambiente de desenvolvimento integrado (IDE) para facilitar o trabalho com o código R. Um IDE permite ao usuário escrever, salvar e organizar scripts de código R de forma mais eficiente, além de executar comandos diretamente no Console do R e gerenciar configurações e saídas de forma conveniente. Uma escolha popular de IDE é o RStudio, que é gratuito e pode ser baixado em \url{https://www.rstudio.com/}.
 \item
-  Muitos pacotes adicionais escritos pelo usuário estão disponíveis
-  online e podem ser instalados no console R ou usando o menu R.
-  Dentro do console, a função
-  \texttt{install.packages(“pacote\ para\ instalar”)} pode ser usada. Observe
-  que é necessária uma conexão com a Internet.Você pode ver todos os
-  pacotes instalados usando a função \texttt{installed.packages()}.
+  Além do conjunto base de funções, o R oferece uma vasta gama de pacotes adicionais desenvolvidos pela comunidade de usuários. Esses pacotes podem ser instalados diretamente pelo Console do R ou por meio do menu do RStudio. Para instalar um pacote no Console, você pode usar a função \texttt{install.packages("nome\_do\_pacote")}. É importante lembrar que para instalar pacotes, é necessário estar conectado à internet. Para visualizar todos os pacotes já instalados no seu ambiente R, você pode utilizar a função \texttt{installed.packages()}.
 \end{itemize}
 
 \section{Navegando no RStudio}\label{navegando-no-rstudio}
 
-Existem quatro painéis de trabalho no RStudio:
+Existem quatro painéis principais no ambiente de trabalho do RStudio:
 
 \begin{itemize}
 \item
-  \textbf{Editor/Scripts}. Este painel é onde os scripts são
-  gravados/carregados e exibidos. Possui realce de sintaxe e
-  preenchimento automático, além de permitir passar o código linha por
-  linha.
+  \textbf{Editor/Scripts}. Este painel é utilizado para criar, carregar e exibir scripts de código R. Ele oferece recursos como realce de sintaxe, preenchimento automático e a capacidade de executar o código linha por linha ou em blocos, o que facilita a edição e depuração do código.
 \item
-  \textbf{Console}. É aqui que os comandos são executados e é
-  essencialmente a aparência do console do R básico, só que melhor! O
-  console possui realce de sintaxe, preenchimento de código e
-  interface com outros painéis do RStudio.
+  \textbf{Console}. No Console, os comandos são executados diretamente. Ele funciona de maneira semelhante ao console padrão do R, mas com melhorias significativas, como realce de sintaxe, preenchimento automático de código e integração com os demais painéis do RStudio. O Console é o local ideal para testes rápidos e execução de comandos imediatos.
 \item
-  \textbf{Environment/Histórico}. A aba do espaço de trabalho exibe
-  informações que normalmente ficam ocultas no R, como dados
-  carregados, funções e outras variáveis. A aba histórico armazena
-  todos os comandos (linhas de código) que foram analisados por meio
-  do R.
+  \textbf{Environment/Histórico}. O painel ``Environment'' (Ambiente) exibe informações sobre os objetos atualmente carregados na sessão do R, como conjuntos de dados, funções definidas pelo usuário e outras variáveis. Isso ajuda a gerenciar e visualizar o conteúdo da memória de trabalho. A aba ``History'' (Histórico) armazena todos os comandos executados durante a sessão, permitindo fácil recuperação e reutilização de códigos anteriores.
 \item
-  \textbf{Último painel}. Este painel inclui a aba de arquivos (lista todos
-  os arquivos no diretório de trabalho atual), a aba de gráficos
-  (quaisquer gráficos), a aba de pacotes (pacotes instalados) e a aba
-  de ajuda (sistema de ajuda html embutido).
+  \textbf{Painel Inferior Direito}. Este painel é multifuncional e contém várias abas úteis:
+\item
+  \textbf{Files} (Arquivos): lista todos os arquivos no diretório de trabalho atual.
+\item
+  \textbf{Plots} (Gráficos): exibe quaisquer gráficos gerados durante a análise.
+\item
+  \textbf{Packages} (Pacotes): permite visualizar os pacotes instalados e carregados na sessão.
+\item
+  \textbf{Help} (Ajuda): fornece acesso ao sistema de ajuda embutido em HTML, que oferece documentação detalhada sobre funções e pacotes.
+\item
+  \textbf{Viewer} (Visualizador): utilizado para visualizar documentos HTML, PDFs e outros conteúdos dentro do RStudio.
 \end{itemize}
 
 \section{Atalhos}\label{atalhos}
 
 \begin{itemize}
 \item
-  \textbf{CTRL+ENTER}: compila a(s) linha(s) selecionada(s) no script.
+  \textbf{CTRL+ENTER}: executa a(s) linha(s) de código selecionada(s) no script.
 \item
-  \textbf{ALT+-}: cria no script um sinal de atribuição (\textless-).
+  \textbf{ALT+-}: insere o operador de atribuição (\texttt{\textless{}-}) no script.
 \item
-  \textbf{CTRL+SHIFT+M}: (\%\textgreater\%) operador pipe.
+  \textbf{CTRL+SHIFT+M}: (\%\textgreater\%) operador pipe no script.
 \item
-  \textbf{CTRL+1}: altera cursor para o script.
+  \textbf{CTRL+1}: move o cursor para o painel de script.
 \item
-  \textbf{CTRL+2}: altera cursor para o console.
+  \textbf{CTRL+2}: move o cursor para o console.
 \item
-  \textbf{CTRL+ALT+I}: cria um chunk no R Markdown.
+  \textbf{CTRL+ALT+I}: insere um novo ``chunk'' de código no R Markdown.
 \item
-  \textbf{CTRL+SHIFT+K}: compila um arquivo no R Markdown.
+  \textbf{CTRL+SHIFT+K}: compila um documento R Markdown.
 \item
-  \textbf{ALT+SHIFT+K}: janela com todos os atalhos disponíveis.
+  \textbf{ALT+SHIFT+K}: abre uma janela com todos os atalhos de teclado disponíveis.
 \end{itemize}
 
-No MacBook, os atalhos geralmente são os mesmos, substituindo o \textbf{CTRL}
-por \textbf{command} e o \textbf{ALT} por \textbf{option}.
+No MacBook, os atalhos geralmente são os mesmos, substituindo o \textbf{CTRL} por \textbf{Command} e o \textbf{ALT} por \textbf{Option}.
 
-\chapter{R como uma calculadora e Operações Aritméticas}\label{r-como-uma-calculadora-e-operauxe7uxf5es-aritmuxe9ticas}
+\chapter{R como Calculadora e Operações Aritméticas}\label{r-como-calculadora-e-operauxe7uxf5es-aritmuxe9ticas}
 
-A estatística tem uma relação estreita com a álgebra: os conjuntos de
-dados podem ser vistos como matrizes e as variáveis como vetores. O R
-faz uso dessas estruturas e é por isso que primeiro apresentamos
-funcionalidades de estrutura de dados antes de explicar alguns dos
-comandos estatísticos básicos mais relevantes.
+A Estatística está intimamente ligada à Álgebra, especialmente no que diz respeito ao uso de matrizes e vetores para representar conjuntos de dados e variáveis. No R, essas estruturas de dados são amplamente utilizadas para facilitar a manipulação e a análise estatística. Por isso, é importante primeiro entender como o R lida com essas estruturas antes de avançar para comandos estatísticos mais específicos.
 
-\section{O prompt}\label{o-prompt}
+\section{O Prompt do R}\label{o-prompt-do-r}
 
-O R possui uma interface de linha de comando e aceitará comandos
-simples. Isso é marcado por um símbolo \textgreater, chamado \textbf{prompt}. Se você
-digitar um comando e pressionar Enter, o R irá avaliá-lo e imprimir o
-resultado para você.
+O R utiliza uma interface de linha de comando para executar operações e aceitar comandos diretamente. Essa interface é marcada pelo símbolo \textgreater, conhecido como o \textbf{prompt}. Quando você digita um comando após o prompt e pressiona Enter, o R interpreta o comando, executa a operação correspondente e exibe o resultado na tela.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -261,13 +229,9 @@ resultado para você.
 \end{Highlighting}
 \end{Shaded}
 
-Observe que nestas notas, caixas cinzas são usadas para mostrar o código
-R digitado no console R. O símbolo \#\#{[}1{]} é usado para denotar o output
-do console R.
+Nas notas de aula, o código R digitado no console é exibido em caixas cinzas. Quando você vê o símbolo \#\# no início de uma linha, ele indica o resultado (output) gerado pelo console R após a execução do código.
 
-O caractere \texttt{\#} marca o início de um comentário. Todos os caracteres até
-o final da linha são ignorados pelo R. Usamos \texttt{\#} para comentar nosso
-código R.
+No R, o caractere \texttt{\#} é utilizado para inserir comentários no código. Qualquer texto que aparece após \texttt{\#} na mesma linha é ignorado pelo R durante a execução. Comentários são úteis para adicionar explicações ou anotações no código, como no exemplo abaixo:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -275,9 +239,7 @@ código R.
 \end{Highlighting}
 \end{Shaded}
 
-Se soubermos o nome de um comando que gostaríamos de usar e quisermos
-aprender sobre a sua funcionalidade, basta digitar \texttt{?command} no prompt
-da linha de comando do R que ele exibe uma página de ajuda. Por exemplo
+Se você conhece o nome de uma função e deseja aprender mais sobre como ela funciona, pode utilizar o comando \texttt{?} seguido do nome da função para acessar a documentação de ajuda correspondente. Por exemplo:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -285,13 +247,9 @@ da linha de comando do R que ele exibe uma página de ajuda. Por exemplo
 \end{Highlighting}
 \end{Shaded}
 
-exibe uma página de ajuda para a função de soma.
+Este comando abrirá a página de ajuda para a função \texttt{sum}, que é usada para calcular a soma de elementos.
 
-\begin{itemize}
-\tightlist
-\item
-  Usando
-\end{itemize}
+Além disso, o R oferece uma forma prática de visualizar exemplos de como uma função pode ser utilizada. Para ver exemplos de uso de uma função, você pode usar o comando \texttt{example()} com o nome da função como argumento:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -299,37 +257,23 @@ exibe uma página de ajuda para a função de soma.
 \end{Highlighting}
 \end{Shaded}
 
-mostra exemplos de aplicação da respetiva função.
+Este comando mostrará exemplos de aplicação da função \texttt{sum}, ajudando a entender melhor como ela pode ser usada em diferentes contextos.
 
-\section{Objetos e variáveis}\label{objetos-e-variuxe1veis}
+\section{Objetos e Variáveis}\label{objetos-e-variuxe1veis}
 
-Um \textbf{objeto} em R é uma unidade de armazenamento que contém valores ou
-funções e pode ser referenciado por um nome. Esses valores podem ser
-números, caracteres, vetores, matrizes, data frames, listas, ou até
-mesmo funções. Objetos são criados e manipulados através de comandos e
-podem ser reutilizados em qualquer parte do código. Tudo o que é criado
-ou carregado na sessão de R, como dados ou funções, é considerado um
-objeto.
+Em R, um \textbf{objeto} é uma unidade de armazenamento que pode conter diferentes tipos de dados ou funções, e é referenciado por um nome. Esses dados podem incluir números, caracteres, vetores, matrizes, data frames, listas ou até mesmo funções. Objetos são criados e manipulados através de comandos, permitindo que seus valores sejam reutilizados em qualquer parte do código. Em resumo, tudo o que é criado ou carregado na sessão do R, como dados ou funções, é considerado um objeto.
 
-\subsection{O que é uma variável?}\label{o-que-uxe9-uma-variuxe1vel}
+\subsection{O que é uma Variável?}\label{o-que-uxe9-uma-variuxe1vel}
 
-Refere-se a um \textbf{nome} ou um identificador que é atribuído a um objeto.
-A variável armazena a referência ao objeto em si. Em outras palavras,
-uma variável é o nome que você usa para acessar os dados ou a função
-armazenada no objeto.
+Uma \textbf{variável} é um nome ou identificador associado a um objeto. Quando você cria uma variável, está, na verdade, criando um ``rótulo'' que aponta para o objeto armazenado na memória. Assim, uma variável é o nome que você usa para acessar os dados ou funções armazenados no objeto. Ela permite manipular e referenciar o objeto de maneira conveniente ao longo do seu script ou análise.
 
 \subsection{Atribuições}\label{atribuiuxe7uxf5es}
 
 \begin{itemize}
 \item
-  A expressão \texttt{x\textless{}-10} cria uma variável \(x\) e atribui o valor 10 a
-  \(x\). Observe que a variável à esquerda é atribuída ao valor à
-  direita. O lado esquerdo deve conter apenas um único nome de
-  variável.
+  A expressão \texttt{x\ \textless{}-\ 10} cria uma variável chamada \texttt{x} e atribui a ela o valor 10. Observe que o operador de atribuição \texttt{\textless{}-} atribui o valor do lado direito à variável do lado esquerdo. O lado esquerdo deve conter apenas um único nome de variável.
 \item
-  Também se pode atribuir usando = (ou \texttt{-\textgreater{}}). Porém, para evitar
-  confusão, é comum usar \texttt{\textless{}-} para distinguir do operador de igualdade
-  =.
+  Também é possível realizar atribuições usando o sinal de igualdade \texttt{=} ou o operador \texttt{-\textgreater{}}. No entanto, para evitar confusões entre o operador de atribuição e o operador de igualdade, é recomendável usar \texttt{\textless{}-} para atribuições.
 \end{itemize}
 
 \begin{Shaded}
@@ -350,10 +294,9 @@ armazenada no objeto.
 
 \begin{itemize}
 \item
-  O comando \texttt{c(1,2,3,4,5)} combina os números 1, 2, 3, 4 e 5 em um
-  vetor.
+  O comando \texttt{c(1,2,3,4,5)} combina os números 1, 2, 3, 4 e 5 em um vetor, criando uma sequência de valores.
 \item
-  Os vetores podem ser atribuídos a um ``objeto''. Por exemplo,
+  Vetores podem ser atribuídos a objetos. Por exemplo:
 \end{itemize}
 
 \begin{Shaded}
@@ -362,13 +305,9 @@ armazenada no objeto.
 \end{Highlighting}
 \end{Shaded}
 
-atribui um vetor numérico de comprimento 4 ao objeto \texttt{X}. Observe que o
-R diferencia maiúsculas de minúsculas, ou seja, \texttt{X} e \texttt{x} são dois nomes
-de variáveis diferentes.
+Essa linha de código atribui um vetor numérico de comprimento 4 ao objeto \texttt{X}. Lembre-se de que o R é sensível a maiúsculas e minúsculas, o que significa que \texttt{X} e \texttt{x} são considerados dois objetos distintos.
 
-À medida que definimos objetos no console, estamos na verdade alterando
-o espaço de trabalho. Você pode ver todas as variáveis salvas em seu
-espaço de trabalho digitando:
+Ao definir objetos no console, você está modificando o espaço de trabalho atual. Para visualizar todas as variáveis e objetos atualmente salvos em seu espaço de trabalho, você pode usar o comando:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -376,33 +315,21 @@ espaço de trabalho digitando:
 \end{Highlighting}
 \end{Shaded}
 
-No RStudio a aba \emph{Environment} mostra os valores.
+No RStudio, a aba \emph{Environment} mostra todos os objetos e valores presentes no espaço de trabalho.
 
 \subsection{Regras para definição de variáveis}\label{regras-para-definiuxe7uxe3o-de-variuxe1veis}
 
-Os nomes de variáveis em R devem começar com uma letra ou ponto final
-(seguido de uma letra) e podem conter letras, números, pontos e
-sublinhados.
+Os nomes de variáveis em R devem começar com uma letra ou um ponto final (desde que o ponto final seja seguido por uma letra) e podem incluir letras, números, pontos e sublinhados.
 
 \begin{itemize}
 \item
-  O nome da variável não pode conter espaços ou outro caracter
-  especial (como @, \#, \$, \%). Devemos usar apenas letras, números e
-  sublinhados (\_). Ex: \texttt{nome\_cliente2}.
+  O nome de uma variável \textbf{não pode} conter espaços ou caracteres especiais (como @, \#, \$, \%). Somente letras, números, pontos e sublinhados (\_) são permitidos. Exemplo de nome válido: \texttt{nome\_cliente2}.
 \item
-  Ao nomear variáveis, você não pode usar palavras reservadas do R.
-  Palavras reservadas são termos que possuem significados específicos
-  e não podem ser redefinidos (por exemplo,
-  \texttt{if,\ else,\ for,\ while,\ class,\ FALSE,\ TRUE,\ exp,\ sum}).
+  Ao definir nomes de variáveis, \textbf{não é permitido} usar palavras reservadas do R. Palavras reservadas são termos que têm um significado especial no R e não podem ser redefinidos. Exemplos de palavras reservadas incluem: \texttt{if}, \texttt{else}, \texttt{for}, \texttt{while}, \texttt{class}, \texttt{FALSE}, \texttt{TRUE}, \texttt{exp}, \texttt{sum}.
 \item
-  Como já mencionado, o R diferencia letras maiúsculas de minúsculas,
-  o que significa que \texttt{fcul} e \texttt{Fcul} são tratados como duas variáveis
-  diferentes. É uma convenção comum em R usar letras minúsculas para
-  nomes de variáveis e separar palavras com sublinhados. Ex:
-  \texttt{faculdade\_de\_ciencias}.
+  O R diferencia letras maiúsculas de minúsculas, o que significa que \texttt{fcul} e \texttt{Fcul} são tratadas como variáveis diferentes. Uma convenção comum é usar letras minúsculas para nomes de variáveis e separar palavras com sublinhados. Exemplo: \texttt{faculdade\_de\_ciencias}.
 \item
-  Escolha nomes que descrevam claramente a finalidade da variável para
-  que o código seja mais compreensível. Ex: \texttt{nome} em vez de \texttt{x}.
+  Escolha nomes de variáveis que descrevam claramente a sua finalidade para que o código seja mais legível e compreensível. Por exemplo, use \texttt{nome} em vez de \texttt{x}.
 \end{itemize}
 
 \begin{Shaded}
@@ -412,26 +339,28 @@ sublinhados.
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Tipos de dados}\label{tipos-de-dados}
+Neste exemplo, \texttt{idade} e \texttt{Idade} são duas variáveis diferentes devido à diferenciação entre letras maiúsculas e minúsculas.
 
-Variáveis em R podem armazenar vários tipos de dados, incluindo:
+\subsection{Tipos de Dados}\label{tipos-de-dados}
+
+Em R, variáveis podem armazenar diferentes tipos de dados, incluindo:
 
 \begin{itemize}
+\tightlist
 \item
-  \textbf{Numeric}: números. Ex: \texttt{42,\ 3.14}
+  \textbf{Numeric}: números inteiros ou decimais. Exemplo: \texttt{42}, \texttt{3.14}.
 \item
-  \textbf{Character}: sequências de caracteres Ex: \texttt{“Olá”}
+  \textbf{Character}: sequências de caracteres (texto). Exemplo: \texttt{"Olá"}.
 \item
-  \textbf{Logical}: valores booleanos. Ex: \texttt{TRUE} ou \texttt{FALSE}
+  \textbf{Logical}: valores booleanos que representam verdadeiro ou falso. Exemplo: \texttt{TRUE}, \texttt{FALSE}.
 \item
-  \textbf{Vectors}: coleções de elementos do mesmo tipo. Ex: \texttt{c(1,\ 2,\ 3)},
-  \texttt{c("a","b","c")}
+  \textbf{Vectors}: coleções de elementos do mesmo tipo. Exemplos: \texttt{c(1,\ 2,\ 3)} para números, \texttt{c("a",\ "b",\ "c")} para caracteres.
 \item
-  \textbf{Data Frames}: estruturas de dados tabulares com linhas e colunas
+  \textbf{Data Frames}: estruturas de dados tabulares que contêm linhas e colunas, semelhantes a uma tabela de banco de dados ou a uma planilha.
 \item
-  \textbf{Lists}: coleções de elementos de diferentes tipos
+  \textbf{Lists}: coleções que podem conter elementos de diferentes tipos, como números, caracteres, vetores, e até mesmo outros data frames.
 \item
-  \textbf{Factors}: dados categóricos
+  \textbf{Factors}: variáveis categóricas que representam dados categóricos e são armazenadas como inteiros. Eles são especialmente úteis para análises estatísticas que envolvem dados categóricos.
 \end{itemize}
 
 \begin{Shaded}
@@ -443,30 +372,32 @@ Variáveis em R podem armazenar vários tipos de dados, incluindo:
 \NormalTok{b }\OtherTok{\textless{}{-}} \StringTok{"Programação R"}
 
 \CommentTok{\# Logical}
-\NormalTok{c }\OtherTok{\textless{}{-}} \DecValTok{3}\SpecialCharTok{\textless{}}\DecValTok{2}
+\NormalTok{c }\OtherTok{\textless{}{-}} \DecValTok{3} \SpecialCharTok{\textless{}} \DecValTok{2}
 
 \CommentTok{\# Vectors}
-\NormalTok{d }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\NormalTok{d }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Comandos importantes}\label{comandos-importantes}
+\subsection{Comandos Importantes}\label{comandos-importantes}
+
+Abaixo estão alguns comandos úteis para manipular variáveis e objetos no R:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{ls}\NormalTok{() }\CommentTok{\#exibe a lista de variáveis na memória}
+\FunctionTok{ls}\NormalTok{() }\CommentTok{\# Exibe a lista de variáveis atualmente armazenadas na memória}
     
-\FunctionTok{ls.str}\NormalTok{() }\CommentTok{\#mostra a estrutura da lista de variáveis na memória}
+\FunctionTok{ls.str}\NormalTok{() }\CommentTok{\# Mostra a estrutura das variáveis armazenadas na memória}
     
-\FunctionTok{rm}\NormalTok{(a) }\CommentTok{\#remove um objeto}
+\FunctionTok{rm}\NormalTok{(a) }\CommentTok{\# Remove o objeto \textquotesingle{}a\textquotesingle{} da memória}
     
-\FunctionTok{rm}\NormalTok{(}\AttributeTok{list=}\FunctionTok{ls}\NormalTok{()) }\CommentTok{\#remover todos os objetos}
+\FunctionTok{rm}\NormalTok{(}\AttributeTok{list=}\FunctionTok{ls}\NormalTok{()) }\CommentTok{\# Remove todos os objetos da memória}
     
-\FunctionTok{save.image}\NormalTok{(}\StringTok{\textquotesingle{}nome{-}do{-}arquivo.RData\textquotesingle{}}\NormalTok{) }\CommentTok{\#salvar}
+\FunctionTok{save.image}\NormalTok{(}\StringTok{\textquotesingle{}nome{-}do{-}arquivo.RData\textquotesingle{}}\NormalTok{) }\CommentTok{\# Salva o espaço de trabalho atual em um arquivo .RData}
 \end{Highlighting}
 \end{Shaded}
 
-\section{Operadores aritméticos em R}\label{operadores-aritmuxe9ticos-em-r}
+\section{Operadores Aritméticos em R}\label{operadores-aritmuxe9ticos-em-r}
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
@@ -484,13 +415,13 @@ Variáveis em R podem armazenar vários tipos de dados, incluindo:
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-+ & adiciona dois valores & \texttt{5\ +\ 2} resulta em 7 \\
-- & subtrai dois valores & \texttt{5\ -\ 2} resulta em 3 \\
-* & multiplica dois valores & \texttt{5\ *\ 2} resulta em 10 \\
-/ & divide dois valores (sem arredondamento) & \texttt{5\ /\ 2} resulta em 2.5 \\
-\%/\% & realiza divisão inteira & \texttt{5\ \%/\%\ 2} resulta em 2 \\
-\%\% & retorna o resto da divisão & \texttt{5\ \%\%\ 2} resulta em 1 \\
-\^{} & realiza exponenciação & \texttt{5\ \^{}\ 2} resulta em 25 \\
++ & Adiciona dois valores & \texttt{5\ +\ 2} resulta em 7 \\
+- & Subtrai dois valores & \texttt{5\ -\ 2} resulta em 3 \\
+* & Multiplica dois valores & \texttt{5\ *\ 2} resulta em 10 \\
+/ & Divide dois valores (sem arredondamento) & \texttt{5\ /\ 2} resulta em 2.5 \\
+\%/\% & Realiza divisão inteira & \texttt{5\ \%/\%\ 2} resulta em 2 \\
+\%\% & Retorna o resto da divisão & \texttt{5\ \%\%\ 2} resulta em 1 \\
+\^{} & Realiza exponenciação & \texttt{5\ \^{}\ 2} resulta em 25 \\
 \end{longtable}
 
 \textbf{Exemplos:}
@@ -533,11 +464,11 @@ Variáveis em R podem armazenar vários tipos de dados, incluindo:
 \end{Highlighting}
 \end{Shaded}
 
-Ao contrário da função \texttt{ls()}, a maioria das funções requer um ou mais
-\emph{argumentos}. Note que usamos acima as funções predefinidas do R
-\texttt{sqrt()}, \texttt{log()}, \texttt{log10()} e \texttt{exp()} com seus respetivos argumentos.
+Ao contrário de funções simples como \texttt{ls()}, a maioria das funções no R requer um ou mais \emph{argumentos}. Nos exemplos acima, utilizamos funções predefinidas do R como \texttt{sqrt()}, \texttt{log()}, \texttt{log10()} e \texttt{exp()}, que aceitam argumentos específicos.
 
-\subsection{Quantidade de digitos}\label{quantidade-de-digitos}
+\subsection{Controle da Quantidade de Dígitos Mostrados}\label{controle-da-quantidade-de-duxedgitos-mostrados}
+
+O R permite ajustar a precisão dos números exibidos alterando a configuração global de dígitos. Veja o exemplo a seguir:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -554,10 +485,9 @@ Ao contrário da função \texttt{ls()}, a maioria das funções requer um ou ma
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Objetos predefinidos, Infinito, indefinido e valores ausentes}\label{objetos-predefinidos-infinito-indefinido-e-valores-ausentes}
+\subsection{Objetos Predefinidos, Infinito, Indefinido e Valores Ausentes}\label{objetos-predefinidos-infinito-indefinido-e-valores-ausentes}
 
-Existem vários conjuntos de dados incluídos para os usuários praticarem e testarem funções. Você pode ver todos os conjuntos de dados
-disponíveis digitando:
+O R inclui diversos conjuntos de dados predefinidos que podem ser usados para prática e teste de funções. Para visualizar todos os conjuntos de dados disponíveis, digite:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -565,8 +495,7 @@ disponíveis digitando:
 \end{Highlighting}
 \end{Shaded}
 
-Isso mostra o nome do objeto para cada um dos conjuntos de dados. Esses conjuntos de dados são objetos que podem ser usados simplesmente
-digitando o seu nome. Por exemplo, se você digitar:
+Este comando exibe uma lista de nomes de objetos para cada conjunto de dados disponível. Esses conjuntos de dados podem ser utilizados diretamente apenas digitando seu nome no console. Por exemplo, ao digitar:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -574,10 +503,9 @@ digitando o seu nome. Por exemplo, se você digitar:
 \end{Highlighting}
 \end{Shaded}
 
-O R mostrará dados de concentração atmosférica de CO2 de Mauna Loa.
+O R exibirá os dados de concentração atmosférica de CO2 coletados em Mauna Loa.
 
-Outros objetos predefinidos são quantidades matemáticas, como \(\pi\) e
-\(\infty\).
+Além dos conjuntos de dados, o R também possui objetos predefinidos que representam constantes matemáticas, como \texttt{pi} para o número \(\pi\) e \texttt{Inf} para o \(\infty\).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -639,34 +567,69 @@ Outros objetos predefinidos são quantidades matemáticas, como \(\pi\) e
 \DocumentationTok{\#\# [1] FALSE FALSE FALSE FALSE FALSE}
 
 \CommentTok{\# Operações com NaN e NA}
-\FunctionTok{sum}\NormalTok{(x)  }\CommentTok{\# Exibe: NaN, porque a soma envolve um NaN}
+\FunctionTok{sum}\NormalTok{(x)  }\CommentTok{\# Retorna: NaN, porque a soma envolve um NaN}
 \DocumentationTok{\#\# [1] NaN}
 
-\FunctionTok{sum}\NormalTok{(y)  }\CommentTok{\# Exibe: NA, porque a soma envolve um NA}
+\FunctionTok{sum}\NormalTok{(y)  }\CommentTok{\# Retorna: NA, porque a soma envolve um NA}
 \DocumentationTok{\#\# [1] NA}
     
-\FunctionTok{sum}\NormalTok{(x, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)  }\CommentTok{\# Exibe: 12, ignora NaN na soma}
+\FunctionTok{sum}\NormalTok{(x, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)  }\CommentTok{\# Retorna: 12, ignora NaN na soma}
 \DocumentationTok{\#\# [1] 12}
 
-\FunctionTok{sum}\NormalTok{(y, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)  }\CommentTok{\# Exibe: 12, ignora NA na soma}
+\FunctionTok{sum}\NormalTok{(y, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)  }\CommentTok{\# Retorna: 12, ignora NA na soma}
 \DocumentationTok{\#\# [1] 12}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{itemize}
 \item
-  \textbf{NaN} significa \textbf{``Not a Number''} e é usado para representar
-  resultados indefinidos de operações matemáticas.
+  \textbf{NaN} (Not a Number): Representa resultados indefinidos de operações matemáticas. Por exemplo, operações como \texttt{0/0} ou \texttt{sqrt(-1)} geram um \texttt{NaN} porque o resultado não é um número real. No R, \texttt{NaN} é tecnicamente um tipo especial de \texttt{NA} que indica especificamente um resultado numérico indefinido.
 \item
-  \textbf{NA} significa \textbf{``Not Available''} e é usado para representar
-  dados ausentes ou valores que não estão disponíveis em um conjunto
-  de dados.
+  \textbf{NA} (Not Available): Indica dados ausentes ou valores que não estão disponíveis em um conjunto de dados. Por exemplo, em um vetor de dados, se um valor está ausente ou não foi medido, ele é representado por \texttt{NA}. Ao contrário de \texttt{NaN}, \texttt{NA} é utilizado para representar qualquer tipo de dado ausente, não apenas valores numéricos.
 \end{itemize}
 
-\subsection{Escrita dinâmica}\label{escrita-dinuxe2mica}
+\subsection{Lidando com NaN e NA em Operações}\label{lidando-com-nan-e-na-em-operauxe7uxf5es}
 
-O R determina dinamicamente o tipo de uma variável com base no valor
-atribuído a ela.
+Ao trabalhar com dados, é importante saber como lidar com \texttt{NaN} e \texttt{NA} para evitar erros inesperados. Funções como \texttt{mean()} e \texttt{sum()} podem retornar \texttt{NA} ou \texttt{NaN} se contiverem esses valores. Para ignorar \texttt{NA} ou \texttt{NaN} ao realizar cálculos, você pode usar o argumento \texttt{na.rm\ =\ TRUE}, que remove os valores ausentes ou indefinidos da operação.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\ConstantTok{NA}\NormalTok{, }\DecValTok{5}\NormalTok{), }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)  }\CommentTok{\# Calcula a média ignorando NA}
+\DocumentationTok{\#\# [1] 2.75}
+
+\FunctionTok{sum}\NormalTok{(x, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)  }\CommentTok{\# Soma ignorando NaN}
+\DocumentationTok{\#\# [1] 12}
+
+\FunctionTok{sum}\NormalTok{(y, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)  }\CommentTok{\# Soma ignorando NA}
+\DocumentationTok{\#\# [1] 12}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Funções Úteis para Detectar NaN e NA}\label{funuxe7uxf5es-uxfateis-para-detectar-nan-e-na}
+
+Para verificar a presença de \texttt{NA} ou \texttt{NaN} em um vetor ou conjunto de dados, você pode usar as funções \texttt{is.na()} e \texttt{is.nan()}. A função \texttt{is.na()} identifica todos os valores que são \texttt{NA} ou \texttt{NaN}, enquanto \texttt{is.nan()} identifica especificamente valores que são \texttt{NaN}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{is.na}\NormalTok{(x)}
+\DocumentationTok{\#\# [1] FALSE FALSE  TRUE FALSE FALSE}
+
+\FunctionTok{is.nan}\NormalTok{(x) }
+\DocumentationTok{\#\# [1] FALSE FALSE  TRUE FALSE FALSE}
+
+\FunctionTok{is.na}\NormalTok{(y)}
+\DocumentationTok{\#\# [1] FALSE FALSE  TRUE FALSE FALSE}
+
+\FunctionTok{is.nan}\NormalTok{(y)}
+\DocumentationTok{\#\# [1] FALSE FALSE FALSE FALSE FALSE}
+\end{Highlighting}
+\end{Shaded}
+
+Estas funções são úteis para limpar e preparar dados antes de realizar análises estatísticas, garantindo que os cálculos sejam precisos e significativos.
+
+\subsection{Tipagem Dinâmica em R}\label{tipagem-dinuxe2mica-em-r}
+
+Em R, o tipo de uma variável é determinado dinamicamente com base no valor atribuído a ela. Isso significa que o R automaticamente define o tipo de dado de uma variável quando você atribui um valor a ela.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -686,14 +649,9 @@ atribuído a ela.
 
 \begin{itemize}
 \item
-  A função \texttt{class()} retorna a classe de um objeto em R. A classe de
-  um objeto determina como ele será tratado pelas funções que operam
-  sobre ele. Por exemplo, vetores, matrizes, data frames e listas são
-  todas classes de objetos em R.
+  A função \texttt{class()} retorna a \textbf{classe} de um objeto em R. A classe de um objeto determina como ele será tratado pelas funções e operações que podem ser aplicadas a ele. Por exemplo, vetores, matrizes, data frames e listas são diferentes classes de objetos em R, cada uma com suas próprias características e métodos.
 \item
-  A função \texttt{typeof()} em R é usada para retornar o tipo de
-  armazenamento interno de um objeto. Ela fornece informações
-  detalhadas sobre como os dados são representados na memória.
+  A função \texttt{typeof()} em R é usada para retornar o \textbf{tipo de armazenamento interno} de um objeto. Ela fornece informações detalhadas sobre como os dados são representados na memória do computador.
 \end{itemize}
 
 \begin{Shaded}
@@ -728,23 +686,27 @@ atribuído a ela.
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Conversão entre tipos de dados}\label{conversuxe3o-entre-tipos-de-dados}
+Neste exemplo, \texttt{class(x)} e \texttt{typeof(x)} ambos retornam ``integer'' para um vetor de inteiros, enquanto \texttt{class(y)} retorna ``numeric'' para um vetor de números de ponto flutuante, e \texttt{typeof(y)} retorna ``double'', mostrando o tipo específico de armazenamento na memória. Para um data.frame, \texttt{class(z)} retorna ``data.frame'', enquanto \texttt{typeof(z)} retorna ``list'', indicando que os data frames são armazenados internamente como listas.
+
+\subsection{Conversão entre Tipos de Dados}\label{conversuxe3o-entre-tipos-de-dados}
+
+Em R, é possível converter uma variável de um tipo de dado para outro usando funções de conversão. Isso é especialmente útil quando se trabalha com dados que podem ter sido importados de fontes externas e precisam ser manipulados ou analisados de diferentes maneiras.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Convertendo inteiro em string }
+\CommentTok{\# Convertendo um inteiro em uma string (caractere)}
 \NormalTok{a }\OtherTok{\textless{}{-}} \DecValTok{15}
 \NormalTok{b }\OtherTok{\textless{}{-}} \FunctionTok{as.character}\NormalTok{(}\DecValTok{15}\NormalTok{)}
 \FunctionTok{print}\NormalTok{(b)}
 \DocumentationTok{\#\# [1] "15"}
     
-\CommentTok{\# Convertendo float em inteiro}
+\CommentTok{\# Convertendo um número de ponto flutuante (float) em um inteiro}
 \NormalTok{x }\OtherTok{\textless{}{-}} \FloatTok{1.5}
 \NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{as.integer}\NormalTok{(x)}
 \FunctionTok{print}\NormalTok{(y)}
 \DocumentationTok{\#\# [1] 1}
 
-\CommentTok{\# Convertendo string em float}
+\CommentTok{\# Convertendo uma string em um número (float)}
 \NormalTok{z }\OtherTok{\textless{}{-}} \StringTok{"10"}
 \NormalTok{w }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(z)}
 \FunctionTok{print}\NormalTok{(w)}
@@ -752,25 +714,23 @@ atribuído a ela.
 \end{Highlighting}
 \end{Shaded}
 
+Essas funções de conversão são essenciais quando há necessidade de manipular diferentes tipos de dados de forma eficiente em análises estatísticas e outras operações de programação.
+
 \section{\texorpdfstring{Funções \texttt{print()}, \texttt{readline()}, \texttt{paste()} e \texttt{cat()}}{Funções print(), readline(), paste() e cat()}}\label{funuxe7uxf5es-print-readline-paste-e-cat}
+
+No R, existem várias funções úteis para exibir, receber e concatenar informações. Aqui estão algumas das mais comuns:
 
 \begin{itemize}
 \item
-  A função \texttt{print()} é utilizada para exibir valores e resultados de
-  expressões no console.
+  \texttt{print()}: Utilizada para exibir valores e resultados de expressões no console. É a função básica para mostrar a saída de dados no R.
 \item
-  A função \texttt{readline()} é usada para receber entradas do usuário por
-  meio do teclado.
+  \texttt{readline()}: Usada para receber entradas do usuário via teclado. Esta função permite que o script pause e aguarde a entrada do usuário.
 \item
-  A função \texttt{paste()} é utilizada para concatenar sequências de
-  caracteres (strings) com um separador específico.
+  \texttt{paste()}: Utilizada para concatenar (combinar) sequências de caracteres (strings) com um separador específico entre elas. Por padrão, o separador é um espaço.
 \item
-  A função \texttt{paste0()} é utilizada para concatenar strings sem nenhum
-  separador específico.
+  \texttt{paste0()}: Semelhante a \texttt{paste()}, mas concatena strings sem qualquer separador.
 \item
-  A função \texttt{cat()} é usada para concatenar e exibir uma ou mais
-  strings ou valores de uma forma mais direta, sem estruturas de
-  formatação adicionais.
+  \texttt{cat()}: Usada para concatenar e exibir uma ou mais strings ou valores de uma forma direta, sem estruturas de formatação adicionais como aspas. Ao contrário de \texttt{print()}, \texttt{cat()} não retorna o resultado em uma nova linha.
 \end{itemize}
 
 \textbf{Exemplo 1:}
@@ -784,6 +744,8 @@ atribuído a ela.
 \end{Highlighting}
 \end{Shaded}
 
+Neste exemplo, \texttt{paste()} concatena as duas strings com um espaço entre elas.
+
 \textbf{Exemplo 2:}
 
 \begin{Shaded}
@@ -794,10 +756,12 @@ atribuído a ela.
 \CommentTok{\# Converta a entrada em um valor numérico}
 \NormalTok{n }\OtherTok{\textless{}{-}} \FunctionTok{as.integer}\NormalTok{(n)}
 
-\CommentTok{\# Imprima o valor no ecrã}
+\CommentTok{\# Imprima o valor no console}
 \FunctionTok{print}\NormalTok{(n}\SpecialCharTok{+}\DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+Aqui, \texttt{readline()} recebe a entrada do usuário, e \texttt{as.integer()} converte essa entrada para um número inteiro. O resultado é incrementado em 1 e exibido.
 
 \textbf{Exemplo 3:}
 
@@ -810,6 +774,8 @@ atribuído a ela.
 \FunctionTok{cat}\NormalTok{(}\StringTok{"Olá, "}\NormalTok{,nome, }\StringTok{"!"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+O uso de \texttt{cat()} aqui é para exibir uma mensagem de saudação que inclui o nome do usuário.
 
 \textbf{Exemplo 4:}
 
@@ -830,7 +796,9 @@ atribuído a ela.
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Concatenando duas palavras simples}
+Este exemplo mostra como verificar se a entrada é numérica usando \texttt{is.na()} e fornecer feedback apropriado ao usuário.
+
+\textbf{Concatenando Strings}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -840,7 +808,7 @@ atribuído a ela.
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Concatenando várias strings}
+\textbf{Concatenando Múltiplas Strings}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -850,7 +818,7 @@ atribuído a ela.
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Concatenando com um separador específico}
+\textbf{Concatenando Strings com um Separador Específico}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -860,7 +828,7 @@ atribuído a ela.
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Concatenando vetor de strings}
+\textbf{Concatenando Vetores de Strings}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -883,7 +851,7 @@ atribuído a ela.
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Usando \texttt{paste0()} para concatenar sem espaço}
+\textbf{Usando \texttt{paste0()} para Concatenar sem Espaço}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -893,7 +861,7 @@ atribuído a ela.
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Concatenando strings com números}
+\textbf{Concatenando Strings com Números}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -906,26 +874,19 @@ atribuído a ela.
 
 \section{Operadores Lógicos e Relacionais}\label{operadores-luxf3gicos-e-relacionais}
 
-No R, operadores lógicos e relacionais são utilizados para realizar
-comparações e tomar decisões com base nos resultados dessas comparações.
-Estes operadores são fundamentais para a construção de estruturas de
-controle de fluxo, como instruções condicionais (\texttt{if}, \texttt{else}) e loops
-(\texttt{for}, \texttt{while}).
+Em R, operadores lógicos e relacionais são utilizados para realizar comparações e tomar decisões com base nos resultados dessas comparações. Esses operadores são fundamentais para a construção de estruturas de controle de fluxo, como instruções condicionais (\texttt{if}, \texttt{else}) e loops (\texttt{for}, \texttt{while}).
 
 \subsection{Operadores Lógicos}\label{operadores-luxf3gicos}
 
-Os operadores lógicos são usados para combinar ou modificar condições
-lógicas.
+Os operadores lógicos são usados para combinar ou modificar condições lógicas, retornando valores booleanos (\texttt{TRUE} ou \texttt{FALSE}).
 
 \begin{itemize}
 \item
-  O operador \texttt{\&} (E lógico) retorna \texttt{TRUE} se todas as expressões
-  forem verdadeiras.
+  \texttt{\&} (E lógico): Retorna \texttt{TRUE} se \textbf{todas} as expressões forem verdadeiras.
 \item
-  O operador \texttt{\textbar{}} (OU lógico) retorna \texttt{TRUE} se pelo menos uma das
-  expressões for verdadeira.
+  \texttt{\textbar{}} (OU lógico): Retorna \texttt{TRUE} se \textbf{pelo menos uma} das expressões for verdadeira.
 \item
-  O operador \texttt{!} (Não lógico) inverte o valor de uma expressão
+  \texttt{!} (Não lógico): Inverte o valor de uma expressão
   booleana, transformando \texttt{TRUE} em \texttt{FALSE} e vice-versa.
 \end{itemize}
 
@@ -933,78 +894,77 @@ lógicas.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(}\DecValTok{5} \SpecialCharTok{\textgreater{}} \DecValTok{3}\NormalTok{) }\SpecialCharTok{\&}\NormalTok{ (}\DecValTok{4} \SpecialCharTok{\textgreater{}} \DecValTok{2}\NormalTok{)}
+\NormalTok{(}\DecValTok{5} \SpecialCharTok{\textgreater{}} \DecValTok{3}\NormalTok{) }\SpecialCharTok{\&}\NormalTok{ (}\DecValTok{4} \SpecialCharTok{\textgreater{}} \DecValTok{2}\NormalTok{)   }\CommentTok{\# Ambas as condições são verdadeiras}
 \DocumentationTok{\#\# [1] TRUE}
 
-\NormalTok{(}\DecValTok{5} \SpecialCharTok{\textless{}} \DecValTok{3}\NormalTok{) }\SpecialCharTok{|}\NormalTok{ (}\DecValTok{4} \SpecialCharTok{\textgreater{}} \DecValTok{2}\NormalTok{) }
+\NormalTok{(}\DecValTok{5} \SpecialCharTok{\textless{}} \DecValTok{3}\NormalTok{) }\SpecialCharTok{|}\NormalTok{ (}\DecValTok{4} \SpecialCharTok{\textgreater{}} \DecValTok{2}\NormalTok{)   }\CommentTok{\# Apenas uma condição é verdadeira}
 \DocumentationTok{\#\# [1] TRUE}
 
-\SpecialCharTok{!}\NormalTok{(}\DecValTok{5} \SpecialCharTok{\textgreater{}} \DecValTok{3}\NormalTok{)}
+\SpecialCharTok{!}\NormalTok{(}\DecValTok{5} \SpecialCharTok{\textgreater{}} \DecValTok{3}\NormalTok{)            }\CommentTok{\# Inverte o valor lógico de TRUE para FALSE}
 \DocumentationTok{\#\# [1] FALSE}
 \end{Highlighting}
 \end{Shaded}
 
 \subsection{Operadores Relacionais}\label{operadores-relacionais}
 
-Os operadores relacionais são usados para comparar valores e retornam
-valores lógicos (\texttt{TRUE} ou \texttt{FALSE}) com base na comparação.
+Os operadores relacionais são usados para comparar valores e retornam valores lógicos (\texttt{TRUE} ou \texttt{FALSE}) com base na comparação.
 
 \begin{itemize}
 \tightlist
 \item
-  \texttt{a\ ==\ b} (``a'' é igual a ``b'')
+  \texttt{a\ ==\ b}: Verifica se ``a'' é igual a ``b''.
 \item
-  \texttt{a\ !=\ b} (``a'' é diferente de ``b'')
+  \texttt{a\ !=\ b}: Verifica se ``a'' é diferente de ``b''.
 \item
-  \texttt{a\ \textgreater{}\ b} (``a'' é maior que ``b'')
+  \texttt{a\ \textgreater{}\ b}: Verifica se ``a'' é maior que ``b''.
 \item
-  \texttt{a\ \textless{}\ b} (``a'' é menor que ``b'')
+  \texttt{a\ \textless{}\ b}: Verifica se ``a'' é menor que ``b''.
 \item
-  \texttt{a\ \textgreater{}=\ b} (``a'' é maior ou igual a ``b'')
+  \texttt{a\ \textgreater{}=\ b}: Verifica se ``a'' é maior ou igual a ``b''.
 \item
-  \texttt{a\ \textless{}=\ b} (``a'' é menor ou igual a ``b'')
+  \texttt{a\ \textless{}=\ b}: Verifica se ``a'' é menor ou igual a ``b''.
 \item
-  \texttt{is.na(a)} (``a'' é missing - ausente/faltante)
+  \texttt{is.na(a)}: Verifica se ``a'' é um valor ausente (NA).
 \item
-  \texttt{is.null(a)} (``a'' é nulo)
+  \texttt{is.null(a)}: Verifica se ``a'' é nulo (NULL).
 \end{itemize}
 
 \textbf{Exemplos:}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# maior que }
+\CommentTok{\# Maior que }
 \DecValTok{2} \SpecialCharTok{\textgreater{}} \DecValTok{1}
 \DocumentationTok{\#\# [1] TRUE}
 
 \DecValTok{1} \SpecialCharTok{\textgreater{}} \DecValTok{2}
 \DocumentationTok{\#\# [1] FALSE}
 
-\CommentTok{\# menor que}
+\CommentTok{\# Menor que}
 \DecValTok{1} \SpecialCharTok{\textless{}} \DecValTok{2}
 \DocumentationTok{\#\# [1] TRUE}
 
-\CommentTok{\# maior ou igual a}
+\CommentTok{\# Maior ou igual a}
 \DecValTok{0} \SpecialCharTok{\textgreater{}=}\NormalTok{ (}\DecValTok{2}\SpecialCharTok{+}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{))}
 \DocumentationTok{\#\# [1] TRUE}
 
-\CommentTok{\# menor ou igual a }
+\CommentTok{\# Menor ou igual a }
 \DecValTok{1} \SpecialCharTok{\textless{}=} \DecValTok{3}
 \DocumentationTok{\#\# [1] TRUE}
 
-\CommentTok{\# conjunção E}
+\CommentTok{\# Conjunção E (ambas as condições devem ser verdadeiras)}
 \DecValTok{9} \SpecialCharTok{\textgreater{}} \DecValTok{11} \SpecialCharTok{\&} \DecValTok{0} \SpecialCharTok{\textless{}} \DecValTok{1}
 \DocumentationTok{\#\# [1] FALSE}
 
-\CommentTok{\# ou}
+\CommentTok{\# Disjunção OU (pelo menos uma condição deve ser verdadeira)}
 \DecValTok{6} \SpecialCharTok{\textless{}} \DecValTok{5} \SpecialCharTok{|} \DecValTok{0}\SpecialCharTok{\textgreater{}{-}}\DecValTok{1}
 \DocumentationTok{\#\# [1] TRUE}
 
-\CommentTok{\# igual a}
+\CommentTok{\# Igual a}
 \DecValTok{1} \SpecialCharTok{==} \DecValTok{2}\SpecialCharTok{/}\DecValTok{2}
 \DocumentationTok{\#\# [1] TRUE}
 
-\CommentTok{\# diferente de}
+\CommentTok{\# Diferente de}
 \DecValTok{1} \SpecialCharTok{!=} \DecValTok{2}
 \DocumentationTok{\#\# [1] TRUE}
 \end{Highlighting}
@@ -1012,17 +972,51 @@ valores lógicos (\texttt{TRUE} ou \texttt{FALSE}) com base na comparação.
 
 \section{Exercícios}\label{exercuxedcios}
 
-\textbf{1.} Escreva um programa em R que leia dois inteiros e imprima sua soma, produto, a diferença do primeiro menos o segundo, a divisão do primeiro pelo segundo, o resto da divisão do primeiro pelo segundo, e o primeiro elevado à potência do segundo.
+\textbf{1.} Escreva um programa em R que leia dois inteiros inseridos pelo usuário e imprima:
 
-\textbf{2.} Escreva um programa em R que leia dois números de ponto flutuante e imprima sua soma, diferença, produto e o primeiro elevado à potência do segundo.
+\begin{itemize}
+\tightlist
+\item
+  A soma dos dois números.
+\item
+  O produto dos dois números.
+\item
+  A diferença entre o primeiro e o segundo número.
+\item
+  A divisão do primeiro pelo segundo número.
+\item
+  O resto da divisão do primeiro pelo segundo.
+\item
+  O resultado do primeiro número elevado à potência do segundo.
+\end{itemize}
 
-\textbf{3.} Escreva um programa em R que leia a quilometragem em milhas e a converta para quilômetros. A fórmula é \(K = M*1,609344\).
+\emph{Dica}: Use as funções \texttt{readline()} para entrada de dados e \texttt{as.integer()} para conversão de tipos.
 
-\textbf{4.} Escreva um programa em R que leia três inteiros correspondentes ao comprimento, largura e altura de um paralelepípedo e imprima seu volume.
+\textbf{2.} Escreva um programa em R que leia dois números de ponto flutuante (números decimais) e imprima:
 
-\textbf{5.} Escreva um programa em R que leia três inteiros e imprima sua média.
+\begin{itemize}
+\tightlist
+\item
+  A soma dos dois números.
+\item
+  A diferença entre os dois números.
+\item
+  O produto dos dois números.
+\item
+  O resultado do primeiro número elevado à potência do segundo.
+\end{itemize}
 
-\textbf{6.} Escreva um programa em R que leia uma temperatura em graus Fahrenheit e imprima a temperatura correspondente em graus Celsius. A fórmula usada para a conversão de Fahrenheit para Celsius é: \(C = \frac{F - 32}{1,8}\).
+\emph{Dica}: Use \texttt{as.numeric()} para converter a entrada para números de ponto flutuante.
+
+\textbf{3.} Escreva um programa em R que leia uma distância em milhas inserida pelo usuário e a converta para quilômetros usando a fórmula: \(K = M*1.609344\).
+
+\emph{Dica}: Lembre-se de usar \texttt{as.numeric()} para converter a entrada para um número.
+
+\textbf{4.} Escreva um programa em R que leia três inteiros correspondentes ao comprimento, largura e altura de um paralelepípedo, e imprima seu volume.
+
+\textbf{5.} Escreva um programa em R que leia três inteiros e imprima a média dos três números.
+
+\textbf{6.} Escreva um programa em R que leia uma temperatura em graus Fahrenheit e a converta para graus Celsius usando a fórmula:: \(C = \frac{F - 32}{1.8}\).
 
 \textbf{7.} Escreva um programa em R que leia uma hora no formato de 24 horas e imprima a hora correspondente no formato de 12 horas.
 
@@ -1030,103 +1024,107 @@ valores lógicos (\texttt{TRUE} ou \texttt{FALSE}) com base na comparação.
 
 \textbf{9.} Escreva um programa em R que resolva a versão geral do problema acima. Peça ao usuário para inserir a hora atual (em horas) e o número de horas de espera antes que o alarme toque. Seu programa deve imprimir a hora em que o alarme tocará.
 
-\textbf{10.} Escreva um programa que leia um número inteiro fornecido pelo utilizador e verifique se esse número é maior que 10. O programa deve imprimir \texttt{TRUE} se o número é maior que 10 ou \texttt{FALSE} caso contrário.
+\textbf{10.} Escreva um programa em R que leia um número inteiro fornecido pelo usuário e verifique se esse número é maior que 10. O programa deve imprimir \texttt{TRUE} se o número é maior que 10 ou \texttt{FALSE} caso contrário.
 
-\textbf{11.} Escreva um programa que leia dois números fornecidos pelo utilizador e verifique se eles são iguais. O programa deve imprimir \texttt{TRUE} se os números são iguais ou \texttt{FALSE} caso contrário.
+\textbf{11.} Escreva um programa em R que leia dois números fornecidos pelo usuário e verifique se eles são iguais. O programa deve imprimir \texttt{TRUE} se os números são iguais ou \texttt{FALSE} caso contrário.
 
-\textbf{12.} Escreva um programa que peça ao utilizador para inserir dois números e verifique se o primeiro número é maior ou igual ao segundo. O programa deve imprimir \texttt{TRUE} ou \texttt{FALSE}.
+\textbf{12.} Escreva um programa em R que peça ao usuário para inserir dois números e verifique se o primeiro número é maior ou igual ao segundo. O programa deve imprimir \texttt{TRUE} ou \texttt{FALSE}.
 
-\textbf{13.} Escreva um programa que peça ao utilizador para inserir um número e verifique se esse número está entre 0 e 100, inclusive. O programa deve imprimir \texttt{TRUE} se o número está no intervalo e \texttt{FALSE} caso contrário.
+\textbf{13.} Escreva um programa em R que peça ao usuário para inserir um número e verifique se esse número está entre 0 e 100, inclusive. O programa deve imprimir \texttt{TRUE} se o número está no intervalo e \texttt{FALSE} caso contrário.
 
-\textbf{14.} Escreva um programa que leia três números fornecidos pelo utilizador e verifique se o primeiro número é menor que o segundo e se o segundo é menor que o terceiro. O programa deve imprimir uma mensagem indicando se a condição é verdadeira ou falsa.
+\textbf{14.} Escreva um programa em R que leia três números fornecidos pelo usuário e verifique se o primeiro número é menor que o segundo e se o segundo é menor que o terceiro. O programa deve imprimir uma mensagem indicando se a condição é verdadeira ou falsa.
 
 \chapter{Estrutura de Dados Básicas}\label{estrutura-de-dados-buxe1sicas}
 
-Em R temos objetos que são funções e objetos que são dados.
+Em R, temos dois tipos principais de objetos: funções e dados.
 
 \begin{itemize}
-\tightlist
 \item
-  Exemplos de funções:
+  \textbf{Funções}: São objetos que executam operações específicas.
 
   \begin{itemize}
-  \tightlist
   \item
-    \texttt{cos()}
-  \item
-    \texttt{print()}
-  \item
-    \texttt{plot()}
-  \item
-    \texttt{integrate()}
+    Exemplos de funções:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \texttt{cos()} - calcula o cosseno de um ângulo.
+    \item
+      \texttt{print()} - imprime valores no console.
+    \item
+      \texttt{plot()} - cria gráficos.
+    \item
+      \texttt{integrate()} - calcula a integral de uma função.
+    \end{itemize}
   \end{itemize}
 \item
-  Exemplos de dados:
+  \textbf{Dados}: São objetos que contêm informações, como números, textos ou outros tipos de dados.
 
   \begin{itemize}
-  \tightlist
   \item
-    \texttt{23}
-  \item
-    \texttt{"Hello"}
-  \item
-    \texttt{TRUE}
-  \item
-    \texttt{c(1,2,3)}
-  \item
-    \texttt{data.frame(nome\ =\ c("Alice",\ "Bob"),\ idade\ =\ c(25,\ 30))}
-  \item
-    \texttt{list(numero\ =\ 42,\ nome\ =\ "Alice",\ flag\ =\ TRUE})
-  \item
-    \texttt{factor(c("homem",\ "mulher",\ "mulher",\ "homem"))}
+    Exemplos de dados:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \texttt{23} (número)
+    \item
+      \texttt{"Hello"} (texto ou string)
+    \item
+      \texttt{TRUE} (valor lógico)
+    \item
+      \texttt{c(1,\ 2,\ 3)} (vetor numérico)
+    \item
+      \texttt{data.frame(nome\ =\ c("Alice",\ "Bob"),\ idade\ =\ c(25,\ 30))} (estrutura tabular)
+    \item
+      \texttt{list(numero\ =\ 42,\ nome\ =\ "Alice",\ flag\ =\ TRUE)} (coleção de elementos de diferentes tipos)
+    \item
+      \texttt{factor(c("homem",\ "mulher",\ "mulher",\ "homem"))} (dados categóricos)
+    \end{itemize}
   \end{itemize}
 \end{itemize}
 
 \section{Vetor}\label{vetor}
 
-Um vetor é uma estrutura de dados básica que pode armazenar uma
-sequência de objetos do mesmo tipo. Vetores podem conter dados
-numéricos, caracteres, valores lógicos (\texttt{TRUE}/\texttt{FALSE}), números
-complexos, entre outros.
+Um \textbf{vetor} é uma estrutura de dados básica que armazena uma sequência de elementos do \textbf{mesmo tipo}. Vetores podem conter dados numéricos, caracteres, valores lógicos (\texttt{TRUE}/\texttt{FALSE}), números complexos, entre outros.
 
 \begin{itemize}
+\tightlist
 \item
   Todos os elementos de um vetor devem ser do mesmo tipo.
 \item
-  Os elementos de um vetor são indexados a partir de 1.
+  Os elementos de um vetor são indexados a partir de 1 (ou seja, o primeiro elemento está na posição 1).
 \item
-  Vetores podem ser facilmente manipulados e transformados usando uma
-  ampla gama de funções.
-\item
-  Vetores podem ser criados usando a função \texttt{c()} (concatenate).
+  Vetores podem ser criados usando a função \texttt{c()} (concatenate) e são facilmente manipulados com uma variedade de funções.
 \end{itemize}
 
 \subsection{Tipos Comuns de Vetores}\label{tipos-comuns-de-vetores}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# vetor numérico}
+\CommentTok{\# Vetor numérico}
 \FunctionTok{c}\NormalTok{(}\FloatTok{1.1}\NormalTok{, }\FloatTok{2.2}\NormalTok{, }\FloatTok{3.3}\NormalTok{)}
 \DocumentationTok{\#\# [1] 1.1 2.2 3.3}
 
-\CommentTok{\# vetor de caracteres}
+\CommentTok{\# Vetor de caracteres}
 \FunctionTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{)}
 \DocumentationTok{\#\# [1] "a" "b" "c"}
-\CommentTok{\#ou}
+\CommentTok{\# ou}
 \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{)}
 \DocumentationTok{\#\# [1] "a" "b" "c"}
 
-\CommentTok{\# vetor lógico}
+\CommentTok{\# Vetor lógico}
 \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\DecValTok{1}\SpecialCharTok{==}\DecValTok{2}\NormalTok{)}
 \DocumentationTok{\#\# [1]  TRUE FALSE}
 
-\CommentTok{\# Não podemos ter combinações...}
-\FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{1}\SpecialCharTok{==}\DecValTok{2}\NormalTok{, }\StringTok{"a"}\NormalTok{) }\DocumentationTok{\#\# Observe que o R simplesmente transformou tudo em characters!}
+\CommentTok{\# Não podemos misturar tipos de dados em um vetor...}
+\FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{1}\SpecialCharTok{==}\DecValTok{2}\NormalTok{, }\StringTok{"a"}\NormalTok{) }\CommentTok{\# Observe que o R converteu tudo para "character"!}
 \DocumentationTok{\#\# [1] "3"     "FALSE" "a"}
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Construindo vetores}\label{construindo-vetores}
+\subsection{Construindo Vetores}\label{construindo-vetores}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1139,7 +1137,7 @@ complexos, entre outros.
 \NormalTok{b}
 \DocumentationTok{\#\#  [1]  10  9  8  7  6  5  4  3  2 1}
 
-\CommentTok{\# Sequência de 0 a 50 de 10 em 10}
+\CommentTok{\# Sequência de 0 a 50 com incrementos de 10}
 \NormalTok{a }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\AttributeTok{from =} \DecValTok{0}\NormalTok{, }\AttributeTok{to =} \DecValTok{50}\NormalTok{, }\AttributeTok{by=}\DecValTok{10}\NormalTok{)}
 \NormalTok{a}
 \DocumentationTok{\#\# [1]  0 10 20 30 40 50}
@@ -1150,12 +1148,12 @@ complexos, entre outros.
 \DocumentationTok{\#\#  [1] 0.0000 0.0714 0.1429 0.2143 0.2857 0.3571 0.4286 0.5000 0.5714 0.6429}
 \DocumentationTok{\#\# [11] 0.7143 0.7857 0.8571 0.9286 1.0000}
 
-\CommentTok{\# O mesmo número ou o mesmo vetor várias vezes}
+\CommentTok{\# Repetição de um vetor várias vezes}
 \NormalTok{z }\OtherTok{\textless{}{-}} \FunctionTok{rep}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{, }\AttributeTok{times=}\DecValTok{4}\NormalTok{)}
 \NormalTok{z}
 \DocumentationTok{\#\#  [1] 1 2 3 1 2 3 1 2 3 1 2 3}
 
-\CommentTok{\# Cada elemento do vetor 4 vezes}
+\CommentTok{\# Repetição de cada elemento do vetor várias vezes}
 \NormalTok{t }\OtherTok{\textless{}{-}} \FunctionTok{rep}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{, }\AttributeTok{each=}\DecValTok{4}\NormalTok{)}
 \NormalTok{t}
 \DocumentationTok{\#\#  [1] 1 1 1 1 2 2 2 2 3 3 3 3}
@@ -1169,6 +1167,8 @@ complexos, entre outros.
 
 \subsection{Acesso a Elementos de um Vetor}\label{acesso-a-elementos-de-um-vetor}
 
+Você pode acessar elementos específicos de um vetor usando colchetes {[}{]} e índices. R utiliza indexação baseada em 1, o que significa que o primeiro elemento de um vetor tem índice 1.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Defina um vetor com inteiros de ({-}5) a 5 e extraia os números com valor absoluto menor que 3:}
@@ -1176,31 +1176,32 @@ complexos, entre outros.
 \NormalTok{x}
 \DocumentationTok{\#\#  [1] {-}5 {-}4 {-}3 {-}2 {-}1  0  1  2  3  4  5}
 
-\CommentTok{\# pelo seu índice no vetor:}
+\CommentTok{\# Acessando por índice:}
 \NormalTok{x[}\DecValTok{4}\SpecialCharTok{:}\DecValTok{8}\NormalTok{]}
 \DocumentationTok{\#\# [1] {-}2 {-}1  0  1  2}
  
-\CommentTok{\# ou, por seleção negativa (coloque um sinal de menos na frente dos índices que não queremos):}
+\CommentTok{\# Seleção negativa (excluindo elementos):}
 \NormalTok{x[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{,}\DecValTok{9}\SpecialCharTok{:}\DecValTok{11}\NormalTok{)]}
 \DocumentationTok{\#\# [1] {-}2 {-}1  0  1  2}
 
-\CommentTok{\# todos menos o último}
+\CommentTok{\# Todos menos o último}
 \NormalTok{x[}\SpecialCharTok{{-}}\FunctionTok{length}\NormalTok{(x)]}
 \DocumentationTok{\#\# [1] {-}5 {-}4 {-}3 {-}2 {-}1  0  1  2  3  4}
 
-\CommentTok{\# Um vetor lógico pode ser definido por:}
+\CommentTok{\# Vetor lógico para seleção}
 \NormalTok{index }\OtherTok{\textless{}{-}} \FunctionTok{abs}\NormalTok{(x)}\SpecialCharTok{\textless{}}\DecValTok{3}
 \NormalTok{index }
 \DocumentationTok{\#\#  [1] FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE}
 
-\CommentTok{\# Agora este vetor pode ser usado para extrair os números desejados:}
+\CommentTok{\# Usando o vetor lógico para extrair elementos desejados:}
 \NormalTok{x[index]}
 \DocumentationTok{\#\# [1] {-}2 {-}1  0  1  2}
 
-\CommentTok{\# Que é a mesma coisa que...}
+\CommentTok{\# Ou de forma compacta:}
 \NormalTok{x[}\FunctionTok{abs}\NormalTok{(x) }\SpecialCharTok{\textless{}} \DecValTok{3}\NormalTok{]}
 \DocumentationTok{\#\# [1] {-}2 {-}1  0  1  2}
 
+\CommentTok{\# Acessando elementos com vetores predefinidos}
 \NormalTok{letters[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{]}
 \DocumentationTok{\#\# [1] "a" "b" "c"}
 
@@ -1214,33 +1215,35 @@ complexos, entre outros.
 \NormalTok{y[ (y}\SpecialCharTok{\textgreater{}}\DecValTok{5}\NormalTok{) ] }\CommentTok{\# seleciona qualquer número \textgreater{} 5}
 \DocumentationTok{\#\# [1]  6  7  8  9 10}
 
-\NormalTok{y[ (y}\SpecialCharTok{\%\%}\DecValTok{2}\SpecialCharTok{==}\DecValTok{0}\NormalTok{) ] }\CommentTok{\# números que são divisíveis por 2}
+\NormalTok{y[ (y}\SpecialCharTok{\%\%}\DecValTok{2}\SpecialCharTok{==}\DecValTok{0}\NormalTok{) ] }\CommentTok{\# números divisíveis por 2}
 \DocumentationTok{\#\# [1]  2  4  6  8 10}
 
-\NormalTok{y[ (y}\SpecialCharTok{\%\%}\DecValTok{2}\SpecialCharTok{==}\DecValTok{1}\NormalTok{) ] }\CommentTok{\# números que não são divisíveis por 2}
+\NormalTok{y[ (y}\SpecialCharTok{\%\%}\DecValTok{2}\SpecialCharTok{==}\DecValTok{1}\NormalTok{) ] }\CommentTok{\# números não divisíveis por 2}
 \DocumentationTok{\#\# [1] 1 3 5 7 9}
 
 \NormalTok{y[}\DecValTok{5}\NormalTok{] }\OtherTok{\textless{}{-}} \ConstantTok{NA}
-\NormalTok{y[}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(y)] }\CommentTok{\# todos y que não são NA}
+\NormalTok{y[}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(y)] }\CommentTok{\# todos os valores de y que não são NA}
 \DocumentationTok{\#\# [1]  1  2  3  4  6  7  8  9 10}
 \end{Highlighting}
 \end{Shaded}
 
 \subsection{Funções Comuns para Vetores}\label{funuxe7uxf5es-comuns-para-vetores}
 
+Vetores são uma das estruturas de dados mais utilizadas no R, e existem diversas funções para manipular e obter informações sobre eles. Abaixo estão algumas das funções mais comuns usadas com vetores numéricos:
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{num\_vector }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{2.2}\NormalTok{, }\FloatTok{1.1}\NormalTok{, }\FloatTok{3.3}\NormalTok{)}
 
-\CommentTok{\# Obtém o comprimento de um vetor}
+\CommentTok{\# Obtém o comprimento (número de elementos) de um vetor}
 \FunctionTok{length}\NormalTok{(num\_vector)}
 \DocumentationTok{\#\# [1] 3}
 
-\CommentTok{\# Calcula o máximo}
+\CommentTok{\# Calcula o valor máximo de um vetor}
 \FunctionTok{max}\NormalTok{(num\_vector)}
 \DocumentationTok{\#\# [1] 3.3}
 
-\CommentTok{\# Calcula o mínimo}
+\CommentTok{\# Calcula o valor mínimo de um vetor}
 \FunctionTok{min}\NormalTok{(num\_vector)}
 \DocumentationTok{\#\# [1] 1.1}
 
@@ -1248,40 +1251,41 @@ complexos, entre outros.
 \FunctionTok{sum}\NormalTok{(num\_vector)}
 \DocumentationTok{\#\# [1] 6.6}
 
-\CommentTok{\# Calcula a média dos elementos de um vetor}
+\CommentTok{\# Calcula a média (valor médio) dos elementos de um vetor}
 \FunctionTok{mean}\NormalTok{(num\_vector)}
 \DocumentationTok{\#\# [1] 2.2}
 
-\CommentTok{\# Calcula a mediana}
+\CommentTok{\# Calcula a mediana dos elementos de um vetor}
 \FunctionTok{median}\NormalTok{(num\_vector)}
 \DocumentationTok{\#\# [1] 2.2}
 
-\CommentTok{\# Vetor com mínimo e máximo}
+\CommentTok{\# Retorna um vetor contendo o mínimo e o máximo}
 \FunctionTok{range}\NormalTok{(num\_vector)}
 \DocumentationTok{\#\# [1] 1.1 3.3}
 
-\CommentTok{\# Variância amostral}
+\CommentTok{\# Calcula a variância amostral dos elementos de um vetor}
 \FunctionTok{var}\NormalTok{(num\_vector)}
 \DocumentationTok{\#\# [1] 1.21}
 
-\CommentTok{\# Quantis}
-\FunctionTok{quantile}\NormalTok{(num\_vector,}\AttributeTok{type =} \DecValTok{2}\NormalTok{)}
+\CommentTok{\# Calcula os quantis dos elementos de um vetor}
+\FunctionTok{quantile}\NormalTok{(num\_vector, }\AttributeTok{type =} \DecValTok{2}\NormalTok{)}
 \DocumentationTok{\#\#   0\%  25\%  50\%  75\% 100\% }
 \DocumentationTok{\#\# 1.1  1.1  2.2  3.3  3.3 }
 
-\CommentTok{\# Soma de todos os elementos até aquele ponto}
+\CommentTok{\# Calcula a soma cumulativa dos elementos de um vetor}
 \FunctionTok{cumsum}\NormalTok{(num\_vector)}
 \DocumentationTok{\#\# [1] 2.2 3.3 6.6}
 
-\CommentTok{\# Produto de todos os elementos até aquele ponto}
+\CommentTok{\# Calcula o produto cumulativo dos elementos de um vetor}
 \FunctionTok{cumprod}\NormalTok{(num\_vector)}
 \DocumentationTok{\#\# [1] 2.20 2.42 7.99}
 
-\CommentTok{\# Ordena os elementos de um vetor}
+\CommentTok{\# Ordena os elementos de um vetor em ordem crescente}
 \FunctionTok{sort}\NormalTok{(num\_vector)}
 \DocumentationTok{\#\# [1] 1.1 2.2 3.3}
 
-\FunctionTok{sort}\NormalTok{(num\_vector,}\AttributeTok{decreasing =} \ConstantTok{TRUE}\NormalTok{)}
+\CommentTok{\# Ordena os elementos de um vetor em ordem decrescente}
+\FunctionTok{sort}\NormalTok{(num\_vector, }\AttributeTok{decreasing =} \ConstantTok{TRUE}\NormalTok{)}
 \DocumentationTok{\#\# [1] 3.3 2.2 1.1}
 
 \CommentTok{\# Remove elementos duplicados de um vetor}
@@ -1291,24 +1295,19 @@ complexos, entre outros.
 \end{Highlighting}
 \end{Shaded}
 
-Existe uma função importante chamada \texttt{which} para encontrar índices dentro de vetores.
+A função \texttt{which} é usada para encontrar os índices dos elementos em um vetor que atendem a uma condição específica. Isso é útil quando você deseja localizar a posição de certos valores dentro de um vetor.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{8}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{11}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{8}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{11}\NormalTok{)}
 
-Suponha que queiramos saber quais elementos de \texttt{y} contêm valores maiores que 5. Digitamos:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{which}\NormalTok{(y}\SpecialCharTok{\textgreater{}}\DecValTok{5}\NormalTok{)}
+\CommentTok{\# Encontrar os índices dos elementos que são maiores que 5}
+\FunctionTok{which}\NormalTok{(y }\SpecialCharTok{\textgreater{}} \DecValTok{5}\NormalTok{)}
 \DocumentationTok{\#\# [1]  1  4  5  6  7  8 11 13 15}
 \end{Highlighting}
 \end{Shaded}
 
-Observe que a resposta a essa pergunta é um conjunto de índices Não usamos índices dentro da função \texttt{which} em si. A função é aplicada a todo o array. Para ver os valores de \texttt{y} que são maiores que 5, simplesmente digitamos:
+Aqui, a função \texttt{which(y\ \textgreater{}\ 5)} retorna os índices dos elementos em y que são maiores que 5. Se você quiser ver os valores em y que são maiores que 5, basta fazer:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1319,37 +1318,40 @@ Observe que a resposta a essa pergunta é um conjunto de índices Não usamos í
 
 \subsection{Operações com Vetores}\label{operauxe7uxf5es-com-vetores}
 
+Vetores no R suportam operações aritméticas e lógicas de forma elementar. Isso significa que as operações são aplicadas a cada elemento do vetor.
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Adição}
+\CommentTok{\# Adição de 1 a cada elemento do vetor}
 \NormalTok{num\_vector }\SpecialCharTok{+} \DecValTok{1}  
-\DocumentationTok{\#\# 3.2 2.1 4.3}
+\DocumentationTok{\#\# [1] 3.2 2.1 4.3}
 
-\CommentTok{\# Multiplicação}
+\CommentTok{\# Multiplicação de cada elemento por 2}
 \NormalTok{num\_vector }\SpecialCharTok{*} \DecValTok{2}  
-\DocumentationTok{\#\# 4.4 2.2 6.6}
+\DocumentationTok{\#\# [1] 4.4 2.2 6.6}
 
-\CommentTok{\# Comparações}
+\CommentTok{\# Comparações: verifica se cada elemento é maior que 2}
 \NormalTok{num\_vector }\SpecialCharTok{\textgreater{}} \DecValTok{2}  
-\DocumentationTok{\#\# TRUE FALSE  TRUE}
+\DocumentationTok{\#\# [1]  TRUE FALSE  TRUE}
 
-\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{7}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2}
-\DocumentationTok{\#\# 4  9 25 49}
+\CommentTok{\# Exponenciação de elementos}
+\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{7}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2}
+\DocumentationTok{\#\# [1]  4  9 25 49}
 
-\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{7}\NormalTok{)}\SpecialCharTok{\^{}}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{)}
-\DocumentationTok{\#\# 4  27  25 343}
+\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{7}\NormalTok{)}\SpecialCharTok{\^{}}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\DocumentationTok{\#\# [1]   4  27  25 343}
 
-\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{)}\SpecialCharTok{\^{}}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{)}
-\DocumentationTok{\#\# 1    8   81   16  125 1296}
+\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{6}\NormalTok{)}\SpecialCharTok{\^{}}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{)}
+\DocumentationTok{\#\# [1]    1    8   81   16  125 1296}
 
-\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{7}\NormalTok{)}\SpecialCharTok{\^{}}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{)}
-\DocumentationTok{\#\# 4  27 625  49}
+\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{7}\NormalTok{)}\SpecialCharTok{\^{}}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{)}
+\DocumentationTok{\#\# [1]   4  27 625  49}
 \end{Highlighting}
 \end{Shaded}
 
-Os últimos quatro comandos mostram a ``propriedade de reciclagem'' do R.
-Ele tenta combinar os vetores em relação ao comprimento, se possível. Na
-verdade,
+Os exemplos acima ilustram a \textbf{propriedade de reciclagem} do R. Quando operações são realizadas entre vetores de diferentes comprimentos, o R ``recicla'' (ou repete) o vetor menor até que corresponda ao comprimento do vetor maior. Se o comprimento do vetor maior não for um múltiplo inteiro do comprimento do vetor menor, o R emitirá um aviso.
+
+Por exemplo:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1358,7 +1360,7 @@ verdade,
 \end{Highlighting}
 \end{Shaded}
 
-é expandido para
+Este comando é expandido internamente para:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1367,10 +1369,7 @@ verdade,
 \end{Highlighting}
 \end{Shaded}
 
-O último exemplo mostra que o R dá um aviso se o comprimento do vetor
-mais curto não puder ser expandido para o comprimento do vetor mais
-longo por uma simples multiplicação com um número natural (2, 3, 4,\ldots).
-Aqui
+No entanto, se os vetores não puderem ser ``reciclados'' perfeitamente, o R dará um aviso:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1381,7 +1380,7 @@ Aqui
 \end{Highlighting}
 \end{Shaded}
 
-é expandido para
+Neste caso, \texttt{c(2,3,5,7)\^{}c(2,3,4)} é expandido para:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1390,7 +1389,7 @@ Aqui
 \end{Highlighting}
 \end{Shaded}
 
-de modo que nem todos os elementos de \texttt{c(2,3,4)} são ``reciclados'\,'.
+Observe que o último elemento do vetor menor foi reciclado para corresponder ao comprimento do vetor maior, mas não completamente, resultando no aviso..
 
 \subsection{Exercícios}\label{exercuxedcios-1}
 
@@ -1462,47 +1461,64 @@ de modo que nem todos os elementos de \texttt{c(2,3,4)} são ``reciclados'\,'.
 
 \section{Fatores}\label{fatores}
 
-Em R, um ``factor'' (ou ``fator'', em português) é uma estrutura de dados
-usada para representar dados categóricos. Fatores são muito úteis em
-análises estatísticas e visualizações, pois permitem que você trate
-dados categóricos de forma eficiente e consistente.
+Em R, um \textbf{fator} é uma estrutura de dados usada para representar dados \textbf{categóricos}, ou seja, dados que podem ser classificados em categorias distintas. Fatores são amplamente utilizados em análises estatísticas e visualizações de dados, pois permitem o tratamento eficiente e consistente de variáveis categóricas.
 
 \begin{itemize}
+\tightlist
 \item
-  Fatores têm \textbf{níveis}, que são os valores distintos que a variável
-  categórica pode assumir.
+  \textbf{Níveis}: Fatores possuem \textbf{níveis} (ou \textbf{levels}), que representam os diferentes valores possíveis que a variável categórica pode assumir. Por exemplo, para uma variável categórica que representa tamanho de roupa, os níveis poderiam ser ``Pequeno'', ``Médio'' e ``Grande''.
 \item
-  Internamente, os fatores são armazenados como inteiros que
-  correspondem aos níveis, mas são exibidos como rótulos (labels).
+  \textbf{Armazenamento Interno}: Internamente, fatores são armazenados como inteiros, onde cada inteiro corresponde a um nível específico. No entanto, quando exibidos, os fatores mostram seus rótulos (labels) para facilitar a compreensão.
 \item
-  Fatores podem ser ordenados (ordered factors) ou não ordenados
-  (unordered factors).
+  \textbf{Fatores Ordenados e Não Ordenados}: Fatores podem ser \textbf{ordenados} (quando há uma ordem lógica entre os níveis, como ``Baixo'', ``Médio'', ``Alto'') ou \textbf{não ordenados} (quando os níveis não têm uma ordem intrínseca).
 \end{itemize}
+
+\textbf{Exemplos}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Vetor de dados categóricos}
 \NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"low"}\NormalTok{, }\StringTok{"medium"}\NormalTok{, }\StringTok{"high"}\NormalTok{, }\StringTok{"medium"}\NormalTok{, }\StringTok{"low"}\NormalTok{, }\StringTok{"high"}\NormalTok{)}
 
-\CommentTok{\# Criar um fator}
+\CommentTok{\# Criar um fator não ordenado a partir dos dados categóricos}
 \NormalTok{factor\_data }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(data)}
 
 \FunctionTok{print}\NormalTok{(factor\_data)}
 \DocumentationTok{\#\# [1] low    medium high   medium low    high}
 \DocumentationTok{\#\# Levels: high low medium}
+\end{Highlighting}
+\end{Shaded}
 
-\CommentTok{\# Especificar os níveis}
+Por padrão, os níveis são ordenados alfabeticamente. Podemos especificar a ordem dos níveis de acordo com a lógica desejada:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Especificar a ordem dos níveis do fator}
 \NormalTok{factor\_data }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(data, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"low"}\NormalTok{, }\StringTok{"medium"}\NormalTok{, }\StringTok{"high"}\NormalTok{))}
 \FunctionTok{print}\NormalTok{(factor\_data)}
 \DocumentationTok{\#\# [1] low    medium high   medium low    high}
 \DocumentationTok{\#\# Levels: low medium high}
+\end{Highlighting}
+\end{Shaded}
 
+Para criar um fator ordenado, onde os níveis têm uma ordem específica, usamos o argumento ordered \texttt{=\ TRUE}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \CommentTok{\# Criar um fator ordenado}
 \NormalTok{ordered\_factor }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(data, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"low"}\NormalTok{, }\StringTok{"medium"}\NormalTok{, }\StringTok{"high"}\NormalTok{), }\AttributeTok{ordered =} \ConstantTok{TRUE}\NormalTok{)}
 \FunctionTok{print}\NormalTok{(ordered\_factor)}
 \DocumentationTok{\#\# [1] low    medium high   medium low    high}
 \DocumentationTok{\#\# Levels: low \textless{} medium \textless{} high}
+\end{Highlighting}
+\end{Shaded}
 
+\subsection{Manipulação de Fatores}\label{manipulauxe7uxe3o-de-fatores}
+
+Podemos utilizar várias funções para verificar e modificar os níveis de um fator:
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \CommentTok{\# Verificar Níveis}
 \FunctionTok{levels}\NormalTok{(factor\_data)}
 \DocumentationTok{\#\# [1] "low"    "medium" "high"}
@@ -1515,14 +1531,18 @@ dados categóricos de forma eficiente e consistente.
 \end{Highlighting}
 \end{Shaded}
 
-A função \texttt{gl} (`generate levels') é útil quando você quer codificar vetores longos de níveis de fator.
+\subsection{\texorpdfstring{Gerando Fatores com \texttt{gl()}}{Gerando Fatores com gl()}}\label{gerando-fatores-com-gl}
+
+A função \texttt{gl()} (generate levels) é usada para criar fatores de maneira eficiente, especialmente quando você deseja gerar fatores com padrões repetitivos.
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Gerar níveis de fator com gl()}
 \FunctionTok{gl}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{3}\NormalTok{)}
 \DocumentationTok{\#\#  [1] 1 1 1 2 2 2 3 3 3 4 4 4}
 \DocumentationTok{\#\# Levels: 1 2 3 4}
 
+\CommentTok{\# Gerar fatores com labels personalizados}
 \FunctionTok{gl}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{10}\NormalTok{, }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"mulher"}\NormalTok{, }\StringTok{"homem"}\NormalTok{))}
 \DocumentationTok{\#\#  [1] mulher mulher mulher mulher mulher mulher mulher mulher mulher mulher}
 \DocumentationTok{\#\# [11] homem  homem  homem  homem  homem  homem  homem  homem  homem  homem }
@@ -1536,18 +1556,20 @@ A função \texttt{gl} (`generate levels') é útil quando você quer codificar 
 \end{Highlighting}
 \end{Shaded}
 
-\section{Matriz e array}\label{matriz-e-array}
+\section{Matriz e Array}\label{matriz-e-array}
 
-Uma \textbf{matriz} é uma coleção de objetos do mesmo tipo (numérico, lógico,
-etc.) organizada em um formato bidimensional, ou seja, em linhas e
-colunas.
+Em R, uma \textbf{matriz} é uma estrutura de dados bidimensional que contém elementos do mesmo tipo (como numérico, lógico, etc.), organizados em linhas e colunas. Já um \textbf{array} é uma generalização da matriz que pode ter mais de duas dimensões.
 
 \begin{itemize}
 \item
-  \textbf{nrow}: corresponde ao número de linhas;
+  \textbf{nrow}: número de linhas;
 \item
-  \textbf{ncol}: corresponde ao número de colunas.
+  \textbf{ncol}: número de colunas.
 \end{itemize}
+
+\subsection{Criando matrizes}\label{criando-matrizes}
+
+Podemos criar uma matriz em R usando a função \texttt{matrix()}. Veja o exemplo abaixo:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1555,13 +1577,28 @@ colunas.
 \DocumentationTok{\#\#      [,1] [,2] [,3]}
 \DocumentationTok{\#\# [1,] 3.72 5.72 7.72}
 \DocumentationTok{\#\# [2,] 4.72 6.72 8.72}
+\end{Highlighting}
+\end{Shaded}
 
+Podemos também realizar operações lógicas em matrizes:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Verifica se os elementos da matriz são maiores que 6}
 \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{)}\SpecialCharTok{+}\FunctionTok{exp}\NormalTok{(}\DecValTok{1}\NormalTok{),}\AttributeTok{nrow=}\DecValTok{2}\NormalTok{) }\SpecialCharTok{\textgreater{}} \DecValTok{6}
 \DocumentationTok{\#\#       [,1]  [,2] [,3]}
 \DocumentationTok{\#\# [1,] FALSE FALSE TRUE}
 \DocumentationTok{\#\# [2,] FALSE  TRUE TRUE}
+\end{Highlighting}
+\end{Shaded}
 
-\CommentTok{\# Também podemos criar matrizes de ordem superior}
+\subsection{Criando um array}\label{criando-um-array}
+
+Um array pode ter mais de duas dimensões e é criado usando a função \texttt{array()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Criar um array com 4 linhas, 3 colunas, e 2 camadas}
 \FunctionTok{array}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{24}\NormalTok{), }\AttributeTok{dim=}\FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{))}
 \DocumentationTok{\#\# , , 1}
 \DocumentationTok{\#\# }
@@ -1581,22 +1618,17 @@ colunas.
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Construindo matrizes}\label{construindo-matrizes}
+\subsection{Construindo Matrizes}\label{construindo-matrizes}
 
 \begin{itemize}
+\tightlist
 \item
-  O comando \texttt{rbind} (row bind) é usado para combinar objetos por
-  linhas. Isso significa que os vetores ou matrizes fornecidos serão
-  empilhados verticalmente, criando novas linhas na estrutura de dados
-  resultante.
+  \texttt{rbind()} (row bind): Combina objetos por linhas, empilhando-os verticalmente.
 \item
-  O comando \texttt{cbind} (column bind) é usado para combinar objetos por
-  colunas. Isso significa que os vetores ou matrizes fornecidos serão
-  combinados horizontalmente, criando novas colunas na estrutura de
-  dados resultante.
+  \texttt{cbind()} (column bind): Combina objetos por colunas, empilhando-os horizontalmente.
 \end{itemize}
 
-\textbf{Exemplo com vetores}
+\textbf{Exemplo com Vetores}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1618,25 +1650,10 @@ colunas.
 \DocumentationTok{\#\# [1,]       1       4}
 \DocumentationTok{\#\# [2,]       2       5}
 \DocumentationTok{\#\# [3,]       3       6}
-
-\CommentTok{\# Combinando linhas em uma matriz}
-\NormalTok{A }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{, }\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
-\NormalTok{A}
-\DocumentationTok{\#\#      [,1] [,2] [,3]}
-\DocumentationTok{\#\# [1,]    1    2    3}
-\DocumentationTok{\#\# [2,]    1    1    2}
-
-\CommentTok{\# Combinando colunas em uma matriz}
-\NormalTok{B }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{, }\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
-\NormalTok{B}
-\DocumentationTok{\#\#      [,1] [,2]}
-\DocumentationTok{\#\# [1,]    1    1}
-\DocumentationTok{\#\# [2,]    2    1}
-\DocumentationTok{\#\# [3,]    3    2}
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Exemplo com matrizes}
+\textbf{Exemplo com Matrizes}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1653,6 +1670,7 @@ colunas.
 \DocumentationTok{\#\# [3,]    7    9   11}
 \DocumentationTok{\#\# [4,]    8   10   12}
 
+\CommentTok{\# Combinar as matrizes por colunas}
 \NormalTok{result }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(matrix1, matrix2)}
 \FunctionTok{print}\NormalTok{(result)}
 \DocumentationTok{\#\#      [,1] [,2] [,3] [,4] [,5] [,6]}
@@ -1661,36 +1679,39 @@ colunas.
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Índice e índice lógico}\label{uxedndice-e-uxedndice-luxf3gico}
+\subsection{Acessando Elementos de uma Matriz}\label{acessando-elementos-de-uma-matriz}
+
+Podemos acessar elementos específicos de uma matriz usando índices ou expressões lógicas.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{A}\OtherTok{\textless{}{-}}\FunctionTok{matrix}\NormalTok{((}\SpecialCharTok{{-}}\DecValTok{4}\NormalTok{)}\SpecialCharTok{:}\DecValTok{5}\NormalTok{, }\AttributeTok{nrow=}\DecValTok{2}\NormalTok{, }\AttributeTok{ncol=}\DecValTok{5}\NormalTok{)}
+\CommentTok{\# Criar uma matriz}
+\NormalTok{A }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{((}\SpecialCharTok{{-}}\DecValTok{4}\NormalTok{)}\SpecialCharTok{:}\DecValTok{5}\NormalTok{, }\AttributeTok{nrow=}\DecValTok{2}\NormalTok{, }\AttributeTok{ncol=}\DecValTok{5}\NormalTok{)}
 \NormalTok{A}
 \DocumentationTok{\#\#      [,1] [,2] [,3] [,4] [,5]}
 \DocumentationTok{\#\# [1,]   {-}4   {-}2    0    2    4}
 \DocumentationTok{\#\# [2,]   {-}3   {-}1    1    3    5}
 
-\CommentTok{\# Acessando as entradas de uma matriz}
+\CommentTok{\# Acessando um elemento específico}
 \NormalTok{A[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{]}
 \DocumentationTok{\#\# [1] {-}2}
 
-\CommentTok{\# Valores negativos }
+\CommentTok{\# Selecionando elementos negativos}
 \NormalTok{A[A}\SpecialCharTok{\textless{}}\DecValTok{0}\NormalTok{]}
 \DocumentationTok{\#\# [1] {-}4 {-}3 {-}2 {-}1}
  
-\CommentTok{\# Atribuições}
+\CommentTok{\# Atribuição condicional}
 \NormalTok{A[A}\SpecialCharTok{\textless{}}\DecValTok{0}\NormalTok{]}\OtherTok{\textless{}{-}}\DecValTok{0}
 \NormalTok{A}
 \DocumentationTok{\#\#      [,1] [,2] [,3] [,4] [,5]}
 \DocumentationTok{\#\# [1,]    0    0    0    2    4}
 \DocumentationTok{\#\# [2,]    0    0    1    3    5}
 
-\CommentTok{\# Selecionando as linhas de uma matriz}
+\CommentTok{\# Selecionando uma linha específica}
 \NormalTok{A[}\DecValTok{2}\NormalTok{,]}
 \DocumentationTok{\#\# [1] 0 0 1 3 5}
 
-\CommentTok{\# Selecionando as colunas de uma matriz}
+\CommentTok{\# Selecionando colunas específicas}
 \NormalTok{A[,}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{)]}
 \DocumentationTok{\#\#      [,1] [,2]}
 \DocumentationTok{\#\# [1,]    0    2}
@@ -1698,10 +1719,11 @@ colunas.
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Nomeando linhas e colunas numa matriz}\label{nomeando-linhas-e-colunas-numa-matriz}
+\subsection{Nomeando Linhas e Colunas em uma Matriz}\label{nomeando-linhas-e-colunas-em-uma-matriz}
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Criar uma matriz}
 \NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{12}\NormalTok{),}\AttributeTok{nrow=}\DecValTok{4}\NormalTok{)}
 \NormalTok{x}
 \DocumentationTok{\#\#        [,1]   [,2]    [,3]}
@@ -1710,6 +1732,7 @@ colunas.
 \DocumentationTok{\#\# [3,] {-}0.230  0.314 {-}1.9076}
 \DocumentationTok{\#\# [4,] {-}0.571  0.478 {-}0.5948}
 
+\CommentTok{\# Nomeando colunas}
 \FunctionTok{colnames}\NormalTok{(x) }\OtherTok{\textless{}{-}} \FunctionTok{paste}\NormalTok{(}\StringTok{"dados"}\NormalTok{,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{,}\AttributeTok{sep=}\StringTok{""}\NormalTok{)}
 \NormalTok{x}
 \DocumentationTok{\#\#      dados1 dados2  dados3}
@@ -1718,6 +1741,7 @@ colunas.
 \DocumentationTok{\#\# [3,] {-}0.230  0.314 {-}1.9076}
 \DocumentationTok{\#\# [4,] {-}0.571  0.478 {-}0.5948}
 
+\CommentTok{\# Nomeando linhas e colunas de outra matriz}
 \NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{15}\NormalTok{),}\AttributeTok{nrow=}\DecValTok{5}\NormalTok{)}
 \NormalTok{y }
 \DocumentationTok{\#\#        [,1]   [,2]   [,3]}
@@ -1748,6 +1772,7 @@ colunas.
 \NormalTok{M}\OtherTok{\textless{}{-}}\FunctionTok{matrix}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{20}\NormalTok{),}\AttributeTok{nrow=}\DecValTok{4}\NormalTok{,}\AttributeTok{ncol=}\DecValTok{5}\NormalTok{)}
 \NormalTok{N}\OtherTok{\textless{}{-}}\FunctionTok{matrix}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{15}\NormalTok{),}\AttributeTok{nrow=}\DecValTok{5}\NormalTok{,}\AttributeTok{ncol=}\DecValTok{3}\NormalTok{)}
 
+\CommentTok{\# Multiplicação de matrizes}
 \NormalTok{M}\SpecialCharTok{\%*\%}\NormalTok{N}
 \DocumentationTok{\#\#          [,1]    [,2]   [,3]}
 \DocumentationTok{\#\# [1,] {-}1.67927  0.8103 {-}3.405}
@@ -1757,7 +1782,7 @@ colunas.
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Adicionando linhas e colunas a matriz}\label{adicionando-linhas-e-colunas-a-matriz}
+\subsection{Adicionando Linhas e Colunas a uma Matriz}\label{adicionando-linhas-e-colunas-a-uma-matriz}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1767,13 +1792,13 @@ colunas.
 \DocumentationTok{\#\# [1,]    1    3    5}
 \DocumentationTok{\#\# [2,]    2    4    6}
 
-\CommentTok{\# Coluna}
+\CommentTok{\# Adicionar uma coluna}
 \FunctionTok{cbind}\NormalTok{(X, }\FunctionTok{c}\NormalTok{(}\DecValTok{7}\NormalTok{,}\DecValTok{8}\NormalTok{))}
 \DocumentationTok{\#\#      [,1] [,2] [,3] [,4]}
 \DocumentationTok{\#\# [1,]    1    3    5    7}
 \DocumentationTok{\#\# [2,]    2    4    6    8}
 
-\CommentTok{\# Linha}
+\CommentTok{\# Adicionar uma linha}
 \FunctionTok{rbind}\NormalTok{(X, }\FunctionTok{c}\NormalTok{(}\DecValTok{7}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{9}\NormalTok{))}
 \DocumentationTok{\#\#      [,1] [,2] [,3]}
 \DocumentationTok{\#\# [1,]    1    3    5}
@@ -1859,16 +1884,11 @@ Seja \(M\) uma matriz quadrada.
 
 \section{Data-frame}\label{data-frame}
 
-Um data frame em R é uma estrutura de dados bidimensional que é usada
-para armazenar dados tabulares. Cada coluna em um data frame pode conter
-valores de diferentes tipos (numéricos, caracteres, fatores, etc.), mas
-todos os elementos dentro de uma coluna devem ser do mesmo tipo. Um data
-frame é similar a uma tabela em um banco de dados ou uma planilha em um
-programa de planilhas como o Excel. Podemos criar data frames lendo
-dados de arquivos ou usando a função \texttt{as.data.frame()} em um conjunto de
-vetores.
+Um data frame em R é uma estrutura de dados bidimensional usada para armazenar dados tabulares. Cada coluna em um data frame pode conter valores de diferentes tipos (como numéricos, caracteres, fatores, etc.), mas todos os elementos dentro de uma coluna devem ser do mesmo tipo. Um data frame é semelhante a uma tabela em um banco de dados ou uma planilha em programas como o Excel. Data frames podem ser criados a partir de arquivos de dados ou convertendo vetores usando a função \texttt{as.data.frame()}.
 
-\subsection{Criando um data frame}\label{criando-um-data-frame}
+\subsection{Criando um Data Frame}\label{criando-um-data-frame}
+
+Para criar um data frame, você pode usar a função \texttt{data.frame()}, especificando os nomes das colunas e os dados correspondentes:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1883,7 +1903,13 @@ vetores.
 \DocumentationTok{\#\# 2  2  Bruno    35    6000}
 \DocumentationTok{\#\# 3  3 Carlos    31    7000}
 \DocumentationTok{\#\# 4  4  Diana    28    8000}
+\end{Highlighting}
+\end{Shaded}
 
+Um data frame pode parecer semelhante a uma matriz, mas há diferenças importantes. Veja o exemplo de uma matriz criada com os mesmos dados:
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \CommentTok{\# Comparando com uma matriz}
 \FunctionTok{cbind}\NormalTok{(}\AttributeTok{id =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{,}
 \AttributeTok{nome =} \FunctionTok{c}\NormalTok{(}\StringTok{"Ana"}\NormalTok{, }\StringTok{"Bruno"}\NormalTok{, }\StringTok{"Carlos"}\NormalTok{, }\StringTok{"Diana"}\NormalTok{),}
@@ -1897,32 +1923,36 @@ vetores.
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Acessando linhas e colunas}\label{acessando-linhas-e-colunas}
+Observe que na matriz, todos os dados são convertidos para o tipo \texttt{character}, enquanto em um data frame, cada coluna mantém seu próprio tipo de dados.
+
+\subsection{Acessando Linhas e Colunas}\label{acessando-linhas-e-colunas}
+
+Existem várias maneiras de acessar linhas e colunas em um data frame:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Acessando a coluna id}
+\CommentTok{\# Acessando a coluna \textquotesingle{}id\textquotesingle{} usando índice}
 \NormalTok{df[,}\DecValTok{1}\NormalTok{]}
 \DocumentationTok{\#\# [1] 1 2 3 4}
 
-\CommentTok{\# Outra forma de acessar a coluna id}
+\CommentTok{\# Acessando a coluna \textquotesingle{}id\textquotesingle{} usando o nome da coluna}
 \NormalTok{df}\SpecialCharTok{$}\NormalTok{id}
 \DocumentationTok{\#\# [1] 1 2 3 4}
 
-\CommentTok{\# Outra forma de acessar a coluna id}
+\CommentTok{\# Acessando a coluna \textquotesingle{}id\textquotesingle{} usando double brackets}
 \NormalTok{df[[}\StringTok{"id"}\NormalTok{]]}
 \DocumentationTok{\#\# [1] 1 2 3 4}
 
-\CommentTok{\# Acessando linhas e colunas por índice}
-\NormalTok{df[}\DecValTok{1}\NormalTok{, ] }\CommentTok{\# Primeira linha}
+\CommentTok{\# Acessando a primeira linha}
+\NormalTok{df[}\DecValTok{1}\NormalTok{, ] }
 \DocumentationTok{\#\#   id nome idade salario}
 \DocumentationTok{\#\# 1  1  Ana    23    5000}
 
-\CommentTok{\# Segunda coluna}
+\CommentTok{\# Acessando a segunda coluna}
 \NormalTok{df[, }\DecValTok{2}\NormalTok{] }
 \DocumentationTok{\#\# [1] "Ana"    "Bruno"  "Carlos" "Diana"}
 
-\CommentTok{\# Elemento na primeira linha, segunda coluna}
+\CommentTok{\# Acessando o elemento na primeira linha, segunda coluna}
 \NormalTok{df[}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{] }
 \DocumentationTok{\#\# [1] "Ana"}
 
@@ -1932,11 +1962,11 @@ vetores.
 \DocumentationTok{\#\# 1  1   Ana}
 \DocumentationTok{\#\# 2  2 Bruno}
 
-\CommentTok{\# Acessando linhas e colunas por nome}
-\NormalTok{df[}\DecValTok{1}\NormalTok{, }\StringTok{"nome"}\NormalTok{] }\CommentTok{\# Elemento na primeira linha, coluna "nome"}
+\CommentTok{\# Acessando uma entrada por nome de coluna}
+\NormalTok{df[}\DecValTok{1}\NormalTok{, }\StringTok{"nome"}\NormalTok{] }
 \DocumentationTok{\#\# [1] "Ana"}
 
-\CommentTok{\# Colunas "nome" e "idade"}
+\CommentTok{\# Acessando múltiplas colunas por nome}
 \NormalTok{df[}\FunctionTok{c}\NormalTok{(}\StringTok{"nome"}\NormalTok{, }\StringTok{"idade"}\NormalTok{)]}
 \DocumentationTok{\#\#     nome idade}
 \DocumentationTok{\#\# 1    Ana    23}
@@ -1946,11 +1976,13 @@ vetores.
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Adicionando e removendo colunas}\label{adicionando-e-removendo-colunas}
+\subsection{Adicionando e Removendo Colunas}\label{adicionando-e-removendo-colunas}
+
+Adicionar e remover colunas de um data frame é simples e direto:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Adicionar novas colunas}
+\CommentTok{\# Adicionar uma nova coluna calculada}
 \NormalTok{df}\SpecialCharTok{$}\NormalTok{novo\_salario }\OtherTok{\textless{}{-}}\NormalTok{ df}\SpecialCharTok{$}\NormalTok{salario }\SpecialCharTok{*} \FloatTok{1.1} 
 \NormalTok{df}
 \DocumentationTok{\#\#   id   nome idade salario novo\_salario}
@@ -1959,7 +1991,7 @@ vetores.
 \DocumentationTok{\#\# 3  3 Carlos    31    7000         7700}
 \DocumentationTok{\#\# 4  4  Diana    28    8000         8800}
 
-\CommentTok{\# Remover coluna}
+\CommentTok{\# Remover uma coluna existente}
 \NormalTok{df}\SpecialCharTok{$}\NormalTok{id }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
 \NormalTok{df}
 \DocumentationTok{\#\#     nome idade salario novo\_salario}
@@ -1970,25 +2002,18 @@ vetores.
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Fundindo dados}\label{fundindo-dados}
+\subsection{Fundindo Data Frames}\label{fundindo-data-frames}
+
+Data frames podem ser combinados ou fundidos usando a função \texttt{merge()}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{df1 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{curso=}\FunctionTok{c}\NormalTok{(}\StringTok{"PE"}\NormalTok{,}\StringTok{"LE"}\NormalTok{,}\StringTok{"CAL"}\NormalTok{), }\AttributeTok{horas=}\FunctionTok{c}\NormalTok{(}\DecValTok{60}\NormalTok{,}\DecValTok{75}\NormalTok{,}\DecValTok{90}\NormalTok{))}
-\NormalTok{df1}
-\DocumentationTok{\#\#   curso horas}
-\DocumentationTok{\#\# 1    PE    60}
-\DocumentationTok{\#\# 2    LE    75}
-\DocumentationTok{\#\# 3   CAL    90}
+\CommentTok{\# Criar dois data frames}
+\NormalTok{df1 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{curso =} \FunctionTok{c}\NormalTok{(}\StringTok{"PE"}\NormalTok{, }\StringTok{"LE"}\NormalTok{, }\StringTok{"CAL"}\NormalTok{), }\AttributeTok{horas =} \FunctionTok{c}\NormalTok{(}\DecValTok{60}\NormalTok{, }\DecValTok{75}\NormalTok{, }\DecValTok{90}\NormalTok{))}
+\NormalTok{df2 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{curso =} \FunctionTok{c}\NormalTok{(}\StringTok{"CAL"}\NormalTok{, }\StringTok{"PE"}\NormalTok{, }\StringTok{"LE"}\NormalTok{), }\AttributeTok{creditos =} \FunctionTok{c}\NormalTok{(}\DecValTok{8}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{7}\NormalTok{))}
 
-\NormalTok{df2 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{curso=}\FunctionTok{c}\NormalTok{(}\StringTok{"CAL"}\NormalTok{,}\StringTok{"PE"}\NormalTok{,}\StringTok{"LE"}\NormalTok{), }\AttributeTok{creditos=}\FunctionTok{c}\NormalTok{(}\DecValTok{8}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{))}
-\NormalTok{df2 }
-\DocumentationTok{\#\#   curso creditos}
-\DocumentationTok{\#\# 1   CAL        8}
-\DocumentationTok{\#\# 2    PE        6}
-\DocumentationTok{\#\# 3    LE        7}
-
-\NormalTok{df12 }\OtherTok{\textless{}{-}} \FunctionTok{merge}\NormalTok{(df1, df2, }\AttributeTok{by=}\StringTok{"curso"}\NormalTok{)}
+\CommentTok{\# Fundir data frames pela variável \textquotesingle{}curso\textquotesingle{}}
+\NormalTok{df12 }\OtherTok{\textless{}{-}} \FunctionTok{merge}\NormalTok{(df1, df2, }\AttributeTok{by =} \StringTok{"curso"}\NormalTok{)}
 \NormalTok{df12}
 \DocumentationTok{\#\#   curso horas creditos}
 \DocumentationTok{\#\# 1   CAL    90        8}
@@ -1997,30 +2022,38 @@ vetores.
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Dimensão, informações de colunas e outros}\label{dimensuxe3o-informauxe7uxf5es-de-colunas-e-outros}
+\subsection{Explorando o Data Frame}\label{explorando-o-data-frame}
+
+Funções úteis para explorar e entender a estrutura de um data frame:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{df }\OtherTok{\textless{}{-}}\NormalTok{ iris}
+
+\CommentTok{\# Nomes das colunas}
 \FunctionTok{names}\NormalTok{(df)}
 \DocumentationTok{\#\# [1] "Sepal.Length" "Sepal.Width"  "Petal.Length" "Petal.Width"  "Species"}
 
+\CommentTok{\# Classe dos dados de uma coluna}
 \FunctionTok{class}\NormalTok{(df}\SpecialCharTok{$}\NormalTok{Sepal.Length)}
 \DocumentationTok{\#\# [1] "numeric"}
 
 \FunctionTok{class}\NormalTok{(df}\SpecialCharTok{$}\NormalTok{Species)}
 \DocumentationTok{\#\# [1] "factor"}
 
+\CommentTok{\# Dimensão do data frame}
 \FunctionTok{dim}\NormalTok{(df)}
 \DocumentationTok{\#\# [1] 150   5}
 
+\CommentTok{\# Número de linhas}
 \FunctionTok{nrow}\NormalTok{(df)}
 \DocumentationTok{\#\# [1] 150}
 
+\CommentTok{\# Número de colunas}
 \FunctionTok{ncol}\NormalTok{(df)}
 \DocumentationTok{\#\# [1] 5}
 
-\CommentTok{\# Visão geral da estrutura do objeto}
+\CommentTok{\# Estrutura do data frame}
 \FunctionTok{str}\NormalTok{(df)}
 \DocumentationTok{\#\# \textquotesingle{}data.frame\textquotesingle{}:    150 obs. of  5 variables:}
 \DocumentationTok{\#\#  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...}
@@ -2029,12 +2062,14 @@ vetores.
 \DocumentationTok{\#\#  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...}
 \DocumentationTok{\#\#  $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...}
 
+\CommentTok{\# Visualização das primeiras linhas}
 \FunctionTok{head}\NormalTok{(df, }\DecValTok{3}\NormalTok{)}
 \DocumentationTok{\#\#   Sepal.Length Sepal.Width Petal.Length Petal.Width Species}
 \DocumentationTok{\#\# 1          5.1         3.5          1.4         0.2  setosa}
 \DocumentationTok{\#\# 2          4.9         3.0          1.4         0.2  setosa}
 \DocumentationTok{\#\# 3          4.7         3.2          1.3         0.2  setosa}
 
+\CommentTok{\# Visualização das últimas linhas}
 \FunctionTok{tail}\NormalTok{(df, }\DecValTok{5}\NormalTok{)}
 \DocumentationTok{\#\#     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species}
 \DocumentationTok{\#\# 146          6.7         3.0          5.2         2.3 virginica}
@@ -2047,8 +2082,14 @@ vetores.
 
 \subsection{\texorpdfstring{A função \texttt{subset()}}{A função subset()}}\label{a-funuxe7uxe3o-subset}
 
+A função \texttt{subset()} em R é usada para criar subconjuntos de um data frame com base em condições lógicas. Ela é particularmente útil quando você deseja filtrar linhas que atendem a certos critérios e selecionar colunas específicas ao mesmo tempo.
+
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Carregar o conjunto de dados \textquotesingle{}iris\textquotesingle{}}
+\NormalTok{df }\OtherTok{\textless{}{-}}\NormalTok{ iris}
+
+\CommentTok{\# Criar um subconjunto com Sepal.Width maior que 3, selecionando apenas as colunas Petal.Width e Species}
 \NormalTok{df1 }\OtherTok{\textless{}{-}}\NormalTok{ df[df}\SpecialCharTok{$}\NormalTok{Sepal.Width }\SpecialCharTok{\textgreater{}} \DecValTok{3}\NormalTok{, }\FunctionTok{c}\NormalTok{(}\StringTok{"Petal.Width"}\NormalTok{,}\StringTok{"Species"}\NormalTok{)]}
 \FunctionTok{head}\NormalTok{(df1)}
 \DocumentationTok{\#\#   Petal.Width Species}
@@ -2058,7 +2099,8 @@ vetores.
 \DocumentationTok{\#\# 5         0.2  setosa}
 \DocumentationTok{\#\# 6         0.4  setosa}
 \DocumentationTok{\#\# 7         0.3  setosa}
-  
+
+\CommentTok{\# Utilizando a função subset() para o mesmo subconjunto  }
 \NormalTok{(df2 }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(df, Sepal.Width }\SpecialCharTok{\textgreater{}} \DecValTok{3}\NormalTok{, }\AttributeTok{select =} \FunctionTok{c}\NormalTok{(Petal.Width, Species)))}
 \DocumentationTok{\#\#     Petal.Width    Species}
 \DocumentationTok{\#\# 1           0.2     setosa}
@@ -2128,7 +2170,14 @@ vetores.
 \DocumentationTok{\#\# 144         2.3  virginica}
 \DocumentationTok{\#\# 145         2.5  virginica}
 \DocumentationTok{\#\# 149         2.3  virginica}
+\end{Highlighting}
+\end{Shaded}
 
+No exemplo acima, ambas as abordagens (indexação direta e \texttt{subset()}) produzem o mesmo resultado, mas \texttt{subset()} é geralmente mais legível e conveniente quando se trata de filtragem condicional.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Criar um subconjunto com Petal.Width igual a 0.3, excluindo a coluna Sepal.Width}
 \NormalTok{(df3 }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(df, Petal.Width }\SpecialCharTok{==} \FloatTok{0.3}\NormalTok{, }\AttributeTok{select =} \SpecialCharTok{{-}}\NormalTok{Sepal.Width))}
 \DocumentationTok{\#\#    Sepal.Length Petal.Length Petal.Width Species}
 \DocumentationTok{\#\# 7           4.6          1.4         0.3  setosa}
@@ -2138,7 +2187,14 @@ vetores.
 \DocumentationTok{\#\# 41          5.0          1.3         0.3  setosa}
 \DocumentationTok{\#\# 42          4.5          1.3         0.3  setosa}
 \DocumentationTok{\#\# 46          4.8          1.4         0.3  setosa}
+\end{Highlighting}
+\end{Shaded}
 
+Neste exemplo, \texttt{subset()} é usado para filtrar linhas onde \texttt{Petal.Width} é exatamente 0.3 e excluir a coluna \texttt{Sepal.Width}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Criar um subconjunto selecionando as colunas de Sepal.Width a Petal.Width}
 \NormalTok{(df4 }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(df, }\AttributeTok{select =}\NormalTok{ Sepal.Width}\SpecialCharTok{:}\NormalTok{Petal.Width))}
 \DocumentationTok{\#\#     Sepal.Width Petal.Length Petal.Width}
 \DocumentationTok{\#\# 1           3.5          1.4         0.2}
@@ -2294,24 +2350,26 @@ vetores.
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{\texorpdfstring{A função \texttt{summary()}}{A função summary()}}\label{a-funuxe7uxe3o-summary}
+Aqui, \texttt{subset()} é usado para selecionar todas as colunas desde \texttt{Sepal.Width} até \texttt{Petal.Width}.
 
-A função \texttt{summary()} no R é usada para gerar resumos estatísticos de
-objetos. O comportamento da função varia dependendo do tipo de objeto
-que você passa para ela, mas geralmente fornece uma visão geral das
-características principais do objeto.
+\subsection{\texorpdfstring{A Função \texttt{summary()}}{A Função summary()}}\label{a-funuxe7uxe3o-summary}
+
+A função \texttt{summary()} é amplamente utilizada em R para fornecer resumos estatísticos de dados. O comportamento de \texttt{summary()} varia de acordo com o tipo de objeto ao qual é aplicado.
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Aplicando summary() a um vetor numérico}
 \NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{10}\NormalTok{)}
 \FunctionTok{summary}\NormalTok{(x)  }
 \DocumentationTok{\#\#    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
 \DocumentationTok{\#\#    1.00    3.25    5.50    5.50    7.75   10.00}
 
+\CommentTok{\# Aplicando summary() a uma coluna numérica de um data frame}
 \FunctionTok{summary}\NormalTok{(iris}\SpecialCharTok{$}\NormalTok{Sepal.Length)}
 \DocumentationTok{\#\#    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
 \DocumentationTok{\#\#    4.30    5.10    5.80    5.84    6.40    7.90}
 
+\CommentTok{\# Aplicando summary() a um data frame completo}
 \FunctionTok{summary}\NormalTok{(iris) }
 \DocumentationTok{\#\#   Sepal.Length   Sepal.Width    Petal.Length   Petal.Width        Species  }
 \DocumentationTok{\#\#  Min.   :4.30   Min.   :2.00   Min.   :1.00   Min.   :0.1   setosa    :50  }
@@ -2322,6 +2380,8 @@ características principais do objeto.
 \DocumentationTok{\#\#  Max.   :7.90   Max.   :4.40   Max.   :6.90   Max.   :2.5}
 \end{Highlighting}
 \end{Shaded}
+
+Aplicar \texttt{summary()} ao data frame iris inteiro fornece resumos estatísticos para todas as colunas, incluindo estatísticas descritivas para variáveis numéricas e uma contagem de frequências para variáveis categóricas (fatores).
 
 \subsection{Valores faltantes}\label{valores-faltantes}
 
@@ -2335,22 +2395,37 @@ características principais do objeto.
 
 \textbf{4.} Adicione uma nova coluna ao data frame \texttt{mtcars} chamada Peso\_KG que converta o peso dos carros (\texttt{wt}) de mil libras para quilogramas (multiplicando por 453.592).
 
+\textbf{5.} Utilizando o data frame \texttt{mtcars}, calcule a média, o mínimo e o máximo da potência (\texttt{hp}) para cada número diferente de cilindros (\texttt{cyl}). Utilize as funções \texttt{aggregate()} ou \texttt{dplyr} para realizar esta operação.
+
+\textbf{6.} Transforme a coluna \texttt{am} do data frame \texttt{mtcars} em um fator com rótulos significativos: ``Automático'' para 0 e ``Manual'' para 1. Depois, conte quantos carros existem para cada tipo de transmissão.
+
+\textbf{7.} Utilizando o data frame \texttt{mtcars}, aplique a função \texttt{sapply()} para calcular o desvio padrão de todas as colunas numéricas.
+
+\textbf{8.} Ordene o data frame \texttt{mtcars} pela coluna \texttt{mpg} em ordem decrescente. Mostre os 5 carros mais econômicos e os 5 menos econômicos.
+
+\textbf{9.} Crie dois data frames, \texttt{carros1} e \texttt{carros2}, que contenham diferentes subconjuntos de informações do data frame \texttt{mtcars}. Depois, use a função \texttt{merge()} para combinar esses data frames com base na coluna \texttt{car}.
+
 \section{Listas}\label{listas}
 
-Uma lista em R é uma estrutura de dados que permite armazenar elementos
-de diferentes tipos, como vetores, matrizes, data frames, funções e até
-outras listas. Essa flexibilidade distingue as listas de outras
-estruturas, como vetores, que são homogêneos e podem conter apenas
-elementos de um único tipo.
+Em R, uma \textbf{lista} é uma estrutura de dados versátil que pode armazenar elementos de diferentes tipos, como vetores, matrizes, data frames, funções e até outras listas. Essa flexibilidade torna as listas uma poderosa ferramenta para manipulação de dados complexos, permitindo armazenar uma coleção heterogênea de elementos em um único objeto.
 
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Indexação}: Os elementos de uma lista podem ser acessados usando
-  colchetes duplos {[}{[} {]}{]} ou utilizando o operador \$ para acessar
-  elementos nomeados. Além disso, o índice simples {[} {]} retorna uma
-  sublista.
+  \textbf{Flexibilidade}: Ao contrário de vetores, que são homogêneos e podem conter apenas elementos de um único tipo, as listas podem conter elementos de diferentes tipos e tamanhos.
+\item
+  \textbf{Indexação}: Os elementos de uma lista podem ser acessados de várias maneiras:
+\item
+  \textbf{Colchetes duplos {[}{[} {]}{]}}: Usados para acessar elementos específicos de uma lista.
+\item
+  \textbf{Operador \$}: Usado para acessar elementos nomeados.
+\item
+  \textbf{Colchetes simples {[} {]}}: Retornam uma sublista contendo os elementos especificados.
 \end{itemize}
+
+\subsection{Criando e Manipulando Listas}\label{criando-e-manipulando-listas}
+
+Vamos criar uma lista que contém diferentes tipos de elementos, incluindo um vetor, um vetor de caracteres, uma matriz, e uma função:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2395,7 +2470,7 @@ elementos de um único tipo.
 \FunctionTok{print}\NormalTok{(minha\_lista[[}\DecValTok{1}\NormalTok{]])}
 \DocumentationTok{\#\# [1] "Estudante"}
 
-\CommentTok{\# Acessando uma sublista}
+\CommentTok{\# Acessando uma sublista contendo os dois primeiros elementos}
 \FunctionTok{print}\NormalTok{(minha\_lista[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{])}
 \DocumentationTok{\#\# $nome}
 \DocumentationTok{\#\# [1] "Estudante"}
@@ -2403,11 +2478,25 @@ elementos de um único tipo.
 \DocumentationTok{\#\# $idade}
 \DocumentationTok{\#\# [1] 21}
 
-\CommentTok{\# Acessando uma parte de um elemento, como o segundo valor do vetor "notas"}
+\CommentTok{\# Acessando a segunda nota do vetor "notas" dentro da lista}
 \FunctionTok{print}\NormalTok{(minha\_lista}\SpecialCharTok{$}\NormalTok{notas[}\DecValTok{2}\NormalTok{])}
 \DocumentationTok{\#\# [1] 90}
 \end{Highlighting}
 \end{Shaded}
+
+\subsection{Por que usar listas?}\label{por-que-usar-listas}
+
+Listas são extremamente úteis em R para:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Armazenar resultados de diferentes tipos}: Em análises estatísticas complexas, os resultados frequentemente consistem em diferentes tipos de dados (como números, tabelas, gráficos e modelos estatísticos).
+\item
+  \textbf{Agrupar dados heterogêneos}: Quando você precisa manipular um conjunto de dados que inclui diversos tipos de informação (por exemplo, dados brutos, estatísticas resumidas, e resultados de modelos).
+\item
+  \textbf{Passar múltiplos argumentos para funções}: Listas são usadas para agrupar múltiplos parâmetros para funções, tornando-as uma ferramenta poderosa para programação funcional.
+\end{itemize}
 
 \subsection{Exercícios}\label{exercuxedcios-4}
 
@@ -2506,16 +2595,11 @@ Acesse e imprima:
 
 \chapter{Estruturas de Seleção}\label{estruturas-de-seleuxe7uxe3o}
 
-Em R, as estruturas de seleção ou decisão são usadas para controlar o
-fluxo de execução do código com base em condições específicas. Estas
-estruturas permitem executar diferentes blocos de código dependendo de
-valores ou condições lógicas. As estruturas de seleção mais comuns em R
-são \texttt{if}, \texttt{else}, \texttt{else\ if}.
+Em R, as estruturas de seleção ou decisão são usadas para controlar o fluxo de execução do código com base em condições específicas. Essas estruturas permitem executar diferentes blocos de código dependendo de valores ou condições lógicas. As estruturas de seleção mais comuns em R são \texttt{if}, \texttt{else}, e \texttt{else\ if}.
 
 \section{\texorpdfstring{Condicional \texttt{if}}{Condicional if}}\label{condicional-if}
 
-A instrução \texttt{if} executa um bloco de código se uma condição for
-verdadeira.
+A instrução \texttt{if} executa um bloco de código somente se uma condição for verdadeira. Caso contrário, o bloco de código dentro do \texttt{if} é ignorado.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2539,10 +2623,11 @@ verdadeira.
 \end{Highlighting}
 \end{Shaded}
 
+Neste exemplo, a condição \texttt{x\ \textgreater{}\ 5} é verdadeira, então o código dentro do bloco \texttt{if} é executado.
+
 \section{\texorpdfstring{Condicional \texttt{if...else}}{Condicional if...else}}\label{condicional-if...else}
 
-A estrutura \texttt{if...else} permite executar um bloco de código quando a
-condição é verdadeira e outro bloco de código quando a condição é falsa.
+A estrutura \texttt{if...else} permite executar um bloco de código quando a condição é verdadeira e outro bloco de código quando a condição é falsa.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2570,10 +2655,11 @@ condição é verdadeira e outro bloco de código quando a condição é falsa.
 \end{Highlighting}
 \end{Shaded}
 
+Aqui, a condição \texttt{x\ \textgreater{}\ 5} é falsa, então o bloco de código dentro de \texttt{else} é executado.
+
 \section{\texorpdfstring{Condicional \texttt{if...else\ if...else}}{Condicional if...else if...else}}\label{condicional-if...else-if...else}
 
-A estrutura \texttt{if...else\ if...else} permite testar múltiplas condições em
-sequência. Executa o bloco de código do primeiro teste que resulta em
+A estrutura \texttt{if...else\ if...else} permite testar múltiplas condições em sequência. Executa o bloco de código do primeiro teste que resulta em
 verdadeiro.
 
 \begin{Shaded}
@@ -2606,11 +2692,11 @@ verdadeiro.
 \end{Highlighting}
 \end{Shaded}
 
+Neste caso, a primeira condição \texttt{x\ \textgreater{}\ 10} é falsa, mas a segunda \texttt{x\ \textgreater{}\ 5} é verdadeira, então o segundo bloco de código é executado.
+
 \section{\texorpdfstring{A função \texttt{ifelse()}}{A função ifelse()}}\label{a-funuxe7uxe3o-ifelse}
 
-A função \texttt{ifelse} é uma versão vetorizada de if\ldots else que retorna
-valores dependendo de uma condição. É muito útil para aplicar condições
-a vetores.
+A função \texttt{ifelse} é uma versão vetorizada de if\ldots else que retorna valores dependendo de uma condição. É especialmente útil para aplicar condições a vetores ou data frames.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2630,6 +2716,8 @@ a vetores.
 \DocumentationTok{\#\# [4] "não é maior que 5"}
 \end{Highlighting}
 \end{Shaded}
+
+Aqui, \texttt{ifelse()} aplica a condição \texttt{valores\ \textgreater{}\ 5} a cada elemento do vetor valores e retorna ``maior que 5'' se a condição for verdadeira ou ``não é maior que 5'' caso contrário.
 
 \section{Exemplos}\label{exemplos}
 
@@ -2738,47 +2826,33 @@ Código correto
 
 \textbf{2.} Crie um programa em R que leia um número inteiro do usuário e imprima ``Par'' se o número for par e ``Ímpar'' caso contrário.
 
-\textbf{3.} Escreva um programa em R que leia um número e exiba se ele está no intervalo {[}0, 10{]}, {[}11, 20{]}, ou maior que 20.
+\textbf{3.} Escreva um programa em R que leia um número e exiba se ele está no intervalo {[}0, 10{]}, {[}11, 20{]}, ou maior que 20. Considere que os intervalos {[}0, 10{]} e {[}11, 20{]} são inclusivos. Por exemplo, para o número 15, o programa deve exibir ``O número está no intervalo {[}11, 20{]}''.
 
-\textbf{4.} Escreva um programa em R que leia a idade de uma pessoa e classifique-a como ``Criança'', ``Adolescente'', ``Adulto'' ou ``Idoso''. Considere:
+\textbf{4.} \textbf{Exercício 4:} Escreva um programa em R que leia a idade de uma pessoa e classifique-a como ``Criança'', ``Adolescente'', ``Adulto'' ou ``Idoso''. Considere:
+* Criança: 0-12 anos
+* Adolescente: 13-17 anos
+* Adulto: 18-64 anos
+* Idoso: 65 anos ou mais
 
-\begin{itemize}
-\tightlist
-\item
-  Criança: 0-12 anos
-\item
-  Adolescente: 13-17 anos
-\item
-  Adulto: 18-64 anos
-\item
-  Idoso: 65 anos ou mais
-\end{itemize}
+Se a idade inserida for negativa, o programa deve exibir ``Idade inválida''. Exemplo de entrada: 25; Saída esperada: ``Adulto''.
 
 \textbf{5.} Escreva um programa em R que leia o preço original de um produto e aplique um desconto com base no seguinte critério:
+* Desconto de 5\% se o preço for inferior a \$100
+* Desconto de 10\% se o preço estiver entre \$100 e \$500 (inclusive)
+* Desconto de 15\% se o preço for superior a \$500
 
-\begin{itemize}
-\tightlist
-\item
-  Desconto de 5\% se o preço for inferior a \$100
-\item
-  Desconto de 10\% se o preço estiver entre \$100 e \$500
-\item
-  Desconto de 15\% se o preço for superior a \$500
-\end{itemize}
+Se o preço inserido for negativo, o programa deve exibir ``Preço inválido''. Exemplo de entrada: 350; Saída esperada: ``O preço com desconto é \$315''.
 
-\textbf{6.} Escreva um programa em R que leia as coordenadas (x, y) de um ponto e determine em qual quadrante o ponto está localizado.
+\textbf{6.} \textbf{Exercício 6:} Escreva um programa em R que leia as coordenadas (x, y) de um ponto e determine em qual quadrante o ponto está localizado. Se o ponto estiver em um dos eixos, o programa deve especificar ``Eixo X'' ou ``Eixo Y''. Exemplo de entrada: (x = -3, y = 2); Saída esperada: ``Segundo quadrante''.
 
 \textbf{7.} Escreva um programa em R que leia um ano e determine se é um ano bissexto. Um ano é bissexto se:
+* É divisível por 4, mas não divisível por 100, exceto quando divisível por 400.
 
-\begin{itemize}
-\tightlist
-\item
-  É divisível por 4, mas não divisível por 100, exceto quando divisível por 400.
-\end{itemize}
+Se o ano inserido for negativo, o programa deve exibir ``Ano inválido''. Exemplo de entrada: 2000; Saída esperada: ``Ano bissexto''.
 
-\textbf{8.} Escreva um programa que leia um número inteiro entre 0 e 999, e o descreva em termos do número de centenas, número de dezenas e número de unidades. Por exemplo, para 304 o resultado pretendido é ``3 centenas 0 dezenas e 4 unidades''. Caso o número inteiro não pertença ao intervalo {[}0;999{]} deverá imprimir um aviso ``Número fora do intervalo''.
+\textbf{8.} Escreva um programa que leia um número inteiro entre 0 e 999, e o descreva em termos do número de centenas, dezenas e unidades. Por exemplo, para 304, o programa deve exibir ``3 centenas 0 dezenas e 4 unidades''. Caso o número inteiro não pertença ao intervalo {[}0;999{]}, deverá imprimir um aviso ``Número fora do intervalo''. Exemplo de entrada: 256; Saída esperada: ``2 centenas 5 dezenas e 6 unidades''.
 
-\textbf{9.} Escreva um programa em R que leia um número inteiro positivo (menor ou igual a 5) e escreva no ecrã a sua representação em numeração romana.
+\textbf{9.} Escreva um programa em R que leia um número inteiro positivo (menor ou igual a 5) e escreva no ecrã a sua representação em numeração romana. Se o número inserido for maior que 5 ou menor que 1, o programa deve exibir ``Número fora do intervalo''. Exemplo de entrada: 3; Saída esperada: ``III''.
 
 \textbf{10.} Escreva um programa em R que leia quatro números inteiros (um de cada vez) e escreva após cada interação qual o menor número lido até ao momento. Segue-se um exemplo da interação com o computador.
 
@@ -4355,7 +4429,7 @@ significado.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-132-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-141-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4370,7 +4444,7 @@ significado.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-133-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-142-1.pdf}
 
 \section{Gráfico circular (pizza)}\label{gruxe1fico-circular-pizza}
 
@@ -4387,7 +4461,7 @@ sua contribuição para o total.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-134-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-143-1.pdf}
 
 \section{Histograma}\label{histograma}
 
@@ -4426,7 +4500,7 @@ de intervalo de classe no R é \((a, b]\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-135-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-144-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4453,7 +4527,7 @@ de intervalo de classe no R é \((a, b]\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-137-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-146-1.pdf}
 
 \section{Box-plot}\label{box-plot}
 
@@ -4464,7 +4538,7 @@ de intervalo de classe no R é \((a, b]\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-138-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-147-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4473,7 +4547,7 @@ de intervalo de classe no R é \((a, b]\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-139-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-148-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4488,7 +4562,7 @@ de intervalo de classe no R é \((a, b]\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-140-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-149-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5733,7 +5807,7 @@ Temos então um tempo médio de 11.75 minutos.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-180-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-189-1.pdf}
 
 \section{Geração de números pseudoaleatórios}\label{gerauxe7uxe3o-de-nuxfameros-pseudoaleatuxf3rios}
 
@@ -6003,7 +6077,7 @@ Gerar um número aleatório uniforme \(U\) no intervalo {[}0,1{]}. Para determin
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-185-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-194-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6086,7 +6160,7 @@ p,& \quad \text{se} \quad x=1 \end{cases}\] Para gerar uma Bernoulli(p) podemos 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-187-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-196-1.pdf}
 
 \textbf{Exemplo 5}: Geração de uma variável aleatória com distribuição Geométrica(p). Seja \(X\sim Geometrica(p)\). Lembre que \[P(X=x)=p(1-p)^{x-1}\] e que \[F(x) = P(X\leq x) = \begin{cases} 0,& \quad \text{se} \quad x<1 \\
 1-(1-p)^x,& \quad \text{se} \quad x\geq 1\end{cases}\]
@@ -6118,7 +6192,7 @@ onde \(\lfloor  \rfloor =\) maior inteiro.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-188-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-197-1.pdf}
 
 \textbf{Exemplo 6}: Geração de uma variável aleatória com distribuição de Poisson. A variável aleatória \(X\) é de Poisson com média \(\lambda\) se \[p_{i} = P(X = i) = \frac{e^{-\lambda}\lambda^i}{i!}, \quad i=0,1,\ldots\]
 
@@ -6154,7 +6228,7 @@ Ao utilizar a recursão acima para calcular as probabilidades de Poisson quando 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-189-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-198-1.pdf}
 
 \section{Variável aleatória contínua}\label{variuxe1vel-aleatuxf3ria-contuxednua}
 
@@ -6191,7 +6265,7 @@ A função \(F(x)=x^2\) é invertível no intervalo \((0,1)\) e \(F^{-1}(x)=\sqr
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-190-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-199-1.pdf}
 
 \textbf{Exemplo 2}: Geração de uma variável aleatória uniforme(a,b). A geração é feita através de \[X = a+(b-a)U.\]
 
@@ -6207,7 +6281,7 @@ A função \(F(x)=x^2\) é invertível no intervalo \((0,1)\) e \(F^{-1}(x)=\sqr
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-191-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-200-1.pdf}
 
 \textbf{Exemplo 3}: Geração de uma variável aleatória exponencial. Seja \(X\) uma variável aleatória exponencial com taxa 1, então sua função de distribuição é dada por \[F(x)=1-e^{x}.\]
 Como \(0\leq F(x)\leq 1\), tomando \(F(x)=u\), onde \(u\sim U(0,1)\) tem-se: \[u=F(x)=1-e^{x}\] ou \[1-u=e^{-x}\] ou, aplicando o logaritmo \[x=-ln(1-u).\] Daí, pode-se gerar uma exponencial com parâmetro 1 gerando um número aleatório \(U\) e em seguida fazendo \[X = F^{-1}(U) = -ln(1-U).\] Uma pequena economia de tempo pode ser obtida notando que \(1-U\) também é uniforme em \((0,1)\) e assim, \(-ln(1-U)\) tem a mesma distribuição que \(-ln(U)\). Isto é, o logaritmo negativo de um número aleatório é exponencialmente distribuído com taxa 1.
@@ -6241,7 +6315,7 @@ Além disso, note que se \(X\) é uma exponencial com média 1, então para qual
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-192-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-201-1.pdf}
 
 \textbf{Exercício}: Seja \(X\) uma variável aleatória com distribuição \(W(\alpha, \beta)\). Assim a fdp de \(X\) é
 \[f(x) = \begin{cases}
@@ -6590,7 +6664,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-200-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-209-1.pdf}
 
 \textbf{Exemplo 1}: Resolva o exemplo 1 usando a função de distribuição empírica.
 
@@ -6643,7 +6717,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-202-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-211-1.pdf}
 
 \subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o}
 
@@ -6668,7 +6742,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-203-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-212-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o}
 
@@ -6696,7 +6770,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-204-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-213-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o}
 
@@ -6719,7 +6793,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-205-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-214-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-1}
 
@@ -6742,7 +6816,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-206-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-215-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6751,7 +6825,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-206-2.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-215-2.pdf}
 
 \textbf{Cálculo de probabilidade}: Seja
 \(X \sim \text{Binomial}(n=10, p=0.5)\).
@@ -6819,7 +6893,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-207-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-216-1.pdf}
 
 \subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o-1}
 
@@ -6852,7 +6926,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-208-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-217-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-1}
 
@@ -6888,7 +6962,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-209-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-218-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-1}
 
@@ -6908,7 +6982,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-210-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-219-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-2}
 
@@ -6929,7 +7003,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-211-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-220-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6944,7 +7018,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-211-2.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-220-2.pdf}
 
 \textbf{Cálculo de probabilidades}: Seja \(X\sim\text{Poisson}(\lambda=5)\).
 
@@ -6984,7 +7058,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-212-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-221-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o}
 
@@ -7009,7 +7083,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-213-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-222-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-2}
 
@@ -7040,7 +7114,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-214-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-223-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-2}
 
@@ -7060,7 +7134,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-215-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-224-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-3}
 
@@ -7085,7 +7159,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-216-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-225-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7122,7 +7196,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-217-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-226-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-1}
 
@@ -7147,7 +7221,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-218-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-227-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-3}
 
@@ -7178,7 +7252,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-219-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-228-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-3}
 
@@ -7198,7 +7272,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-220-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-229-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-4}
 
@@ -7223,7 +7297,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-221-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-230-1.pdf}
 
 \section{Gerando uma variável aleatória com distribuição Normal}\label{gerando-uma-variuxe1vel-aleatuxf3ria-com-distribuiuxe7uxe3o-normal}
 
@@ -7253,7 +7327,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-222-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-231-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-2}
 
@@ -7278,7 +7352,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-223-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-232-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-4}
 
@@ -7309,7 +7383,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-224-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-233-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-4}
 
@@ -7329,7 +7403,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-225-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-234-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-5}
 
@@ -7354,7 +7428,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-226-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-235-1.pdf}
 
 \section{Exercícios}\label{exercuxedcios-18}
 
