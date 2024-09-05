@@ -4637,9 +4637,11 @@ Você pode comparar a distribuição de múltiplas variáveis lado a lado com bo
 
 \section{Tibbles}\label{tibbles}
 
-\textbf{Tibbles} são uma versão aprimorada dos data frames no R, introduzida pelo pacote \texttt{tibble}, que faz parte do \texttt{tidyverse}, um conjunto de pacotes projetados para a ciência de dados. Um tibble fornece uma estrutura de dados mais moderna e amigável, melhorando a experiência de manipulação de dados no R.
+\textbf{Tibbles} são uma versão moderna e aprimorada dos data frames em R, introduzida pelo pacote \texttt{tibble}, que é parte do \texttt{tidyverse} --- um conjunto de pacotes desenvolvido para facilitar a ciência de dados em R. Tibbles foram projetados para superar algumas das limitações dos data frames tradicionais, oferecendo uma estrutura de dados mais robusta e intuitiva para manipulação e análise de dados.
 
 \textbf{Diferenças Principais entre Tibble e Data Frame}
+
+Tibbles possuem várias vantagens sobre os data frames, especialmente em termos de usabilidade e integração com o \texttt{tidyverse}. A tabela abaixo resume as principais diferenças:
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2847}}
@@ -4663,11 +4665,16 @@ Manuseio de Colunas & Apenas vetores, listas podem ser problemáticas & Permite 
 Nomes de Colunas & Nomes devem ser únicos e sem espaços & Nomes podem ter espaços, ser duplicados, etc. \\
 Retorno de Subsetting (\texttt{{[}}) & Pode retornar um vetor ou data frame & Sempre retorna um tibble \\
 Compatibilidade e Integração & Totalmente compatível com base R & Compatível, mas otimizado para uso com tidyverse \\
-Manipulação de Dados & Pode ser menos intuitivo para algumas operações & Mais amigável e intuitivo, especialmente com pipes \\
+Manipulação de Dados & Menos intuitivo para algumas operações. & Mais intuitivo e fácil de usar, especialmente com operações encadeadas. \\
 \end{longtable}
+
+\subsection{Criando e Trabalhando com Tibbles}\label{criando-e-trabalhando-com-tibbles}
+
+Criar um \texttt{tibble} é semelhante a criar um data frame, mas com uma sintaxe ligeiramente diferente que facilita a criação de colunas complexas.
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Carregar o pacote tibble}
 \FunctionTok{library}\NormalTok{(tibble)}
 
 \CommentTok{\# Criando um tibble}
@@ -4689,7 +4696,7 @@ Manipulação de Dados & Pode ser menos intuitivo para algumas operações & Mai
 \end{Highlighting}
 \end{Shaded}
 
-Conversão de data frame pra tibble:
+Você também pode converter um data frame existente para um tibble usando a função \texttt{as\_tibble()}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4714,36 +4721,28 @@ Conversão de data frame pra tibble:
 \end{Highlighting}
 \end{Shaded}
 
-\section{\texorpdfstring{O pacote \texttt{dplyr}}{O pacote dplyr}}\label{o-pacote-dplyr}
+\section{\texorpdfstring{Manipulação de Dados com \texttt{dplyr}}{Manipulação de Dados com dplyr}}\label{manipulauxe7uxe3o-de-dados-com-dplyr}
 
-O \texttt{dplyr} é um dos pacotes mais populares e amplamente utilizados no R
-para manipulação e transformação de dados. Ele faz parte do conjunto de
-pacotes ``tidyverse,'' que são projetados para simplificar o trabalho com
-dados no R. O \texttt{dplyr} oferece uma interface intuitiva e de fácil uso
-para realizar operações comuns em data frames, como seleção de colunas,
-filtragem de linhas, ordenação, resumo de dados e junção de data frames.
+O \texttt{dplyr} é um pacote fundamental no \texttt{tidyverse} para manipulação de dados em R. Ele proporciona uma sintaxe mais limpa e legível para operações comuns em data frames e tibbles, como seleção, filtragem, mutação (criação/modificação de colunas), ordenação e agrupamento de dados.
 
 As principais funções do \texttt{dplyr} são:
 
 \begin{itemize}
 \tightlist
 \item
-  \texttt{select()} - seleciona colunas
+  \texttt{select()}: Seleciona colunas de um data frame.
+  *\texttt{arrange()}: Ordena as linhas de um data frame com base nos valores de uma ou mais colunas.
 \item
-  \texttt{arrange()} - ordena a base
+  \texttt{filter()}: Filtra linhas com base em condições lógicas.
 \item
-  \texttt{filter()} - filtra linhas
+  \texttt{mutate()}: Adiciona novas colunas ou modifica colunas existentes.
 \item
-  \texttt{mutate()} - cria/modifica colunas
+  \texttt{group\_by()}: Agrupa os dados com base nos valores de uma ou mais colunas.
 \item
-  \texttt{group\_by()} - agrupa a base
-\item
-  \texttt{summarise()} - sumariza a base
+  \texttt{summarise()}: Resuma os dados, tipicamente usado após \texttt{group\_by()} para calcular estatísticas agregadas.
 \end{itemize}
 
-Neste capítulo, vamos trabalhar com uma base de dados do Star Wars. Essa
-base está disponível dentro do pacote \texttt{dplyr} no R e pode ser acessada
-através do comando \texttt{starwars}.
+Vamos explorar cada uma dessas funções usando o dataset \texttt{starwars} disponível no pacote dplyr.
 
 Assim, utilizaremos o objeto \texttt{sw} para acessar os dados.
 
@@ -4772,37 +4771,38 @@ Assim, utilizaremos o objeto \texttt{sw} para acessar os dados.
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Carregar o dataset Star Wars}
 \NormalTok{sw }\OtherTok{\textless{}{-}}\NormalTok{ starwars}
-\NormalTok{sw}
+\FunctionTok{glimpse}\NormalTok{(sw) }\CommentTok{\# Exibe uma visão geral dos dados}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 87 x 14
-##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
-##    <chr>     <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
-##  1 Luke Sk~    172    77 blond      fair       blue            19   male  mascu~
-##  2 C-3PO       167    75 <NA>       gold       yellow         112   none  mascu~
-##  3 R2-D2        96    32 <NA>       white, bl~ red             33   none  mascu~
-##  4 Darth V~    202   136 none       white      yellow          41.9 male  mascu~
-##  5 Leia Or~    150    49 brown      light      brown           19   fema~ femin~
-##  6 Owen La~    178   120 brown, gr~ light      blue            52   male  mascu~
-##  7 Beru Wh~    165    75 brown      light      blue            47   fema~ femin~
-##  8 R5-D4        97    32 <NA>       white, red red             NA   none  mascu~
-##  9 Biggs D~    183    84 black      light      brown           24   male  mascu~
-## 10 Obi-Wan~    182    77 auburn, w~ fair       blue-gray       57   male  mascu~
-## # i 77 more rows
-## # i 5 more variables: homeworld <chr>, species <chr>, films <list>,
-## #   vehicles <list>, starships <list>
+## Rows: 87
+## Columns: 14
+## $ name       <chr> "Luke Skywalker", "C-3PO", "R2-D2", "Darth Vader", "Leia Or~
+## $ height     <int> 172, 167, 96, 202, 150, 178, 165, 97, 183, 182, 188, 180, 2~
+## $ mass       <dbl> 77.0, 75.0, 32.0, 136.0, 49.0, 120.0, 75.0, 32.0, 84.0, 77.~
+## $ hair_color <chr> "blond", NA, NA, "none", "brown", "brown, grey", "brown", N~
+## $ skin_color <chr> "fair", "gold", "white, blue", "white", "light", "light", "~
+## $ eye_color  <chr> "blue", "yellow", "red", "yellow", "brown", "blue", "blue",~
+## $ birth_year <dbl> 19.0, 112.0, 33.0, 41.9, 19.0, 52.0, 47.0, NA, 24.0, 57.0, ~
+## $ sex        <chr> "male", "none", "none", "male", "female", "male", "female",~
+## $ gender     <chr> "masculine", "masculine", "masculine", "masculine", "femini~
+## $ homeworld  <chr> "Tatooine", "Tatooine", "Naboo", "Tatooine", "Alderaan", "T~
+## $ species    <chr> "Human", "Droid", "Droid", "Human", "Human", "Human", "Huma~
+## $ films      <list> <"A New Hope", "The Empire Strikes Back", "Return of the J~
+## $ vehicles   <list> <"Snowspeeder", "Imperial Speeder Bike">, <>, <>, <>, "Imp~
+## $ starships  <list> <"X-wing", "Imperial shuttle">, <>, <>, "TIE Advanced x1",~
 \end{verbatim}
 
-\subsection{Selecionando colunas}\label{selecionando-colunas}
+\subsection{\texorpdfstring{Seleção de Colunas com \texttt{select()}}{Seleção de Colunas com select()}}\label{seleuxe7uxe3o-de-colunas-com-select}
 
-Para selecionar colunas, utilizamos a função \texttt{select()}. Repare que não
-precisamos colocar o nome da coluna entre aspas.
+A função \texttt{select()} é utilizada para selecionar uma ou mais colunas de um tibble ou data frame. Você pode usar nomes de colunas diretamente sem aspas.
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Selecionar uma coluna}
 \FunctionTok{select}\NormalTok{(sw, name)}
 \end{Highlighting}
 \end{Shaded}
@@ -4824,10 +4824,9 @@ precisamos colocar o nome da coluna entre aspas.
 ## # i 77 more rows
 \end{verbatim}
 
-Também podemos selecionar várias colunas
-
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Selecionar várias colunas}
 \FunctionTok{select}\NormalTok{(sw, name, mass, hair\_color)}
 \end{Highlighting}
 \end{Shaded}
@@ -4849,10 +4848,9 @@ Também podemos selecionar várias colunas
 ## # i 77 more rows
 \end{verbatim}
 
-Podemos usar o operador \texttt{:} para selecionar colunas consecutivas.
-
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Selecionar um intervalo de colunas}
 \FunctionTok{select}\NormalTok{(sw, name}\SpecialCharTok{:}\NormalTok{hair\_color)}
 \end{Highlighting}
 \end{Shaded}
@@ -4874,8 +4872,7 @@ Podemos usar o operador \texttt{:} para selecionar colunas consecutivas.
 ## # i 77 more rows
 \end{verbatim}
 
-O \texttt{dplyr} possui um conjunto de funções auxiliares muito úteis para
-seleção de colunas. As principais são:
+O \texttt{dplyr} possui um conjunto de funções auxiliares muito úteis para seleção de colunas. As principais são:
 
 \begin{itemize}
 \tightlist
@@ -4889,6 +4886,7 @@ seleção de colunas. As principais são:
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Selecionar colunas que terminam com "color"}
 \FunctionTok{select}\NormalTok{(sw, }\FunctionTok{ends\_with}\NormalTok{(}\StringTok{"color"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
@@ -4938,6 +4936,7 @@ Para remover colunas basta acrescentar um \texttt{-} antes da seleção.
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Remover múltiplas colunas}
 \FunctionTok{select}\NormalTok{(sw, }\SpecialCharTok{{-}}\FunctionTok{ends\_with}\NormalTok{(}\StringTok{"color"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
@@ -4964,28 +4963,22 @@ Para remover colunas basta acrescentar um \texttt{-} antes da seleção.
 
 Utilize a base \texttt{sw} nos exercícios a seguir.
 
-\textbf{1.} Teste aplicar a função \texttt{glimpse()} do pacote `\texttt{dplyr} à base
-\texttt{sw}. O que ela faz?
+\textbf{1.} Utilize a função \texttt{glimpse()} do pacote \texttt{dplyr} na base \texttt{sw}. O que ela faz?
 
-\textbf{2.} Crie uma tabela com apenas as colunas \texttt{name}, \texttt{gender}, e
-\texttt{films}. Salve em um objeto chamado \texttt{sw\_simples}.
+\textbf{2.} Crie uma tabela chamada \texttt{sw\_simples} contendo apenas as colunas \texttt{name}, \texttt{gender} e \texttt{films}.
 
-\textbf{3.} Selecione apenas as colunas \texttt{hair\_color}, \texttt{skin\_color} e
-\texttt{eye\_color} usando a função auxiliar \texttt{contains()}.
+\textbf{3.} Selecione apenas as colunas \texttt{hair\_color}, \texttt{skin\_color} e \texttt{eye\_color} usando a função auxiliar \texttt{contains()}.
 
-\textbf{4.} Usando a função \texttt{select()} (e suas funções auxiliares), escreva
-códigos que retornem a base \texttt{sw} sem as colunas \texttt{hair\_color},
-\texttt{skin\_color} e \texttt{eye\_color}. Escreva todas as soluções diferentes que
+\textbf{4.} Usando a função \texttt{select()} e suas funções auxiliares, escreva códigos que retornem a base \texttt{sw} sem as colunas \texttt{hair\_color}, \texttt{skin\_color} e \texttt{eye\_color}. Escreva todas as soluções diferentes que
 você conseguir pensar.
 
-\subsection{Ordenando a base}\label{ordenando-a-base}
+\subsection{Ordenando a Base de Dados}\label{ordenando-a-base-de-dados}
 
-Para ordenar linhas, utilizamos a função \texttt{arrange()}. O primeiro
-argumento é a base de dados. Os demais argumentos são as colunas pelas
-quais queremos ordenar as linhas.
+A função \texttt{arrange()} permite ordenar as linhas de uma tabela com base nos valores de uma ou mais colunas. Você pode ordenar em ordem crescente ou decrescente, dependendo da necessidade.
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Exemplo de ordenação crescente}
 \FunctionTok{arrange}\NormalTok{(sw, mass)}
 \end{Highlighting}
 \end{Shaded}
@@ -5009,10 +5002,9 @@ quais queremos ordenar as linhas.
 ## #   vehicles <list>, starships <list>
 \end{verbatim}
 
-Também podemos ordenar de forma decrescente usando a função \texttt{desc()}.
-
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Exemplo de ordenação decrescente}
 \FunctionTok{arrange}\NormalTok{(sw, }\FunctionTok{desc}\NormalTok{(mass))}
 \end{Highlighting}
 \end{Shaded}
@@ -5036,10 +5028,9 @@ Também podemos ordenar de forma decrescente usando a função \texttt{desc()}.
 ## #   vehicles <list>, starships <list>
 \end{verbatim}
 
-Ordenar segundo duas ou mais colunas.
-
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Ordenar por múltiplas colunas}
 \FunctionTok{arrange}\NormalTok{(sw, }\FunctionTok{desc}\NormalTok{(height), }\FunctionTok{desc}\NormalTok{(mass))}
 \end{Highlighting}
 \end{Shaded}
@@ -5065,8 +5056,7 @@ Ordenar segundo duas ou mais colunas.
 
 \subsection{Exercícios}\label{exercuxedcios-13}
 
-\textbf{1.} Ordene \texttt{mass} em ordem crescente e \texttt{birth\_year} em ordem
-decrescente e salve em um objeto chamado \texttt{sw\_ordenados}.
+\textbf{1.} Ordene a base \texttt{sw} pela coluna \texttt{mass} em ordem crescente e pela coluna \texttt{birth\_year} em ordem decrescente. Salve o resultado em um objeto chamado \texttt{sw\_ordenados}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5075,29 +5065,28 @@ decrescente e salve em um objeto chamado \texttt{sw\_ordenados}.
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{2.} Selecione apenas as colunas \texttt{name} e \texttt{birth\_year} e então ordene
+\textbf{2.} Selecione apenas as colunas \texttt{name} e \texttt{birth\_year}, então ordene
 de forma decrescente pelo \texttt{birth\_year}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Aninhando funções}
+\CommentTok{\# Usando aninhamento de funções}
 \FunctionTok{arrange}\NormalTok{(}\FunctionTok{select}\NormalTok{(sw, name, birth\_year), }\FunctionTok{desc}\NormalTok{(birth\_year))}
 
-\CommentTok{\# Criando um objeto intermediário}
+\CommentTok{\# Usando um objeto intermediário}
 \NormalTok{sw\_aux }\OtherTok{\textless{}{-}} \FunctionTok{select}\NormalTok{(sw, name, birth\_year)}
 \FunctionTok{arrange}\NormalTok{(sw\_aux, }\FunctionTok{desc}\NormalTok{(birth\_year))}
 
-\CommentTok{\# Pipe}
+\CommentTok{\# Usando pipes para simplificar}
 \NormalTok{sw }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{select}\NormalTok{(name, birth\_year) }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(birth\_year))}
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Filtrando linhas}\label{filtrando-linhas}
+\subsection{Filtrando Linhas da Base de Dados}\label{filtrando-linhas-da-base-de-dados}
 
-Para filtrar valores de uma coluna da base, utilizamos a função
-\texttt{filter()}.
+Para selecionar linhas específicas com base em uma ou mais condições, utilizamos a função \texttt{filter()}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5126,8 +5115,7 @@ Para filtrar valores de uma coluna da base, utilizamos a função
 ## #   vehicles <list>, starships <list>
 \end{verbatim}
 
-Podemos selecionar apenas as colunas \texttt{name} e \texttt{height} para
-visualizarmos as alturas:
+Podemos selecionar apenas as colunas \texttt{name} e \texttt{height} para visualizarmos as alturas:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5206,11 +5194,11 @@ Podemos estender o filtro para duas ou mais colunas.
 ## #   vehicles <list>, starships <list>
 \end{verbatim}
 
-Podemos filtrar colunas categóricas. O exemplo abaixo retorna uma tabela
-apenas com os personagens com cabelo preto ou castanho.
+Podemos filtrar colunas categóricas. O exemplo abaixo retorna uma tabela apenas com os personagens com cabelo preto ou castanho.
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Filtrar texto com correspondência exata}
 \FunctionTok{filter}\NormalTok{(sw, hair\_color }\SpecialCharTok{==} \StringTok{"black"} \SpecialCharTok{|}\NormalTok{ hair\_color }\SpecialCharTok{==} \StringTok{"brown"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -5236,6 +5224,7 @@ apenas com os personagens com cabelo preto ou castanho.
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Filtrar texto com correspondência exata}
 \NormalTok{sw }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(hair\_color }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"black"}\NormalTok{,}\StringTok{"brown"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
@@ -5259,8 +5248,7 @@ apenas com os personagens com cabelo preto ou castanho.
 ## #   vehicles <list>, starships <list>
 \end{verbatim}
 
-Para filtrar textos sem correspondência exata, podemos utilizar a função
-auxiliar \texttt{str\_detect()} do pacote \texttt{\{stringr\}}. Ela serve para verificar
+Para filtrar textos sem correspondência exata, podemos utilizar a função auxiliar \texttt{str\_detect()} do pacote \texttt{\{stringr\}}. Ela serve para verificar
 se cada string de um vetor contém um determinado padrão de texto.
 
 \begin{Shaded}
@@ -5323,38 +5311,30 @@ Podemos utilizá-la para filtrar apenas os personagens com cabelo \texttt{grey}.
 
 Utilize a base \texttt{sw} nos exercícios a seguir.
 
-\textbf{1.} Crie um objeto chamado \texttt{humanos} apenas com personagens que sejam
-humanos.
+\textbf{1.} Crie um objeto chamado \texttt{humanos} apenas com personagens que sejam humanos.
 
-\textbf{2.} Crie um objeto chamado \texttt{altos\_fortes} com personagens que tenham
-mais de 200 cm de altura e peso maior que 100 kg.
+\textbf{2.} Crie um objeto chamado \texttt{altos\_fortes} com personagens que tenham mais de 200 cm de altura e peso maior que 100 kg.
 
 \textbf{3.} Retorne tabelas (\texttt{tibbles}) apenas com:
 
-\textbf{a.} Personagens humanos que nasceram antes de 100 anos antes da
-batalha de Yavin (\texttt{birth\_year\ \textless{}\ 100}).
+\textbf{a.} Personagens humanos que nasceram antes de 100 anos antes da batalha de Yavin (\texttt{birth\_year\ \textless{}\ 100}).
 
 \textbf{b.} Personagens com cor \texttt{light} ou \texttt{red}.
 
-\textbf{c.} Personagens com massa maior que 100 kg, ordenados de forma
-decrescente por altura, mostrando apenas as colunas \texttt{name}, \texttt{mass} e
-\texttt{height}.
+\textbf{c.} Personagens com massa maior que 100 kg, ordenados de forma decrescente por altura, mostrando apenas as colunas \texttt{name}, \texttt{mass} e \texttt{height}.
 
-\textbf{d.} Personagens que sejam ``Humano'' ou ``Droid'', e tenham uma altura
-maior que 170 cm.
+\textbf{d.} Personagens que sejam ``Humano'' ou ``Droid'', e tenham uma altura maior que 170 cm.
 
-\textbf{e.} Personagens que não possuem informação tanto de altura (height)
-quanto de massa (mass), ou seja, possuem NA em ambas as colunas.
+\textbf{e.} Personagens que não possuem informação tanto de altura (\texttt{height}) quanto de massa (\texttt{mass}), ou seja, possuem \texttt{NA} em ambas as colunas.
 
 \subsection{Modificando e criando novas colunas}\label{modificando-e-criando-novas-colunas}
 
-Para modificar uma coluna existente ou criar uma nova coluna, utilizamos
-a função \texttt{mutate()}. O código abaixo divide os valores da coluna
-\texttt{height} por 100, mudando a unidade de medida dessa variável de
+A função \texttt{mutate()} permite criar novas colunas ou modificar colunas existentes, facilitando transformações de dados. O código abaixo divide os valores da coluna \texttt{height} por 100, mudando a unidade de medida dessa variável de
 centímetros para metros.
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Modificar a unidade de medida da coluna height}
 \NormalTok{sw }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{height =}\NormalTok{ height}\SpecialCharTok{/}\DecValTok{100}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -5378,8 +5358,7 @@ centímetros para metros.
 ## #   vehicles <list>, starships <list>
 \end{verbatim}
 
-Também poderíamos ter criado essa variável em uma nova coluna. Repare
-que a nova coluna \texttt{height\_meters} é colocada no final da tabela.
+Também poderíamos ter criado essa variável em uma nova coluna. Repare que a nova coluna \texttt{height\_meters} é colocada no final da tabela.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5406,10 +5385,7 @@ que a nova coluna \texttt{height\_meters} é colocada no final da tabela.
 ## #   vehicles <list>, starships <list>, height_meters <dbl>
 \end{verbatim}
 
-Podemos fazer qualquer operação com uma ou mais colunas. Abaixo vamos
-criar um tibble que contenha as colunas \texttt{name}, \texttt{height}, \texttt{mass}, e uma
-nova coluna \texttt{BMI}, que calcule o Índice de Massa Corporal (IMC) de cada
-personagem, usando a fórmula \texttt{mass\ /\ (height/100)\^{}2}. Caso \texttt{height} ou
+Podemos fazer qualquer operação com uma ou mais colunas. Abaixo vamos criar um tibble que contenha as colunas \texttt{name}, \texttt{height}, \texttt{mass}, e uma nova coluna \texttt{BMI}, que calcule o Índice de Massa Corporal (IMC) de cada personagem, usando a fórmula \texttt{mass\ /\ (height/100)\^{}2}. Caso \texttt{height} ou
 \texttt{mass} seja \texttt{NA}, a coluna \texttt{BMI} deve ser \texttt{NA}.
 
 \begin{Shaded}
@@ -5439,10 +5415,9 @@ personagem, usando a fórmula \texttt{mass\ /\ (height/100)\^{}2}. Caso \texttt{
 
 \subsection{Exercícios}\label{exercuxedcios-15}
 
-\textbf{1.} Crie uma coluna chamada \texttt{dif\_peso\_altura} (diferença entre altura
-e peso) e salve a nova tabela em um objeto chamado \texttt{starwars\_dif}. Em
-seguida, filtre apenas os personagens que têm altura maior que o peso e
-ordene a tabela por ordem crescente de \texttt{dif\_peso\_altura}.
+\textbf{1.} Crie uma coluna chamada \texttt{dif\_peso\_altura} (diferença entre altura e peso) e salve a nova tabela em um objeto chamado \texttt{starwars\_dif}. Em seguida, filtre apenas os personagens que têm altura maior que o peso e ordene a tabela por ordem crescente de \texttt{dif\_peso\_altura}.
+
+\textbf{2.} Crie as seguintes colunas:
 
 \textbf{a.} \texttt{indice\_massa\_altura} = \texttt{mass} / \texttt{height}
 
@@ -5458,17 +5433,15 @@ ordene a tabela por ordem crescente de \texttt{dif\_peso\_altura}.
 (nascido após 100 anos antes da batalha de Yavin) e ``antigo'' (nascido há
 100 anos ou mais).
 
-\subsection{Sumarizando a base}\label{sumarizando-a-base}
+\subsection{Sumarizando a Base de Dados}\label{sumarizando-a-base-de-dados}
 
-A função \texttt{summarize()}no R é utilizada para criar resumos estatísticos
-de dados dentro de um data frame ou tibble. Ela é frequentemente usada
-para calcular estatísticas agregadas, como médias, somas, contagens,
-entre outras.
+A função \texttt{summarize()} permite calcular estatísticas agregadas, como média, mediana, variância, etc. Para agregar dados por categorias, combinamos \texttt{summarize()} com \texttt{group\_by()}.
 
 O código abaixo resume a coluna \texttt{mass} pela sua média.
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Exemplo de sumarização}
 \NormalTok{sw }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarize}\NormalTok{(}\AttributeTok{media\_massa =} \FunctionTok{mean}\NormalTok{(mass, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
@@ -5478,6 +5451,32 @@ O código abaixo resume a coluna \texttt{mass} pela sua média.
 ##   media_massa
 ##         <dbl>
 ## 1        97.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Sumarização agrupada por categorias}
+\NormalTok{sw }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(species) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{media\_massa =} \FunctionTok{mean}\NormalTok{(mass, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 38 x 2
+##    species   media_massa
+##    <chr>           <dbl>
+##  1 Aleena           15  
+##  2 Besalisk        102  
+##  3 Cerean           82  
+##  4 Chagrian        NaN  
+##  5 Clawdite         55  
+##  6 Droid            69.8
+##  7 Dug              40  
+##  8 Ewok             20  
+##  9 Geonosian        80  
+## 10 Gungan           74  
+## # i 28 more rows
 \end{verbatim}
 
 Podemos calcular ao mesmo tempo sumarizações diferentes.
@@ -5518,11 +5517,9 @@ Podemos também sumarizar diversas colunas.
 ## 1        97.3         175.      87.6
 \end{verbatim}
 
-Para sumarizar uma coluna agrupada pelas categorias de uma segunda
-coluna usamos além do \texttt{summarize()} a função \texttt{group\_by()}.
+Para sumarizar uma coluna agrupada pelas categorias de uma segunda coluna usamos além do \texttt{summarize()} a função \texttt{group\_by()}.
 
-O código a abaixo calcula a altura média dos personagens para cada
-categoria da coluna \texttt{hair\_color}.
+O código a abaixo calcula a altura média dos personagens para cada categoria da coluna \texttt{hair\_color}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5556,46 +5553,53 @@ Utilize a base \texttt{sw} nos exercícios a seguir.
 
 \textbf{1.} Calcule a altura média e mediana dos personagens.
 
-\textbf{2.} Calcule a massa média dos personagens cuja altura é maior que 175
-cm.
+\textbf{2.} Calcule a massa média dos personagens cuja altura é maior que 175 cm.
 
-\textbf{3.} Apresente na mesma tabela a massa média dos personagens com
-altura menor que 175 cm e a massa média dos personagens com altura maior
-ou igual a 175 cm.
+\textbf{3.} Apresente na mesma tabela a massa média dos personagens com altura menor que 175 cm e a massa média dos personagens com altura maior ou igual a 175 cm.
 
 \textbf{4.} Retorne tabelas (\texttt{tibbles}) apenas com:
 
-\textbf{a.} A altura média dos personagens por espécie. \textbf{b.} A massa média
-e mediana dos personagens por espécie. \textbf{c.} Apenas o nome dos
-personagens que participaram de mais de 2 filmes.
+\textbf{a.} A altura média dos personagens por espécie. \textbf{b.} A massa média e mediana dos personagens por espécie.
+\textbf{c.} Apenas o nome dos personagens que participaram de mais de 2 filmes.
 
-\subsection{Juntando duas bases}\label{juntando-duas-bases}
+\subsection{Juntando Tabelas em R com dplyr}\label{juntando-tabelas-em-r-com-dplyr}
 
-Podemos juntar duas tabelas (data frame ou tibble) a partir de uma coluna utilizando as funções \texttt{left\_join()}, \texttt{right\_join()} ou \texttt{full\_join()}.
+Em ciência de dados, é comum precisar combinar informações de diferentes fontes em uma única tabela. No R, o pacote dplyr oferece várias funções para realizar operações de junção, que permitem combinar duas ou mais tabelas (data frames ou tibbles) com base em uma ou mais colunas compartilhadas.
+
+\textbf{Tipos de Junção}
+
+As junções mais comuns em manipulação de dados são:
 
 \begin{itemize}
 \tightlist
 \item
-  \texttt{left\_join()}: Mantém todas as linhas da tabela à esquerda e adiciona colunas da tabela à direita onde existe uma correspondência.
+  \texttt{left\_join()}: Mantém todas as linhas da tabela à esquerda e adiciona as colunas da tabela à direita onde há correspondência de valores na coluna chave.
 \item
-  \texttt{right\_join()}: Mantém todas as linhas da tabela à direita e adiciona colunas da tabela à esquerda onde existe uma correspondência.
+  \texttt{right\_join()}: Mantém todas as linhas da tabela à direita e adiciona as colunas da tabela à esquerda onde há correspondência.
 \item
-  \texttt{full\_join()}: Mantém todas as linhas de ambas as tabelas e adiciona \texttt{NA} onde não existe correspondência.
+  \texttt{full\_join()}: Mantém todas as linhas de ambas as tabelas e adiciona NA onde não há correspondência.
 \end{itemize}
 
-Para ilustrar o uso das funções de junção, vamos criar dois subconjuntos de dados da base \texttt{sw}:
+Essas funções são extremamente úteis quando se precisa combinar dados de diferentes fontes que compartilham uma chave comum, como um identificador único.
+
+\textbf{Exemplo}: Personagens de Star Wars
+
+Para ilustrar como essas funções funcionam, vamos usar a base de dados \texttt{sw} e criar dois subconjuntos de dados:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
+\tightlist
 \item
-  Tabela de personagens altos (\texttt{personagens\_altos}) - personagens com altura superior a 180 cm.
+  \texttt{personagens\_altos}: Tabela contendo apenas personagens com altura superior a 180 cm.
 \item
-  Tabela de personagens humanos (\texttt{personagens\_humanos}).
+  \texttt{personagens\_humanos}: Tabela contendo apenas personagens que são humanos.
 \end{enumerate}
+
+Vamos criar nossos subconjuntos de dados usando a função \texttt{filter()} do dplyr.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Criar subconjunto de personagens altos}
+\CommentTok{\# Criar subconjunto de personagens altos (altura \textgreater{} 180 cm)}
 \NormalTok{personagens\_altos }\OtherTok{\textless{}{-}}\NormalTok{ sw }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{filter}\NormalTok{(height }\SpecialCharTok{\textgreater{}} \DecValTok{180}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{select}\NormalTok{(name, height)}
@@ -5607,13 +5611,13 @@ Para ilustrar o uso das funções de junção, vamos criar dois subconjuntos de 
 \end{Highlighting}
 \end{Shaded}
 
-Agora, com essas duas tabelas, podemos usar as funções \texttt{left\_join()}, \texttt{right\_join()}, e \texttt{full\_join()}.
+Agora que temos duas tabelas, \texttt{personagens\_altos} e \texttt{personagens\_humanos}, podemos usar as funções de junção para combiná-las: \texttt{left\_join()}, \texttt{right\_join()}, e \texttt{full\_join()}.
 
 A função \texttt{left\_join()} junta duas tabelas, mantendo todas as linhas da tabela à esquerda (primeira tabela) e adicionando colunas da tabela à direita (segunda tabela) para as quais existe uma correspondência. Valores sem correspondência entre as bases receberão \texttt{NA} na nova base.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Usar left\_join para combinar os personagens altos com os humanos}
+\CommentTok{\# Combinar tabelas mantendo todas as linhas de personagens\_altos}
 \NormalTok{humanos\_altos\_left\_join }\OtherTok{\textless{}{-}} \FunctionTok{left\_join}\NormalTok{(personagens\_altos, personagens\_humanos, }\AttributeTok{by =} \StringTok{"name"}\NormalTok{)}
 
 \CommentTok{\# Visualizar o resultado}
@@ -5638,13 +5642,13 @@ A função \texttt{left\_join()} junta duas tabelas, mantendo todas as linhas da
 ## # i 29 more rows
 \end{verbatim}
 
-Neste exemplo, a tabela resultante \texttt{humanos\_altos\_left\_join} mantém todas as linhas de \texttt{personagens\_altos} e adiciona informações da tabela \texttt{personagens\_humanos} quando há uma correspondência pelo nome do personagem.
+Neste exemplo, a tabela resultante \texttt{humanos\_altos\_left\_join} inclui todos os personagens altos e adiciona informações sobre a espécie (se disponível) da tabela \texttt{personagens\_humanos}. Se um personagem não for humano, as colunas de espécie serão preenchidas com \texttt{NA}.
 
 A função \texttt{right\_join()} faz o oposto de \texttt{left\_join()}: mantém todas as linhas da tabela à direita e adiciona colunas da tabela à esquerda para as quais existe uma correspondência.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Usar right\_join para combinar humanos com personagens altos}
+\CommentTok{\# Combinar tabelas mantendo todas as linhas de personagens\_humanos}
 \NormalTok{humanos\_altos\_right\_join }\OtherTok{\textless{}{-}} \FunctionTok{right\_join}\NormalTok{(personagens\_altos, personagens\_humanos, }\AttributeTok{by =} \StringTok{"name"}\NormalTok{)}
 
 \CommentTok{\# Visualizar o resultado}
@@ -5669,13 +5673,13 @@ A função \texttt{right\_join()} faz o oposto de \texttt{left\_join()}: mantém
 ## # i 25 more rows
 \end{verbatim}
 
-Aqui, a tabela resultante \texttt{humanos\_altos\_right\_join} mantém todas as linhas de \texttt{personagens\_humanos} e adiciona informações de \texttt{personagens\_altos} quando há uma correspondência pelo nome.
+A tabela \texttt{humanos\_altos\_right\_join} inclui todos os personagens humanos e adiciona informações sobre a altura (se disponível) da tabela \texttt{personagens\_altos}. Se um personagem humano não for alto, a coluna de altura será preenchida com \texttt{NA}.
 
-A função \texttt{full\_join()} junta as duas tabelas, mantendo todas as linhas de ambas as tabelas e adicionando \texttt{NA} (valores ausentes) para correspondências inexistentes.
+A função \texttt{full\_join()} mantém todas as linhas de ambas as tabelas e adiciona \texttt{NA} onde não há correspondência.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Usar full\_join para combinar todas as informações de personagens altos e humanos}
+\CommentTok{\# Combinar todas as informações de personagens altos e humanos}
 \NormalTok{humanos\_altos\_full\_join }\OtherTok{\textless{}{-}} \FunctionTok{full\_join}\NormalTok{(personagens\_altos, personagens\_humanos, }\AttributeTok{by =} \StringTok{"name"}\NormalTok{)}
 
 \CommentTok{\# Visualizar o resultado}
@@ -5700,14 +5704,15 @@ A função \texttt{full\_join()} junta as duas tabelas, mantendo todas as linhas
 ## # i 49 more rows
 \end{verbatim}
 
-A tabela resultante \texttt{humanos\_altos\_full\_join} contém todas as linhas de ambas as tabelas \texttt{personagens\_altos} e \texttt{personagens\_humanos}. Se um personagem é encontrado em apenas uma das tabelas, as colunas da tabela ausente serão preenchidas com \texttt{NA}.
+A tabela \texttt{humanos\_altos\_full\_join} contém todos os personagens altos e humanos. Se um personagem está em apenas uma das tabelas, as colunas da outra tabela são preenchidas com \texttt{NA}.
 
 \subsection{Exercícios}\label{exercuxedcios-16}
 
-\textbf{1.} Crie uma tabela \texttt{personagens\_altos} que contenha apenas personagens com altura superior a 180 cm e uma outra tabela \texttt{personagens\_leves} que contenha apenas personagens com massa inferior a 75 kg. Use \texttt{left\_join()} para combinar as duas tabelas com base no nome do personagem.
+\textbf{1.} Crie uma tabela \texttt{personagens\_altos} contendo apenas personagens com altura superior a 180 cm e uma outra tabela \texttt{personagens\_leves} contendo apenas personagens com massa inferior a 75 kg. Use \texttt{left\_join()} para combinar as duas tabelas com base no nome do personagem.
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Criação dos subconjuntos}
 \NormalTok{personagens\_altos }\OtherTok{\textless{}{-}}\NormalTok{ sw }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{filter}\NormalTok{(height }\SpecialCharTok{\textgreater{}} \DecValTok{180}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{select}\NormalTok{(name, height)}
@@ -5716,14 +5721,18 @@ A tabela resultante \texttt{humanos\_altos\_full\_join} contém todas as linhas 
   \FunctionTok{filter}\NormalTok{(mass }\SpecialCharTok{\textless{}} \DecValTok{75}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{select}\NormalTok{(name, mass)}
 
+\CommentTok{\# Combinação com left\_join}
 \FunctionTok{left\_join}\NormalTok{(personagens\_altos, personagens\_leves, }\AttributeTok{by =} \StringTok{"name"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{2.} Crie uma tabela \texttt{personagens\_humanos} que contenha apenas personagens humanos e uma outra tabela \texttt{cor\_cabelo} que contenha apenas personagens com cor de cabelo diferente de \texttt{NA}. Use \texttt{right\_join()} para combinar \texttt{personagens\_humanos} e \texttt{cor\_cabelo} com base no nome do personagem.
+\textbf{Dica}: Observe como \texttt{left\_join()} mantém todos os personagens altos e adiciona informações sobre massa apenas para aqueles que também são leves.
+
+\textbf{2.} Crie uma tabela \texttt{personagens\_humanos} contendo apenas personagens humanos e uma outra tabela \texttt{cor\_cabelo} contendo apenas personagens com cor de cabelo diferente de \texttt{NA}. Use \texttt{right\_join()} para combinar \texttt{personagens\_humanos} e \texttt{cor\_cabelo} com base no nome do personagem.
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Criação dos subconjuntos}
 \NormalTok{personagens\_humanos }\OtherTok{\textless{}{-}}\NormalTok{ sw }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{filter}\NormalTok{(species }\SpecialCharTok{==} \StringTok{"Human"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{select}\NormalTok{(name, species)}
@@ -5732,14 +5741,18 @@ A tabela resultante \texttt{humanos\_altos\_full\_join} contém todas as linhas 
   \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(hair\_color)) }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{select}\NormalTok{(name, hair\_color,)}
 
+\CommentTok{\# Combinação com right\_join}
 \FunctionTok{right\_join}\NormalTok{(personagens\_humanos, cor\_cabelo, }\AttributeTok{by =} \StringTok{"name"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{3.} Crie uma tabela \texttt{especies\_personagens} que contenha apenas personagens de espécies conhecidas (não \texttt{NA}) e uma outra tabela \texttt{cor\_olhos} que contenha apenas personagens com cor de olho conhecida (não \texttt{NA}). Use \texttt{full\_join()} para combinar as duas tabelas com base no nome do personagem.
+\textbf{Dica}: Observe como \texttt{right\_join()} mantém todos os personagens com cor de cabelo conhecida e adiciona informações sobre a espécie apenas para aqueles que também são humanos.
+
+\textbf{3.} Crie uma tabela \texttt{especies\_personagens} contendo apenas personagens de espécies conhecidas (não \texttt{NA}) e uma outra tabela \texttt{cor\_olhos} contendo apenas personagens com cor de olho conhecida (não \texttt{NA}). Use \texttt{full\_join()} para combinar as duas tabelas com base no nome do personagem.
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Criação dos subconjuntos}
 \NormalTok{especies\_personagens }\OtherTok{\textless{}{-}}\NormalTok{ sw }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(species)) }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{select}\NormalTok{(name, species)}
@@ -5748,9 +5761,12 @@ A tabela resultante \texttt{humanos\_altos\_full\_join} contém todas as linhas 
   \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(eye\_color)) }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{select}\NormalTok{(name, eye\_color)}
 
+\CommentTok{\# Combinação com full\_join}
 \FunctionTok{full\_join}\NormalTok{(especies\_personagens, cor\_olhos, }\AttributeTok{by =} \StringTok{"name"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\textbf{Dica}: \texttt{full\_join()} combina todas as informações disponíveis, preenchendo com NA onde não há correspondências.
 
 \chapter{Visualização}\label{visualizauxe7uxe3o}
 
@@ -5865,7 +5881,7 @@ Temos então um tempo médio de 11.75 minutos.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-202-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-198-1.pdf}
 
 \section{Geração de números pseudoaleatórios}\label{gerauxe7uxe3o-de-nuxfameros-pseudoaleatuxf3rios}
 
@@ -6135,7 +6151,7 @@ Gerar um número aleatório uniforme \(U\) no intervalo {[}0,1{]}. Para determin
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-207-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-203-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6218,7 +6234,7 @@ p,& \quad \text{se} \quad x=1 \end{cases}\] Para gerar uma Bernoulli(p) podemos 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-209-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-205-1.pdf}
 
 \textbf{Exemplo 5}: Geração de uma variável aleatória com distribuição Geométrica(p). Seja \(X\sim Geometrica(p)\). Lembre que \[P(X=x)=p(1-p)^{x-1}\] e que \[F(x) = P(X\leq x) = \begin{cases} 0,& \quad \text{se} \quad x<1 \\
 1-(1-p)^x,& \quad \text{se} \quad x\geq 1\end{cases}\]
@@ -6250,7 +6266,7 @@ onde \(\lfloor  \rfloor =\) maior inteiro.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-210-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-206-1.pdf}
 
 \textbf{Exemplo 6}: Geração de uma variável aleatória com distribuição de Poisson. A variável aleatória \(X\) é de Poisson com média \(\lambda\) se \[p_{i} = P(X = i) = \frac{e^{-\lambda}\lambda^i}{i!}, \quad i=0,1,\ldots\]
 
@@ -6286,7 +6302,7 @@ Ao utilizar a recursão acima para calcular as probabilidades de Poisson quando 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-211-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-207-1.pdf}
 
 \section{Variável aleatória contínua}\label{variuxe1vel-aleatuxf3ria-contuxednua}
 
@@ -6323,7 +6339,7 @@ A função \(F(x)=x^2\) é invertível no intervalo \((0,1)\) e \(F^{-1}(x)=\sqr
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-212-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-208-1.pdf}
 
 \textbf{Exemplo 2}: Geração de uma variável aleatória uniforme(a,b). A geração é feita através de \[X = a+(b-a)U.\]
 
@@ -6339,7 +6355,7 @@ A função \(F(x)=x^2\) é invertível no intervalo \((0,1)\) e \(F^{-1}(x)=\sqr
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-213-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-209-1.pdf}
 
 \textbf{Exemplo 3}: Geração de uma variável aleatória exponencial. Seja \(X\) uma variável aleatória exponencial com taxa 1, então sua função de distribuição é dada por \[F(x)=1-e^{x}.\]
 Como \(0\leq F(x)\leq 1\), tomando \(F(x)=u\), onde \(u\sim U(0,1)\) tem-se: \[u=F(x)=1-e^{x}\] ou \[1-u=e^{-x}\] ou, aplicando o logaritmo \[x=-ln(1-u).\] Daí, pode-se gerar uma exponencial com parâmetro 1 gerando um número aleatório \(U\) e em seguida fazendo \[X = F^{-1}(U) = -ln(1-U).\] Uma pequena economia de tempo pode ser obtida notando que \(1-U\) também é uniforme em \((0,1)\) e assim, \(-ln(1-U)\) tem a mesma distribuição que \(-ln(U)\). Isto é, o logaritmo negativo de um número aleatório é exponencialmente distribuído com taxa 1.
@@ -6373,7 +6389,7 @@ Além disso, note que se \(X\) é uma exponencial com média 1, então para qual
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-214-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-210-1.pdf}
 
 \textbf{Exercício}: Seja \(X\) uma variável aleatória com distribuição \(W(\alpha, \beta)\). Assim a fdp de \(X\) é
 \[f(x) = \begin{cases}
@@ -6722,7 +6738,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-222-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-218-1.pdf}
 
 \textbf{Exemplo 1}: Resolva o exemplo 1 usando a função de distribuição empírica.
 
@@ -6775,7 +6791,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-224-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-220-1.pdf}
 
 \subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o}
 
@@ -6800,7 +6816,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-225-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-221-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o}
 
@@ -6828,7 +6844,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-226-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-222-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o}
 
@@ -6851,7 +6867,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-227-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-223-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-1}
 
@@ -6874,7 +6890,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-228-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-224-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6883,7 +6899,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-228-2.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-224-2.pdf}
 
 \textbf{Cálculo de probabilidade}: Seja
 \(X \sim \text{Binomial}(n=10, p=0.5)\).
@@ -6951,7 +6967,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-229-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-225-1.pdf}
 
 \subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o-1}
 
@@ -6984,7 +7000,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-230-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-226-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-1}
 
@@ -7020,7 +7036,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-231-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-227-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-1}
 
@@ -7040,7 +7056,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-232-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-228-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-2}
 
@@ -7061,7 +7077,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-233-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-229-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7076,7 +7092,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-233-2.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-229-2.pdf}
 
 \textbf{Cálculo de probabilidades}: Seja \(X\sim\text{Poisson}(\lambda=5)\).
 
@@ -7116,7 +7132,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-234-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-230-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o}
 
@@ -7141,7 +7157,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-235-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-231-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-2}
 
@@ -7172,7 +7188,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-236-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-232-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-2}
 
@@ -7192,7 +7208,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-237-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-233-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-3}
 
@@ -7217,7 +7233,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-238-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-234-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7254,7 +7270,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-239-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-235-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-1}
 
@@ -7279,7 +7295,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-240-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-236-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-3}
 
@@ -7310,7 +7326,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-241-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-237-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-3}
 
@@ -7330,7 +7346,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-242-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-238-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-4}
 
@@ -7355,7 +7371,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-243-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-239-1.pdf}
 
 \section{Gerando uma variável aleatória com distribuição Normal}\label{gerando-uma-variuxe1vel-aleatuxf3ria-com-distribuiuxe7uxe3o-normal}
 
@@ -7385,7 +7401,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-244-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-240-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-2}
 
@@ -7410,7 +7426,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-245-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-241-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-4}
 
@@ -7441,7 +7457,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-246-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-242-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-4}
 
@@ -7461,7 +7477,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-247-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-243-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-5}
 
@@ -7486,7 +7502,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-248-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-244-1.pdf}
 
 \section{Exercícios}\label{exercuxedcios-18}
 
@@ -7759,9 +7775,9 @@ esperado 0 e desvio padrão 1.
 
 \chapter{Respostas}\label{respostas}
 
-\section{O pacote dplyr}\label{o-pacote-dplyr-1}
+\section{O pacote dplyr}\label{o-pacote-dplyr}
 
-\subsection{Selecionando colunas}\label{selecionando-colunas-1}
+\subsection{Selecionando colunas}\label{selecionando-colunas}
 
 \textbf{1.} Teste aplicar a função \texttt{glimpse()} do pacote `\texttt{dplyr} à base
 \texttt{sw}. O que ela faz?
@@ -7864,7 +7880,7 @@ você conseguir pensar.
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Ordenando a base}\label{ordenando-a-base-1}
+\subsection{Ordenando a base}\label{ordenando-a-base}
 
 \textbf{1.} Ordene \texttt{mass} em ordem crescente e \texttt{birth\_year} em ordem
 decrescente e salve em um objeto chamado \texttt{sw\_ordenados}.
@@ -7914,7 +7930,7 @@ de forma decrescente pelo \texttt{birth\_year}.
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Filtrando linhas}\label{filtrando-linhas-1}
+\subsection{Filtrando linhas}\label{filtrando-linhas}
 
 Utilize a base \texttt{sw} nos exercícios a seguir.
 
@@ -8043,7 +8059,7 @@ seguintes colunas novas na base \texttt{sw}:
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Sumarizando a base}\label{sumarizando-a-base-1}
+\subsection{Sumarizando a base}\label{sumarizando-a-base}
 
 Utilize a base \texttt{sw} nos exercícios a seguir.
 
