@@ -2705,53 +2705,50 @@ dados_csv <- read.table("dados.csv", header = TRUE, sep = ",")
 
 ## A função `read.csv()`
 
-A função `read.csv()` é otimizada para a leitura de arquivos CSV
-(Comma-Separated Values). A principal diferença entre `read.table()` e
-`read.csv()` é que esta última tem o separador padrão como vírgula.
+A função `read.csv()` é otimizada para a leitura de arquivos CSV (Comma-Separated Values), que são arquivos de texto onde cada linha representa um registro e os valores são separados por vírgulas. A principal diferença entre `read.csv()` e `read.table()` é que o separador padrão em `read.csv()` é uma vírgula.
 
 ```{r eval=FALSE}
 # Leitura de arquivo CSV com read.csv
 dados_csv <- read.csv("dados.csv", header = TRUE)
 ```
 
-Os argumentos adicionais são semelhantes aos da função `read.table()`.
+Aqui, o argumento `header = TRUE` indica que a primeira linha do arquivo contém os nomes das colunas. Outros argumentos são semelhantes aos de `read.table()`.
 
 ## A função `read.csv2()`
 
-A função `read.csv2()` é semelhante à `read.csv()`, mas o separador
-padrão é um ponto e vírgula.
+A função `read.csv2()` é semelhante à `read.csv()`, mas é projetada para lidar com arquivos CSV onde o separador padrão é um ponto e vírgula (;) e o separador decimal é uma vírgula (,). Este formato é comum em alguns países europeus.
 
 ```{r eval=FALSE}
 # Leitura de CSV com separador ponto e vírgula
 dados_csv2 <- read.csv2("dados.csv2", header = TRUE)
 ```
 
-## A Função `read_excel()` do pacote `readxl`
+## A Função `read_excel()` do Pacote `readxl`
 
-Para ler arquivos Excel (.xls e .xlsx), utilizamos a função
-`read_excel()` do pacote `readxl`. 
+Para ler arquivos Excel (.xls e .xlsx), usamos a função `read_excel()` do pacote `readxl`. Este pacote precisa ser instalado e carregado antes de seu uso.
 
 ```{r eval=FALSE}
 library(readxl)
+
 # Sintaxe básica
 read_excel(path, sheet = NULL, range = NULL, col_names = TRUE,
            col_types = NULL, na = "", trim_ws = TRUE, skip = 0, n_max = Inf,
            guess_max = min(1000, n_max), progress = readxl_progress())
 ```
 
-Principais parâmetros
+**Principais Parâmetros de `read_excel()`**
 
-* `path`: O caminho do arquivo Excel a ser lido. Este é um argumento obrigatório. Pode ser um caminho local ou uma URL.
+* `path`: O caminho do arquivo Excel a ser lido. Este é um argumento obrigatório e pode ser um caminho local ou uma URL.
 * `sheet`: O nome ou o índice da aba (planilha) do Excel a ser lida. Se não especificado, a função lerá a primeira aba.
 * `range`: Um intervalo específico a ser lido, como "A1:D10". Se `NULL` (padrão), a função lê toda a aba.
 * `col_names`: Um argumento lógico (`TRUE` ou `FALSE`) que indica se a primeira linha da planilha deve ser usada como nomes das colunas no data frame. O padrão é `TRUE`.
 * `col_types`: Um vetor de tipos de colunas que podem ser `"blank"`, `"numeric"`, `"date"`, `"text"`, ou `"guess"`. O padrão é `NULL`, o que permite que a função adivinhe os tipos de coluna automaticamente.
-* `na`: Um vetor de strings que devem ser interpretadas como valores ausentes (`NA`). O padrão é "" (string vazia).
+* `na`: Um vetor de strings que devem ser interpretadas como valores ausentes (`NA`). O padrão é string vazia ("").
 * `trim_ws`: Um argumento lógico (`TRUE` ou `FALSE`) que indica se os espaços em branco devem ser removidos do início e do fim dos valores de texto. O padrão é `TRUE`.
 * `skip`: Número de linhas a serem ignoradas antes de começar a leitura. O padrão é 0.
 * `n_max`: Número máximo de linhas a serem lidas. O padrão é `Inf`, o que significa que todas as linhas são lidas.
 
-Vamos considerar um exemplo em que temos um arquivo Excel chamado `"instragram.xlsx"` com três planilhas: `"Sheet1"`, `"Sheet2"` e `"Sheet3"`. Este arquivo pode ser baixado em [link](https://renatorpaula.wixsite.com/renato/laboratorio-estatistica). Vamos ler a primeira planilha (`Sheet1`):
+**Exemplo de Uso**: Vamos considerar um exemplo em que temos um arquivo Excel chamado `"instragram.xlsx"` com três planilhas: `"Sheet1"`, `"Sheet2"` e `"Sheet3"`. Este arquivo pode ser baixado [aqui](https://renatorpaula.wixsite.com/renato/laboratorio-estatistica). Vamos ler a primeira planilha (`Sheet1`):
 
 ```{r eval=FALSE}
 dados <- read_excel(path = "instagram.xlsx",
@@ -2762,8 +2759,7 @@ dados <- read_excel(path = "instagram.xlsx",
 
 ## Leitura de Dados Online
 
-É possível ler diretamente dados hospedados em URLs usando funções como
-`read.table()`.
+R também permite ler dados diretamente de URLs. Você pode usar funções como `read.table()`, `read.csv()`, ou `read_excel()` (dependendo do formato do arquivo) para importar dados diretamente de um link online.
 
 ```{r eval=FALSE}
 # Leitura de dados online com read.table
@@ -2771,54 +2767,48 @@ url <- "https://example.com/data.csv"
 dados_online <- read.table(url, header = TRUE, sep = ",")
 ```
 
+Neste exemplo, url contém o endereço do arquivo CSV na web, e `read.table()` é usado para importar o conteúdo como um data frame.
+
 # Pipe
 
 ## O operador pipe
 
-O operador pipe (`%>%`) em R é uma ferramenta essencial para escrever
-código de maneira mais limpa e legível, permitindo que os resultados de
-uma função sejam passados diretamente como entrada para a próxima
-função, sem a necessidade de criar variáveis intermediárias.
+O operador pipe (`%>%`) em R é uma ferramenta poderosa que facilita a escrita de código mais limpo e legível. Ele permite que o resultado de uma função seja passado diretamente como entrada para a próxima função, sem a necessidade de criar variáveis intermediárias. Este operador ajuda a tornar o fluxo de dados mais intuitivo e o código mais fácil de ler.
 
-O operador pipe foi popularizado pelo pacote `magrittr`, desenvolvido
-por Stefan Milton Bache e lançado em 2014. O nome “magrittr” é uma
-referência ao artista surrealista René Magritte, famoso pela pintura
-“Ceci n’est pas une pipe” (Isto não é um cachimbo), que inspirou a ideia
-de que o operador pipe permite que dados fluam através de uma sequência
-de operações de maneira intuitiva e sem a necessidade de variáveis
-temporárias.
 
-Para começar a utilizar o pipe, instale e carregue o pacote `magrittr`.
+O operador pipe foi popularizado pelo pacote `magrittr`, desenvolvido por Stefan Milton Bache e lançado em 2014. O nome “magrittr” é uma referência ao artista surrealista René Magritte, famoso pela pintura “Ceci n’est pas une pipe” (Isto não é um cachimbo), que inspirou a ideia de que o operador pipe permite que dados fluam através de uma sequência
+de operações de maneira intuitiva e sem a necessidade de variáveis temporárias.
+
+Para começar a utilizar o operador pipe, é necessário instalar e carregar o pacote `magrittr`.
 
 ```{r eval=FALSE}
 install.packages("magrittr")
 library(magrittr)
 ```
 
-O operador pipe `%>%` permite que o valor de uma expressão à esquerda
-seja passado como o primeiro argumento para a função à direita. Isto
-permite que o código seja lido de cima para baixo, em vez de dentro para
-fora, facilitando a compreensão e o fluxo de dados. Por exemplo:
+O operador pipe `%>%` permite que o valor de uma expressão à esquerda seja passado como o primeiro argumento para a função à direita. Isso permite que o código seja lido de maneira sequencial, de cima para baixo, em vez de dentro para fora, o que facilita a compreensão do fluxo de dados. Por exemplo, considere o seguinte código em R sem o uso do pipe:
 
 ```{r eval=FALSE}
-library(magrittr)
 x <- c(1, 2, 3, 4)
 sqrt(sum(x))
 ## [1] 3.16
+```
 
-# Com o pipe
+Com o operador pipe, o código pode ser reescrito de forma mais clara e legível:
+
+```{r eval=FALSE}
+library(magrittr)
 x %>% sum() %>% sqrt()
 ## [1] 3.16
 ```
 
-Outro exemplo
+Considere um exemplo onde queremos calcular a raiz quadrada da soma dos logaritmos dos valores absolutos de um vetor `x`:
 
 ```{r eval=FALSE}
 resultado <- sqrt(sum(log(abs(x))))
 ```
 
-Com o operador pipe, o mesmo código pode ser reescrito de forma mais
-clara:
+Usando o operador pipe, o mesmo código pode ser reescrito de maneira mais clara:
 
 ```{r eval=FALSE}
 resultado <- x %>% 
@@ -2828,18 +2818,17 @@ resultado <- x %>%
   sqrt()
 ```
 
-Às vezes, desejamos que o resultado do lado esquerdo do operador pipe
-seja inserido em um argumento diferente do primeiro na função do lado
-direito. Nesses casos, usamos um ponto (`.`) como um marcador para
-indicar onde o valor deve ser colocado.
+**Uso do Ponto (.) no Pipe**
+
+Em alguns casos, o resultado do lado esquerdo do operador pipe deve ser passado para um argumento que não é o primeiro na função do lado direito. Para esses casos, usamos um ponto (.) como um marcador para indicar onde o valor deve ser inserido.
+
+Por exemplo, ao usar o pipe para construir um modelo linear com o conjunto de dados `airquality`, queremos que o dataset seja passado como o segundo argumento (`data =`) da função `lm()`:
 
 ```{r eval=FALSE}
-# Queremos que o dataset seja recebido pelo segundo argumento (data=) da função "lm".
-
 airquality %>%
-  na.omit() %>%
-  lm(Ozone ~ Wind + Temp + Solar.R, data = .) %>%
-  summary()
+  na.omit() %>% # Remove valores ausentes
+  lm(Ozone ~ Wind + Temp + Solar.R, data = .) %>% # Cria o modelo linear
+  summary() # Gera o resumo do modelo
 ## 
 ## Call:
 ## lm(formula = Ozone ~ Wind + Temp + Solar.R, data = .)
@@ -2862,6 +2851,8 @@ airquality %>%
 ## F-statistic: 54.8 on 3 and 107 DF,  p-value: <2e-16
 ```
 
+Neste exemplo, o dataset `airquality` é pré-processado com `na.omit()` para remover os valores ausentes, e o resultado é usado como o argumento data na função `lm()` para criar um modelo linear. O pipe permite que este fluxo de operações seja descrito de forma clara e linear.
+
 ## Exercícios
 
 **1.**  Reescreva a expressão abaixo utilizando o `%>%`,
@@ -2870,8 +2861,7 @@ airquality %>%
 round(mean(sum(1:10)/3), digits = 1)
 ```
 
-**Dica**: utilize a função `magrittr::divide_by()`, Veja o help da
-função para mais informações.
+**Dica**: utilize a função `magrittr::divide_by()`, Veja o help da função para mais informações.
 
 ```{r eval=FALSE}
 1:10 %>% 
@@ -2894,8 +2884,7 @@ media <- mean(x.pos)
 saida <- round(media, 2)
 ```
 
-**Dica**: utilize a função `magrittr::extract()`. Veja o help da função
-para mais informações.
+**Dica**: utilize a função `magrittr::extract()`. Veja o help da função para mais informações.
 
 ```{r eval=FALSE}
 set.seed(123)
@@ -2906,8 +2895,7 @@ rnorm(100) %>%
 ## [1] 0.79
 ```
 
-**3.**  Sem rodar, diga qual a saída do código abaixo. Consulte o help das
-    funções caso precise.
+**3.**  Sem rodar, diga qual a saída do código abaixo. Consulte o help das funções caso precise.
 
 ```{r eval=FALSE}
 2 %>%
@@ -2928,40 +2916,28 @@ rnorm(100) %>%
 
 # Loop while
 
-A instrução `while` em R é uma estrutura de controle de fluxo que
-permite executar um bloco de código repetidamente, enquanto uma condição
-especificada for verdadeira. É particularmente útil para situações em
-que o número de repetições não é conhecido antecipadamente, mas depende
-de alguma condição lógica.
+A instrução `while` em R é uma estrutura de controle de fluxo que permite executar repetidamente um bloco de código enquanto uma condição específica for verdadeira. Esse tipo de loop é especialmente útil quando o número de iterações não é conhecido antecipadamente e depende de uma condição lógica ser atendida.
 
 ```{r eval=FALSE}
 # Sintaxe
 while (condição) {
-  # Bloco de código a ser executado
+  # Bloco de código a ser executado repetidamente
 }
 ```
 
--   **condição**: Uma expressão lógica que é avaliada antes de cada
-    iteração do loop. Enquanto essa condição for `TRUE`, o bloco de
-    código dentro do while será executado.
+* **condição**: Uma expressão lógica que é avaliada antes de cada iteração do loop. Enquanto essa condição for `TRUE`, o bloco de código dentro do while será executado.
 
--   **Bloco de código**: As instruções que devem ser repetidamente
-    executadas enquanto a condição for verdadeira.
+* **Bloco de código**: As instruções que são repetidas enquanto a condição for verdadeira.
 
-**Como funciona o while**
+**Funcionamento do Loop While**
 
--   **Avaliação da Condição**: Antes de cada execução do bloco de
-    código, a condição é avaliada.
+* **Avaliação da Condição**: Antes de cada execução do bloco de código, a condição é avaliada.
 
--   **Execução do Bloco de Código**: Se a condição for `TRUE`, o bloco
-    de código dentro do `while` é executado.
+* **Execução do Bloco de Código**: Se a condição for `TRUE`, o bloco de código dentro do `while` é executado.
 
--   **Reavaliação**: Após a execução do bloco de código, a condição é
-    reavaliada. Se continuar a ser `TRUE`, o ciclo se repete. Se a
-    condição for `FALSE`, o loop termina e o controle do programa
-    continua com a próxima instrução após o `while`.
+* **Reavaliação**: Após a execução do bloco de código, a condição é reavaliada. Se a condição permanecer `TRUE`, o ciclo se repete. Se a condição se tornar `FALSE`, o loop termina e o controle do programa continua com a próxima instrução após o `while`.
 
-**Exemplo 1:** Somando números até um limite.
+**Exemplo 1**: Somando números até um limite. O exemplo a seguir calcula a soma de todos os números de 1 a 10.
 
 ```{r eval=FALSE}
 limite <- 10
@@ -2977,23 +2953,28 @@ print(paste("A soma dos números de 1 a", limite, "é:", soma))
 ## [1] "A soma dos números de 1 a 10 é: 55"
 ```
 
-**Exemplo 2:** Escrevendo a tabuada de um número inteiro
+Neste exemplo:
+
+* O loop while continua enquanto contador <= limite.
+* Em cada iteração, o valor de contador é adicionado a soma, e contador é incrementado em 1.
+* Quando contador excede limite, o loop termina.
+
+**Exemplo 2**: Escrevendo a tabuada de um número inteiro. O programa abaixo imprime a tabuada de um número fornecido pelo usuário.
 
 ```{r eval=FALSE}
 n <- as.numeric(readline("Digite um número inteiro: "))
 
 print(paste("Tabuada do",n, ":"))
-i=1
+i <- 1
 while (i <= 10){  
   print(paste(n,"x",i, "=", n*i))  
   i + 1
 }
 ```
 
-Explique porque o programa acima não termina. Qual o erro no nosso
-código?
+Explique porque o programa acima não termina. Qual o erro no nosso código? O loop no código original não terminava porque a linha `i + 1` não atualizava a variável `i`. A expressão `i + 1` calcula o novo valor, mas não o atribui de volta a `i`. O código correto usa `i <- i + 1` para atualizar a variável `i` a cada iteração.
 
-**Exemplo 3:**
+**Exemplo 3**: Uso do break para interromper um loop. O próximo exemplo demonstra como usar a instrução `break` para sair de um loop antecipadamente. 
 
 ```{r eval=FALSE}
 limite <- 10
@@ -3004,7 +2985,7 @@ while (contador <= limite) {
   soma <- soma + contador  
   print(contador)  
   if (contador == 3){    
-  	break  
+  	break # Interrompe o loop quando contador é igual a 3  
   }  
   contador <- contador + 1
 }
@@ -3013,63 +2994,47 @@ while (contador <= limite) {
 ## [1] 3
 ```
 
--   **break** é uma instrução utilizada em ciclos para interromper a sua
-    execução (sair de um ciclo antes de ter sido percorrido
-    completamente). Quando o `break` é chamado, o loop é imediatamente
-    interrompido, e o fluxo de execução continua na próxima linha de
-    código após o loop.
+* **break**: A instrução `break` é usada para sair imediatamente do loop, independentemente de a condição de while ainda ser `TRUE`.
 
-**Considerações importantes sobre o uso do `while()`**
+**Considerações Importantes sobre o Uso do `while()`**
 
--   **Condição de Parada**: É crucial garantir que a condição do `while`
-    se torne `FALSE` em algum ponto para evitar loops infinitos que
-    podem fazer o programa parar de responder.
+* **Condição de Parada**: É fundamental garantir que a condição do `while` eventualmente se torne `FALSE` para evitar loops infinitos que podem travar o programa.
 
--   **Incremento/Decremento**: Certifique-se de que a variável que
-    controla a condição seja atualizada adequadamente dentro do loop
-    para evitar loops infinitos.
+* **Incremento/Decremento**: A variável que controla a condição deve ser atualizada corretamente dentro do loop. Falhas em fazer isso corretamente também podem causar loops infinitos.
 
--   **Desempenho**: Loops `while` podem ser menos eficientes do que
-    loops vetorizados em R, portanto, para grandes conjuntos de dados,
-    considere outras abordagens, como aplicar funções vetorizadas
-    (`apply`, `lapply`, etc.).
+* **Desempenho**: Loops `while` podem ser menos eficientes do que operações vetorizadas em R. Para grandes conjuntos de dados, considere usar funções vetorizadas como `apply`, `lapply`, `sapply`, etc., para melhorar a performance.
 
 ## Exercícios
 
-**1.** Escreva um programa em R que peça ao utilizador um número inteiro $n$ e escreva no ecrã os números inteiros de 0 a $n$, um por linha.
+**1.** Escreva um programa em R que solicite ao usuário um número inteiro  $n$. O programa deve imprimir todos os números inteiros de 0 até  $n$, um número por linha.
 
-**2.** Escreva um programa em R que peça ao utilizador um número inteiro e escreva no ecrã o seu quadrado, perguntando em seguida se o utilizador quer terminar a utilização do programa.
+**2.** Crie um programa em R que solicite ao usuário um número inteiro, calcule o seu quadrado e exiba o resultado. Em seguida, pergunte ao usuário se ele deseja continuar ou encerrar o programa. O loop deve continuar até que o usuário escolha terminar.
 
-**3.** Escreva um programa em R que peça ao utilizador um número inteiro $n$ e escreva no ecrã o resultado do somatório dos primeiros $n$ inteiros.
+**3.** Desenvolva um programa em R que peça ao usuário um número inteiro  $n$ e calcule a soma dos primeiros $n$ inteiros (de 1 até  $n$). O resultado deve ser exibido no console.
 
-**4.** Escreva um programa em R que peça ao utilizador um número inteiro $n$ e escreva no ecrã o número de pares no intervalo de 0 a $n$.
+**4.** Escreva um programa em R que solicite ao usuário um número inteiro  $n$  e conte quantos números pares existem no intervalo de 0 até  $n$. O resultado deve ser impresso no console.
 
 **5.** Usar um loop `while` para somar números inteiros positivos até que um número negativo seja inserido.
 
-Escreva um programa em R que leia números do utilizador e some-os. O loop deve terminar quando o usuário inserir um número negativo. O programa deve então imprimir a soma dos números positivos inseridos.
+Crie um programa em R que leia números inteiros inseridos pelo usuário e some-os. O loop deve continuar até que o usuário insira um número negativo, momento em que o programa deve parar e exibir a soma dos números positivos inseridos.
 
 **6.** Usar um loop while para implementar uma contagem regressiva.
 
-Crie um programa em R que peça ao utilizador para inserir um número positivo e, em seguida, conte regressivamente até zero, imprimindo cada número no console.
+Implemente um programa em R que solicite ao usuário um número inteiro positivo e, em seguida, execute uma contagem regressiva até zero, imprimindo cada número no console.
 
-**7.** Crie um programa em R que peça ao utilizador para inserir um número negativo e, em seguida, conte progressivamente até zero, imprimindo cada número no console.
+**7.** Escreva um programa em R que solicite ao usuário um número inteiro negativo e, em seguida, conte progressivamente até zero, imprimindo cada número no console.
 
-**8.** Crie um programa em R que peça ao utilizador para inserir um número e, em seguida, contar regressivamente até zero, se o número for positivo e progressivamente se o número for negativo, imprimindo cada número no console.
+**8.** Desenvolva um programa em R que peça ao usuário para inserir um número. Se o número for positivo, o programa deve contar regressivamente até zero. Se o número for negativo, o programa deve contar progressivamente até zero. Cada número deve ser impresso no console.
 
-**9.** Escreva um programa em R que leia um número inteiro não negativo do utilizador e calcule seu fatorial usando um loop `while`. Lembre que $0! = 1$ e que $4! = 4\cdot3\cdot2\cdot1$.
+**9.** Crie um programa em R que solicite ao usuário um número inteiro não negativo e calcule seu fatorial usando um loop `while`. Lembre que $0! = 1$ e que $4! = 4\times 3\times 2\times  = 24$.
 
-**10.** Escreva um programa em R que leia um número inteiro positivo e calcule a soma de seus dígitos usando um loop `while`. Por exemplo, 23 $\to$ $2+3 = 5$.
+**10.** Escreva um programa em R que leia um número inteiro positivo e calcule a soma de seus dígitos usando um loop `while`. Por exemplo, para o número 23, o programa deve calcular $2+3 = 5$.
 
-**11.** Crie um programa em R que gere e imprima os números da sequência de Fibonacci até um valor máximo especificado pelo utilizador. 1 1 2 3 5 8 13...
+**11.** Desenvolva um programa em R que gere e imprima os números da sequência de Fibonacci até atingir um valor máximo especificado pelo usuário. A sequência de Fibonacci começa com 1, 1 e cada número subsequente é a soma dos dois anteriores $(1, 1, 2, 3, 5, 8, 13 \ldots)$.
 
 # Loop for
 
-A instrução `for` em R é uma estrutura de controle de fluxo que permite
-executar repetidamente um bloco de código para cada elemento em um
-conjunto de elementos. É especialmente útil para situações em que se
-conhece o número de iterações a serem realizadas com antecedência. A
-instrução for é amplamente utilizada em R para iterar sobre vetores,
-listas, data frames e outras estruturas de dados.
+O loop `for` em R é uma estrutura de controle de fluxo que permite executar repetidamente um bloco de código para cada elemento de uma sequência. Ele é particularmente útil quando o número de iterações é conhecido de antemão. O loop `for` é amplamente utilizado em R para iterar sobre vetores, listas, data frames, e outras estruturas de dados.
 
 ```{r eval=FALSE}
 # Sintaxe
@@ -3078,30 +3043,23 @@ for (variável in sequência) {
 }
 ```
 
--   **variável**: Uma variável que assume o valor de cada elemento na
-    sequência em cada iteração do loop.
+* **variável**: Uma variável de controle que, em cada iteração, assume o valor do próximo elemento da sequência.
 
--   **sequência**: Um vetor, lista ou qualquer estrutura de dados sobre
-    a qual se deseja iterar.
+* **sequência**: Uma estrutura de dados como um vetor, lista, ou outro objeto sobre o qual se deseja iterar.
 
--   **bloco de código**: O conjunto de instruções que serão executadas
-    para cada elemento da sequência.
+* **bloco de código**: As instruções a serem executadas a cada iteração do loop.
 
-**Como funciona o `for()`**
+**Funcionamento do Loop for**
 
--   **Inicialização**: Antes do loop começar, a variável de controle é
-    inicializada com o primeiro elemento da sequência.
+* **Inicialização**: Antes de iniciar o loop, a variável de controle é definida com o primeiro elemento da sequência.
 
--   **Iteração**: Em cada iteração do loop, a variável de controle
-    assume o próximo valor da sequência.
+* **Iteração**: Para cada iteração, a variável de controle é atualizada com o próximo valor da sequência.
 
--   **Execução do Bloco de Código**: O bloco de código dentro do loop é
-    executado uma vez para cada elemento da sequência.
+* **Execução do Bloco de Código**: O bloco de código dentro do loop é executado para cada valor da variável de controle.
 
--   **Finalização**: O loop termina quando todos os elementos da
-    sequência forem processados.
+* **Finalização**: O loop termina quando todos os elementos da sequência tiverem sido processados.
 
-**Exemplo 1:** Imprima os números de 0 a 10 no ecrã.
+**Exemplo 1**: Imprima os números de 0 a 10 no ecrã.
 
 ```{r eval=FALSE}
 for (i in 0:10) {
@@ -3120,7 +3078,7 @@ for (i in 0:10) {
 ## [1] 10
 ```
 
-**Exemplo 2:** Soma dos elementos de um vetor
+**Exemplo 2**: Soma dos elementos de um vetor
 
 ```{r eval=FALSE}
 numeros <- c(1, 2, 3, 4, 5)
@@ -3134,10 +3092,7 @@ print(paste("A soma dos números é:", soma))
 ## [1] "A soma dos números é: 15"
 ```
 
-**Exemplo 3:** Uso do `for` com índices. Você também pode usar o loop
-for para iterar sobre índices de vetores ou listas, o que pode ser útil
-quando se deseja acessar ou modificar elementos em posições específicas.
-Multiplique por 2 os elementos do vetor.
+**Exemplo 3**: Uso do `for` com índices. Você também pode usar o loop for para iterar sobre índices de vetores ou listas, o que pode ser útil quando se deseja acessar ou modificar elementos em posições específicas.
 
 ```{r eval=FALSE}
 numeros <- c(10, 20, 30, 40, 50)
@@ -3147,14 +3102,11 @@ for (i in 1:length(numeros)) {
 }
 
 print("Elementos do vetor multiplicados por 2:")
-## [1] "Elementos do vetor multiplicados por 2:"
-
 print(numeros)
 ## [1]  20  40  60  80 100
 ```
 
-**Exemplo 4:** Exemplo com matrizes. O loop for também pode ser usado
-para iterar sobre elementos de uma matriz, seja por linha ou por coluna.
+**Exemplo 4:** Iterando sobre matrizes. O loop `for` também pode ser utilizado para percorrer elementos de uma matriz, seja por linha ou por coluna. No exemplo abaixo, calculamos a soma dos elementos de cada linha de uma matriz.
 
 ```{r eval=FALSE}
 matriz <- matrix(1:9, nrow=3, ncol=3)
@@ -3165,13 +3117,11 @@ for (i in 1:nrow(matriz)) {
 }
 
 print("Soma dos elementos de cada linha:")
-## [1] "Soma dos elementos de cada linha:"
-
 print(soma_linhas)
 ## [1] 12 15 18
 ```
 
-**Exemplo 5:** Cálculo de Médias de Colunas em um Data Frame
+**Exemplo 5:** Cálculo de Médias de Colunas em um Data Frame. Neste exemplo, calculamos a média de cada coluna de um data frame usando um loop `for`.
 
 ```{r eval=FALSE}
 dados <- data.frame(
@@ -3187,8 +3137,6 @@ for (col in 1:ncol(dados)) {
 }
 
 print("Médias das colunas do data frame:")
-## [1] "Médias das colunas do data frame:"
-
 print(medias)
 ## [1] 2 5 8
 ```
@@ -3207,13 +3155,13 @@ print(medias)
 
 **6.** Escreva um programa em R que leia um número inteiro e use um loop `for` para imprimir sua tabuada de 1 a 10.
 
-**7.** Escreva um programa em R que leia um número inteiro e use um loop `for` para dizer se o número é perfeito ou não. Um número perfeito é aquele cuja soma de seus divisores próprios é igual ao próprio número. Exemplo: 6 tem 1,2,3 como divisores próprios e 1+2+3=6.
+**7.** Escreva um programa em R que leia um número inteiro e use um loop `for` para determinar se o número é perfeito ou não. Um número perfeito é aquele cuja soma de seus divisores próprios é igual ao próprio número (por exemplo, 6 tem divisores próprios 1, 2 e 3, e 1+2+3 = 6).
 
 **8.** Escreva um programa em R que use um loop `for` para encontrar e imprimir todos os números perfeitos entre 1 e 1000. 
 
-**9.** Escreva um programa em R que leia um inteiro $n$ e um inteiro $m$ e escreva os números entre $0$ e $n$, inclusive, de $m$ em $m$. Utilize um ciclo `for` para o efeito.
+**9.** Escreva um programa em R que leia dois inteiros $n$ e $m$ e imprima os números entre $0$ e $n$, inclusive, com um intervalo de $m$ entre eles. Utilize um ciclo `for` para o efeito.
 
-**10.** Escreva um programa que calcule a média de um conjunto de notas fornecidas pelo utilizador. O número de notas que irão ser inseridas são previamente indicadas pelo utilizador. Utilize um loop `for` para o efeito. Segue-se um exemplo da interação com o computador.
+**10.** Escreva um programa que calcule a média de um conjunto de notas fornecidas pelo usuário. O número de notas a serem inseridas é indicado pelo usuário antes da entrada das notas. Utilize um loop for para coletar as notas e calcular a média. Segue-se um exemplo da interação com o computador:
 
 `Digite o número de notas que serão inseridas: 4`
 
@@ -3241,17 +3189,11 @@ print(medias)
 
 (f) a média dos números ímpares de cada linha da matriz.
 
-**Obs:** Use comandos de decisão (`if`...`else`...) sempre que necessário.
-
+**Obs:** Use estruturas de decisão (`if`...`else`...) sempre que necessário para condicionar a lógica dentro dos loops.
 
 # Família `Xapply()`
 
-A família `Xapply()` no R refere-se a um conjunto de funções que são
-usadas para iterar sobre objetos de forma eficiente, substituindo a
-necessidade de ciclos explícitos como `for`. Essas funções são muito
-úteis para realizar operações repetitivas em listas, vetores, matrizes,
-data frames e outros objetos, de maneira concisa e muitas vezes mais
-rápida.
+A família `Xapply()` no R refere-se a um conjunto de funções projetadas para iterar de maneira eficiente sobre objetos, evitando a necessidade de loops explícitos como `for`. Essas funções são especialmente úteis para realizar operações repetitivas em listas, vetores, matrizes, data frames e outros objetos, de forma concisa e frequentemente mais rápida.
 
 | **Função** | **Argumentos**          | **Objetivo**                                      | **Input**                  | **Output**          |
 |---------------|---------------|---------------|---------------|---------------|
@@ -3262,24 +3204,20 @@ rápida.
 
 ## Função `apply()`
 
-Aplica uma função a margens (linhas ou colunas) de uma matriz ou data
-frame e fornece saída em vetor, lista ou array. É usada para evitar
-loops (ciclos).
+A função `apply()` aplica uma função a margens específicas (linhas ou colunas) de uma matriz ou data frame e retorna um vetor, lista ou array. Ela é frequentemente usada para evitar loops explícitos.
 
 ```{r eval=FALSE}
 # Sintaxe
 apply(X, MARGIN, FUN)
 ```
 
--   `X`: A matriz ou data frame.
+* `X`: A matriz ou data frame a ser manipulado.
 
--   `MARGIN`: Indica se a função deve ser aplicada a linha (1) ou coluna
-    (2).
+* `MARGIN`: Um valor que indica se a função deve ser aplicada a linhas (1) ou colunas (2).
 
--   `FUN`: A função a ser aplicada.
+* `FUN`: A função que será aplicada.
 
-**Exemplo**: Calcular a soma, a média e a raíz quadrada de cada coluna
-de uma matriz.
+**Exemplo**: Calcular a soma, a média e a raíz quadrada de cada coluna de uma matriz.
 
 ```{r eval=FALSE}
 matriz <- matrix(1:9, nrow = 3)
@@ -3300,24 +3238,23 @@ apply(matriz, 2, f)
 
 ## Função `lapply()`
 
-Aplica uma função a cada elemento de uma lista ou vetor e retorna uma
-lista. É útil quando você precisa manter a estrutura de saída como uma
-lista.
+A função `lapply()` aplica uma função a cada elemento de uma lista ou vetor e retorna uma lista. Ela é útil quando se deseja manter a estrutura de saída como uma lista.
 
 ```{r eval=FALSE}
 # Sintaxe
 lapply(X, FUN, ...)
 ```
 
--   `X`: A lista ou vetor.
+* `X`: A lista ou vetor de entrada.
 
--   `FUN`: A função a ser aplicada.
+* `FUN`: A função que será aplicada.
 
 **Exemplo 1:**
 
 ```{r eval=FALSE}
 nomes <- c("ANA", "JOAO", "PAULO", "FILIPA")
-(nomes_minusc <- lapply(nomes, tolower))
+nomes_minusc <- lapply(nomes, tolower)
+print(nomes_minusc)
 ## [[1]]
 ## [1] "ana"
 ## 
@@ -3353,9 +3290,7 @@ lapply(vetor_dados, sqrt)
 
 ## Função `sapply()`
 
-Similar ao `lapply()`, aplica uma função a cada elemento de uma lista,
-vetor ou data frame, mas tenta simplificar o resultado(saída) para um
-vetor ou matriz.
+A função `sapply()` é similar ao `lapply()`, mas tenta simplificar o resultado para um vetor ou matriz, se possível.
 
 ```{r eval=FALSE}
 # Sintaxe
@@ -3390,28 +3325,20 @@ sapply(dados, f)
 
 ## Função `tapply()`
 
-Aplica uma função a grupos de valores em um vetor. É ideal para
-operações em subconjuntos de dados categorizados.
+A função `tapply()` aplica uma função a subconjuntos de um vetor, divididos de acordo com fatores. É ideal para operações em subconjuntos de dados categorizados.
 
 ```{r eval=FALSE}
 # Sintaxe
 tapply(X, INDEX, FUN, ...)
 ```
 
--   `X`: O vetor de dados
+* `X`: O vetor de dados
 
--   `INDEX`: Um fator ou lista de fatores que definem os grupos.
+* `INDEX`: Um fator ou lista de fatores que definem os grupos.
 
--   `FUN`: A função a ser aplicada
+* `FUN`: A função que será aplicada a cada grupo
 
-**Exemplo:** O dataset `iris` no R é um dos conjuntos de dados mais
-conhecidos e frequentemente utilizados para exemplificar análises
-estatísticas e técnicas de aprendizado de máquina. Foi introduzido por
-Ronald A. Fisher em 1936 em seu artigo sobre a utilização de modelos
-estatísticos para discriminação de espécies de plantas. O objetivo deste
-conjunto de dados é prever a classe de cada uma das três espécies de
-flores (fatores): Setosa, Versicolor, Virginica. O conjunto de dados
-coleta informações para cada espécie sobre seu comprimento e largura.
+**Exemplo:** O dataset `iris` em R é um conjunto de dados amplamente utilizado para exemplificar análises estatísticas. Foi introduzido por Ronald A. Fisher em 1936 em seu artigo sobre a utilização de modelos estatísticos para discriminação de espécies de plantas. Contém informações sobre três espécies de flores (`Setosa`, `Versicolor`, `Virginica`) e suas características morfológicas (comprimento e largura das sépalas e pétalas). Vamos calcular a média do comprimento das pétalas por espécie usando `tapply()`:
 
 ```{r eval=FALSE}
 iris
@@ -3574,14 +3501,86 @@ tapply(iris$Petal.Length, iris$Species, mean)
 
 ## Exercícios
 
+**1.** Crie um vetor chamado nomes contendo os nomes "Alice", "Bruno", "Carla", e "Daniel". Use a função `lapply()` para converter todos os nomes para maiúsculas. Verifique o resultado.
+
+```{r eval=FALSE}
+nomes <- c("Alice", "Bruno", "Carla", "Daniel")
+# Sua solução aqui
+
+```
+
+**2.** Crie um vetor chamado palavras contendo as palavras "cachorro", "gato", "elefante", e "leão". Use a função `sapply()` para calcular o comprimento (número de caracteres) de cada palavra. Verifique o resultado. Dica, veja `?nchar`.
+
+```{r}
+palavras <- c("cachorro", "gato", "elefante", "leão")
+# Sua solução aqui
+```
+
+**3.** Crie uma matriz 3x3 chamada `matriz_exemplo` com os números de 1 a 9. Use a função `apply()` para calcular a soma de cada linha da matriz. Em seguida, use a função `apply()` novamente para calcular a média de cada coluna.
+
+```{r}
+matriz_exemplo <- matrix(1:9, nrow = 3)
+# Sua solução aqui
+
+```
+
+**4.** Use o conjunto de dados embutido `mtcars` em R. Use a função `tapply()` para calcular a média do consumo de combustível (`mpg`) para cada número de cilindros (c`yl`).
+
+```{r}
+data(mtcars)
+# Sua solução aqui
+
+```
+
+**5.** Crie uma lista chamada `minha_lista` contendo três elementos: um vetor numérico de 1 a 5, um vetor de caracteres com os valores "A", "B", "C", e uma matriz 2x2 com valores de 1 a 4. Use `lapply()` para calcular o comprimento de cada elemento da lista e, em seguida, use `sapply()` para simplificar o resultado em um vetor.
+
+```{r}
+minha_lista <- list(1:5, c("A", "B", "C"), matrix(1:4, nrow = 2))
+# Sua solução aqui
+
+```
+
+**6.** Crie dois vetores numéricos, `a <- c(2, 4, 6)` e `b <- c(3, 5, 7)`. Use `mapply()` para multiplicar cada elemento de `a` com o elemento correspondente de `b`. Verifique o resultado.
+
+```{r}
+a <- c(2, 4, 6)
+b <- c(3, 5, 7)
+# Sua solução aqui
+
+```
+
+**7.** Crie um vetor numeros contendo os números de 1 a 10. Use a função `sapply()` para aplicar uma função personalizada que retorne “par” se o número for par e “ímpar” se o número for ímpar.
+
+```{r}
+numeros <- 1:10
+# Sua solução aqui
+
+```
+
+**8.** Use o conjunto de dados `iris`. Utilize `tapply()` para calcular a média do comprimento das pétalas (`Petal.Length`) por espécie (`Species`) e a variância da largura das sépalas (`Sepal.Width`) por espécie.
+
+```{r}
+data(iris)
+# Sua solução aqui
+
+```
+
+**9.** Use o conjunto de dados `mtcars`. Use `apply()` para normalizar (escala de 0 a 1) todas as colunas numéricas do data frame. Em seguida, use `lapply()` para aplicar a função `summary()` a cada coluna normalizada para verificar o resultado.
+
+```{r}
+data(mtcars)
+# Sua solução aqui
+
+
+```
+
 # Gráficos (R base)
+
+O R base oferece uma variedade de funções para criar gráficos estatísticos básicos e personalizá-los de acordo com as necessidades da análise. A criação de gráficos é uma parte essencial da análise de dados, pois permite visualizar padrões, tendências e distribuições de forma intuitiva.
 
 ## Gráfico de Barras
 
-**Gráfico de barras**: Conjunto de barras verticais ou horizontais. Cada
-barra representa uma categoria, e a altura da barra mostra a frequência
-sbsoluta ou relativa dessa categoria. A largura das barras não tem
-significado.
+**Gráfico de barras**: Um gráfico de barras consiste em barras verticais ou horizontais, onde cada barra representa uma categoria e sua altura (ou comprimento) indica a frequência (absoluta ou relativa) dessa categoria. A largura das barras é constante e não possui significado estatístico.
 
 ```{r}
 # Dados de exemplo: cores favoritas
@@ -3596,7 +3595,8 @@ barplot(frequencia_absoluta,
   main = "Gráfico de Barras",         
   xlab = "Cor",         
   ylab = "Frequência Absoluta",         
-  col = c("blue", "red", "green")) 
+  col = c("blue", "green", "red"),
+  border = "black") 
 ```
 
 ```{r}
@@ -3607,52 +3607,67 @@ frequencia_relativa <- frequencia_absoluta / length(cores)
 barplot(frequencia_relativa,         
   main = "Gráfico de Barras",         
   xlab = "Cor",         
-  ylab = "Frequência Relativa") 
+  ylab = "Frequência Relativa",
+  col = c("blue", "green", "red"),
+  border = "black") 
 ```
 
-## Gráfico circular (pizza)
+**Personalização de Gráficos de Barras**
 
-**Gráfico circular**: Exibe as proporções ou percentagens de diferentes
-categorias de dados em relação a um todo. Cada categoria é representada
-como uma “fatia” do círculo, e o tamanho de cada fatia é proporcional à
-sua contribuição para o total.
+Você pode personalizar ainda mais os gráficos de barras usando argumentos como `las` (para rotação dos rótulos dos eixos), `horiz` (para gráficos de barras horizontais), e `beside` (para barras lado a lado).
+
+```{r}
+# Gráfico de barras horizontal
+barplot(frequencia_absoluta, 
+        main = "Gráfico de Barras Horizontal",
+        xlab = "Frequência Absoluta",
+        ylab = "Cor",
+        col = c("blue", "green", "red"),
+        horiz = TRUE)
+```
+
+
+## Gráfico Circular (Pizza)
+
+**Gráfico circular (pizza)**: Mostra a proporção de diferentes categorias em relação ao total. Cada fatia representa uma categoria e o tamanho de cada fatia é proporcional à sua porcentagem.
 
 ```{r}
 # Criar gráfico circular
-pie(frequencia_relativa, main="Gráfico circular",
-  col=c("blue","green","red"))
+pie(frequencia_relativa, 
+    main = "Gráfico Circular (Pizza)",
+    col = c("blue", "green", "red"),
+    labels = paste(names(frequencia_relativa), 
+                   round(frequencia_relativa * 100, 1), "%"))
 ```
 
 ## Histograma
 
-Histograma é uma representação gráfica dos dados em que se marcam as
-classes (intervalos) no eixo horizontal e as frequências (absuluta ou
+**Histograma**: é uma representação gráfica dos dados em que se marcam as classes (intervalos) no eixo horizontal e as frequências (absuluta ou
 relativa) no eixo vertical.
 
--   Cada retângulo corresponde a uma classe.
+* Cada retângulo corresponde a uma classe.
 
--   A largura de cada retângulo é igual à amplitude da classe
+* A largura de cada retângulo é igual à amplitude da classe.
 
--   Se as classes tiverem todas a mesma amplitude, a altura do retângulo
-    é proporcional à frequência.
+* Se as classes tiverem todas a mesma amplitude, a altura do retângulo é proporcional à frequência.
 
-Por default, o R utiliza a frequência absoluta para construir o
-histograma. Se tiver interesse em representar as frequências relativas,
+Por default, o R utiliza a frequência absoluta para construir o histograma. Se tiver interesse em representar as frequências relativas,
 utilize a opção `freq=FALSE` nos argumentos da função `hist()`. O padrão
 de intervalo de classe no R é $(a, b]$.
 
 ```{r}
-# Considere os dados referentes à massa (em kg) de 40 bicicletas
+# Dados referentes à massa (em kg) de 40 bicicletas
 
 bicicletas <- c(4.3,6.8,9.2,7.2,8.7,8.6,6.6,5.2,8.1,10.9,7.4,4.5,3.8,7.6,6.8,7.8,8.4,7.5,10.5,6.0,7.7,8.1,7.0,8.2,8.4,8.8,6.7,8.2,9.4,7.7,6.3,7.7,9.1,7.9,7.9,9.4,8.2,6.7,8.2,6.5)
   
 h <- hist(bicicletas,     
   main = "Histograma",     
   xlab = "Massa (kg)",     
-  ylab = "Freq. absoluta",     
+  ylab = "Frequência absoluta",
+  col = "lightblue",
+  border = "black",
   ylim = c(0,12),     
-  labels = TRUE,     
-  col = "lightblue")
+  labels = TRUE)
 ```
 
 ```{r eval=FALSE}
@@ -3670,35 +3685,84 @@ h$counts
 hist(bicicletas,
   main = "Histograma",          
   xlab = "Massa (kg)",          
-  ylab = "Freq. relativa",     
-  freq = FALSE,     
-  labels = TRUE,          
-  col = "lightblue")
+  ylab = "Frequência relativa",     
+  freq = FALSE,
+  col = "lightblue",
+  border = "black",
+  labels = TRUE)
 ```
+
+Você pode controlar o número de intervalos (bins) usando o argumento `breaks`. Por exemplo, `breaks = 5` divide os dados em 5 intervalos.
 
 ## Box-plot
 
+**Box-plot (Caixa de Bigodes)**: O box-plot é uma representação gráfica que resume a distribuição de uma variável através de cinco estatísticas principais: mínimo, primeiro quartil (Q1), mediana (Q2), terceiro quartil (Q3) e máximo. Ele também pode mostrar outliers (valores atípicos).
+
 ```{r}
-# Caixa de bigodes vertical
-boxplot(bicicletas, main = "Caixa de bigodes", col="red")
+# Box-plot vertical
+boxplot(bicicletas, 
+        main = "Box-plot Vertical", 
+        col="red")
 ```
 
 ```{r}
-# Caixa de bigodes horizontal
-boxplot(bicicletas, main = "Caixa de bigodes", col="green", horizontal = TRUE)
+# Box-plot horizontal
+boxplot(bicicletas, 
+        main = "Box-plot Horizontal", 
+        col="green", 
+        horizontal = TRUE)
 ```
 
+Você pode comparar a distribuição de múltiplas variáveis lado a lado com box-plots. Use a função `par()` para ajustar o layout gráfico.
+
 ```{r}
-# Caixa de bigodes lado a lado
-par(mfrow=c(1,2))
+# Ajuste do layout gráfico
+par(mfrow = c(1, 2))
 
-# Caixa de bigodes vertical
-boxplot(bicicletas,main = "Caixa de bigodes",col = "red")
+# Box-plot vertical e horizontal lado a lado
+boxplot(bicicletas, main = "Box-plot Vertical", col = "red")
+boxplot(bicicletas, main = "Box-plot Horizontal", col = "green", horizontal = TRUE)
 
-# Caixa de bigodes horizontal
-boxplot(bicicletas,main = "Caixa de bigodes",col = "green",horizontal = TRUE)
+# Resetar layout gráfico para o padrão
+par(mfrow = c(1, 1))
+```
 
-dev.off()
+## Gráfico de Dispersão
+
+**Gráfico de Dispersão (Scatter Plot)**: Útil para visualizar a relação entre duas variáveis quantitativas. É uma boa ferramenta para identificar correlações, tendências e outliers.
+
+
+```{r}
+# Dados de exemplo
+x <- rnorm(100)
+y <- x + rnorm(100, sd = 0.5)
+
+# Criar gráfico de dispersão
+plot(x, y, 
+     main = "Gráfico de Dispersão", 
+     xlab = "Variável X", 
+     ylab = "Variável Y", 
+     col = "blue", 
+     pch = 19)
+```
+
+## Gráfico de Linhas
+
+**Gráfico de Linhas**: É usado para mostrar informações de séries temporais ou tendências ao longo de intervalos contínuos, como o tempo.
+
+```{r}
+# Dados de exemplo
+tempo <- 1:10
+valores <- c(3, 5, 7, 9, 11, 10, 8, 6, 4, 2)
+
+# Criar gráfico de linhas
+plot(tempo, valores, 
+     type = "o", 
+     main = "Gráfico de Linhas", 
+     xlab = "Tempo", 
+     ylab = "Valores", 
+     col = "blue", 
+     pch = 19)
 ```
 
 # Manipulação de dados

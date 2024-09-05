@@ -252,7 +252,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.table"><i class="fa fa-check"></i><b>8.3</b> A Função <code>read.table()</code></a></li>
 <li class="chapter" data-level="8.4" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.csv"><i class="fa fa-check"></i><b>8.4</b> A função <code>read.csv()</code></a></li>
 <li class="chapter" data-level="8.5" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.csv2"><i class="fa fa-check"></i><b>8.5</b> A função <code>read.csv2()</code></a></li>
-<li class="chapter" data-level="8.6" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read_excel-do-pacote-readxl"><i class="fa fa-check"></i><b>8.6</b> A Função <code>read_excel()</code> do pacote <code>readxl</code></a></li>
+<li class="chapter" data-level="8.6" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read_excel-do-pacote-readxl"><i class="fa fa-check"></i><b>8.6</b> A Função <code>read_excel()</code> do Pacote <code>readxl</code></a></li>
 <li class="chapter" data-level="8.7" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#leitura-de-dados-online"><i class="fa fa-check"></i><b>8.7</b> Leitura de Dados Online</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>9</b> Pipe</a>
@@ -279,9 +279,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html"><i class="fa fa-check"></i><b>13</b> Gráficos (R base)</a>
 <ul>
 <li class="chapter" data-level="13.1" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-de-barras"><i class="fa fa-check"></i><b>13.1</b> Gráfico de Barras</a></li>
-<li class="chapter" data-level="13.2" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-circular-pizza"><i class="fa fa-check"></i><b>13.2</b> Gráfico circular (pizza)</a></li>
+<li class="chapter" data-level="13.2" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-circular-pizza"><i class="fa fa-check"></i><b>13.2</b> Gráfico Circular (Pizza)</a></li>
 <li class="chapter" data-level="13.3" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#histograma"><i class="fa fa-check"></i><b>13.3</b> Histograma</a></li>
 <li class="chapter" data-level="13.4" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#box-plot"><i class="fa fa-check"></i><b>13.4</b> Box-plot</a></li>
+<li class="chapter" data-level="13.5" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-de-dispersão"><i class="fa fa-check"></i><b>13.5</b> Gráfico de Dispersão</a></li>
+<li class="chapter" data-level="13.6" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-de-linhas"><i class="fa fa-check"></i><b>13.6</b> Gráfico de Linhas</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html"><i class="fa fa-check"></i><b>14</b> Manipulação de dados</a>
 <ul>
@@ -459,43 +461,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="manipulação-de-dados.html#cb153-1" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb153-2"><a href="manipulação-de-dados.html#cb153-2" tabindex="-1"></a></span>
-<span id="cb153-3"><a href="manipulação-de-dados.html#cb153-3" tabindex="-1"></a><span class="co"># Criando um tibble</span></span>
-<span id="cb153-4"><a href="manipulação-de-dados.html#cb153-4" tabindex="-1"></a>tb <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb153-5"><a href="manipulação-de-dados.html#cb153-5" tabindex="-1"></a>  <span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
-<span id="cb153-6"><a href="manipulação-de-dados.html#cb153-6" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;E&quot;</span>),</span>
-<span id="cb153-7"><a href="manipulação-de-dados.html#cb153-7" tabindex="-1"></a>  <span class="at">z =</span> x <span class="sc">*</span> <span class="dv">2</span></span>
-<span id="cb153-8"><a href="manipulação-de-dados.html#cb153-8" tabindex="-1"></a>)</span>
-<span id="cb153-9"><a href="manipulação-de-dados.html#cb153-9" tabindex="-1"></a></span>
-<span id="cb153-10"><a href="manipulação-de-dados.html#cb153-10" tabindex="-1"></a><span class="fu">print</span>(tb)</span>
-<span id="cb153-11"><a href="manipulação-de-dados.html#cb153-11" tabindex="-1"></a><span class="do">## # A tibble: 5 × 3</span></span>
-<span id="cb153-12"><a href="manipulação-de-dados.html#cb153-12" tabindex="-1"></a><span class="do">##       x y         z</span></span>
-<span id="cb153-13"><a href="manipulação-de-dados.html#cb153-13" tabindex="-1"></a><span class="do">##   &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;</span></span>
-<span id="cb153-14"><a href="manipulação-de-dados.html#cb153-14" tabindex="-1"></a><span class="do">## 1     1 A         2</span></span>
-<span id="cb153-15"><a href="manipulação-de-dados.html#cb153-15" tabindex="-1"></a><span class="do">## 2     2 B         4</span></span>
-<span id="cb153-16"><a href="manipulação-de-dados.html#cb153-16" tabindex="-1"></a><span class="do">## 3     3 C         6</span></span>
-<span id="cb153-17"><a href="manipulação-de-dados.html#cb153-17" tabindex="-1"></a><span class="do">## 4     4 D         8</span></span>
-<span id="cb153-18"><a href="manipulação-de-dados.html#cb153-18" tabindex="-1"></a><span class="do">## 5     5 E        10</span></span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="manipulação-de-dados.html#cb165-1" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb165-2"><a href="manipulação-de-dados.html#cb165-2" tabindex="-1"></a></span>
+<span id="cb165-3"><a href="manipulação-de-dados.html#cb165-3" tabindex="-1"></a><span class="co"># Criando um tibble</span></span>
+<span id="cb165-4"><a href="manipulação-de-dados.html#cb165-4" tabindex="-1"></a>tb <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb165-5"><a href="manipulação-de-dados.html#cb165-5" tabindex="-1"></a>  <span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb165-6"><a href="manipulação-de-dados.html#cb165-6" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;E&quot;</span>),</span>
+<span id="cb165-7"><a href="manipulação-de-dados.html#cb165-7" tabindex="-1"></a>  <span class="at">z =</span> x <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb165-8"><a href="manipulação-de-dados.html#cb165-8" tabindex="-1"></a>)</span>
+<span id="cb165-9"><a href="manipulação-de-dados.html#cb165-9" tabindex="-1"></a></span>
+<span id="cb165-10"><a href="manipulação-de-dados.html#cb165-10" tabindex="-1"></a><span class="fu">print</span>(tb)</span>
+<span id="cb165-11"><a href="manipulação-de-dados.html#cb165-11" tabindex="-1"></a><span class="do">## # A tibble: 5 × 3</span></span>
+<span id="cb165-12"><a href="manipulação-de-dados.html#cb165-12" tabindex="-1"></a><span class="do">##       x y         z</span></span>
+<span id="cb165-13"><a href="manipulação-de-dados.html#cb165-13" tabindex="-1"></a><span class="do">##   &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;</span></span>
+<span id="cb165-14"><a href="manipulação-de-dados.html#cb165-14" tabindex="-1"></a><span class="do">## 1     1 A         2</span></span>
+<span id="cb165-15"><a href="manipulação-de-dados.html#cb165-15" tabindex="-1"></a><span class="do">## 2     2 B         4</span></span>
+<span id="cb165-16"><a href="manipulação-de-dados.html#cb165-16" tabindex="-1"></a><span class="do">## 3     3 C         6</span></span>
+<span id="cb165-17"><a href="manipulação-de-dados.html#cb165-17" tabindex="-1"></a><span class="do">## 4     4 D         8</span></span>
+<span id="cb165-18"><a href="manipulação-de-dados.html#cb165-18" tabindex="-1"></a><span class="do">## 5     5 E        10</span></span></code></pre></div>
 <p>Conversão de data frame pra tibble:</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="manipulação-de-dados.html#cb154-1" tabindex="-1"></a><span class="co"># Criando um data frame</span></span>
-<span id="cb154-2"><a href="manipulação-de-dados.html#cb154-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb154-3"><a href="manipulação-de-dados.html#cb154-3" tabindex="-1"></a>  <span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
-<span id="cb154-4"><a href="manipulação-de-dados.html#cb154-4" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;E&quot;</span>)</span>
-<span id="cb154-5"><a href="manipulação-de-dados.html#cb154-5" tabindex="-1"></a>)</span>
-<span id="cb154-6"><a href="manipulação-de-dados.html#cb154-6" tabindex="-1"></a></span>
-<span id="cb154-7"><a href="manipulação-de-dados.html#cb154-7" tabindex="-1"></a><span class="co"># Convertendo para tibble</span></span>
-<span id="cb154-8"><a href="manipulação-de-dados.html#cb154-8" tabindex="-1"></a>tb <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(df)</span>
-<span id="cb154-9"><a href="manipulação-de-dados.html#cb154-9" tabindex="-1"></a></span>
-<span id="cb154-10"><a href="manipulação-de-dados.html#cb154-10" tabindex="-1"></a><span class="fu">print</span>(tb)</span>
-<span id="cb154-11"><a href="manipulação-de-dados.html#cb154-11" tabindex="-1"></a><span class="do">## # A tibble: 5 × 2</span></span>
-<span id="cb154-12"><a href="manipulação-de-dados.html#cb154-12" tabindex="-1"></a><span class="do">##       x y    </span></span>
-<span id="cb154-13"><a href="manipulação-de-dados.html#cb154-13" tabindex="-1"></a><span class="do">##   &lt;int&gt; &lt;chr&gt;</span></span>
-<span id="cb154-14"><a href="manipulação-de-dados.html#cb154-14" tabindex="-1"></a><span class="do">## 1     1 A    </span></span>
-<span id="cb154-15"><a href="manipulação-de-dados.html#cb154-15" tabindex="-1"></a><span class="do">## 2     2 B    </span></span>
-<span id="cb154-16"><a href="manipulação-de-dados.html#cb154-16" tabindex="-1"></a><span class="do">## 3     3 C    </span></span>
-<span id="cb154-17"><a href="manipulação-de-dados.html#cb154-17" tabindex="-1"></a><span class="do">## 4     4 D    </span></span>
-<span id="cb154-18"><a href="manipulação-de-dados.html#cb154-18" tabindex="-1"></a><span class="do">## 5     5 E</span></span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="manipulação-de-dados.html#cb166-1" tabindex="-1"></a><span class="co"># Criando um data frame</span></span>
+<span id="cb166-2"><a href="manipulação-de-dados.html#cb166-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb166-3"><a href="manipulação-de-dados.html#cb166-3" tabindex="-1"></a>  <span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb166-4"><a href="manipulação-de-dados.html#cb166-4" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;E&quot;</span>)</span>
+<span id="cb166-5"><a href="manipulação-de-dados.html#cb166-5" tabindex="-1"></a>)</span>
+<span id="cb166-6"><a href="manipulação-de-dados.html#cb166-6" tabindex="-1"></a></span>
+<span id="cb166-7"><a href="manipulação-de-dados.html#cb166-7" tabindex="-1"></a><span class="co"># Convertendo para tibble</span></span>
+<span id="cb166-8"><a href="manipulação-de-dados.html#cb166-8" tabindex="-1"></a>tb <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(df)</span>
+<span id="cb166-9"><a href="manipulação-de-dados.html#cb166-9" tabindex="-1"></a></span>
+<span id="cb166-10"><a href="manipulação-de-dados.html#cb166-10" tabindex="-1"></a><span class="fu">print</span>(tb)</span>
+<span id="cb166-11"><a href="manipulação-de-dados.html#cb166-11" tabindex="-1"></a><span class="do">## # A tibble: 5 × 2</span></span>
+<span id="cb166-12"><a href="manipulação-de-dados.html#cb166-12" tabindex="-1"></a><span class="do">##       x y    </span></span>
+<span id="cb166-13"><a href="manipulação-de-dados.html#cb166-13" tabindex="-1"></a><span class="do">##   &lt;int&gt; &lt;chr&gt;</span></span>
+<span id="cb166-14"><a href="manipulação-de-dados.html#cb166-14" tabindex="-1"></a><span class="do">## 1     1 A    </span></span>
+<span id="cb166-15"><a href="manipulação-de-dados.html#cb166-15" tabindex="-1"></a><span class="do">## 2     2 B    </span></span>
+<span id="cb166-16"><a href="manipulação-de-dados.html#cb166-16" tabindex="-1"></a><span class="do">## 3     3 C    </span></span>
+<span id="cb166-17"><a href="manipulação-de-dados.html#cb166-17" tabindex="-1"></a><span class="do">## 4     4 D    </span></span>
+<span id="cb166-18"><a href="manipulação-de-dados.html#cb166-18" tabindex="-1"></a><span class="do">## 5     5 E</span></span></code></pre></div>
 </div>
 <div id="o-pacote-dplyr" class="section level2 hasAnchor" number="14.2">
 <h2><span class="header-section-number">14.2</span> O pacote <code>dplyr</code><a href="manipulação-de-dados.html#o-pacote-dplyr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -518,7 +520,7 @@ filtragem de linhas, ordenação, resumo de dados e junção de data frames.</p>
 base está disponível dentro do pacote <code>dplyr</code> no R e pode ser acessada
 através do comando <code>starwars</code>.</p>
 <p>Assim, utilizaremos o objeto <code>sw</code> para acessar os dados.</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="manipulação-de-dados.html#cb155-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="manipulação-de-dados.html#cb167-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;dplyr&#39;</code></pre>
 <pre><code>## The following objects are masked from &#39;package:stats&#39;:
@@ -527,8 +529,8 @@ através do comando <code>starwars</code>.</p>
 <pre><code>## The following objects are masked from &#39;package:base&#39;:
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="manipulação-de-dados.html#cb159-1" tabindex="-1"></a>sw <span class="ot">&lt;-</span> starwars</span>
-<span id="cb159-2"><a href="manipulação-de-dados.html#cb159-2" tabindex="-1"></a>sw</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="manipulação-de-dados.html#cb171-1" tabindex="-1"></a>sw <span class="ot">&lt;-</span> starwars</span>
+<span id="cb171-2"><a href="manipulação-de-dados.html#cb171-2" tabindex="-1"></a>sw</span></code></pre></div>
 <pre><code>## # A tibble: 87 × 14
 ##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
 ##    &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
@@ -549,7 +551,7 @@ através do comando <code>starwars</code>.</p>
 <h3><span class="header-section-number">14.2.1</span> Selecionando colunas<a href="manipulação-de-dados.html#selecionando-colunas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Para selecionar colunas, utilizamos a função <code>select()</code>. Repare que não
 precisamos colocar o nome da coluna entre aspas.</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="manipulação-de-dados.html#cb161-1" tabindex="-1"></a><span class="fu">select</span>(sw, name)</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="manipulação-de-dados.html#cb173-1" tabindex="-1"></a><span class="fu">select</span>(sw, name)</span></code></pre></div>
 <pre><code>## # A tibble: 87 × 1
 ##    name              
 ##    &lt;chr&gt;             
@@ -565,7 +567,7 @@ precisamos colocar o nome da coluna entre aspas.</p>
 ## 10 Obi-Wan Kenobi    
 ## # ℹ 77 more rows</code></pre>
 <p>Também podemos selecionar várias colunas</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="manipulação-de-dados.html#cb163-1" tabindex="-1"></a><span class="fu">select</span>(sw, name, mass, hair_color)</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="manipulação-de-dados.html#cb175-1" tabindex="-1"></a><span class="fu">select</span>(sw, name, mass, hair_color)</span></code></pre></div>
 <pre><code>## # A tibble: 87 × 3
 ##    name                mass hair_color   
 ##    &lt;chr&gt;              &lt;dbl&gt; &lt;chr&gt;        
@@ -581,7 +583,7 @@ precisamos colocar o nome da coluna entre aspas.</p>
 ## 10 Obi-Wan Kenobi        77 auburn, white
 ## # ℹ 77 more rows</code></pre>
 <p>Podemos usar o operador <code>:</code> para selecionar colunas consecutivas.</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="manipulação-de-dados.html#cb165-1" tabindex="-1"></a><span class="fu">select</span>(sw, name<span class="sc">:</span>hair_color)</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="manipulação-de-dados.html#cb177-1" tabindex="-1"></a><span class="fu">select</span>(sw, name<span class="sc">:</span>hair_color)</span></code></pre></div>
 <pre><code>## # A tibble: 87 × 4
 ##    name               height  mass hair_color   
 ##    &lt;chr&gt;               &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;        
@@ -603,7 +605,7 @@ seleção de colunas. As principais são:</p>
 <li><code>ends_with()</code>: para colunas que terminam com um texto padrão</li>
 <li><code>contains()</code>: para colunas que contêm um texto padrão</li>
 </ul>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="manipulação-de-dados.html#cb167-1" tabindex="-1"></a><span class="fu">select</span>(sw, <span class="fu">ends_with</span>(<span class="st">&quot;color&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="manipulação-de-dados.html#cb179-1" tabindex="-1"></a><span class="fu">select</span>(sw, <span class="fu">ends_with</span>(<span class="st">&quot;color&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 87 × 3
 ##    hair_color    skin_color  eye_color
 ##    &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;    
@@ -619,7 +621,7 @@ seleção de colunas. As principais são:</p>
 ## 10 auburn, white fair        blue-gray
 ## # ℹ 77 more rows</code></pre>
 <p>Para remover colunas basta acrescentar um <code>-</code> antes da seleção.</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="manipulação-de-dados.html#cb169-1" tabindex="-1"></a><span class="fu">select</span>(sw, <span class="sc">-</span>name, <span class="sc">-</span>hair_color)</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="manipulação-de-dados.html#cb181-1" tabindex="-1"></a><span class="fu">select</span>(sw, <span class="sc">-</span>name, <span class="sc">-</span>hair_color)</span></code></pre></div>
 <pre><code>## # A tibble: 87 × 12
 ##    height  mass skin_color  eye_color birth_year sex    gender homeworld species
 ##     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;  
@@ -635,7 +637,7 @@ seleção de colunas. As principais são:</p>
 ## 10    182    77 fair        blue-gray       57   male   mascu… Stewjon   Human  
 ## # ℹ 77 more rows
 ## # ℹ 3 more variables: films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="manipulação-de-dados.html#cb171-1" tabindex="-1"></a><span class="fu">select</span>(sw, <span class="sc">-</span><span class="fu">ends_with</span>(<span class="st">&quot;color&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="manipulação-de-dados.html#cb183-1" tabindex="-1"></a><span class="fu">select</span>(sw, <span class="sc">-</span><span class="fu">ends_with</span>(<span class="st">&quot;color&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 87 × 11
 ##    name    height  mass birth_year sex   gender homeworld species films vehicles
 ##    &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;   &lt;lis&gt; &lt;list&gt;  
@@ -671,7 +673,7 @@ você conseguir pensar.</p>
 <p>Para ordenar linhas, utilizamos a função <code>arrange()</code>. O primeiro
 argumento é a base de dados. Os demais argumentos são as colunas pelas
 quais queremos ordenar as linhas.</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="manipulação-de-dados.html#cb173-1" tabindex="-1"></a><span class="fu">arrange</span>(sw, mass)</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="manipulação-de-dados.html#cb185-1" tabindex="-1"></a><span class="fu">arrange</span>(sw, mass)</span></code></pre></div>
 <pre><code>## # A tibble: 87 × 14
 ##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
 ##    &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
@@ -689,7 +691,7 @@ quais queremos ordenar as linhas.</p>
 ## # ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
 ## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
 <p>Também podemos ordenar de forma decrescente usando a função <code>desc()</code>.</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="manipulação-de-dados.html#cb175-1" tabindex="-1"></a><span class="fu">arrange</span>(sw, <span class="fu">desc</span>(mass))</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="manipulação-de-dados.html#cb187-1" tabindex="-1"></a><span class="fu">arrange</span>(sw, <span class="fu">desc</span>(mass))</span></code></pre></div>
 <pre><code>## # A tibble: 87 × 14
 ##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
 ##    &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
@@ -707,7 +709,7 @@ quais queremos ordenar as linhas.</p>
 ## # ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
 ## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
 <p>Ordenar segundo duas ou mais colunas.</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="manipulação-de-dados.html#cb177-1" tabindex="-1"></a><span class="fu">arrange</span>(sw, <span class="fu">desc</span>(height), <span class="fu">desc</span>(mass))</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="manipulação-de-dados.html#cb189-1" tabindex="-1"></a><span class="fu">arrange</span>(sw, <span class="fu">desc</span>(height), <span class="fu">desc</span>(mass))</span></code></pre></div>
 <pre><code>## # A tibble: 87 × 14
 ##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
 ##    &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
@@ -729,29 +731,29 @@ quais queremos ordenar as linhas.</p>
 <h3><span class="header-section-number">14.2.4</span> Exercícios<a href="manipulação-de-dados.html#exercícios-13" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>1.</strong> Ordene <code>mass</code> em ordem crescente e <code>birth_year</code> em ordem
 decrescente e salve em um objeto chamado <code>sw_ordenados</code>.</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="manipulação-de-dados.html#cb179-1" tabindex="-1"></a>sw_ordenados <span class="ot">&lt;-</span> <span class="fu">arrange</span>(sw, mass, <span class="fu">desc</span>(birth_year))</span>
-<span id="cb179-2"><a href="manipulação-de-dados.html#cb179-2" tabindex="-1"></a>sw_ordenados</span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="manipulação-de-dados.html#cb191-1" tabindex="-1"></a>sw_ordenados <span class="ot">&lt;-</span> <span class="fu">arrange</span>(sw, mass, <span class="fu">desc</span>(birth_year))</span>
+<span id="cb191-2"><a href="manipulação-de-dados.html#cb191-2" tabindex="-1"></a>sw_ordenados</span></code></pre></div>
 <p><strong>2.</strong> Selecione apenas as colunas <code>name</code> e <code>birth_year</code> e então ordene
 de forma decrescente pelo <code>birth_year</code>.</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="manipulação-de-dados.html#cb180-1" tabindex="-1"></a><span class="co"># Aninhando funções</span></span>
-<span id="cb180-2"><a href="manipulação-de-dados.html#cb180-2" tabindex="-1"></a><span class="fu">arrange</span>(<span class="fu">select</span>(sw, name, birth_year), <span class="fu">desc</span>(birth_year))</span>
-<span id="cb180-3"><a href="manipulação-de-dados.html#cb180-3" tabindex="-1"></a></span>
-<span id="cb180-4"><a href="manipulação-de-dados.html#cb180-4" tabindex="-1"></a><span class="co"># Criando um objeto intermediário</span></span>
-<span id="cb180-5"><a href="manipulação-de-dados.html#cb180-5" tabindex="-1"></a>sw_aux <span class="ot">&lt;-</span> <span class="fu">select</span>(sw, name, birth_year)</span>
-<span id="cb180-6"><a href="manipulação-de-dados.html#cb180-6" tabindex="-1"></a><span class="fu">arrange</span>(sw_aux, <span class="fu">desc</span>(birth_year))</span>
-<span id="cb180-7"><a href="manipulação-de-dados.html#cb180-7" tabindex="-1"></a></span>
-<span id="cb180-8"><a href="manipulação-de-dados.html#cb180-8" tabindex="-1"></a><span class="co"># Pipe</span></span>
-<span id="cb180-9"><a href="manipulação-de-dados.html#cb180-9" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> </span>
-<span id="cb180-10"><a href="manipulação-de-dados.html#cb180-10" tabindex="-1"></a>  <span class="fu">select</span>(name, birth_year) <span class="sc">%&gt;%</span> </span>
-<span id="cb180-11"><a href="manipulação-de-dados.html#cb180-11" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(birth_year))</span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="manipulação-de-dados.html#cb192-1" tabindex="-1"></a><span class="co"># Aninhando funções</span></span>
+<span id="cb192-2"><a href="manipulação-de-dados.html#cb192-2" tabindex="-1"></a><span class="fu">arrange</span>(<span class="fu">select</span>(sw, name, birth_year), <span class="fu">desc</span>(birth_year))</span>
+<span id="cb192-3"><a href="manipulação-de-dados.html#cb192-3" tabindex="-1"></a></span>
+<span id="cb192-4"><a href="manipulação-de-dados.html#cb192-4" tabindex="-1"></a><span class="co"># Criando um objeto intermediário</span></span>
+<span id="cb192-5"><a href="manipulação-de-dados.html#cb192-5" tabindex="-1"></a>sw_aux <span class="ot">&lt;-</span> <span class="fu">select</span>(sw, name, birth_year)</span>
+<span id="cb192-6"><a href="manipulação-de-dados.html#cb192-6" tabindex="-1"></a><span class="fu">arrange</span>(sw_aux, <span class="fu">desc</span>(birth_year))</span>
+<span id="cb192-7"><a href="manipulação-de-dados.html#cb192-7" tabindex="-1"></a></span>
+<span id="cb192-8"><a href="manipulação-de-dados.html#cb192-8" tabindex="-1"></a><span class="co"># Pipe</span></span>
+<span id="cb192-9"><a href="manipulação-de-dados.html#cb192-9" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> </span>
+<span id="cb192-10"><a href="manipulação-de-dados.html#cb192-10" tabindex="-1"></a>  <span class="fu">select</span>(name, birth_year) <span class="sc">%&gt;%</span> </span>
+<span id="cb192-11"><a href="manipulação-de-dados.html#cb192-11" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(birth_year))</span></code></pre></div>
 </div>
 <div id="filtrando-linhas" class="section level3 hasAnchor" number="14.2.5">
 <h3><span class="header-section-number">14.2.5</span> Filtrando linhas<a href="manipulação-de-dados.html#filtrando-linhas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Para filtrar valores de uma coluna da base, utilizamos a função
 <code>filter()</code>.</p>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="manipulação-de-dados.html#cb181-1" tabindex="-1"></a><span class="co"># filter(sw, height &gt; 170)</span></span>
-<span id="cb181-2"><a href="manipulação-de-dados.html#cb181-2" tabindex="-1"></a><span class="co"># Ou</span></span>
-<span id="cb181-3"><a href="manipulação-de-dados.html#cb181-3" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> <span class="fu">filter</span>(height <span class="sc">&gt;</span> <span class="dv">170</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="manipulação-de-dados.html#cb193-1" tabindex="-1"></a><span class="co"># filter(sw, height &gt; 170)</span></span>
+<span id="cb193-2"><a href="manipulação-de-dados.html#cb193-2" tabindex="-1"></a><span class="co"># Ou</span></span>
+<span id="cb193-3"><a href="manipulação-de-dados.html#cb193-3" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> <span class="fu">filter</span>(height <span class="sc">&gt;</span> <span class="dv">170</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 55 × 14
 ##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
 ##    &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
@@ -770,9 +772,9 @@ de forma decrescente pelo <code>birth_year</code>.</p>
 ## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
 <p>Podemos selecionar apenas as colunas <code>name</code> e <code>height</code> para
 visualizarmos as alturas:</p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="manipulação-de-dados.html#cb183-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> </span>
-<span id="cb183-2"><a href="manipulação-de-dados.html#cb183-2" tabindex="-1"></a>  <span class="fu">filter</span>(height <span class="sc">&gt;</span> <span class="dv">170</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb183-3"><a href="manipulação-de-dados.html#cb183-3" tabindex="-1"></a>  <span class="fu">select</span>(name, height)</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="manipulação-de-dados.html#cb195-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> </span>
+<span id="cb195-2"><a href="manipulação-de-dados.html#cb195-2" tabindex="-1"></a>  <span class="fu">filter</span>(height <span class="sc">&gt;</span> <span class="dv">170</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb195-3"><a href="manipulação-de-dados.html#cb195-3" tabindex="-1"></a>  <span class="fu">select</span>(name, height)</span></code></pre></div>
 <pre><code>## # A tibble: 55 × 2
 ##    name              height
 ##    &lt;chr&gt;              &lt;int&gt;
@@ -788,7 +790,7 @@ visualizarmos as alturas:</p>
 ## 10 Greedo               173
 ## # ℹ 45 more rows</code></pre>
 <p>Podemos estender o filtro para duas ou mais colunas.</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="manipulação-de-dados.html#cb185-1" tabindex="-1"></a><span class="fu">filter</span>(sw, height<span class="sc">&gt;</span><span class="dv">170</span>, mass<span class="sc">&gt;</span><span class="dv">80</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="manipulação-de-dados.html#cb197-1" tabindex="-1"></a><span class="fu">filter</span>(sw, height<span class="sc">&gt;</span><span class="dv">170</span>, mass<span class="sc">&gt;</span><span class="dv">80</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 21 × 14
 ##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
 ##    &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
@@ -805,7 +807,7 @@ visualizarmos as alturas:</p>
 ## # ℹ 11 more rows
 ## # ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
 ## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="manipulação-de-dados.html#cb187-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> <span class="fu">filter</span>(height <span class="sc">&gt;</span> <span class="dv">170</span>, mass <span class="sc">&gt;</span> <span class="dv">80</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="manipulação-de-dados.html#cb199-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> <span class="fu">filter</span>(height <span class="sc">&gt;</span> <span class="dv">170</span>, mass <span class="sc">&gt;</span> <span class="dv">80</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 21 × 14
 ##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
 ##    &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
@@ -824,7 +826,7 @@ visualizarmos as alturas:</p>
 ## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
 <p>Podemos filtrar colunas categóricas. O exemplo abaixo retorna uma tabela
 apenas com os personagens com cabelo preto ou castanho.</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="manipulação-de-dados.html#cb189-1" tabindex="-1"></a><span class="fu">filter</span>(sw, hair_color <span class="sc">==</span> <span class="st">&quot;black&quot;</span> <span class="sc">|</span> hair_color <span class="sc">==</span> <span class="st">&quot;brown&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="manipulação-de-dados.html#cb201-1" tabindex="-1"></a><span class="fu">filter</span>(sw, hair_color <span class="sc">==</span> <span class="st">&quot;black&quot;</span> <span class="sc">|</span> hair_color <span class="sc">==</span> <span class="st">&quot;brown&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 31 × 14
 ##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
 ##    &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
@@ -841,7 +843,7 @@ apenas com os personagens com cabelo preto ou castanho.</p>
 ## # ℹ 21 more rows
 ## # ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
 ## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="manipulação-de-dados.html#cb191-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> <span class="fu">filter</span>(hair_color <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>,<span class="st">&quot;brown&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="manipulação-de-dados.html#cb203-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> <span class="fu">filter</span>(hair_color <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>,<span class="st">&quot;brown&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 31 × 14
 ##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
 ##    &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
@@ -861,19 +863,19 @@ apenas com os personagens com cabelo preto ou castanho.</p>
 <p>Para filtrar textos sem correspondência exata, podemos utilizar a função
 auxiliar <code>str_detect()</code> do pacote <code>{stringr}</code>. Ela serve para verificar
 se cada string de um vetor contém um determinado padrão de texto.</p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="manipulação-de-dados.html#cb193-1" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb193-2"><a href="manipulação-de-dados.html#cb193-2" tabindex="-1"></a></span>
-<span id="cb193-3"><a href="manipulação-de-dados.html#cb193-3" tabindex="-1"></a><span class="fu">str_detect</span>(</span>
-<span id="cb193-4"><a href="manipulação-de-dados.html#cb193-4" tabindex="-1"></a>  <span class="at">string =</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;aa&quot;</span>,<span class="st">&quot;abc&quot;</span>, <span class="st">&quot;bc&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="cn">NA</span>), </span>
-<span id="cb193-5"><a href="manipulação-de-dados.html#cb193-5" tabindex="-1"></a>  <span class="at">pattern =</span> <span class="st">&quot;a&quot;</span></span>
-<span id="cb193-6"><a href="manipulação-de-dados.html#cb193-6" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="manipulação-de-dados.html#cb205-1" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb205-2"><a href="manipulação-de-dados.html#cb205-2" tabindex="-1"></a></span>
+<span id="cb205-3"><a href="manipulação-de-dados.html#cb205-3" tabindex="-1"></a><span class="fu">str_detect</span>(</span>
+<span id="cb205-4"><a href="manipulação-de-dados.html#cb205-4" tabindex="-1"></a>  <span class="at">string =</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;aa&quot;</span>,<span class="st">&quot;abc&quot;</span>, <span class="st">&quot;bc&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="cn">NA</span>), </span>
+<span id="cb205-5"><a href="manipulação-de-dados.html#cb205-5" tabindex="-1"></a>  <span class="at">pattern =</span> <span class="st">&quot;a&quot;</span></span>
+<span id="cb205-6"><a href="manipulação-de-dados.html#cb205-6" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## [1]  TRUE  TRUE  TRUE FALSE FALSE    NA</code></pre>
 <p>Podemos utilizá-la para filtrar apenas os personagens com cabelo <code>grey</code>.</p>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="manipulação-de-dados.html#cb195-1" tabindex="-1"></a><span class="co"># Podemos detectar se o cabelo grey aparece na string</span></span>
-<span id="cb195-2"><a href="manipulação-de-dados.html#cb195-2" tabindex="-1"></a><span class="fu">str_detect</span>(</span>
-<span id="cb195-3"><a href="manipulação-de-dados.html#cb195-3" tabindex="-1"></a>  <span class="at">string =</span> sw<span class="sc">$</span>hair_color,</span>
-<span id="cb195-4"><a href="manipulação-de-dados.html#cb195-4" tabindex="-1"></a>  <span class="at">pattern =</span> <span class="st">&quot;grey&quot;</span></span>
-<span id="cb195-5"><a href="manipulação-de-dados.html#cb195-5" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="manipulação-de-dados.html#cb207-1" tabindex="-1"></a><span class="co"># Podemos detectar se o cabelo grey aparece na string</span></span>
+<span id="cb207-2"><a href="manipulação-de-dados.html#cb207-2" tabindex="-1"></a><span class="fu">str_detect</span>(</span>
+<span id="cb207-3"><a href="manipulação-de-dados.html#cb207-3" tabindex="-1"></a>  <span class="at">string =</span> sw<span class="sc">$</span>hair_color,</span>
+<span id="cb207-4"><a href="manipulação-de-dados.html#cb207-4" tabindex="-1"></a>  <span class="at">pattern =</span> <span class="st">&quot;grey&quot;</span></span>
+<span id="cb207-5"><a href="manipulação-de-dados.html#cb207-5" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>##  [1] FALSE    NA    NA FALSE FALSE  TRUE FALSE    NA FALSE FALSE FALSE  TRUE
 ## [13] FALSE FALSE    NA    NA FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
 ## [25] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
@@ -882,8 +884,8 @@ se cada string de um vetor contém um determinado padrão de texto.</p>
 ## [61] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ## [73] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ## [85] FALSE FALSE FALSE</code></pre>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="manipulação-de-dados.html#cb197-1" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb197-2"><a href="manipulação-de-dados.html#cb197-2" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">str_detect</span>(hair_color,<span class="st">&quot;grey&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="manipulação-de-dados.html#cb209-1" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb209-2"><a href="manipulação-de-dados.html#cb209-2" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">str_detect</span>(hair_color,<span class="st">&quot;grey&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 14
 ##   name      height  mass hair_color skin_color eye_color birth_year sex   gender
 ##   &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
@@ -918,7 +920,7 @@ quanto de massa (mass), ou seja, possuem NA em ambas as colunas.</p>
 a função <code>mutate()</code>. O código abaixo divide os valores da coluna
 <code>height</code> por 100, mudando a unidade de medida dessa variável de
 centímetros para metros.</p>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="manipulação-de-dados.html#cb199-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">height =</span> height<span class="sc">/</span><span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="manipulação-de-dados.html#cb211-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">height =</span> height<span class="sc">/</span><span class="dv">100</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 87 × 14
 ##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
 ##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
@@ -937,7 +939,7 @@ centímetros para metros.</p>
 ## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
 <p>Também poderíamos ter criado essa variável em uma nova coluna. Repare
 que a nova coluna <code>height_meters</code> é colocada no final da tabela.</p>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="manipulação-de-dados.html#cb201-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">height_meters =</span> height<span class="sc">/</span><span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="manipulação-de-dados.html#cb213-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">height_meters =</span> height<span class="sc">/</span><span class="dv">100</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 87 × 15
 ##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
 ##    &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
@@ -959,9 +961,9 @@ criar um tibble que contenha as colunas <code>name</code>, <code>height</code>, 
 nova coluna <code>BMI</code>, que calcule o Índice de Massa Corporal (IMC) de cada
 personagem, usando a fórmula <code>mass / (height/100)^2</code>. Caso <code>height</code> ou
 <code>mass</code> seja <code>NA</code>, a coluna <code>BMI</code> deve ser <code>NA</code>.</p>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="manipulação-de-dados.html#cb203-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span></span>
-<span id="cb203-2"><a href="manipulação-de-dados.html#cb203-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">BMI =</span> <span class="fu">ifelse</span>(<span class="sc">!</span><span class="fu">is.na</span>(height) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(mass), mass <span class="sc">/</span> (height<span class="sc">/</span><span class="dv">100</span>)<span class="sc">^</span><span class="dv">2</span>, <span class="cn">NA</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb203-3"><a href="manipulação-de-dados.html#cb203-3" tabindex="-1"></a>  <span class="fu">select</span>(name, height, mass, BMI)</span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="manipulação-de-dados.html#cb215-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span></span>
+<span id="cb215-2"><a href="manipulação-de-dados.html#cb215-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">BMI =</span> <span class="fu">ifelse</span>(<span class="sc">!</span><span class="fu">is.na</span>(height) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(mass), mass <span class="sc">/</span> (height<span class="sc">/</span><span class="dv">100</span>)<span class="sc">^</span><span class="dv">2</span>, <span class="cn">NA</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb215-3"><a href="manipulação-de-dados.html#cb215-3" tabindex="-1"></a>  <span class="fu">select</span>(name, height, mass, BMI)</span></code></pre></div>
 <pre><code>## # A tibble: 87 × 4
 ##    name               height  mass   BMI
 ##    &lt;chr&gt;               &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1000,27 +1002,27 @@ de dados dentro de um data frame ou tibble. Ela é frequentemente usada
 para calcular estatísticas agregadas, como médias, somas, contagens,
 entre outras.</p>
 <p>O código abaixo resume a coluna <code>mass</code> pela sua média.</p>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="manipulação-de-dados.html#cb205-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">media_massa =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="manipulação-de-dados.html#cb217-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">media_massa =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 1
 ##   media_massa
 ##         &lt;dbl&gt;
 ## 1        97.3</code></pre>
 <p>Podemos calcular ao mesmo tempo sumarizações diferentes.</p>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="manipulação-de-dados.html#cb207-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(</span>
-<span id="cb207-2"><a href="manipulação-de-dados.html#cb207-2" tabindex="-1"></a>  <span class="at">media_massa =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb207-3"><a href="manipulação-de-dados.html#cb207-3" tabindex="-1"></a>  <span class="at">mediana_massa =</span> <span class="fu">median</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb207-4"><a href="manipulação-de-dados.html#cb207-4" tabindex="-1"></a>  <span class="at">variancia_massa =</span> <span class="fu">var</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb207-5"><a href="manipulação-de-dados.html#cb207-5" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="manipulação-de-dados.html#cb219-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(</span>
+<span id="cb219-2"><a href="manipulação-de-dados.html#cb219-2" tabindex="-1"></a>  <span class="at">media_massa =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb219-3"><a href="manipulação-de-dados.html#cb219-3" tabindex="-1"></a>  <span class="at">mediana_massa =</span> <span class="fu">median</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb219-4"><a href="manipulação-de-dados.html#cb219-4" tabindex="-1"></a>  <span class="at">variancia_massa =</span> <span class="fu">var</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb219-5"><a href="manipulação-de-dados.html#cb219-5" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 3
 ##   media_massa mediana_massa variancia_massa
 ##         &lt;dbl&gt;         &lt;dbl&gt;           &lt;dbl&gt;
 ## 1        97.3            79          28716.</code></pre>
 <p>Podemos também sumarizar diversas colunas.</p>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="manipulação-de-dados.html#cb209-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(</span>
-<span id="cb209-2"><a href="manipulação-de-dados.html#cb209-2" tabindex="-1"></a>  <span class="at">media_massa =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb209-3"><a href="manipulação-de-dados.html#cb209-3" tabindex="-1"></a>  <span class="at">media_altura =</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb209-4"><a href="manipulação-de-dados.html#cb209-4" tabindex="-1"></a>  <span class="at">media_ano =</span> <span class="fu">mean</span>(birth_year, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb209-5"><a href="manipulação-de-dados.html#cb209-5" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="manipulação-de-dados.html#cb221-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(</span>
+<span id="cb221-2"><a href="manipulação-de-dados.html#cb221-2" tabindex="-1"></a>  <span class="at">media_massa =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb221-3"><a href="manipulação-de-dados.html#cb221-3" tabindex="-1"></a>  <span class="at">media_altura =</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb221-4"><a href="manipulação-de-dados.html#cb221-4" tabindex="-1"></a>  <span class="at">media_ano =</span> <span class="fu">mean</span>(birth_year, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb221-5"><a href="manipulação-de-dados.html#cb221-5" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 3
 ##   media_massa media_altura media_ano
 ##         &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt;
@@ -1029,10 +1031,10 @@ entre outras.</p>
 coluna usamos além do <code>summarize()</code> a função <code>group_by()</code>.</p>
 <p>O código a abaixo calcula a altura média dos personagens para cada
 categoria da coluna <code>hair_color</code>.</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="manipulação-de-dados.html#cb211-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> </span>
-<span id="cb211-2"><a href="manipulação-de-dados.html#cb211-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(hair_color), <span class="sc">!</span><span class="fu">is.na</span>(height)) <span class="sc">%&gt;%</span> </span>
-<span id="cb211-3"><a href="manipulação-de-dados.html#cb211-3" tabindex="-1"></a>  <span class="fu">group_by</span>(hair_color) <span class="sc">%&gt;%</span> </span>
-<span id="cb211-4"><a href="manipulação-de-dados.html#cb211-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">media_altura =</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="manipulação-de-dados.html#cb223-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> </span>
+<span id="cb223-2"><a href="manipulação-de-dados.html#cb223-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(hair_color), <span class="sc">!</span><span class="fu">is.na</span>(height)) <span class="sc">%&gt;%</span> </span>
+<span id="cb223-3"><a href="manipulação-de-dados.html#cb223-3" tabindex="-1"></a>  <span class="fu">group_by</span>(hair_color) <span class="sc">%&gt;%</span> </span>
+<span id="cb223-4"><a href="manipulação-de-dados.html#cb223-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">media_altura =</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 11 × 2
 ##    hair_color    media_altura
 ##    &lt;chr&gt;                &lt;dbl&gt;
@@ -1075,22 +1077,22 @@ personagens que participaram de mais de 2 filmes.</p>
 <li><p>Tabela de personagens altos (<code>personagens_altos</code>) - personagens com altura superior a 180 cm.</p></li>
 <li><p>Tabela de personagens humanos (<code>personagens_humanos</code>).</p></li>
 </ol>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="manipulação-de-dados.html#cb213-1" tabindex="-1"></a><span class="co"># Criar subconjunto de personagens altos</span></span>
-<span id="cb213-2"><a href="manipulação-de-dados.html#cb213-2" tabindex="-1"></a>personagens_altos <span class="ot">&lt;-</span> sw <span class="sc">%&gt;%</span></span>
-<span id="cb213-3"><a href="manipulação-de-dados.html#cb213-3" tabindex="-1"></a>  <span class="fu">filter</span>(height <span class="sc">&gt;</span> <span class="dv">180</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb213-4"><a href="manipulação-de-dados.html#cb213-4" tabindex="-1"></a>  <span class="fu">select</span>(name, height)</span>
-<span id="cb213-5"><a href="manipulação-de-dados.html#cb213-5" tabindex="-1"></a></span>
-<span id="cb213-6"><a href="manipulação-de-dados.html#cb213-6" tabindex="-1"></a><span class="co"># Criar subconjunto de personagens humanos</span></span>
-<span id="cb213-7"><a href="manipulação-de-dados.html#cb213-7" tabindex="-1"></a>personagens_humanos <span class="ot">&lt;-</span> sw <span class="sc">%&gt;%</span></span>
-<span id="cb213-8"><a href="manipulação-de-dados.html#cb213-8" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">&quot;Human&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb213-9"><a href="manipulação-de-dados.html#cb213-9" tabindex="-1"></a>  <span class="fu">select</span>(name, species)</span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="manipulação-de-dados.html#cb225-1" tabindex="-1"></a><span class="co"># Criar subconjunto de personagens altos</span></span>
+<span id="cb225-2"><a href="manipulação-de-dados.html#cb225-2" tabindex="-1"></a>personagens_altos <span class="ot">&lt;-</span> sw <span class="sc">%&gt;%</span></span>
+<span id="cb225-3"><a href="manipulação-de-dados.html#cb225-3" tabindex="-1"></a>  <span class="fu">filter</span>(height <span class="sc">&gt;</span> <span class="dv">180</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb225-4"><a href="manipulação-de-dados.html#cb225-4" tabindex="-1"></a>  <span class="fu">select</span>(name, height)</span>
+<span id="cb225-5"><a href="manipulação-de-dados.html#cb225-5" tabindex="-1"></a></span>
+<span id="cb225-6"><a href="manipulação-de-dados.html#cb225-6" tabindex="-1"></a><span class="co"># Criar subconjunto de personagens humanos</span></span>
+<span id="cb225-7"><a href="manipulação-de-dados.html#cb225-7" tabindex="-1"></a>personagens_humanos <span class="ot">&lt;-</span> sw <span class="sc">%&gt;%</span></span>
+<span id="cb225-8"><a href="manipulação-de-dados.html#cb225-8" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">&quot;Human&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb225-9"><a href="manipulação-de-dados.html#cb225-9" tabindex="-1"></a>  <span class="fu">select</span>(name, species)</span></code></pre></div>
 <p>Agora, com essas duas tabelas, podemos usar as funções <code>left_join()</code>, <code>right_join()</code>, e <code>full_join()</code>.</p>
 <p>A função <code>left_join()</code> junta duas tabelas, mantendo todas as linhas da tabela à esquerda (primeira tabela) e adicionando colunas da tabela à direita (segunda tabela) para as quais existe uma correspondência. Valores sem correspondência entre as bases receberão <code>NA</code> na nova base.</p>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="manipulação-de-dados.html#cb214-1" tabindex="-1"></a><span class="co"># Usar left_join para combinar os personagens altos com os humanos</span></span>
-<span id="cb214-2"><a href="manipulação-de-dados.html#cb214-2" tabindex="-1"></a>humanos_altos_left_join <span class="ot">&lt;-</span> <span class="fu">left_join</span>(personagens_altos, personagens_humanos, <span class="at">by =</span> <span class="st">&quot;name&quot;</span>)</span>
-<span id="cb214-3"><a href="manipulação-de-dados.html#cb214-3" tabindex="-1"></a></span>
-<span id="cb214-4"><a href="manipulação-de-dados.html#cb214-4" tabindex="-1"></a><span class="co"># Visualizar o resultado</span></span>
-<span id="cb214-5"><a href="manipulação-de-dados.html#cb214-5" tabindex="-1"></a><span class="fu">print</span>(humanos_altos_left_join)</span></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="manipulação-de-dados.html#cb226-1" tabindex="-1"></a><span class="co"># Usar left_join para combinar os personagens altos com os humanos</span></span>
+<span id="cb226-2"><a href="manipulação-de-dados.html#cb226-2" tabindex="-1"></a>humanos_altos_left_join <span class="ot">&lt;-</span> <span class="fu">left_join</span>(personagens_altos, personagens_humanos, <span class="at">by =</span> <span class="st">&quot;name&quot;</span>)</span>
+<span id="cb226-3"><a href="manipulação-de-dados.html#cb226-3" tabindex="-1"></a></span>
+<span id="cb226-4"><a href="manipulação-de-dados.html#cb226-4" tabindex="-1"></a><span class="co"># Visualizar o resultado</span></span>
+<span id="cb226-5"><a href="manipulação-de-dados.html#cb226-5" tabindex="-1"></a><span class="fu">print</span>(humanos_altos_left_join)</span></code></pre></div>
 <pre><code>## # A tibble: 39 × 3
 ##    name              height species
 ##    &lt;chr&gt;              &lt;int&gt; &lt;chr&gt;  
@@ -1107,11 +1109,11 @@ personagens que participaram de mais de 2 filmes.</p>
 ## # ℹ 29 more rows</code></pre>
 <p>Neste exemplo, a tabela resultante <code>humanos_altos_left_join</code> mantém todas as linhas de <code>personagens_altos</code> e adiciona informações da tabela <code>personagens_humanos</code> quando há uma correspondência pelo nome do personagem.</p>
 <p>A função <code>right_join()</code> faz o oposto de <code>left_join()</code>: mantém todas as linhas da tabela à direita e adiciona colunas da tabela à esquerda para as quais existe uma correspondência.</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="manipulação-de-dados.html#cb216-1" tabindex="-1"></a><span class="co"># Usar right_join para combinar humanos com personagens altos</span></span>
-<span id="cb216-2"><a href="manipulação-de-dados.html#cb216-2" tabindex="-1"></a>humanos_altos_right_join <span class="ot">&lt;-</span> <span class="fu">right_join</span>(personagens_altos, personagens_humanos, <span class="at">by =</span> <span class="st">&quot;name&quot;</span>)</span>
-<span id="cb216-3"><a href="manipulação-de-dados.html#cb216-3" tabindex="-1"></a></span>
-<span id="cb216-4"><a href="manipulação-de-dados.html#cb216-4" tabindex="-1"></a><span class="co"># Visualizar o resultado</span></span>
-<span id="cb216-5"><a href="manipulação-de-dados.html#cb216-5" tabindex="-1"></a><span class="fu">print</span>(humanos_altos_right_join)</span></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="manipulação-de-dados.html#cb228-1" tabindex="-1"></a><span class="co"># Usar right_join para combinar humanos com personagens altos</span></span>
+<span id="cb228-2"><a href="manipulação-de-dados.html#cb228-2" tabindex="-1"></a>humanos_altos_right_join <span class="ot">&lt;-</span> <span class="fu">right_join</span>(personagens_altos, personagens_humanos, <span class="at">by =</span> <span class="st">&quot;name&quot;</span>)</span>
+<span id="cb228-3"><a href="manipulação-de-dados.html#cb228-3" tabindex="-1"></a></span>
+<span id="cb228-4"><a href="manipulação-de-dados.html#cb228-4" tabindex="-1"></a><span class="co"># Visualizar o resultado</span></span>
+<span id="cb228-5"><a href="manipulação-de-dados.html#cb228-5" tabindex="-1"></a><span class="fu">print</span>(humanos_altos_right_join)</span></code></pre></div>
 <pre><code>## # A tibble: 35 × 3
 ##    name              height species
 ##    &lt;chr&gt;              &lt;int&gt; &lt;chr&gt;  
@@ -1128,11 +1130,11 @@ personagens que participaram de mais de 2 filmes.</p>
 ## # ℹ 25 more rows</code></pre>
 <p>Aqui, a tabela resultante <code>humanos_altos_right_join</code> mantém todas as linhas de <code>personagens_humanos</code> e adiciona informações de <code>personagens_altos</code> quando há uma correspondência pelo nome.</p>
 <p>A função <code>full_join()</code> junta as duas tabelas, mantendo todas as linhas de ambas as tabelas e adicionando <code>NA</code> (valores ausentes) para correspondências inexistentes.</p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="manipulação-de-dados.html#cb218-1" tabindex="-1"></a><span class="co"># Usar full_join para combinar todas as informações de personagens altos e humanos</span></span>
-<span id="cb218-2"><a href="manipulação-de-dados.html#cb218-2" tabindex="-1"></a>humanos_altos_full_join <span class="ot">&lt;-</span> <span class="fu">full_join</span>(personagens_altos, personagens_humanos, <span class="at">by =</span> <span class="st">&quot;name&quot;</span>)</span>
-<span id="cb218-3"><a href="manipulação-de-dados.html#cb218-3" tabindex="-1"></a></span>
-<span id="cb218-4"><a href="manipulação-de-dados.html#cb218-4" tabindex="-1"></a><span class="co"># Visualizar o resultado</span></span>
-<span id="cb218-5"><a href="manipulação-de-dados.html#cb218-5" tabindex="-1"></a><span class="fu">print</span>(humanos_altos_full_join)</span></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="manipulação-de-dados.html#cb230-1" tabindex="-1"></a><span class="co"># Usar full_join para combinar todas as informações de personagens altos e humanos</span></span>
+<span id="cb230-2"><a href="manipulação-de-dados.html#cb230-2" tabindex="-1"></a>humanos_altos_full_join <span class="ot">&lt;-</span> <span class="fu">full_join</span>(personagens_altos, personagens_humanos, <span class="at">by =</span> <span class="st">&quot;name&quot;</span>)</span>
+<span id="cb230-3"><a href="manipulação-de-dados.html#cb230-3" tabindex="-1"></a></span>
+<span id="cb230-4"><a href="manipulação-de-dados.html#cb230-4" tabindex="-1"></a><span class="co"># Visualizar o resultado</span></span>
+<span id="cb230-5"><a href="manipulação-de-dados.html#cb230-5" tabindex="-1"></a><span class="fu">print</span>(humanos_altos_full_join)</span></code></pre></div>
 <pre><code>## # A tibble: 59 × 3
 ##    name              height species
 ##    &lt;chr&gt;              &lt;int&gt; &lt;chr&gt;  
@@ -1152,35 +1154,35 @@ personagens que participaram de mais de 2 filmes.</p>
 <div id="exercícios-16" class="section level3 hasAnchor" number="14.2.12">
 <h3><span class="header-section-number">14.2.12</span> Exercícios<a href="manipulação-de-dados.html#exercícios-16" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>1.</strong> Crie uma tabela <code>personagens_altos</code> que contenha apenas personagens com altura superior a 180 cm e uma outra tabela <code>personagens_leves</code> que contenha apenas personagens com massa inferior a 75 kg. Use <code>left_join()</code> para combinar as duas tabelas com base no nome do personagem.</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="manipulação-de-dados.html#cb220-1" tabindex="-1"></a>personagens_altos <span class="ot">&lt;-</span> sw <span class="sc">%&gt;%</span> </span>
-<span id="cb220-2"><a href="manipulação-de-dados.html#cb220-2" tabindex="-1"></a>  <span class="fu">filter</span>(height <span class="sc">&gt;</span> <span class="dv">180</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb220-3"><a href="manipulação-de-dados.html#cb220-3" tabindex="-1"></a>  <span class="fu">select</span>(name, height)</span>
-<span id="cb220-4"><a href="manipulação-de-dados.html#cb220-4" tabindex="-1"></a></span>
-<span id="cb220-5"><a href="manipulação-de-dados.html#cb220-5" tabindex="-1"></a>personagens_leves <span class="ot">&lt;-</span> sw <span class="sc">%&gt;%</span> </span>
-<span id="cb220-6"><a href="manipulação-de-dados.html#cb220-6" tabindex="-1"></a>  <span class="fu">filter</span>(mass <span class="sc">&lt;</span> <span class="dv">75</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb220-7"><a href="manipulação-de-dados.html#cb220-7" tabindex="-1"></a>  <span class="fu">select</span>(name, mass)</span>
-<span id="cb220-8"><a href="manipulação-de-dados.html#cb220-8" tabindex="-1"></a></span>
-<span id="cb220-9"><a href="manipulação-de-dados.html#cb220-9" tabindex="-1"></a><span class="fu">left_join</span>(personagens_altos, personagens_leves, <span class="at">by =</span> <span class="st">&quot;name&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="manipulação-de-dados.html#cb232-1" tabindex="-1"></a>personagens_altos <span class="ot">&lt;-</span> sw <span class="sc">%&gt;%</span> </span>
+<span id="cb232-2"><a href="manipulação-de-dados.html#cb232-2" tabindex="-1"></a>  <span class="fu">filter</span>(height <span class="sc">&gt;</span> <span class="dv">180</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb232-3"><a href="manipulação-de-dados.html#cb232-3" tabindex="-1"></a>  <span class="fu">select</span>(name, height)</span>
+<span id="cb232-4"><a href="manipulação-de-dados.html#cb232-4" tabindex="-1"></a></span>
+<span id="cb232-5"><a href="manipulação-de-dados.html#cb232-5" tabindex="-1"></a>personagens_leves <span class="ot">&lt;-</span> sw <span class="sc">%&gt;%</span> </span>
+<span id="cb232-6"><a href="manipulação-de-dados.html#cb232-6" tabindex="-1"></a>  <span class="fu">filter</span>(mass <span class="sc">&lt;</span> <span class="dv">75</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb232-7"><a href="manipulação-de-dados.html#cb232-7" tabindex="-1"></a>  <span class="fu">select</span>(name, mass)</span>
+<span id="cb232-8"><a href="manipulação-de-dados.html#cb232-8" tabindex="-1"></a></span>
+<span id="cb232-9"><a href="manipulação-de-dados.html#cb232-9" tabindex="-1"></a><span class="fu">left_join</span>(personagens_altos, personagens_leves, <span class="at">by =</span> <span class="st">&quot;name&quot;</span>)</span></code></pre></div>
 <p><strong>2.</strong> Crie uma tabela <code>personagens_humanos</code> que contenha apenas personagens humanos e uma outra tabela <code>cor_cabelo</code> que contenha apenas personagens com cor de cabelo diferente de <code>NA</code>. Use <code>right_join()</code> para combinar <code>personagens_humanos</code> e <code>cor_cabelo</code> com base no nome do personagem.</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="manipulação-de-dados.html#cb221-1" tabindex="-1"></a>personagens_humanos <span class="ot">&lt;-</span> sw <span class="sc">%&gt;%</span> </span>
-<span id="cb221-2"><a href="manipulação-de-dados.html#cb221-2" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">&quot;Human&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb221-3"><a href="manipulação-de-dados.html#cb221-3" tabindex="-1"></a>  <span class="fu">select</span>(name, species)</span>
-<span id="cb221-4"><a href="manipulação-de-dados.html#cb221-4" tabindex="-1"></a></span>
-<span id="cb221-5"><a href="manipulação-de-dados.html#cb221-5" tabindex="-1"></a>cor_cabelo <span class="ot">&lt;-</span> sw <span class="sc">%&gt;%</span> </span>
-<span id="cb221-6"><a href="manipulação-de-dados.html#cb221-6" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(hair_color)) <span class="sc">%&gt;%</span> </span>
-<span id="cb221-7"><a href="manipulação-de-dados.html#cb221-7" tabindex="-1"></a>  <span class="fu">select</span>(name, hair_color,)</span>
-<span id="cb221-8"><a href="manipulação-de-dados.html#cb221-8" tabindex="-1"></a></span>
-<span id="cb221-9"><a href="manipulação-de-dados.html#cb221-9" tabindex="-1"></a><span class="fu">right_join</span>(personagens_humanos, cor_cabelo, <span class="at">by =</span> <span class="st">&quot;name&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="manipulação-de-dados.html#cb233-1" tabindex="-1"></a>personagens_humanos <span class="ot">&lt;-</span> sw <span class="sc">%&gt;%</span> </span>
+<span id="cb233-2"><a href="manipulação-de-dados.html#cb233-2" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">&quot;Human&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb233-3"><a href="manipulação-de-dados.html#cb233-3" tabindex="-1"></a>  <span class="fu">select</span>(name, species)</span>
+<span id="cb233-4"><a href="manipulação-de-dados.html#cb233-4" tabindex="-1"></a></span>
+<span id="cb233-5"><a href="manipulação-de-dados.html#cb233-5" tabindex="-1"></a>cor_cabelo <span class="ot">&lt;-</span> sw <span class="sc">%&gt;%</span> </span>
+<span id="cb233-6"><a href="manipulação-de-dados.html#cb233-6" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(hair_color)) <span class="sc">%&gt;%</span> </span>
+<span id="cb233-7"><a href="manipulação-de-dados.html#cb233-7" tabindex="-1"></a>  <span class="fu">select</span>(name, hair_color,)</span>
+<span id="cb233-8"><a href="manipulação-de-dados.html#cb233-8" tabindex="-1"></a></span>
+<span id="cb233-9"><a href="manipulação-de-dados.html#cb233-9" tabindex="-1"></a><span class="fu">right_join</span>(personagens_humanos, cor_cabelo, <span class="at">by =</span> <span class="st">&quot;name&quot;</span>)</span></code></pre></div>
 <p><strong>3.</strong> Crie uma tabela <code>especies_personagens</code> que contenha apenas personagens de espécies conhecidas (não <code>NA</code>) e uma outra tabela <code>cor_olhos</code> que contenha apenas personagens com cor de olho conhecida (não <code>NA</code>). Use <code>full_join()</code> para combinar as duas tabelas com base no nome do personagem.</p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="manipulação-de-dados.html#cb222-1" tabindex="-1"></a>especies_personagens <span class="ot">&lt;-</span> sw <span class="sc">%&gt;%</span> </span>
-<span id="cb222-2"><a href="manipulação-de-dados.html#cb222-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(species)) <span class="sc">%&gt;%</span> </span>
-<span id="cb222-3"><a href="manipulação-de-dados.html#cb222-3" tabindex="-1"></a>  <span class="fu">select</span>(name, species)</span>
-<span id="cb222-4"><a href="manipulação-de-dados.html#cb222-4" tabindex="-1"></a></span>
-<span id="cb222-5"><a href="manipulação-de-dados.html#cb222-5" tabindex="-1"></a>cor_olhos <span class="ot">&lt;-</span> sw <span class="sc">%&gt;%</span> </span>
-<span id="cb222-6"><a href="manipulação-de-dados.html#cb222-6" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(eye_color)) <span class="sc">%&gt;%</span> </span>
-<span id="cb222-7"><a href="manipulação-de-dados.html#cb222-7" tabindex="-1"></a>  <span class="fu">select</span>(name, eye_color)</span>
-<span id="cb222-8"><a href="manipulação-de-dados.html#cb222-8" tabindex="-1"></a></span>
-<span id="cb222-9"><a href="manipulação-de-dados.html#cb222-9" tabindex="-1"></a><span class="fu">full_join</span>(especies_personagens, cor_olhos, <span class="at">by =</span> <span class="st">&quot;name&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="manipulação-de-dados.html#cb234-1" tabindex="-1"></a>especies_personagens <span class="ot">&lt;-</span> sw <span class="sc">%&gt;%</span> </span>
+<span id="cb234-2"><a href="manipulação-de-dados.html#cb234-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(species)) <span class="sc">%&gt;%</span> </span>
+<span id="cb234-3"><a href="manipulação-de-dados.html#cb234-3" tabindex="-1"></a>  <span class="fu">select</span>(name, species)</span>
+<span id="cb234-4"><a href="manipulação-de-dados.html#cb234-4" tabindex="-1"></a></span>
+<span id="cb234-5"><a href="manipulação-de-dados.html#cb234-5" tabindex="-1"></a>cor_olhos <span class="ot">&lt;-</span> sw <span class="sc">%&gt;%</span> </span>
+<span id="cb234-6"><a href="manipulação-de-dados.html#cb234-6" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(eye_color)) <span class="sc">%&gt;%</span> </span>
+<span id="cb234-7"><a href="manipulação-de-dados.html#cb234-7" tabindex="-1"></a>  <span class="fu">select</span>(name, eye_color)</span>
+<span id="cb234-8"><a href="manipulação-de-dados.html#cb234-8" tabindex="-1"></a></span>
+<span id="cb234-9"><a href="manipulação-de-dados.html#cb234-9" tabindex="-1"></a><span class="fu">full_join</span>(especies_personagens, cor_olhos, <span class="at">by =</span> <span class="st">&quot;name&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 </div>

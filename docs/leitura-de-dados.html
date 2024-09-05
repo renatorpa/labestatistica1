@@ -252,7 +252,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.table"><i class="fa fa-check"></i><b>8.3</b> A Função <code>read.table()</code></a></li>
 <li class="chapter" data-level="8.4" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.csv"><i class="fa fa-check"></i><b>8.4</b> A função <code>read.csv()</code></a></li>
 <li class="chapter" data-level="8.5" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.csv2"><i class="fa fa-check"></i><b>8.5</b> A função <code>read.csv2()</code></a></li>
-<li class="chapter" data-level="8.6" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read_excel-do-pacote-readxl"><i class="fa fa-check"></i><b>8.6</b> A Função <code>read_excel()</code> do pacote <code>readxl</code></a></li>
+<li class="chapter" data-level="8.6" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read_excel-do-pacote-readxl"><i class="fa fa-check"></i><b>8.6</b> A Função <code>read_excel()</code> do Pacote <code>readxl</code></a></li>
 <li class="chapter" data-level="8.7" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#leitura-de-dados-online"><i class="fa fa-check"></i><b>8.7</b> Leitura de Dados Online</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>9</b> Pipe</a>
@@ -279,9 +279,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html"><i class="fa fa-check"></i><b>13</b> Gráficos (R base)</a>
 <ul>
 <li class="chapter" data-level="13.1" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-de-barras"><i class="fa fa-check"></i><b>13.1</b> Gráfico de Barras</a></li>
-<li class="chapter" data-level="13.2" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-circular-pizza"><i class="fa fa-check"></i><b>13.2</b> Gráfico circular (pizza)</a></li>
+<li class="chapter" data-level="13.2" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-circular-pizza"><i class="fa fa-check"></i><b>13.2</b> Gráfico Circular (Pizza)</a></li>
 <li class="chapter" data-level="13.3" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#histograma"><i class="fa fa-check"></i><b>13.3</b> Histograma</a></li>
 <li class="chapter" data-level="13.4" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#box-plot"><i class="fa fa-check"></i><b>13.4</b> Box-plot</a></li>
+<li class="chapter" data-level="13.5" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-de-dispersão"><i class="fa fa-check"></i><b>13.5</b> Gráfico de Dispersão</a></li>
+<li class="chapter" data-level="13.6" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-de-linhas"><i class="fa fa-check"></i><b>13.6</b> Gráfico de Linhas</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html"><i class="fa fa-check"></i><b>14</b> Manipulação de dados</a>
 <ul>
@@ -480,42 +482,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="a-função-read.csv" class="section level2 hasAnchor" number="8.4">
 <h2><span class="header-section-number">8.4</span> A função <code>read.csv()</code><a href="leitura-de-dados.html#a-função-read.csv" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A função <code>read.csv()</code> é otimizada para a leitura de arquivos CSV
-(Comma-Separated Values). A principal diferença entre <code>read.table()</code> e
-<code>read.csv()</code> é que esta última tem o separador padrão como vírgula.</p>
+<p>A função <code>read.csv()</code> é otimizada para a leitura de arquivos CSV (Comma-Separated Values), que são arquivos de texto onde cada linha representa um registro e os valores são separados por vírgulas. A principal diferença entre <code>read.csv()</code> e <code>read.table()</code> é que o separador padrão em <code>read.csv()</code> é uma vírgula.</p>
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="leitura-de-dados.html#cb108-1" tabindex="-1"></a><span class="co"># Leitura de arquivo CSV com read.csv</span></span>
 <span id="cb108-2"><a href="leitura-de-dados.html#cb108-2" tabindex="-1"></a>dados_csv <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;dados.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p>Os argumentos adicionais são semelhantes aos da função <code>read.table()</code>.</p>
+<p>Aqui, o argumento <code>header = TRUE</code> indica que a primeira linha do arquivo contém os nomes das colunas. Outros argumentos são semelhantes aos de <code>read.table()</code>.</p>
 </div>
 <div id="a-função-read.csv2" class="section level2 hasAnchor" number="8.5">
 <h2><span class="header-section-number">8.5</span> A função <code>read.csv2()</code><a href="leitura-de-dados.html#a-função-read.csv2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A função <code>read.csv2()</code> é semelhante à <code>read.csv()</code>, mas o separador
-padrão é um ponto e vírgula.</p>
+<p>A função <code>read.csv2()</code> é semelhante à <code>read.csv()</code>, mas é projetada para lidar com arquivos CSV onde o separador padrão é um ponto e vírgula (;) e o separador decimal é uma vírgula (,). Este formato é comum em alguns países europeus.</p>
 <div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="leitura-de-dados.html#cb109-1" tabindex="-1"></a><span class="co"># Leitura de CSV com separador ponto e vírgula</span></span>
 <span id="cb109-2"><a href="leitura-de-dados.html#cb109-2" tabindex="-1"></a>dados_csv2 <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">&quot;dados.csv2&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 <div id="a-função-read_excel-do-pacote-readxl" class="section level2 hasAnchor" number="8.6">
-<h2><span class="header-section-number">8.6</span> A Função <code>read_excel()</code> do pacote <code>readxl</code><a href="leitura-de-dados.html#a-função-read_excel-do-pacote-readxl" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Para ler arquivos Excel (.xls e .xlsx), utilizamos a função
-<code>read_excel()</code> do pacote <code>readxl</code>.</p>
+<h2><span class="header-section-number">8.6</span> A Função <code>read_excel()</code> do Pacote <code>readxl</code><a href="leitura-de-dados.html#a-função-read_excel-do-pacote-readxl" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para ler arquivos Excel (.xls e .xlsx), usamos a função <code>read_excel()</code> do pacote <code>readxl</code>. Este pacote precisa ser instalado e carregado antes de seu uso.</p>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="leitura-de-dados.html#cb110-1" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb110-2"><a href="leitura-de-dados.html#cb110-2" tabindex="-1"></a><span class="co"># Sintaxe básica</span></span>
-<span id="cb110-3"><a href="leitura-de-dados.html#cb110-3" tabindex="-1"></a><span class="fu">read_excel</span>(path, <span class="at">sheet =</span> <span class="cn">NULL</span>, <span class="at">range =</span> <span class="cn">NULL</span>, <span class="at">col_names =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb110-4"><a href="leitura-de-dados.html#cb110-4" tabindex="-1"></a>           <span class="at">col_types =</span> <span class="cn">NULL</span>, <span class="at">na =</span> <span class="st">&quot;&quot;</span>, <span class="at">trim_ws =</span> <span class="cn">TRUE</span>, <span class="at">skip =</span> <span class="dv">0</span>, <span class="at">n_max =</span> <span class="cn">Inf</span>,</span>
-<span id="cb110-5"><a href="leitura-de-dados.html#cb110-5" tabindex="-1"></a>           <span class="at">guess_max =</span> <span class="fu">min</span>(<span class="dv">1000</span>, n_max), <span class="at">progress =</span> <span class="fu">readxl_progress</span>())</span></code></pre></div>
-<p>Principais parâmetros</p>
+<span id="cb110-2"><a href="leitura-de-dados.html#cb110-2" tabindex="-1"></a></span>
+<span id="cb110-3"><a href="leitura-de-dados.html#cb110-3" tabindex="-1"></a><span class="co"># Sintaxe básica</span></span>
+<span id="cb110-4"><a href="leitura-de-dados.html#cb110-4" tabindex="-1"></a><span class="fu">read_excel</span>(path, <span class="at">sheet =</span> <span class="cn">NULL</span>, <span class="at">range =</span> <span class="cn">NULL</span>, <span class="at">col_names =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb110-5"><a href="leitura-de-dados.html#cb110-5" tabindex="-1"></a>           <span class="at">col_types =</span> <span class="cn">NULL</span>, <span class="at">na =</span> <span class="st">&quot;&quot;</span>, <span class="at">trim_ws =</span> <span class="cn">TRUE</span>, <span class="at">skip =</span> <span class="dv">0</span>, <span class="at">n_max =</span> <span class="cn">Inf</span>,</span>
+<span id="cb110-6"><a href="leitura-de-dados.html#cb110-6" tabindex="-1"></a>           <span class="at">guess_max =</span> <span class="fu">min</span>(<span class="dv">1000</span>, n_max), <span class="at">progress =</span> <span class="fu">readxl_progress</span>())</span></code></pre></div>
+<p><strong>Principais Parâmetros de <code>read_excel()</code></strong></p>
 <ul>
-<li><code>path</code>: O caminho do arquivo Excel a ser lido. Este é um argumento obrigatório. Pode ser um caminho local ou uma URL.</li>
+<li><code>path</code>: O caminho do arquivo Excel a ser lido. Este é um argumento obrigatório e pode ser um caminho local ou uma URL.</li>
 <li><code>sheet</code>: O nome ou o índice da aba (planilha) do Excel a ser lida. Se não especificado, a função lerá a primeira aba.</li>
 <li><code>range</code>: Um intervalo específico a ser lido, como “A1:D10”. Se <code>NULL</code> (padrão), a função lê toda a aba.</li>
 <li><code>col_names</code>: Um argumento lógico (<code>TRUE</code> ou <code>FALSE</code>) que indica se a primeira linha da planilha deve ser usada como nomes das colunas no data frame. O padrão é <code>TRUE</code>.</li>
 <li><code>col_types</code>: Um vetor de tipos de colunas que podem ser <code>"blank"</code>, <code>"numeric"</code>, <code>"date"</code>, <code>"text"</code>, ou <code>"guess"</code>. O padrão é <code>NULL</code>, o que permite que a função adivinhe os tipos de coluna automaticamente.</li>
-<li><code>na</code>: Um vetor de strings que devem ser interpretadas como valores ausentes (<code>NA</code>). O padrão é “” (string vazia).</li>
+<li><code>na</code>: Um vetor de strings que devem ser interpretadas como valores ausentes (<code>NA</code>). O padrão é string vazia (““).</li>
 <li><code>trim_ws</code>: Um argumento lógico (<code>TRUE</code> ou <code>FALSE</code>) que indica se os espaços em branco devem ser removidos do início e do fim dos valores de texto. O padrão é <code>TRUE</code>.</li>
 <li><code>skip</code>: Número de linhas a serem ignoradas antes de começar a leitura. O padrão é 0.</li>
 <li><code>n_max</code>: Número máximo de linhas a serem lidas. O padrão é <code>Inf</code>, o que significa que todas as linhas são lidas.</li>
 </ul>
-<p>Vamos considerar um exemplo em que temos um arquivo Excel chamado <code>"instragram.xlsx"</code> com três planilhas: <code>"Sheet1"</code>, <code>"Sheet2"</code> e <code>"Sheet3"</code>. Este arquivo pode ser baixado em <a href="https://renatorpaula.wixsite.com/renato/laboratorio-estatistica">link</a>. Vamos ler a primeira planilha (<code>Sheet1</code>):</p>
+<p><strong>Exemplo de Uso</strong>: Vamos considerar um exemplo em que temos um arquivo Excel chamado <code>"instragram.xlsx"</code> com três planilhas: <code>"Sheet1"</code>, <code>"Sheet2"</code> e <code>"Sheet3"</code>. Este arquivo pode ser baixado <a href="https://renatorpaula.wixsite.com/renato/laboratorio-estatistica">aqui</a>. Vamos ler a primeira planilha (<code>Sheet1</code>):</p>
 <div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="leitura-de-dados.html#cb111-1" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="at">path =</span> <span class="st">&quot;instagram.xlsx&quot;</span>,</span>
 <span id="cb111-2"><a href="leitura-de-dados.html#cb111-2" tabindex="-1"></a>                    <span class="at">sheet =</span> <span class="st">&quot;Sheet1&quot;</span>,</span>
 <span id="cb111-3"><a href="leitura-de-dados.html#cb111-3" tabindex="-1"></a>                    <span class="at">col_names =</span> <span class="cn">TRUE</span>,</span>
@@ -523,11 +522,11 @@ padrão é um ponto e vírgula.</p>
 </div>
 <div id="leitura-de-dados-online" class="section level2 hasAnchor" number="8.7">
 <h2><span class="header-section-number">8.7</span> Leitura de Dados Online<a href="leitura-de-dados.html#leitura-de-dados-online" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>É possível ler diretamente dados hospedados em URLs usando funções como
-<code>read.table()</code>.</p>
+<p>R também permite ler dados diretamente de URLs. Você pode usar funções como <code>read.table()</code>, <code>read.csv()</code>, ou <code>read_excel()</code> (dependendo do formato do arquivo) para importar dados diretamente de um link online.</p>
 <div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="leitura-de-dados.html#cb112-1" tabindex="-1"></a><span class="co"># Leitura de dados online com read.table</span></span>
 <span id="cb112-2"><a href="leitura-de-dados.html#cb112-2" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://example.com/data.csv&quot;</span></span>
 <span id="cb112-3"><a href="leitura-de-dados.html#cb112-3" tabindex="-1"></a>dados_online <span class="ot">&lt;-</span> <span class="fu">read.table</span>(url, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
+<p>Neste exemplo, url contém o endereço do arquivo CSV na web, e <code>read.table()</code> é usado para importar o conteúdo como um data frame.</p>
 </div>
 </div>
             </section>

@@ -252,7 +252,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.table"><i class="fa fa-check"></i><b>8.3</b> A Função <code>read.table()</code></a></li>
 <li class="chapter" data-level="8.4" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.csv"><i class="fa fa-check"></i><b>8.4</b> A função <code>read.csv()</code></a></li>
 <li class="chapter" data-level="8.5" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.csv2"><i class="fa fa-check"></i><b>8.5</b> A função <code>read.csv2()</code></a></li>
-<li class="chapter" data-level="8.6" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read_excel-do-pacote-readxl"><i class="fa fa-check"></i><b>8.6</b> A Função <code>read_excel()</code> do pacote <code>readxl</code></a></li>
+<li class="chapter" data-level="8.6" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read_excel-do-pacote-readxl"><i class="fa fa-check"></i><b>8.6</b> A Função <code>read_excel()</code> do Pacote <code>readxl</code></a></li>
 <li class="chapter" data-level="8.7" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#leitura-de-dados-online"><i class="fa fa-check"></i><b>8.7</b> Leitura de Dados Online</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>9</b> Pipe</a>
@@ -279,9 +279,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html"><i class="fa fa-check"></i><b>13</b> Gráficos (R base)</a>
 <ul>
 <li class="chapter" data-level="13.1" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-de-barras"><i class="fa fa-check"></i><b>13.1</b> Gráfico de Barras</a></li>
-<li class="chapter" data-level="13.2" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-circular-pizza"><i class="fa fa-check"></i><b>13.2</b> Gráfico circular (pizza)</a></li>
+<li class="chapter" data-level="13.2" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-circular-pizza"><i class="fa fa-check"></i><b>13.2</b> Gráfico Circular (Pizza)</a></li>
 <li class="chapter" data-level="13.3" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#histograma"><i class="fa fa-check"></i><b>13.3</b> Histograma</a></li>
 <li class="chapter" data-level="13.4" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#box-plot"><i class="fa fa-check"></i><b>13.4</b> Box-plot</a></li>
+<li class="chapter" data-level="13.5" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-de-dispersão"><i class="fa fa-check"></i><b>13.5</b> Gráfico de Dispersão</a></li>
+<li class="chapter" data-level="13.6" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-de-linhas"><i class="fa fa-check"></i><b>13.6</b> Gráfico de Linhas</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html"><i class="fa fa-check"></i><b>14</b> Manipulação de dados</a>
 <ul>
@@ -404,111 +406,159 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="gráficos-r-base" class="section level1 hasAnchor" number="13">
 <h1><span class="header-section-number">Capítulo 13</span> Gráficos (R base)<a href="gráficos-r-base.html#gráficos-r-base" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>O R base oferece uma variedade de funções para criar gráficos estatísticos básicos e personalizá-los de acordo com as necessidades da análise. A criação de gráficos é uma parte essencial da análise de dados, pois permite visualizar padrões, tendências e distribuições de forma intuitiva.</p>
 <div id="gráfico-de-barras" class="section level2 hasAnchor" number="13.1">
 <h2><span class="header-section-number">13.1</span> Gráfico de Barras<a href="gráficos-r-base.html#gráfico-de-barras" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Gráfico de barras</strong>: Conjunto de barras verticais ou horizontais. Cada
-barra representa uma categoria, e a altura da barra mostra a frequência
-sbsoluta ou relativa dessa categoria. A largura das barras não tem
-significado.</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="gráficos-r-base.html#cb142-1" tabindex="-1"></a><span class="co"># Dados de exemplo: cores favoritas</span></span>
-<span id="cb142-2"><a href="gráficos-r-base.html#cb142-2" tabindex="-1"></a>cores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Azul&quot;</span>, <span class="st">&quot;Vermelho&quot;</span>, <span class="st">&quot;Verde&quot;</span>, <span class="st">&quot;Azul&quot;</span>, <span class="st">&quot;Verde&quot;</span>, </span>
-<span id="cb142-3"><a href="gráficos-r-base.html#cb142-3" tabindex="-1"></a><span class="st">&quot;Vermelho&quot;</span>, <span class="st">&quot;Azul&quot;</span>, <span class="st">&quot;Verde&quot;</span>, <span class="st">&quot;Azul&quot;</span>, <span class="st">&quot;Vermelho&quot;</span>)</span>
-<span id="cb142-4"><a href="gráficos-r-base.html#cb142-4" tabindex="-1"></a></span>
-<span id="cb142-5"><a href="gráficos-r-base.html#cb142-5" tabindex="-1"></a><span class="co"># Calcular as frequências absolutas</span></span>
-<span id="cb142-6"><a href="gráficos-r-base.html#cb142-6" tabindex="-1"></a>frequencia_absoluta <span class="ot">&lt;-</span> <span class="fu">table</span>(cores)</span>
-<span id="cb142-7"><a href="gráficos-r-base.html#cb142-7" tabindex="-1"></a></span>
-<span id="cb142-8"><a href="gráficos-r-base.html#cb142-8" tabindex="-1"></a><span class="co"># Criar o gráfico de barras com frequências absolutas</span></span>
-<span id="cb142-9"><a href="gráficos-r-base.html#cb142-9" tabindex="-1"></a><span class="fu">barplot</span>(frequencia_absoluta,</span>
-<span id="cb142-10"><a href="gráficos-r-base.html#cb142-10" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">&quot;Gráfico de Barras&quot;</span>,         </span>
-<span id="cb142-11"><a href="gráficos-r-base.html#cb142-11" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Cor&quot;</span>,         </span>
-<span id="cb142-12"><a href="gráficos-r-base.html#cb142-12" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;Frequência Absoluta&quot;</span>,         </span>
-<span id="cb142-13"><a href="gráficos-r-base.html#cb142-13" tabindex="-1"></a>  <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;green&quot;</span>)) </span></code></pre></div>
-<p><img src="introR_files/figure-html/unnamed-chunk-141-1.png" width="672" /></p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="gráficos-r-base.html#cb143-1" tabindex="-1"></a><span class="co"># Calcular as frequências relativas</span></span>
-<span id="cb143-2"><a href="gráficos-r-base.html#cb143-2" tabindex="-1"></a>frequencia_relativa <span class="ot">&lt;-</span> frequencia_absoluta <span class="sc">/</span> <span class="fu">length</span>(cores)  </span>
-<span id="cb143-3"><a href="gráficos-r-base.html#cb143-3" tabindex="-1"></a>    </span>
-<span id="cb143-4"><a href="gráficos-r-base.html#cb143-4" tabindex="-1"></a><span class="co"># Criar o gráfico de barras com frequências relativas</span></span>
-<span id="cb143-5"><a href="gráficos-r-base.html#cb143-5" tabindex="-1"></a><span class="fu">barplot</span>(frequencia_relativa,         </span>
-<span id="cb143-6"><a href="gráficos-r-base.html#cb143-6" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">&quot;Gráfico de Barras&quot;</span>,         </span>
-<span id="cb143-7"><a href="gráficos-r-base.html#cb143-7" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Cor&quot;</span>,         </span>
-<span id="cb143-8"><a href="gráficos-r-base.html#cb143-8" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;Frequência Relativa&quot;</span>) </span></code></pre></div>
-<p><img src="introR_files/figure-html/unnamed-chunk-142-1.png" width="672" /></p>
+<p><strong>Gráfico de barras</strong>: Um gráfico de barras consiste em barras verticais ou horizontais, onde cada barra representa uma categoria e sua altura (ou comprimento) indica a frequência (absoluta ou relativa) dessa categoria. A largura das barras é constante e não possui significado estatístico.</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="gráficos-r-base.html#cb152-1" tabindex="-1"></a><span class="co"># Dados de exemplo: cores favoritas</span></span>
+<span id="cb152-2"><a href="gráficos-r-base.html#cb152-2" tabindex="-1"></a>cores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Azul&quot;</span>, <span class="st">&quot;Vermelho&quot;</span>, <span class="st">&quot;Verde&quot;</span>, <span class="st">&quot;Azul&quot;</span>, <span class="st">&quot;Verde&quot;</span>, </span>
+<span id="cb152-3"><a href="gráficos-r-base.html#cb152-3" tabindex="-1"></a><span class="st">&quot;Vermelho&quot;</span>, <span class="st">&quot;Azul&quot;</span>, <span class="st">&quot;Verde&quot;</span>, <span class="st">&quot;Azul&quot;</span>, <span class="st">&quot;Vermelho&quot;</span>)</span>
+<span id="cb152-4"><a href="gráficos-r-base.html#cb152-4" tabindex="-1"></a></span>
+<span id="cb152-5"><a href="gráficos-r-base.html#cb152-5" tabindex="-1"></a><span class="co"># Calcular as frequências absolutas</span></span>
+<span id="cb152-6"><a href="gráficos-r-base.html#cb152-6" tabindex="-1"></a>frequencia_absoluta <span class="ot">&lt;-</span> <span class="fu">table</span>(cores)</span>
+<span id="cb152-7"><a href="gráficos-r-base.html#cb152-7" tabindex="-1"></a></span>
+<span id="cb152-8"><a href="gráficos-r-base.html#cb152-8" tabindex="-1"></a><span class="co"># Criar o gráfico de barras com frequências absolutas</span></span>
+<span id="cb152-9"><a href="gráficos-r-base.html#cb152-9" tabindex="-1"></a><span class="fu">barplot</span>(frequencia_absoluta,</span>
+<span id="cb152-10"><a href="gráficos-r-base.html#cb152-10" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">&quot;Gráfico de Barras&quot;</span>,         </span>
+<span id="cb152-11"><a href="gráficos-r-base.html#cb152-11" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Cor&quot;</span>,         </span>
+<span id="cb152-12"><a href="gráficos-r-base.html#cb152-12" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;Frequência Absoluta&quot;</span>,         </span>
+<span id="cb152-13"><a href="gráficos-r-base.html#cb152-13" tabindex="-1"></a>  <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>),</span>
+<span id="cb152-14"><a href="gráficos-r-base.html#cb152-14" tabindex="-1"></a>  <span class="at">border =</span> <span class="st">&quot;black&quot;</span>) </span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-151-1.png" width="672" /></p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="gráficos-r-base.html#cb153-1" tabindex="-1"></a><span class="co"># Calcular as frequências relativas</span></span>
+<span id="cb153-2"><a href="gráficos-r-base.html#cb153-2" tabindex="-1"></a>frequencia_relativa <span class="ot">&lt;-</span> frequencia_absoluta <span class="sc">/</span> <span class="fu">length</span>(cores)  </span>
+<span id="cb153-3"><a href="gráficos-r-base.html#cb153-3" tabindex="-1"></a>    </span>
+<span id="cb153-4"><a href="gráficos-r-base.html#cb153-4" tabindex="-1"></a><span class="co"># Criar o gráfico de barras com frequências relativas</span></span>
+<span id="cb153-5"><a href="gráficos-r-base.html#cb153-5" tabindex="-1"></a><span class="fu">barplot</span>(frequencia_relativa,         </span>
+<span id="cb153-6"><a href="gráficos-r-base.html#cb153-6" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">&quot;Gráfico de Barras&quot;</span>,         </span>
+<span id="cb153-7"><a href="gráficos-r-base.html#cb153-7" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Cor&quot;</span>,         </span>
+<span id="cb153-8"><a href="gráficos-r-base.html#cb153-8" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;Frequência Relativa&quot;</span>,</span>
+<span id="cb153-9"><a href="gráficos-r-base.html#cb153-9" tabindex="-1"></a>  <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>),</span>
+<span id="cb153-10"><a href="gráficos-r-base.html#cb153-10" tabindex="-1"></a>  <span class="at">border =</span> <span class="st">&quot;black&quot;</span>) </span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-152-1.png" width="672" /></p>
+<p><strong>Personalização de Gráficos de Barras</strong></p>
+<p>Você pode personalizar ainda mais os gráficos de barras usando argumentos como <code>las</code> (para rotação dos rótulos dos eixos), <code>horiz</code> (para gráficos de barras horizontais), e <code>beside</code> (para barras lado a lado).</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="gráficos-r-base.html#cb154-1" tabindex="-1"></a><span class="co"># Gráfico de barras horizontal</span></span>
+<span id="cb154-2"><a href="gráficos-r-base.html#cb154-2" tabindex="-1"></a><span class="fu">barplot</span>(frequencia_absoluta, </span>
+<span id="cb154-3"><a href="gráficos-r-base.html#cb154-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Gráfico de Barras Horizontal&quot;</span>,</span>
+<span id="cb154-4"><a href="gráficos-r-base.html#cb154-4" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Frequência Absoluta&quot;</span>,</span>
+<span id="cb154-5"><a href="gráficos-r-base.html#cb154-5" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Cor&quot;</span>,</span>
+<span id="cb154-6"><a href="gráficos-r-base.html#cb154-6" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>),</span>
+<span id="cb154-7"><a href="gráficos-r-base.html#cb154-7" tabindex="-1"></a>        <span class="at">horiz =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-153-1.png" width="672" /></p>
 </div>
 <div id="gráfico-circular-pizza" class="section level2 hasAnchor" number="13.2">
-<h2><span class="header-section-number">13.2</span> Gráfico circular (pizza)<a href="gráficos-r-base.html#gráfico-circular-pizza" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Gráfico circular</strong>: Exibe as proporções ou percentagens de diferentes
-categorias de dados em relação a um todo. Cada categoria é representada
-como uma “fatia” do círculo, e o tamanho de cada fatia é proporcional à
-sua contribuição para o total.</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="gráficos-r-base.html#cb144-1" tabindex="-1"></a><span class="co"># Criar gráfico circular</span></span>
-<span id="cb144-2"><a href="gráficos-r-base.html#cb144-2" tabindex="-1"></a><span class="fu">pie</span>(frequencia_relativa, <span class="at">main=</span><span class="st">&quot;Gráfico circular&quot;</span>,</span>
-<span id="cb144-3"><a href="gráficos-r-base.html#cb144-3" tabindex="-1"></a>  <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;green&quot;</span>,<span class="st">&quot;red&quot;</span>))</span></code></pre></div>
-<p><img src="introR_files/figure-html/unnamed-chunk-143-1.png" width="672" /></p>
+<h2><span class="header-section-number">13.2</span> Gráfico Circular (Pizza)<a href="gráficos-r-base.html#gráfico-circular-pizza" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Gráfico circular (pizza)</strong>: Mostra a proporção de diferentes categorias em relação ao total. Cada fatia representa uma categoria e o tamanho de cada fatia é proporcional à sua porcentagem.</p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="gráficos-r-base.html#cb155-1" tabindex="-1"></a><span class="co"># Criar gráfico circular</span></span>
+<span id="cb155-2"><a href="gráficos-r-base.html#cb155-2" tabindex="-1"></a><span class="fu">pie</span>(frequencia_relativa, </span>
+<span id="cb155-3"><a href="gráficos-r-base.html#cb155-3" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">&quot;Gráfico Circular (Pizza)&quot;</span>,</span>
+<span id="cb155-4"><a href="gráficos-r-base.html#cb155-4" tabindex="-1"></a>    <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>),</span>
+<span id="cb155-5"><a href="gráficos-r-base.html#cb155-5" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">paste</span>(<span class="fu">names</span>(frequencia_relativa), </span>
+<span id="cb155-6"><a href="gráficos-r-base.html#cb155-6" tabindex="-1"></a>                   <span class="fu">round</span>(frequencia_relativa <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%&quot;</span>))</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-154-1.png" width="672" /></p>
 </div>
 <div id="histograma" class="section level2 hasAnchor" number="13.3">
 <h2><span class="header-section-number">13.3</span> Histograma<a href="gráficos-r-base.html#histograma" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Histograma é uma representação gráfica dos dados em que se marcam as
-classes (intervalos) no eixo horizontal e as frequências (absuluta ou
+<p><strong>Histograma</strong>: é uma representação gráfica dos dados em que se marcam as classes (intervalos) no eixo horizontal e as frequências (absuluta ou
 relativa) no eixo vertical.</p>
 <ul>
 <li><p>Cada retângulo corresponde a uma classe.</p></li>
-<li><p>A largura de cada retângulo é igual à amplitude da classe</p></li>
-<li><p>Se as classes tiverem todas a mesma amplitude, a altura do retângulo
-é proporcional à frequência.</p></li>
+<li><p>A largura de cada retângulo é igual à amplitude da classe.</p></li>
+<li><p>Se as classes tiverem todas a mesma amplitude, a altura do retângulo é proporcional à frequência.</p></li>
 </ul>
-<p>Por default, o R utiliza a frequência absoluta para construir o
-histograma. Se tiver interesse em representar as frequências relativas,
+<p>Por default, o R utiliza a frequência absoluta para construir o histograma. Se tiver interesse em representar as frequências relativas,
 utilize a opção <code>freq=FALSE</code> nos argumentos da função <code>hist()</code>. O padrão
 de intervalo de classe no R é <span class="math inline">\((a, b]\)</span>.</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="gráficos-r-base.html#cb145-1" tabindex="-1"></a><span class="co"># Considere os dados referentes à massa (em kg) de 40 bicicletas</span></span>
-<span id="cb145-2"><a href="gráficos-r-base.html#cb145-2" tabindex="-1"></a></span>
-<span id="cb145-3"><a href="gráficos-r-base.html#cb145-3" tabindex="-1"></a>bicicletas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">4.3</span>,<span class="fl">6.8</span>,<span class="fl">9.2</span>,<span class="fl">7.2</span>,<span class="fl">8.7</span>,<span class="fl">8.6</span>,<span class="fl">6.6</span>,<span class="fl">5.2</span>,<span class="fl">8.1</span>,<span class="fl">10.9</span>,<span class="fl">7.4</span>,<span class="fl">4.5</span>,<span class="fl">3.8</span>,<span class="fl">7.6</span>,<span class="fl">6.8</span>,<span class="fl">7.8</span>,<span class="fl">8.4</span>,<span class="fl">7.5</span>,<span class="fl">10.5</span>,<span class="fl">6.0</span>,<span class="fl">7.7</span>,<span class="fl">8.1</span>,<span class="fl">7.0</span>,<span class="fl">8.2</span>,<span class="fl">8.4</span>,<span class="fl">8.8</span>,<span class="fl">6.7</span>,<span class="fl">8.2</span>,<span class="fl">9.4</span>,<span class="fl">7.7</span>,<span class="fl">6.3</span>,<span class="fl">7.7</span>,<span class="fl">9.1</span>,<span class="fl">7.9</span>,<span class="fl">7.9</span>,<span class="fl">9.4</span>,<span class="fl">8.2</span>,<span class="fl">6.7</span>,<span class="fl">8.2</span>,<span class="fl">6.5</span>)</span>
-<span id="cb145-4"><a href="gráficos-r-base.html#cb145-4" tabindex="-1"></a>  </span>
-<span id="cb145-5"><a href="gráficos-r-base.html#cb145-5" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">hist</span>(bicicletas,     </span>
-<span id="cb145-6"><a href="gráficos-r-base.html#cb145-6" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">&quot;Histograma&quot;</span>,     </span>
-<span id="cb145-7"><a href="gráficos-r-base.html#cb145-7" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Massa (kg)&quot;</span>,     </span>
-<span id="cb145-8"><a href="gráficos-r-base.html#cb145-8" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;Freq. absoluta&quot;</span>,     </span>
-<span id="cb145-9"><a href="gráficos-r-base.html#cb145-9" tabindex="-1"></a>  <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">12</span>),     </span>
-<span id="cb145-10"><a href="gráficos-r-base.html#cb145-10" tabindex="-1"></a>  <span class="at">labels =</span> <span class="cn">TRUE</span>,     </span>
-<span id="cb145-11"><a href="gráficos-r-base.html#cb145-11" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>)</span></code></pre></div>
-<p><img src="introR_files/figure-html/unnamed-chunk-144-1.png" width="672" /></p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="gráficos-r-base.html#cb146-1" tabindex="-1"></a><span class="co"># Pontos limites das classes</span></span>
-<span id="cb146-2"><a href="gráficos-r-base.html#cb146-2" tabindex="-1"></a>h<span class="sc">$</span>breaks</span>
-<span id="cb146-3"><a href="gráficos-r-base.html#cb146-3" tabindex="-1"></a><span class="do">## [1]  3  4  5  6  7  8  9 10 11</span></span>
-<span id="cb146-4"><a href="gráficos-r-base.html#cb146-4" tabindex="-1"></a></span>
-<span id="cb146-5"><a href="gráficos-r-base.html#cb146-5" tabindex="-1"></a><span class="co"># O comando h$counts retorna um vetor com as frequências absolutas dentro de cada classe</span></span>
-<span id="cb146-6"><a href="gráficos-r-base.html#cb146-6" tabindex="-1"></a>h<span class="sc">$</span>counts</span>
-<span id="cb146-7"><a href="gráficos-r-base.html#cb146-7" tabindex="-1"></a><span class="do">## [1]  1  2  2  8 10 11  4  2</span></span></code></pre></div>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="gráficos-r-base.html#cb147-1" tabindex="-1"></a><span class="co"># Histograma com frequência relativa</span></span>
-<span id="cb147-2"><a href="gráficos-r-base.html#cb147-2" tabindex="-1"></a><span class="fu">hist</span>(bicicletas,</span>
-<span id="cb147-3"><a href="gráficos-r-base.html#cb147-3" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">&quot;Histograma&quot;</span>,          </span>
-<span id="cb147-4"><a href="gráficos-r-base.html#cb147-4" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Massa (kg)&quot;</span>,          </span>
-<span id="cb147-5"><a href="gráficos-r-base.html#cb147-5" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;Freq. relativa&quot;</span>,     </span>
-<span id="cb147-6"><a href="gráficos-r-base.html#cb147-6" tabindex="-1"></a>  <span class="at">freq =</span> <span class="cn">FALSE</span>,     </span>
-<span id="cb147-7"><a href="gráficos-r-base.html#cb147-7" tabindex="-1"></a>  <span class="at">labels =</span> <span class="cn">TRUE</span>,          </span>
-<span id="cb147-8"><a href="gráficos-r-base.html#cb147-8" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>)</span></code></pre></div>
-<p><img src="introR_files/figure-html/unnamed-chunk-146-1.png" width="672" /></p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="gráficos-r-base.html#cb156-1" tabindex="-1"></a><span class="co"># Dados referentes à massa (em kg) de 40 bicicletas</span></span>
+<span id="cb156-2"><a href="gráficos-r-base.html#cb156-2" tabindex="-1"></a></span>
+<span id="cb156-3"><a href="gráficos-r-base.html#cb156-3" tabindex="-1"></a>bicicletas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">4.3</span>,<span class="fl">6.8</span>,<span class="fl">9.2</span>,<span class="fl">7.2</span>,<span class="fl">8.7</span>,<span class="fl">8.6</span>,<span class="fl">6.6</span>,<span class="fl">5.2</span>,<span class="fl">8.1</span>,<span class="fl">10.9</span>,<span class="fl">7.4</span>,<span class="fl">4.5</span>,<span class="fl">3.8</span>,<span class="fl">7.6</span>,<span class="fl">6.8</span>,<span class="fl">7.8</span>,<span class="fl">8.4</span>,<span class="fl">7.5</span>,<span class="fl">10.5</span>,<span class="fl">6.0</span>,<span class="fl">7.7</span>,<span class="fl">8.1</span>,<span class="fl">7.0</span>,<span class="fl">8.2</span>,<span class="fl">8.4</span>,<span class="fl">8.8</span>,<span class="fl">6.7</span>,<span class="fl">8.2</span>,<span class="fl">9.4</span>,<span class="fl">7.7</span>,<span class="fl">6.3</span>,<span class="fl">7.7</span>,<span class="fl">9.1</span>,<span class="fl">7.9</span>,<span class="fl">7.9</span>,<span class="fl">9.4</span>,<span class="fl">8.2</span>,<span class="fl">6.7</span>,<span class="fl">8.2</span>,<span class="fl">6.5</span>)</span>
+<span id="cb156-4"><a href="gráficos-r-base.html#cb156-4" tabindex="-1"></a>  </span>
+<span id="cb156-5"><a href="gráficos-r-base.html#cb156-5" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">hist</span>(bicicletas,     </span>
+<span id="cb156-6"><a href="gráficos-r-base.html#cb156-6" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">&quot;Histograma&quot;</span>,     </span>
+<span id="cb156-7"><a href="gráficos-r-base.html#cb156-7" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Massa (kg)&quot;</span>,     </span>
+<span id="cb156-8"><a href="gráficos-r-base.html#cb156-8" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;Frequência absoluta&quot;</span>,</span>
+<span id="cb156-9"><a href="gráficos-r-base.html#cb156-9" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>,</span>
+<span id="cb156-10"><a href="gráficos-r-base.html#cb156-10" tabindex="-1"></a>  <span class="at">border =</span> <span class="st">&quot;black&quot;</span>,</span>
+<span id="cb156-11"><a href="gráficos-r-base.html#cb156-11" tabindex="-1"></a>  <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">12</span>),     </span>
+<span id="cb156-12"><a href="gráficos-r-base.html#cb156-12" tabindex="-1"></a>  <span class="at">labels =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="gráficos-r-base.html#cb157-1" tabindex="-1"></a><span class="co"># Pontos limites das classes</span></span>
+<span id="cb157-2"><a href="gráficos-r-base.html#cb157-2" tabindex="-1"></a>h<span class="sc">$</span>breaks</span>
+<span id="cb157-3"><a href="gráficos-r-base.html#cb157-3" tabindex="-1"></a><span class="do">## [1]  3  4  5  6  7  8  9 10 11</span></span>
+<span id="cb157-4"><a href="gráficos-r-base.html#cb157-4" tabindex="-1"></a></span>
+<span id="cb157-5"><a href="gráficos-r-base.html#cb157-5" tabindex="-1"></a><span class="co"># O comando h$counts retorna um vetor com as frequências absolutas dentro de cada classe</span></span>
+<span id="cb157-6"><a href="gráficos-r-base.html#cb157-6" tabindex="-1"></a>h<span class="sc">$</span>counts</span>
+<span id="cb157-7"><a href="gráficos-r-base.html#cb157-7" tabindex="-1"></a><span class="do">## [1]  1  2  2  8 10 11  4  2</span></span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="gráficos-r-base.html#cb158-1" tabindex="-1"></a><span class="co"># Histograma com frequência relativa</span></span>
+<span id="cb158-2"><a href="gráficos-r-base.html#cb158-2" tabindex="-1"></a><span class="fu">hist</span>(bicicletas,</span>
+<span id="cb158-3"><a href="gráficos-r-base.html#cb158-3" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">&quot;Histograma&quot;</span>,          </span>
+<span id="cb158-4"><a href="gráficos-r-base.html#cb158-4" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Massa (kg)&quot;</span>,          </span>
+<span id="cb158-5"><a href="gráficos-r-base.html#cb158-5" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;Frequência relativa&quot;</span>,     </span>
+<span id="cb158-6"><a href="gráficos-r-base.html#cb158-6" tabindex="-1"></a>  <span class="at">freq =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb158-7"><a href="gráficos-r-base.html#cb158-7" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>,</span>
+<span id="cb158-8"><a href="gráficos-r-base.html#cb158-8" tabindex="-1"></a>  <span class="at">border =</span> <span class="st">&quot;black&quot;</span>,</span>
+<span id="cb158-9"><a href="gráficos-r-base.html#cb158-9" tabindex="-1"></a>  <span class="at">labels =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-157-1.png" width="672" /></p>
+<p>Você pode controlar o número de intervalos (bins) usando o argumento <code>breaks</code>. Por exemplo, <code>breaks = 5</code> divide os dados em 5 intervalos.</p>
 </div>
 <div id="box-plot" class="section level2 hasAnchor" number="13.4">
 <h2><span class="header-section-number">13.4</span> Box-plot<a href="gráficos-r-base.html#box-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="gráficos-r-base.html#cb148-1" tabindex="-1"></a><span class="co"># Caixa de bigodes vertical</span></span>
-<span id="cb148-2"><a href="gráficos-r-base.html#cb148-2" tabindex="-1"></a><span class="fu">boxplot</span>(bicicletas, <span class="at">main =</span> <span class="st">&quot;Caixa de bigodes&quot;</span>, <span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="introR_files/figure-html/unnamed-chunk-147-1.png" width="672" /></p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="gráficos-r-base.html#cb149-1" tabindex="-1"></a><span class="co"># Caixa de bigodes horizontal</span></span>
-<span id="cb149-2"><a href="gráficos-r-base.html#cb149-2" tabindex="-1"></a><span class="fu">boxplot</span>(bicicletas, <span class="at">main =</span> <span class="st">&quot;Caixa de bigodes&quot;</span>, <span class="at">col=</span><span class="st">&quot;green&quot;</span>, <span class="at">horizontal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="introR_files/figure-html/unnamed-chunk-148-1.png" width="672" /></p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="gráficos-r-base.html#cb150-1" tabindex="-1"></a><span class="co"># Caixa de bigodes lado a lado</span></span>
-<span id="cb150-2"><a href="gráficos-r-base.html#cb150-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb150-3"><a href="gráficos-r-base.html#cb150-3" tabindex="-1"></a></span>
-<span id="cb150-4"><a href="gráficos-r-base.html#cb150-4" tabindex="-1"></a><span class="co"># Caixa de bigodes vertical</span></span>
-<span id="cb150-5"><a href="gráficos-r-base.html#cb150-5" tabindex="-1"></a><span class="fu">boxplot</span>(bicicletas,<span class="at">main =</span> <span class="st">&quot;Caixa de bigodes&quot;</span>,<span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span>
-<span id="cb150-6"><a href="gráficos-r-base.html#cb150-6" tabindex="-1"></a></span>
-<span id="cb150-7"><a href="gráficos-r-base.html#cb150-7" tabindex="-1"></a><span class="co"># Caixa de bigodes horizontal</span></span>
-<span id="cb150-8"><a href="gráficos-r-base.html#cb150-8" tabindex="-1"></a><span class="fu">boxplot</span>(bicicletas,<span class="at">main =</span> <span class="st">&quot;Caixa de bigodes&quot;</span>,<span class="at">col =</span> <span class="st">&quot;green&quot;</span>,<span class="at">horizontal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="introR_files/figure-html/unnamed-chunk-149-1.png" width="672" /></p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="gráficos-r-base.html#cb151-1" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
-<pre><code>## null device 
-##           1</code></pre>
+<p><strong>Box-plot (Caixa de Bigodes)</strong>: O box-plot é uma representação gráfica que resume a distribuição de uma variável através de cinco estatísticas principais: mínimo, primeiro quartil (Q1), mediana (Q2), terceiro quartil (Q3) e máximo. Ele também pode mostrar outliers (valores atípicos).</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="gráficos-r-base.html#cb159-1" tabindex="-1"></a><span class="co"># Box-plot vertical</span></span>
+<span id="cb159-2"><a href="gráficos-r-base.html#cb159-2" tabindex="-1"></a><span class="fu">boxplot</span>(bicicletas, </span>
+<span id="cb159-3"><a href="gráficos-r-base.html#cb159-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Box-plot Vertical&quot;</span>, </span>
+<span id="cb159-4"><a href="gráficos-r-base.html#cb159-4" tabindex="-1"></a>        <span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-158-1.png" width="672" /></p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="gráficos-r-base.html#cb160-1" tabindex="-1"></a><span class="co"># Box-plot horizontal</span></span>
+<span id="cb160-2"><a href="gráficos-r-base.html#cb160-2" tabindex="-1"></a><span class="fu">boxplot</span>(bicicletas, </span>
+<span id="cb160-3"><a href="gráficos-r-base.html#cb160-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Box-plot Horizontal&quot;</span>, </span>
+<span id="cb160-4"><a href="gráficos-r-base.html#cb160-4" tabindex="-1"></a>        <span class="at">col=</span><span class="st">&quot;green&quot;</span>, </span>
+<span id="cb160-5"><a href="gráficos-r-base.html#cb160-5" tabindex="-1"></a>        <span class="at">horizontal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-159-1.png" width="672" /></p>
+<p>Você pode comparar a distribuição de múltiplas variáveis lado a lado com box-plots. Use a função <code>par()</code> para ajustar o layout gráfico.</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="gráficos-r-base.html#cb161-1" tabindex="-1"></a><span class="co"># Ajuste do layout gráfico</span></span>
+<span id="cb161-2"><a href="gráficos-r-base.html#cb161-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb161-3"><a href="gráficos-r-base.html#cb161-3" tabindex="-1"></a></span>
+<span id="cb161-4"><a href="gráficos-r-base.html#cb161-4" tabindex="-1"></a><span class="co"># Box-plot vertical e horizontal lado a lado</span></span>
+<span id="cb161-5"><a href="gráficos-r-base.html#cb161-5" tabindex="-1"></a><span class="fu">boxplot</span>(bicicletas, <span class="at">main =</span> <span class="st">&quot;Box-plot Vertical&quot;</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb161-6"><a href="gráficos-r-base.html#cb161-6" tabindex="-1"></a><span class="fu">boxplot</span>(bicicletas, <span class="at">main =</span> <span class="st">&quot;Box-plot Horizontal&quot;</span>, <span class="at">col =</span> <span class="st">&quot;green&quot;</span>, <span class="at">horizontal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-160-1.png" width="672" /></p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="gráficos-r-base.html#cb162-1" tabindex="-1"></a><span class="co"># Resetar layout gráfico para o padrão</span></span>
+<span id="cb162-2"><a href="gráficos-r-base.html#cb162-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
+</div>
+<div id="gráfico-de-dispersão" class="section level2 hasAnchor" number="13.5">
+<h2><span class="header-section-number">13.5</span> Gráfico de Dispersão<a href="gráficos-r-base.html#gráfico-de-dispersão" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Gráfico de Dispersão (Scatter Plot)</strong>: Útil para visualizar a relação entre duas variáveis quantitativas. É uma boa ferramenta para identificar correlações, tendências e outliers.</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="gráficos-r-base.html#cb163-1" tabindex="-1"></a><span class="co"># Dados de exemplo</span></span>
+<span id="cb163-2"><a href="gráficos-r-base.html#cb163-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb163-3"><a href="gráficos-r-base.html#cb163-3" tabindex="-1"></a>y <span class="ot">&lt;-</span> x <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">sd =</span> <span class="fl">0.5</span>)</span>
+<span id="cb163-4"><a href="gráficos-r-base.html#cb163-4" tabindex="-1"></a></span>
+<span id="cb163-5"><a href="gráficos-r-base.html#cb163-5" tabindex="-1"></a><span class="co"># Criar gráfico de dispersão</span></span>
+<span id="cb163-6"><a href="gráficos-r-base.html#cb163-6" tabindex="-1"></a><span class="fu">plot</span>(x, y, </span>
+<span id="cb163-7"><a href="gráficos-r-base.html#cb163-7" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Gráfico de Dispersão&quot;</span>, </span>
+<span id="cb163-8"><a href="gráficos-r-base.html#cb163-8" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Variável X&quot;</span>, </span>
+<span id="cb163-9"><a href="gráficos-r-base.html#cb163-9" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Variável Y&quot;</span>, </span>
+<span id="cb163-10"><a href="gráficos-r-base.html#cb163-10" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, </span>
+<span id="cb163-11"><a href="gráficos-r-base.html#cb163-11" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">19</span>)</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-161-1.png" width="672" /></p>
+</div>
+<div id="gráfico-de-linhas" class="section level2 hasAnchor" number="13.6">
+<h2><span class="header-section-number">13.6</span> Gráfico de Linhas<a href="gráficos-r-base.html#gráfico-de-linhas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Gráfico de Linhas</strong>: É usado para mostrar informações de séries temporais ou tendências ao longo de intervalos contínuos, como o tempo.</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="gráficos-r-base.html#cb164-1" tabindex="-1"></a><span class="co"># Dados de exemplo</span></span>
+<span id="cb164-2"><a href="gráficos-r-base.html#cb164-2" tabindex="-1"></a>tempo <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb164-3"><a href="gráficos-r-base.html#cb164-3" tabindex="-1"></a>valores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">11</span>, <span class="dv">10</span>, <span class="dv">8</span>, <span class="dv">6</span>, <span class="dv">4</span>, <span class="dv">2</span>)</span>
+<span id="cb164-4"><a href="gráficos-r-base.html#cb164-4" tabindex="-1"></a></span>
+<span id="cb164-5"><a href="gráficos-r-base.html#cb164-5" tabindex="-1"></a><span class="co"># Criar gráfico de linhas</span></span>
+<span id="cb164-6"><a href="gráficos-r-base.html#cb164-6" tabindex="-1"></a><span class="fu">plot</span>(tempo, valores, </span>
+<span id="cb164-7"><a href="gráficos-r-base.html#cb164-7" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;o&quot;</span>, </span>
+<span id="cb164-8"><a href="gráficos-r-base.html#cb164-8" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Gráfico de Linhas&quot;</span>, </span>
+<span id="cb164-9"><a href="gráficos-r-base.html#cb164-9" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Tempo&quot;</span>, </span>
+<span id="cb164-10"><a href="gráficos-r-base.html#cb164-10" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Valores&quot;</span>, </span>
+<span id="cb164-11"><a href="gráficos-r-base.html#cb164-11" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, </span>
+<span id="cb164-12"><a href="gráficos-r-base.html#cb164-12" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">19</span>)</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-162-1.png" width="672" /></p>
 </div>
 </div>
             </section>

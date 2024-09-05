@@ -252,7 +252,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.table"><i class="fa fa-check"></i><b>8.3</b> A Função <code>read.table()</code></a></li>
 <li class="chapter" data-level="8.4" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.csv"><i class="fa fa-check"></i><b>8.4</b> A função <code>read.csv()</code></a></li>
 <li class="chapter" data-level="8.5" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.csv2"><i class="fa fa-check"></i><b>8.5</b> A função <code>read.csv2()</code></a></li>
-<li class="chapter" data-level="8.6" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read_excel-do-pacote-readxl"><i class="fa fa-check"></i><b>8.6</b> A Função <code>read_excel()</code> do pacote <code>readxl</code></a></li>
+<li class="chapter" data-level="8.6" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read_excel-do-pacote-readxl"><i class="fa fa-check"></i><b>8.6</b> A Função <code>read_excel()</code> do Pacote <code>readxl</code></a></li>
 <li class="chapter" data-level="8.7" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#leitura-de-dados-online"><i class="fa fa-check"></i><b>8.7</b> Leitura de Dados Online</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>9</b> Pipe</a>
@@ -279,9 +279,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html"><i class="fa fa-check"></i><b>13</b> Gráficos (R base)</a>
 <ul>
 <li class="chapter" data-level="13.1" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-de-barras"><i class="fa fa-check"></i><b>13.1</b> Gráfico de Barras</a></li>
-<li class="chapter" data-level="13.2" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-circular-pizza"><i class="fa fa-check"></i><b>13.2</b> Gráfico circular (pizza)</a></li>
+<li class="chapter" data-level="13.2" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-circular-pizza"><i class="fa fa-check"></i><b>13.2</b> Gráfico Circular (Pizza)</a></li>
 <li class="chapter" data-level="13.3" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#histograma"><i class="fa fa-check"></i><b>13.3</b> Histograma</a></li>
 <li class="chapter" data-level="13.4" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#box-plot"><i class="fa fa-check"></i><b>13.4</b> Box-plot</a></li>
+<li class="chapter" data-level="13.5" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-de-dispersão"><i class="fa fa-check"></i><b>13.5</b> Gráfico de Dispersão</a></li>
+<li class="chapter" data-level="13.6" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-de-linhas"><i class="fa fa-check"></i><b>13.6</b> Gráfico de Linhas</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html"><i class="fa fa-check"></i><b>14</b> Manipulação de dados</a>
 <ul>
@@ -404,107 +406,89 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="loop-while" class="section level1 hasAnchor" number="10">
 <h1><span class="header-section-number">Capítulo 10</span> Loop while<a href="loop-while.html#loop-while" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>A instrução <code>while</code> em R é uma estrutura de controle de fluxo que
-permite executar um bloco de código repetidamente, enquanto uma condição
-especificada for verdadeira. É particularmente útil para situações em
-que o número de repetições não é conhecido antecipadamente, mas depende
-de alguma condição lógica.</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="loop-while.html#cb123-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
-<span id="cb123-2"><a href="loop-while.html#cb123-2" tabindex="-1"></a><span class="cf">while</span> (condição) {</span>
-<span id="cb123-3"><a href="loop-while.html#cb123-3" tabindex="-1"></a>  <span class="co"># Bloco de código a ser executado</span></span>
-<span id="cb123-4"><a href="loop-while.html#cb123-4" tabindex="-1"></a>}</span></code></pre></div>
+<p>A instrução <code>while</code> em R é uma estrutura de controle de fluxo que permite executar repetidamente um bloco de código enquanto uma condição específica for verdadeira. Esse tipo de loop é especialmente útil quando o número de iterações não é conhecido antecipadamente e depende de uma condição lógica ser atendida.</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="loop-while.html#cb124-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
+<span id="cb124-2"><a href="loop-while.html#cb124-2" tabindex="-1"></a><span class="cf">while</span> (condição) {</span>
+<span id="cb124-3"><a href="loop-while.html#cb124-3" tabindex="-1"></a>  <span class="co"># Bloco de código a ser executado repetidamente</span></span>
+<span id="cb124-4"><a href="loop-while.html#cb124-4" tabindex="-1"></a>}</span></code></pre></div>
 <ul>
-<li><p><strong>condição</strong>: Uma expressão lógica que é avaliada antes de cada
-iteração do loop. Enquanto essa condição for <code>TRUE</code>, o bloco de
-código dentro do while será executado.</p></li>
-<li><p><strong>Bloco de código</strong>: As instruções que devem ser repetidamente
-executadas enquanto a condição for verdadeira.</p></li>
+<li><p><strong>condição</strong>: Uma expressão lógica que é avaliada antes de cada iteração do loop. Enquanto essa condição for <code>TRUE</code>, o bloco de código dentro do while será executado.</p></li>
+<li><p><strong>Bloco de código</strong>: As instruções que são repetidas enquanto a condição for verdadeira.</p></li>
 </ul>
-<p><strong>Como funciona o while</strong></p>
+<p><strong>Funcionamento do Loop While</strong></p>
 <ul>
-<li><p><strong>Avaliação da Condição</strong>: Antes de cada execução do bloco de
-código, a condição é avaliada.</p></li>
-<li><p><strong>Execução do Bloco de Código</strong>: Se a condição for <code>TRUE</code>, o bloco
-de código dentro do <code>while</code> é executado.</p></li>
-<li><p><strong>Reavaliação</strong>: Após a execução do bloco de código, a condição é
-reavaliada. Se continuar a ser <code>TRUE</code>, o ciclo se repete. Se a
-condição for <code>FALSE</code>, o loop termina e o controle do programa
-continua com a próxima instrução após o <code>while</code>.</p></li>
+<li><p><strong>Avaliação da Condição</strong>: Antes de cada execução do bloco de código, a condição é avaliada.</p></li>
+<li><p><strong>Execução do Bloco de Código</strong>: Se a condição for <code>TRUE</code>, o bloco de código dentro do <code>while</code> é executado.</p></li>
+<li><p><strong>Reavaliação</strong>: Após a execução do bloco de código, a condição é reavaliada. Se a condição permanecer <code>TRUE</code>, o ciclo se repete. Se a condição se tornar <code>FALSE</code>, o loop termina e o controle do programa continua com a próxima instrução após o <code>while</code>.</p></li>
 </ul>
-<p><strong>Exemplo 1:</strong> Somando números até um limite.</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="loop-while.html#cb124-1" tabindex="-1"></a>limite <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb124-2"><a href="loop-while.html#cb124-2" tabindex="-1"></a>soma <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb124-3"><a href="loop-while.html#cb124-3" tabindex="-1"></a>contador <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb124-4"><a href="loop-while.html#cb124-4" tabindex="-1"></a></span>
-<span id="cb124-5"><a href="loop-while.html#cb124-5" tabindex="-1"></a><span class="cf">while</span> (contador <span class="sc">&lt;=</span> limite) {</span>
-<span id="cb124-6"><a href="loop-while.html#cb124-6" tabindex="-1"></a>  soma <span class="ot">&lt;-</span> soma <span class="sc">+</span> contador</span>
-<span id="cb124-7"><a href="loop-while.html#cb124-7" tabindex="-1"></a>  contador <span class="ot">&lt;-</span> contador <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb124-8"><a href="loop-while.html#cb124-8" tabindex="-1"></a>}</span>
-<span id="cb124-9"><a href="loop-while.html#cb124-9" tabindex="-1"></a></span>
-<span id="cb124-10"><a href="loop-while.html#cb124-10" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;A soma dos números de 1 a&quot;</span>, limite, <span class="st">&quot;é:&quot;</span>, soma))</span>
-<span id="cb124-11"><a href="loop-while.html#cb124-11" tabindex="-1"></a><span class="do">## [1] &quot;A soma dos números de 1 a 10 é: 55&quot;</span></span></code></pre></div>
-<p><strong>Exemplo 2:</strong> Escrevendo a tabuada de um número inteiro</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="loop-while.html#cb125-1" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">readline</span>(<span class="st">&quot;Digite um número inteiro: &quot;</span>))</span>
-<span id="cb125-2"><a href="loop-while.html#cb125-2" tabindex="-1"></a></span>
-<span id="cb125-3"><a href="loop-while.html#cb125-3" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Tabuada do&quot;</span>,n, <span class="st">&quot;:&quot;</span>))</span>
-<span id="cb125-4"><a href="loop-while.html#cb125-4" tabindex="-1"></a>i<span class="ot">=</span><span class="dv">1</span></span>
-<span id="cb125-5"><a href="loop-while.html#cb125-5" tabindex="-1"></a><span class="cf">while</span> (i <span class="sc">&lt;=</span> <span class="dv">10</span>){  </span>
-<span id="cb125-6"><a href="loop-while.html#cb125-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(n,<span class="st">&quot;x&quot;</span>,i, <span class="st">&quot;=&quot;</span>, n<span class="sc">*</span>i))  </span>
-<span id="cb125-7"><a href="loop-while.html#cb125-7" tabindex="-1"></a>  i <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb125-8"><a href="loop-while.html#cb125-8" tabindex="-1"></a>}</span></code></pre></div>
-<p>Explique porque o programa acima não termina. Qual o erro no nosso
-código?</p>
-<p><strong>Exemplo 3:</strong></p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="loop-while.html#cb126-1" tabindex="-1"></a>limite <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb126-2"><a href="loop-while.html#cb126-2" tabindex="-1"></a>soma <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb126-3"><a href="loop-while.html#cb126-3" tabindex="-1"></a>contador <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb126-4"><a href="loop-while.html#cb126-4" tabindex="-1"></a></span>
-<span id="cb126-5"><a href="loop-while.html#cb126-5" tabindex="-1"></a><span class="cf">while</span> (contador <span class="sc">&lt;=</span> limite) {  </span>
-<span id="cb126-6"><a href="loop-while.html#cb126-6" tabindex="-1"></a>  soma <span class="ot">&lt;-</span> soma <span class="sc">+</span> contador  </span>
-<span id="cb126-7"><a href="loop-while.html#cb126-7" tabindex="-1"></a>  <span class="fu">print</span>(contador)  </span>
-<span id="cb126-8"><a href="loop-while.html#cb126-8" tabindex="-1"></a>  <span class="cf">if</span> (contador <span class="sc">==</span> <span class="dv">3</span>){    </span>
-<span id="cb126-9"><a href="loop-while.html#cb126-9" tabindex="-1"></a>    <span class="cf">break</span>  </span>
-<span id="cb126-10"><a href="loop-while.html#cb126-10" tabindex="-1"></a>  }  </span>
-<span id="cb126-11"><a href="loop-while.html#cb126-11" tabindex="-1"></a>  contador <span class="ot">&lt;-</span> contador <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb126-12"><a href="loop-while.html#cb126-12" tabindex="-1"></a>}</span>
-<span id="cb126-13"><a href="loop-while.html#cb126-13" tabindex="-1"></a><span class="do">## [1] 1</span></span>
-<span id="cb126-14"><a href="loop-while.html#cb126-14" tabindex="-1"></a><span class="do">## [1] 2</span></span>
-<span id="cb126-15"><a href="loop-while.html#cb126-15" tabindex="-1"></a><span class="do">## [1] 3</span></span></code></pre></div>
+<p><strong>Exemplo 1</strong>: Somando números até um limite. O exemplo a seguir calcula a soma de todos os números de 1 a 10.</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="loop-while.html#cb125-1" tabindex="-1"></a>limite <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb125-2"><a href="loop-while.html#cb125-2" tabindex="-1"></a>soma <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb125-3"><a href="loop-while.html#cb125-3" tabindex="-1"></a>contador <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb125-4"><a href="loop-while.html#cb125-4" tabindex="-1"></a></span>
+<span id="cb125-5"><a href="loop-while.html#cb125-5" tabindex="-1"></a><span class="cf">while</span> (contador <span class="sc">&lt;=</span> limite) {</span>
+<span id="cb125-6"><a href="loop-while.html#cb125-6" tabindex="-1"></a>  soma <span class="ot">&lt;-</span> soma <span class="sc">+</span> contador</span>
+<span id="cb125-7"><a href="loop-while.html#cb125-7" tabindex="-1"></a>  contador <span class="ot">&lt;-</span> contador <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb125-8"><a href="loop-while.html#cb125-8" tabindex="-1"></a>}</span>
+<span id="cb125-9"><a href="loop-while.html#cb125-9" tabindex="-1"></a></span>
+<span id="cb125-10"><a href="loop-while.html#cb125-10" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;A soma dos números de 1 a&quot;</span>, limite, <span class="st">&quot;é:&quot;</span>, soma))</span>
+<span id="cb125-11"><a href="loop-while.html#cb125-11" tabindex="-1"></a><span class="do">## [1] &quot;A soma dos números de 1 a 10 é: 55&quot;</span></span></code></pre></div>
+<p>Neste exemplo:</p>
 <ul>
-<li><strong>break</strong> é uma instrução utilizada em ciclos para interromper a sua
-execução (sair de um ciclo antes de ter sido percorrido
-completamente). Quando o <code>break</code> é chamado, o loop é imediatamente
-interrompido, e o fluxo de execução continua na próxima linha de
-código após o loop.</li>
+<li>O loop while continua enquanto contador &lt;= limite.</li>
+<li>Em cada iteração, o valor de contador é adicionado a soma, e contador é incrementado em 1.</li>
+<li>Quando contador excede limite, o loop termina.</li>
 </ul>
-<p><strong>Considerações importantes sobre o uso do <code>while()</code></strong></p>
+<p><strong>Exemplo 2</strong>: Escrevendo a tabuada de um número inteiro. O programa abaixo imprime a tabuada de um número fornecido pelo usuário.</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="loop-while.html#cb126-1" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">readline</span>(<span class="st">&quot;Digite um número inteiro: &quot;</span>))</span>
+<span id="cb126-2"><a href="loop-while.html#cb126-2" tabindex="-1"></a></span>
+<span id="cb126-3"><a href="loop-while.html#cb126-3" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Tabuada do&quot;</span>,n, <span class="st">&quot;:&quot;</span>))</span>
+<span id="cb126-4"><a href="loop-while.html#cb126-4" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb126-5"><a href="loop-while.html#cb126-5" tabindex="-1"></a><span class="cf">while</span> (i <span class="sc">&lt;=</span> <span class="dv">10</span>){  </span>
+<span id="cb126-6"><a href="loop-while.html#cb126-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(n,<span class="st">&quot;x&quot;</span>,i, <span class="st">&quot;=&quot;</span>, n<span class="sc">*</span>i))  </span>
+<span id="cb126-7"><a href="loop-while.html#cb126-7" tabindex="-1"></a>  i <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb126-8"><a href="loop-while.html#cb126-8" tabindex="-1"></a>}</span></code></pre></div>
+<p>Explique porque o programa acima não termina. Qual o erro no nosso código? O loop no código original não terminava porque a linha <code>i + 1</code> não atualizava a variável <code>i</code>. A expressão <code>i + 1</code> calcula o novo valor, mas não o atribui de volta a <code>i</code>. O código correto usa <code>i &lt;- i + 1</code> para atualizar a variável <code>i</code> a cada iteração.</p>
+<p><strong>Exemplo 3</strong>: Uso do break para interromper um loop. O próximo exemplo demonstra como usar a instrução <code>break</code> para sair de um loop antecipadamente.</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="loop-while.html#cb127-1" tabindex="-1"></a>limite <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb127-2"><a href="loop-while.html#cb127-2" tabindex="-1"></a>soma <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb127-3"><a href="loop-while.html#cb127-3" tabindex="-1"></a>contador <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb127-4"><a href="loop-while.html#cb127-4" tabindex="-1"></a></span>
+<span id="cb127-5"><a href="loop-while.html#cb127-5" tabindex="-1"></a><span class="cf">while</span> (contador <span class="sc">&lt;=</span> limite) {  </span>
+<span id="cb127-6"><a href="loop-while.html#cb127-6" tabindex="-1"></a>  soma <span class="ot">&lt;-</span> soma <span class="sc">+</span> contador  </span>
+<span id="cb127-7"><a href="loop-while.html#cb127-7" tabindex="-1"></a>  <span class="fu">print</span>(contador)  </span>
+<span id="cb127-8"><a href="loop-while.html#cb127-8" tabindex="-1"></a>  <span class="cf">if</span> (contador <span class="sc">==</span> <span class="dv">3</span>){    </span>
+<span id="cb127-9"><a href="loop-while.html#cb127-9" tabindex="-1"></a>    <span class="cf">break</span> <span class="co"># Interrompe o loop quando contador é igual a 3  </span></span>
+<span id="cb127-10"><a href="loop-while.html#cb127-10" tabindex="-1"></a>  }  </span>
+<span id="cb127-11"><a href="loop-while.html#cb127-11" tabindex="-1"></a>  contador <span class="ot">&lt;-</span> contador <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb127-12"><a href="loop-while.html#cb127-12" tabindex="-1"></a>}</span>
+<span id="cb127-13"><a href="loop-while.html#cb127-13" tabindex="-1"></a><span class="do">## [1] 1</span></span>
+<span id="cb127-14"><a href="loop-while.html#cb127-14" tabindex="-1"></a><span class="do">## [1] 2</span></span>
+<span id="cb127-15"><a href="loop-while.html#cb127-15" tabindex="-1"></a><span class="do">## [1] 3</span></span></code></pre></div>
 <ul>
-<li><p><strong>Condição de Parada</strong>: É crucial garantir que a condição do <code>while</code>
-se torne <code>FALSE</code> em algum ponto para evitar loops infinitos que
-podem fazer o programa parar de responder.</p></li>
-<li><p><strong>Incremento/Decremento</strong>: Certifique-se de que a variável que
-controla a condição seja atualizada adequadamente dentro do loop
-para evitar loops infinitos.</p></li>
-<li><p><strong>Desempenho</strong>: Loops <code>while</code> podem ser menos eficientes do que
-loops vetorizados em R, portanto, para grandes conjuntos de dados,
-considere outras abordagens, como aplicar funções vetorizadas
-(<code>apply</code>, <code>lapply</code>, etc.).</p></li>
+<li><strong>break</strong>: A instrução <code>break</code> é usada para sair imediatamente do loop, independentemente de a condição de while ainda ser <code>TRUE</code>.</li>
+</ul>
+<p><strong>Considerações Importantes sobre o Uso do <code>while()</code></strong></p>
+<ul>
+<li><p><strong>Condição de Parada</strong>: É fundamental garantir que a condição do <code>while</code> eventualmente se torne <code>FALSE</code> para evitar loops infinitos que podem travar o programa.</p></li>
+<li><p><strong>Incremento/Decremento</strong>: A variável que controla a condição deve ser atualizada corretamente dentro do loop. Falhas em fazer isso corretamente também podem causar loops infinitos.</p></li>
+<li><p><strong>Desempenho</strong>: Loops <code>while</code> podem ser menos eficientes do que operações vetorizadas em R. Para grandes conjuntos de dados, considere usar funções vetorizadas como <code>apply</code>, <code>lapply</code>, <code>sapply</code>, etc., para melhorar a performance.</p></li>
 </ul>
 <div id="exercícios-9" class="section level2 hasAnchor" number="10.1">
 <h2><span class="header-section-number">10.1</span> Exercícios<a href="loop-while.html#exercícios-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>1.</strong> Escreva um programa em R que peça ao utilizador um número inteiro <span class="math inline">\(n\)</span> e escreva no ecrã os números inteiros de 0 a <span class="math inline">\(n\)</span>, um por linha.</p>
-<p><strong>2.</strong> Escreva um programa em R que peça ao utilizador um número inteiro e escreva no ecrã o seu quadrado, perguntando em seguida se o utilizador quer terminar a utilização do programa.</p>
-<p><strong>3.</strong> Escreva um programa em R que peça ao utilizador um número inteiro <span class="math inline">\(n\)</span> e escreva no ecrã o resultado do somatório dos primeiros <span class="math inline">\(n\)</span> inteiros.</p>
-<p><strong>4.</strong> Escreva um programa em R que peça ao utilizador um número inteiro <span class="math inline">\(n\)</span> e escreva no ecrã o número de pares no intervalo de 0 a <span class="math inline">\(n\)</span>.</p>
+<p><strong>1.</strong> Escreva um programa em R que solicite ao usuário um número inteiro <span class="math inline">\(n\)</span>. O programa deve imprimir todos os números inteiros de 0 até <span class="math inline">\(n\)</span>, um número por linha.</p>
+<p><strong>2.</strong> Crie um programa em R que solicite ao usuário um número inteiro, calcule o seu quadrado e exiba o resultado. Em seguida, pergunte ao usuário se ele deseja continuar ou encerrar o programa. O loop deve continuar até que o usuário escolha terminar.</p>
+<p><strong>3.</strong> Desenvolva um programa em R que peça ao usuário um número inteiro <span class="math inline">\(n\)</span> e calcule a soma dos primeiros <span class="math inline">\(n\)</span> inteiros (de 1 até <span class="math inline">\(n\)</span>). O resultado deve ser exibido no console.</p>
+<p><strong>4.</strong> Escreva um programa em R que solicite ao usuário um número inteiro <span class="math inline">\(n\)</span> e conte quantos números pares existem no intervalo de 0 até <span class="math inline">\(n\)</span>. O resultado deve ser impresso no console.</p>
 <p><strong>5.</strong> Usar um loop <code>while</code> para somar números inteiros positivos até que um número negativo seja inserido.</p>
-<p>Escreva um programa em R que leia números do utilizador e some-os. O loop deve terminar quando o usuário inserir um número negativo. O programa deve então imprimir a soma dos números positivos inseridos.</p>
+<p>Crie um programa em R que leia números inteiros inseridos pelo usuário e some-os. O loop deve continuar até que o usuário insira um número negativo, momento em que o programa deve parar e exibir a soma dos números positivos inseridos.</p>
 <p><strong>6.</strong> Usar um loop while para implementar uma contagem regressiva.</p>
-<p>Crie um programa em R que peça ao utilizador para inserir um número positivo e, em seguida, conte regressivamente até zero, imprimindo cada número no console.</p>
-<p><strong>7.</strong> Crie um programa em R que peça ao utilizador para inserir um número negativo e, em seguida, conte progressivamente até zero, imprimindo cada número no console.</p>
-<p><strong>8.</strong> Crie um programa em R que peça ao utilizador para inserir um número e, em seguida, contar regressivamente até zero, se o número for positivo e progressivamente se o número for negativo, imprimindo cada número no console.</p>
-<p><strong>9.</strong> Escreva um programa em R que leia um número inteiro não negativo do utilizador e calcule seu fatorial usando um loop <code>while</code>. Lembre que <span class="math inline">\(0! = 1\)</span> e que <span class="math inline">\(4! = 4\cdot3\cdot2\cdot1\)</span>.</p>
-<p><strong>10.</strong> Escreva um programa em R que leia um número inteiro positivo e calcule a soma de seus dígitos usando um loop <code>while</code>. Por exemplo, 23 <span class="math inline">\(\to\)</span> <span class="math inline">\(2+3 = 5\)</span>.</p>
-<p><strong>11.</strong> Crie um programa em R que gere e imprima os números da sequência de Fibonacci até um valor máximo especificado pelo utilizador. 1 1 2 3 5 8 13…</p>
+<p>Implemente um programa em R que solicite ao usuário um número inteiro positivo e, em seguida, execute uma contagem regressiva até zero, imprimindo cada número no console.</p>
+<p><strong>7.</strong> Escreva um programa em R que solicite ao usuário um número inteiro negativo e, em seguida, conte progressivamente até zero, imprimindo cada número no console.</p>
+<p><strong>8.</strong> Desenvolva um programa em R que peça ao usuário para inserir um número. Se o número for positivo, o programa deve contar regressivamente até zero. Se o número for negativo, o programa deve contar progressivamente até zero. Cada número deve ser impresso no console.</p>
+<p><strong>9.</strong> Crie um programa em R que solicite ao usuário um número inteiro não negativo e calcule seu fatorial usando um loop <code>while</code>. Lembre que <span class="math inline">\(0! = 1\)</span> e que <span class="math inline">\(4! = 4\times 3\times 2\times  = 24\)</span>.</p>
+<p><strong>10.</strong> Escreva um programa em R que leia um número inteiro positivo e calcule a soma de seus dígitos usando um loop <code>while</code>. Por exemplo, para o número 23, o programa deve calcular <span class="math inline">\(2+3 = 5\)</span>.</p>
+<p><strong>11.</strong> Desenvolva um programa em R que gere e imprima os números da sequência de Fibonacci até atingir um valor máximo especificado pelo usuário. A sequência de Fibonacci começa com 1, 1 e cada número subsequente é a soma dos dois anteriores <span class="math inline">\((1, 1, 2, 3, 5, 8, 13 \ldots)\)</span>.</p>
 </div>
 </div>
             </section>

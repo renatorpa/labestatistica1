@@ -252,7 +252,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.table"><i class="fa fa-check"></i><b>8.3</b> A Função <code>read.table()</code></a></li>
 <li class="chapter" data-level="8.4" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.csv"><i class="fa fa-check"></i><b>8.4</b> A função <code>read.csv()</code></a></li>
 <li class="chapter" data-level="8.5" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.csv2"><i class="fa fa-check"></i><b>8.5</b> A função <code>read.csv2()</code></a></li>
-<li class="chapter" data-level="8.6" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read_excel-do-pacote-readxl"><i class="fa fa-check"></i><b>8.6</b> A Função <code>read_excel()</code> do pacote <code>readxl</code></a></li>
+<li class="chapter" data-level="8.6" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read_excel-do-pacote-readxl"><i class="fa fa-check"></i><b>8.6</b> A Função <code>read_excel()</code> do Pacote <code>readxl</code></a></li>
 <li class="chapter" data-level="8.7" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#leitura-de-dados-online"><i class="fa fa-check"></i><b>8.7</b> Leitura de Dados Online</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>9</b> Pipe</a>
@@ -279,9 +279,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html"><i class="fa fa-check"></i><b>13</b> Gráficos (R base)</a>
 <ul>
 <li class="chapter" data-level="13.1" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-de-barras"><i class="fa fa-check"></i><b>13.1</b> Gráfico de Barras</a></li>
-<li class="chapter" data-level="13.2" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-circular-pizza"><i class="fa fa-check"></i><b>13.2</b> Gráfico circular (pizza)</a></li>
+<li class="chapter" data-level="13.2" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-circular-pizza"><i class="fa fa-check"></i><b>13.2</b> Gráfico Circular (Pizza)</a></li>
 <li class="chapter" data-level="13.3" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#histograma"><i class="fa fa-check"></i><b>13.3</b> Histograma</a></li>
 <li class="chapter" data-level="13.4" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#box-plot"><i class="fa fa-check"></i><b>13.4</b> Box-plot</a></li>
+<li class="chapter" data-level="13.5" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-de-dispersão"><i class="fa fa-check"></i><b>13.5</b> Gráfico de Dispersão</a></li>
+<li class="chapter" data-level="13.6" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-de-linhas"><i class="fa fa-check"></i><b>13.6</b> Gráfico de Linhas</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html"><i class="fa fa-check"></i><b>14</b> Manipulação de dados</a>
 <ul>
@@ -489,7 +491,7 @@ variação para <span class="math inline">\(n = 1000\)</span>, e ainda menos par
 </tbody>
 </table>
 <p>A maneira que obtemos a amostra aleatória uniforme foi usando a função <code>runif</code></p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="simulação.html#cb223-1" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="simulação.html#cb235-1" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span></code></pre></div>
 <p>Como mencionamos anteriormente, não há necessidade de simulação no exemplo acima. Esta foi apenas para ilustrar que a simulação pode fazer o que afirma. Porém, é preciso estar ciente de que, por maior que seja a amostra simulada, a média de uma amostra de variáveis aleatórias i.i.d. não será necessariamente igual à sua média. É preciso ser capaz de levar em conta a variabilidade.</p>
 <p><strong>Exemplo onde a simulação pode ajudar</strong></p>
 <p>A seguir, apresentamos um exemplo em que as questões básicas são relativamente simples de descrever, mas a solução analítica seria, na melhor das hipóteses, entediante.</p>
@@ -497,15 +499,15 @@ variação para <span class="math inline">\(n = 1000\)</span>, e ainda menos par
 clientes ao mesmo tempo. Eles concordam em se encontrar para um intervalo depois que cada um deles atender 10 clientes. Presumivelmente, um deles terminará antes do outro e terá que esperar. Quanto tempo, em média, um dos atendentes terá que esperar pelo outro?</p>
 <p>Suponha que modelemos todos os tempos de serviço, independentemente do atendente, como variáveis aleatórias i.i.d. tendo distribuição exponencial com parâmetro 0.3 clientes por minuto. Então, o tempo que um atendente leva para atender 10 clientes tem a distribuição gama com parâmetros 10 e 0.3. Seja <span class="math inline">\(X\)</span> o tempo que A leva para atender 10 clientes e seja Y o tempo que B leva para atender 10 clientes. Somos solicitados a calcular a média de <span class="math inline">\(|X − Y|\)</span>. A maneira mais direta de encontrar esta média analiticamente exigiria um integral bidimensional sobre a união de duas regiões não retangulares.</p>
 <p>Por outro lado, suponha que um computador possa nos fornecer tantas variáveis aleatórias gama independentes quantas desejarmos. Podemos então obter um par <span class="math inline">\((X, Y)\)</span> e calcular <span class="math inline">\(Z = |X − Y|\)</span>. Em seguida, repetimos esse processo independentemente quantas vezes quisermos e calculamos a média de todos os valores <span class="math inline">\(Z\)</span> observados. A média deve ficar próxima da média de <span class="math inline">\(Z\)</span>.</p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="simulação.html#cb224-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb224-2"><a href="simulação.html#cb224-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(<span class="dv">10000</span>, <span class="dv">10</span>, <span class="fl">0.3</span>)</span>
-<span id="cb224-3"><a href="simulação.html#cb224-3" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(<span class="dv">10000</span>, <span class="dv">10</span>, <span class="fl">0.3</span>)</span>
-<span id="cb224-4"><a href="simulação.html#cb224-4" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">abs</span>(x<span class="sc">-</span>y)</span>
-<span id="cb224-5"><a href="simulação.html#cb224-5" tabindex="-1"></a><span class="fu">mean</span>(z)</span></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="simulação.html#cb236-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb236-2"><a href="simulação.html#cb236-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(<span class="dv">10000</span>, <span class="dv">10</span>, <span class="fl">0.3</span>)</span>
+<span id="cb236-3"><a href="simulação.html#cb236-3" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(<span class="dv">10000</span>, <span class="dv">10</span>, <span class="fl">0.3</span>)</span>
+<span id="cb236-4"><a href="simulação.html#cb236-4" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">abs</span>(x<span class="sc">-</span>y)</span>
+<span id="cb236-5"><a href="simulação.html#cb236-5" tabindex="-1"></a><span class="fu">mean</span>(z)</span></code></pre></div>
 <pre><code>## [1] 11.75882</code></pre>
 <p>Temos então um tempo médio de 11.75 minutos.</p>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="simulação.html#cb226-1" tabindex="-1"></a><span class="fu">hist</span>(z, <span class="at">xlab =</span> <span class="st">&quot;Tempo de espera Z&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Freq Abs&quot;</span>)</span></code></pre></div>
-<p><img src="introR_files/figure-html/unnamed-chunk-189-1.png" width="672" /></p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="simulação.html#cb238-1" tabindex="-1"></a><span class="fu">hist</span>(z, <span class="at">xlab =</span> <span class="st">&quot;Tempo de espera Z&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Freq Abs&quot;</span>)</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-202-1.png" width="672" /></p>
 <div id="geração-de-números-pseudoaleatórios" class="section level2 hasAnchor" number="17.1">
 <h2><span class="header-section-number">17.1</span> Geração de números pseudoaleatórios<a href="simulação.html#geração-de-números-pseudoaleatórios" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Números Aleatórios</strong></p>
@@ -561,9 +563,9 @@ partir de um conjunto de dados ou uma sequência de números. Ela é
 extremamente flexível, permitindo que você defina o tamanho da amostra,
 se a amostragem é feita com ou sem reposição, e também se os elementos
 têm probabilidades diferentes de serem selecionados.</p>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="simulação.html#cb227-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
-<span id="cb227-2"><a href="simulação.html#cb227-2" tabindex="-1"></a></span>
-<span id="cb227-3"><a href="simulação.html#cb227-3" tabindex="-1"></a><span class="fu">sample</span>(x, size, <span class="at">replace =</span> <span class="cn">FALSE</span>, <span class="at">prob =</span> <span class="cn">NULL</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="simulação.html#cb239-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
+<span id="cb239-2"><a href="simulação.html#cb239-2" tabindex="-1"></a></span>
+<span id="cb239-3"><a href="simulação.html#cb239-3" tabindex="-1"></a><span class="fu">sample</span>(x, size, <span class="at">replace =</span> <span class="cn">FALSE</span>, <span class="at">prob =</span> <span class="cn">NULL</span>)</span></code></pre></div>
 <ul>
 <li><p><strong>x</strong>: Vetor de elementos a serem amostrados.</p></li>
 <li><p><strong>size</strong>: Tamanho da amostra.</p></li>
@@ -575,26 +577,26 @@ reposição (<code>FALSE</code>).</p></li>
 </ol></li>
 </ul>
 <p><strong>Exemplo 1</strong>: Amostragem Simples sem Reposição.</p>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="simulação.html#cb228-1" tabindex="-1"></a><span class="co"># Suponha que temos uma população de 1 a 10</span></span>
-<span id="cb228-2"><a href="simulação.html#cb228-2" tabindex="-1"></a>pop <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb228-3"><a href="simulação.html#cb228-3" tabindex="-1"></a></span>
-<span id="cb228-4"><a href="simulação.html#cb228-4" tabindex="-1"></a><span class="co"># Queremos uma amostra de 5 elementos</span></span>
-<span id="cb228-5"><a href="simulação.html#cb228-5" tabindex="-1"></a>amostra <span class="ot">&lt;-</span> <span class="fu">sample</span>(pop, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb228-6"><a href="simulação.html#cb228-6" tabindex="-1"></a><span class="fu">print</span>(amostra)</span>
-<span id="cb228-7"><a href="simulação.html#cb228-7" tabindex="-1"></a><span class="do">## [1]  5  2  4 10  8</span></span></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="simulação.html#cb240-1" tabindex="-1"></a><span class="co"># Suponha que temos uma população de 1 a 10</span></span>
+<span id="cb240-2"><a href="simulação.html#cb240-2" tabindex="-1"></a>pop <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb240-3"><a href="simulação.html#cb240-3" tabindex="-1"></a></span>
+<span id="cb240-4"><a href="simulação.html#cb240-4" tabindex="-1"></a><span class="co"># Queremos uma amostra de 5 elementos</span></span>
+<span id="cb240-5"><a href="simulação.html#cb240-5" tabindex="-1"></a>amostra <span class="ot">&lt;-</span> <span class="fu">sample</span>(pop, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb240-6"><a href="simulação.html#cb240-6" tabindex="-1"></a><span class="fu">print</span>(amostra)</span>
+<span id="cb240-7"><a href="simulação.html#cb240-7" tabindex="-1"></a><span class="do">## [1]  5  2  4 10  8</span></span></code></pre></div>
 <p><strong>Exemplo 2</strong>: Amostragem com Reposição.</p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="simulação.html#cb229-1" tabindex="-1"></a><span class="co"># Amostra com reposição</span></span>
-<span id="cb229-2"><a href="simulação.html#cb229-2" tabindex="-1"></a>amostra_repos <span class="ot">&lt;-</span> <span class="fu">sample</span>(pop, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb229-3"><a href="simulação.html#cb229-3" tabindex="-1"></a><span class="fu">print</span>(amostra_repos)</span>
-<span id="cb229-4"><a href="simulação.html#cb229-4" tabindex="-1"></a><span class="do">## [1] 6 8 9 9 6</span></span></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="simulação.html#cb241-1" tabindex="-1"></a><span class="co"># Amostra com reposição</span></span>
+<span id="cb241-2"><a href="simulação.html#cb241-2" tabindex="-1"></a>amostra_repos <span class="ot">&lt;-</span> <span class="fu">sample</span>(pop, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb241-3"><a href="simulação.html#cb241-3" tabindex="-1"></a><span class="fu">print</span>(amostra_repos)</span>
+<span id="cb241-4"><a href="simulação.html#cb241-4" tabindex="-1"></a><span class="do">## [1] 6 8 9 9 6</span></span></code></pre></div>
 <p><strong>Exemplo 3</strong>: Amostragem com Probabilidades Diferentes.</p>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="simulação.html#cb230-1" tabindex="-1"></a><span class="co"># Probabilidades associadas a cada elemento</span></span>
-<span id="cb230-2"><a href="simulação.html#cb230-2" tabindex="-1"></a>prob <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.05</span>, <span class="fl">0.05</span>)</span>
-<span id="cb230-3"><a href="simulação.html#cb230-3" tabindex="-1"></a></span>
-<span id="cb230-4"><a href="simulação.html#cb230-4" tabindex="-1"></a><span class="co"># Amostra com probabilidades diferentes</span></span>
-<span id="cb230-5"><a href="simulação.html#cb230-5" tabindex="-1"></a>amostra_prob <span class="ot">&lt;-</span> <span class="fu">sample</span>(pop, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">prob =</span> prob)</span>
-<span id="cb230-6"><a href="simulação.html#cb230-6" tabindex="-1"></a><span class="fu">print</span>(amostra_prob)</span>
-<span id="cb230-7"><a href="simulação.html#cb230-7" tabindex="-1"></a><span class="do">## [1] 2 4 6 5 3</span></span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="simulação.html#cb242-1" tabindex="-1"></a><span class="co"># Probabilidades associadas a cada elemento</span></span>
+<span id="cb242-2"><a href="simulação.html#cb242-2" tabindex="-1"></a>prob <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.05</span>, <span class="fl">0.05</span>)</span>
+<span id="cb242-3"><a href="simulação.html#cb242-3" tabindex="-1"></a></span>
+<span id="cb242-4"><a href="simulação.html#cb242-4" tabindex="-1"></a><span class="co"># Amostra com probabilidades diferentes</span></span>
+<span id="cb242-5"><a href="simulação.html#cb242-5" tabindex="-1"></a>amostra_prob <span class="ot">&lt;-</span> <span class="fu">sample</span>(pop, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">prob =</span> prob)</span>
+<span id="cb242-6"><a href="simulação.html#cb242-6" tabindex="-1"></a><span class="fu">print</span>(amostra_prob)</span>
+<span id="cb242-7"><a href="simulação.html#cb242-7" tabindex="-1"></a><span class="do">## [1] 2 4 6 5 3</span></span></code></pre></div>
 </div>
 <div id="exercícios-17" class="section level2 hasAnchor" number="17.3">
 <h2><span class="header-section-number">17.3</span> Exercícios<a href="simulação.html#exercícios-17" class="anchor-section" aria-label="Anchor link to header"></a></h2>
