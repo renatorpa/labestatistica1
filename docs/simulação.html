@@ -311,7 +311,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16" data-path="o-pacote-ggplot2.html"><a href="o-pacote-ggplot2.html"><i class="fa fa-check"></i><b>16</b> O pacote <code>ggplot2</code></a></li>
 <li class="chapter" data-level="17" data-path="simulação.html"><a href="simulação.html"><i class="fa fa-check"></i><b>17</b> Simulação</a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="simulação.html"><a href="simulação.html#geração-de-números-pseudoaleatórios"><i class="fa fa-check"></i><b>17.1</b> Geração de números pseudoaleatórios</a></li>
+<li class="chapter" data-level="17.1" data-path="simulação.html"><a href="simulação.html#simulação-e-geração-de-números-pseudoaleatórios"><i class="fa fa-check"></i><b>17.1</b> Simulação e Geração de Números Pseudoaleatórios</a></li>
 <li class="chapter" data-level="17.2" data-path="simulação.html"><a href="simulação.html#a-função-sample"><i class="fa fa-check"></i><b>17.2</b> A função <code>sample()</code></a></li>
 <li class="chapter" data-level="17.3" data-path="simulação.html"><a href="simulação.html#exercícios-17"><i class="fa fa-check"></i><b>17.3</b> Exercícios</a></li>
 </ul></li>
@@ -409,44 +409,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="simulação" class="section level1 hasAnchor" number="17">
 <h1><span class="header-section-number">Capítulo 17</span> Simulação<a href="simulação.html#simulação" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>A simulação é uma poderosa ferramenta que aproveita a capacidade dos
-computadores modernos para realizar cálculos que, de outra forma, seriam
-difíceis ou até impossíveis de serem feitos analiticamente. A Lei dos
-Grandes Números nos assegura que, ao observarmos uma grande amostra de
-variáveis aleatórias independentes e identicamente distribuídas (i.i.d.)
-com média finita, a média dessas observações tende a se aproximar da
-média real da distribuição. Em vez de nos esforçarmos para encontrar
-essa média através de métodos analíticos complexos, podemos utilizar o
-poder de processamento de um computador para gerar uma amostra
-suficientemente grande dessas variáveis aleatórias. A partir dessa
-amostra, calculamos a média observada, que serve como uma estimativa
-confiável da média verdadeira. No entanto, a eficácia desse método
-depende de três fatores cruciais: identificar corretamente os tipos de
-variáveis aleatórias necessárias para o problema em questão, garantir
-que o computador seja capaz de gerar essas variáveis de forma precisa, e
-determinar o tamanho adequado da amostra para que possamos confiar nos
-resultados obtidos. A simulação, portanto, não só simplifica o processo
-de resolução de problemas complexos, como também oferece uma abordagem
-prática e eficiente para explorar cenários onde o cálculo analítico
-tradicional é impraticável.</p>
-<p>Iniciamos com alguns exemplos básicos de simulação para resolver
-questões cujas respostas já conhecemos de forma analítica, apenas para
-demonstrar que a simulação cumpre o que promete. Além disso, esses
-exemplos introdutórios ajudarão a destacar alguns pontos importantes que
-precisam ser considerados ao tentar resolver problemas mais complexos
-utilizando simulação.</p>
-<p><strong>Exemplo 1 (A média de uma distribuição)</strong>: A média da distribuição
-uniforme no intervalo [0,1] é conhecida por ser 1/2. Se tivéssemos
-disponível um grande número de variáveis aleatórias i.i.d. uniformes no
-intervalo [0,1], digamos, <span class="math inline">\(X_{1},\ldots,X_{n}\)</span>, a Lei dos Grandes
-Números nos diz que <span class="math inline">\(\overline{X}=\frac{1}{n}\sum_{i=1}^{n}X_{i}\)</span> deve
-estar próximo da média 1/2. A Tabela abaixo fornece as médias de várias
-amostras simuladas diferentes de tamanho <span class="math inline">\(n\)</span> a partir da distribuição
-uniforme em [0,1] para vários valores diferentes de <span class="math inline">\(n\)</span>. Não é difícil
-ver que as médias estão próximas de 0.5 na maioria dos casos, mas há
-bastante variação, especialmente para <span class="math inline">\(n = 100\)</span>. Parece haver menos
-variação para <span class="math inline">\(n = 1000\)</span>, e ainda menos para os dois maiores valores de
-<span class="math inline">\(n\)</span>.</p>
+<p>A simulação é uma ferramenta poderosa que utiliza a capacidade dos computadores modernos para realizar cálculos que, de outra forma, seriam difíceis ou até impossíveis de serem resolvidos analiticamente. A Lei dos Grandes Números nos assegura que, ao observarmos uma grande amostra de variáveis aleatórias independentes e identicamente distribuídas (i.i.d.) com média finita, a média dessas observações tende a convergir para a média verdadeira da distribuição conforme o tamanho da amostra aumenta.</p>
+<p>Em vez de nos esforçarmos para encontrar essa média através de métodos analíticos complexos, podemos utilizar o poder computacional para gerar uma amostra suficientemente grande dessas variáveis aleatórias. A partir dessa amostra, calculamos a média observada, que serve como uma estimativa consistente da média verdadeira da distribuição. No entanto, a eficácia desse método depende de três fatores cruciais:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Identificação correta dos tipos de variáveis aleatórias necessárias para o problema em questão</strong>: É essencial determinar quais distribuições de probabilidade descrevem adequadamente os processos aleatórios que estamos modelando.</li>
+<li><strong>Capacidade do computador de gerar essas variáveis de forma precisa</strong>: Os algoritmos utilizados para gerar números pseudo-aleatórios devem ser robustos e capazes de produzir amostras que representem fielmente as distribuições desejadas.</li>
+<li><strong>Determinação do tamanho adequado da amostra</strong>: O tamanho da amostra deve ser suficientemente grande para que a média da amostra seja uma boa aproximação da média real. Além disso, um tamanho de amostra maior geralmente reduz a variabilidade das estimativas, aumentando a confiabilidade dos resultados.</li>
+</ol>
+<p>A simulação, portanto, simplifica o processo de resolução de problemas complexos, proporcionando uma abordagem prática e eficiente para explorar cenários onde o cálculo analítico é impraticável ou impossível. Ela permite aos estatísticos e cientistas de dados testar hipóteses, realizar análises de sensibilidade e prever resultados em condições controladas de incerteza.</p>
+<p>Para ilustrar o potencial da simulação, começamos com alguns exemplos básicos onde a solução analítica já é conhecida. Esses exemplos demonstram que a simulação pode reproduzir resultados teóricos com precisão. Além disso, esses casos introdutórios servem para destacar aspectos importantes que precisam ser considerados ao resolver problemas mais complexos por meio de simulação, como o tratamento de variáveis dependentes, correlações entre variáveis, e questões de eficiência computacional.</p>
+<p><strong>Exemplo 1 (Estimando a Média de uma Distribuição Uniforme)</strong>: A média da distribuição uniforme no intervalo <span class="math inline">\([0,1]\)</span> é conhecida por ser <span class="math inline">\(\frac{1}{2}\)</span>. Se tivermos um grande número de variáveis aleatórias independentes e identicamente distribuídas (i.i.d.) a partir dessa distribuição uniforme, denotadas por <span class="math inline">\(X_{1}, X_{2}, \ldots, X_{n}\)</span>, a Lei dos Grandes Números nos diz que a média amostral, dada por <span class="math inline">\(\overline{X} = \frac{1}{n} \sum_{i=1}^{n} X_{i}\)</span>, deve se aproximar da média verdadeira de 0.5 à medida que o tamanho da amostra <span class="math inline">\(n\)</span> aumenta.</p>
+<p>A tabela abaixo apresenta as médias de diferentes amostras simuladas de tamanho <span class="math inline">\(n\)</span> geradas a partir da distribuição uniforme <span class="math inline">\([0,1]\)</span> para vários valores de <span class="math inline">\(n\)</span>. Observamos que as médias amostrais estão geralmente próximas de 0.5, mas existe uma considerável variação, especialmente quando <span class="math inline">\(n = 100\)</span>. Nota-se que há menos variação para <span class="math inline">\(n = 1.000\)</span>, e a variação diminui ainda mais para os dois maiores valores de <span class="math inline">\(n\)</span> (10.000 e 100.000).</p>
 <table>
 <thead>
 <tr class="header">
@@ -493,106 +466,90 @@ variação para <span class="math inline">\(n = 1000\)</span>, e ainda menos par
 </tr>
 </tbody>
 </table>
-<p>A maneira que obtemos a amostra aleatória uniforme foi usando a função <code>runif</code></p>
+<p>Para gerar uma amostra aleatória uniforme no intervalo [0,1], utilizamos a função <code>runif</code> em R:</p>
 <div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="simulação.html#cb237-1" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span></code></pre></div>
-<p>Como mencionamos anteriormente, não há necessidade de simulação no exemplo acima. Esta foi apenas para ilustrar que a simulação pode fazer o que afirma. Porém, é preciso estar ciente de que, por maior que seja a amostra simulada, a média de uma amostra de variáveis aleatórias i.i.d. não será necessariamente igual à sua média. É preciso ser capaz de levar em conta a variabilidade.</p>
-<p><strong>Exemplo onde a simulação pode ajudar</strong></p>
-<p>A seguir, apresentamos um exemplo em que as questões básicas são relativamente simples de descrever, mas a solução analítica seria, na melhor das hipóteses, entediante.</p>
-<p><strong>Esperando por uma pausa</strong>. Dois atendentes, A e B, em um restaurante fast-food começam a servir
-clientes ao mesmo tempo. Eles concordam em se encontrar para um intervalo depois que cada um deles atender 10 clientes. Presumivelmente, um deles terminará antes do outro e terá que esperar. Quanto tempo, em média, um dos atendentes terá que esperar pelo outro?</p>
-<p>Suponha que modelemos todos os tempos de serviço, independentemente do atendente, como variáveis aleatórias i.i.d. tendo distribuição exponencial com parâmetro 0.3 clientes por minuto. Então, o tempo que um atendente leva para atender 10 clientes tem a distribuição gama com parâmetros 10 e 0.3. Seja <span class="math inline">\(X\)</span> o tempo que A leva para atender 10 clientes e seja Y o tempo que B leva para atender 10 clientes. Somos solicitados a calcular a média de <span class="math inline">\(|X − Y|\)</span>. A maneira mais direta de encontrar esta média analiticamente exigiria um integral bidimensional sobre a união de duas regiões não retangulares.</p>
-<p>Por outro lado, suponha que um computador possa nos fornecer tantas variáveis aleatórias gama independentes quantas desejarmos. Podemos então obter um par <span class="math inline">\((X, Y)\)</span> e calcular <span class="math inline">\(Z = |X − Y|\)</span>. Em seguida, repetimos esse processo independentemente quantas vezes quisermos e calculamos a média de todos os valores <span class="math inline">\(Z\)</span> observados. A média deve ficar próxima da média de <span class="math inline">\(Z\)</span>.</p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="simulação.html#cb238-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb238-2"><a href="simulação.html#cb238-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(<span class="dv">10000</span>, <span class="dv">10</span>, <span class="fl">0.3</span>)</span>
-<span id="cb238-3"><a href="simulação.html#cb238-3" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(<span class="dv">10000</span>, <span class="dv">10</span>, <span class="fl">0.3</span>)</span>
-<span id="cb238-4"><a href="simulação.html#cb238-4" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">abs</span>(x<span class="sc">-</span>y)</span>
-<span id="cb238-5"><a href="simulação.html#cb238-5" tabindex="-1"></a><span class="fu">mean</span>(z)</span></code></pre></div>
+<p>Como discutido anteriormente, neste exemplo não há necessidade real de simulação, pois conhecemos a média da distribuição uniforme analiticamente. Este exemplo serve para ilustrar que a simulação pode replicar resultados teóricos. No entanto, é crucial entender que, independentemente do tamanho da amostra gerada, a média amostral de variáveis aleatórias i.i.d. não será necessariamente exatamente igual à média verdadeira da distribuição. A simulação introduz uma variabilidade que precisa ser considerada; à medida que o tamanho da amostra aumenta, a variabilidade da média amostral diminui, aproximando-a da média real. Essa propriedade sublinha a importância de escolher um tamanho de amostra apropriado para obter estimativas confiáveis.</p>
+<p><strong>Exemplo de Aplicação da Simulação</strong></p>
+<p>A seguir, exploramos um exemplo onde as questões fundamentais são relativamente fáceis de descrever, mas a solução analítica seria, na melhor das hipóteses, complexa e tediosa.</p>
+<p><strong>Problema: Esperando por uma Pausa</strong>. Dois atendentes, A e B, em um restaurante fast-food começam a servir clientes ao mesmo tempo. Eles concordam em se encontrar para um intervalo assim que ambos tiverem atendido 10 clientes. No entanto, um deles provavelmente terminará antes do outro e precisará esperar. Nosso objetivo é determinar, em média, quanto tempo um dos atendentes terá que esperar pelo outro.</p>
+<p>Para modelar esse problema, assumimos que os tempos de serviço de cada cliente, independentemente do atendente, são variáveis aleatórias independentes e identicamente distribuídas (i.i.d.) com uma distribuição exponencial de taxa <span class="math inline">\(\lambda = 0.3\)</span> clientes por minuto. Portanto, o tempo total que um atendente leva para atender 10 clientes segue uma distribuição gama com parâmetros de forma <span class="math inline">\(k = 10\)</span> e taxa <span class="math inline">\(\lambda = 0.3\)</span>.</p>
+<p>Seja <span class="math inline">\(X\)</span> o tempo que o atendente A leva para atender 10 clientes e Y o tempo que o atendente B leva para atender 10 clientes. Precisamos calcular a média do valor absoluto da diferença de tempo entre eles, <span class="math inline">\(E(|X - Y|)\)</span>.</p>
+<p>A solução analítica para este problema exigiria a resolução de uma integral dupla sobre a união de duas regiões não retangulares. Em vez disso, a simulação oferece uma abordagem mais prática e eficiente.</p>
+<p><strong>Solução Usando Simulação</strong></p>
+<p>Suponhamos que podemos gerar um grande número de variáveis aleatórias gama independentes. Podemos, então, simular um par <span class="math inline">\((X, Y)\)</span> e calcular <span class="math inline">\(Z = |X - Y|\)</span>. Repetindo este processo independentemente várias vezes, podemos calcular a média de todos os valores observados de <span class="math inline">\(Z\)</span>, que servirá como uma estimativa da média de <span class="math inline">\(|X - Y|\)</span>.</p>
+<p>Vamos utilizar o R para realizar a simulação:</p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="simulação.html#cb238-1" tabindex="-1"></a><span class="co"># Definir a semente para reprodutibilidade</span></span>
+<span id="cb238-2"><a href="simulação.html#cb238-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb238-3"><a href="simulação.html#cb238-3" tabindex="-1"></a></span>
+<span id="cb238-4"><a href="simulação.html#cb238-4" tabindex="-1"></a><span class="co"># Gerar amostras da distribuição gama para X e Y</span></span>
+<span id="cb238-5"><a href="simulação.html#cb238-5" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(<span class="dv">10000</span>, <span class="at">shape =</span> <span class="dv">10</span>, <span class="at">rate =</span> <span class="fl">0.3</span>)</span>
+<span id="cb238-6"><a href="simulação.html#cb238-6" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(<span class="dv">10000</span>, <span class="at">shape =</span> <span class="dv">10</span>, <span class="at">rate =</span> <span class="fl">0.3</span>)</span>
+<span id="cb238-7"><a href="simulação.html#cb238-7" tabindex="-1"></a></span>
+<span id="cb238-8"><a href="simulação.html#cb238-8" tabindex="-1"></a><span class="co"># Calcular a diferença absoluta entre X e Y</span></span>
+<span id="cb238-9"><a href="simulação.html#cb238-9" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">abs</span>(x<span class="sc">-</span>y)</span>
+<span id="cb238-10"><a href="simulação.html#cb238-10" tabindex="-1"></a></span>
+<span id="cb238-11"><a href="simulação.html#cb238-11" tabindex="-1"></a><span class="co"># Calcular a média de Z</span></span>
+<span id="cb238-12"><a href="simulação.html#cb238-12" tabindex="-1"></a><span class="fu">mean</span>(z)</span></code></pre></div>
 <pre><code>## [1] 11.75882</code></pre>
-<p>Temos então um tempo médio de 11.75 minutos.</p>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="simulação.html#cb240-1" tabindex="-1"></a><span class="fu">hist</span>(z, <span class="at">xlab =</span> <span class="st">&quot;Tempo de espera Z&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Freq Abs&quot;</span>)</span></code></pre></div>
+<p>A saída do código acima nos dá um tempo médio de espera de aproximadamente 11.75 minutos.</p>
+<p>Para entender melhor a distribuição do tempo de espera, podemos visualizar a distribuição dos valores de <span class="math inline">\(Z\)</span> usando um histograma:</p>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="simulação.html#cb240-1" tabindex="-1"></a><span class="fu">hist</span>(z, </span>
+<span id="cb240-2"><a href="simulação.html#cb240-2" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Distribuição do Tempo de Espera&quot;</span>,</span>
+<span id="cb240-3"><a href="simulação.html#cb240-3" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Tempo de espera (minutos)&quot;</span>, </span>
+<span id="cb240-4"><a href="simulação.html#cb240-4" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Frequência Absoluta&quot;</span>,</span>
+<span id="cb240-5"><a href="simulação.html#cb240-5" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>, </span>
+<span id="cb240-6"><a href="simulação.html#cb240-6" tabindex="-1"></a>     <span class="at">border =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
 <p><img src="introR_files/figure-html/unnamed-chunk-198-1.png" width="672" /></p>
-<div id="geração-de-números-pseudoaleatórios" class="section level2 hasAnchor" number="17.1">
-<h2><span class="header-section-number">17.1</span> Geração de números pseudoaleatórios<a href="simulação.html#geração-de-números-pseudoaleatórios" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="simulação-e-geração-de-números-pseudoaleatórios" class="section level2 hasAnchor" number="17.1">
+<h2><span class="header-section-number">17.1</span> Simulação e Geração de Números Pseudoaleatórios<a href="simulação.html#simulação-e-geração-de-números-pseudoaleatórios" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Números Aleatórios</strong></p>
-<p>Números aleatórios são valores que são gerados de forma imprevisível e
-não seguem nenhum padrão determinado. Em outras palavras, cada número em
-uma sequência de números aleatórios é escolhido de maneira independente
-dos outros, sem qualquer correlação entre eles. Na prática, os números
-aleatórios são usados em diversas áreas, como criptografia, simulações,
-estatísticas, jogos de azar, entre outros, onde é crucial que os números
-não possam ser antecipados.</p>
-<p>A verdadeira aleatoriedade é geralmente derivada de processos físicos
-que são inerentemente imprevisíveis, como a radiação cósmica, ruído
-térmico em circuitos eletrônicos, ou o decaimento radioativo. Em
-computação, no entanto, obter números verdadeiramente aleatórios é
-difícil e muitas vezes desnecessário.</p>
+<p>Números aleatórios são valores gerados de forma imprevisível, sem seguir nenhum padrão determinístico. Em uma sequência de números aleatórios, cada número é escolhido independentemente dos outros, e não há qualquer correlação entre eles. Na prática, números aleatórios são fundamentais em diversas áreas, como criptografia, simulações estatísticas, jogos de azar, e processos de modelagem onde a imprevisibilidade é crucial.</p>
+<p>A verdadeira aleatoriedade geralmente é derivada de processos físicos inerentemente imprevisíveis, como a radiação cósmica, o ruído térmico em circuitos eletrônicos, ou o decaimento radioativo. No entanto, em computação, obter números verdadeiramente aleatórios pode ser difícil e frequentemente desnecessário. Para muitas aplicações, uma forma de aleatoriedade que seja suficientemente imprevisível é suficiente.</p>
 <p><strong>Números Pseudoaleatórios</strong></p>
-<p>Números pseudoaleatórios, por outro lado, são números que são gerados
-por algoritmos que produzem sequências que parecem aleatórias, mas são,
-na verdade, determinadas por um valor inicial chamado semente (ou “seed”
-em inglês). Se o algoritmo é iniciado com a mesma semente, ele produzirá
-exatamente a mesma sequência de números.</p>
-<p>Embora sejam determinísticos, os números pseudoaleatórios são amplamente
-utilizados porque podem ser gerados rapidamente e, para muitas
-aplicações, eles são suficientemente aleatórios. A principal vantagem é
-que, ao usar a mesma semente, é possível replicar experimentos ou
-simulações, o que é útil em pesquisas e depurações.</p>
-<p>Uma das aproximações mais comuns para gerar números pseudoaleatórios é o
-método <em>congruencial multiplicativo</em>:</p>
+<p>Números pseudoaleatórios, por outro lado, são gerados por algoritmos determinísticos que produzem sequências de números que parecem aleatórios, mas são, na verdade, baseados em um valor inicial conhecido como semente (seed). Se um algoritmo de geração de números pseudoaleatórios é iniciado com a mesma semente, ele produzirá exatamente a mesma sequência de números a cada execução.</p>
+<p>Embora os números pseudoaleatórios não sejam verdadeiramente aleatórios, eles são amplamente utilizados porque podem ser gerados de forma rápida e eficiente e, para muitas aplicações, são suficientemente aleatórios. A principal vantagem de usar números pseudoaleatórios é que, ao utilizar a mesma semente, podemos replicar experimentos ou simulações, o que é extremamente útil para fins de pesquisa e depuração de códigos.</p>
+<p><strong>Método Congruencial Multiplicativo</strong></p>
+<p>Uma das abordagens mais comuns para gerar números pseudoaleatórios é o <strong>Método Congruencial Multiplicativo</strong>:</p>
 <ul>
-<li><p>Considere um valor inicial <span class="math inline">\(x_0\)</span>, chamado semente;</p></li>
-<li><p>Recursivamente calcule os valores sucessivos <span class="math inline">\(x_{n}\)</span>, <span class="math inline">\(n\geq 1\)</span>,
-usando: <span class="math display">\[x_{n} = ax_{n-1} \, \text{mod}\, m,\]</span> onde <span class="math inline">\(a\)</span> e <span class="math inline">\(m\)</span> são
-inteiros positivos dados. Ou seja, <span class="math inline">\(x_{n}\)</span> é o resto da divisão
-inteira de <span class="math inline">\(ax_{n-1}\)</span> por m;</p></li>
-<li><p>A quantidade <span class="math inline">\(x_{n}/m\)</span> é chamada um número pseudoaleatório, ou seja,
-é uma aproximação para o valor de uma variável aleatória uniforme.</p></li>
+<li><strong>Semente Inicial</strong>: Considere um valor inicial <span class="math inline">\(x_0\)</span>, chamado de semente (<em>seed</em>).</li>
+<li><strong>Cálculo Recursivo</strong>: Para <span class="math inline">\(n \geq 1\)</span> , os valores sucessivos <span class="math inline">\(x_n\)</span> são calculados recursivamente usando a fórmula:</li>
 </ul>
-<p>As constantes <span class="math inline">\(a\)</span> e <span class="math inline">\(m\)</span> a serem escolhidas devem satisfazer três
-critérios:</p>
-<ul>
-<li><p>Para qualquer semente inicial, a sequência resultante deve ter a
-“aparência” de uma sequência de variáveis aleatórias uniformes
-<span class="math inline">\((0,1)\)</span> independentes.</p></li>
-<li><p>Para qualquer semente inicial, o número de variáveis que podem ser
-geradas antes da repetição ocorrer deve ser grande.</p></li>
-<li><p>Os valores podem ser calculados eficientemente em um computador.</p></li>
-</ul>
+<p><span class="math display">\[x_n = (a \cdot x_{n-1}) \, \text{mod} \, m,\]</span></p>
+<p>onde <span class="math inline">\(a\)</span> e <span class="math inline">\(m\)</span> são inteiros positivos dados. Aqui, <span class="math inline">\(x_n\)</span> é o resto da divisão inteira de <span class="math inline">\(a \cdot x_{n-1}\)</span> por <span class="math inline">\(m\)</span>.
+* <strong>Números Pseudoaleatórios</strong>: A quantidade <span class="math inline">\(\frac{x_n}{m}\)</span> é considerada um número pseudoaleatório, uma aproximação de uma variável aleatória uniforme no intervalo <span class="math inline">\([0,1]\)</span>.</p>
+<p><strong>Critérios para Escolha de <span class="math inline">\(a\)</span> e <span class="math inline">\(m\)</span></strong></p>
+<p>Para que os números gerados sejam úteis em simulações, as constantes <span class="math inline">\(a\)</span> e <span class="math inline">\(m\)</span> devem satisfazer os seguintes critérios:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Aparência de Aleatoriedade</strong>: A sequência gerada deve ter a “aparência” de uma sequência de variáveis aleatórias uniformemente distribuídas no intervalo (0,1).</li>
+<li><strong>Período Longo</strong>: A sequência deve ter um período longo antes de começar a se repetir, o que significa que deve gerar um grande número de variáveis antes que ocorra uma repetição.</li>
+<li><strong>Eficiência Computacional</strong>: Os valores devem ser computados de forma eficiente para que o algoritmo seja utilizável em aplicações práticas.</li>
+</ol>
 </div>
 <div id="a-função-sample" class="section level2 hasAnchor" number="17.2">
 <h2><span class="header-section-number">17.2</span> A função <code>sample()</code><a href="simulação.html#a-função-sample" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A função <code>sample()</code> em R é utilizada para gerar uma amostra aleatória a
-partir de um conjunto de dados ou uma sequência de números. Ela é
-extremamente flexível, permitindo que você defina o tamanho da amostra,
-se a amostragem é feita com ou sem reposição, e também se os elementos
-têm probabilidades diferentes de serem selecionados.</p>
+<p>A função <code>sample()</code> em R é amplamente utilizada para gerar amostras aleatórias a partir de um conjunto de dados ou de uma sequência de números. É uma função muito flexível que permite definir o tamanho da amostra, se a amostragem é feita com ou sem reposição, e se os elementos têm diferentes probabilidades de serem selecionados.</p>
 <div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="simulação.html#cb241-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
-<span id="cb241-2"><a href="simulação.html#cb241-2" tabindex="-1"></a></span>
-<span id="cb241-3"><a href="simulação.html#cb241-3" tabindex="-1"></a><span class="fu">sample</span>(x, size, <span class="at">replace =</span> <span class="cn">FALSE</span>, <span class="at">prob =</span> <span class="cn">NULL</span>)</span></code></pre></div>
+<span id="cb241-2"><a href="simulação.html#cb241-2" tabindex="-1"></a><span class="fu">sample</span>(x, size, <span class="at">replace =</span> <span class="cn">FALSE</span>, <span class="at">prob =</span> <span class="cn">NULL</span>)</span></code></pre></div>
 <ul>
-<li><p><strong>x</strong>: Vetor de elementos a serem amostrados.</p></li>
-<li><p><strong>size</strong>: Tamanho da amostra.</p></li>
-<li><p><strong>replace</strong>: Indica se a amostragem é com reposição (<code>TRUE</code>) ou sem
-reposição (<code>FALSE</code>).</p></li>
-<li><p><strong>prob</strong>: Um vetor de probabilidades associadas a cada elemento em</p>
-<ol start="24" style="list-style-type: lower-alpha">
-<li></li>
-</ol></li>
+<li><code>x</code>: O vetor de elementos a serem amostrados.</li>
+<li><code>size</code>: O tamanho da amostra desejada.</li>
+<li><code>replace</code>: Um valor lógico que indica se a amostragem é feita com reposição (<code>TRUE</code>) ou sem reposição (<code>FALSE</code>).</li>
+<li><code>prob</code>: Um vetor de probabilidades associadas a cada elemento em <code>x</code>. Se não especificado, assume-se que todos os elementos têm a mesma probabilidade de serem selecionados.</li>
 </ul>
-<p><strong>Exemplo 1</strong>: Amostragem Simples sem Reposição.</p>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="simulação.html#cb242-1" tabindex="-1"></a><span class="co"># Suponha que temos uma população de 1 a 10</span></span>
+<p><strong>Exemplo 1 (Amostragem Simples sem Reposição)</strong>: Neste exemplo, extraímos uma amostra de 5 elementos a partir de uma população de números inteiros de 1 a 10, sem reposição:</p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="simulação.html#cb242-1" tabindex="-1"></a><span class="co"># População de 1 a 10</span></span>
 <span id="cb242-2"><a href="simulação.html#cb242-2" tabindex="-1"></a>pop <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
 <span id="cb242-3"><a href="simulação.html#cb242-3" tabindex="-1"></a></span>
-<span id="cb242-4"><a href="simulação.html#cb242-4" tabindex="-1"></a><span class="co"># Queremos uma amostra de 5 elementos</span></span>
+<span id="cb242-4"><a href="simulação.html#cb242-4" tabindex="-1"></a><span class="co"># Amostra de 5 elementos sem reposição</span></span>
 <span id="cb242-5"><a href="simulação.html#cb242-5" tabindex="-1"></a>amostra <span class="ot">&lt;-</span> <span class="fu">sample</span>(pop, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb242-6"><a href="simulação.html#cb242-6" tabindex="-1"></a><span class="fu">print</span>(amostra)</span>
 <span id="cb242-7"><a href="simulação.html#cb242-7" tabindex="-1"></a><span class="do">## [1]  5  2  4 10  8</span></span></code></pre></div>
-<p><strong>Exemplo 2</strong>: Amostragem com Reposição.</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="simulação.html#cb243-1" tabindex="-1"></a><span class="co"># Amostra com reposição</span></span>
+<p><strong>Exemplo 2 (Amostragem com Reposição)</strong>:. Neste exemplo, permitimos que os mesmos elementos sejam selecionados mais de uma vez:</p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="simulação.html#cb243-1" tabindex="-1"></a><span class="co"># Amostra de 5 elementos com reposição</span></span>
 <span id="cb243-2"><a href="simulação.html#cb243-2" tabindex="-1"></a>amostra_repos <span class="ot">&lt;-</span> <span class="fu">sample</span>(pop, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb243-3"><a href="simulação.html#cb243-3" tabindex="-1"></a><span class="fu">print</span>(amostra_repos)</span>
 <span id="cb243-4"><a href="simulação.html#cb243-4" tabindex="-1"></a><span class="do">## [1] 6 8 9 9 6</span></span></code></pre></div>
-<p><strong>Exemplo 3</strong>: Amostragem com Probabilidades Diferentes.</p>
+<p><strong>Exemplo 3 (Amostragem com Probabilidades Diferentes)</strong>: Neste exemplo, associamos diferentes probabilidades a cada elemento da população:</p>
 <div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="simulação.html#cb244-1" tabindex="-1"></a><span class="co"># Probabilidades associadas a cada elemento</span></span>
 <span id="cb244-2"><a href="simulação.html#cb244-2" tabindex="-1"></a>prob <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.05</span>, <span class="fl">0.05</span>)</span>
 <span id="cb244-3"><a href="simulação.html#cb244-3" tabindex="-1"></a></span>
@@ -603,16 +560,9 @@ reposição (<code>FALSE</code>).</p></li>
 </div>
 <div id="exercícios-17" class="section level2 hasAnchor" number="17.3">
 <h2><span class="header-section-number">17.3</span> Exercícios<a href="simulação.html#exercícios-17" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>1.</strong> Crie um vetor com os números de 1 a 20. Utilize a função <code>sample()</code>
-para selecionar uma amostra aleatória de 5 elementos desse vetor. A
-amostragem deve ser feita sem reposição.</p>
-<p><strong>2.</strong> Suponha que você tem uma população representada pelos números de 1
-a 10. Utilize a função <code>sample()</code> para selecionar uma amostra de 10
-elementos com reposição.</p>
-<p><strong>3.</strong> Crie um vetor com as letras A, B, C, D, E. Aplique a função
-<code>sample()</code> para selecionar uma amostra de 3 letras, onde a
-probabilidade de cada letra ser selecionada é dada pelo vetor
-<code>c(0.1, 0.2, 0.3, 0.25, 0.15)</code>.</p>
+<p><strong>1.</strong> Crie um vetor com os números de 1 a 20. Utilize a função <code>sample()</code> para selecionar uma amostra aleatória de 5 elementos desse vetor. A amostragem deve ser feita sem reposição.</p>
+<p><strong>2.</strong> Suponha que você tem uma população representada pelos números de 1 a 10. Utilize a função <code>sample()</code> para selecionar uma amostra de 10 elementos com reposição.</p>
+<p><strong>3.</strong> Crie um vetor com as letras A, B, C, D, E. Aplique a função <code>sample()</code> para selecionar uma amostra de 3 letras, onde a probabilidade de cada letra ser selecionada é dada pelo vetor <code>c(0.1, 0.2, 0.3, 0.25, 0.15)</code>.</p>
 <p><strong>4.</strong> Crie um vetor com os números de 1 a 10. Utilize a função <code>sample()</code>
 para reordenar aleatoriamente os elementos desse vetor.</p>
 <p><strong>5.</strong> Crie um vetor com os nomes de cinco frutas: “Maçã”, “Banana”,

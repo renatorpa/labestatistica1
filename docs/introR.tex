@@ -5784,46 +5784,28 @@ de filmes IMDB está disponível no fénix
 
 \chapter{Simulação}\label{simulauxe7uxe3o}
 
-A simulação é uma poderosa ferramenta que aproveita a capacidade dos
-computadores modernos para realizar cálculos que, de outra forma, seriam
-difíceis ou até impossíveis de serem feitos analiticamente. A Lei dos
-Grandes Números nos assegura que, ao observarmos uma grande amostra de
-variáveis aleatórias independentes e identicamente distribuídas (i.i.d.)
-com média finita, a média dessas observações tende a se aproximar da
-média real da distribuição. Em vez de nos esforçarmos para encontrar
-essa média através de métodos analíticos complexos, podemos utilizar o
-poder de processamento de um computador para gerar uma amostra
-suficientemente grande dessas variáveis aleatórias. A partir dessa
-amostra, calculamos a média observada, que serve como uma estimativa
-confiável da média verdadeira. No entanto, a eficácia desse método
-depende de três fatores cruciais: identificar corretamente os tipos de
-variáveis aleatórias necessárias para o problema em questão, garantir
-que o computador seja capaz de gerar essas variáveis de forma precisa, e
-determinar o tamanho adequado da amostra para que possamos confiar nos
-resultados obtidos. A simulação, portanto, não só simplifica o processo
-de resolução de problemas complexos, como também oferece uma abordagem
-prática e eficiente para explorar cenários onde o cálculo analítico
-tradicional é impraticável.
+A simulação é uma ferramenta poderosa que utiliza a capacidade dos computadores modernos para realizar cálculos que, de outra forma, seriam difíceis ou até impossíveis de serem resolvidos analiticamente. A Lei dos Grandes Números nos assegura que, ao observarmos uma grande amostra de variáveis aleatórias independentes e identicamente distribuídas (i.i.d.) com média finita, a média dessas observações tende a convergir para a média verdadeira da distribuição conforme o tamanho da amostra aumenta.
 
-Iniciamos com alguns exemplos básicos de simulação para resolver
-questões cujas respostas já conhecemos de forma analítica, apenas para
-demonstrar que a simulação cumpre o que promete. Além disso, esses
-exemplos introdutórios ajudarão a destacar alguns pontos importantes que
-precisam ser considerados ao tentar resolver problemas mais complexos
-utilizando simulação.
+Em vez de nos esforçarmos para encontrar essa média através de métodos analíticos complexos, podemos utilizar o poder computacional para gerar uma amostra suficientemente grande dessas variáveis aleatórias. A partir dessa amostra, calculamos a média observada, que serve como uma estimativa consistente da média verdadeira da distribuição. No entanto, a eficácia desse método depende de três fatores cruciais:
 
-\textbf{Exemplo 1 (A média de uma distribuição)}: A média da distribuição
-uniforme no intervalo {[}0,1{]} é conhecida por ser 1/2. Se tivéssemos
-disponível um grande número de variáveis aleatórias i.i.d. uniformes no
-intervalo {[}0,1{]}, digamos, \(X_{1},\ldots,X_{n}\), a Lei dos Grandes
-Números nos diz que \(\overline{X}=\frac{1}{n}\sum_{i=1}^{n}X_{i}\) deve
-estar próximo da média 1/2. A Tabela abaixo fornece as médias de várias
-amostras simuladas diferentes de tamanho \(n\) a partir da distribuição
-uniforme em {[}0,1{]} para vários valores diferentes de \(n\). Não é difícil
-ver que as médias estão próximas de 0.5 na maioria dos casos, mas há
-bastante variação, especialmente para \(n = 100\). Parece haver menos
-variação para \(n = 1000\), e ainda menos para os dois maiores valores de
-\(n\).
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Identificação correta dos tipos de variáveis aleatórias necessárias para o problema em questão}: É essencial determinar quais distribuições de probabilidade descrevem adequadamente os processos aleatórios que estamos modelando.
+\item
+  \textbf{Capacidade do computador de gerar essas variáveis de forma precisa}: Os algoritmos utilizados para gerar números pseudo-aleatórios devem ser robustos e capazes de produzir amostras que representem fielmente as distribuições desejadas.
+\item
+  \textbf{Determinação do tamanho adequado da amostra}: O tamanho da amostra deve ser suficientemente grande para que a média da amostra seja uma boa aproximação da média real. Além disso, um tamanho de amostra maior geralmente reduz a variabilidade das estimativas, aumentando a confiabilidade dos resultados.
+\end{enumerate}
+
+A simulação, portanto, simplifica o processo de resolução de problemas complexos, proporcionando uma abordagem prática e eficiente para explorar cenários onde o cálculo analítico é impraticável ou impossível. Ela permite aos estatísticos e cientistas de dados testar hipóteses, realizar análises de sensibilidade e prever resultados em condições controladas de incerteza.
+
+Para ilustrar o potencial da simulação, começamos com alguns exemplos básicos onde a solução analítica já é conhecida. Esses exemplos demonstram que a simulação pode reproduzir resultados teóricos com precisão. Além disso, esses casos introdutórios servem para destacar aspectos importantes que precisam ser considerados ao resolver problemas mais complexos por meio de simulação, como o tratamento de variáveis dependentes, correlações entre variáveis, e questões de eficiência computacional.
+
+\textbf{Exemplo 1 (Estimando a Média de uma Distribuição Uniforme)}: A média da distribuição uniforme no intervalo \([0,1]\) é conhecida por ser \(\frac{1}{2}\). Se tivermos um grande número de variáveis aleatórias independentes e identicamente distribuídas (i.i.d.) a partir dessa distribuição uniforme, denotadas por \(X_{1}, X_{2}, \ldots, X_{n}\), a Lei dos Grandes Números nos diz que a média amostral, dada por \(\overline{X} = \frac{1}{n} \sum_{i=1}^{n} X_{i}\), deve se aproximar da média verdadeira de 0.5 à medida que o tamanho da amostra \(n\) aumenta.
+
+A tabela abaixo apresenta as médias de diferentes amostras simuladas de tamanho \(n\) geradas a partir da distribuição uniforme \([0,1]\) para vários valores de \(n\). Observamos que as médias amostrais estão geralmente próximas de 0.5, mas existe uma considerável variação, especialmente quando \(n = 100\). Nota-se que há menos variação para \(n = 1.000\), e a variação diminui ainda mais para os dois maiores valores de \(n\) (10.000 e 100.000).
 
 \begin{longtable}[]{@{}llllll@{}}
 \toprule\noalign{}
@@ -5838,7 +5820,7 @@ n & Replicações da Simulação & & & & \\
 100.000 & 0.502 & 0.499 & 0.500 & 0.498 & 0.499 \\
 \end{longtable}
 
-A maneira que obtemos a amostra aleatória uniforme foi usando a função \texttt{runif}
+Para gerar uma amostra aleatória uniforme no intervalo {[}0,1{]}, utilizamos a função \texttt{runif} em R:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5846,25 +5828,39 @@ A maneira que obtemos a amostra aleatória uniforme foi usando a função \textt
 \end{Highlighting}
 \end{Shaded}
 
-Como mencionamos anteriormente, não há necessidade de simulação no exemplo acima. Esta foi apenas para ilustrar que a simulação pode fazer o que afirma. Porém, é preciso estar ciente de que, por maior que seja a amostra simulada, a média de uma amostra de variáveis aleatórias i.i.d. não será necessariamente igual à sua média. É preciso ser capaz de levar em conta a variabilidade.
+Como discutido anteriormente, neste exemplo não há necessidade real de simulação, pois conhecemos a média da distribuição uniforme analiticamente. Este exemplo serve para ilustrar que a simulação pode replicar resultados teóricos. No entanto, é crucial entender que, independentemente do tamanho da amostra gerada, a média amostral de variáveis aleatórias i.i.d. não será necessariamente exatamente igual à média verdadeira da distribuição. A simulação introduz uma variabilidade que precisa ser considerada; à medida que o tamanho da amostra aumenta, a variabilidade da média amostral diminui, aproximando-a da média real. Essa propriedade sublinha a importância de escolher um tamanho de amostra apropriado para obter estimativas confiáveis.
 
-\textbf{Exemplo onde a simulação pode ajudar}
+\textbf{Exemplo de Aplicação da Simulação}
 
-A seguir, apresentamos um exemplo em que as questões básicas são relativamente simples de descrever, mas a solução analítica seria, na melhor das hipóteses, entediante.
+A seguir, exploramos um exemplo onde as questões fundamentais são relativamente fáceis de descrever, mas a solução analítica seria, na melhor das hipóteses, complexa e tediosa.
 
-\textbf{Esperando por uma pausa}. Dois atendentes, A e B, em um restaurante fast-food começam a servir
-clientes ao mesmo tempo. Eles concordam em se encontrar para um intervalo depois que cada um deles atender 10 clientes. Presumivelmente, um deles terminará antes do outro e terá que esperar. Quanto tempo, em média, um dos atendentes terá que esperar pelo outro?
+\textbf{Problema: Esperando por uma Pausa}. Dois atendentes, A e B, em um restaurante fast-food começam a servir clientes ao mesmo tempo. Eles concordam em se encontrar para um intervalo assim que ambos tiverem atendido 10 clientes. No entanto, um deles provavelmente terminará antes do outro e precisará esperar. Nosso objetivo é determinar, em média, quanto tempo um dos atendentes terá que esperar pelo outro.
 
-Suponha que modelemos todos os tempos de serviço, independentemente do atendente, como variáveis aleatórias i.i.d. tendo distribuição exponencial com parâmetro 0.3 clientes por minuto. Então, o tempo que um atendente leva para atender 10 clientes tem a distribuição gama com parâmetros 10 e 0.3. Seja \(X\) o tempo que A leva para atender 10 clientes e seja Y o tempo que B leva para atender 10 clientes. Somos solicitados a calcular a média de \(|X − Y|\). A maneira mais direta de encontrar esta média analiticamente exigiria um integral bidimensional sobre a união de duas regiões não retangulares.
+Para modelar esse problema, assumimos que os tempos de serviço de cada cliente, independentemente do atendente, são variáveis aleatórias independentes e identicamente distribuídas (i.i.d.) com uma distribuição exponencial de taxa \(\lambda = 0.3\) clientes por minuto. Portanto, o tempo total que um atendente leva para atender 10 clientes segue uma distribuição gama com parâmetros de forma \(k = 10\) e taxa \(\lambda = 0.3\).
 
-Por outro lado, suponha que um computador possa nos fornecer tantas variáveis aleatórias gama independentes quantas desejarmos. Podemos então obter um par \((X, Y)\) e calcular \(Z = |X − Y|\). Em seguida, repetimos esse processo independentemente quantas vezes quisermos e calculamos a média de todos os valores \(Z\) observados. A média deve ficar próxima da média de \(Z\).
+Seja \(X\) o tempo que o atendente A leva para atender 10 clientes e Y o tempo que o atendente B leva para atender 10 clientes. Precisamos calcular a média do valor absoluto da diferença de tempo entre eles, \(E(|X - Y|)\).
+
+A solução analítica para este problema exigiria a resolução de uma integral dupla sobre a união de duas regiões não retangulares. Em vez disso, a simulação oferece uma abordagem mais prática e eficiente.
+
+\textbf{Solução Usando Simulação}
+
+Suponhamos que podemos gerar um grande número de variáveis aleatórias gama independentes. Podemos, então, simular um par \((X, Y)\) e calcular \(Z = |X - Y|\). Repetindo este processo independentemente várias vezes, podemos calcular a média de todos os valores observados de \(Z\), que servirá como uma estimativa da média de \(|X - Y|\).
+
+Vamos utilizar o R para realizar a simulação:
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Definir a semente para reprodutibilidade}
 \FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
-\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{rgamma}\NormalTok{(}\DecValTok{10000}\NormalTok{, }\DecValTok{10}\NormalTok{, }\FloatTok{0.3}\NormalTok{)}
-\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{rgamma}\NormalTok{(}\DecValTok{10000}\NormalTok{, }\DecValTok{10}\NormalTok{, }\FloatTok{0.3}\NormalTok{)}
+
+\CommentTok{\# Gerar amostras da distribuição gama para X e Y}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{rgamma}\NormalTok{(}\DecValTok{10000}\NormalTok{, }\AttributeTok{shape =} \DecValTok{10}\NormalTok{, }\AttributeTok{rate =} \FloatTok{0.3}\NormalTok{)}
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{rgamma}\NormalTok{(}\DecValTok{10000}\NormalTok{, }\AttributeTok{shape =} \DecValTok{10}\NormalTok{, }\AttributeTok{rate =} \FloatTok{0.3}\NormalTok{)}
+
+\CommentTok{\# Calcular a diferença absoluta entre X e Y}
 \NormalTok{z }\OtherTok{\textless{}{-}} \FunctionTok{abs}\NormalTok{(x}\SpecialCharTok{{-}}\NormalTok{y)}
+
+\CommentTok{\# Calcular a média de Z}
 \FunctionTok{mean}\NormalTok{(z)}
 \end{Highlighting}
 \end{Shaded}
@@ -5873,140 +5869,118 @@ Por outro lado, suponha que um computador possa nos fornecer tantas variáveis a
 ## [1] 11.75882
 \end{verbatim}
 
-Temos então um tempo médio de 11.75 minutos.
+A saída do código acima nos dá um tempo médio de espera de aproximadamente 11.75 minutos.
+
+Para entender melhor a distribuição do tempo de espera, podemos visualizar a distribuição dos valores de \(Z\) usando um histograma:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{hist}\NormalTok{(z, }\AttributeTok{xlab =} \StringTok{"Tempo de espera Z"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Freq Abs"}\NormalTok{)}
+\FunctionTok{hist}\NormalTok{(z, }
+     \AttributeTok{main =} \StringTok{"Distribuição do Tempo de Espera"}\NormalTok{,}
+     \AttributeTok{xlab =} \StringTok{"Tempo de espera (minutos)"}\NormalTok{, }
+     \AttributeTok{ylab =} \StringTok{"Frequência Absoluta"}\NormalTok{,}
+     \AttributeTok{col =} \StringTok{"lightblue"}\NormalTok{, }
+     \AttributeTok{border =} \StringTok{"black"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \includegraphics{introR_files/figure-latex/unnamed-chunk-198-1.pdf}
 
-\section{Geração de números pseudoaleatórios}\label{gerauxe7uxe3o-de-nuxfameros-pseudoaleatuxf3rios}
+\section{Simulação e Geração de Números Pseudoaleatórios}\label{simulauxe7uxe3o-e-gerauxe7uxe3o-de-nuxfameros-pseudoaleatuxf3rios}
 
 \textbf{Números Aleatórios}
 
-Números aleatórios são valores que são gerados de forma imprevisível e
-não seguem nenhum padrão determinado. Em outras palavras, cada número em
-uma sequência de números aleatórios é escolhido de maneira independente
-dos outros, sem qualquer correlação entre eles. Na prática, os números
-aleatórios são usados em diversas áreas, como criptografia, simulações,
-estatísticas, jogos de azar, entre outros, onde é crucial que os números
-não possam ser antecipados.
+Números aleatórios são valores gerados de forma imprevisível, sem seguir nenhum padrão determinístico. Em uma sequência de números aleatórios, cada número é escolhido independentemente dos outros, e não há qualquer correlação entre eles. Na prática, números aleatórios são fundamentais em diversas áreas, como criptografia, simulações estatísticas, jogos de azar, e processos de modelagem onde a imprevisibilidade é crucial.
 
-A verdadeira aleatoriedade é geralmente derivada de processos físicos
-que são inerentemente imprevisíveis, como a radiação cósmica, ruído
-térmico em circuitos eletrônicos, ou o decaimento radioativo. Em
-computação, no entanto, obter números verdadeiramente aleatórios é
-difícil e muitas vezes desnecessário.
+A verdadeira aleatoriedade geralmente é derivada de processos físicos inerentemente imprevisíveis, como a radiação cósmica, o ruído térmico em circuitos eletrônicos, ou o decaimento radioativo. No entanto, em computação, obter números verdadeiramente aleatórios pode ser difícil e frequentemente desnecessário. Para muitas aplicações, uma forma de aleatoriedade que seja suficientemente imprevisível é suficiente.
 
 \textbf{Números Pseudoaleatórios}
 
-Números pseudoaleatórios, por outro lado, são números que são gerados
-por algoritmos que produzem sequências que parecem aleatórias, mas são,
-na verdade, determinadas por um valor inicial chamado semente (ou ``seed''
-em inglês). Se o algoritmo é iniciado com a mesma semente, ele produzirá
-exatamente a mesma sequência de números.
+Números pseudoaleatórios, por outro lado, são gerados por algoritmos determinísticos que produzem sequências de números que parecem aleatórios, mas são, na verdade, baseados em um valor inicial conhecido como semente (seed). Se um algoritmo de geração de números pseudoaleatórios é iniciado com a mesma semente, ele produzirá exatamente a mesma sequência de números a cada execução.
 
-Embora sejam determinísticos, os números pseudoaleatórios são amplamente
-utilizados porque podem ser gerados rapidamente e, para muitas
-aplicações, eles são suficientemente aleatórios. A principal vantagem é
-que, ao usar a mesma semente, é possível replicar experimentos ou
-simulações, o que é útil em pesquisas e depurações.
+Embora os números pseudoaleatórios não sejam verdadeiramente aleatórios, eles são amplamente utilizados porque podem ser gerados de forma rápida e eficiente e, para muitas aplicações, são suficientemente aleatórios. A principal vantagem de usar números pseudoaleatórios é que, ao utilizar a mesma semente, podemos replicar experimentos ou simulações, o que é extremamente útil para fins de pesquisa e depuração de códigos.
 
-Uma das aproximações mais comuns para gerar números pseudoaleatórios é o
-método \emph{congruencial multiplicativo}:
+\textbf{Método Congruencial Multiplicativo}
+
+Uma das abordagens mais comuns para gerar números pseudoaleatórios é o \textbf{Método Congruencial Multiplicativo}:
 
 \begin{itemize}
+\tightlist
 \item
-  Considere um valor inicial \(x_0\), chamado semente;
+  \textbf{Semente Inicial}: Considere um valor inicial \(x_0\), chamado de semente (\emph{seed}).
 \item
-  Recursivamente calcule os valores sucessivos \(x_{n}\), \(n\geq 1\),
-  usando: \[x_{n} = ax_{n-1} \, \text{mod}\, m,\] onde \(a\) e \(m\) são
-  inteiros positivos dados. Ou seja, \(x_{n}\) é o resto da divisão
-  inteira de \(ax_{n-1}\) por m;
-\item
-  A quantidade \(x_{n}/m\) é chamada um número pseudoaleatório, ou seja,
-  é uma aproximação para o valor de uma variável aleatória uniforme.
+  \textbf{Cálculo Recursivo}: Para \(n \geq 1\) , os valores sucessivos \(x_n\) são calculados recursivamente usando a fórmula:
 \end{itemize}
 
-As constantes \(a\) e \(m\) a serem escolhidas devem satisfazer três
-critérios:
+\[x_n = (a \cdot x_{n-1}) \, \text{mod} \, m,\]
 
-\begin{itemize}
+onde \(a\) e \(m\) são inteiros positivos dados. Aqui, \(x_n\) é o resto da divisão inteira de \(a \cdot x_{n-1}\) por \(m\).
+* \textbf{Números Pseudoaleatórios}: A quantidade \(\frac{x_n}{m}\) é considerada um número pseudoaleatório, uma aproximação de uma variável aleatória uniforme no intervalo \([0,1]\).
+
+\textbf{Critérios para Escolha de \(a\) e \(m\)}
+
+Para que os números gerados sejam úteis em simulações, as constantes \(a\) e \(m\) devem satisfazer os seguintes critérios:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
 \item
-  Para qualquer semente inicial, a sequência resultante deve ter a
-  ``aparência'' de uma sequência de variáveis aleatórias uniformes
-  \((0,1)\) independentes.
+  \textbf{Aparência de Aleatoriedade}: A sequência gerada deve ter a ``aparência'' de uma sequência de variáveis aleatórias uniformemente distribuídas no intervalo (0,1).
 \item
-  Para qualquer semente inicial, o número de variáveis que podem ser
-  geradas antes da repetição ocorrer deve ser grande.
+  \textbf{Período Longo}: A sequência deve ter um período longo antes de começar a se repetir, o que significa que deve gerar um grande número de variáveis antes que ocorra uma repetição.
 \item
-  Os valores podem ser calculados eficientemente em um computador.
-\end{itemize}
+  \textbf{Eficiência Computacional}: Os valores devem ser computados de forma eficiente para que o algoritmo seja utilizável em aplicações práticas.
+\end{enumerate}
 
 \section{\texorpdfstring{A função \texttt{sample()}}{A função sample()}}\label{a-funuxe7uxe3o-sample}
 
-A função \texttt{sample()} em R é utilizada para gerar uma amostra aleatória a
-partir de um conjunto de dados ou uma sequência de números. Ela é
-extremamente flexível, permitindo que você defina o tamanho da amostra,
-se a amostragem é feita com ou sem reposição, e também se os elementos
-têm probabilidades diferentes de serem selecionados.
+A função \texttt{sample()} em R é amplamente utilizada para gerar amostras aleatórias a partir de um conjunto de dados ou de uma sequência de números. É uma função muito flexível que permite definir o tamanho da amostra, se a amostragem é feita com ou sem reposição, e se os elementos têm diferentes probabilidades de serem selecionados.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Sintaxe}
-
 \FunctionTok{sample}\NormalTok{(x, size, }\AttributeTok{replace =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{prob =} \ConstantTok{NULL}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{itemize}
+\tightlist
 \item
-  \textbf{x}: Vetor de elementos a serem amostrados.
+  \texttt{x}: O vetor de elementos a serem amostrados.
 \item
-  \textbf{size}: Tamanho da amostra.
+  \texttt{size}: O tamanho da amostra desejada.
 \item
-  \textbf{replace}: Indica se a amostragem é com reposição (\texttt{TRUE}) ou sem
-  reposição (\texttt{FALSE}).
+  \texttt{replace}: Um valor lógico que indica se a amostragem é feita com reposição (\texttt{TRUE}) ou sem reposição (\texttt{FALSE}).
 \item
-  \textbf{prob}: Um vetor de probabilidades associadas a cada elemento em
-
-  \begin{enumerate}
-  \def\labelenumi{\alph{enumi}.}
-  \setcounter{enumi}{23}
-  \tightlist
-  \item
-  \end{enumerate}
+  \texttt{prob}: Um vetor de probabilidades associadas a cada elemento em \texttt{x}. Se não especificado, assume-se que todos os elementos têm a mesma probabilidade de serem selecionados.
 \end{itemize}
 
-\textbf{Exemplo 1}: Amostragem Simples sem Reposição.
+\textbf{Exemplo 1 (Amostragem Simples sem Reposição)}: Neste exemplo, extraímos uma amostra de 5 elementos a partir de uma população de números inteiros de 1 a 10, sem reposição:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Suponha que temos uma população de 1 a 10}
+\CommentTok{\# População de 1 a 10}
 \NormalTok{pop }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{:}\DecValTok{10}
 
-\CommentTok{\# Queremos uma amostra de 5 elementos}
+\CommentTok{\# Amostra de 5 elementos sem reposição}
 \NormalTok{amostra }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(pop, }\AttributeTok{size =} \DecValTok{5}\NormalTok{, }\AttributeTok{replace =} \ConstantTok{FALSE}\NormalTok{)}
 \FunctionTok{print}\NormalTok{(amostra)}
 \DocumentationTok{\#\# [1]  5  2  4 10  8}
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Exemplo 2}: Amostragem com Reposição.
+\textbf{Exemplo 2 (Amostragem com Reposição)}:. Neste exemplo, permitimos que os mesmos elementos sejam selecionados mais de uma vez:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Amostra com reposição}
+\CommentTok{\# Amostra de 5 elementos com reposição}
 \NormalTok{amostra\_repos }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(pop, }\AttributeTok{size =} \DecValTok{5}\NormalTok{, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)}
 \FunctionTok{print}\NormalTok{(amostra\_repos)}
 \DocumentationTok{\#\# [1] 6 8 9 9 6}
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Exemplo 3}: Amostragem com Probabilidades Diferentes.
+\textbf{Exemplo 3 (Amostragem com Probabilidades Diferentes)}: Neste exemplo, associamos diferentes probabilidades a cada elemento da população:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6022,18 +5996,11 @@ têm probabilidades diferentes de serem selecionados.
 
 \section{Exercícios}\label{exercuxedcios-17}
 
-\textbf{1.} Crie um vetor com os números de 1 a 20. Utilize a função \texttt{sample()}
-para selecionar uma amostra aleatória de 5 elementos desse vetor. A
-amostragem deve ser feita sem reposição.
+\textbf{1.} Crie um vetor com os números de 1 a 20. Utilize a função \texttt{sample()} para selecionar uma amostra aleatória de 5 elementos desse vetor. A amostragem deve ser feita sem reposição.
 
-\textbf{2.} Suponha que você tem uma população representada pelos números de 1
-a 10. Utilize a função \texttt{sample()} para selecionar uma amostra de 10
-elementos com reposição.
+\textbf{2.} Suponha que você tem uma população representada pelos números de 1 a 10. Utilize a função \texttt{sample()} para selecionar uma amostra de 10 elementos com reposição.
 
-\textbf{3.} Crie um vetor com as letras A, B, C, D, E. Aplique a função
-\texttt{sample()} para selecionar uma amostra de 3 letras, onde a
-probabilidade de cada letra ser selecionada é dada pelo vetor
-\texttt{c(0.1,\ 0.2,\ 0.3,\ 0.25,\ 0.15)}.
+\textbf{3.} Crie um vetor com as letras A, B, C, D, E. Aplique a função \texttt{sample()} para selecionar uma amostra de 3 letras, onde a probabilidade de cada letra ser selecionada é dada pelo vetor \texttt{c(0.1,\ 0.2,\ 0.3,\ 0.25,\ 0.15)}.
 
 \textbf{4.} Crie um vetor com os números de 1 a 10. Utilize a função \texttt{sample()}
 para reordenar aleatoriamente os elementos desse vetor.
