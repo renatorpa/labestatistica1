@@ -29,14 +29,14 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Renato de Paula" />
 
 
-<meta name="date" content="2024-09-04" />
+<meta name="date" content="2024-09-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="scripts.html"/>
+<link rel="prev" href="scripts-em-r.html"/>
 <link rel="next" href="pipe.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -241,13 +241,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="6.1" data-path="funções.html"><a href="funções.html#exercícios-6"><i class="fa fa-check"></i><b>6.1</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="scripts.html"><a href="scripts.html"><i class="fa fa-check"></i><b>7</b> Scripts</a>
+<li class="chapter" data-level="7" data-path="scripts-em-r.html"><a href="scripts-em-r.html"><i class="fa fa-check"></i><b>7</b> Scripts em R</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="scripts.html"><a href="scripts.html#exercícios-7"><i class="fa fa-check"></i><b>7.1</b> Exercícios</a></li>
+<li class="chapter" data-level="7.1" data-path="scripts-em-r.html"><a href="scripts-em-r.html#exercícios-7"><i class="fa fa-check"></i><b>7.1</b> Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html"><i class="fa fa-check"></i><b>8</b> Leitura de dados</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#leitura-de-dados-da-entrada-do-usuário"><i class="fa fa-check"></i><b>8.1</b> Leitura de dados da entrada do usuário</a></li>
+<li class="chapter" data-level="8.1" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#leitura-de-dados-da-entrada-do-usuário"><i class="fa fa-check"></i><b>8.1</b> Leitura de Dados da Entrada do Usuário</a></li>
 <li class="chapter" data-level="8.2" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#diretório-de-trabalho"><i class="fa fa-check"></i><b>8.2</b> Diretório de trabalho</a></li>
 <li class="chapter" data-level="8.3" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.table"><i class="fa fa-check"></i><b>8.3</b> A Função <code>read.table()</code></a></li>
 <li class="chapter" data-level="8.4" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.csv"><i class="fa fa-check"></i><b>8.4</b> A função <code>read.csv()</code></a></li>
@@ -404,48 +404,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="leitura-de-dados" class="section level1 hasAnchor" number="8">
 <h1><span class="header-section-number">Capítulo 8</span> Leitura de dados<a href="leitura-de-dados.html#leitura-de-dados" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>R é uma linguagem poderosa para análise de dados e oferece várias
-funções para importar dados de diferentes formatos. Independentemente do
-formato, o processo básico de leitura de dados em R consiste em:</p>
-<ul>
-<li>Especificar o caminho do arquivo.</li>
-<li>Indicar as características do arquivo (como delimitador, presença de
-cabeçalhos, etc.).</li>
-<li>Ler os dados e armazená-los em um objeto (geralmente um data frame).</li>
-</ul>
+<p>R é uma linguagem poderosa para análise de dados e oferece diversas funções para importar dados de diferentes formatos. Independentemente do formato, o processo básico de leitura de dados em R segue alguns passos comuns:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Especificar o caminho do arquivo</strong>: Onde o arquivo está localizado.</li>
+<li><strong>Indicar as características do arquivo</strong>: Como delimitador, presença de cabeçalhos, tipos de dados, etc.</li>
+<li><strong>Ler os dados e armazená-los em um objeto</strong>: Geralmente um data frame para fácil manipulação e análise.</li>
+</ol>
 <div id="leitura-de-dados-da-entrada-do-usuário" class="section level2 hasAnchor" number="8.1">
-<h2><span class="header-section-number">8.1</span> Leitura de dados da entrada do usuário<a href="leitura-de-dados.html#leitura-de-dados-da-entrada-do-usuário" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A função <code>scan()</code> lê dados de entrada de um arquivo ou da entrada padrão e retorna um vetor. Um uso básico do <code>scan()</code> é para entrada de dados manual:</p>
+<h2><span class="header-section-number">8.1</span> Leitura de Dados da Entrada do Usuário<a href="leitura-de-dados.html#leitura-de-dados-da-entrada-do-usuário" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A função <code>scan()</code> é usada para ler dados da entrada padrão (teclado) ou de um arquivo, e retorna um vetor. Um uso comum de <code>scan()</code> é para entrada de dados manual:</p>
 <div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="leitura-de-dados.html#cb99-1" tabindex="-1"></a><span class="co"># Solicita ao usuário para digitar números</span></span>
 <span id="cb99-2"><a href="leitura-de-dados.html#cb99-2" tabindex="-1"></a>numeros <span class="ot">&lt;-</span> <span class="fu">scan</span>()</span></code></pre></div>
-<p>Após digitar <code>scan()</code>, o usuário pode inserir uma série de números separados por espaços e pressionar Enter para concluir.</p>
+<p>Após digitar <code>scan()</code>, o usuário pode inserir uma série de números separados por espaços e pressionar Enter para concluir a entrada.</p>
 </div>
 <div id="diretório-de-trabalho" class="section level2 hasAnchor" number="8.2">
 <h2><span class="header-section-number">8.2</span> Diretório de trabalho<a href="leitura-de-dados.html#diretório-de-trabalho" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>O working directory (diretório de trabalho) em R é o diretório atual onde o R está configurado para ler e gravar arquivos. Quando você importa dados de um arquivo ou salva um gráfico, por exemplo, o R usa o diretório de trabalho como o ponto de referência para encontrar ou salvar esses arquivos. Ter um diretório de trabalho configurado corretamente é crucial para garantir que você consiga acessar arquivos de dados e salvar saídas de forma eficiente.</p>
-<p>Funções principais: <code>getwd()</code> e <code>setwd()</code></p>
+<p>O <strong>diretório de trabalho</strong> (working directory) em R é o local padrão onde o R lê e grava arquivos. Quando você importa dados ou salva resultados, o R utiliza o diretório de trabalho como ponto de referência. Ter um diretório de trabalho configurado corretamente é essencial para facilitar o acesso a arquivos de dados e a gravação de saídas.</p>
+<p><strong>Funções Principais para Manipulação de Diretório</strong></p>
 <ul>
 <li><code>getwd()</code>: Retorna o caminho do diretório atual de trabalho.</li>
-<li><code>setwd()</code>: Define o diretório de trabalho para um diretório especificado.</li>
+<li><code>setwd("caminho/do/diretorio")</code>: Define o diretório de trabalho para o caminho especificado.</li>
 </ul>
-<p>Para saber qual é o diretório de trabalho atual, você pode usar a função <code>getwd()</code>:</p>
+<p>Para verificar o diretório de trabalho atual, utilize <code>getwd()</code>:</p>
 <div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="leitura-de-dados.html#cb100-1" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
-<p>A saída esperada (por exemplo, em um sistema Windows (Mac)) seria:</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="leitura-de-dados.html#cb101-1" tabindex="-1"></a><span class="co"># Windows</span></span>
+<p>A saída pode ser semelhante a esta, dependendo do seu sistema operacional:</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="leitura-de-dados.html#cb101-1" tabindex="-1"></a><span class="co"># Exemplo de saída no Windows</span></span>
 <span id="cb101-2"><a href="leitura-de-dados.html#cb101-2" tabindex="-1"></a><span class="do">## [1] &quot;C:/Users/Usuario/Documents&quot;</span></span>
 <span id="cb101-3"><a href="leitura-de-dados.html#cb101-3" tabindex="-1"></a></span>
-<span id="cb101-4"><a href="leitura-de-dados.html#cb101-4" tabindex="-1"></a><span class="co"># Mac</span></span>
+<span id="cb101-4"><a href="leitura-de-dados.html#cb101-4" tabindex="-1"></a><span class="co"># Exemplo de saída no Mac</span></span>
 <span id="cb101-5"><a href="leitura-de-dados.html#cb101-5" tabindex="-1"></a><span class="do">## [1] &quot;/Users/Usuario/Documents&quot;</span></span></code></pre></div>
-<p>Suponha que você queira alterar o diretório de trabalho para uma pasta chamada <code>“ProjetosR”</code> localizada em <code>“C:/Users/Usuario/Documents/ProjetosR”</code>. Você pode usar a função <code>setwd()</code> para fazer isso:</p>
+<p>Para alterar o diretório de trabalho para uma pasta específica, use <code>setwd()</code>:</p>
 <div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="leitura-de-dados.html#cb102-1" tabindex="-1"></a><span class="co"># Define o diretório de trabalho para &quot;C:/Users/Usuario/Documents/ProjetosR&quot;</span></span>
 <span id="cb102-2"><a href="leitura-de-dados.html#cb102-2" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;C:/Users/Usuario/Documents/ProjetosR&quot;</span>)</span>
 <span id="cb102-3"><a href="leitura-de-dados.html#cb102-3" tabindex="-1"></a></span>
 <span id="cb102-4"><a href="leitura-de-dados.html#cb102-4" tabindex="-1"></a><span class="co"># Verifica se o diretório de trabalho foi alterado</span></span>
 <span id="cb102-5"><a href="leitura-de-dados.html#cb102-5" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">getwd</span>())</span>
-<span id="cb102-6"><a href="leitura-de-dados.html#cb102-6" tabindex="-1"></a></span>
-<span id="cb102-7"><a href="leitura-de-dados.html#cb102-7" tabindex="-1"></a><span class="co"># Saída Esperada</span></span>
-<span id="cb102-8"><a href="leitura-de-dados.html#cb102-8" tabindex="-1"></a><span class="do">## [1] &quot;C:/Users/Usuario/Documents/ProjetosR&quot;</span></span></code></pre></div>
-<p>Ao definir corretamente o diretório de trabalho, você pode importar arquivos sem precisar especificar o caminho completo. Por exemplo, se você tiver um arquivo <code>“dados.csv”</code> na pasta de <code>“ProjetosR”</code>, você pode lê-lo diretamente:</p>
+<span id="cb102-6"><a href="leitura-de-dados.html#cb102-6" tabindex="-1"></a><span class="do">## [1] &quot;C:/Users/Usuario/Documents/ProjetosR&quot;</span></span></code></pre></div>
+<p>Ao definir o diretório de trabalho corretamente, você pode importar arquivos diretamente sem precisar especificar o caminho completo. Por exemplo, se o arquivo <code>dados.csv</code> estiver no diretório de trabalho, você pode lê-lo facilmente:</p>
 <div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="leitura-de-dados.html#cb103-1" tabindex="-1"></a><span class="co"># Lê o arquivo &quot;dados.csv&quot; no diretório de trabalho atual</span></span>
 <span id="cb103-2"><a href="leitura-de-dados.html#cb103-2" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;dados.csv&quot;</span>)</span>
 <span id="cb103-3"><a href="leitura-de-dados.html#cb103-3" tabindex="-1"></a></span>
@@ -454,18 +449,22 @@ cabeçalhos, etc.).</li>
 </div>
 <div id="a-função-read.table" class="section level2 hasAnchor" number="8.3">
 <h2><span class="header-section-number">8.3</span> A Função <code>read.table()</code><a href="leitura-de-dados.html#a-função-read.table" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><code>read.table()</code> é uma das funções mais versáteis em R para leitura de
-arquivos de texto. Esta função permite importar arquivos tabulares e
-configurá-los de acordo com as características do arquivo. Faça o download do arquivo <code>dados.txt</code> em <a href="https://renatorpaula.wixsite.com/renato/laboratorio-estatistica">link</a></p>
+<p>A função <code>read.table()</code> é uma das mais versáteis em R para a leitura de arquivos de texto em formato tabular. Ela permite importar dados de arquivos de texto e configurá-los de acordo com suas características. Faça o download do arquivo <code>dados.txt</code> em <a href="https://renatorpaula.wixsite.com/renato/laboratorio-estatistica">link</a> para praticar.</p>
 <div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="leitura-de-dados.html#cb104-1" tabindex="-1"></a><span class="co"># Leitura de arquivo txt com read.table()</span></span>
 <span id="cb104-2"><a href="leitura-de-dados.html#cb104-2" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">&quot;dados.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)</span>
 <span id="cb104-3"><a href="leitura-de-dados.html#cb104-3" tabindex="-1"></a><span class="fu">print</span>(dados)</span></code></pre></div>
+<p><strong>Argumentos Comuns de <code>read.table()</code></strong></p>
 <ul>
-<li><p><code>file = "dados.txt"</code>: Estamos especificando o arquivo <code>"data.txt"</code> para leitura.</p></li>
-<li><p><code>header = TRUE</code>: Indicamos que a primeira linha do arquivo é o cabeçalho, contendo os nomes das colunas.</p></li>
+<li><code>file</code>: Especifica o nome do arquivo ou o caminho do arquivo para leitura.</li>
+<li><code>header</code>: Indica se a primeira linha do arquivo contém os nomes das colunas. Se <code>header = TRUE</code>, a primeira linha é considerada como cabeçalho.</li>
+<li><code>sep</code>: Define o caractere separador entre os campos. O padrão é uma vírgula (,), mas pode ser especificado para outros caracteres, como espaço (““), ponto e vírgula (;), etc.</li>
+<li><code>dec</code>: Define o caractere utilizado para separar a parte inteira da parte decimal dos números. Por exemplo, pode ser ponto (.) ou vírgula (,).</li>
+<li><code>nrows</code>: Especifica o número máximo de linhas a serem lidas do arquivo, útil para ler apenas uma parte do arquivo.</li>
+<li><code>na.strings</code>: Define quais valores no arquivo devem ser interpretados como <code>NA</code> (valores ausentes), como “NA”, “N/A”, etc.</li>
+<li><code>skip</code>: Indica o número de linhas a serem ignoradas no início do arquivo antes de começar a leitura.</li>
+<li><code>comment.char</code>: Define o caractere usado para denotar comentários no arquivo. Linhas que começam com este caractere serão ignoradas.</li>
 </ul>
-<p><code>sep = ""</code>: Como os dados são separados por espaço, definimos o separador como ““.</p>
-<p>A função <code>read.table()</code> tem várias opções de argumentos.</p>
+<p>Para ver todas as opções disponíveis na função <code>read.table()</code>, você pode usar:</p>
 <div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="leitura-de-dados.html#cb105-1" tabindex="-1"></a><span class="fu">args</span>(read.table)</span></code></pre></div>
 <pre><code>## function (file, header = FALSE, sep = &quot;&quot;, quote = &quot;\&quot;&#39;&quot;, dec = &quot;.&quot;, 
 ##     numerals = c(&quot;allow.loss&quot;, &quot;warn.loss&quot;, &quot;no.loss&quot;), row.names, 
@@ -476,31 +475,7 @@ configurá-los de acordo com as características do arquivo. Faça o download do
 ##     flush = FALSE, stringsAsFactors = FALSE, fileEncoding = &quot;&quot;, 
 ##     encoding = &quot;unknown&quot;, text, skipNul = FALSE) 
 ## NULL</code></pre>
-<p>Alguns importantes são:</p>
-<ul>
-<li><code>header</code>: Especifica se a primeira linha do arquivo contém nomes de
-coluna (cabeçalho). Se <code>header = TRUE</code>, a primeira linha é
-considerada como cabeçalho e os nomes das colunas são extraídos
-dessa linha. Se <code>header = FALSE</code>, a primeira linha é tratada como
-dados.</li>
-<li><code>sep</code>: Define o caractere usado para separar os campos (colunas) no
-arquivo. Por padrão, é uma vírgula (<code>,</code>), mas você pode especificar
-outros caracteres, como ponto e vírgula (<code>;</code>).</li>
-<li><code>dec</code>: Define o caractere usado para representar o separador decimal
-nos valores numéricos. Por exemplo, em alguns países, usa-se a
-vírgula (<code>,</code>), enquanto em outros, o ponto (<code>.</code>).</li>
-<li><code>nrows</code>: Permite especificar o número máximo de linhas a serem lidas
-do arquivo. Útil quando você deseja ler apenas uma parte do arquivo.</li>
-<li><code>na.strings</code>: Define os valores que devem ser tratados como NA
-(valores ausentes). Por exemplo, se você tiver “N/A” ou “NA” no
-arquivo, pode especificá-los aqui.</li>
-<li><code>skip</code>: Indica quantas linhas devem ser ignoradas no início do
-arquivo antes de começar a leitura. Útil para pular cabeçalhos ou
-linhas de comentário.</li>
-<li><code>comment.char</code>: Define o caractere usado para indicar comentários no
-arquivo. Linhas começando com esse caractere serão ignoradas.</li>
-</ul>
-<p>Se o arquivo fosse um CSV (valores separados por vírgula), poderíamos usar:</p>
+<p>Se o arquivo for um CSV (valores separados por vírgula), você pode utilizar <code>read.table()</code> com o argumento <code>sep</code> apropriado:</p>
 <div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="leitura-de-dados.html#cb107-1" tabindex="-1"></a>dados_csv <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;dados.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
 </div>
 <div id="a-função-read.csv" class="section level2 hasAnchor" number="8.4">
@@ -560,7 +535,7 @@ padrão é um ponto e vírgula.</p>
           </div>
         </div>
       </div>
-<a href="scripts.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="scripts-em-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="pipe.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 19 Método da aceitação-rejeição | Introdução ao R</title>
+  <title>Capítulo 7 Scripts em R | Introdução ao R</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 19 Método da aceitação-rejeição | Introdução ao R" />
+  <meta property="og:title" content="Capítulo 7 Scripts em R | Introdução ao R" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/docs/ciencias.png" />
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
@@ -19,7 +19,7 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 19 Método da aceitação-rejeição | Introdução ao R" />
+  <meta name="twitter:title" content="Capítulo 7 Scripts em R | Introdução ao R" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
@@ -36,8 +36,8 @@ set in the _output.yml file.</p>" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="método-da-transformada-inversa.html"/>
-<link rel="next" href="distribuições-univariadas-no-r.html"/>
+<link rel="prev" href="funções.html"/>
+<link rel="next" href="leitura-de-dados.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -402,16 +402,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="método-da-aceitação-rejeição" class="section level1 hasAnchor" number="19">
-<h1><span class="header-section-number">Capítulo 19</span> Método da aceitação-rejeição<a href="método-da-aceitação-rejeição.html#método-da-aceitação-rejeição" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="scripts-em-r" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Capítulo 7</span> Scripts em R<a href="scripts-em-r.html#scripts-em-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Um <strong>script</strong> em R é um arquivo que contém um conjunto de definições, como variáveis, funções e blocos de código, que podem ser reutilizados em outros programas R. Scripts são ferramentas essenciais para automatizar tarefas e para a reprodutibilidade da análise de dados.</p>
+<ul>
+<li><strong>Criando um Script</strong>: Para criar um script em R, basta salvar seu código em um arquivo com a extensão “.R”. Este arquivo pode então ser executado ou reutilizado em outras sessões de R.</li>
+</ul>
+<p><strong>Exemplo:</strong> Salve o seguinte código em um arquivo chamado <code>meu_script.R</code>:</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="scripts-em-r.html#cb95-1" tabindex="-1"></a>produto <span class="cf">function</span>(x,y){</span>
+<span id="cb95-2"><a href="scripts-em-r.html#cb95-2" tabindex="-1"></a>  <span class="fu">return</span>(x<span class="sc">*</span>y)</span>
+<span id="cb95-3"><a href="scripts-em-r.html#cb95-3" tabindex="-1"></a>}</span></code></pre></div>
+<p><strong>Utilizando do script</strong></p>
+<p>Para executar o script que você criou, utilize a função <code>source()</code> no console do R ou dentro de outro script. Isso permitirá que o R leia e execute todas as linhas de código do script.</p>
+<ol style="list-style-type: decimal">
+<li><strong>Executando no Diretório de Trabalho Atual</strong>: Se o arquivo <code>meu_script.R</code> estiver no diretório de trabalho atual, você pode executá-lo simplesmente digitando:</li>
+</ol>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="scripts-em-r.html#cb96-1" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;meu_script.R&quot;</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Executando a Partir de Outro Diretório</strong>: Se o arquivo estiver localizado em um diretório diferente do diretório de trabalho atual, você precisará fornecer o caminho completo para o arquivo:</li>
+</ol>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="scripts-em-r.html#cb97-1" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;/caminho/para/seu/script/meu_script.R&quot;</span>)</span></code></pre></div>
+<p><strong>O que Acontece Quando Executamos um Script?</strong></p>
+<p>Quando você usa o comando <code>source()</code>, o R lê e executa todas as linhas do script. Qualquer função, variável ou resultado de operações realizadas dentro do script será carregado e ficará disponível no ambiente de trabalho após a execução. Por exemplo, após executar o script acima, a função <code>produto()</code> estará disponível para uso:</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="scripts-em-r.html#cb98-1" tabindex="-1"></a><span class="co"># Agora você pode usar a função &#39;produto&#39;</span></span>
+<span id="cb98-2"><a href="scripts-em-r.html#cb98-2" tabindex="-1"></a><span class="fu">produto</span>(<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb98-3"><a href="scripts-em-r.html#cb98-3" tabindex="-1"></a><span class="do">## [1] 6</span></span></code></pre></div>
+<p><strong>Observações Importantes</strong></p>
+<ul>
+<li><strong>Diretório de trabalho</strong>: O diretório de trabalho é o local onde o R procura por arquivos para leitura ou onde salva arquivos. Você pode verificar o diretório de trabalho atual usando <code>getwd()</code> e alterar para um novo diretório com <code>setwd("caminho/do/diretorio")</code>.</li>
+</ul>
+<div id="exercícios-7" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Exercícios<a href="scripts-em-r.html#exercícios-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>1.</strong> Crie os seguintes scripts:</p>
+<!-- -->
+<ol style="list-style-type: lower-alpha">
+<li><p>Crie um script <code>quadrado.R</code> que contenha funções para calcular o perímetro e a área de um quadrado, dado o comprimento do lado. Utilize o script <code>quadrado.R</code> em outro script para calcular o perímetro e a área de um quadrado com lado de comprimento 5.</p></li>
+<li><p>Crie um script <code>estatistica.R</code> que contenha funções para ordenar uma amostra, calcular a média, a variância e o desvio padrão de um vetor numérico.</p></li>
+<li><p>Crie um programa que utilize o script <code>estatistica.R</code> para calcular a mediana, a variância e o desvio padrão da amostra <code>amostra &lt;- c(1, 2, 3, 4, 5, 6, 7)</code>.</p></li>
+</ol>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="método-da-transformada-inversa.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="distribuições-univariadas-no-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="funções.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="leitura-de-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
