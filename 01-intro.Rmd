@@ -18,12 +18,11 @@ O R oferece um conjunto integrado de ferramentas para manipulação de dados, c�
 
 ## Instalação e funcionalidades básicas
 
-- A versão base do R, que inclui o conjunto fundamental de comandos e funções, pode ser baixada diretamente do site oficial: <https://www.r-project.org/>. Após instalar o R, é altamente recomendável instalar também um ambiente de desenvolvimento integrado (IDE) para facilitar o trabalho com o código R. Um IDE permite ao usuário escrever, salvar e organizar scripts de código R de forma mais eficiente, além de executar comandos diretamente no Console do R e gerenciar configurações e saídas de forma conveniente. Uma escolha popular de IDE é o RStudio, que é gratuito e pode ser baixado em <https://www.rstudio.com/>.
+- A versão base do R, que inclui o conjunto fundamental de comandos e funções, pode ser descarregada diretamente do site oficial: <https://www.r-project.org/>. Após instalar o R, é altamente recomendável instalar também um ambiente de desenvolvimento integrado (IDE) para facilitar o trabalho com o código R. Um IDE permite ao utilizador escrever, guardar e organizar scripts de código R de forma mais eficiente, além de executar comandos diretamente no Console do R e gerir configurações e saídas de forma conveniente. Uma escolha popular de IDE é o RStudio, que é gratuito e pode ser descarregado em <https://www.rstudio.com/>.
 
-- Além do conjunto base de funções, o R oferece uma vasta gama de pacotes adicionais desenvolvidos pela comunidade de usuários. Esses pacotes podem ser instalados diretamente pelo Console do R ou por meio do menu do RStudio. Para instalar um pacote no Console, você pode usar a função `install.packages("nome_do_pacote")`. É importante lembrar que para instalar pacotes, é necessário estar conectado à internet. Para visualizar todos os pacotes já instalados no seu ambiente R, você pode utilizar a função `installed.packages()`.
+- Além do conjunto base de funções, o R oferece uma vasta gama de pacotes adicionais desenvolvidos pela comunidade de utilizadores. Estes pacotes podem ser instalados diretamente pelo Console do R ou através do menu do RStudio. Para instalar um pacote no Console, pode usar a função `install.packages("nome_do_pacote")`. É importante lembrar que, para instalar pacotes, é necessário estar ligado à internet. Para visualizar todos os pacotes já instalados no seu ambiente R, pode utilizar a função `installed.packages()`.
 
-
-## Navegando no RStudio
+## Navegar no RStudio
 
 Existem quatro painéis principais no ambiente de trabalho do RStudio:
 
@@ -31,10 +30,11 @@ Existem quatro painéis principais no ambiente de trabalho do RStudio:
 
 - **Console**. No Console, os comandos são executados diretamente. Ele funciona de maneira semelhante ao console padrão do R, mas com melhorias significativas, como realce de sintaxe, preenchimento automático de código e integração com os demais painéis do RStudio. O Console é o local ideal para testes rápidos e execução de comandos imediatos.
 
-- **Environment/Histórico**. O painel “Environment” (Ambiente) exibe informações sobre os objetos atualmente carregados na sessão do R, como conjuntos de dados, funções definidas pelo usuário e outras variáveis. Isso ajuda a gerenciar e visualizar o conteúdo da memória de trabalho. A aba “History” (Histórico) armazena todos os comandos executados durante a sessão, permitindo fácil recuperação e reutilização de códigos anteriores.
+- **Environment/Histórico**. O painel “Environment” (Ambiente) exibe informações sobre os objetos actualmente carregados na sessão do R, como conjuntos de dados, funções definidas pelo utilizador e outras variáveis. Isto ajuda a gerir e visualizar o conteúdo da memória de trabalho. A aba “History” (Histórico) armazena todos os comandos executados durante a sessão, permitindo fácil recuperação e reutilização de códigos anteriores.
 
 - **Painel Inferior Direito**. Este painel é multifuncional e contém várias abas úteis:
-* **Files** (Arquivos): lista todos os arquivos no diretório de trabalho atual.
+
+* **Files** (Ficheiros): lista todos os ficheiros no diretório de trabalho actual.
 * **Plots** (Gráficos): exibe quaisquer gráficos gerados durante a análise.
 * **Packages** (Pacotes): permite visualizar os pacotes instalados e carregados na sessão.
 * **Help** (Ajuda): fornece acesso ao sistema de ajuda embutido em HTML, que oferece documentação detalhada sobre funções e pacotes.
@@ -62,54 +62,56 @@ No MacBook, os atalhos geralmente são os mesmos, substituindo o **CTRL** por **
 
 # R como Calculadora e Operações Aritméticas
 
-A Estatística está intimamente ligada à Álgebra, especialmente no que diz respeito ao uso de matrizes e vetores para representar conjuntos de dados e variáveis. No R, essas estruturas de dados são amplamente utilizadas para facilitar a manipulação e a análise estatística. Por isso, é importante primeiro entender como o R lida com essas estruturas antes de avançar para comandos estatísticos mais específicos.
+A Estatística está intimamente ligada à Álgebra, especialmente no que diz respeito ao uso de matrizes e vetores para representar conjuntos de dados e variáveis. No R, estas estruturas de dados são amplamente utilizadas para facilitar a manipulação e a análise estatística. Por isso, é importante primeiro entender como o R lida com estas estruturas antes de avançar para comandos estatísticos mais específicos.
 
 ## O Prompt do R
 
-O R utiliza uma interface de linha de comando para executar operações e aceitar comandos diretamente. Essa interface é marcada pelo símbolo >, conhecido como o **prompt**. Quando você digita um comando após o prompt e pressiona Enter, o R interpreta o comando, executa a operação correspondente e exibe o resultado na tela.
+O R utiliza uma interface de linha de comando para executar operações e aceitar comandos diretamente. Esta interface é marcada pelo símbolo >, conhecido como o **prompt**. Quando se digita um comando após o prompt e se pressiona Enter, o R interpreta o comando, executa a operação correspondente e exibe o resultado no ecrã.
 
 ```{r eval=FALSE}
 print("Meu primeiro comando no R!")
 ## [1] "Meu primeiro comando no R!"
 ```
 
-Nas notas de aula, o código R digitado no console é exibido em caixas cinzas. Quando você vê o símbolo ## no início de uma linha, ele indica o resultado (output) gerado pelo console R após a execução do código.
+Nas notas de aula, o código R digitado no console é exibido em caixas cinzentas. Quando se vê o símbolo ## no início de uma linha, isso indica o resultado (output) gerado pelo console R após a execução do código.
 
 No R, o caractere `#` é utilizado para inserir comentários no código. Qualquer texto que aparece após `#` na mesma linha é ignorado pelo R durante a execução. Comentários são úteis para adicionar explicações ou anotações no código, como no exemplo abaixo:
 
 ```{r}
-# Meu primeiro comando no R!
+# Este é um exemplo de comentário
+2 + 2 # O R vai calcular 2 mais 2
+## [1] 4
 ```
 
-Se você conhece o nome de uma função e deseja aprender mais sobre como ela funciona, pode utilizar o comando `?` seguido do nome da função para acessar a documentação de ajuda correspondente. Por exemplo:
+Se conhecer o nome de uma função e desejar aprender mais sobre o seu funcionamento, pode utilizar o comando `?` seguido do nome da função para aceder à documentação de ajuda correspondente. Por exemplo:
 
 ```{r eval=FALSE}
 ?sum
 ```
 
-Este comando abrirá a página de ajuda para a função `sum`, que é usada para calcular a soma de elementos.
+Este comando abrirá a página de ajuda para a função `sum`, que é utilizada para calcular a soma de elementos.
 
-Além disso, o R oferece uma forma prática de visualizar exemplos de como uma função pode ser utilizada. Para ver exemplos de uso de uma função, você pode usar o comando `example()` com o nome da função como argumento:
+Além disso, o R oferece uma forma prática de visualizar exemplos de como uma função pode ser utilizada. Para ver exemplos de uso de uma função, pode usar o comando `example()` com o nome da função como argumento:
 
 ```{r eval=FALSE}
 example(sum)
 ```
 
-Este comando mostrará exemplos de aplicação da função `sum`, ajudando a entender melhor como ela pode ser usada em diferentes contextos.
+Este comando mostrará exemplos de aplicação da função `sum`, ajudando a entender melhor como pode ser usada em diferentes contextos.
 
 ## Objetos e Variáveis
 
-Em R, um **objeto** é uma unidade de armazenamento que pode conter diferentes tipos de dados ou funções, e é referenciado por um nome. Esses dados podem incluir números, caracteres, vetores, matrizes, data frames, listas ou até mesmo funções. Objetos são criados e manipulados através de comandos, permitindo que seus valores sejam reutilizados em qualquer parte do código. Em resumo, tudo o que é criado ou carregado na sessão do R, como dados ou funções, é considerado um objeto.
+Em R, um **objeto** é uma unidade de armazenamento que pode conter diferentes tipos de dados ou funções, sendo referenciado por um nome. Esses dados podem incluir números, caracteres, vetores, matrizes, data frames, listas ou até mesmo funções. Objetos são criados e manipulados através de comandos, permitindo que seus valores sejam reutilizados em qualquer parte do código. Em resumo, tudo o que é criado ou carregado na sessão do R, como dados ou funções, é considerado um objeto.
 
 ### O que é uma Variável?
 
-Uma **variável** é um nome ou identificador associado a um objeto. Quando você cria uma variável, está, na verdade, criando um “rótulo” que aponta para o objeto armazenado na memória. Assim, uma variável é o nome que você usa para acessar os dados ou funções armazenados no objeto. Ela permite manipular e referenciar o objeto de maneira conveniente ao longo do seu script ou análise.
+Uma **variável** é um nome ou identificador associado a um objeto. Quando se cria uma variável, está-se, na verdade, a criar um “rótulo” que aponta para o objeto armazenado na memória. Assim, uma variável é o nome que se utiliza para aceder aos dados ou funções armazenados no objeto. Ela permite manipular e referenciar o objeto de forma conveniente ao longo do seu script ou análise.
 
 <!-- Em R, uma variável é um local de armazenamento nomeado na memória onde os dados podem ser armazenados para recuperação e manipulação posterior. Variáveis em R são usadas para armazenar diferentes tipos de dados, como números, caracteres, vetores, data frames e muito mais. O tipo de dado de uma variável em R é determinado pelo valor atribuído a ela.-->
 
 ### Atribuições
 
-- A expressão `x <- 10` cria uma variável chamada `x` e atribui a ela o valor 10. Observe que o operador de atribuição `<-` atribui o valor do lado direito à variável do lado esquerdo. O lado esquerdo deve conter apenas um único nome de variável.
+- A expressão `x <- 10` cria uma variável chamada `x` e atribui-lhe o valor 10. Note que o operador de atribuição `<-` atribui o valor do lado direito à variável do lado esquerdo. O lado esquerdo deve conter apenas um único nome de variável.
 
 - Também é possível realizar atribuições usando o sinal de igualdade `=` ou o operador `->`. No entanto, para evitar confusões entre o operador de atribuição e o operador de igualdade, é recomendável usar `<-` para atribuições.
 
@@ -133,21 +135,21 @@ a + 2 = 10 # Uma atribuição não é uma equação
 X <- c(2,12,22,32)
 ```
 
-Essa linha de código atribui um vetor numérico de comprimento 4 ao objeto `X`. Lembre-se de que o R é sensível a maiúsculas e minúsculas, o que significa que `X` e `x` são considerados dois objetos distintos.
+Esta linha de código atribui um vetor numérico de comprimento 4 ao objeto `X`. É importante lembrar que o R distingue entre maiúsculas e minúsculas, o que significa que `X` e `x` são considerados dois objetos distintos.
 
-Ao definir objetos no console, você está modificando o espaço de trabalho atual. Para visualizar todas as variáveis e objetos atualmente salvos em seu espaço de trabalho, você pode usar o comando:
+Ao definir objetos no console, está a modificar o espaço de trabalho actual. Para visualizar todas as variáveis e objetos actualmente guardados no seu espaço de trabalho, pode usar o comando:
 
 ```{r eval=FALSE}
 ls()
 ```
 
-No RStudio, a aba *Environment* mostra todos os objetos e valores presentes no espaço de trabalho.
+No RStudio, a aba *Environment* exibe todos os objetos e valores presentes no espaço de trabalho.
 
 ### Regras para definição de variáveis
 
 Os nomes de variáveis em R devem começar com uma letra ou um ponto final (desde que o ponto final seja seguido por uma letra) e podem incluir letras, números, pontos e sublinhados.
 
-- O nome de uma variável **não pode** conter espaços ou caracteres especiais (como @, #, $, %). Somente letras, números, pontos e sublinhados (_) são permitidos. Exemplo de nome válido: `nome_cliente2`.
+- O nome de uma variável **não pode** conter espaços ou caracteres especiais (como @, #, $, %). Apenas letras, números, pontos e sublinhados (_) são permitidos. Exemplo de nome válido: `nome_cliente2`.
 
 - Ao definir nomes de variáveis, **não é permitido** usar palavras reservadas do R. Palavras reservadas são termos que têm um significado especial no R e não podem ser redefinidos. Exemplos de palavras reservadas incluem: `if`, `else`, `for`, `while`, `class`, `FALSE`, `TRUE`, `exp`, `sum`.
 
@@ -170,9 +172,9 @@ Em R, variáveis podem armazenar diferentes tipos de dados, incluindo:
 - **Character**: sequências de caracteres (texto). Exemplo: `"Olá"`.
 - **Logical**: valores booleanos que representam verdadeiro ou falso. Exemplo: `TRUE`, `FALSE`.
 - **Vectors**: coleções de elementos do mesmo tipo. Exemplos: `c(1, 2, 3)` para números, `c("a", "b", "c")` para caracteres.
-- **Data Frames**: estruturas de dados tabulares que contêm linhas e colunas, semelhantes a uma tabela de banco de dados ou a uma planilha.
+- **Data Frames**: estruturas de dados tabulares que contêm linhas e colunas, semelhantes a uma tabela de banco de dados ou a uma folha de cálculo.
 - **Lists**: coleções que podem conter elementos de diferentes tipos, como números, caracteres, vetores, e até mesmo outros data frames.
-- **Factors**: variáveis categóricas que representam dados categóricos e são armazenadas como inteiros. Eles são especialmente úteis para análises estatísticas que envolvem dados categóricos.
+- **Factors**: variáveis categóricas que representam dados categóricos e são armazenadas como inteiros. São especialmente úteis para análises estatísticas que envolvem dados categóricos.
 
 ```{r}
 # Numeric
@@ -275,13 +277,13 @@ exp(1)
 
 ### Objetos Predefinidos, Infinito, Indefinido e Valores Ausentes
 
-O R inclui diversos conjuntos de dados predefinidos que podem ser usados para prática e teste de funções. Para visualizar todos os conjuntos de dados disponíveis, digite:
+O R inclui diversos conjuntos de dados predefinidos que podem ser usados para prática e teste de funções. Para visualizar todos os conjuntos de dados disponíveis, pode-se utilizar o seguinte comando:
 
 ```{r eval=FALSE}
 data()
 ```
 
-Este comando exibe uma lista de nomes de objetos para cada conjunto de dados disponível. Esses conjuntos de dados podem ser utilizados diretamente apenas digitando seu nome no console. Por exemplo, ao digitar:
+Este comando exibe uma lista de nomes de objetos para cada conjunto de dados disponível. Esses conjuntos de dados podem ser utilizados diretamente ao simplesmente digitar o nome no console. Por exemplo, ao digitar:
 
 ```{r eval=FALSE}
 co2
@@ -365,7 +367,7 @@ sum(y, na.rm = TRUE)  # Retorna: 12, ignora NA na soma
 
 * **NaN** (Not a Number): Representa resultados indefinidos de operações matemáticas. Por exemplo, operações como `0/0` ou `sqrt(-1)` geram um `NaN` porque o resultado não é um número real. No R, `NaN` é tecnicamente um tipo especial de `NA` que indica especificamente um resultado numérico indefinido.
 
-* **NA** (Not Available): Indica dados ausentes ou valores que não estão disponíveis em um conjunto de dados. Por exemplo, em um vetor de dados, se um valor está ausente ou não foi medido, ele é representado por `NA`. Ao contrário de `NaN`, `NA` é utilizado para representar qualquer tipo de dado ausente, não apenas valores numéricos.
+* **NA** (Not Available): Indica dados ausentes ou valores que não estão disponíveis num conjunto de dados. Por exemplo, em um vetor de dados, se um valor está ausente ou não foi medido, ele é representado por `NA`. Ao contrário de `NaN`, `NA` é utilizado para representar qualquer tipo de dado ausente, não apenas valores numéricos.
 
 ### Lidando com NaN e NA em Operações
 
@@ -384,7 +386,7 @@ sum(y, na.rm = TRUE)  # Soma ignorando NA
 
 ### Funções Úteis para Detectar NaN e NA
 
-Para verificar a presença de `NA` ou `NaN` em um vetor ou conjunto de dados, você pode usar as funções `is.na()` e `is.nan()`. A função `is.na()` identifica todos os valores que são `NA` ou `NaN`, enquanto `is.nan()` identifica especificamente valores que são `NaN`.
+Para verificar a presença de `NA` ou `NaN` em um vetor ou conjunto de dados, pode-se usar as funções `is.na()` e `is.nan()`. A função `is.na()` identifica todos os valores que são `NA` ou `NaN`, enquanto `is.nan()` identifica especificamente valores que são `NaN`. Por exemplo:
 
 ```{r eval=FALSE}
 is.na(x)
@@ -400,12 +402,11 @@ is.nan(y)
 ## [1] FALSE FALSE FALSE FALSE FALSE
 ```
 
-Estas funções são úteis para limpar e preparar dados antes de realizar análises estatísticas, garantindo que os cálculos sejam precisos e significativos.
-
+Essas funções são úteis para limpar e preparar dados antes de realizar análises estatísticas, garantindo que os cálculos sejam precisos e significativos.
 
 ### Tipagem Dinâmica em R
 
-Em R, o tipo de uma variável é determinado dinamicamente com base no valor atribuído a ela. Isso significa que o R automaticamente define o tipo de dado de uma variável quando você atribui um valor a ela.
+Em R, o tipo de uma variável é determinado dinamicamente com base no valor atribuído a ela. Isso significa que o R automaticamente define o tipo de dado de uma variável quando lhe é atribuído um valor.
 
 ```{r eval=FALSE}
 x <- 5         
@@ -459,7 +460,7 @@ Neste exemplo, `class(x)` e `typeof(x)` ambos retornam “integer” para um vet
 
 ### Conversão entre Tipos de Dados
 
-Em R, é possível converter uma variável de um tipo de dado para outro usando funções de conversão. Isso é especialmente útil quando se trabalha com dados que podem ter sido importados de fontes externas e precisam ser manipulados ou analisados de diferentes maneiras.
+Em R, é possível converter uma variável de um tipo de dado para outro usando funções de conversão. Isso é especialmente útil ao trabalhar com dados que podem ter sido importados de fontes externas e precisam ser manipulados ou analisados de diferentes maneiras.
 
 ```{r eval=FALSE}
 # Convertendo um inteiro em uma string (caractere)
@@ -521,24 +522,24 @@ n <- as.integer(n)
 print(n+1)
 ```
 
-Aqui, `readline()` recebe a entrada do usuário, e `as.integer()` converte essa entrada para um número inteiro. O resultado é incrementado em 1 e exibido.
+Aqui, `readline()` recebe a entrada do utilizador, e `as.integer()` converte essa entrada para um número inteiro. O resultado é incrementado em 1 e exibido.
 
 **Exemplo 3:**
 
 ```{r eval=FALSE}
-# Solicitar entrada do usuário
+# Solicitar entrada do utilizador
 nome <- readline(prompt = "Entre com o seu nome: ")
 	
 # Imprima uma mensagem de saudação
 cat("Olá, ",nome, "!")
 ```
 
-O uso de `cat()` aqui é para exibir uma mensagem de saudação que inclui o nome do usuário.
+O uso de `cat()` aqui é para exibir uma mensagem de saudação que inclui o nome do utilizador.
 
 **Exemplo 4:**
 
 ```{r eval=FALSE}
-# Solicitar ao usuário a entrada numérica
+# Solicitar ao utilizador a entrada numérica
 idade <- readline(prompt = "Digite a sua idade: ")
 	
 # Converta a entrada em um valor numérico
@@ -552,7 +553,7 @@ cat("Entrada inválida. Insira um valor numérico.\n")
 }
 ```
 
-Este exemplo mostra como verificar se a entrada é numérica usando `is.na()` e fornecer feedback apropriado ao usuário.
+Este exemplo mostra como verificar se a entrada é numérica usando `is.na()` e fornecer feedback apropriado ao utilizador.
 
 **Concatenando Strings**
 
@@ -697,7 +698,7 @@ Os operadores relacionais são usados para comparar valores e retornam valores l
 
 ## Exercícios
 
-**1.** Escreva um programa em R que leia dois inteiros inseridos pelo usuário e imprima:
+**1.** Escreva um programa em R que leia dois inteiros inseridos pelo utilizador e imprima:
 
 * A soma dos dois números.
 * O produto dos dois números.
@@ -717,7 +718,7 @@ Os operadores relacionais são usados para comparar valores e retornam valores l
 
 *Dica*: Use `as.numeric()` para converter a entrada para números de ponto flutuante.
 
-**3.** Escreva um programa em R que leia uma distância em milhas inserida pelo usuário e a converta para quilômetros usando a fórmula: $K = M*1.609344$.
+**3.** Escreva um programa em R que leia uma distância em milhas inserida pelo utilizador e a converta para quilómetros usando a fórmula: $K = M*1.609344$.
 
 *Dica*: Lembre-se de usar `as.numeric()` para converter a entrada para um número.
 
@@ -729,19 +730,19 @@ Os operadores relacionais são usados para comparar valores e retornam valores l
 
 **7.** Escreva um programa em R que leia uma hora no formato de 24 horas e imprima a hora correspondente no formato de 12 horas.
 
-**8.** Você olha para um relógio e são exatamente 14h. Você definiu um alarme para tocar em 51 horas. A que horas o alarme tocará?
+**8.** Está a olhar para um relógio e são exatamente 14h. Definiu um alarme para tocar dentro de 51 horas. A que horas o alarme tocará?
 
-**9.** Escreva um programa em R que resolva a versão geral do problema acima. Peça ao usuário para inserir a hora atual (em horas) e o número de horas de espera antes que o alarme toque. Seu programa deve imprimir a hora em que o alarme tocará.
+**9.** Escreva um programa em R que resolva a versão geral do problema acima. Peça ao utilizador para inserir a hora atual (em horas) e o número de horas de espera antes que o alarme toque. O programa deve imprimir a hora em que o alarme tocará.
 
-**10.** Escreva um programa em R que leia um número inteiro fornecido pelo usuário e verifique se esse número é maior que 10. O programa deve imprimir `TRUE` se o número é maior que 10 ou `FALSE` caso contrário.
+**10.** Escreva um programa em R que leia um número inteiro fornecido pelo utilizador e verifique se esse número é maior que 10. O programa deve imprimir `TRUE` se o número for maior que 10 ou `FALSE` caso contrário.
 
-**11.** Escreva um programa em R que leia dois números fornecidos pelo usuário e verifique se eles são iguais. O programa deve imprimir `TRUE` se os números são iguais ou `FALSE` caso contrário.
+**11.** Escreva um programa em R que leia dois números fornecidos pelo utilizador e verifique se eles são iguais. O programa deve imprimir `TRUE` se os números são iguais ou `FALSE` caso contrário.
 
-**12.** Escreva um programa em R que peça ao usuário para inserir dois números e verifique se o primeiro número é maior ou igual ao segundo. O programa deve imprimir `TRUE` ou `FALSE`.
+**12.** Escreva um programa em R que peça ao utilizador para inserir dois números e verifique se o primeiro número é maior ou igual ao segundo. O programa deve imprimir `TRUE` ou `FALSE`.
 
-**13.** Escreva um programa em R que peça ao usuário para inserir um número e verifique se esse número está entre 0 e 100, inclusive. O programa deve imprimir `TRUE` se o número está no intervalo e `FALSE` caso contrário.
+**13.** Escreva um programa em R que peça ao utilizador para inserir um número e verifique se esse número está entre 0 e 100, inclusive. O programa deve imprimir `TRUE` se o número está no intervalo e `FALSE` caso contrário.
 
-**14.** Escreva um programa em R que leia três números fornecidos pelo usuário e verifique se o primeiro número é menor que o segundo e se o segundo é menor que o terceiro. O programa deve imprimir uma mensagem indicando se a condição é verdadeira ou falsa.
+**14.** Escreva um programa em R que leia três números fornecidos pelo utilizador e verifique se o primeiro número é menor que o segundo e se o segundo é menor que o terceiro. O programa deve imprimir uma mensagem indicando se a condição é verdadeira ou falsa.
 
 # Estrutura de Dados Básicas
 
@@ -770,11 +771,11 @@ Em R, temos dois tipos principais de objetos: funções e dados.
 
 ## Vetor
 
-Um **vetor** é uma estrutura de dados básica que armazena uma sequência de elementos do **mesmo tipo**. Vetores podem conter dados numéricos, caracteres, valores lógicos (`TRUE`/`FALSE`), números complexos, entre outros.
+Um **vetor** é uma estrutura de dados básica que armazena uma sequência de elementos do **mesmo tipo**. Os vetores podem conter dados numéricos, caracteres, valores lógicos (`TRUE`/`FALSE`), números complexos, entre outros.
 
 * Todos os elementos de um vetor devem ser do mesmo tipo.
 * Os elementos de um vetor são indexados a partir de 1 (ou seja, o primeiro elemento está na posição 1).
-* Vetores podem ser criados usando a função `c()` (concatenate) e são facilmente manipulados com uma variedade de funções.
+* Os vetores podem ser criados usando a função `c()` (concatenate) e são facilmente manipulados com uma variedade de funções.
 
 ### Tipos Comuns de Vetores
 
@@ -840,7 +841,7 @@ w
 
 ### Acesso a Elementos de um Vetor
 
-Você pode acessar elementos específicos de um vetor usando colchetes [] e índices. R utiliza indexação baseada em 1, o que significa que o primeiro elemento de um vetor tem índice 1.
+Pode aceder a elementos específicos de um vetor utilizando colchetes [ ] e índices. O R utiliza indexação baseada em 1, o que significa que o primeiro elemento de um vetor tem índice 1.
 
 ```{r eval=FALSE}
 # Defina um vetor com inteiros de (-5) a 5 e extraia os números com valor absoluto menor que 3:
@@ -848,7 +849,7 @@ x <- (-5):5
 x
 ##  [1] -5 -4 -3 -2 -1  0  1  2  3  4  5
 
-# Acessando por índice:
+# Acesso por índice:
 x[4:8]
 ## [1] -2 -1  0  1  2
  
@@ -865,7 +866,7 @@ index <- abs(x)<3
 index 
 ##  [1] FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE
 
-# Usando o vetor lógico para extrair elementos desejados:
+# Utilizando o vetor lógico para extrair elementos desejados:
 x[index]
 ## [1] -2 -1  0  1  2
 
@@ -873,7 +874,7 @@ x[index]
 x[abs(x) < 3]
 ## [1] -2 -1  0  1  2
 
-# Acessando elementos com vetores predefinidos
+# Acesso a elementos com vetores predefinidos
 letters[1:3]
 ## [1] "a" "b" "c"
 
@@ -884,23 +885,23 @@ LETTERS[1:3]
 ## [1] "A" "B" "C"
 
 y <- 1:10
-y[ (y>5) ] # seleciona qualquer número > 5
+y[ (y>5) ] # Seleciona qualquer número > 5
 ## [1]  6  7  8  9 10
 
-y[ (y%%2==0) ] # números divisíveis por 2
+y[ (y%%2==0) ] # Números divisíveis por 2
 ## [1]  2  4  6  8 10
 
-y[ (y%%2==1) ] # números não divisíveis por 2
+y[ (y%%2==1) ] # Números não divisíveis por 2
 ## [1] 1 3 5 7 9
 
 y[5] <- NA
-y[!is.na(y)] # todos os valores de y que não são NA
+y[!is.na(y)] # Todos os valores de y que não são NA
 ## [1]  1  2  3  4  6  7  8  9 10
 ```
 
 ### Funções Comuns para Vetores
 
-Vetores são uma das estruturas de dados mais utilizadas no R, e existem diversas funções para manipular e obter informações sobre eles. Abaixo estão algumas das funções mais comuns usadas com vetores numéricos:
+Os vetores são uma das estruturas de dados mais utilizadas no R, e existem diversas funções para manipular e obter informações sobre eles. Abaixo estão algumas das funções mais comuns usadas com vetores numéricos:
 
 ```{r eval=FALSE}
 num_vector <- c(2.2, 1.1, 3.3)
@@ -964,7 +965,7 @@ unique(duplicate_vector)
 ## [1] 1 2 3
 ```
 
-A função `which` é usada para encontrar os índices dos elementos em um vetor que atendem a uma condição específica. Isso é útil quando você deseja localizar a posição de certos valores dentro de um vetor.
+A função `which` é utilizada para encontrar os índices dos elementos de um vetor que satisfazem uma condição específica. Isto é útil quando se quer localizar a posição de certos valores dentro de um vetor.
 
 ```{r eval=FALSE}
 y <- c(8, 3, 5, 7, 6, 6, 8, 9, 2, 3, 9, 4, 10, 4, 11)
@@ -974,7 +975,7 @@ which(y > 5)
 ## [1]  1  4  5  6  7  8 11 13 15
 ```
 
-Aqui, a função `which(y > 5)` retorna os índices dos elementos em y que são maiores que 5. Se você quiser ver os valores em y que são maiores que 5, basta fazer:
+Aqui, a função `which(y > 5)` retorna os índices dos elementos em `y` que são maiores que 5. Se quiser ver os valores em `y` que são maiores que 5, basta fazer:
 
 ```{r eval=FALSE}
 y[y>5]
@@ -983,7 +984,7 @@ y[y>5]
 
 ### Operações com Vetores
 
-Vetores no R suportam operações aritméticas e lógicas de forma elementar. Isso significa que as operações são aplicadas a cada elemento do vetor.
+Os vetores no R suportam operações aritméticas e lógicas de forma elementar. Isto significa que as operações são aplicadas a cada elemento do vetor.
 
 ```{r eval=FALSE}
 # Adição de 1 a cada elemento do vetor
@@ -1027,7 +1028,7 @@ c(2,3,5,7)^c(2,3,2,3)
 ## [1]   4  27  25 343
 ```
 
-No entanto, se os vetores não puderem ser “reciclados” perfeitamente, o R dará um aviso:
+No entanto, se os vetores não puderem ser “reciclados” perfeitamente, o R irá gerar um aviso:
 
 ```{r eval=FALSE}
 c(2,3,5,7)^c(2,3,4)
@@ -1042,7 +1043,7 @@ c(2,3,5,7)^c(2,3,4,2)
 ## [1]   4  27 625  49
 ```
 
-Observe que o último elemento do vetor menor foi reciclado para corresponder ao comprimento do vetor maior, mas não completamente, resultando no aviso..
+Observe que o último elemento do vetor menor foi reciclado para corresponder ao comprimento do vetor maior, mas não completamente, resultando no aviso.
 
 ### Exercícios
 
@@ -1072,9 +1073,9 @@ Observe que o último elemento do vetor menor foi reciclado para corresponder ao
 
 **7.** Crie um vetor de 20 números aleatórios entre 1 e 50 (use a função `sample()`). Calcule a soma, a média, o desvio padrão e o produto de todos os elementos do vetor.
 
-**8.** Crie um vetor de 10 números aleatórios entre 1 e 100 (use a função `sample()`). Extraia os elementos do vetor que são maiores que 50. Em seguida, substitua os valores menores que 30 por 0.
+**8.** Crie um vetor de 10 números aleatórios entre 1 e 100 (use a função `sample()`). Extraia os elementos do vetor que são maiores que 50. De seguida, substitua os valores menores que 30 por 0.
 
-**9.** Crie um vetor de 10 números. Verifique quais elementos são maiores que 5 e quais são pares. Crie um novo vetor que contenha apenas os números que atendem a ambas as condições.
+**9.** Crie um vetor de 10 números. Verifique quais elementos são maiores que 5 e quais são pares. Crie um novo vetor que contenha apenas os números que satisfazem ambas as condições.
 
 **10.** Crie um vetor com 10 números inteiros. Multiplique os elementos nas posições 2, 4 e 6 por 2. Substitua o último elemento por 100.
 
@@ -1098,12 +1099,11 @@ Observe que o último elemento do vetor menor foi reciclado para corresponder ao
 
 ## Fatores
 
-Em R, um **fator** é uma estrutura de dados usada para representar dados **categóricos**, ou seja, dados que podem ser classificados em categorias distintas. Fatores são amplamente utilizados em análises estatísticas e visualizações de dados, pois permitem o tratamento eficiente e consistente de variáveis categóricas.
+Em R, um **fator** é uma estrutura de dados usada para representar dados **categóricos**, ou seja, dados que podem ser classificados em categorias distintas. Os fatores são amplamente utilizados em análises estatísticas e visualizações de dados, pois permitem o tratamento eficiente e consistente de variáveis categóricas.
 
-* **Níveis**: Fatores possuem **níveis** (ou **levels**), que representam os diferentes valores possíveis que a variável categórica pode assumir. Por exemplo, para uma variável categórica que representa tamanho de roupa, os níveis poderiam ser “Pequeno”, “Médio” e “Grande”.
-* **Armazenamento Interno**: Internamente, fatores são armazenados como inteiros, onde cada inteiro corresponde a um nível específico. No entanto, quando exibidos, os fatores mostram seus rótulos (labels) para facilitar a compreensão.
-* **Fatores Ordenados e Não Ordenados**: Fatores podem ser **ordenados** (quando há uma ordem lógica entre os níveis, como “Baixo”, “Médio”, “Alto”) ou **não ordenados** (quando os níveis não têm uma ordem intrínseca).
-
+* **Níveis**: Os fatores possuem **níveis** (ou **levels**), que representam os diferentes valores possíveis que a variável categórica pode assumir. Por exemplo, para uma variável categórica que representa tamanho de roupa, os níveis poderiam ser “Pequeno”, “Médio” e “Grande”.
+* **Armazenamento Interno**: Internamente, os fatores são armazenados como inteiros, onde cada inteiro corresponde a um nível específico. No entanto, quando exibidos, os fatores mostram os seus rótulos (labels) para facilitar a compreensão.
+* **Fatores Ordenados e Não Ordenados**: Os fatores podem ser **ordenados** (quando há uma ordem lógica entre os níveis, como “Baixo”, “Médio”, “Alto”) ou **não ordenados** (quando os níveis não têm uma ordem intrínseca).
 
 **Exemplos**:
 
@@ -1129,7 +1129,7 @@ print(factor_data)
 ## Levels: low medium high
 ```
 
-Para criar um fator ordenado, onde os níveis têm uma ordem específica, usamos o argumento ordered `= TRUE`:
+Para criar um fator ordenado, onde os níveis têm uma ordem específica, usamos o argumento `ordered = TRUE`:
 
 ```{r eval=FALSE}
 # Criar um fator ordenado
@@ -1157,7 +1157,7 @@ print(factor_data)
 
 ### Gerando Fatores com `gl()`
 
-A função `gl()` (generate levels) é usada para criar fatores de maneira eficiente, especialmente quando você deseja gerar fatores com padrões repetitivos.
+A função `gl()` (generate levels) é usada para criar fatores de maneira eficiente, especialmente quando se deseja gerar fatores com padrões repetitivos.
 
 ```{r eval=FALSE}
 # Gerar níveis de fator com gl()
@@ -1208,6 +1208,7 @@ matrix(c(1,2,3,4,5,6)+exp(1),nrow=2) > 6
 ```
 
 ### Criando um array
+
 Um array pode ter mais de duas dimensões e é criado usando a função `array()`:
 
 ```{r eval=FALSE}
@@ -1282,9 +1283,9 @@ print(result)
 ## [2,]    2    4    6    8   10   12
 ```
 
-### Acessando Elementos de uma Matriz
+### Acessar Elementos de uma Matriz
 
-Podemos acessar elementos específicos de uma matriz usando índices ou expressões lógicas.
+Podemos aceder a elementos específicos de uma matriz utilizando índices ou expressões lógicas.
 
 ```{r eval=FALSE}
 # Criar uma matriz
@@ -1294,11 +1295,11 @@ A
 ## [1,]   -4   -2    0    2    4
 ## [2,]   -3   -1    1    3    5
 
-# Acessando um elemento específico
+# Aceder a um elemento específico
 A[1,2]
 ## [1] -2
 
-# Selecionando elementos negativos
+# Selecionar elementos negativos
 A[A<0]
 ## [1] -4 -3 -2 -1
  
@@ -1309,18 +1310,18 @@ A
 ## [1,]    0    0    0    2    4
 ## [2,]    0    0    1    3    5
 
-# Selecionando uma linha específica
+# Selecionar uma linha específica
 A[2,]
 ## [1] 0 0 1 3 5
 
-# Selecionando colunas específicas
+# Selecionar colunas específicas
 A[,c(2,4)]
 ##      [,1] [,2]
 ## [1,]    0    2
 ## [2,]    0    3
 ```
 
-### Nomeando Linhas e Colunas em uma Matriz
+### Nomear Linhas e Colunas de uma Matriz
 
 ```{r eval=FALSE}
 # Criar uma matriz
@@ -1332,7 +1333,7 @@ x
 ## [3,] -0.230  0.314 -1.9076
 ## [4,] -0.571  0.478 -0.5948
 
-# Nomeando colunas
+# Nomear colunas
 colnames(x) <- paste("dados",1:3,sep="")
 x
 ##      dados1 dados2  dados3
@@ -1341,7 +1342,7 @@ x
 ## [3,] -0.230  0.314 -1.9076
 ## [4,] -0.571  0.478 -0.5948
 
-# Nomeando linhas e colunas de outra matriz
+# Nomear linhas e colunas de outra matriz
 y <- matrix(rnorm(15),nrow=5)
 y 
 ##        [,1]   [,2]   [,3]
@@ -1379,7 +1380,7 @@ M%*%N
 ## [4,] -0.00563 -0.0709 -0.113
 ```
 
-### Adicionando Linhas e Colunas a uma Matriz
+### Adicionar Linhas e Colunas a uma Matriz
 
 ```{r eval=FALSE}
 X <- matrix(c(1,2,3,4,5,6),nrow=2)
@@ -1473,11 +1474,11 @@ e troque os números pares por 0.
 
 ## Data-frame
 
-Um data frame em R é uma estrutura de dados bidimensional usada para armazenar dados tabulares. Cada coluna em um data frame pode conter valores de diferentes tipos (como numéricos, caracteres, fatores, etc.), mas todos os elementos dentro de uma coluna devem ser do mesmo tipo. Um data frame é semelhante a uma tabela em um banco de dados ou uma planilha em programas como o Excel. Data frames podem ser criados a partir de arquivos de dados ou convertendo vetores usando a função `as.data.frame()`.
+Um **data frame** em R é uma estrutura de dados bidimensional usada para armazenar dados tabulares. Cada coluna num data frame pode conter valores de diferentes tipos (como numéricos, caracteres, fatores, etc.), mas todos os elementos dentro de uma coluna devem ser do mesmo tipo. Um data frame é semelhante a uma tabela em um banco de dados ou uma folha de cálculo em programas como o Excel. Os data frames podem ser criados a partir de ficheiros de dados ou convertendo vetores usando a função `as.data.frame()`.
 
-### Criando um Data Frame
+### Criar um Data Frame
 
-Para criar um data frame, você pode usar a função `data.frame()`, especificando os nomes das colunas e os dados correspondentes:
+Para criar um data frame, pode usar a função `data.frame()`, especificando os nomes das colunas e os dados correspondentes:
 
 ```{r eval=FALSE}
 df <- data.frame(
@@ -1510,33 +1511,33 @@ salario = c(5000, 6000, 7000, 8000))
 
 Observe que na matriz, todos os dados são convertidos para o tipo `character`, enquanto em um data frame, cada coluna mantém seu próprio tipo de dados.
 
-### Acessando Linhas e Colunas
+### Aceder a Linhas e Colunas
 
-Existem várias maneiras de acessar linhas e colunas em um data frame:
+Existem várias maneiras de acedeer a linhas e colunas num data frame:
 
 ```{r eval=FALSE}
-# Acessando a coluna 'id' usando índice
+# Aceder à coluna 'id' usando índice
 df[,1]
 ## [1] 1 2 3 4
 
-# Acessando a coluna 'id' usando o nome da coluna
+# Aceder à coluna 'id' usando o nome da coluna
 df$id
 ## [1] 1 2 3 4
 
-# Acessando a coluna 'id' usando double brackets
+# Aceder à coluna 'id' usando double brackets
 df[["id"]]
 ## [1] 1 2 3 4
 
-# Acessando a primeira linha
+# Aceder à primeira linha
 df[1, ] 
 ##   id nome idade salario
 ## 1  1  Ana    23    5000
 
-# Acessando a segunda coluna
+# Aceder à segunda coluna
 df[, 2] 
 ## [1] "Ana"    "Bruno"  "Carlos" "Diana"
 
-# Acessando o elemento na primeira linha, segunda coluna
+# Aceder ao elemento na primeira linha, segunda coluna
 df[1, 2] 
 ## [1] "Ana"
 
@@ -1546,11 +1547,11 @@ df[1:2, 1:2]
 ## 1  1   Ana
 ## 2  2 Bruno
 
-# Acessando uma entrada por nome de coluna
+# Aceder a uma entrada por nome de coluna
 df[1, "nome"] 
 ## [1] "Ana"
 
-# Acessando múltiplas colunas por nome
+# Aceder a múltiplas colunas por nome
 df[c("nome", "idade")]
 ##     nome idade
 ## 1    Ana    23
@@ -1559,7 +1560,7 @@ df[c("nome", "idade")]
 ## 4  Diana    28
 ```
 
-### Adicionando e Removendo Colunas
+### Adicionar e Remover Colunas
 
 Adicionar e remover colunas de um data frame é simples e direto:
 
@@ -1583,7 +1584,7 @@ df
 ## 4  Diana    28    8000         8800
 ```
 
-### Fundindo Data Frames
+### Fundir Data Frames
 
 Data frames podem ser combinados ou fundidos usando a função `merge()`.
 
@@ -1601,7 +1602,7 @@ df12
 ## 3    PE    60        6
 ```
 
-### Explorando o Data Frame
+### Explorar o Data Frame
 
 Funções úteis para explorar e entender a estrutura de um data frame:
 
@@ -1659,7 +1660,7 @@ tail(df, 5)
 
 ### A função `subset()`
 
-A função `subset()` em R é usada para criar subconjuntos de um data frame com base em condições lógicas. Ela é particularmente útil quando você deseja filtrar linhas que atendem a certos critérios e selecionar colunas específicas ao mesmo tempo.
+A função `subset()` em R é usada para criar subconjuntos de um data frame com base em condições lógicas. É particularmente útil quando se deseja filtrar linhas que satisfaçam certos critérios e selecionar colunas específicas ao mesmo tempo.
 
 ```{r eval=FALSE}
 # Carregar o conjunto de dados 'iris'
@@ -1763,7 +1764,7 @@ No exemplo acima, ambas as abordagens (indexação direta e `subset()`) produzem
 ## 46          4.8          1.4         0.3  setosa
 ```
 
-Neste exemplo, `subset()` é usado para filtrar linhas onde `Petal.Width` é exatamente 0.3 e excluir a coluna `Sepal.Width`.
+Neste exemplo, a função `subset()` é utilizada para filtrar linhas em que `Petal.Width` é exatamente 0.3, ao mesmo tempo que exclui a coluna `Sepal.Width`.
 
 ```{r eval=FALSE}
 # Criar um subconjunto selecionando as colunas de Sepal.Width a Petal.Width
@@ -1925,7 +1926,7 @@ Aqui, `subset()` é usado para selecionar todas as colunas desde `Sepal.Width` a
 
 ### A Função `summary()`
 
-A função `summary()` é amplamente utilizada em R para fornecer resumos estatísticos de dados. O comportamento de `summary()` varia de acordo com o tipo de objeto ao qual é aplicado.
+A função `summary()` é amplamente usada em R para fornecer resumos estatísticos dos dados. O comportamento de `summary()` varia conforme o tipo de objeto ao qual é aplicado.
 
 ```{r eval=FALSE}
 # Aplicando summary() a um vetor numérico
@@ -1950,7 +1951,7 @@ summary(iris)
 ##  Max.   :7.90   Max.   :4.40   Max.   :6.90   Max.   :2.5
 ```
 
-Aplicar `summary()` ao data frame iris inteiro fornece resumos estatísticos para todas as colunas, incluindo estatísticas descritivas para variáveis numéricas e uma contagem de frequências para variáveis categóricas (fatores).
+Aplicar `summary()` ao data frame `iris` inteiro fornece resumos estatísticos para todas as colunas, incluindo estatísticas descritivas para variáveis numéricas e uma contagem de frequências para variáveis categóricas (fatores).
 
 ### Valores faltantes
 
@@ -1958,38 +1959,38 @@ Aplicar `summary()` ao data frame iris inteiro fornece resumos estatísticos par
 
 **1.** Crie um data frame chamado `estudantes` com as colunas: Nome (caracteres), Idade (números inteiros), Curso (caracteres) e Nota (números decimais). Adicione os dados de cinco estudantes fictícios e exiba o data frame.
 
-**2.** Utilize o data frame `estudantes` criado no exercício anterior. Acesse a coluna Nota e aumente todas as notas em 0.5. Substitua o valor da coluna Curso para “Estatística” para todos os estudantes com nota superior a 8.0.
+**2.** Utilize o data frame `estudantes` criado no exercício anterior. Aceda à coluna `Nota` e aumente todas as notas em 0.5. Substitua o valor da coluna `Curso` para “Estatística” para todos os estudantes com nota superior a 8.0.
 
-**3.** Dado o data frame `mtcars` embutido no R, filtre as linhas onde o Number of cylinders (`cyl`) é igual a 6 e a potência (`hp`) é maior que 100. Crie um novo data frame com essas informações.
+**3.** Dado o data frame `mtcars` embutido no R, filtre as linhas onde o número de cilindros (`cyl`) é igual a 6 e a potência (`hp`) é maior que 100. Crie um novo data frame com essas informações.
 
 **4.** Adicione uma nova coluna ao data frame `mtcars` chamada Peso_KG que converta o peso dos carros (`wt`) de mil libras para quilogramas (multiplicando por 453.592).
 
 **5.** Utilizando o data frame `mtcars`, calcule a média, o mínimo e o máximo da potência (`hp`) para cada número diferente de cilindros (`cyl`). Utilize as funções `aggregate()` ou `dplyr` para realizar esta operação.
 
-**6.** Transforme a coluna `am` do data frame `mtcars` em um fator com rótulos significativos: "Automático" para 0 e "Manual" para 1. Depois, conte quantos carros existem para cada tipo de transmissão.
+**6.** Transforme a coluna `am` do data frame `mtcars` num fator com rótulos significativos: "Automático" para 0 e "Manual" para 1. Depois, conte quantos carros existem para cada tipo de transmissão.
 
 **7.** Utilizando o data frame `mtcars`, aplique a função `sapply()` para calcular o desvio padrão de todas as colunas numéricas.
 
-**8.** Ordene o data frame `mtcars` pela coluna `mpg` em ordem decrescente. Mostre os 5 carros mais econômicos e os 5 menos econômicos.
+**8.** Ordene o data frame `mtcars` pela coluna `mpg` em ordem decrescente. Mostre os 5 carros mais económicos e os 5 menos económicos.
 
 **9.** Crie dois data frames, `carros1` e `carros2`, que contenham diferentes subconjuntos de informações do data frame `mtcars`. Depois, use a função `merge()` para combinar esses data frames com base na coluna `car`.
 
 ## Listas
 
-Em R, uma **lista** é uma estrutura de dados versátil que pode armazenar elementos de diferentes tipos, como vetores, matrizes, data frames, funções e até outras listas. Essa flexibilidade torna as listas uma poderosa ferramenta para manipulação de dados complexos, permitindo armazenar uma coleção heterogênea de elementos em um único objeto.
+Em R, uma **lista** é uma estrutura de dados versátil que pode armazenar elementos de diferentes tipos, como vetores, matrizes, data frames, funções e até outras listas. Esta flexibilidade torna as listas uma poderosa ferramenta para manipulação de dados complexos, permitindo armazenar uma coleção heterogénea de elementos em um único objeto.
 
-* **Flexibilidade**: Ao contrário de vetores, que são homogêneos e podem conter apenas elementos de um único tipo, as listas podem conter elementos de diferentes tipos e tamanhos.
-* **Indexação**: Os elementos de uma lista podem ser acessados de várias maneiras:
-+ **Colchetes duplos [[ ]]**: Usados para acessar elementos específicos de uma lista.
-+ **Operador $**: Usado para acessar elementos nomeados.
+* **Flexibilidade**: Ao contrário dos vetores, que são homogéneos e podem conter apenas elementos de um único tipo, as listas podem conter elementos de diferentes tipos e tamanhos.
+* **Indexação**: Os elementos de uma lista podem ser acedidos de várias maneiras:
++ **Colchetes duplos [[ ]]**: Usados para aceder elementos específicos de uma lista.
++ **Operador $**: Usado para aceder elementos nomeados.
 + **Colchetes simples [ ]**: Retornam uma sublista contendo os elementos especificados.
 
-### Criando e Manipulando Listas
+### Criar e Manipular Listas
 
-Vamos criar uma lista que contém diferentes tipos de elementos, incluindo um vetor, um vetor de caracteres, uma matriz, e uma função:
+Vamos criar uma lista que contém diferentes tipos de elementos, incluindo um vetor, um vetor de caracteres, uma matriz e uma função:
 
 ```{r eval=FALSE}
-# Criando uma lista com diferentes tipos de elementos
+# Criar uma lista com diferentes tipos de elementos
 minha_lista <- list(
   nome = "Estudante",
   idade = 21,
@@ -1999,7 +2000,7 @@ minha_lista <- list(
   media= function(x) mean(x)
 )
 
-# Visualizando a lista
+# Visualizar a lista
 print(minha_lista)
 ## $nome
 ## [1] "Estudante"
@@ -2022,15 +2023,15 @@ print(minha_lista)
 ## $media
 ## function(x) mean(x)
 
-# Acessando um elemento pelo nome usando $
+# Aceder a um elemento pelo nome usando $
 print(minha_lista$nome)
 ## [1] "Estudante"
 
-# Acessando um elemento pelo índice
+# Aceder a um elemento pelo índice
 print(minha_lista[[1]])
 ## [1] "Estudante"
 
-# Acessando uma sublista contendo os dois primeiros elementos
+# Aceder a uma sublista contendo os dois primeiros elementos
 print(minha_lista[1:2])
 ## $nome
 ## [1] "Estudante"
@@ -2038,7 +2039,7 @@ print(minha_lista[1:2])
 ## $idade
 ## [1] 21
 
-# Acessando a segunda nota do vetor "notas" dentro da lista
+# Aceder à segunda nota do vetor "notas" dentro da lista
 print(minha_lista$notas[2])
 ## [1] 90
 ```
@@ -2047,9 +2048,9 @@ print(minha_lista$notas[2])
 
 Listas são extremamente úteis em R para:
 
-* **Armazenar resultados de diferentes tipos**: Em análises estatísticas complexas, os resultados frequentemente consistem em diferentes tipos de dados (como números, tabelas, gráficos e modelos estatísticos).
-* **Agrupar dados heterogêneos**: Quando você precisa manipular um conjunto de dados que inclui diversos tipos de informação (por exemplo, dados brutos, estatísticas resumidas, e resultados de modelos).
-* **Passar múltiplos argumentos para funções**: Listas são usadas para agrupar múltiplos parâmetros para funções, tornando-as uma ferramenta poderosa para programação funcional.
+* **Armazenar resultados de diferentes tipos**: Em análises estatísticas complexas, os resultados muitas vezes consistem em diferentes tipos de dados (como números, tabelas, gráficos e modelos estatísticos).
+* **Agrupar dados heterogéneos**: Quando se precisa manipular um conjunto de dados que inclui diversos tipos de informação (por exemplo, dados brutos, estatísticas resumidas, e resultados de modelos).
+* **Passar múltiplos argumentos para funções**: As listas são usadas para agrupar múltiplos parâmetros para funções, tornando-as uma ferramenta poderosa para programação funcional.
 
 ### Exercícios
 
@@ -2059,7 +2060,7 @@ Listas são extremamente úteis em R para:
 * Idade: 21
 * Notas: Um vetor com as notas em Estatística (85), Matemática (90), e Computação (95).
 
-Depois de criar a lista, acesse e imprima:
+Depois de criar a lista, aceda e imprima:
 
 1. O nome do estudante.
 2. A idade do estudante.
@@ -2081,7 +2082,7 @@ Em `estudante2`, use os valores:
 * Notas: 70, 75, 80
 * Status: “Aprovado”
 
-Agora, combine `estudante1` e `estudante2` em uma nova lista chamada `turma`, e imprima a lista `turma`.
+Agora, combine `estudante1` e `estudante2` numa nova lista chamada `turma`, e imprima a lista `turma`.
 
 **4.** Utilizando a lista `turma` criada no exercício anterior, faça as seguintes operações:
 
@@ -2094,7 +2095,7 @@ Agora, combine `estudante1` e `estudante2` em uma nova lista chamada `turma`, e 
 * `turma1`: Contendo `estudante1` e `estudante2`.
 * `turma2`: Contendo dois novos estudantes de sua escolha.
 
-Acesse e imprima:
+Aceda e imprima:
 
 (a) O nome do primeiro estudante da `turma2`.
 (b) A média das notas do segundo estudante da `turma1`.
@@ -2102,11 +2103,11 @@ Acesse e imprima:
 
 # Estruturas de Seleção
 
-Em R, as estruturas de seleção ou decisão são usadas para controlar o fluxo de execução do código com base em condições específicas. Essas estruturas permitem executar diferentes blocos de código dependendo de valores ou condições lógicas. As estruturas de seleção mais comuns em R são `if`, `else`, e `else if`.
+Em R, as estruturas de seleção ou decisão são usadas para controlar o fluxo de execução do código com base em condições específicas. Estas estruturas permitem executar diferentes blocos de código dependendo de valores ou condições lógicas. As estruturas de seleção mais comuns em R são `if`, `else`, e `else if`.
 
 ## Condicional `if`
 
-A instrução `if` executa um bloco de código somente se uma condição for verdadeira. Caso contrário, o bloco de código dentro do `if` é ignorado.
+A instrução `if` executa um bloco de código apenas se uma condição for verdadeira. Caso contrário, o bloco de código dentro do `if` é ignorado.
 
 ```{r eval=FALSE}
 # Sintaxe	
@@ -2118,19 +2119,19 @@ if (condição) {
 **Exemplo 1:**
 
 ```{r eval=FALSE}
-x <- 10
+idade <- 18
 
-if (x > 5) {
-	  print("x é maior que 5")
+if (idade >= 18) {
+	  print("Maior de idade")
 }
-## [1] "x é maior que 5"
+## [1] "Maior de idade"
 ```
 
-Neste exemplo, a condição `x > 5` é verdadeira, então o código dentro do bloco `if` é executado.
+Neste exemplo, como a variável `idade` é 18, a condição `idade >= 18` é verdadeira, então o R executa o código dentro do `if` e imprime `“Maior de idade”`.
 
-## Condicional `if...else`
+## Estrutura `if...else`
 
-A estrutura `if...else` permite executar um bloco de código quando a condição é verdadeira e outro bloco de código quando a condição é falsa.
+A estrutura `if...else` permite executar um bloco de código se a condição for verdadeira, e um outro bloco de código se a condição for falsa.
 
 ```{r eval=FALSE}
 # Sintaxe
@@ -2144,22 +2145,21 @@ if (condição) {
 **Exemplo 2:**
 
 ```{r eval=FALSE}
-x <- 3
+idade <- 16
 
-if (x > 5) {
-	  print("x é maior que 5")
+if (idade >= 18) {
+	  print("Maior de idade")
 } else {
-    print("x não é maior que 5")
+    print("Menor de idade")
 }
-## [1] "x não é maior que 5"
+## [1] "Menor de idade"
 ```
 
-Aqui, a condição `x > 5` é falsa, então o bloco de código dentro de `else` é executado.
+Como a variável `idade` é 16, a condição `idade >= 18` é falsa, então o R executa o bloco de código dentro do `else` e imprime `“Menor de idade”`.
 
-## Condicional `if...else if...else`
+## Condicional `else if`
 
-A estrutura `if...else if...else` permite testar múltiplas condições em sequência. Executa o bloco de código do primeiro teste que resulta em
-verdadeiro.
+A estrutura `else if` permite testar múltiplas condições. Quando uma das condições é verdadeira, o R executa o código associado e ignora os restantes `else if` ou `else`.
 
 ```{r eval=FALSE}
 # Sintaxe
@@ -2175,19 +2175,19 @@ if (condição1) {
 **Exemplo 3:**
 
 ```{r eval=FALSE}
-x <- 7
+nota <- 85
 
-if (x > 10) {
-	  print("x é maior que 10")
-} else if (x > 5) {
-	    print("x é maior que 5, mas não maior que 10")
+if (nota >= 90) {
+  print("Excelente")
+} else if (nota >= 70) {
+  print("Bom")
 } else {
-	    print("x não é maior que 5")
+  print("Insuficiente")
 }
-## [1] "x é maior que 5, mas não maior que 10"
+## [1] "Bom"
 ```
 
-Neste caso, a primeira condição `x > 10` é falsa, mas a segunda `x > 5` é verdadeira, então o segundo bloco de código é executado.
+Neste caso, a variável `nota` é 85, então o código imprime `“Bom”` porque a condição `nota >= 70` é verdadeira.
 
 ## A função `ifelse()`
 
@@ -2208,7 +2208,7 @@ print(resultado)
 ## [4] "não é maior que 5"
 ```
 
-Aqui, `ifelse()` aplica a condição `valores > 5` a cada elemento do vetor valores e retorna “maior que 5” se a condição for verdadeira ou “não é maior que 5” caso contrário.
+Aqui, `ifelse()` aplica a condição `valores > 5` a cada elemento do vetor `valores` e retorna “maior que 5” se a condição for verdadeira ou “não é maior que 5” caso contrário.
 
 ## Exemplos
 
@@ -2261,7 +2261,7 @@ if (a>0) {
 }
 ```
 
-**Exemplo 7:** Quais os valores de `x` e `y` no final da execução
+**Exemplo 7:** Quais são os valores de `x` e `y` no final da execução?
 
 ```{r eval=FALSE}
 x = 1
@@ -2276,12 +2276,11 @@ if (y == 1){
 
 **Exemplo 8:**
 
--   Se `x=1` qual será o valor de `x` no final da execução?
+- Se `x=1` qual será o valor de `x` no final da execução?
 
--   Qual teria de ser o valor de `x` para que no final da execução fosse
-    -1?
+- Qual teria de ser o valor de `x` para que no final da execução fosse -1?
 
--   Há uma parte do programa que nunca é executada: qual é e porquê?
+- Há uma parte do programa que nunca é executada: qual é e porquê?
 
 ```{r eval=FALSE}
 if (x == 1){  
@@ -2298,19 +2297,13 @@ if (x == 1){
 
 ## Exercícios
 
-**1.** Escreva um programa em R que leia um número do usuário e exiba “O número é positivo” se for maior que zero.
+**1.** Escreva um programa em R que leia um número do utilizador e exiba “O número é positivo” se for maior que zero.
 
-**2.** Crie um programa em R que leia um número inteiro do usuário e imprima “Par” se o número for par e “Ímpar” caso contrário.
+**2.** Crie um programa em R que leia um número inteiro do utilizador e imprima “Par” se o número for par, e “Ímpar” caso contrário.
 
-**3.** Escreva um programa em R que leia um número e exiba se ele está no intervalo [0, 10], [11, 20], ou maior que 20. Considere que os intervalos [0, 10] e [11, 20] são inclusivos. Por exemplo, para o número 15, o programa deve exibir "O número está no intervalo [11, 20]".
+**3.** Escreva um programa em R que leia um número e exiba se ele está no intervalo [0, 10], [11, 20], ou maior que 20. Considere que os intervalos [0, 10] e [11, 20] são inclusivos. Exemplo: para o número 15, o programa deve exibir "O número está no intervalo [11, 20]".
 
-**4.** **Exercício 4:** Escreva um programa em R que leia a idade de uma pessoa e classifique-a como “Criança”, “Adolescente”, “Adulto” ou “Idoso”. Considere:
-* Criança: 0-12 anos
-* Adolescente: 13-17 anos
-* Adulto: 18-64 anos
-* Idoso: 65 anos ou mais
-
-Se a idade inserida for negativa, o programa deve exibir "Idade inválida". Exemplo de entrada: 25; Saída esperada: "Adulto".
+**4.** **Exercício 4:** Escreva um programa em R que leia a idade de uma pessoa e a classifique como “Criança” (0-12 anos), “Adolescente” (13-17 anos), “Adulto” (18-64 anos), ou “Idoso” (65 anos ou mais). Se a idade inserida for negativa, o programa deve exibir “Idade inválida”.
 
 **5.** Escreva um programa em R que leia o preço original de um produto e aplique um desconto com base no seguinte critério:
 * Desconto de 5% se o preço for inferior a \$100
@@ -2326,11 +2319,11 @@ Se o preço inserido for negativo, o programa deve exibir "Preço inválido". Ex
 
 Se o ano inserido for negativo, o programa deve exibir "Ano inválido". Exemplo de entrada: 2000; Saída esperada: "Ano bissexto".		
 
-**8.** Escreva um programa que leia um número inteiro entre 0 e 999, e o descreva em termos do número de centenas, dezenas e unidades. Por exemplo, para 304, o programa deve exibir “3 centenas 0 dezenas e 4 unidades”. Caso o número inteiro não pertença ao intervalo [0;999], deverá imprimir um aviso “Número fora do intervalo”. Exemplo de entrada: 256; Saída esperada: "2 centenas 5 dezenas e 6 unidades".
+**8.** Escreva um programa que leia um número inteiro entre 0 e 999, e o descreva em termos de centenas, dezenas e unidades. Por exemplo, para 304, o programa deve exibir “3 centenas 0 dezenas e 4 unidades”. Caso o número inteiro não pertença ao intervalo [0;999], deverá imprimir um aviso “Número fora do intervalo”. 
 
 **9.** Escreva um programa em R que leia um número inteiro positivo (menor ou igual a 5) e escreva no ecrã a sua representação em numeração romana. Se o número inserido for maior que 5 ou menor que 1, o programa deve exibir "Número fora do intervalo". Exemplo de entrada: 3; Saída esperada: "III".
 
-**10.** Escreva um programa em R que leia quatro números inteiros (um de cada vez) e escreva após cada interação qual o menor número lido até ao momento. Segue-se um exemplo da interação com o computador.
+**10.** Escreva um programa em R que leia quatro números inteiros (um de cada vez) e exiba após cada iteração qual o menor número lido até ao momento. Exemplo:
 
   `Introduza um numero inteiro: 4`
   
