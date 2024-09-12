@@ -3,6 +3,47 @@ editor_options:
   markdown: 
     wrap: 72
 ---
+# Normas de Funcionamento
+
+**Docente**: Renato de Paula
+
+Gabinete: 6.4.21
+
+email: rrpaula@ciencias.ulisboa.pt
+
+**Monitora**: Ana
+
+Gabinete:
+
+email: 
+
+**AVALIAÇÃO**
+
+* Dois exercícios práticos a realizar em aula e dois testes.
+
+**ou**
+
+* Exame final
+
+  + Nota mínima de 8.5 valores em cada um dos testes.
+  + Datas de realização dos testes:
+    + Primeiro teste:
+    + Segundo teste:
+
+* Nota final:
+  + (1): $0.10\times(Ex1) + 0.10\times(Ex2) + 0.40\times(Teste1) + 0.40\times(Teste2)$
+  **ou**
+  + (2): Nota do Exame final
+
+* Exercício prático não efetuado tem cotação igual a zero.
+
+**Consulta permitida**
+
+* Teste 1: formulário com dimensão máxima igual a uma folha A4, frente e verso.
+
+* Teste 2: formulário com dimensão máxima igual a uma folha A4, frente e verso.
+
+* O formulário deve ser preparado individualmente e escrito à mão (não podem ser fotocópias).
 
 # R e RStudio
 
@@ -32,13 +73,13 @@ Existem quatro painéis principais no ambiente de trabalho do RStudio:
 
 - **Environment/Histórico**. O painel “Environment” (Ambiente) exibe informações sobre os objetos actualmente carregados na sessão do R, como conjuntos de dados, funções definidas pelo utilizador e outras variáveis. Isto ajuda a gerir e visualizar o conteúdo da memória de trabalho. A aba “History” (Histórico) armazena todos os comandos executados durante a sessão, permitindo fácil recuperação e reutilização de códigos anteriores.
 
-- **Painel Inferior Direito**. Este painel é multifuncional e contém várias abas úteis:
+* **Painel Inferior Direito**. Este painel é multifuncional e contém várias abas úteis:
 
-* **Files** (Ficheiros): lista todos os ficheiros no diretório de trabalho actual.
-* **Plots** (Gráficos): exibe quaisquer gráficos gerados durante a análise.
-* **Packages** (Pacotes): permite visualizar os pacotes instalados e carregados na sessão.
-* **Help** (Ajuda): fornece acesso ao sistema de ajuda embutido em HTML, que oferece documentação detalhada sobre funções e pacotes.
-* **Viewer** (Visualizador): utilizado para visualizar documentos HTML, PDFs e outros conteúdos dentro do RStudio.
+  + **Files** (Ficheiros): lista todos os ficheiros no diretório de trabalho actual.
+  + **Plots** (Gráficos): exibe quaisquer gráficos gerados durante a análise.
+  + **Packages** (Pacotes): permite visualizar os pacotes instalados e carregados na sessão.
+  + **Help** (Ajuda): fornece acesso ao sistema de ajuda embutido em HTML, que oferece documentação detalhada sobre funções e pacotes.
+  + **Viewer** (Visualizador): utilizado para visualizar documentos HTML, PDFs e outros conteúdos dentro do RStudio.
 
 ## Atalhos
 
@@ -77,7 +118,7 @@ Nas notas de aula, o código R digitado no console é exibido em caixas cinzenta
 
 No R, o caractere `#` é utilizado para inserir comentários no código. Qualquer texto que aparece após `#` na mesma linha é ignorado pelo R durante a execução. Comentários são úteis para adicionar explicações ou anotações no código, como no exemplo abaixo:
 
-```{r}
+```{r eval=FALSE}
 # Este é um exemplo de comentário
 2 + 2 # O R vai calcular 2 mais 2
 ## [1] 4
@@ -2385,7 +2426,7 @@ print(paste("A área do retângulo é:", area_obj, "cm²"))
 
 * **Variáveis Locais**: Dentro da função `calcula_area`, as variáveis `largura` e `altura` são **locais**. Elas existem apenas durante a execução da função e são destruídas após a conclusão.
 * **Variáveis Globais**: As variáveis `largura_obj` e `altura_obj` são **globais** dentro do script, ou seja, são acessíveis em todo o script, fora da função.
-* **Importância da Nomenclatura**: Usar nomes diferentes para variáveis locais e globais é uma prática recomendada para evitar confusões e melhorar a legibilidade do código.
+* **Importância da Nomenclatura**: É uma boa prática usar nomes diferentes para variáveis locais e globais para evitar confusão e melhorar a legibilidade do código.
 
 **Passagem de Argumentos com Valores Padrão**
 
@@ -2457,8 +2498,7 @@ print(minha_funcao())
 print(x) 
 ```
 
-**Exercício 2:** Qual é o resultado da chamada da função
-`dados_estudante`?
+**Exercício 2:** Qual é o resultado da chamada da função `dados_estudante`?
 
 ```{r eval=FALSE}
 dados_estudante <- function(nome, altura=167){
@@ -2468,8 +2508,7 @@ dados_estudante <- function(nome, altura=167){
 dados_estudante("Joana",160)
 ```
 
-**Exercício 3:** Qual é a sintaxe correta para definir uma função em R
-que soma dois números?
+**Exercício 3:** Qual é a sintaxe correta para definir uma função em R que soma dois números?
 
 (a) `sum <- function(x, y) {return(x + y)}`
 
@@ -2512,19 +2551,19 @@ resultado <- adi(3,2)
 
 ## Exercícios
 
-**1.** Crie uma função chamada `quadrado()` que recebe um único argumento numérico `x` e retorna o quadrado de `x`. Teste a função com os valores 3, 5 e 7.
+**1.** Crie uma função chamada `quadrado()` que recebe um único argumento numérico `x` e devolva o quadrado de `x`. Teste a função com os valores 3, 5 e 7.
 
-**2.** Implemente uma função chamada `hipotenusa(a,b)` que calcula a hipotenusa de um triângulo retângulo dado os comprimentos dos dois catetos, a e b. A função deve retornar o comprimento da hipotenusa usando o Teorema de Pitágoras. 
+**2.** Implemente uma função chamada `hipotenusa(a,b)` que calcule a hipotenusa de um triângulo retângulo dados os comprimentos dos dois catetos, a e b. A função deve devolver o comprimento da hipotenusa utilizando o Teorema de Pitágoras. 
 
-**3.** Escreva uma função chamada `divisao_segura(numerador, denominador)` que retorna o resultado da divisão ou uma mensagem de erro apropriada se o denominador for zero.
+**3.** Escreva uma função chamada `divisao_segura(numerador, denominador)` que devolva o resultado da divisão ou uma mensagem de erro apropriada se o denominador for zero.
 
-**4.** Escreva uma função que receba dois inteiros e devolva o maior deles. Teste a função escrevendo um programa que recebe dois números inteiros do utilizador e imprime o resultado de chamada à função. Depois, escreva uma segunda função que devolva o menor deles, aproveitando a primeira função.
+**4.** Escreva uma função que receba dois inteiros e devolva o maior deles. Teste a função escrevendo um programa que recebe dois números inteiros do utilizador e imprime o resultado da chamada à função. Depois, escreva uma segunda função que devolva o menor deles, aproveitando a primeira função.
 
 **5.** Escreva uma função que devolva o maior de três números inteiros, utilizando a função `maior()` do exercício anterior.
 
-**6.** Crie uma função chamada `analise_vetor()` que recebe um vetor numérico e retorna outro vetor contendo a soma, a média, o desvio padrão e o valor máximo do vetor. Use a função para analisar o vetor `c(4, 8, 15, 16, 23, 42)`. Funções auxiliares `sum(), mean(), sd(), max()`.
+**6.** Crie uma função chamada `analise_vetor()` que receba um vetor numérico e devolva outro vetor contendo a soma, a média, o desvio padrão e o valor máximo do vetor. Use a função para analisar o vetor `c(4, 8, 15, 16, 23, 42)`. Funções auxiliares `sum(), mean(), sd(), max()`.
 
-**7.** Implemente uma função chamada `classificar_numero()` que classifica um número inteiro como “positivo”, “negativo”, ou “zero”.
+**7.** Implemente uma função chamada `classificar_numero()` que classifique um número inteiro como “positivo”, “negativo”, ou “zero”.
 
 **8.** Escreva uma função que calcule o IMC (Índice de Massa Corporal) com base no peso (kg) e altura (m) fornecidos como argumentos e classifique o resultado com base na tabela:
 
@@ -2537,18 +2576,17 @@ resultado <- adi(3,2)
 | De 35 a 39.9             | Obesidade grau II       |
 | Igual ou maior que 40    | Obesidade grau III      |
 
-Lembre que IMC = $\frac{\text{Peso}}{\text{Altura}^2}$.
+Lembre-se de que IMC = $\frac{\text{Peso}}{\text{Altura}^2}$.
 
-**9.** Crie funções em R para converter valores entre diferentes moedas com base em taxas de câmbio. Implemente e teste as funções, e escreva um programa que solicite ao utilizador um valor em euros e imprima a conversão desse valor para algumas das principais moedas, como dólar, libra, iene e real.
-
+**9.** Crie funções em R para converter valores entre diferentes moedas com base nas taxas de câmbio. Implemente e teste as funções, e escreva um programa que solicite ao utilizador um valor em euros e imprima a conversão desse valor para algumas das principais moedas, como dólar, libra, iene e real.
 
 # Scripts em R
 
-Um **script** em R é um arquivo que contém um conjunto de definições, como variáveis, funções e blocos de código, que podem ser reutilizados em outros programas R. Scripts são ferramentas essenciais para automatizar tarefas e para a reprodutibilidade da análise de dados.
+Um **script** em R é um ficheiro que contém um conjunto de definições, como variáveis, funções e blocos de código, que podem ser reutilizados em outros programas R. Scripts são ferramentas essenciais para automatizar tarefas e para garantir a reprodutibilidade da análise de dados.
 
-* **Criando um Script**: Para criar um script em R, basta salvar seu código em um arquivo com a extensão “.R”. Este arquivo pode então ser executado ou reutilizado em outras sessões de R.
+* **Criar um Script**: Para criar um script em R, basta gravar o código num ficheiro com a extensão “.R”. Este ficheiro pode então ser executado ou reutilizado noutras sessões de R.
 
-**Exemplo:** Salve o seguinte código em um arquivo chamado `meu_script.R`:
+**Exemplo:** Guarde o seguinte código num ficheiro chamado `meu_script.R`:
 
 ```{r eval=FALSE}
 produto function(x,y){
@@ -2556,35 +2594,35 @@ produto function(x,y){
 }
 ```
 
-**Utilizando do script**
+**Executar o script**
 
-Para executar o script que você criou, utilize a função `source()` no console do R ou dentro de outro script. Isso permitirá que o R leia e execute todas as linhas de código do script.
+Para executar o script que criou, utilize a função `source()` no console do R ou dentro de outro script. Isto permitirá que o R leia e execute todas as linhas de código do script.
 
-1. **Executando no Diretório de Trabalho Atual**: Se o arquivo `meu_script.R` estiver no diretório de trabalho atual, você pode executá-lo simplesmente digitando:
+1. **Executar no Diretório de Trabalho Atual**: Se o ficheiro `meu_script.R` estiver no diretório de trabalho atual, pode executá-lo simplesmente escrevendo:
 
 ```{r eval=FALSE}
 source("meu_script.R")
 ```
 
-2. **Executando a Partir de Outro Diretório**: Se o arquivo estiver localizado em um diretório diferente do diretório de trabalho atual, você precisará fornecer o caminho completo para o arquivo:
+2. **Executar a Partir de Outro Diretório**: Se o ficheiro estiver localizado num diretório diferente do diretório de trabalho atual, terá de fornecer o caminho completo para o ficheiro:
 
 ```{r eval=FALSE}
-source("/caminho/para/seu/script/meu_script.R")
+source("/caminho/para/o/seu/script/meu_script.R")
 ```
 
 **O que Acontece Quando Executamos um Script?**
 
-Quando você usa o comando `source()`, o R lê e executa todas as linhas do script. Qualquer função, variável ou resultado de operações realizadas dentro do script será carregado e ficará disponível no ambiente de trabalho após a execução. Por exemplo, após executar o script acima, a função `produto()` estará disponível para uso:
+Quando utiliza o comando `source()`, o R lê e executa todas as linhas do script. Qualquer função, variável ou resultado de operações realizadas dentro do script será carregado e ficará disponível no ambiente de trabalho após a execução. Por exemplo, após executar o script acima, a função `produto()` estará disponível para ser utilizada:
 
 ```{r eval=FALSE}
-# Agora você pode usar a função 'produto'
+# Agora pode utilizar a função 'produto'
 produto(2,3)
 ## [1] 6
 ```
 
-**Observações Importantes**
+**Notas Importantes**
 
-* **Diretório de trabalho**: O diretório de trabalho é o local onde o R procura por arquivos para leitura ou onde salva arquivos. Você pode verificar o diretório de trabalho atual usando `getwd()` e alterar para um novo diretório com `setwd("caminho/do/diretorio")`.
+* **Diretório de trabalho**: O diretório de trabalho é o local onde o R procura por ficheiros para leitura ou onde guarda ficheiros. Pode verificar o diretório de trabalho atual utilizando `getwd()` e mudar para um novo diretório com `setwd("caminho/do/diretorio")`.
 
 ## Exercícios
 
@@ -2592,7 +2630,7 @@ produto(2,3)
 
 <!-- -->
 
-(a) Crie um script `quadrado.R` que contenha funções para calcular o perímetro e a área de um quadrado, dado o comprimento do lado. Utilize o script `quadrado.R` em outro script para calcular o perímetro e a área de um quadrado com lado de comprimento 5.
+(a) Crie um script `quadrado.R` que contenha funções para calcular o perímetro e a área de um quadrado, dado o comprimento do lado. Utilize o script `quadrado.R` noutro script para calcular o perímetro e a área de um quadrado com lado de comprimento 5.
 
 (b) Crie um script `estatistica.R` que contenha funções para ordenar uma amostra, calcular a média, a variância e o desvio padrão de um vetor numérico.
 
@@ -2600,26 +2638,26 @@ produto(2,3)
 
 # Leitura de dados
 
-R é uma linguagem poderosa para análise de dados e oferece diversas funções para importar dados de diferentes formatos. Independentemente do formato, o processo básico de leitura de dados em R segue alguns passos comuns:
+O R é uma linguagem poderosa para análise de dados e oferece diversas funções para importar dados de diferentes formatos. Independentemente do formato, o processo básico de leitura de dados em R segue alguns passos comuns:
 
-1. **Especificar o caminho do arquivo**: Onde o arquivo está localizado.
-2. **Indicar as características do arquivo**: Como delimitador, presença de cabeçalhos, tipos de dados, etc.
-3. **Ler os dados e armazená-los em um objeto**: Geralmente um data frame para fácil manipulação e análise.
+1. **Especificar o caminho do ficheiro**: Onde o ficheiro está localizado.
+2. **Indicar as características do ficheiro**: Como delimitador, presença de cabeçalhos, tipos de dados, etc.
+3. **Ler os dados e armazená-los num objeto**: Geralmente um data frame para fácil manipulação e análise.
 
-## Leitura de Dados da Entrada do Usuário
+## Leitura de Dados da Entrada do Utilizador
 
-A função `scan()` é usada para ler dados da entrada padrão (teclado) ou de um arquivo, e retorna um vetor. Um uso comum de `scan()` é para entrada de dados manual:
+A função `scan()` é usada para ler dados da entrada padrão (teclado) ou de um ficheiro, e devolve um vetor. Um uso comum de `scan()` é para entrada de dados manual:
 
 ```{r eval=FALSE}
-# Solicita ao usuário para digitar números
+# Solicita ao utilizador para introduzir números
 numeros <- scan()
 ```
 
-Após digitar `scan()`, o usuário pode inserir uma série de números separados por espaços e pressionar Enter para concluir a entrada.
+Após escrever `scan()`, o utilizador pode inserir uma série de números separados por espaços e pressionar Enter para concluir a entrada.
 
 ## Diretório de trabalho
 
-O **diretório de trabalho** (working directory) em R é o local padrão onde o R lê e grava arquivos. Quando você importa dados ou salva resultados, o R utiliza o diretório de trabalho como ponto de referência. Ter um diretório de trabalho configurado corretamente é essencial para facilitar o acesso a arquivos de dados e a gravação de saídas.
+O **diretório de trabalho** (working directory) em R é o local padrão onde o R lê e grava ficheiros. Quando importa dados ou guarda resultados, o R utiliza o diretório de trabalho como ponto de referência. Ter um diretório de trabalho configurado corretamente é essencial para facilitar o acesso a ficheiros de dados e gravação de saídas.
 
 **Funções Principais para Manipulação de Diretório**
 
@@ -2632,31 +2670,31 @@ Para verificar o diretório de trabalho atual, utilize `getwd()`:
 getwd()
 ```
 
-A saída pode ser semelhante a esta, dependendo do seu sistema operacional:
+A saída pode ser semelhante a esta, dependendo do seu sistema operativo:
 
 ```{r eval=FALSE}
 # Exemplo de saída no Windows
-## [1] "C:/Users/Usuario/Documents"
+## [1] "C:/Users/Utilizador/Documents"
 
 # Exemplo de saída no Mac
-## [1] "/Users/Usuario/Documents"
+## [1] "/Users/Utilizador/Documents"
 ```
 
 Para alterar o diretório de trabalho para uma pasta específica, use `setwd()`:
 
 ```{r eval=FALSE}
-# Define o diretório de trabalho para "C:/Users/Usuario/Documents/ProjetosR"
-setwd("C:/Users/Usuario/Documents/ProjetosR")
+# Define o diretório de trabalho para "C:/Users/Utilizador/Documents/ProjetosR"
+setwd("C:/Users/Utilizador/Documents/ProjetosR")
 
 # Verifica se o diretório de trabalho foi alterado
 print(getwd())
-## [1] "C:/Users/Usuario/Documents/ProjetosR"
+## [1] "C:/Users/Utilizador/Documents/ProjetosR"
 ```
 
-Ao definir o diretório de trabalho corretamente, você pode importar arquivos diretamente sem precisar especificar o caminho completo. Por exemplo, se o arquivo `dados.csv` estiver no diretório de trabalho, você pode lê-lo facilmente:
+Ao definir corretamente o diretório de trabalho, pode importar ficheiros diretamente sem precisar especificar o caminho completo. Por exemplo, se o ficheiro `dados.csv` estiver no diretório de trabalho, pode lê-lo facilmente:
 
 ```{r eval=FALSE}
-# Lê o arquivo "dados.csv" no diretório de trabalho atual
+# Lê o ficheiro "dados.csv" no diretório de trabalho atual
 dados <- read.csv("dados.csv")
 
 # Exibe as primeiras linhas do conjunto de dados
@@ -2665,32 +2703,32 @@ head(dados)
 
 ## A Função `read.table()`
 
-A função `read.table()` é uma das mais versáteis em R para a leitura de arquivos de texto em formato tabular. Ela permite importar dados de arquivos de texto e configurá-los de acordo com suas características.  Faça o download do arquivo `dados.txt` em [link](https://renatorpaula.wixsite.com/renato/laboratorio-estatistica) para praticar.
+A função `read.table()` é uma das mais versáteis em R para a leitura de ficheiros de texto em formato tabular. Ela permite importar dados de ficheiros de texto e configurá-los de acordo com suas características.  Faça o download do ficheiro `dados.txt` em [link](https://renatorpaula.wixsite.com/renato/laboratorio-estatistica) para praticar.
 
 ```{r eval=FALSE}
-# Leitura de arquivo txt com read.table()
+# Leitura de ficheiro txt com read.table()
 dados <- read.table(file = "dados.txt", header = TRUE, sep = "")
 print(dados)
 ```
 
 **Argumentos Comuns de `read.table()`**
 
-* `file`: Especifica o nome do arquivo ou o caminho do arquivo para leitura.
-* `header`: Indica se a primeira linha do arquivo contém os nomes das colunas. Se `header = TRUE`, a primeira linha é considerada como cabeçalho.
+* `file`: Especifica o nome do ficheiro ou o caminho do ficheiro para leitura.
+* `header`: Indica se a primeira linha do ficheiro contém os nomes das colunas. Se `header = TRUE`, a primeira linha é considerada como cabeçalho.
 * `sep`: Define o caractere separador entre os campos. O padrão é uma vírgula (,), mas pode ser especificado para outros caracteres, como espaço (""), ponto e vírgula (;), etc.
 * `dec`: Define o caractere utilizado para separar a parte inteira da parte decimal dos números. Por exemplo, pode ser ponto (.) ou vírgula (,).
-* `nrows`: Especifica o número máximo de linhas a serem lidas do arquivo, útil para ler apenas uma parte do arquivo.
-* `na.strings`: Define quais valores no arquivo devem ser interpretados como `NA` (valores ausentes), como "NA", "N/A", etc.
-* `skip`: Indica o número de linhas a serem ignoradas no início do arquivo antes de começar a leitura.
-* `comment.char`: Define o caractere usado para denotar comentários no arquivo. Linhas que começam com este caractere serão ignoradas.
+* `nrows`: Especifica o número máximo de linhas a serem lidas do ficheiro, útil para ler apenas uma parte do ficheiro.
+* `na.strings`: Define quais valores no ficheiro devem ser interpretados como `NA` (valores ausentes), como "NA", "N/A", etc.
+* `skip`: Indica o número de linhas a serem ignoradas no início do ficheiro antes de começar a leitura.
+* `comment.char`: Define o caractere usado para denotar comentários no ficheiro. Linhas que começam com este caractere serão ignoradas.
 
-Para ver todas as opções disponíveis na função `read.table()`, você pode usar:
+Para ver todas as opções disponíveis na função `read.table()`, pode usar:
 
 ```{r}
 args(read.table)
 ```
 
-Se o arquivo for um CSV (valores separados por vírgula), você pode utilizar `read.table()` com o argumento `sep` apropriado:
+Se o ficheiro for um CSV (valores separados por vírgula), pode utilizar `read.table()` com o argumento `sep` apropriado:
 
 ```{r eval=FALSE}
 dados_csv <- read.table("dados.csv", header = TRUE, sep = ",")
@@ -2698,18 +2736,18 @@ dados_csv <- read.table("dados.csv", header = TRUE, sep = ",")
 
 ## A função `read.csv()`
 
-A função `read.csv()` é otimizada para a leitura de arquivos CSV (Comma-Separated Values), que são arquivos de texto onde cada linha representa um registro e os valores são separados por vírgulas. A principal diferença entre `read.csv()` e `read.table()` é que o separador padrão em `read.csv()` é uma vírgula.
+A função `read.csv()` está otimizada para a leitura de ficheiros CSV (Comma-Separated Values), que são ficheiros de texto onde cada linha representa um registo e os valores são separados por vírgulas. A principal diferença entre `read.csv()` e `read.table()` é que o separador padrão em `read.csv()` é uma vírgula.
 
 ```{r eval=FALSE}
-# Leitura de arquivo CSV com read.csv
+# Leitura de ficheiro CSV com read.csv
 dados_csv <- read.csv("dados.csv", header = TRUE)
 ```
 
-Aqui, o argumento `header = TRUE` indica que a primeira linha do arquivo contém os nomes das colunas. Outros argumentos são semelhantes aos de `read.table()`.
+Aqui, o argumento `header = TRUE` indica que a primeira linha do ficheiro contém os nomes das colunas. Outros argumentos são semelhantes aos de `read.table()`.
 
 ## A função `read.csv2()`
 
-A função `read.csv2()` é semelhante à `read.csv()`, mas é projetada para lidar com arquivos CSV onde o separador padrão é um ponto e vírgula (;) e o separador decimal é uma vírgula (,). Este formato é comum em alguns países europeus.
+A função `read.csv2()` é semelhante à `read.csv()`, mas é projetada para lidar com ficheiros CSV onde o separador padrão é um ponto e vírgula (;) e o separador decimal é uma vírgula (,). Este formato é comum em alguns países europeus.
 
 ```{r eval=FALSE}
 # Leitura de CSV com separador ponto e vírgula
@@ -2718,7 +2756,7 @@ dados_csv2 <- read.csv2("dados.csv2", header = TRUE)
 
 ## A Função `read_excel()` do Pacote `readxl`
 
-Para ler arquivos Excel (.xls e .xlsx), usamos a função `read_excel()` do pacote `readxl`. Este pacote precisa ser instalado e carregado antes de seu uso.
+Para ler ficheiros Excel (.xls e .xlsx), usamos a função `read_excel()` do pacote `readxl`. Este pacote precisa ser instalado e carregado antes da sua utilização.
 
 ```{r eval=FALSE}
 library(readxl)
@@ -2731,17 +2769,17 @@ read_excel(path, sheet = NULL, range = NULL, col_names = TRUE,
 
 **Principais Parâmetros de `read_excel()`**
 
-* `path`: O caminho do arquivo Excel a ser lido. Este é um argumento obrigatório e pode ser um caminho local ou uma URL.
-* `sheet`: O nome ou o índice da aba (planilha) do Excel a ser lida. Se não especificado, a função lerá a primeira aba.
-* `range`: Um intervalo específico a ser lido, como "A1:D10". Se `NULL` (padrão), a função lê toda a aba.
-* `col_names`: Um argumento lógico (`TRUE` ou `FALSE`) que indica se a primeira linha da planilha deve ser usada como nomes das colunas no data frame. O padrão é `TRUE`.
+* `path`: O caminho do ficheiro Excel a ser lido. Este é um argumento obrigatório e pode ser um caminho local ou uma URL.
+* `sheet`: O nome ou o índice da aba (folha) do Excel a ser lida. Se não for especificado, a função irá ler a primeira folha.
+* `range`: Um intervalo específico a ser lido, como "A1:D10". Se `NULL` (padrão), a função lê toda a folha.
+* `col_names`: Um argumento lógico (`TRUE` ou `FALSE`) que indica se a primeira linha da folha deve ser usada como nomes das colunas no data frame. O padrão é `TRUE`.
 * `col_types`: Um vetor de tipos de colunas que podem ser `"blank"`, `"numeric"`, `"date"`, `"text"`, ou `"guess"`. O padrão é `NULL`, o que permite que a função adivinhe os tipos de coluna automaticamente.
 * `na`: Um vetor de strings que devem ser interpretadas como valores ausentes (`NA`). O padrão é string vazia ("").
 * `trim_ws`: Um argumento lógico (`TRUE` ou `FALSE`) que indica se os espaços em branco devem ser removidos do início e do fim dos valores de texto. O padrão é `TRUE`.
 * `skip`: Número de linhas a serem ignoradas antes de começar a leitura. O padrão é 0.
 * `n_max`: Número máximo de linhas a serem lidas. O padrão é `Inf`, o que significa que todas as linhas são lidas.
 
-**Exemplo de Uso**: Vamos considerar um exemplo em que temos um arquivo Excel chamado `"instragram.xlsx"` com três planilhas: `"Sheet1"`, `"Sheet2"` e `"Sheet3"`. Este arquivo pode ser baixado [aqui](https://renatorpaula.wixsite.com/renato/laboratorio-estatistica). Vamos ler a primeira planilha (`Sheet1`):
+**Exemplo de Utilização**: Vamos considerar um exemplo em que temos um ficheiro Excel chamado `"instragram.xlsx"` com três folhas: `"Sheet1"`, `"Sheet2"` e `"Sheet3"`. Este ficheiro pode ser descarregado [aqui](https://renatorpaula.wixsite.com/renato/laboratorio-estatistica). Vamos ler a primeira folha (`Sheet1`):
 
 ```{r eval=FALSE}
 dados <- read_excel(path = "instagram.xlsx",
@@ -2752,7 +2790,7 @@ dados <- read_excel(path = "instagram.xlsx",
 
 ## Leitura de Dados Online
 
-R também permite ler dados diretamente de URLs. Você pode usar funções como `read.table()`, `read.csv()`, ou `read_excel()` (dependendo do formato do arquivo) para importar dados diretamente de um link online.
+O R também permite ler dados diretamente de URLs. Pode usar funções como `read.table()`, `read.csv()`, ou `read_excel()` (dependendo do formato do ficheiro) para importar dados diretamente de um link online.
 
 ```{r eval=FALSE}
 # Leitura de dados online com read.table
@@ -2760,14 +2798,13 @@ url <- "https://example.com/data.csv"
 dados_online <- read.table(url, header = TRUE, sep = ",")
 ```
 
-Neste exemplo, url contém o endereço do arquivo CSV na web, e `read.table()` é usado para importar o conteúdo como um data frame.
+Neste exemplo, url contém o endereço do ficheiro CSV na web, e `read.table()` é usado para importar o conteúdo como um data frame.
 
 # Pipe
 
 ## O operador pipe
 
 O operador pipe (`%>%`) em R é uma ferramenta poderosa que facilita a escrita de código mais limpo e legível. Ele permite que o resultado de uma função seja passado diretamente como entrada para a próxima função, sem a necessidade de criar variáveis intermediárias. Este operador ajuda a tornar o fluxo de dados mais intuitivo e o código mais fácil de ler.
-
 
 O operador pipe foi popularizado pelo pacote `magrittr`, desenvolvido por Stefan Milton Bache e lançado em 2014. O nome “magrittr” é uma referência ao artista surrealista René Magritte, famoso pela pintura “Ceci n’est pas une pipe” (Isto não é um cachimbo), que inspirou a ideia de que o operador pipe permite que dados fluam através de uma sequência
 de operações de maneira intuitiva e sem a necessidade de variáveis temporárias.
@@ -2888,7 +2925,7 @@ rnorm(100) %>%
 ## [1] 0.79
 ```
 
-**3.**  Sem rodar, diga qual a saída do código abaixo. Consulte o help das funções caso precise.
+**3.**  Sem executar, diga qual a saída do código abaixo. Consulte o help das funções caso precise.
 
 ```{r eval=FALSE}
 2 %>%
@@ -2900,12 +2937,11 @@ rnorm(100) %>%
 
 -   Primeiro, somamos 2 com 2, gerando o valor 4.
 
--   Então colocamos esse valor em um vetor com os valores 6 e `NA`.
+-   Em seguida, colocamos esse valor num vetor com os valores 6 e `NA`.
 
--   Em seguida, tiramos a média desse vetor, desconsiderando o `NA`,
-    obtendo o valor 5.
+-   Depois, calculamos a média desse vetor, desconsiderando o `NA`, e obtemos o valor 5.
 
--   Por fim, testemos se o valor é igual a 5, obtendo o valor `TRUE`.
+-   Finalmente, verificamos se o valor é igual a 5, obtendo `TRUE`.
 
 # Loop while
 
@@ -2928,9 +2964,9 @@ while (condição) {
 
 * **Execução do Bloco de Código**: Se a condição for `TRUE`, o bloco de código dentro do `while` é executado.
 
-* **Reavaliação**: Após a execução do bloco de código, a condição é reavaliada. Se a condição permanecer `TRUE`, o ciclo se repete. Se a condição se tornar `FALSE`, o loop termina e o controle do programa continua com a próxima instrução após o `while`.
+* **Reavaliação**: Após a execução do bloco de código, a condição é reavaliada. Se a condição continuar a ser `TRUE`, o ciclo repete-se. Se a condição se tornar `FALSE`, o loop termina e o controlo do programa continua com a próxima instrução após o `while`.
 
-**Exemplo 1**: Somando números até um limite. O exemplo a seguir calcula a soma de todos os números de 1 a 10.
+**Exemplo 1**: Somando números até um limite. O exemplo seguinte calcula a soma de todos os números de 1 a 10.
 
 ```{r eval=FALSE}
 limite <- 10
@@ -2948,11 +2984,11 @@ print(paste("A soma dos números de 1 a", limite, "é:", soma))
 
 Neste exemplo:
 
-* O loop while continua enquanto contador <= limite.
-* Em cada iteração, o valor de contador é adicionado a soma, e contador é incrementado em 1.
-* Quando contador excede limite, o loop termina.
+* O loop while continua enquanto `contador <= limite`.
+* Em cada iteração, o valor de `contador` é adicionado a soma, e `contador` é incrementado em 1.
+* Quando `contador` excede `limite`, o loop termina.
 
-**Exemplo 2**: Escrevendo a tabuada de um número inteiro. O programa abaixo imprime a tabuada de um número fornecido pelo usuário.
+**Exemplo 2**: Escrever a tabuada de um número inteiro. O programa abaixo imprime a tabuada de um número fornecido pelo utilizador.
 
 ```{r eval=FALSE}
 n <- as.numeric(readline("Digite um número inteiro: "))
@@ -2965,7 +3001,7 @@ while (i <= 10){
 }
 ```
 
-Explique porque o programa acima não termina. Qual o erro no nosso código? O loop no código original não terminava porque a linha `i + 1` não atualizava a variável `i`. A expressão `i + 1` calcula o novo valor, mas não o atribui de volta a `i`. O código correto usa `i <- i + 1` para atualizar a variável `i` a cada iteração.
+Explique por que o programa acima não termina. Qual é o erro no nosso código? O loop no código original não terminava porque a linha `i + 1` não atualizava a variável `i`. A expressão `i + 1` calcula o novo valor, mas não o atribui de volta a `i`. O código correto usa `i <- i + 1` para atualizar a variável `i` a cada iteração.
 
 **Exemplo 3**: Uso do break para interromper um loop. O próximo exemplo demonstra como usar a instrução `break` para sair de um loop antecipadamente. 
 
@@ -2991,43 +3027,43 @@ while (contador <= limite) {
 
 **Considerações Importantes sobre o Uso do `while()`**
 
-* **Condição de Parada**: É fundamental garantir que a condição do `while` eventualmente se torne `FALSE` para evitar loops infinitos que podem travar o programa.
+* **Condição de Paragem**: É fundamental garantir que a condição do `while` eventualmente se torne `FALSE` para evitar loops infinitos que podem bloquear o programa.
 
 * **Incremento/Decremento**: A variável que controla a condição deve ser atualizada corretamente dentro do loop. Falhas em fazer isso corretamente também podem causar loops infinitos.
 
-* **Desempenho**: Loops `while` podem ser menos eficientes do que operações vetorizadas em R. Para grandes conjuntos de dados, considere usar funções vetorizadas como `apply`, `lapply`, `sapply`, etc., para melhorar a performance.
+* **Desempenho**: Loops `while` podem ser menos eficientes do que operações vetorizadas em R. Para grandes conjuntos de dados, considere usar funções vetorizadas como `apply`, `lapply`, `sapply`, etc., para melhorar o desempenho.
 
 ## Exercícios
 
-**1.** Escreva um programa em R que solicite ao usuário um número inteiro  $n$. O programa deve imprimir todos os números inteiros de 0 até  $n$, um número por linha.
+**1.** Escreva um programa em R que solicite ao utilizador um número inteiro  $n$. O programa deve imprimir todos os números inteiros de 0 até  $n$, um número por linha.
 
-**2.** Crie um programa em R que solicite ao usuário um número inteiro, calcule o seu quadrado e exiba o resultado. Em seguida, pergunte ao usuário se ele deseja continuar ou encerrar o programa. O loop deve continuar até que o usuário escolha terminar.
+**2.** Crie um programa em R que solicite ao utilizador um número inteiro, calcule o seu quadrado e exiba o resultado. Em seguida, pergunte ao utilizador se ele deseja continuar ou terminar o programa. O loop deve continuar até que o utilizador escolha terminar.
 
-**3.** Desenvolva um programa em R que peça ao usuário um número inteiro  $n$ e calcule a soma dos primeiros $n$ inteiros (de 1 até  $n$). O resultado deve ser exibido no console.
+**3.** Desenvolva um programa em R que peça ao utilizador um número inteiro  $n$ e calcule a soma dos primeiros $n$ inteiros (de 1 até  $n$). O resultado deve ser exibido no console.
 
-**4.** Escreva um programa em R que solicite ao usuário um número inteiro  $n$  e conte quantos números pares existem no intervalo de 0 até  $n$. O resultado deve ser impresso no console.
+**4.** Escreva um programa em R que solicite ao utilizador um número inteiro  $n$  e conte quantos números pares existem no intervalo de 0 até  $n$. O resultado deve ser impresso no console.
 
-**5.** Usar um loop `while` para somar números inteiros positivos até que um número negativo seja inserido.
+**5.** Use um loop `while` para somar números inteiros positivos até que um número negativo seja inserido.
 
-Crie um programa em R que leia números inteiros inseridos pelo usuário e some-os. O loop deve continuar até que o usuário insira um número negativo, momento em que o programa deve parar e exibir a soma dos números positivos inseridos.
+Crie um programa em R que leia números inteiros inseridos pelo usuário e some-os. O loop deve continuar até que o utilizador insira um número negativo, momento em que o programa deve parar e exibir a soma dos números positivos inseridos.
 
-**6.** Usar um loop while para implementar uma contagem regressiva.
+**6.** Use um loop while para implementar uma contagem regressiva.
 
-Implemente um programa em R que solicite ao usuário um número inteiro positivo e, em seguida, execute uma contagem regressiva até zero, imprimindo cada número no console.
+Implemente um programa em R que solicite ao utilizador um número inteiro positivo e, em seguida, execute uma contagem regressiva até zero, imprimindo cada número no console.
 
-**7.** Escreva um programa em R que solicite ao usuário um número inteiro negativo e, em seguida, conte progressivamente até zero, imprimindo cada número no console.
+**7.** Escreva um programa em R que solicite ao utilizador um número inteiro negativo e, em seguida, conte progressivamente até zero, imprimindo cada número no console.
 
-**8.** Desenvolva um programa em R que peça ao usuário para inserir um número. Se o número for positivo, o programa deve contar regressivamente até zero. Se o número for negativo, o programa deve contar progressivamente até zero. Cada número deve ser impresso no console.
+**8.** Desenvolva um programa em R que peça ao utilizador para inserir um número. Se o número for positivo, o programa deve contar regressivamente até zero. Se o número for negativo, o programa deve contar progressivamente até zero. Cada número deve ser impresso no console.
 
-**9.** Crie um programa em R que solicite ao usuário um número inteiro não negativo e calcule seu fatorial usando um loop `while`. Lembre que $0! = 1$ e que $4! = 4\times 3\times 2\times  = 24$.
+**9.** Crie um programa em R que solicite ao utilizador um número inteiro não negativo e calcule seu fatorial usando um loop `while`. Lembre-se que $0! = 1$ e que $4! = 4\times 3\times 2\times  = 24$.
 
 **10.** Escreva um programa em R que leia um número inteiro positivo e calcule a soma de seus dígitos usando um loop `while`. Por exemplo, para o número 23, o programa deve calcular $2+3 = 5$.
 
-**11.** Desenvolva um programa em R que gere e imprima os números da sequência de Fibonacci até atingir um valor máximo especificado pelo usuário. A sequência de Fibonacci começa com 1, 1 e cada número subsequente é a soma dos dois anteriores $(1, 1, 2, 3, 5, 8, 13 \ldots)$.
+**11.** Desenvolva um programa em R que gere e imprima os números da sequência de Fibonacci até atingir um valor máximo especificado pelo utilizador. A sequência de Fibonacci começa com 1, 1 e cada número subsequente é a soma dos dois anteriores $(1, 1, 2, 3, 5, 8, 13 \ldots)$.
 
 # Loop for
 
-O loop `for` em R é uma estrutura de controle de fluxo que permite executar repetidamente um bloco de código para cada elemento de uma sequência. Ele é particularmente útil quando o número de iterações é conhecido de antemão. O loop `for` é amplamente utilizado em R para iterar sobre vetores, listas, data frames, e outras estruturas de dados.
+O loop `for` em R é uma estrutura de controlo de fluxo que permite executar repetidamente um bloco de código para cada elemento de uma sequência. Ele é particularmente útil quando o número de iterações é conhecido de antecipadamente. O loop `for` é amplamente utilizado em R para iterar sobre vetores, listas, data frames, e outras estruturas de dados.
 
 ```{r eval=FALSE}
 # Sintaxe
@@ -3036,7 +3072,7 @@ for (variável in sequência) {
 }
 ```
 
-* **variável**: Uma variável de controle que, em cada iteração, assume o valor do próximo elemento da sequência.
+* **variável**: Uma variável de controlo que, em cada iteração, assume o valor do próximo elemento da sequência.
 
 * **sequência**: Uma estrutura de dados como um vetor, lista, ou outro objeto sobre o qual se deseja iterar.
 
@@ -3044,11 +3080,11 @@ for (variável in sequência) {
 
 **Funcionamento do Loop for**
 
-* **Inicialização**: Antes de iniciar o loop, a variável de controle é definida com o primeiro elemento da sequência.
+* **Inicialização**: Antes de iniciar o loop, a variável de controlo é definida com o primeiro elemento da sequência.
 
-* **Iteração**: Para cada iteração, a variável de controle é atualizada com o próximo valor da sequência.
+* **Iteração**: Para cada iteração, a variável de controlo é atualizada com o próximo valor da sequência.
 
-* **Execução do Bloco de Código**: O bloco de código dentro do loop é executado para cada valor da variável de controle.
+* **Execução do Bloco de Código**: O bloco de código dentro do loop é executado para cada valor da variável de controlo.
 
 * **Finalização**: O loop termina quando todos os elementos da sequência tiverem sido processados.
 
@@ -3071,7 +3107,7 @@ for (i in 0:10) {
 ## [1] 10
 ```
 
-**Exemplo 2**: Soma dos elementos de um vetor
+**Exemplo 2**: Soma dos elementos de um vetor.
 
 ```{r eval=FALSE}
 numeros <- c(1, 2, 3, 4, 5)
@@ -3085,7 +3121,7 @@ print(paste("A soma dos números é:", soma))
 ## [1] "A soma dos números é: 15"
 ```
 
-**Exemplo 3**: Uso do `for` com índices. Você também pode usar o loop for para iterar sobre índices de vetores ou listas, o que pode ser útil quando se deseja acessar ou modificar elementos em posições específicas.
+**Exemplo 3**: Uso do `for` com índices. Também pode usar o loop for para iterar sobre índices de vetores ou listas, o que pode ser útil quando se deseja aceder ou modificar elementos em posições específicas.
 
 ```{r eval=FALSE}
 numeros <- c(10, 20, 30, 40, 50)
@@ -3099,7 +3135,7 @@ print(numeros)
 ## [1]  20  40  60  80 100
 ```
 
-**Exemplo 4:** Iterando sobre matrizes. O loop `for` também pode ser utilizado para percorrer elementos de uma matriz, seja por linha ou por coluna. No exemplo abaixo, calculamos a soma dos elementos de cada linha de uma matriz.
+**Exemplo 4:** Iterar sobre matrizes. O loop `for` também pode ser utilizado para percorrer elementos de uma matriz, seja por linha ou por coluna. No exemplo abaixo, calculamos a soma dos elementos de cada linha de uma matriz.
 
 ```{r eval=FALSE}
 matriz <- matrix(1:9, nrow=3, ncol=3)
@@ -3114,7 +3150,7 @@ print(soma_linhas)
 ## [1] 12 15 18
 ```
 
-**Exemplo 5:** Cálculo de Médias de Colunas em um Data Frame. Neste exemplo, calculamos a média de cada coluna de um data frame usando um loop `for`.
+**Exemplo 5:** Cálculo de Médias de Colunas num Data Frame. Neste exemplo, calculamos a média de cada coluna de um data frame usando um loop `for`.
 
 ```{r eval=FALSE}
 dados <- data.frame(
@@ -3146,15 +3182,15 @@ print(medias)
 
 **5.** Escreva um programa em R que imprima todos os números ímpares do vetor `valores <- c(1, 3, 4, 6, 9, 11, 14)`. Utilize um loop `for`.
 
-**6.** Escreva um programa em R que leia um número inteiro e use um loop `for` para imprimir sua tabuada de 1 a 10.
+**6.** Escreva um programa em R que leia um número inteiro e use um loop `for` para imprimir sua a tabuada de 1 a 10.
 
 **7.** Escreva um programa em R que leia um número inteiro e use um loop `for` para determinar se o número é perfeito ou não. Um número perfeito é aquele cuja soma de seus divisores próprios é igual ao próprio número (por exemplo, 6 tem divisores próprios 1, 2 e 3, e 1+2+3 = 6).
 
 **8.** Escreva um programa em R que use um loop `for` para encontrar e imprimir todos os números perfeitos entre 1 e 1000. 
 
-**9.** Escreva um programa em R que leia dois inteiros $n$ e $m$ e imprima os números entre $0$ e $n$, inclusive, com um intervalo de $m$ entre eles. Utilize um ciclo `for` para o efeito.
+**9.** Escreva um programa em R que leia dois inteiros $n$ e $m$ e imprima os números entre $0$ e $n$, inclusive, com um intervalo de $m$ entre eles. Utilize um loop `for` para o efeito.
 
-**10.** Escreva um programa que calcule a média de um conjunto de notas fornecidas pelo usuário. O número de notas a serem inseridas é indicado pelo usuário antes da entrada das notas. Utilize um loop for para coletar as notas e calcular a média. Segue-se um exemplo da interação com o computador:
+**10.** Escreva um programa que calcule a média de um conjunto de notas fornecidas pelo utilizador. O número de notas a serem inseridas é indicado pelo utilizador antes da entrada das notas. Utilize um loop `for` para recolher as notas e calcular a média. Segue-se um exemplo da interação com o computador:
 
 `Digite o número de notas que serão inseridas: 4`
 
@@ -3186,7 +3222,7 @@ print(medias)
 
 # Família `Xapply()`
 
-A família `Xapply()` no R refere-se a um conjunto de funções projetadas para iterar de maneira eficiente sobre objetos, evitando a necessidade de loops explícitos como `for`. Essas funções são especialmente úteis para realizar operações repetitivas em listas, vetores, matrizes, data frames e outros objetos, de forma concisa e frequentemente mais rápida.
+A família `Xapply()` no R refere-se a um conjunto de funções desenhadas para iterar de forma eficiente sobre objetos, evitando a necessidade de loops (ciclos) explícitos como `for`. Essas funções são especialmente úteis para realizar operações repetitivas em listas, vetores, matrizes, data frames e outros objetos, de forma concisa e frequentemente mais rápida.
 
 | **Função** | **Argumentos**          | **Objetivo**                                      | **Input**                  | **Output**          |
 |---------------|---------------|---------------|---------------|---------------|
@@ -3197,7 +3233,7 @@ A família `Xapply()` no R refere-se a um conjunto de funções projetadas para 
 
 ## Função `apply()`
 
-A função `apply()` aplica uma função a margens específicas (linhas ou colunas) de uma matriz ou data frame e retorna um vetor, lista ou array. Ela é frequentemente usada para evitar loops explícitos.
+A função `apply()` aplica uma função a margens específicas (linhas ou colunas) de uma matriz ou data frame e devolve um vetor, lista ou array. É frequentemente usada para evitar loops explícitos.
 
 ```{r eval=FALSE}
 # Sintaxe
@@ -3206,7 +3242,7 @@ apply(X, MARGIN, FUN)
 
 * `X`: A matriz ou data frame a ser manipulado.
 
-* `MARGIN`: Um valor que indica se a função deve ser aplicada a linhas (1) ou colunas (2).
+* `MARGIN`: Um valor que indica se a função deve ser aplicada às linhas (1) ou colunas (2).
 
 * `FUN`: A função que será aplicada.
 
@@ -3231,7 +3267,7 @@ apply(matriz, 2, f)
 
 ## Função `lapply()`
 
-A função `lapply()` aplica uma função a cada elemento de uma lista ou vetor e retorna uma lista. Ela é útil quando se deseja manter a estrutura de saída como uma lista.
+A função `lapply()` aplica uma função a cada elemento de uma lista ou vetor e devolve uma lista. É útil quando se deseja manter a estrutura de saída como uma lista.
 
 ```{r eval=FALSE}
 # Sintaxe
@@ -3283,7 +3319,7 @@ lapply(vetor_dados, sqrt)
 
 ## Função `sapply()`
 
-A função `sapply()` é similar ao `lapply()`, mas tenta simplificar o resultado para um vetor ou matriz, se possível.
+A função `sapply()` é semelhante à `lapply()`, mas tenta simplificar o resultado para um vetor ou matriz, se possível.
 
 ```{r eval=FALSE}
 # Sintaxe
@@ -3325,13 +3361,13 @@ A função `tapply()` aplica uma função a subconjuntos de um vetor, divididos 
 tapply(X, INDEX, FUN, ...)
 ```
 
-* `X`: O vetor de dados
+* `X`: O vetor de dados.
 
 * `INDEX`: Um fator ou lista de fatores que definem os grupos.
 
-* `FUN`: A função que será aplicada a cada grupo
+* `FUN`: A função que será aplicada a cada grupo.
 
-**Exemplo:** O dataset `iris` em R é um conjunto de dados amplamente utilizado para exemplificar análises estatísticas. Foi introduzido por Ronald A. Fisher em 1936 em seu artigo sobre a utilização de modelos estatísticos para discriminação de espécies de plantas. Contém informações sobre três espécies de flores (`Setosa`, `Versicolor`, `Virginica`) e suas características morfológicas (comprimento e largura das sépalas e pétalas). Vamos calcular a média do comprimento das pétalas por espécie usando `tapply()`:
+**Exemplo:** O dataset `iris` em R é um conjunto de dados amplamente utilizado para exemplificar análises estatísticas. Foi introduzido por Ronald A. Fisher em 1936 no seu artigo sobre a utilização de modelos estatísticos para discriminação de espécies de plantas. Contém informações sobre três espécies de flores (`Setosa`, `Versicolor`, `Virginica`) e suas características morfológicas (comprimento e largura das sépalas e pétalas). Vamos calcular a média do comprimento das pétalas por espécie usando `tapply()`:
 
 ```{r eval=FALSE}
 iris
@@ -3494,7 +3530,7 @@ tapply(iris$Petal.Length, iris$Species, mean)
 
 ## Exercícios
 
-**1.** Crie um vetor chamado nomes contendo os nomes "Alice", "Bruno", "Carla", e "Daniel". Use a função `lapply()` para converter todos os nomes para maiúsculas. Verifique o resultado.
+**1.** Crie um vetor chamado `nomes` contendo os nomes "Alice", "Bruno", "Carla", e "Daniel". Use a função `lapply()` para converter todos os nomes para maiúsculas. Verifique o resultado.
 
 ```{r eval=FALSE}
 nomes <- c("Alice", "Bruno", "Carla", "Daniel")
@@ -3502,7 +3538,7 @@ nomes <- c("Alice", "Bruno", "Carla", "Daniel")
 
 ```
 
-**2.** Crie um vetor chamado palavras contendo as palavras "cachorro", "gato", "elefante", e "leão". Use a função `sapply()` para calcular o comprimento (número de caracteres) de cada palavra. Verifique o resultado. Dica, veja `?nchar`.
+**2.** Crie um vetor chamado `palavras` contendo as palavras "cachorro", "gato", "elefante", e "leão". Use a função `sapply()` para calcular o comprimento (número de caracteres) de cada palavra. Verifique o resultado. Dica, veja `?nchar`.
 
 ```{r}
 palavras <- c("cachorro", "gato", "elefante", "leão")
@@ -3517,7 +3553,7 @@ matriz_exemplo <- matrix(1:9, nrow = 3)
 
 ```
 
-**4.** Use o conjunto de dados embutido `mtcars` em R. Use a função `tapply()` para calcular a média do consumo de combustível (`mpg`) para cada número de cilindros (c`yl`).
+**4.** Use o conjunto de dados embutido `mtcars` em R. Use a função `tapply()` para calcular a média do consumo de combustível (`mpg`) para cada número de cilindros (`cyl`).
 
 ```{r}
 data(mtcars)
@@ -3525,7 +3561,7 @@ data(mtcars)
 
 ```
 
-**5.** Crie uma lista chamada `minha_lista` contendo três elementos: um vetor numérico de 1 a 5, um vetor de caracteres com os valores "A", "B", "C", e uma matriz 2x2 com valores de 1 a 4. Use `lapply()` para calcular o comprimento de cada elemento da lista e, em seguida, use `sapply()` para simplificar o resultado em um vetor.
+**5.** Crie uma lista chamada `minha_lista` contendo três elementos: um vetor numérico de 1 a 5, um vetor de caracteres com os valores "A", "B", "C", e uma matriz 2x2 com valores de 1 a 4. Use `lapply()` para calcular o comprimento de cada elemento da lista e, em seguida, use `sapply()` para simplificar o resultado num vetor.
 
 ```{r}
 minha_lista <- list(1:5, c("A", "B", "C"), matrix(1:4, nrow = 2))
@@ -3607,7 +3643,7 @@ barplot(frequencia_relativa,
 
 **Personalização de Gráficos de Barras**
 
-Você pode personalizar ainda mais os gráficos de barras usando argumentos como `las` (para rotação dos rótulos dos eixos), `horiz` (para gráficos de barras horizontais), e `beside` (para barras lado a lado).
+Pode personalizar ainda mais os gráficos de barras usando argumentos como `horiz` (para gráficos de barras horizontais), e `beside` (para barras lado a lado).
 
 ```{r}
 # Gráfico de barras horizontal
@@ -3645,8 +3681,7 @@ relativa) no eixo vertical.
 * Se as classes tiverem todas a mesma amplitude, a altura do retângulo é proporcional à frequência.
 
 Por default, o R utiliza a frequência absoluta para construir o histograma. Se tiver interesse em representar as frequências relativas,
-utilize a opção `freq=FALSE` nos argumentos da função `hist()`. O padrão
-de intervalo de classe no R é $(a, b]$.
+utilize a opção `freq=FALSE` nos argumentos da função `hist()`. O padrão de intervalo de classe no R é $(a, b]$.
 
 ```{r}
 # Dados referentes à massa (em kg) de 40 bicicletas
@@ -3685,11 +3720,11 @@ hist(bicicletas,
   labels = TRUE)
 ```
 
-Você pode controlar o número de intervalos (bins) usando o argumento `breaks`. Por exemplo, `breaks = 5` divide os dados em 5 intervalos.
+Pode controlar o número de intervalos (bins) usando o argumento `breaks`. Por exemplo, `breaks = 5` divide os dados em 5 intervalos.
 
 ## Box-plot
 
-**Box-plot (Caixa de Bigodes)**: O box-plot é uma representação gráfica que resume a distribuição de uma variável através de cinco estatísticas principais: mínimo, primeiro quartil (Q1), mediana (Q2), terceiro quartil (Q3) e máximo. Ele também pode mostrar outliers (valores atípicos).
+**Box-plot (Caixa de Bigodes)**: O box-plot é uma representação gráfica que resume a distribuição de uma variável através de cinco estatísticas principais: mínimo, primeiro quartil (Q1), mediana (Q2), terceiro quartil (Q3) e máximo. Também pode mostrar outliers (valores atípicos).
 
 ```{r}
 # Box-plot vertical
@@ -3706,7 +3741,7 @@ boxplot(bicicletas,
         horizontal = TRUE)
 ```
 
-Você pode comparar a distribuição de múltiplas variáveis lado a lado com box-plots. Use a função `par()` para ajustar o layout gráfico.
+Pode comparar a distribuição de múltiplas variáveis lado a lado com box-plots. Use a função `par()` para ajustar o layout gráfico.
 
 ```{r}
 # Ajuste do layout gráfico
@@ -3762,11 +3797,11 @@ plot(tempo, valores,
 
 ## Tibbles
 
-**Tibbles** são uma versão moderna e aprimorada dos data frames em R, introduzida pelo pacote `tibble`, que é parte do `tidyverse` — um conjunto de pacotes desenvolvido para facilitar a ciência de dados em R. Tibbles foram projetados para superar algumas das limitações dos data frames tradicionais, oferecendo uma estrutura de dados mais robusta e intuitiva para manipulação e análise de dados.
+**Tibbles** são uma versão moderna e melhorada dos data frames em R, introduzida pelo pacote `tibble`, que faz parte do `tidyverse` — um conjunto de pacotes desenvolvido para facilitar a ciência de dados em R. Os tibbles foram projetados para ultrapassar algumas das limitações dos data frames tradicionais, oferecendo uma estrutura de dados mais robusta e intuitiva para manipulação e análise de dados.
 
 **Diferenças Principais entre Tibble e Data Frame**
 
-Tibbles possuem várias vantagens sobre os data frames, especialmente em termos de usabilidade e integração com o `tidyverse`. A tabela abaixo resume as principais diferenças:
+Os tibbles têm várias vantagens em relação aos data frames, especialmente em termos de usabilidade e integração com o `tidyverse`. A tabela abaixo resume as principais diferenças:
 
 | Característica                        | Data Frame                                     | Tibble                                           |
 |---------------------------------------|------------------------------------------------|--------------------------------------------------|
@@ -3778,7 +3813,7 @@ Tibbles possuem várias vantagens sobre os data frames, especialmente em termos 
 | Compatibilidade e Integração          | Totalmente compatível com base R                 | Compatível, mas otimizado para uso com tidyverse  |
 | Manipulação de Dados                  | Menos intuitivo para algumas operações.  | Mais intuitivo e fácil de usar, especialmente com operações encadeadas.|
 
-### Criando e Trabalhando com Tibbles
+### Criar e trabalhar com Tibbles
 
 Criar um `tibble` é semelhante a criar um data frame, mas com uma sintaxe ligeiramente diferente que facilita a criação de colunas complexas.
 
@@ -3804,16 +3839,16 @@ print(tb)
 ## 5     5 E        10
 ```
 
-Você também pode converter um data frame existente para um tibble usando a função `as_tibble()`:
+Também pode converter um data frame existente para um tibble usando a função `as_tibble()`:
 
 ```{r eval=FALSE}
-# Criando um data frame
+# Criar um data frame
 df <- data.frame(
   x = 1:5,
   y = c("A", "B", "C", "D", "E")
 )
 
-# Convertendo para tibble
+# Converter para tibble
 tb <- as_tibble(df)
 
 print(tb)
@@ -3855,7 +3890,7 @@ glimpse(sw) # Exibe uma visão geral dos dados
 
 ### Seleção de Colunas com `select()`
 
-A função `select()` é utilizada para selecionar uma ou mais colunas de um tibble ou data frame. Você pode usar nomes de colunas diretamente sem aspas.
+A função `select()` é usada para selecionar uma ou mais colunas de um tibble ou data frame. Pode usar nomes de colunas diretamente sem aspas.
 
 ```{r}
 # Selecionar uma coluna
@@ -3871,16 +3906,16 @@ select(sw, name:hair_color)
 
 O `dplyr` possui um conjunto de funções auxiliares muito úteis para seleção de colunas. As principais são:
 
-* `starts_with()`: para colunas que começam com um texto padrão
-* `ends_with()`: para colunas que terminam com um texto padrão
-* `contains()`: para colunas que contêm um texto padrão
+* `starts_with()`: para colunas que começam com um texto específico.
+* `ends_with()`: para colunas que terminam com um texto específico.
+* `contains()`: para colunas que contêm um texto específico.
 
 ```{r}
 # Selecionar colunas que terminam com "color"
 select(sw, ends_with("color"))
 ```
 
-Para remover colunas basta acrescentar um `-` antes da seleção.
+Para remover colunas, basta acrescentar um `-` antes da seleção.
 
 ```{r}
 select(sw, -name, -hair_color)
@@ -3901,12 +3936,11 @@ Utilize a base `sw` nos exercícios a seguir.
 
 **3.** Selecione apenas as colunas `hair_color`, `skin_color` e `eye_color` usando a função auxiliar `contains()`.
 
-**4.** Usando a função `select()` e suas funções auxiliares, escreva códigos que retornem a base `sw` sem as colunas `hair_color`, `skin_color` e `eye_color`. Escreva todas as soluções diferentes que
-você conseguir pensar.
+**4.** Usando a função `select()` e as suas funções auxiliares, escreva códigos que retornem a base `sw` sem as colunas `hair_color`, `skin_color` e `eye_color`. Escreva todas as soluções diferentes que conseguir pensar.
 
 ### Ordenando a Base de Dados
 
-A função `arrange()` permite ordenar as linhas de uma tabela com base nos valores de uma ou mais colunas. Você pode ordenar em ordem crescente ou decrescente, dependendo da necessidade.
+A função `arrange()` permite ordenar as linhas de uma tabela com base nos valores de uma ou mais colunas. Pode ordenar em ordem crescente ou decrescente, conforme a necessidade.
 
 ```{r}
 # Exemplo de ordenação crescente
@@ -3921,7 +3955,7 @@ arrange(sw, desc(height), desc(mass))
 
 ### Exercícios
 
-**1.** Ordene a base `sw` pela coluna `mass` em ordem crescente e pela coluna `birth_year` em ordem decrescente. Salve o resultado em um objeto chamado `sw_ordenados`.
+**1.** Ordene a base `sw` pela coluna `mass` em ordem crescente e pela coluna `birth_year` em ordem decrescente. Guarde o resultado em um objeto chamado `sw_ordenados`.
 
 ```{r eval=FALSE}
 sw_ordenados <- arrange(sw, mass, desc(birth_year))
@@ -4000,7 +4034,7 @@ str_detect(
 Podemos utilizá-la para filtrar apenas os personagens com cabelo `grey`.
 
 ```{r}
-# Podemos detectar se o cabelo grey aparece na string
+# Podemos detetar se o cabelo grey aparece na string
 str_detect(
   string = sw$hair_color,
   pattern = "grey"
@@ -4032,10 +4066,9 @@ Utilize a base `sw` nos exercícios a seguir.
 
 **e.** Personagens que não possuem informação tanto de altura (`height`) quanto de massa (`mass`), ou seja, possuem `NA` em ambas as colunas.
 
-### Modificando e criando novas colunas
+### Modificar e criar novas colunas
 
-A função `mutate()` permite criar novas colunas ou modificar colunas existentes, facilitando transformações de dados. O código abaixo divide os valores da coluna `height` por 100, mudando a unidade de medida dessa variável de
-centímetros para metros.
+A função `mutate()` permite criar novas colunas ou modificar colunas existentes, facilitando transformações de dados. O código abaixo divide os valores da coluna `height` por 100, mudando a unidade de medida dessa variável de centímetros para metros.
 
 ```{r}
 # Modificar a unidade de medida da coluna height
@@ -4073,11 +4106,10 @@ sw %>%
 **d.** `acima_media` =
 `ifelse(indice_massa_altura > indice_massa_medio, “sim”, “não”)`
 
-**3.** Crie uma nova coluna que classifique o personagem em “recente”
-(nascido após 100 anos antes da batalha de Yavin) e “antigo” (nascido há
+**3.** Crie uma nova coluna que classifique o personagem em “recente” (nascido após 100 anos antes da batalha de Yavin) e “antigo” (nascido há
 100 anos ou mais).
 
-### Sumarizando a Base de Dados
+### Sumarizar a Base de Dados
 
 A função `summarize()` permite calcular estatísticas agregadas, como média, mediana, variância, etc. Para agregar dados por categorias, combinamos `summarize()` com `group_by()`.
 
@@ -4141,7 +4173,7 @@ Utilize a base `sw` nos exercícios a seguir.
 
 ### Juntando Tabelas em R com dplyr
 
-Em ciência de dados, é comum precisar combinar informações de diferentes fontes em uma única tabela. No R, o pacote dplyr oferece várias funções para realizar operações de junção, que permitem combinar duas ou mais tabelas (data frames ou tibbles) com base em uma ou mais colunas compartilhadas.
+Em ciência de dados, é comum precisar combinar informações de diferentes fontes em uma única tabela. No R, o pacote `dplyr` oferece várias funções para realizar operações de junção, que permitem combinar duas ou mais tabelas (data frames ou tibbles) com base em uma ou mais colunas compartilhadas.
 
 **Tipos de Junção**
 
@@ -4151,16 +4183,16 @@ As junções mais comuns em manipulação de dados são:
 * `right_join()`: Mantém todas as linhas da tabela à direita e adiciona as colunas da tabela à esquerda onde há correspondência.
 * `full_join()`: Mantém todas as linhas de ambas as tabelas e adiciona NA onde não há correspondência.
 
-Essas funções são extremamente úteis quando se precisa combinar dados de diferentes fontes que compartilham uma chave comum, como um identificador único.
+Essas funções são extremamente úteis quando é necessário combinar dados de diferentes fontes que compartilham uma chave comum, como um identificador único.
 
 **Exemplo**: Personagens de Star Wars
 
-Para ilustrar como essas funções funcionam, vamos usar a base de dados `sw` e criar dois subconjuntos de dados:
+Para ilustrar como estas funções funcionam, vamos usar a base de dados `sw` e criar dois subconjuntos de dados:
 
 1. `personagens_altos`: Tabela contendo apenas personagens com altura superior a 180 cm.
 2. `personagens_humanos`: Tabela contendo apenas personagens que são humanos.
 
-Vamos criar nossos subconjuntos de dados usando a função `filter()` do dplyr.
+Vamos criar os nossos subconjuntos de dados usando a função `filter()` do dplyr.
 
 ```{r}
 # Criar subconjunto de personagens altos (altura > 180 cm)
@@ -4282,19 +4314,20 @@ de filmes IMDB está disponível no fénix
 
 # Simulação
 
-A simulação é uma ferramenta poderosa que utiliza a capacidade dos computadores modernos para realizar cálculos que, de outra forma, seriam difíceis ou até impossíveis de serem resolvidos analiticamente. A Lei dos Grandes Números nos assegura que, ao observarmos uma grande amostra de variáveis aleatórias independentes e identicamente distribuídas (i.i.d.) com média finita, a média dessas observações tende a convergir para a média verdadeira da distribuição conforme o tamanho da amostra aumenta.
+A simulação é uma ferramenta poderosa que utiliza a capacidade dos computadores modernos para realizar cálculos que, de outra forma, seriam difíceis ou até impossíveis de serem resolvidos analiticamente. A Lei dos Grandes Números assegura-nos que, ao observarmos uma grande amostra de variáveis aleatórias independentes e identicamente distribuídas (i.i.d.) com média finita, a média dessas observações tende a convergir para a média verdadeira da distribuição 
+à medida que o tamanho da amostra aumenta.
 
 Em vez de nos esforçarmos para encontrar essa média através de métodos analíticos complexos, podemos utilizar o poder computacional para gerar uma amostra suficientemente grande dessas variáveis aleatórias. A partir dessa amostra, calculamos a média observada, que serve como uma estimativa consistente da média verdadeira da distribuição. No entanto, a eficácia desse método depende de três fatores cruciais:
 
-1. **Identificação correta dos tipos de variáveis aleatórias necessárias para o problema em questão**: É essencial determinar quais distribuições de probabilidade descrevem adequadamente os processos aleatórios que estamos modelando.
-2. **Capacidade do computador de gerar essas variáveis de forma precisa**: Os algoritmos utilizados para gerar números pseudo-aleatórios devem ser robustos e capazes de produzir amostras que representem fielmente as distribuições desejadas.
-3. **Determinação do tamanho adequado da amostra**: O tamanho da amostra deve ser suficientemente grande para que a média da amostra seja uma boa aproximação da média real. Além disso, um tamanho de amostra maior geralmente reduz a variabilidade das estimativas, aumentando a confiabilidade dos resultados.
+1. **Identificação correta dos tipos de variáveis aleatórias necessárias para o problema em questão**: É essencial determinar quais distribuições de probabilidade descrevem adequadamente os processos aleatórios que estamos a modelar.
+2. **Capacidade do computador de gerar essas variáveis de forma precisa**: Os algoritmos utilizados para gerar números pseudoaleatórios devem ser robustos e capazes de produzir amostras que representem fielmente as distribuições desejadas.
+3. **Determinação do tamanho adequado da amostra**: O tamanho da amostra deve ser suficientemente grande para que a média da amostra seja uma boa aproximação da média real. Além disso, um tamanho de amostra maior geralmente reduz a variabilidade das estimativas, aumentando a fiabilidade dos resultados.
 
 A simulação, portanto, simplifica o processo de resolução de problemas complexos, proporcionando uma abordagem prática e eficiente para explorar cenários onde o cálculo analítico é impraticável ou impossível. Ela permite aos estatísticos e cientistas de dados testar hipóteses, realizar análises de sensibilidade e prever resultados em condições controladas de incerteza.
 
-Para ilustrar o potencial da simulação, começamos com alguns exemplos básicos onde a solução analítica já é conhecida. Esses exemplos demonstram que a simulação pode reproduzir resultados teóricos com precisão. Além disso, esses casos introdutórios servem para destacar aspectos importantes que precisam ser considerados ao resolver problemas mais complexos por meio de simulação, como o tratamento de variáveis dependentes, correlações entre variáveis, e questões de eficiência computacional.
+Para ilustrar o potencial da simulação, começamos com alguns exemplos básicos onde a solução analítica já é conhecida. Esses exemplos demonstram que a simulação pode reproduzir resultados teóricos com precisão. Além disso, estes casos introdutórios servem para destacar aspetos importantes que precisam ser considerados ao resolver problemas mais complexos por meio de simulação, como o tratamento de variáveis dependentes, correlações entre variáveis, e questões de eficiência computacional.
 
-**Exemplo 1 (Estimando a Média de uma Distribuição Uniforme)**: A média da distribuição uniforme no intervalo $[0,1]$ é conhecida por ser  $\frac{1}{2}$. Se tivermos um grande número de variáveis aleatórias independentes e identicamente distribuídas (i.i.d.) a partir dessa distribuição uniforme, denotadas por $X_{1}, X_{2}, \ldots, X_{n}$, a Lei dos Grandes Números nos diz que a média amostral, dada por  $\overline{X} = \frac{1}{n} \sum_{i=1}^{n} X_{i}$, deve se aproximar da média verdadeira de 0.5 à medida que o tamanho da amostra $n$ aumenta.
+**Exemplo 1 (Estimando a Média de uma Distribuição Uniforme)**: A média da distribuição uniforme no intervalo $[0,1]$ é conhecida por ser  $\frac{1}{2}$. Se tivermos um grande número de variáveis aleatórias independentes e identicamente distribuídas (i.i.d.) a partir dessa distribuição uniforme, denotadas por $X_{1}, X_{2}, \ldots, X_{n}$, a Lei dos Grandes Números diz-nos que a média amostral, dada por  $\overline{X} = \frac{1}{n} \sum_{i=1}^{n} X_{i}$, deve aproximar-se da média verdadeira de 0.5 à medida que o tamanho da amostra $n$ aumenta.
 
 A tabela abaixo apresenta as médias de diferentes amostras simuladas de tamanho $n$ geradas a partir da distribuição uniforme $[0,1]$ para vários valores de $n$. Observamos que as médias amostrais estão geralmente próximas de 0.5, mas existe uma considerável variação, especialmente quando $n = 100$. Nota-se que há menos variação para $n = 1.000$, e a variação diminui ainda mais para os dois maiores valores de $n$ (10.000 e 100.000).
 
@@ -4305,23 +4338,23 @@ A tabela abaixo apresenta as médias de diferentes amostras simuladas de tamanho
 | 10.000  | 0.502                    | 0.501 | 0.499 | 0.498 | 0.498 |
 | 100.000 | 0.502                    | 0.499 | 0.500 | 0.498 | 0.499 |
 
-Para gerar uma amostra aleatória uniforme no intervalo [0,1], utilizamos a função `runif` em R:
+Para gerar uma amostra aleatória uniforme no intervalo [0,1], utilizamos a função `runif` no R:
 
 ```{r eval=FALSE}
 runif(100, 0, 1)
 ```
 
-Como discutido anteriormente, neste exemplo não há necessidade real de simulação, pois conhecemos a média da distribuição uniforme analiticamente. Este exemplo serve para ilustrar que a simulação pode replicar resultados teóricos. No entanto, é crucial entender que, independentemente do tamanho da amostra gerada, a média amostral de variáveis aleatórias i.i.d. não será necessariamente exatamente igual à média verdadeira da distribuição. A simulação introduz uma variabilidade que precisa ser considerada; à medida que o tamanho da amostra aumenta, a variabilidade da média amostral diminui, aproximando-a da média real. Essa propriedade sublinha a importância de escolher um tamanho de amostra apropriado para obter estimativas confiáveis.
+Como discutido anteriormente, neste exemplo não há necessidade real de simulação, pois conhecemos a média da distribuição uniforme analiticamente. Este exemplo serve para ilustrar que a simulação pode replicar resultados teóricos. No entanto, é crucial entender que, independentemente do tamanho da amostra gerada, a média amostral de variáveis aleatórias i.i.d. não será necessariamente exatamente igual à média verdadeira da distribuição. A simulação introduz uma variabilidade que precisa ser considerada; à medida que o tamanho da amostra aumenta, a variabilidade da média amostral diminui, aproximando-a da média real. Esta propriedade sublinha a importância de escolher um tamanho de amostra apropriado para obter estimativas confiáveis.
 
 **Exemplo de Aplicação da Simulação**
 
-A seguir, exploramos um exemplo onde as questões fundamentais são relativamente fáceis de descrever, mas a solução analítica seria, na melhor das hipóteses, complexa e tediosa.
+A seguir, exploramos um exemplo onde as questões fundamentais são relativamente fáceis de descrever, mas a solução analítica seria, na melhor das hipóteses, complexa e trabalhosa.
 
-**Problema: Esperando por uma Pausa**. Dois atendentes, A e B, em um restaurante fast-food começam a servir clientes ao mesmo tempo. Eles concordam em se encontrar para um intervalo assim que ambos tiverem atendido 10 clientes. No entanto, um deles provavelmente terminará antes do outro e precisará esperar. Nosso objetivo é determinar, em média, quanto tempo um dos atendentes terá que esperar pelo outro.
+**Problema: Esperando por uma Pausa**. Dois atendentes, A e B, num restaurante fast-food começam a servir clientes ao mesmo tempo. Eles concordam em encontrar-se para uma pausa assim que ambos tiverem atendido 10 clientes. No entanto, um deles provavelmente terminará antes do outro e terá de esperar. O nosso objetivo é determinar, em média, quanto tempo um dos atendentes terá de esperar pelo outro.
 
-Para modelar esse problema, assumimos que os tempos de serviço de cada cliente, independentemente do atendente, são variáveis aleatórias independentes e identicamente distribuídas (i.i.d.) com uma distribuição exponencial de taxa  $\lambda = 0.3$  clientes por minuto. Portanto, o tempo total que um atendente leva para atender 10 clientes segue uma distribuição gama com parâmetros de forma  $k = 10$  e taxa  $\lambda = 0.3$.
+Para modelar este problema, assumimos que os tempos de serviço de cada cliente, independentemente do atendente, são variáveis aleatórias independentes e identicamente distribuídas (i.i.d.) com uma distribuição exponencial de taxa  $\lambda = 0.3$  clientes por minuto. Portanto, o tempo total que um atendente leva para atender 10 clientes segue uma distribuição gama com parâmetros de forma  $k = 10$  e taxa  $\lambda = 0.3$.
 
-Seja $X$ o tempo que o atendente A leva para atender 10 clientes e  Y  o tempo que o atendente B leva para atender 10 clientes. Precisamos calcular a média do valor absoluto da diferença de tempo entre eles, $E(|X - Y|)$.
+Seja $X$ o tempo que o atendente A leva para atender 10 clientes e  Y  o tempo que o atendente B leva para atender 10 clientes. Precisamos de calcular a média do valor absoluto da diferença de tempo entre eles, $E(|X - Y|)$.
 
 A solução analítica para este problema exigiria a resolução de uma integral dupla sobre a união de duas regiões não retangulares. Em vez disso, a simulação oferece uma abordagem mais prática e eficiente.
 
@@ -4345,9 +4378,9 @@ z <- abs(x-y)
 mean(z)
 ```
 
-A saída do código acima nos dá um tempo médio de espera de aproximadamente 11.75 minutos.
+A saída do código acima dá-nos um tempo médio de espera de aproximadamente 11.75 minutos.
 
-Para entender melhor a distribuição do tempo de espera, podemos visualizar a distribuição dos valores de $Z$ usando um histograma:
+Para compreender melhor a distribuição do tempo de espera, podemos visualizar a distribuição dos valores de $Z$ utilizando um histograma:
 
 ```{r}
 hist(z, 
@@ -4362,15 +4395,15 @@ hist(z,
 
 **Números Aleatórios**
 
-Números aleatórios são valores gerados de forma imprevisível, sem seguir nenhum padrão determinístico. Em uma sequência de números aleatórios, cada número é escolhido independentemente dos outros, e não há qualquer correlação entre eles. Na prática, números aleatórios são fundamentais em diversas áreas, como criptografia, simulações estatísticas, jogos de azar, e processos de modelagem onde a imprevisibilidade é crucial.
+Números aleatórios são valores gerados de forma imprevisível, sem seguir nenhum padrão determinístico. Numa sequência de números aleatórios, cada número é escolhido independentemente dos outros, e não há qualquer correlação entre eles. Na prática, números aleatórios são fundamentais em diversas áreas, como criptografia, simulações estatísticas, jogos de azar e processos de modelagem onde a imprevisibilidade é crucial.
 
-A verdadeira aleatoriedade geralmente é derivada de processos físicos inerentemente imprevisíveis, como a radiação cósmica, o ruído térmico em circuitos eletrônicos, ou o decaimento radioativo. No entanto, em computação, obter números verdadeiramente aleatórios pode ser difícil e frequentemente desnecessário. Para muitas aplicações, uma forma de aleatoriedade que seja suficientemente imprevisível é suficiente.
+A verdadeira aleatoriedade geralmente deriva de processos físicos inerentemente imprevisíveis, como a radiação cósmica, o ruído térmico em circuitos eletrónicos ou o decaimento radioativo. No entanto, em computação, obter números verdadeiramente aleatórios pode ser difícil e, frequentemente, desnecessário. Para muitas aplicações, uma forma de aleatoriedade que seja suficientemente imprevisível é suficiente.
 
 **Números Pseudoaleatórios**
 
-Números pseudoaleatórios, por outro lado, são gerados por algoritmos determinísticos que produzem sequências de números que parecem aleatórios, mas são, na verdade, baseados em um valor inicial conhecido como semente (seed). Se um algoritmo de geração de números pseudoaleatórios é iniciado com a mesma semente, ele produzirá exatamente a mesma sequência de números a cada execução.
+Números pseudoaleatórios, por outro lado, são gerados por algoritmos determinísticos que produzem sequências de números que parecem aleatórios, mas são, na verdade, baseados num valor inicial conhecido como semente (*seed*). Se um algoritmo de geração de números pseudoaleatórios for iniciado com a mesma semente, ele produzirá exatamente exatamente a mesma sequência de números em cada execução.
 
-Embora os números pseudoaleatórios não sejam verdadeiramente aleatórios, eles são amplamente utilizados porque podem ser gerados de forma rápida e eficiente e, para muitas aplicações, são suficientemente aleatórios. A principal vantagem de usar números pseudoaleatórios é que, ao utilizar a mesma semente, podemos replicar experimentos ou simulações, o que é extremamente útil para fins de pesquisa e depuração de códigos.
+Embora os números pseudoaleatórios não sejam verdadeiramente aleatórios, são amplamente utilizados porque podem ser gerados de forma rápida e eficiente e, para muitas aplicações, são suficientemente aleatórios. A principal vantagem de usar números pseudoaleatórios é que, ao utilizar a mesma semente, podemos replicar experiências ou simulações, o que é extremamente útil para fins de investigação e depuração de códigos.
 
 **Método Congruencial Multiplicativo**
 
@@ -4443,40 +4476,28 @@ print(amostra_prob)
 
 **1.**  Crie um vetor com os números de 1 a 20. Utilize a função `sample()` para selecionar uma amostra aleatória de 5 elementos desse vetor. A amostragem deve ser feita sem reposição.
 
-**2.**  Suponha que você tem uma população representada pelos números de 1 a 10. Utilize a função `sample()` para selecionar uma amostra de 10 elementos com reposição.
+**2.**  Suponha que tem uma população representada pelos números de 1 a 10. Utilize a função `sample()` para selecionar uma amostra de 10 elementos com reposição.
 
 **3.**  Crie um vetor com as letras A, B, C, D, E. Aplique a função `sample()` para selecionar uma amostra de 3 letras, onde a probabilidade de cada letra ser selecionada é dada pelo vetor `c(0.1, 0.2, 0.3, 0.25, 0.15)`.
 
-**4.**  Crie um vetor com os números de 1 a 10. Utilize a função `sample()`
-    para reordenar aleatoriamente os elementos desse vetor.
+**4.**  Crie um vetor com os números de 1 a 10. Utilize a função `sample()` para reordenar aleatoriamente os elementos desse vetor.
 
 **5.**  Crie um vetor com os nomes de cinco frutas: “Maçã”, “Banana”,
     “Laranja”, “Uva”, “Pera”. Utilizando a função `sample()`, selecione
     aleatoriamente uma fruta desse vetor. Em seguida, selecione uma
     amostra de 3 frutas.
 
-**6.**  Você é responsável por realizar um teste de qualidade em uma
-    fábrica. Há 1000 produtos fabricados, numerados de 1 a 1000.
-    Selecione uma amostra aleatória de 50 produtos para inspeção,
+**6.**  Você é responsável por realizar um teste de qualidade em uma fábrica. Há 1000 produtos fabricados, numerados de 1 a 1000. Selecione uma amostra aleatória de 50 produtos para inspeção,
     garantindo que não haja reposição na seleção.
 
-**7.**  Simule o lançamento de dois dados justos 10000 vezes e registre as
-    somas das faces resultantes. Utilize a função `sample()` para
-    realizar a simulação. Em seguida, crie um histograma das somas
-    obtidas.
+**7.**  Simule o lançamento de dois dados justos 10000 vezes e registe as somas das faces resultantes. Utilize a função `sample()` para realizar a simulação. Em seguida, crie um histograma das somas obtidas.
 
-**8.**  Você possui um vetor de 200 estudantes classificados em três turmas:
-    A, B, e C. As turmas têm tamanhos diferentes (50, 100, e 50 alunos,
-    respectivamente). Usando `sample()`, selecione uma amostra de 20
+**8.**  Tem um vetor de 200 estudantes classificados em três turmas: A, B, e C. As turmas têm tamanhos diferentes (50, 100, e 50 alunos, respetivamente). Usando `sample()`, selecione uma amostra de 20
     alunos, mantendo a proporção original das turmas.
 
-**9.**  Um cartão de Bingo contém 24 números aleatórios entre 1 e 75
-    (excluindo o número central “free”). Crie 5 cartões de Bingo únicos
-    usando a função `sample()`.
+**9.**  Um cartão de Bingo contém 24 números aleatórios entre 1 e 75 (excluindo o número central “free”). Crie 5 cartões de Bingo únicos usando a função `sample()`.
 
-**10.** Em um estudo clínico, 30 pacientes devem ser randomizados em dois
-    grupos: tratamento e controle. O grupo de tratamento deve conter 20
-    pacientes e o grupo de controle 10. Usando `sample()`, faça a
+**10.** Em um estudo clínico, 30 pacientes devem ser randomizados em dois grupos: tratamento e controlo. O grupo de tratamento deve conter 20 pacientes e o grupo de controlo 10. Usando `sample()`, faça a
     randomização dos pacientes. Dica: use a função `setdiff()`.
 
 # Método da transformada inversa
@@ -4622,7 +4643,7 @@ points(1:10, dgeom(1:10,0.5))
 
 A chave para usar o método da transformada inversa para gerar uma tal variável aleatória é dada pela seguinte identidade: $$p_{i+1}=\frac{\lambda}{i+1}p_{i}, \quad i\geq 0.$$
 
-Ao utilizar a recursão acima para calcular as probabilidades de Poisson quando elas são necessárias, o algoritmo da transformada inversa para gerar uma variável aleatória de Poisson com média $\lambda$ pode ser expresso como segue.
+Ao utilizar a recursão acima para calcular as probabilidades de Poisson quando elas são necessárias, o algoritmo da transformada inversa para gerar uma variável aleatória de Poisson com média $\lambda$ pode ser expresso da seguinte forma.
 
 ```{r}
 # Gerando uma va com distribuição de Poisson
@@ -4666,15 +4687,15 @@ P(X \leq x) &= P(F^{-1}(U)\leq x) = P(FF^{-1}(U) \leq F(x)) \\
 &= F(x).
 \end{align*}
 
-A última igualdade segue do facto de que $U\sim U(0,1)$ e $0\leq F(x) \leq 1$.
+A última igualdade decorre do facto de que $U\sim U(0,1)$ e $0\leq F(x) \leq 1$.
 
-Essa proposição mostra que pode-se gerar uma variável aleatória $X$ de uma função de distribuição contínua $F$ gerando um número aleatório $U$ e tomando $X = F^{-1}(U)$.
+Esta proposição mostra que se pode gerar uma variável aleatória $X$ de uma função de distribuição contínua $F$, gerando um número aleatório $U$ e tomando $X = F^{-1}(U)$.
 
 ![](docs/transf_inversa2.png)
 
 **Exemplo 1**: Considere nossa varíavel aleatória $X$ com densidade $f(x)=2x$. A função de distribuição de $X$ é $$F(x)=P(X\leq x)=\int_{0}^{x}2t\, dt = x^2, \quad \text{para} \quad 0<x<1.$$
 
-A função $F(x)=x^2$ é invertível no intervalo $(0,1)$ e $F^{-1}(x)=\sqrt{x}$. O método da transformada inversa diz que se $U\sim U(0,1)$, então $F^{-1}(U)=\sqrt{U}$ tem a mesma distribuição que $X$. Portanto para simular $X$, basta gerar $\sqrt{U}$.
+A função $F(x)=x^2$ é invertível no intervalo $(0,1)$ e $F^{-1}(x)=\sqrt{x}$. O método da transformada inversa diz que se $U\sim U(0,1)$, então $F^{-1}(U)=\sqrt{U}$ tem a mesma distribuição que $X$. Portanto, para simular $X$, basta gerar $\sqrt{U}$.
 
 ```{r}
 n <- 10000
@@ -4697,7 +4718,7 @@ hist(simlist, prob=T, main="",xlab="")
 ```
 
 **Exemplo 3**: Geração de uma variável aleatória exponencial. Seja $X$ uma variável aleatória exponencial com taxa 1, então sua função de distribuição é dada por $$F(x)=1-e^{x}.$$
-Como $0\leq F(x)\leq 1$, tomando $F(x)=u$, onde $u\sim U(0,1)$ tem-se: $$u=F(x)=1-e^{x}$$ ou $$1-u=e^{-x}$$ ou, aplicando o logaritmo $$x=-ln(1-u).$$ Daí, pode-se gerar uma exponencial com parâmetro 1 gerando um número aleatório $U$ e em seguida fazendo $$X = F^{-1}(U) = -ln(1-U).$$ Uma pequena economia de tempo pode ser obtida notando que $1-U$ também é uniforme em $(0,1)$ e assim, $-ln(1-U)$ tem a mesma distribuição que $-ln(U)$. Isto é, o logaritmo negativo de um número aleatório é exponencialmente distribuído com taxa 1.
+Como $0\leq F(x)\leq 1$, tomando $F(x)=u$, onde $u\sim U(0,1)$ tem-se: $$u=F(x)=1-e^{x}$$ ou $$1-u=e^{-x}$$ ou, aplicando o logaritmo $$x=-ln(1-u).$$ Daí, pode-se gerar uma exponencial com parâmetro 1 gerando um número aleatório $U$ e em seguida fazendo $$X = F^{-1}(U) = -ln(1-U).$$ Uma pequena economia de tempo pode ser obtida ao notar que $1-U$ também é uniforme em $(0,1)$, e assim, $-ln(1-U)$ tem a mesma distribuição que $-ln(U)$. Isto é, o logaritmo negativo de um número aleatório é exponencialmente distribuído com taxa 1.
 
 Além disso, note que se $X$ é uma exponencial com média 1, então para qualquer constante $c$, $cX$ é uma exponencial com média $c$. Assim, uma variável aleatória exponencial $X$ com taxa $\lambda$ (média $\frac{1}{\lambda}$) pode ser gerada através da geração de um número aleatório $U$ e fazendo $$X = -\frac{1}{\lambda}ln (U).$$
 
@@ -5549,8 +5570,7 @@ plot(Fn, main="Função de Distribuição Empírica",
 
 ## Exercícios
 
-**1.** Usando o R e fixando a semente em 123, simule 1000 lançamentos de
-uma moeda com probabilidade de 0.5 de sair cara. Conte o número de caras
+**1.** Usando o R e fixando a semente em 123, simule 1000 lançamentos de uma moeda com probabilidade de 0.5 de sair cara. Conte o número de caras
 em cada lançamento e plote um histograma dos resultados.
 
 **2.** Usando o R e fixando a semente em 123, gere uma amostra aleatória
@@ -5800,8 +5820,9 @@ esperado 0 e desvio padrão 1.
 
 # Referências
 
--   <https://cemapre.iseg.ulisboa.pt/~nbrites/CTA/index.html>
--   <https://livro.curso-r.com/>
+*   <https://cemapre.iseg.ulisboa.pt/~nbrites/CTA/index.html>
+*   <https://livro.curso-r.com/>
+* <https://www.cs.upc.edu/~robert/teaching/estadistica/TheRBook.pdf>
 
 # Respostas
 

@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 10 Pipe | Introdução ao R</title>
+  <title>Capítulo 2 Normas de Funcionamento | Introdução ao R</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 10 Pipe | Introdução ao R" />
+  <meta property="og:title" content="Capítulo 2 Normas de Funcionamento | Introdução ao R" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/docs/ciencias.png" />
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
@@ -19,7 +19,7 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 10 Pipe | Introdução ao R" />
+  <meta name="twitter:title" content="Capítulo 2 Normas de Funcionamento | Introdução ao R" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
@@ -36,8 +36,8 @@ set in the _output.yml file.</p>" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="leitura-de-dados.html"/>
-<link rel="next" href="loop-while.html"/>
+<link rel="prev" href="index.html"/>
+<link rel="next" href="r-e-rstudio.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -407,108 +407,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="pipe" class="section level1 hasAnchor" number="10">
-<h1><span class="header-section-number">Capítulo 10</span> Pipe<a href="pipe.html#pipe" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="o-operador-pipe" class="section level2 hasAnchor" number="10.1">
-<h2><span class="header-section-number">10.1</span> O operador pipe<a href="pipe.html#o-operador-pipe" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>O operador pipe (<code>%&gt;%</code>) em R é uma ferramenta poderosa que facilita a escrita de código mais limpo e legível. Ele permite que o resultado de uma função seja passado diretamente como entrada para a próxima função, sem a necessidade de criar variáveis intermediárias. Este operador ajuda a tornar o fluxo de dados mais intuitivo e o código mais fácil de ler.</p>
-<p>O operador pipe foi popularizado pelo pacote <code>magrittr</code>, desenvolvido por Stefan Milton Bache e lançado em 2014. O nome “magrittr” é uma referência ao artista surrealista René Magritte, famoso pela pintura “Ceci n’est pas une pipe” (Isto não é um cachimbo), que inspirou a ideia de que o operador pipe permite que dados fluam através de uma sequência
-de operações de maneira intuitiva e sem a necessidade de variáveis temporárias.</p>
-<p>Para começar a utilizar o operador pipe, é necessário instalar e carregar o pacote <code>magrittr</code>.</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="pipe.html#cb113-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;magrittr&quot;</span>)</span>
-<span id="cb113-2"><a href="pipe.html#cb113-2" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span></code></pre></div>
-<p>O operador pipe <code>%&gt;%</code> permite que o valor de uma expressão à esquerda seja passado como o primeiro argumento para a função à direita. Isso permite que o código seja lido de maneira sequencial, de cima para baixo, em vez de dentro para fora, o que facilita a compreensão do fluxo de dados. Por exemplo, considere o seguinte código em R sem o uso do pipe:</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="pipe.html#cb114-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
-<span id="cb114-2"><a href="pipe.html#cb114-2" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">sum</span>(x))</span>
-<span id="cb114-3"><a href="pipe.html#cb114-3" tabindex="-1"></a><span class="do">## [1] 3.16</span></span></code></pre></div>
-<p>Com o operador pipe, o código pode ser reescrito de forma mais clara e legível:</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="pipe.html#cb115-1" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
-<span id="cb115-2"><a href="pipe.html#cb115-2" tabindex="-1"></a>x <span class="sc">%&gt;%</span> <span class="fu">sum</span>() <span class="sc">%&gt;%</span> <span class="fu">sqrt</span>()</span>
-<span id="cb115-3"><a href="pipe.html#cb115-3" tabindex="-1"></a><span class="do">## [1] 3.16</span></span></code></pre></div>
-<p>Considere um exemplo onde queremos calcular a raiz quadrada da soma dos logaritmos dos valores absolutos de um vetor <code>x</code>:</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="pipe.html#cb116-1" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>(<span class="fu">log</span>(<span class="fu">abs</span>(x))))</span></code></pre></div>
-<p>Usando o operador pipe, o mesmo código pode ser reescrito de maneira mais clara:</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="pipe.html#cb117-1" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> x <span class="sc">%&gt;%</span> </span>
-<span id="cb117-2"><a href="pipe.html#cb117-2" tabindex="-1"></a>  <span class="fu">abs</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb117-3"><a href="pipe.html#cb117-3" tabindex="-1"></a>  <span class="fu">log</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb117-4"><a href="pipe.html#cb117-4" tabindex="-1"></a>  <span class="fu">sum</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb117-5"><a href="pipe.html#cb117-5" tabindex="-1"></a>  <span class="fu">sqrt</span>()</span></code></pre></div>
-<p><strong>Uso do Ponto (.) no Pipe</strong></p>
-<p>Em alguns casos, o resultado do lado esquerdo do operador pipe deve ser passado para um argumento que não é o primeiro na função do lado direito. Para esses casos, usamos um ponto (.) como um marcador para indicar onde o valor deve ser inserido.</p>
-<p>Por exemplo, ao usar o pipe para construir um modelo linear com o conjunto de dados <code>airquality</code>, queremos que o dataset seja passado como o segundo argumento (<code>data =</code>) da função <code>lm()</code>:</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="pipe.html#cb118-1" tabindex="-1"></a>airquality <span class="sc">%&gt;%</span></span>
-<span id="cb118-2"><a href="pipe.html#cb118-2" tabindex="-1"></a>  <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span> <span class="co"># Remove valores ausentes</span></span>
-<span id="cb118-3"><a href="pipe.html#cb118-3" tabindex="-1"></a>  <span class="fu">lm</span>(Ozone <span class="sc">~</span> Wind <span class="sc">+</span> Temp <span class="sc">+</span> Solar.R, <span class="at">data =</span> .) <span class="sc">%&gt;%</span> <span class="co"># Cria o modelo linear</span></span>
-<span id="cb118-4"><a href="pipe.html#cb118-4" tabindex="-1"></a>  <span class="fu">summary</span>() <span class="co"># Gera o resumo do modelo</span></span>
-<span id="cb118-5"><a href="pipe.html#cb118-5" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb118-6"><a href="pipe.html#cb118-6" tabindex="-1"></a><span class="do">## Call:</span></span>
-<span id="cb118-7"><a href="pipe.html#cb118-7" tabindex="-1"></a><span class="do">## lm(formula = Ozone ~ Wind + Temp + Solar.R, data = .)</span></span>
-<span id="cb118-8"><a href="pipe.html#cb118-8" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb118-9"><a href="pipe.html#cb118-9" tabindex="-1"></a><span class="do">## Residuals:</span></span>
-<span id="cb118-10"><a href="pipe.html#cb118-10" tabindex="-1"></a><span class="do">##    Min     1Q Median     3Q    Max </span></span>
-<span id="cb118-11"><a href="pipe.html#cb118-11" tabindex="-1"></a><span class="do">## -40.48 -14.22  -3.55  10.10  95.62 </span></span>
-<span id="cb118-12"><a href="pipe.html#cb118-12" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb118-13"><a href="pipe.html#cb118-13" tabindex="-1"></a><span class="do">## Coefficients:</span></span>
-<span id="cb118-14"><a href="pipe.html#cb118-14" tabindex="-1"></a><span class="do">##             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span id="cb118-15"><a href="pipe.html#cb118-15" tabindex="-1"></a><span class="do">## (Intercept) -64.3421    23.0547   -2.79   0.0062 ** </span></span>
-<span id="cb118-16"><a href="pipe.html#cb118-16" tabindex="-1"></a><span class="do">## Wind         -3.3336     0.6544   -5.09  1.5e-06 ***</span></span>
-<span id="cb118-17"><a href="pipe.html#cb118-17" tabindex="-1"></a><span class="do">## Temp          1.6521     0.2535    6.52  2.4e-09 ***</span></span>
-<span id="cb118-18"><a href="pipe.html#cb118-18" tabindex="-1"></a><span class="do">## Solar.R       0.0598     0.0232    2.58   0.0112 *  </span></span>
-<span id="cb118-19"><a href="pipe.html#cb118-19" tabindex="-1"></a><span class="do">## ---</span></span>
-<span id="cb118-20"><a href="pipe.html#cb118-20" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
-<span id="cb118-21"><a href="pipe.html#cb118-21" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb118-22"><a href="pipe.html#cb118-22" tabindex="-1"></a><span class="do">## Residual standard error: 21.2 on 107 degrees of freedom</span></span>
-<span id="cb118-23"><a href="pipe.html#cb118-23" tabindex="-1"></a><span class="do">## Multiple R-squared:  0.606,  Adjusted R-squared:  0.595 </span></span>
-<span id="cb118-24"><a href="pipe.html#cb118-24" tabindex="-1"></a><span class="do">## F-statistic: 54.8 on 3 and 107 DF,  p-value: &lt;2e-16</span></span></code></pre></div>
-<p>Neste exemplo, o dataset <code>airquality</code> é pré-processado com <code>na.omit()</code> para remover os valores ausentes, e o resultado é usado como o argumento data na função <code>lm()</code> para criar um modelo linear. O pipe permite que este fluxo de operações seja descrito de forma clara e linear.</p>
-</div>
-<div id="exercícios-8" class="section level2 hasAnchor" number="10.2">
-<h2><span class="header-section-number">10.2</span> Exercícios<a href="pipe.html#exercícios-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>1.</strong> Reescreva a expressão abaixo utilizando o <code>%&gt;%</code>,</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="pipe.html#cb119-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">mean</span>(<span class="fu">sum</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)<span class="sc">/</span><span class="dv">3</span>), <span class="at">digits =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p><strong>Dica</strong>: utilize a função <code>magrittr::divide_by()</code>, Veja o help da função para mais informações.</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="pipe.html#cb120-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">%&gt;%</span> </span>
-<span id="cb120-2"><a href="pipe.html#cb120-2" tabindex="-1"></a>  <span class="fu">sum</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb120-3"><a href="pipe.html#cb120-3" tabindex="-1"></a>  magrittr<span class="sc">::</span><span class="fu">divide_by</span>(<span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb120-4"><a href="pipe.html#cb120-4" tabindex="-1"></a>  <span class="fu">mean</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb120-5"><a href="pipe.html#cb120-5" tabindex="-1"></a>  <span class="fu">round</span>(<span class="at">digits=</span><span class="dv">1</span>)</span>
-<span id="cb120-6"><a href="pipe.html#cb120-6" tabindex="-1"></a><span class="do">## [1] 18.3</span></span></code></pre></div>
-<p><strong>2.</strong> Reescreva o código abaixo utilizando o <code>%&gt;%</code>.</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="pipe.html#cb121-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
-<span id="cb121-2"><a href="pipe.html#cb121-2" tabindex="-1"></a></span>
-<span id="cb121-3"><a href="pipe.html#cb121-3" tabindex="-1"></a>x.pos <span class="ot">&lt;-</span> x[x<span class="sc">&gt;</span><span class="dv">0</span>]</span>
-<span id="cb121-4"><a href="pipe.html#cb121-4" tabindex="-1"></a></span>
-<span id="cb121-5"><a href="pipe.html#cb121-5" tabindex="-1"></a>media <span class="ot">&lt;-</span> <span class="fu">mean</span>(x.pos)</span>
-<span id="cb121-6"><a href="pipe.html#cb121-6" tabindex="-1"></a></span>
-<span id="cb121-7"><a href="pipe.html#cb121-7" tabindex="-1"></a>saida <span class="ot">&lt;-</span> <span class="fu">round</span>(media, <span class="dv">2</span>)</span></code></pre></div>
-<p><strong>Dica</strong>: utilize a função <code>magrittr::extract()</code>. Veja o help da função para mais informações.</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="pipe.html#cb122-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb122-2"><a href="pipe.html#cb122-2" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb122-3"><a href="pipe.html#cb122-3" tabindex="-1"></a>  magrittr<span class="sc">::</span><span class="fu">extract</span>(.<span class="sc">&gt;</span><span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb122-4"><a href="pipe.html#cb122-4" tabindex="-1"></a>  <span class="fu">mean</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb122-5"><a href="pipe.html#cb122-5" tabindex="-1"></a>  <span class="fu">round</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span>
-<span id="cb122-6"><a href="pipe.html#cb122-6" tabindex="-1"></a><span class="do">## [1] 0.79</span></span></code></pre></div>
-<p><strong>3.</strong> Sem executar, diga qual a saída do código abaixo. Consulte o help das funções caso precise.</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="pipe.html#cb123-1" tabindex="-1"></a><span class="dv">2</span> <span class="sc">%&gt;%</span></span>
-<span id="cb123-2"><a href="pipe.html#cb123-2" tabindex="-1"></a>  <span class="fu">add</span>(<span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb123-3"><a href="pipe.html#cb123-3" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">6</span>, <span class="cn">NA</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb123-4"><a href="pipe.html#cb123-4" tabindex="-1"></a>  <span class="fu">mean</span>(<span class="at">na.rm =</span> T) <span class="sc">%&gt;%</span></span>
-<span id="cb123-5"><a href="pipe.html#cb123-5" tabindex="-1"></a>  <span class="fu">equals</span>(<span class="dv">5</span>)</span></code></pre></div>
+<div id="normas-de-funcionamento" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Capítulo 2</span> Normas de Funcionamento<a href="normas-de-funcionamento.html#normas-de-funcionamento" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><strong>Docente</strong>: Renato de Paula</p>
+<p>Gabinete: 6.4.21</p>
+<p>email: <a href="mailto:rrpaula@ciencias.ulisboa.pt" class="email">rrpaula@ciencias.ulisboa.pt</a></p>
+<p><strong>Monitora</strong>: Ana</p>
+<p>Gabinete:</p>
+<p>email:</p>
+<p><strong>AVALIAÇÃO</strong></p>
 <ul>
-<li><p>Primeiro, somamos 2 com 2, gerando o valor 4.</p></li>
-<li><p>Em seguida, colocamos esse valor num vetor com os valores 6 e <code>NA</code>.</p></li>
-<li><p>Depois, calculamos a média desse vetor, desconsiderando o <code>NA</code>, e obtemos o valor 5.</p></li>
-<li><p>Finalmente, verificamos se o valor é igual a 5, obtendo <code>TRUE</code>.</p></li>
+<li>Dois exercícios práticos a realizar em aula e dois testes.</li>
 </ul>
-</div>
+<p><strong>ou</strong></p>
+<ul>
+<li><p>Exame final</p>
+<ul>
+<li>Nota mínima de 8.5 valores em cada um dos testes.</li>
+<li>Datas de realização dos testes:
+<ul>
+<li>Primeiro teste:</li>
+<li>Segundo teste:</li>
+</ul></li>
+</ul></li>
+<li><p>Nota final:</p>
+<ul>
+<li>(1): <span class="math inline">\(0.10\times(Ex1) + 0.10\times(Ex2) + 0.40\times(Teste1) + 0.40\times(Teste2)\)</span>
+<strong>ou</strong></li>
+<li>(2): Nota do Exame final</li>
+</ul></li>
+<li><p>Exercício prático não efetuado tem cotação igual a zero.</p></li>
+</ul>
+<p><strong>Consulta permitida</strong></p>
+<ul>
+<li><p>Teste 1: formulário com dimensão máxima igual a uma folha A4, frente e verso.</p></li>
+<li><p>Teste 2: formulário com dimensão máxima igual a uma folha A4, frente e verso.</p></li>
+<li><p>O formulário deve ser preparado individualmente e escrito à mão (não podem ser fotocópias).</p></li>
+</ul>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="leitura-de-dados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="loop-while.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-e-rstudio.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -120,7 +120,7 @@
 
 \title{Introdução ao R}
 \author{Renato de Paula}
-\date{2024-09-11}
+\date{2024-09-12}
 
 \begin{document}
 \maketitle
@@ -136,6 +136,75 @@ Este material, ``Introdução ao R'', foi desenvolvido com o objetivo de servir 
 Ao longo deste material, os leitores serão guiados por uma série de tópicos essenciais, desde a instalação do software e a navegação no ambiente RStudio, até ao manuseamento de estruturas de dados complexas e à criação de gráficos sofisticados. Cada capítulo foi estruturado de modo a proporcionar uma compreensão sólida dos conceitos abordados, combinando explicações teóricas com exemplos práticos e exercícios que reforçam a aprendizagem.
 
 Este material foi elaborado para ir ao encontro das necessidades dos alunos, independentemente do seu nível de experiência prévia em Estatística. Seja para aqueles que estão a começar os seus estudos ou para os que já têm alguma familiaridade com o tema, o material proporciona uma abordagem estruturada que facilita a compreensão e a aplicação dos conceitos estatísticos. Acreditamos que, ao final deste curso, os alunos terão adquirido uma base sólida que lhes permitirá aplicar técnicas estatísticas em diversas áreas do conhecimento, usando o R de forma eficiente como uma ferramenta essencial para as suas análises de dados.
+
+\chapter{Normas de Funcionamento}\label{normas-de-funcionamento}
+
+\textbf{Docente}: Renato de Paula
+
+Gabinete: 6.4.21
+
+email: \href{mailto:rrpaula@ciencias.ulisboa.pt}{\nolinkurl{rrpaula@ciencias.ulisboa.pt}}
+
+\textbf{Monitora}: Ana
+
+Gabinete:
+
+email:
+
+\textbf{AVALIAÇÃO}
+
+\begin{itemize}
+\tightlist
+\item
+  Dois exercícios práticos a realizar em aula e dois testes.
+\end{itemize}
+
+\textbf{ou}
+
+\begin{itemize}
+\item
+  Exame final
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Nota mínima de 8.5 valores em cada um dos testes.
+  \item
+    Datas de realização dos testes:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Primeiro teste:
+    \item
+      Segundo teste:
+    \end{itemize}
+  \end{itemize}
+\item
+  Nota final:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    (1): \(0.10\times(Ex1) + 0.10\times(Ex2) + 0.40\times(Teste1) + 0.40\times(Teste2)\)
+    \textbf{ou}
+  \item
+    (2): Nota do Exame final
+  \end{itemize}
+\item
+  Exercício prático não efetuado tem cotação igual a zero.
+\end{itemize}
+
+\textbf{Consulta permitida}
+
+\begin{itemize}
+\item
+  Teste 1: formulário com dimensão máxima igual a uma folha A4, frente e verso.
+\item
+  Teste 2: formulário com dimensão máxima igual a uma folha A4, frente e verso.
+\item
+  O formulário deve ser preparado individualmente e escrito à mão (não podem ser fotocópias).
+\end{itemize}
 
 \chapter{R e RStudio}\label{r-e-rstudio}
 
@@ -179,16 +248,20 @@ Existem quatro painéis principais no ambiente de trabalho do RStudio:
   \textbf{Environment/Histórico}. O painel ``Environment'' (Ambiente) exibe informações sobre os objetos actualmente carregados na sessão do R, como conjuntos de dados, funções definidas pelo utilizador e outras variáveis. Isto ajuda a gerir e visualizar o conteúdo da memória de trabalho. A aba ``History'' (Histórico) armazena todos os comandos executados durante a sessão, permitindo fácil recuperação e reutilização de códigos anteriores.
 \item
   \textbf{Painel Inferior Direito}. Este painel é multifuncional e contém várias abas úteis:
-\item
-  \textbf{Files} (Ficheiros): lista todos os ficheiros no diretório de trabalho actual.
-\item
-  \textbf{Plots} (Gráficos): exibe quaisquer gráficos gerados durante a análise.
-\item
-  \textbf{Packages} (Pacotes): permite visualizar os pacotes instalados e carregados na sessão.
-\item
-  \textbf{Help} (Ajuda): fornece acesso ao sistema de ajuda embutido em HTML, que oferece documentação detalhada sobre funções e pacotes.
-\item
-  \textbf{Viewer} (Visualizador): utilizado para visualizar documentos HTML, PDFs e outros conteúdos dentro do RStudio.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Files} (Ficheiros): lista todos os ficheiros no diretório de trabalho actual.
+  \item
+    \textbf{Plots} (Gráficos): exibe quaisquer gráficos gerados durante a análise.
+  \item
+    \textbf{Packages} (Pacotes): permite visualizar os pacotes instalados e carregados na sessão.
+  \item
+    \textbf{Help} (Ajuda): fornece acesso ao sistema de ajuda embutido em HTML, que oferece documentação detalhada sobre funções e pacotes.
+  \item
+    \textbf{Viewer} (Visualizador): utilizado para visualizar documentos HTML, PDFs e outros conteúdos dentro do RStudio.
+  \end{itemize}
 \end{itemize}
 
 \section{Atalhos}\label{atalhos}
@@ -237,15 +310,6 @@ No R, o caractere \texttt{\#} é utilizado para inserir comentários no código.
 \begin{Highlighting}[]
 \CommentTok{\# Este é um exemplo de comentário}
 \DecValTok{2} \SpecialCharTok{+} \DecValTok{2} \CommentTok{\# O R vai calcular 2 mais 2}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 4
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \DocumentationTok{\#\# [1] 4}
 \end{Highlighting}
 \end{Shaded}
@@ -2944,7 +3008,7 @@ Vamos criar uma função para calcular a área de um retângulo, dada a sua larg
 \item
   \textbf{Variáveis Globais}: As variáveis \texttt{largura\_obj} e \texttt{altura\_obj} são \textbf{globais} dentro do script, ou seja, são acessíveis em todo o script, fora da função.
 \item
-  \textbf{Importância da Nomenclatura}: Usar nomes diferentes para variáveis locais e globais é uma prática recomendada para evitar confusões e melhorar a legibilidade do código.
+  \textbf{Importância da Nomenclatura}: É uma boa prática usar nomes diferentes para variáveis locais e globais para evitar confusão e melhorar a legibilidade do código.
 \end{itemize}
 
 \textbf{Passagem de Argumentos com Valores Padrão}
@@ -3037,8 +3101,7 @@ A função \texttt{stop()} em R é usada para interromper a execução de uma fu
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Exercício 2:} Qual é o resultado da chamada da função
-\texttt{dados\_estudante}?
+\textbf{Exercício 2:} Qual é o resultado da chamada da função \texttt{dados\_estudante}?
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3050,8 +3113,7 @@ A função \texttt{stop()} em R é usada para interromper a execução de uma fu
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Exercício 3:} Qual é a sintaxe correta para definir uma função em R
-que soma dois números?
+\textbf{Exercício 3:} Qual é a sintaxe correta para definir uma função em R que soma dois números?
 
 \begin{enumerate}
 \def\labelenumi{(\alph{enumi})}
@@ -3102,19 +3164,19 @@ sentido lógico, já que 160 não é um nome válido para um estudante.
 
 \section{Exercícios}\label{exercuxedcios-6}
 
-\textbf{1.} Crie uma função chamada \texttt{quadrado()} que recebe um único argumento numérico \texttt{x} e retorna o quadrado de \texttt{x}. Teste a função com os valores 3, 5 e 7.
+\textbf{1.} Crie uma função chamada \texttt{quadrado()} que recebe um único argumento numérico \texttt{x} e devolva o quadrado de \texttt{x}. Teste a função com os valores 3, 5 e 7.
 
-\textbf{2.} Implemente uma função chamada \texttt{hipotenusa(a,b)} que calcula a hipotenusa de um triângulo retângulo dado os comprimentos dos dois catetos, a e b. A função deve retornar o comprimento da hipotenusa usando o Teorema de Pitágoras.
+\textbf{2.} Implemente uma função chamada \texttt{hipotenusa(a,b)} que calcule a hipotenusa de um triângulo retângulo dados os comprimentos dos dois catetos, a e b. A função deve devolver o comprimento da hipotenusa utilizando o Teorema de Pitágoras.
 
-\textbf{3.} Escreva uma função chamada \texttt{divisao\_segura(numerador,\ denominador)} que retorna o resultado da divisão ou uma mensagem de erro apropriada se o denominador for zero.
+\textbf{3.} Escreva uma função chamada \texttt{divisao\_segura(numerador,\ denominador)} que devolva o resultado da divisão ou uma mensagem de erro apropriada se o denominador for zero.
 
-\textbf{4.} Escreva uma função que receba dois inteiros e devolva o maior deles. Teste a função escrevendo um programa que recebe dois números inteiros do utilizador e imprime o resultado de chamada à função. Depois, escreva uma segunda função que devolva o menor deles, aproveitando a primeira função.
+\textbf{4.} Escreva uma função que receba dois inteiros e devolva o maior deles. Teste a função escrevendo um programa que recebe dois números inteiros do utilizador e imprime o resultado da chamada à função. Depois, escreva uma segunda função que devolva o menor deles, aproveitando a primeira função.
 
 \textbf{5.} Escreva uma função que devolva o maior de três números inteiros, utilizando a função \texttt{maior()} do exercício anterior.
 
-\textbf{6.} Crie uma função chamada \texttt{analise\_vetor()} que recebe um vetor numérico e retorna outro vetor contendo a soma, a média, o desvio padrão e o valor máximo do vetor. Use a função para analisar o vetor \texttt{c(4,\ 8,\ 15,\ 16,\ 23,\ 42)}. Funções auxiliares \texttt{sum(),\ mean(),\ sd(),\ max()}.
+\textbf{6.} Crie uma função chamada \texttt{analise\_vetor()} que receba um vetor numérico e devolva outro vetor contendo a soma, a média, o desvio padrão e o valor máximo do vetor. Use a função para analisar o vetor \texttt{c(4,\ 8,\ 15,\ 16,\ 23,\ 42)}. Funções auxiliares \texttt{sum(),\ mean(),\ sd(),\ max()}.
 
-\textbf{7.} Implemente uma função chamada \texttt{classificar\_numero()} que classifica um número inteiro como ``positivo'', ``negativo'', ou ``zero''.
+\textbf{7.} Implemente uma função chamada \texttt{classificar\_numero()} que classifique um número inteiro como ``positivo'', ``negativo'', ou ``zero''.
 
 \textbf{8.} Escreva uma função que calcule o IMC (Índice de Massa Corporal) com base no peso (kg) e altura (m) fornecidos como argumentos e classifique o resultado com base na tabela:
 
@@ -3133,21 +3195,21 @@ De 35 a 39.9 & Obesidade grau II \\
 Igual ou maior que 40 & Obesidade grau III \\
 \end{longtable}
 
-Lembre que IMC = \(\frac{\text{Peso}}{\text{Altura}^2}\).
+Lembre-se de que IMC = \(\frac{\text{Peso}}{\text{Altura}^2}\).
 
-\textbf{9.} Crie funções em R para converter valores entre diferentes moedas com base em taxas de câmbio. Implemente e teste as funções, e escreva um programa que solicite ao utilizador um valor em euros e imprima a conversão desse valor para algumas das principais moedas, como dólar, libra, iene e real.
+\textbf{9.} Crie funções em R para converter valores entre diferentes moedas com base nas taxas de câmbio. Implemente e teste as funções, e escreva um programa que solicite ao utilizador um valor em euros e imprima a conversão desse valor para algumas das principais moedas, como dólar, libra, iene e real.
 
 \chapter{Scripts em R}\label{scripts-em-r}
 
-Um \textbf{script} em R é um arquivo que contém um conjunto de definições, como variáveis, funções e blocos de código, que podem ser reutilizados em outros programas R. Scripts são ferramentas essenciais para automatizar tarefas e para a reprodutibilidade da análise de dados.
+Um \textbf{script} em R é um ficheiro que contém um conjunto de definições, como variáveis, funções e blocos de código, que podem ser reutilizados em outros programas R. Scripts são ferramentas essenciais para automatizar tarefas e para garantir a reprodutibilidade da análise de dados.
 
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Criando um Script}: Para criar um script em R, basta salvar seu código em um arquivo com a extensão ``.R''. Este arquivo pode então ser executado ou reutilizado em outras sessões de R.
+  \textbf{Criar um Script}: Para criar um script em R, basta gravar o código num ficheiro com a extensão ``.R''. Este ficheiro pode então ser executado ou reutilizado noutras sessões de R.
 \end{itemize}
 
-\textbf{Exemplo:} Salve o seguinte código em um arquivo chamado \texttt{meu\_script.R}:
+\textbf{Exemplo:} Guarde o seguinte código num ficheiro chamado \texttt{meu\_script.R}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3157,15 +3219,15 @@ Um \textbf{script} em R é um arquivo que contém um conjunto de definições, c
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Utilizando do script}
+\textbf{Executar o script}
 
-Para executar o script que você criou, utilize a função \texttt{source()} no console do R ou dentro de outro script. Isso permitirá que o R leia e execute todas as linhas de código do script.
+Para executar o script que criou, utilize a função \texttt{source()} no console do R ou dentro de outro script. Isto permitirá que o R leia e execute todas as linhas de código do script.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \textbf{Executando no Diretório de Trabalho Atual}: Se o arquivo \texttt{meu\_script.R} estiver no diretório de trabalho atual, você pode executá-lo simplesmente digitando:
+  \textbf{Executar no Diretório de Trabalho Atual}: Se o ficheiro \texttt{meu\_script.R} estiver no diretório de trabalho atual, pode executá-lo simplesmente escrevendo:
 \end{enumerate}
 
 \begin{Shaded}
@@ -3179,33 +3241,33 @@ Para executar o script que você criou, utilize a função \texttt{source()} no 
 \setcounter{enumi}{1}
 \tightlist
 \item
-  \textbf{Executando a Partir de Outro Diretório}: Se o arquivo estiver localizado em um diretório diferente do diretório de trabalho atual, você precisará fornecer o caminho completo para o arquivo:
+  \textbf{Executar a Partir de Outro Diretório}: Se o ficheiro estiver localizado num diretório diferente do diretório de trabalho atual, terá de fornecer o caminho completo para o ficheiro:
 \end{enumerate}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{source}\NormalTok{(}\StringTok{"/caminho/para/seu/script/meu\_script.R"}\NormalTok{)}
+\FunctionTok{source}\NormalTok{(}\StringTok{"/caminho/para/o/seu/script/meu\_script.R"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \textbf{O que Acontece Quando Executamos um Script?}
 
-Quando você usa o comando \texttt{source()}, o R lê e executa todas as linhas do script. Qualquer função, variável ou resultado de operações realizadas dentro do script será carregado e ficará disponível no ambiente de trabalho após a execução. Por exemplo, após executar o script acima, a função \texttt{produto()} estará disponível para uso:
+Quando utiliza o comando \texttt{source()}, o R lê e executa todas as linhas do script. Qualquer função, variável ou resultado de operações realizadas dentro do script será carregado e ficará disponível no ambiente de trabalho após a execução. Por exemplo, após executar o script acima, a função \texttt{produto()} estará disponível para ser utilizada:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Agora você pode usar a função \textquotesingle{}produto\textquotesingle{}}
+\CommentTok{\# Agora pode utilizar a função \textquotesingle{}produto\textquotesingle{}}
 \FunctionTok{produto}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{)}
 \DocumentationTok{\#\# [1] 6}
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Observações Importantes}
+\textbf{Notas Importantes}
 
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Diretório de trabalho}: O diretório de trabalho é o local onde o R procura por arquivos para leitura ou onde salva arquivos. Você pode verificar o diretório de trabalho atual usando \texttt{getwd()} e alterar para um novo diretório com \texttt{setwd("caminho/do/diretorio")}.
+  \textbf{Diretório de trabalho}: O diretório de trabalho é o local onde o R procura por ficheiros para leitura ou onde guarda ficheiros. Pode verificar o diretório de trabalho atual utilizando \texttt{getwd()} e mudar para um novo diretório com \texttt{setwd("caminho/do/diretorio")}.
 \end{itemize}
 
 \section{Exercícios}\label{exercuxedcios-7}
@@ -3215,7 +3277,7 @@ Quando você usa o comando \texttt{source()}, o R lê e executa todas as linhas 
 \begin{enumerate}
 \def\labelenumi{(\alph{enumi})}
 \item
-  Crie um script \texttt{quadrado.R} que contenha funções para calcular o perímetro e a área de um quadrado, dado o comprimento do lado. Utilize o script \texttt{quadrado.R} em outro script para calcular o perímetro e a área de um quadrado com lado de comprimento 5.
+  Crie um script \texttt{quadrado.R} que contenha funções para calcular o perímetro e a área de um quadrado, dado o comprimento do lado. Utilize o script \texttt{quadrado.R} noutro script para calcular o perímetro e a área de um quadrado com lado de comprimento 5.
 \item
   Crie um script \texttt{estatistica.R} que contenha funções para ordenar uma amostra, calcular a média, a variância e o desvio padrão de um vetor numérico.
 \item
@@ -3224,35 +3286,35 @@ Quando você usa o comando \texttt{source()}, o R lê e executa todas as linhas 
 
 \chapter{Leitura de dados}\label{leitura-de-dados}
 
-R é uma linguagem poderosa para análise de dados e oferece diversas funções para importar dados de diferentes formatos. Independentemente do formato, o processo básico de leitura de dados em R segue alguns passos comuns:
+O R é uma linguagem poderosa para análise de dados e oferece diversas funções para importar dados de diferentes formatos. Independentemente do formato, o processo básico de leitura de dados em R segue alguns passos comuns:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \textbf{Especificar o caminho do arquivo}: Onde o arquivo está localizado.
+  \textbf{Especificar o caminho do ficheiro}: Onde o ficheiro está localizado.
 \item
-  \textbf{Indicar as características do arquivo}: Como delimitador, presença de cabeçalhos, tipos de dados, etc.
+  \textbf{Indicar as características do ficheiro}: Como delimitador, presença de cabeçalhos, tipos de dados, etc.
 \item
-  \textbf{Ler os dados e armazená-los em um objeto}: Geralmente um data frame para fácil manipulação e análise.
+  \textbf{Ler os dados e armazená-los num objeto}: Geralmente um data frame para fácil manipulação e análise.
 \end{enumerate}
 
-\section{Leitura de Dados da Entrada do Usuário}\label{leitura-de-dados-da-entrada-do-usuuxe1rio}
+\section{Leitura de Dados da Entrada do Utilizador}\label{leitura-de-dados-da-entrada-do-utilizador}
 
-A função \texttt{scan()} é usada para ler dados da entrada padrão (teclado) ou de um arquivo, e retorna um vetor. Um uso comum de \texttt{scan()} é para entrada de dados manual:
+A função \texttt{scan()} é usada para ler dados da entrada padrão (teclado) ou de um ficheiro, e devolve um vetor. Um uso comum de \texttt{scan()} é para entrada de dados manual:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Solicita ao usuário para digitar números}
+\CommentTok{\# Solicita ao utilizador para introduzir números}
 \NormalTok{numeros }\OtherTok{\textless{}{-}} \FunctionTok{scan}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-Após digitar \texttt{scan()}, o usuário pode inserir uma série de números separados por espaços e pressionar Enter para concluir a entrada.
+Após escrever \texttt{scan()}, o utilizador pode inserir uma série de números separados por espaços e pressionar Enter para concluir a entrada.
 
 \section{Diretório de trabalho}\label{diretuxf3rio-de-trabalho}
 
-O \textbf{diretório de trabalho} (working directory) em R é o local padrão onde o R lê e grava arquivos. Quando você importa dados ou salva resultados, o R utiliza o diretório de trabalho como ponto de referência. Ter um diretório de trabalho configurado corretamente é essencial para facilitar o acesso a arquivos de dados e a gravação de saídas.
+O \textbf{diretório de trabalho} (working directory) em R é o local padrão onde o R lê e grava ficheiros. Quando importa dados ou guarda resultados, o R utiliza o diretório de trabalho como ponto de referência. Ter um diretório de trabalho configurado corretamente é essencial para facilitar o acesso a ficheiros de dados e gravação de saídas.
 
 \textbf{Funções Principais para Manipulação de Diretório}
 
@@ -3272,15 +3334,15 @@ Para verificar o diretório de trabalho atual, utilize \texttt{getwd()}:
 \end{Highlighting}
 \end{Shaded}
 
-A saída pode ser semelhante a esta, dependendo do seu sistema operacional:
+A saída pode ser semelhante a esta, dependendo do seu sistema operativo:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Exemplo de saída no Windows}
-\DocumentationTok{\#\# [1] "C:/Users/Usuario/Documents"}
+\DocumentationTok{\#\# [1] "C:/Users/Utilizador/Documents"}
 
 \CommentTok{\# Exemplo de saída no Mac}
-\DocumentationTok{\#\# [1] "/Users/Usuario/Documents"}
+\DocumentationTok{\#\# [1] "/Users/Utilizador/Documents"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3288,20 +3350,20 @@ Para alterar o diretório de trabalho para uma pasta específica, use \texttt{se
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Define o diretório de trabalho para "C:/Users/Usuario/Documents/ProjetosR"}
-\FunctionTok{setwd}\NormalTok{(}\StringTok{"C:/Users/Usuario/Documents/ProjetosR"}\NormalTok{)}
+\CommentTok{\# Define o diretório de trabalho para "C:/Users/Utilizador/Documents/ProjetosR"}
+\FunctionTok{setwd}\NormalTok{(}\StringTok{"C:/Users/Utilizador/Documents/ProjetosR"}\NormalTok{)}
 
 \CommentTok{\# Verifica se o diretório de trabalho foi alterado}
 \FunctionTok{print}\NormalTok{(}\FunctionTok{getwd}\NormalTok{())}
-\DocumentationTok{\#\# [1] "C:/Users/Usuario/Documents/ProjetosR"}
+\DocumentationTok{\#\# [1] "C:/Users/Utilizador/Documents/ProjetosR"}
 \end{Highlighting}
 \end{Shaded}
 
-Ao definir o diretório de trabalho corretamente, você pode importar arquivos diretamente sem precisar especificar o caminho completo. Por exemplo, se o arquivo \texttt{dados.csv} estiver no diretório de trabalho, você pode lê-lo facilmente:
+Ao definir corretamente o diretório de trabalho, pode importar ficheiros diretamente sem precisar especificar o caminho completo. Por exemplo, se o ficheiro \texttt{dados.csv} estiver no diretório de trabalho, pode lê-lo facilmente:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Lê o arquivo "dados.csv" no diretório de trabalho atual}
+\CommentTok{\# Lê o ficheiro "dados.csv" no diretório de trabalho atual}
 \NormalTok{dados }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"dados.csv"}\NormalTok{)}
 
 \CommentTok{\# Exibe as primeiras linhas do conjunto de dados}
@@ -3311,11 +3373,11 @@ Ao definir o diretório de trabalho corretamente, você pode importar arquivos d
 
 \section{\texorpdfstring{A Função \texttt{read.table()}}{A Função read.table()}}\label{a-funuxe7uxe3o-read.table}
 
-A função \texttt{read.table()} é uma das mais versáteis em R para a leitura de arquivos de texto em formato tabular. Ela permite importar dados de arquivos de texto e configurá-los de acordo com suas características. Faça o download do arquivo \texttt{dados.txt} em \href{https://renatorpaula.wixsite.com/renato/laboratorio-estatistica}{link} para praticar.
+A função \texttt{read.table()} é uma das mais versáteis em R para a leitura de ficheiros de texto em formato tabular. Ela permite importar dados de ficheiros de texto e configurá-los de acordo com suas características. Faça o download do ficheiro \texttt{dados.txt} em \href{https://renatorpaula.wixsite.com/renato/laboratorio-estatistica}{link} para praticar.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Leitura de arquivo txt com read.table()}
+\CommentTok{\# Leitura de ficheiro txt com read.table()}
 \NormalTok{dados }\OtherTok{\textless{}{-}} \FunctionTok{read.table}\NormalTok{(}\AttributeTok{file =} \StringTok{"dados.txt"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{sep =} \StringTok{""}\NormalTok{)}
 \FunctionTok{print}\NormalTok{(dados)}
 \end{Highlighting}
@@ -3326,24 +3388,24 @@ A função \texttt{read.table()} é uma das mais versáteis em R para a leitura 
 \begin{itemize}
 \tightlist
 \item
-  \texttt{file}: Especifica o nome do arquivo ou o caminho do arquivo para leitura.
+  \texttt{file}: Especifica o nome do ficheiro ou o caminho do ficheiro para leitura.
 \item
-  \texttt{header}: Indica se a primeira linha do arquivo contém os nomes das colunas. Se \texttt{header\ =\ TRUE}, a primeira linha é considerada como cabeçalho.
+  \texttt{header}: Indica se a primeira linha do ficheiro contém os nomes das colunas. Se \texttt{header\ =\ TRUE}, a primeira linha é considerada como cabeçalho.
 \item
   \texttt{sep}: Define o caractere separador entre os campos. O padrão é uma vírgula (,), mas pode ser especificado para outros caracteres, como espaço (``\,``), ponto e vírgula (;), etc.
 \item
   \texttt{dec}: Define o caractere utilizado para separar a parte inteira da parte decimal dos números. Por exemplo, pode ser ponto (.) ou vírgula (,).
 \item
-  \texttt{nrows}: Especifica o número máximo de linhas a serem lidas do arquivo, útil para ler apenas uma parte do arquivo.
+  \texttt{nrows}: Especifica o número máximo de linhas a serem lidas do ficheiro, útil para ler apenas uma parte do ficheiro.
 \item
-  \texttt{na.strings}: Define quais valores no arquivo devem ser interpretados como \texttt{NA} (valores ausentes), como ``NA'', ``N/A'', etc.
+  \texttt{na.strings}: Define quais valores no ficheiro devem ser interpretados como \texttt{NA} (valores ausentes), como ``NA'', ``N/A'', etc.
 \item
-  \texttt{skip}: Indica o número de linhas a serem ignoradas no início do arquivo antes de começar a leitura.
+  \texttt{skip}: Indica o número de linhas a serem ignoradas no início do ficheiro antes de começar a leitura.
 \item
-  \texttt{comment.char}: Define o caractere usado para denotar comentários no arquivo. Linhas que começam com este caractere serão ignoradas.
+  \texttt{comment.char}: Define o caractere usado para denotar comentários no ficheiro. Linhas que começam com este caractere serão ignoradas.
 \end{itemize}
 
-Para ver todas as opções disponíveis na função \texttt{read.table()}, você pode usar:
+Para ver todas as opções disponíveis na função \texttt{read.table()}, pode usar:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3363,7 +3425,7 @@ Para ver todas as opções disponíveis na função \texttt{read.table()}, você
 ## NULL
 \end{verbatim}
 
-Se o arquivo for um CSV (valores separados por vírgula), você pode utilizar \texttt{read.table()} com o argumento \texttt{sep} apropriado:
+Se o ficheiro for um CSV (valores separados por vírgula), pode utilizar \texttt{read.table()} com o argumento \texttt{sep} apropriado:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3373,20 +3435,20 @@ Se o arquivo for um CSV (valores separados por vírgula), você pode utilizar \t
 
 \section{\texorpdfstring{A função \texttt{read.csv()}}{A função read.csv()}}\label{a-funuxe7uxe3o-read.csv}
 
-A função \texttt{read.csv()} é otimizada para a leitura de arquivos CSV (Comma-Separated Values), que são arquivos de texto onde cada linha representa um registro e os valores são separados por vírgulas. A principal diferença entre \texttt{read.csv()} e \texttt{read.table()} é que o separador padrão em \texttt{read.csv()} é uma vírgula.
+A função \texttt{read.csv()} está otimizada para a leitura de ficheiros CSV (Comma-Separated Values), que são ficheiros de texto onde cada linha representa um registo e os valores são separados por vírgulas. A principal diferença entre \texttt{read.csv()} e \texttt{read.table()} é que o separador padrão em \texttt{read.csv()} é uma vírgula.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Leitura de arquivo CSV com read.csv}
+\CommentTok{\# Leitura de ficheiro CSV com read.csv}
 \NormalTok{dados\_csv }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"dados.csv"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-Aqui, o argumento \texttt{header\ =\ TRUE} indica que a primeira linha do arquivo contém os nomes das colunas. Outros argumentos são semelhantes aos de \texttt{read.table()}.
+Aqui, o argumento \texttt{header\ =\ TRUE} indica que a primeira linha do ficheiro contém os nomes das colunas. Outros argumentos são semelhantes aos de \texttt{read.table()}.
 
 \section{\texorpdfstring{A função \texttt{read.csv2()}}{A função read.csv2()}}\label{a-funuxe7uxe3o-read.csv2}
 
-A função \texttt{read.csv2()} é semelhante à \texttt{read.csv()}, mas é projetada para lidar com arquivos CSV onde o separador padrão é um ponto e vírgula (;) e o separador decimal é uma vírgula (,). Este formato é comum em alguns países europeus.
+A função \texttt{read.csv2()} é semelhante à \texttt{read.csv()}, mas é projetada para lidar com ficheiros CSV onde o separador padrão é um ponto e vírgula (;) e o separador decimal é uma vírgula (,). Este formato é comum em alguns países europeus.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3397,7 +3459,7 @@ A função \texttt{read.csv2()} é semelhante à \texttt{read.csv()}, mas é pro
 
 \section{\texorpdfstring{A Função \texttt{read\_excel()} do Pacote \texttt{readxl}}{A Função read\_excel() do Pacote readxl}}\label{a-funuxe7uxe3o-read_excel-do-pacote-readxl}
 
-Para ler arquivos Excel (.xls e .xlsx), usamos a função \texttt{read\_excel()} do pacote \texttt{readxl}. Este pacote precisa ser instalado e carregado antes de seu uso.
+Para ler ficheiros Excel (.xls e .xlsx), usamos a função \texttt{read\_excel()} do pacote \texttt{readxl}. Este pacote precisa ser instalado e carregado antes da sua utilização.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3415,13 +3477,13 @@ Para ler arquivos Excel (.xls e .xlsx), usamos a função \texttt{read\_excel()}
 \begin{itemize}
 \tightlist
 \item
-  \texttt{path}: O caminho do arquivo Excel a ser lido. Este é um argumento obrigatório e pode ser um caminho local ou uma URL.
+  \texttt{path}: O caminho do ficheiro Excel a ser lido. Este é um argumento obrigatório e pode ser um caminho local ou uma URL.
 \item
-  \texttt{sheet}: O nome ou o índice da aba (planilha) do Excel a ser lida. Se não especificado, a função lerá a primeira aba.
+  \texttt{sheet}: O nome ou o índice da aba (folha) do Excel a ser lida. Se não for especificado, a função irá ler a primeira folha.
 \item
-  \texttt{range}: Um intervalo específico a ser lido, como ``A1:D10''. Se \texttt{NULL} (padrão), a função lê toda a aba.
+  \texttt{range}: Um intervalo específico a ser lido, como ``A1:D10''. Se \texttt{NULL} (padrão), a função lê toda a folha.
 \item
-  \texttt{col\_names}: Um argumento lógico (\texttt{TRUE} ou \texttt{FALSE}) que indica se a primeira linha da planilha deve ser usada como nomes das colunas no data frame. O padrão é \texttt{TRUE}.
+  \texttt{col\_names}: Um argumento lógico (\texttt{TRUE} ou \texttt{FALSE}) que indica se a primeira linha da folha deve ser usada como nomes das colunas no data frame. O padrão é \texttt{TRUE}.
 \item
   \texttt{col\_types}: Um vetor de tipos de colunas que podem ser \texttt{"blank"}, \texttt{"numeric"}, \texttt{"date"}, \texttt{"text"}, ou \texttt{"guess"}. O padrão é \texttt{NULL}, o que permite que a função adivinhe os tipos de coluna automaticamente.
 \item
@@ -3434,7 +3496,7 @@ Para ler arquivos Excel (.xls e .xlsx), usamos a função \texttt{read\_excel()}
   \texttt{n\_max}: Número máximo de linhas a serem lidas. O padrão é \texttt{Inf}, o que significa que todas as linhas são lidas.
 \end{itemize}
 
-\textbf{Exemplo de Uso}: Vamos considerar um exemplo em que temos um arquivo Excel chamado \texttt{"instragram.xlsx"} com três planilhas: \texttt{"Sheet1"}, \texttt{"Sheet2"} e \texttt{"Sheet3"}. Este arquivo pode ser baixado \href{https://renatorpaula.wixsite.com/renato/laboratorio-estatistica}{aqui}. Vamos ler a primeira planilha (\texttt{Sheet1}):
+\textbf{Exemplo de Utilização}: Vamos considerar um exemplo em que temos um ficheiro Excel chamado \texttt{"instragram.xlsx"} com três folhas: \texttt{"Sheet1"}, \texttt{"Sheet2"} e \texttt{"Sheet3"}. Este ficheiro pode ser descarregado \href{https://renatorpaula.wixsite.com/renato/laboratorio-estatistica}{aqui}. Vamos ler a primeira folha (\texttt{Sheet1}):
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3447,7 +3509,7 @@ Para ler arquivos Excel (.xls e .xlsx), usamos a função \texttt{read\_excel()}
 
 \section{Leitura de Dados Online}\label{leitura-de-dados-online}
 
-R também permite ler dados diretamente de URLs. Você pode usar funções como \texttt{read.table()}, \texttt{read.csv()}, ou \texttt{read\_excel()} (dependendo do formato do arquivo) para importar dados diretamente de um link online.
+O R também permite ler dados diretamente de URLs. Pode usar funções como \texttt{read.table()}, \texttt{read.csv()}, ou \texttt{read\_excel()} (dependendo do formato do ficheiro) para importar dados diretamente de um link online.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3457,7 +3519,7 @@ R também permite ler dados diretamente de URLs. Você pode usar funções como 
 \end{Highlighting}
 \end{Shaded}
 
-Neste exemplo, url contém o endereço do arquivo CSV na web, e \texttt{read.table()} é usado para importar o conteúdo como um data frame.
+Neste exemplo, url contém o endereço do ficheiro CSV na web, e \texttt{read.table()} é usado para importar o conteúdo como um data frame.
 
 \chapter{Pipe}\label{pipe}
 
@@ -3604,7 +3666,7 @@ Neste exemplo, o dataset \texttt{airquality} é pré-processado com \texttt{na.o
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{3.} Sem rodar, diga qual a saída do código abaixo. Consulte o help das funções caso precise.
+\textbf{3.} Sem executar, diga qual a saída do código abaixo. Consulte o help das funções caso precise.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3620,12 +3682,11 @@ Neste exemplo, o dataset \texttt{airquality} é pré-processado com \texttt{na.o
 \item
   Primeiro, somamos 2 com 2, gerando o valor 4.
 \item
-  Então colocamos esse valor em um vetor com os valores 6 e \texttt{NA}.
+  Em seguida, colocamos esse valor num vetor com os valores 6 e \texttt{NA}.
 \item
-  Em seguida, tiramos a média desse vetor, desconsiderando o \texttt{NA},
-  obtendo o valor 5.
+  Depois, calculamos a média desse vetor, desconsiderando o \texttt{NA}, e obtemos o valor 5.
 \item
-  Por fim, testemos se o valor é igual a 5, obtendo o valor \texttt{TRUE}.
+  Finalmente, verificamos se o valor é igual a 5, obtendo \texttt{TRUE}.
 \end{itemize}
 
 \chapter{Loop while}\label{loop-while}
@@ -3656,10 +3717,10 @@ A instrução \texttt{while} em R é uma estrutura de controle de fluxo que perm
 \item
   \textbf{Execução do Bloco de Código}: Se a condição for \texttt{TRUE}, o bloco de código dentro do \texttt{while} é executado.
 \item
-  \textbf{Reavaliação}: Após a execução do bloco de código, a condição é reavaliada. Se a condição permanecer \texttt{TRUE}, o ciclo se repete. Se a condição se tornar \texttt{FALSE}, o loop termina e o controle do programa continua com a próxima instrução após o \texttt{while}.
+  \textbf{Reavaliação}: Após a execução do bloco de código, a condição é reavaliada. Se a condição continuar a ser \texttt{TRUE}, o ciclo repete-se. Se a condição se tornar \texttt{FALSE}, o loop termina e o controlo do programa continua com a próxima instrução após o \texttt{while}.
 \end{itemize}
 
-\textbf{Exemplo 1}: Somando números até um limite. O exemplo a seguir calcula a soma de todos os números de 1 a 10.
+\textbf{Exemplo 1}: Somando números até um limite. O exemplo seguinte calcula a soma de todos os números de 1 a 10.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3682,14 +3743,14 @@ Neste exemplo:
 \begin{itemize}
 \tightlist
 \item
-  O loop while continua enquanto contador \textless= limite.
+  O loop while continua enquanto \texttt{contador\ \textless{}=\ limite}.
 \item
-  Em cada iteração, o valor de contador é adicionado a soma, e contador é incrementado em 1.
+  Em cada iteração, o valor de \texttt{contador} é adicionado a soma, e \texttt{contador} é incrementado em 1.
 \item
-  Quando contador excede limite, o loop termina.
+  Quando \texttt{contador} excede \texttt{limite}, o loop termina.
 \end{itemize}
 
-\textbf{Exemplo 2}: Escrevendo a tabuada de um número inteiro. O programa abaixo imprime a tabuada de um número fornecido pelo usuário.
+\textbf{Exemplo 2}: Escrever a tabuada de um número inteiro. O programa abaixo imprime a tabuada de um número fornecido pelo utilizador.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3704,7 +3765,7 @@ Neste exemplo:
 \end{Highlighting}
 \end{Shaded}
 
-Explique porque o programa acima não termina. Qual o erro no nosso código? O loop no código original não terminava porque a linha \texttt{i\ +\ 1} não atualizava a variável \texttt{i}. A expressão \texttt{i\ +\ 1} calcula o novo valor, mas não o atribui de volta a \texttt{i}. O código correto usa \texttt{i\ \textless{}-\ i\ +\ 1} para atualizar a variável \texttt{i} a cada iteração.
+Explique por que o programa acima não termina. Qual é o erro no nosso código? O loop no código original não terminava porque a linha \texttt{i\ +\ 1} não atualizava a variável \texttt{i}. A expressão \texttt{i\ +\ 1} calcula o novo valor, mas não o atribui de volta a \texttt{i}. O código correto usa \texttt{i\ \textless{}-\ i\ +\ 1} para atualizar a variável \texttt{i} a cada iteração.
 
 \textbf{Exemplo 3}: Uso do break para interromper um loop. O próximo exemplo demonstra como usar a instrução \texttt{break} para sair de um loop antecipadamente.
 
@@ -3738,44 +3799,44 @@ Explique porque o programa acima não termina. Qual o erro no nosso código? O l
 
 \begin{itemize}
 \item
-  \textbf{Condição de Parada}: É fundamental garantir que a condição do \texttt{while} eventualmente se torne \texttt{FALSE} para evitar loops infinitos que podem travar o programa.
+  \textbf{Condição de Paragem}: É fundamental garantir que a condição do \texttt{while} eventualmente se torne \texttt{FALSE} para evitar loops infinitos que podem bloquear o programa.
 \item
   \textbf{Incremento/Decremento}: A variável que controla a condição deve ser atualizada corretamente dentro do loop. Falhas em fazer isso corretamente também podem causar loops infinitos.
 \item
-  \textbf{Desempenho}: Loops \texttt{while} podem ser menos eficientes do que operações vetorizadas em R. Para grandes conjuntos de dados, considere usar funções vetorizadas como \texttt{apply}, \texttt{lapply}, \texttt{sapply}, etc., para melhorar a performance.
+  \textbf{Desempenho}: Loops \texttt{while} podem ser menos eficientes do que operações vetorizadas em R. Para grandes conjuntos de dados, considere usar funções vetorizadas como \texttt{apply}, \texttt{lapply}, \texttt{sapply}, etc., para melhorar o desempenho.
 \end{itemize}
 
 \section{Exercícios}\label{exercuxedcios-9}
 
-\textbf{1.} Escreva um programa em R que solicite ao usuário um número inteiro \(n\). O programa deve imprimir todos os números inteiros de 0 até \(n\), um número por linha.
+\textbf{1.} Escreva um programa em R que solicite ao utilizador um número inteiro \(n\). O programa deve imprimir todos os números inteiros de 0 até \(n\), um número por linha.
 
-\textbf{2.} Crie um programa em R que solicite ao usuário um número inteiro, calcule o seu quadrado e exiba o resultado. Em seguida, pergunte ao usuário se ele deseja continuar ou encerrar o programa. O loop deve continuar até que o usuário escolha terminar.
+\textbf{2.} Crie um programa em R que solicite ao utilizador um número inteiro, calcule o seu quadrado e exiba o resultado. Em seguida, pergunte ao utilizador se ele deseja continuar ou terminar o programa. O loop deve continuar até que o utilizador escolha terminar.
 
-\textbf{3.} Desenvolva um programa em R que peça ao usuário um número inteiro \(n\) e calcule a soma dos primeiros \(n\) inteiros (de 1 até \(n\)). O resultado deve ser exibido no console.
+\textbf{3.} Desenvolva um programa em R que peça ao utilizador um número inteiro \(n\) e calcule a soma dos primeiros \(n\) inteiros (de 1 até \(n\)). O resultado deve ser exibido no console.
 
-\textbf{4.} Escreva um programa em R que solicite ao usuário um número inteiro \(n\) e conte quantos números pares existem no intervalo de 0 até \(n\). O resultado deve ser impresso no console.
+\textbf{4.} Escreva um programa em R que solicite ao utilizador um número inteiro \(n\) e conte quantos números pares existem no intervalo de 0 até \(n\). O resultado deve ser impresso no console.
 
-\textbf{5.} Usar um loop \texttt{while} para somar números inteiros positivos até que um número negativo seja inserido.
+\textbf{5.} Use um loop \texttt{while} para somar números inteiros positivos até que um número negativo seja inserido.
 
-Crie um programa em R que leia números inteiros inseridos pelo usuário e some-os. O loop deve continuar até que o usuário insira um número negativo, momento em que o programa deve parar e exibir a soma dos números positivos inseridos.
+Crie um programa em R que leia números inteiros inseridos pelo usuário e some-os. O loop deve continuar até que o utilizador insira um número negativo, momento em que o programa deve parar e exibir a soma dos números positivos inseridos.
 
-\textbf{6.} Usar um loop while para implementar uma contagem regressiva.
+\textbf{6.} Use um loop while para implementar uma contagem regressiva.
 
-Implemente um programa em R que solicite ao usuário um número inteiro positivo e, em seguida, execute uma contagem regressiva até zero, imprimindo cada número no console.
+Implemente um programa em R que solicite ao utilizador um número inteiro positivo e, em seguida, execute uma contagem regressiva até zero, imprimindo cada número no console.
 
-\textbf{7.} Escreva um programa em R que solicite ao usuário um número inteiro negativo e, em seguida, conte progressivamente até zero, imprimindo cada número no console.
+\textbf{7.} Escreva um programa em R que solicite ao utilizador um número inteiro negativo e, em seguida, conte progressivamente até zero, imprimindo cada número no console.
 
-\textbf{8.} Desenvolva um programa em R que peça ao usuário para inserir um número. Se o número for positivo, o programa deve contar regressivamente até zero. Se o número for negativo, o programa deve contar progressivamente até zero. Cada número deve ser impresso no console.
+\textbf{8.} Desenvolva um programa em R que peça ao utilizador para inserir um número. Se o número for positivo, o programa deve contar regressivamente até zero. Se o número for negativo, o programa deve contar progressivamente até zero. Cada número deve ser impresso no console.
 
-\textbf{9.} Crie um programa em R que solicite ao usuário um número inteiro não negativo e calcule seu fatorial usando um loop \texttt{while}. Lembre que \(0! = 1\) e que \(4! = 4\times 3\times 2\times  = 24\).
+\textbf{9.} Crie um programa em R que solicite ao utilizador um número inteiro não negativo e calcule seu fatorial usando um loop \texttt{while}. Lembre-se que \(0! = 1\) e que \(4! = 4\times 3\times 2\times  = 24\).
 
 \textbf{10.} Escreva um programa em R que leia um número inteiro positivo e calcule a soma de seus dígitos usando um loop \texttt{while}. Por exemplo, para o número 23, o programa deve calcular \(2+3 = 5\).
 
-\textbf{11.} Desenvolva um programa em R que gere e imprima os números da sequência de Fibonacci até atingir um valor máximo especificado pelo usuário. A sequência de Fibonacci começa com 1, 1 e cada número subsequente é a soma dos dois anteriores \((1, 1, 2, 3, 5, 8, 13 \ldots)\).
+\textbf{11.} Desenvolva um programa em R que gere e imprima os números da sequência de Fibonacci até atingir um valor máximo especificado pelo utilizador. A sequência de Fibonacci começa com 1, 1 e cada número subsequente é a soma dos dois anteriores \((1, 1, 2, 3, 5, 8, 13 \ldots)\).
 
 \chapter{Loop for}\label{loop-for}
 
-O loop \texttt{for} em R é uma estrutura de controle de fluxo que permite executar repetidamente um bloco de código para cada elemento de uma sequência. Ele é particularmente útil quando o número de iterações é conhecido de antemão. O loop \texttt{for} é amplamente utilizado em R para iterar sobre vetores, listas, data frames, e outras estruturas de dados.
+O loop \texttt{for} em R é uma estrutura de controlo de fluxo que permite executar repetidamente um bloco de código para cada elemento de uma sequência. Ele é particularmente útil quando o número de iterações é conhecido de antecipadamente. O loop \texttt{for} é amplamente utilizado em R para iterar sobre vetores, listas, data frames, e outras estruturas de dados.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3788,7 +3849,7 @@ O loop \texttt{for} em R é uma estrutura de controle de fluxo que permite execu
 
 \begin{itemize}
 \item
-  \textbf{variável}: Uma variável de controle que, em cada iteração, assume o valor do próximo elemento da sequência.
+  \textbf{variável}: Uma variável de controlo que, em cada iteração, assume o valor do próximo elemento da sequência.
 \item
   \textbf{sequência}: Uma estrutura de dados como um vetor, lista, ou outro objeto sobre o qual se deseja iterar.
 \item
@@ -3799,11 +3860,11 @@ O loop \texttt{for} em R é uma estrutura de controle de fluxo que permite execu
 
 \begin{itemize}
 \item
-  \textbf{Inicialização}: Antes de iniciar o loop, a variável de controle é definida com o primeiro elemento da sequência.
+  \textbf{Inicialização}: Antes de iniciar o loop, a variável de controlo é definida com o primeiro elemento da sequência.
 \item
-  \textbf{Iteração}: Para cada iteração, a variável de controle é atualizada com o próximo valor da sequência.
+  \textbf{Iteração}: Para cada iteração, a variável de controlo é atualizada com o próximo valor da sequência.
 \item
-  \textbf{Execução do Bloco de Código}: O bloco de código dentro do loop é executado para cada valor da variável de controle.
+  \textbf{Execução do Bloco de Código}: O bloco de código dentro do loop é executado para cada valor da variável de controlo.
 \item
   \textbf{Finalização}: O loop termina quando todos os elementos da sequência tiverem sido processados.
 \end{itemize}
@@ -3829,7 +3890,7 @@ O loop \texttt{for} em R é uma estrutura de controle de fluxo que permite execu
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Exemplo 2}: Soma dos elementos de um vetor
+\textbf{Exemplo 2}: Soma dos elementos de um vetor.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3845,7 +3906,7 @@ O loop \texttt{for} em R é uma estrutura de controle de fluxo que permite execu
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Exemplo 3}: Uso do \texttt{for} com índices. Você também pode usar o loop for para iterar sobre índices de vetores ou listas, o que pode ser útil quando se deseja acessar ou modificar elementos em posições específicas.
+\textbf{Exemplo 3}: Uso do \texttt{for} com índices. Também pode usar o loop for para iterar sobre índices de vetores ou listas, o que pode ser útil quando se deseja aceder ou modificar elementos em posições específicas.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3861,7 +3922,7 @@ O loop \texttt{for} em R é uma estrutura de controle de fluxo que permite execu
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Exemplo 4:} Iterando sobre matrizes. O loop \texttt{for} também pode ser utilizado para percorrer elementos de uma matriz, seja por linha ou por coluna. No exemplo abaixo, calculamos a soma dos elementos de cada linha de uma matriz.
+\textbf{Exemplo 4:} Iterar sobre matrizes. O loop \texttt{for} também pode ser utilizado para percorrer elementos de uma matriz, seja por linha ou por coluna. No exemplo abaixo, calculamos a soma dos elementos de cada linha de uma matriz.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3878,7 +3939,7 @@ O loop \texttt{for} em R é uma estrutura de controle de fluxo que permite execu
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Exemplo 5:} Cálculo de Médias de Colunas em um Data Frame. Neste exemplo, calculamos a média de cada coluna de um data frame usando um loop \texttt{for}.
+\textbf{Exemplo 5:} Cálculo de Médias de Colunas num Data Frame. Neste exemplo, calculamos a média de cada coluna de um data frame usando um loop \texttt{for}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3912,15 +3973,15 @@ O loop \texttt{for} em R é uma estrutura de controle de fluxo que permite execu
 
 \textbf{5.} Escreva um programa em R que imprima todos os números ímpares do vetor \texttt{valores\ \textless{}-\ c(1,\ 3,\ 4,\ 6,\ 9,\ 11,\ 14)}. Utilize um loop \texttt{for}.
 
-\textbf{6.} Escreva um programa em R que leia um número inteiro e use um loop \texttt{for} para imprimir sua tabuada de 1 a 10.
+\textbf{6.} Escreva um programa em R que leia um número inteiro e use um loop \texttt{for} para imprimir sua a tabuada de 1 a 10.
 
 \textbf{7.} Escreva um programa em R que leia um número inteiro e use um loop \texttt{for} para determinar se o número é perfeito ou não. Um número perfeito é aquele cuja soma de seus divisores próprios é igual ao próprio número (por exemplo, 6 tem divisores próprios 1, 2 e 3, e 1+2+3 = 6).
 
 \textbf{8.} Escreva um programa em R que use um loop \texttt{for} para encontrar e imprimir todos os números perfeitos entre 1 e 1000.
 
-\textbf{9.} Escreva um programa em R que leia dois inteiros \(n\) e \(m\) e imprima os números entre \(0\) e \(n\), inclusive, com um intervalo de \(m\) entre eles. Utilize um ciclo \texttt{for} para o efeito.
+\textbf{9.} Escreva um programa em R que leia dois inteiros \(n\) e \(m\) e imprima os números entre \(0\) e \(n\), inclusive, com um intervalo de \(m\) entre eles. Utilize um loop \texttt{for} para o efeito.
 
-\textbf{10.} Escreva um programa que calcule a média de um conjunto de notas fornecidas pelo usuário. O número de notas a serem inseridas é indicado pelo usuário antes da entrada das notas. Utilize um loop for para coletar as notas e calcular a média. Segue-se um exemplo da interação com o computador:
+\textbf{10.} Escreva um programa que calcule a média de um conjunto de notas fornecidas pelo utilizador. O número de notas a serem inseridas é indicado pelo utilizador antes da entrada das notas. Utilize um loop \texttt{for} para recolher as notas e calcular a média. Segue-se um exemplo da interação com o computador:
 
 \texttt{Digite\ o\ número\ de\ notas\ que\ serão\ inseridas:\ 4}
 
@@ -3956,7 +4017,7 @@ O loop \texttt{for} em R é uma estrutura de controle de fluxo que permite execu
 
 \chapter{\texorpdfstring{Família \texttt{Xapply()}}{Família Xapply()}}\label{famuxedlia-xapply}
 
-A família \texttt{Xapply()} no R refere-se a um conjunto de funções projetadas para iterar de maneira eficiente sobre objetos, evitando a necessidade de loops explícitos como \texttt{for}. Essas funções são especialmente úteis para realizar operações repetitivas em listas, vetores, matrizes, data frames e outros objetos, de forma concisa e frequentemente mais rápida.
+A família \texttt{Xapply()} no R refere-se a um conjunto de funções desenhadas para iterar de forma eficiente sobre objetos, evitando a necessidade de loops (ciclos) explícitos como \texttt{for}. Essas funções são especialmente úteis para realizar operações repetitivas em listas, vetores, matrizes, data frames e outros objetos, de forma concisa e frequentemente mais rápida.
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
@@ -3988,7 +4049,7 @@ A família \texttt{Xapply()} no R refere-se a um conjunto de funções projetada
 
 \section{\texorpdfstring{Função \texttt{apply()}}{Função apply()}}\label{funuxe7uxe3o-apply}
 
-A função \texttt{apply()} aplica uma função a margens específicas (linhas ou colunas) de uma matriz ou data frame e retorna um vetor, lista ou array. Ela é frequentemente usada para evitar loops explícitos.
+A função \texttt{apply()} aplica uma função a margens específicas (linhas ou colunas) de uma matriz ou data frame e devolve um vetor, lista ou array. É frequentemente usada para evitar loops explícitos.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4001,7 +4062,7 @@ A função \texttt{apply()} aplica uma função a margens específicas (linhas o
 \item
   \texttt{X}: A matriz ou data frame a ser manipulado.
 \item
-  \texttt{MARGIN}: Um valor que indica se a função deve ser aplicada a linhas (1) ou colunas (2).
+  \texttt{MARGIN}: Um valor que indica se a função deve ser aplicada às linhas (1) ou colunas (2).
 \item
   \texttt{FUN}: A função que será aplicada.
 \end{itemize}
@@ -4029,7 +4090,7 @@ A função \texttt{apply()} aplica uma função a margens específicas (linhas o
 
 \section{\texorpdfstring{Função \texttt{lapply()}}{Função lapply()}}\label{funuxe7uxe3o-lapply}
 
-A função \texttt{lapply()} aplica uma função a cada elemento de uma lista ou vetor e retorna uma lista. Ela é útil quando se deseja manter a estrutura de saída como uma lista.
+A função \texttt{lapply()} aplica uma função a cada elemento de uma lista ou vetor e devolve uma lista. É útil quando se deseja manter a estrutura de saída como uma lista.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4090,7 +4151,7 @@ A função \texttt{lapply()} aplica uma função a cada elemento de uma lista ou
 
 \section{\texorpdfstring{Função \texttt{sapply()}}{Função sapply()}}\label{funuxe7uxe3o-sapply}
 
-A função \texttt{sapply()} é similar ao \texttt{lapply()}, mas tenta simplificar o resultado para um vetor ou matriz, se possível.
+A função \texttt{sapply()} é semelhante à \texttt{lapply()}, mas tenta simplificar o resultado para um vetor ou matriz, se possível.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4140,14 +4201,14 @@ A função \texttt{tapply()} aplica uma função a subconjuntos de um vetor, div
 
 \begin{itemize}
 \item
-  \texttt{X}: O vetor de dados
+  \texttt{X}: O vetor de dados.
 \item
   \texttt{INDEX}: Um fator ou lista de fatores que definem os grupos.
 \item
-  \texttt{FUN}: A função que será aplicada a cada grupo
+  \texttt{FUN}: A função que será aplicada a cada grupo.
 \end{itemize}
 
-\textbf{Exemplo:} O dataset \texttt{iris} em R é um conjunto de dados amplamente utilizado para exemplificar análises estatísticas. Foi introduzido por Ronald A. Fisher em 1936 em seu artigo sobre a utilização de modelos estatísticos para discriminação de espécies de plantas. Contém informações sobre três espécies de flores (\texttt{Setosa}, \texttt{Versicolor}, \texttt{Virginica}) e suas características morfológicas (comprimento e largura das sépalas e pétalas). Vamos calcular a média do comprimento das pétalas por espécie usando \texttt{tapply()}:
+\textbf{Exemplo:} O dataset \texttt{iris} em R é um conjunto de dados amplamente utilizado para exemplificar análises estatísticas. Foi introduzido por Ronald A. Fisher em 1936 no seu artigo sobre a utilização de modelos estatísticos para discriminação de espécies de plantas. Contém informações sobre três espécies de flores (\texttt{Setosa}, \texttt{Versicolor}, \texttt{Virginica}) e suas características morfológicas (comprimento e largura das sépalas e pétalas). Vamos calcular a média do comprimento das pétalas por espécie usando \texttt{tapply()}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4312,7 +4373,7 @@ A função \texttt{tapply()} aplica uma função a subconjuntos de um vetor, div
 
 \section{Exercícios}\label{exercuxedcios-11}
 
-\textbf{1.} Crie um vetor chamado nomes contendo os nomes ``Alice'', ``Bruno'', ``Carla'', e ``Daniel''. Use a função \texttt{lapply()} para converter todos os nomes para maiúsculas. Verifique o resultado.
+\textbf{1.} Crie um vetor chamado \texttt{nomes} contendo os nomes ``Alice'', ``Bruno'', ``Carla'', e ``Daniel''. Use a função \texttt{lapply()} para converter todos os nomes para maiúsculas. Verifique o resultado.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4321,7 +4382,7 @@ A função \texttt{tapply()} aplica uma função a subconjuntos de um vetor, div
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{2.} Crie um vetor chamado palavras contendo as palavras ``cachorro'', ``gato'', ``elefante'', e ``leão''. Use a função \texttt{sapply()} para calcular o comprimento (número de caracteres) de cada palavra. Verifique o resultado. Dica, veja \texttt{?nchar}.
+\textbf{2.} Crie um vetor chamado \texttt{palavras} contendo as palavras ``cachorro'', ``gato'', ``elefante'', e ``leão''. Use a função \texttt{sapply()} para calcular o comprimento (número de caracteres) de cada palavra. Verifique o resultado. Dica, veja \texttt{?nchar}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4339,7 +4400,7 @@ A função \texttt{tapply()} aplica uma função a subconjuntos de um vetor, div
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{4.} Use o conjunto de dados embutido \texttt{mtcars} em R. Use a função \texttt{tapply()} para calcular a média do consumo de combustível (\texttt{mpg}) para cada número de cilindros (c\texttt{yl}).
+\textbf{4.} Use o conjunto de dados embutido \texttt{mtcars} em R. Use a função \texttt{tapply()} para calcular a média do consumo de combustível (\texttt{mpg}) para cada número de cilindros (\texttt{cyl}).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4348,7 +4409,7 @@ A função \texttt{tapply()} aplica uma função a subconjuntos de um vetor, div
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{5.} Crie uma lista chamada \texttt{minha\_lista} contendo três elementos: um vetor numérico de 1 a 5, um vetor de caracteres com os valores ``A'', ``B'', ``C'', e uma matriz 2x2 com valores de 1 a 4. Use \texttt{lapply()} para calcular o comprimento de cada elemento da lista e, em seguida, use \texttt{sapply()} para simplificar o resultado em um vetor.
+\textbf{5.} Crie uma lista chamada \texttt{minha\_lista} contendo três elementos: um vetor numérico de 1 a 5, um vetor de caracteres com os valores ``A'', ``B'', ``C'', e uma matriz 2x2 com valores de 1 a 4. Use \texttt{lapply()} para calcular o comprimento de cada elemento da lista e, em seguida, use \texttt{sapply()} para simplificar o resultado num vetor.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4442,7 +4503,7 @@ O R base oferece uma variedade de funções para criar gráficos estatísticos b
 
 \textbf{Personalização de Gráficos de Barras}
 
-Você pode personalizar ainda mais os gráficos de barras usando argumentos como \texttt{las} (para rotação dos rótulos dos eixos), \texttt{horiz} (para gráficos de barras horizontais), e \texttt{beside} (para barras lado a lado).
+Pode personalizar ainda mais os gráficos de barras usando argumentos como \texttt{horiz} (para gráficos de barras horizontais), e \texttt{beside} (para barras lado a lado).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4490,8 +4551,7 @@ relativa) no eixo vertical.
 \end{itemize}
 
 Por default, o R utiliza a frequência absoluta para construir o histograma. Se tiver interesse em representar as frequências relativas,
-utilize a opção \texttt{freq=FALSE} nos argumentos da função \texttt{hist()}. O padrão
-de intervalo de classe no R é \((a, b]\).
+utilize a opção \texttt{freq=FALSE} nos argumentos da função \texttt{hist()}. O padrão de intervalo de classe no R é \((a, b]\).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4540,11 +4600,11 @@ de intervalo de classe no R é \((a, b]\).
 
 \includegraphics{introR_files/figure-latex/unnamed-chunk-157-1.pdf}
 
-Você pode controlar o número de intervalos (bins) usando o argumento \texttt{breaks}. Por exemplo, \texttt{breaks\ =\ 5} divide os dados em 5 intervalos.
+Pode controlar o número de intervalos (bins) usando o argumento \texttt{breaks}. Por exemplo, \texttt{breaks\ =\ 5} divide os dados em 5 intervalos.
 
 \section{Box-plot}\label{box-plot}
 
-\textbf{Box-plot (Caixa de Bigodes)}: O box-plot é uma representação gráfica que resume a distribuição de uma variável através de cinco estatísticas principais: mínimo, primeiro quartil (Q1), mediana (Q2), terceiro quartil (Q3) e máximo. Ele também pode mostrar outliers (valores atípicos).
+\textbf{Box-plot (Caixa de Bigodes)}: O box-plot é uma representação gráfica que resume a distribuição de uma variável através de cinco estatísticas principais: mínimo, primeiro quartil (Q1), mediana (Q2), terceiro quartil (Q3) e máximo. Também pode mostrar outliers (valores atípicos).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4569,7 +4629,7 @@ Você pode controlar o número de intervalos (bins) usando o argumento \texttt{b
 
 \includegraphics{introR_files/figure-latex/unnamed-chunk-159-1.pdf}
 
-Você pode comparar a distribuição de múltiplas variáveis lado a lado com box-plots. Use a função \texttt{par()} para ajustar o layout gráfico.
+Pode comparar a distribuição de múltiplas variáveis lado a lado com box-plots. Use a função \texttt{par()} para ajustar o layout gráfico.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4640,11 +4700,11 @@ Você pode comparar a distribuição de múltiplas variáveis lado a lado com bo
 
 \section{Tibbles}\label{tibbles}
 
-\textbf{Tibbles} são uma versão moderna e aprimorada dos data frames em R, introduzida pelo pacote \texttt{tibble}, que é parte do \texttt{tidyverse} --- um conjunto de pacotes desenvolvido para facilitar a ciência de dados em R. Tibbles foram projetados para superar algumas das limitações dos data frames tradicionais, oferecendo uma estrutura de dados mais robusta e intuitiva para manipulação e análise de dados.
+\textbf{Tibbles} são uma versão moderna e melhorada dos data frames em R, introduzida pelo pacote \texttt{tibble}, que faz parte do \texttt{tidyverse} --- um conjunto de pacotes desenvolvido para facilitar a ciência de dados em R. Os tibbles foram projetados para ultrapassar algumas das limitações dos data frames tradicionais, oferecendo uma estrutura de dados mais robusta e intuitiva para manipulação e análise de dados.
 
 \textbf{Diferenças Principais entre Tibble e Data Frame}
 
-Tibbles possuem várias vantagens sobre os data frames, especialmente em termos de usabilidade e integração com o \texttt{tidyverse}. A tabela abaixo resume as principais diferenças:
+Os tibbles têm várias vantagens em relação aos data frames, especialmente em termos de usabilidade e integração com o \texttt{tidyverse}. A tabela abaixo resume as principais diferenças:
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2847}}
@@ -4671,7 +4731,7 @@ Compatibilidade e Integração & Totalmente compatível com base R & Compatível
 Manipulação de Dados & Menos intuitivo para algumas operações. & Mais intuitivo e fácil de usar, especialmente com operações encadeadas. \\
 \end{longtable}
 
-\subsection{Criando e Trabalhando com Tibbles}\label{criando-e-trabalhando-com-tibbles}
+\subsection{Criar e trabalhar com Tibbles}\label{criar-e-trabalhar-com-tibbles}
 
 Criar um \texttt{tibble} é semelhante a criar um data frame, mas com uma sintaxe ligeiramente diferente que facilita a criação de colunas complexas.
 
@@ -4699,17 +4759,17 @@ Criar um \texttt{tibble} é semelhante a criar um data frame, mas com uma sintax
 \end{Highlighting}
 \end{Shaded}
 
-Você também pode converter um data frame existente para um tibble usando a função \texttt{as\_tibble()}:
+Também pode converter um data frame existente para um tibble usando a função \texttt{as\_tibble()}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Criando um data frame}
+\CommentTok{\# Criar um data frame}
 \NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
   \AttributeTok{x =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{,}
   \AttributeTok{y =} \FunctionTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{, }\StringTok{"B"}\NormalTok{, }\StringTok{"C"}\NormalTok{, }\StringTok{"D"}\NormalTok{, }\StringTok{"E"}\NormalTok{)}
 \NormalTok{)}
 
-\CommentTok{\# Convertendo para tibble}
+\CommentTok{\# Converter para tibble}
 \NormalTok{tb }\OtherTok{\textless{}{-}} \FunctionTok{as\_tibble}\NormalTok{(df)}
 
 \FunctionTok{print}\NormalTok{(tb)}
@@ -4801,7 +4861,7 @@ Assim, utilizaremos o objeto \texttt{sw} para acessar os dados.
 
 \subsection{\texorpdfstring{Seleção de Colunas com \texttt{select()}}{Seleção de Colunas com select()}}\label{seleuxe7uxe3o-de-colunas-com-select}
 
-A função \texttt{select()} é utilizada para selecionar uma ou mais colunas de um tibble ou data frame. Você pode usar nomes de colunas diretamente sem aspas.
+A função \texttt{select()} é usada para selecionar uma ou mais colunas de um tibble ou data frame. Pode usar nomes de colunas diretamente sem aspas.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4880,11 +4940,11 @@ O \texttt{dplyr} possui um conjunto de funções auxiliares muito úteis para se
 \begin{itemize}
 \tightlist
 \item
-  \texttt{starts\_with()}: para colunas que começam com um texto padrão
+  \texttt{starts\_with()}: para colunas que começam com um texto específico.
 \item
-  \texttt{ends\_with()}: para colunas que terminam com um texto padrão
+  \texttt{ends\_with()}: para colunas que terminam com um texto específico.
 \item
-  \texttt{contains()}: para colunas que contêm um texto padrão
+  \texttt{contains()}: para colunas que contêm um texto específico.
 \end{itemize}
 
 \begin{Shaded}
@@ -4911,7 +4971,7 @@ O \texttt{dplyr} possui um conjunto de funções auxiliares muito úteis para se
 ## # i 77 more rows
 \end{verbatim}
 
-Para remover colunas basta acrescentar um \texttt{-} antes da seleção.
+Para remover colunas, basta acrescentar um \texttt{-} antes da seleção.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4972,12 +5032,11 @@ Utilize a base \texttt{sw} nos exercícios a seguir.
 
 \textbf{3.} Selecione apenas as colunas \texttt{hair\_color}, \texttt{skin\_color} e \texttt{eye\_color} usando a função auxiliar \texttt{contains()}.
 
-\textbf{4.} Usando a função \texttt{select()} e suas funções auxiliares, escreva códigos que retornem a base \texttt{sw} sem as colunas \texttt{hair\_color}, \texttt{skin\_color} e \texttt{eye\_color}. Escreva todas as soluções diferentes que
-você conseguir pensar.
+\textbf{4.} Usando a função \texttt{select()} e as suas funções auxiliares, escreva códigos que retornem a base \texttt{sw} sem as colunas \texttt{hair\_color}, \texttt{skin\_color} e \texttt{eye\_color}. Escreva todas as soluções diferentes que conseguir pensar.
 
 \subsection{Ordenando a Base de Dados}\label{ordenando-a-base-de-dados}
 
-A função \texttt{arrange()} permite ordenar as linhas de uma tabela com base nos valores de uma ou mais colunas. Você pode ordenar em ordem crescente ou decrescente, dependendo da necessidade.
+A função \texttt{arrange()} permite ordenar as linhas de uma tabela com base nos valores de uma ou mais colunas. Pode ordenar em ordem crescente ou decrescente, conforme a necessidade.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5059,7 +5118,7 @@ A função \texttt{arrange()} permite ordenar as linhas de uma tabela com base n
 
 \subsection{Exercícios}\label{exercuxedcios-13}
 
-\textbf{1.} Ordene a base \texttt{sw} pela coluna \texttt{mass} em ordem crescente e pela coluna \texttt{birth\_year} em ordem decrescente. Salve o resultado em um objeto chamado \texttt{sw\_ordenados}.
+\textbf{1.} Ordene a base \texttt{sw} pela coluna \texttt{mass} em ordem crescente e pela coluna \texttt{birth\_year} em ordem decrescente. Guarde o resultado em um objeto chamado \texttt{sw\_ordenados}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5273,7 +5332,7 @@ Podemos utilizá-la para filtrar apenas os personagens com cabelo \texttt{grey}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Podemos detectar se o cabelo grey aparece na string}
+\CommentTok{\# Podemos detetar se o cabelo grey aparece na string}
 \FunctionTok{str\_detect}\NormalTok{(}
   \AttributeTok{string =}\NormalTok{ sw}\SpecialCharTok{$}\NormalTok{hair\_color,}
   \AttributeTok{pattern =} \StringTok{"grey"}
@@ -5330,10 +5389,9 @@ Utilize a base \texttt{sw} nos exercícios a seguir.
 
 \textbf{e.} Personagens que não possuem informação tanto de altura (\texttt{height}) quanto de massa (\texttt{mass}), ou seja, possuem \texttt{NA} em ambas as colunas.
 
-\subsection{Modificando e criando novas colunas}\label{modificando-e-criando-novas-colunas}
+\subsection{Modificar e criar novas colunas}\label{modificar-e-criar-novas-colunas}
 
-A função \texttt{mutate()} permite criar novas colunas ou modificar colunas existentes, facilitando transformações de dados. O código abaixo divide os valores da coluna \texttt{height} por 100, mudando a unidade de medida dessa variável de
-centímetros para metros.
+A função \texttt{mutate()} permite criar novas colunas ou modificar colunas existentes, facilitando transformações de dados. O código abaixo divide os valores da coluna \texttt{height} por 100, mudando a unidade de medida dessa variável de centímetros para metros.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5432,11 +5490,10 @@ Podemos fazer qualquer operação com uma ou mais colunas. Abaixo vamos criar um
 \textbf{d.} \texttt{acima\_media} =
 \texttt{ifelse(indice\_massa\_altura\ \textgreater{}\ indice\_massa\_medio,\ “sim”,\ “não”)}
 
-\textbf{3.} Crie uma nova coluna que classifique o personagem em ``recente''
-(nascido após 100 anos antes da batalha de Yavin) e ``antigo'' (nascido há
+\textbf{3.} Crie uma nova coluna que classifique o personagem em ``recente'' (nascido após 100 anos antes da batalha de Yavin) e ``antigo'' (nascido há
 100 anos ou mais).
 
-\subsection{Sumarizando a Base de Dados}\label{sumarizando-a-base-de-dados}
+\subsection{Sumarizar a Base de Dados}\label{sumarizar-a-base-de-dados}
 
 A função \texttt{summarize()} permite calcular estatísticas agregadas, como média, mediana, variância, etc. Para agregar dados por categorias, combinamos \texttt{summarize()} com \texttt{group\_by()}.
 
@@ -5567,7 +5624,7 @@ Utilize a base \texttt{sw} nos exercícios a seguir.
 
 \subsection{Juntando Tabelas em R com dplyr}\label{juntando-tabelas-em-r-com-dplyr}
 
-Em ciência de dados, é comum precisar combinar informações de diferentes fontes em uma única tabela. No R, o pacote dplyr oferece várias funções para realizar operações de junção, que permitem combinar duas ou mais tabelas (data frames ou tibbles) com base em uma ou mais colunas compartilhadas.
+Em ciência de dados, é comum precisar combinar informações de diferentes fontes em uma única tabela. No R, o pacote \texttt{dplyr} oferece várias funções para realizar operações de junção, que permitem combinar duas ou mais tabelas (data frames ou tibbles) com base em uma ou mais colunas compartilhadas.
 
 \textbf{Tipos de Junção}
 
@@ -5583,11 +5640,11 @@ As junções mais comuns em manipulação de dados são:
   \texttt{full\_join()}: Mantém todas as linhas de ambas as tabelas e adiciona NA onde não há correspondência.
 \end{itemize}
 
-Essas funções são extremamente úteis quando se precisa combinar dados de diferentes fontes que compartilham uma chave comum, como um identificador único.
+Essas funções são extremamente úteis quando é necessário combinar dados de diferentes fontes que compartilham uma chave comum, como um identificador único.
 
 \textbf{Exemplo}: Personagens de Star Wars
 
-Para ilustrar como essas funções funcionam, vamos usar a base de dados \texttt{sw} e criar dois subconjuntos de dados:
+Para ilustrar como estas funções funcionam, vamos usar a base de dados \texttt{sw} e criar dois subconjuntos de dados:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -5598,7 +5655,7 @@ Para ilustrar como essas funções funcionam, vamos usar a base de dados \texttt
   \texttt{personagens\_humanos}: Tabela contendo apenas personagens que são humanos.
 \end{enumerate}
 
-Vamos criar nossos subconjuntos de dados usando a função \texttt{filter()} do dplyr.
+Vamos criar os nossos subconjuntos de dados usando a função \texttt{filter()} do dplyr.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5785,7 +5842,8 @@ de filmes IMDB está disponível no fénix
 
 \chapter{Simulação}\label{simulauxe7uxe3o}
 
-A simulação é uma ferramenta poderosa que utiliza a capacidade dos computadores modernos para realizar cálculos que, de outra forma, seriam difíceis ou até impossíveis de serem resolvidos analiticamente. A Lei dos Grandes Números nos assegura que, ao observarmos uma grande amostra de variáveis aleatórias independentes e identicamente distribuídas (i.i.d.) com média finita, a média dessas observações tende a convergir para a média verdadeira da distribuição conforme o tamanho da amostra aumenta.
+A simulação é uma ferramenta poderosa que utiliza a capacidade dos computadores modernos para realizar cálculos que, de outra forma, seriam difíceis ou até impossíveis de serem resolvidos analiticamente. A Lei dos Grandes Números assegura-nos que, ao observarmos uma grande amostra de variáveis aleatórias independentes e identicamente distribuídas (i.i.d.) com média finita, a média dessas observações tende a convergir para a média verdadeira da distribuição
+à medida que o tamanho da amostra aumenta.
 
 Em vez de nos esforçarmos para encontrar essa média através de métodos analíticos complexos, podemos utilizar o poder computacional para gerar uma amostra suficientemente grande dessas variáveis aleatórias. A partir dessa amostra, calculamos a média observada, que serve como uma estimativa consistente da média verdadeira da distribuição. No entanto, a eficácia desse método depende de três fatores cruciais:
 
@@ -5793,18 +5851,18 @@ Em vez de nos esforçarmos para encontrar essa média através de métodos anal�
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \textbf{Identificação correta dos tipos de variáveis aleatórias necessárias para o problema em questão}: É essencial determinar quais distribuições de probabilidade descrevem adequadamente os processos aleatórios que estamos modelando.
+  \textbf{Identificação correta dos tipos de variáveis aleatórias necessárias para o problema em questão}: É essencial determinar quais distribuições de probabilidade descrevem adequadamente os processos aleatórios que estamos a modelar.
 \item
-  \textbf{Capacidade do computador de gerar essas variáveis de forma precisa}: Os algoritmos utilizados para gerar números pseudo-aleatórios devem ser robustos e capazes de produzir amostras que representem fielmente as distribuições desejadas.
+  \textbf{Capacidade do computador de gerar essas variáveis de forma precisa}: Os algoritmos utilizados para gerar números pseudoaleatórios devem ser robustos e capazes de produzir amostras que representem fielmente as distribuições desejadas.
 \item
-  \textbf{Determinação do tamanho adequado da amostra}: O tamanho da amostra deve ser suficientemente grande para que a média da amostra seja uma boa aproximação da média real. Além disso, um tamanho de amostra maior geralmente reduz a variabilidade das estimativas, aumentando a confiabilidade dos resultados.
+  \textbf{Determinação do tamanho adequado da amostra}: O tamanho da amostra deve ser suficientemente grande para que a média da amostra seja uma boa aproximação da média real. Além disso, um tamanho de amostra maior geralmente reduz a variabilidade das estimativas, aumentando a fiabilidade dos resultados.
 \end{enumerate}
 
 A simulação, portanto, simplifica o processo de resolução de problemas complexos, proporcionando uma abordagem prática e eficiente para explorar cenários onde o cálculo analítico é impraticável ou impossível. Ela permite aos estatísticos e cientistas de dados testar hipóteses, realizar análises de sensibilidade e prever resultados em condições controladas de incerteza.
 
-Para ilustrar o potencial da simulação, começamos com alguns exemplos básicos onde a solução analítica já é conhecida. Esses exemplos demonstram que a simulação pode reproduzir resultados teóricos com precisão. Além disso, esses casos introdutórios servem para destacar aspectos importantes que precisam ser considerados ao resolver problemas mais complexos por meio de simulação, como o tratamento de variáveis dependentes, correlações entre variáveis, e questões de eficiência computacional.
+Para ilustrar o potencial da simulação, começamos com alguns exemplos básicos onde a solução analítica já é conhecida. Esses exemplos demonstram que a simulação pode reproduzir resultados teóricos com precisão. Além disso, estes casos introdutórios servem para destacar aspetos importantes que precisam ser considerados ao resolver problemas mais complexos por meio de simulação, como o tratamento de variáveis dependentes, correlações entre variáveis, e questões de eficiência computacional.
 
-\textbf{Exemplo 1 (Estimando a Média de uma Distribuição Uniforme)}: A média da distribuição uniforme no intervalo \([0,1]\) é conhecida por ser \(\frac{1}{2}\). Se tivermos um grande número de variáveis aleatórias independentes e identicamente distribuídas (i.i.d.) a partir dessa distribuição uniforme, denotadas por \(X_{1}, X_{2}, \ldots, X_{n}\), a Lei dos Grandes Números nos diz que a média amostral, dada por \(\overline{X} = \frac{1}{n} \sum_{i=1}^{n} X_{i}\), deve se aproximar da média verdadeira de 0.5 à medida que o tamanho da amostra \(n\) aumenta.
+\textbf{Exemplo 1 (Estimando a Média de uma Distribuição Uniforme)}: A média da distribuição uniforme no intervalo \([0,1]\) é conhecida por ser \(\frac{1}{2}\). Se tivermos um grande número de variáveis aleatórias independentes e identicamente distribuídas (i.i.d.) a partir dessa distribuição uniforme, denotadas por \(X_{1}, X_{2}, \ldots, X_{n}\), a Lei dos Grandes Números diz-nos que a média amostral, dada por \(\overline{X} = \frac{1}{n} \sum_{i=1}^{n} X_{i}\), deve aproximar-se da média verdadeira de 0.5 à medida que o tamanho da amostra \(n\) aumenta.
 
 A tabela abaixo apresenta as médias de diferentes amostras simuladas de tamanho \(n\) geradas a partir da distribuição uniforme \([0,1]\) para vários valores de \(n\). Observamos que as médias amostrais estão geralmente próximas de 0.5, mas existe uma considerável variação, especialmente quando \(n = 100\). Nota-se que há menos variação para \(n = 1.000\), e a variação diminui ainda mais para os dois maiores valores de \(n\) (10.000 e 100.000).
 
@@ -5821,7 +5879,7 @@ n & Replicações da Simulação & & & & \\
 100.000 & 0.502 & 0.499 & 0.500 & 0.498 & 0.499 \\
 \end{longtable}
 
-Para gerar uma amostra aleatória uniforme no intervalo {[}0,1{]}, utilizamos a função \texttt{runif} em R:
+Para gerar uma amostra aleatória uniforme no intervalo {[}0,1{]}, utilizamos a função \texttt{runif} no R:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5829,17 +5887,17 @@ Para gerar uma amostra aleatória uniforme no intervalo {[}0,1{]}, utilizamos a 
 \end{Highlighting}
 \end{Shaded}
 
-Como discutido anteriormente, neste exemplo não há necessidade real de simulação, pois conhecemos a média da distribuição uniforme analiticamente. Este exemplo serve para ilustrar que a simulação pode replicar resultados teóricos. No entanto, é crucial entender que, independentemente do tamanho da amostra gerada, a média amostral de variáveis aleatórias i.i.d. não será necessariamente exatamente igual à média verdadeira da distribuição. A simulação introduz uma variabilidade que precisa ser considerada; à medida que o tamanho da amostra aumenta, a variabilidade da média amostral diminui, aproximando-a da média real. Essa propriedade sublinha a importância de escolher um tamanho de amostra apropriado para obter estimativas confiáveis.
+Como discutido anteriormente, neste exemplo não há necessidade real de simulação, pois conhecemos a média da distribuição uniforme analiticamente. Este exemplo serve para ilustrar que a simulação pode replicar resultados teóricos. No entanto, é crucial entender que, independentemente do tamanho da amostra gerada, a média amostral de variáveis aleatórias i.i.d. não será necessariamente exatamente igual à média verdadeira da distribuição. A simulação introduz uma variabilidade que precisa ser considerada; à medida que o tamanho da amostra aumenta, a variabilidade da média amostral diminui, aproximando-a da média real. Esta propriedade sublinha a importância de escolher um tamanho de amostra apropriado para obter estimativas confiáveis.
 
 \textbf{Exemplo de Aplicação da Simulação}
 
-A seguir, exploramos um exemplo onde as questões fundamentais são relativamente fáceis de descrever, mas a solução analítica seria, na melhor das hipóteses, complexa e tediosa.
+A seguir, exploramos um exemplo onde as questões fundamentais são relativamente fáceis de descrever, mas a solução analítica seria, na melhor das hipóteses, complexa e trabalhosa.
 
-\textbf{Problema: Esperando por uma Pausa}. Dois atendentes, A e B, em um restaurante fast-food começam a servir clientes ao mesmo tempo. Eles concordam em se encontrar para um intervalo assim que ambos tiverem atendido 10 clientes. No entanto, um deles provavelmente terminará antes do outro e precisará esperar. Nosso objetivo é determinar, em média, quanto tempo um dos atendentes terá que esperar pelo outro.
+\textbf{Problema: Esperando por uma Pausa}. Dois atendentes, A e B, num restaurante fast-food começam a servir clientes ao mesmo tempo. Eles concordam em encontrar-se para uma pausa assim que ambos tiverem atendido 10 clientes. No entanto, um deles provavelmente terminará antes do outro e terá de esperar. O nosso objetivo é determinar, em média, quanto tempo um dos atendentes terá de esperar pelo outro.
 
-Para modelar esse problema, assumimos que os tempos de serviço de cada cliente, independentemente do atendente, são variáveis aleatórias independentes e identicamente distribuídas (i.i.d.) com uma distribuição exponencial de taxa \(\lambda = 0.3\) clientes por minuto. Portanto, o tempo total que um atendente leva para atender 10 clientes segue uma distribuição gama com parâmetros de forma \(k = 10\) e taxa \(\lambda = 0.3\).
+Para modelar este problema, assumimos que os tempos de serviço de cada cliente, independentemente do atendente, são variáveis aleatórias independentes e identicamente distribuídas (i.i.d.) com uma distribuição exponencial de taxa \(\lambda = 0.3\) clientes por minuto. Portanto, o tempo total que um atendente leva para atender 10 clientes segue uma distribuição gama com parâmetros de forma \(k = 10\) e taxa \(\lambda = 0.3\).
 
-Seja \(X\) o tempo que o atendente A leva para atender 10 clientes e Y o tempo que o atendente B leva para atender 10 clientes. Precisamos calcular a média do valor absoluto da diferença de tempo entre eles, \(E(|X - Y|)\).
+Seja \(X\) o tempo que o atendente A leva para atender 10 clientes e Y o tempo que o atendente B leva para atender 10 clientes. Precisamos de calcular a média do valor absoluto da diferença de tempo entre eles, \(E(|X - Y|)\).
 
 A solução analítica para este problema exigiria a resolução de uma integral dupla sobre a união de duas regiões não retangulares. Em vez disso, a simulação oferece uma abordagem mais prática e eficiente.
 
@@ -5870,9 +5928,9 @@ Vamos utilizar o R para realizar a simulação:
 ## [1] 11.75882
 \end{verbatim}
 
-A saída do código acima nos dá um tempo médio de espera de aproximadamente 11.75 minutos.
+A saída do código acima dá-nos um tempo médio de espera de aproximadamente 11.75 minutos.
 
-Para entender melhor a distribuição do tempo de espera, podemos visualizar a distribuição dos valores de \(Z\) usando um histograma:
+Para compreender melhor a distribuição do tempo de espera, podemos visualizar a distribuição dos valores de \(Z\) utilizando um histograma:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5891,15 +5949,15 @@ Para entender melhor a distribuição do tempo de espera, podemos visualizar a d
 
 \textbf{Números Aleatórios}
 
-Números aleatórios são valores gerados de forma imprevisível, sem seguir nenhum padrão determinístico. Em uma sequência de números aleatórios, cada número é escolhido independentemente dos outros, e não há qualquer correlação entre eles. Na prática, números aleatórios são fundamentais em diversas áreas, como criptografia, simulações estatísticas, jogos de azar, e processos de modelagem onde a imprevisibilidade é crucial.
+Números aleatórios são valores gerados de forma imprevisível, sem seguir nenhum padrão determinístico. Numa sequência de números aleatórios, cada número é escolhido independentemente dos outros, e não há qualquer correlação entre eles. Na prática, números aleatórios são fundamentais em diversas áreas, como criptografia, simulações estatísticas, jogos de azar e processos de modelagem onde a imprevisibilidade é crucial.
 
-A verdadeira aleatoriedade geralmente é derivada de processos físicos inerentemente imprevisíveis, como a radiação cósmica, o ruído térmico em circuitos eletrônicos, ou o decaimento radioativo. No entanto, em computação, obter números verdadeiramente aleatórios pode ser difícil e frequentemente desnecessário. Para muitas aplicações, uma forma de aleatoriedade que seja suficientemente imprevisível é suficiente.
+A verdadeira aleatoriedade geralmente deriva de processos físicos inerentemente imprevisíveis, como a radiação cósmica, o ruído térmico em circuitos eletrónicos ou o decaimento radioativo. No entanto, em computação, obter números verdadeiramente aleatórios pode ser difícil e, frequentemente, desnecessário. Para muitas aplicações, uma forma de aleatoriedade que seja suficientemente imprevisível é suficiente.
 
 \textbf{Números Pseudoaleatórios}
 
-Números pseudoaleatórios, por outro lado, são gerados por algoritmos determinísticos que produzem sequências de números que parecem aleatórios, mas são, na verdade, baseados em um valor inicial conhecido como semente (seed). Se um algoritmo de geração de números pseudoaleatórios é iniciado com a mesma semente, ele produzirá exatamente a mesma sequência de números a cada execução.
+Números pseudoaleatórios, por outro lado, são gerados por algoritmos determinísticos que produzem sequências de números que parecem aleatórios, mas são, na verdade, baseados num valor inicial conhecido como semente (\emph{seed}). Se um algoritmo de geração de números pseudoaleatórios for iniciado com a mesma semente, ele produzirá exatamente exatamente a mesma sequência de números em cada execução.
 
-Embora os números pseudoaleatórios não sejam verdadeiramente aleatórios, eles são amplamente utilizados porque podem ser gerados de forma rápida e eficiente e, para muitas aplicações, são suficientemente aleatórios. A principal vantagem de usar números pseudoaleatórios é que, ao utilizar a mesma semente, podemos replicar experimentos ou simulações, o que é extremamente útil para fins de pesquisa e depuração de códigos.
+Embora os números pseudoaleatórios não sejam verdadeiramente aleatórios, são amplamente utilizados porque podem ser gerados de forma rápida e eficiente e, para muitas aplicações, são suficientemente aleatórios. A principal vantagem de usar números pseudoaleatórios é que, ao utilizar a mesma semente, podemos replicar experiências ou simulações, o que é extremamente útil para fins de investigação e depuração de códigos.
 
 \textbf{Método Congruencial Multiplicativo}
 
@@ -5999,40 +6057,28 @@ A função \texttt{sample()} em R é amplamente utilizada para gerar amostras al
 
 \textbf{1.} Crie um vetor com os números de 1 a 20. Utilize a função \texttt{sample()} para selecionar uma amostra aleatória de 5 elementos desse vetor. A amostragem deve ser feita sem reposição.
 
-\textbf{2.} Suponha que você tem uma população representada pelos números de 1 a 10. Utilize a função \texttt{sample()} para selecionar uma amostra de 10 elementos com reposição.
+\textbf{2.} Suponha que tem uma população representada pelos números de 1 a 10. Utilize a função \texttt{sample()} para selecionar uma amostra de 10 elementos com reposição.
 
 \textbf{3.} Crie um vetor com as letras A, B, C, D, E. Aplique a função \texttt{sample()} para selecionar uma amostra de 3 letras, onde a probabilidade de cada letra ser selecionada é dada pelo vetor \texttt{c(0.1,\ 0.2,\ 0.3,\ 0.25,\ 0.15)}.
 
-\textbf{4.} Crie um vetor com os números de 1 a 10. Utilize a função \texttt{sample()}
-para reordenar aleatoriamente os elementos desse vetor.
+\textbf{4.} Crie um vetor com os números de 1 a 10. Utilize a função \texttt{sample()} para reordenar aleatoriamente os elementos desse vetor.
 
 \textbf{5.} Crie um vetor com os nomes de cinco frutas: ``Maçã'', ``Banana'',
 ``Laranja'', ``Uva'', ``Pera''. Utilizando a função \texttt{sample()}, selecione
 aleatoriamente uma fruta desse vetor. Em seguida, selecione uma
 amostra de 3 frutas.
 
-\textbf{6.} Você é responsável por realizar um teste de qualidade em uma
-fábrica. Há 1000 produtos fabricados, numerados de 1 a 1000.
-Selecione uma amostra aleatória de 50 produtos para inspeção,
+\textbf{6.} Você é responsável por realizar um teste de qualidade em uma fábrica. Há 1000 produtos fabricados, numerados de 1 a 1000. Selecione uma amostra aleatória de 50 produtos para inspeção,
 garantindo que não haja reposição na seleção.
 
-\textbf{7.} Simule o lançamento de dois dados justos 10000 vezes e registre as
-somas das faces resultantes. Utilize a função \texttt{sample()} para
-realizar a simulação. Em seguida, crie um histograma das somas
-obtidas.
+\textbf{7.} Simule o lançamento de dois dados justos 10000 vezes e registe as somas das faces resultantes. Utilize a função \texttt{sample()} para realizar a simulação. Em seguida, crie um histograma das somas obtidas.
 
-\textbf{8.} Você possui um vetor de 200 estudantes classificados em três turmas:
-A, B, e C. As turmas têm tamanhos diferentes (50, 100, e 50 alunos,
-respectivamente). Usando \texttt{sample()}, selecione uma amostra de 20
+\textbf{8.} Tem um vetor de 200 estudantes classificados em três turmas: A, B, e C. As turmas têm tamanhos diferentes (50, 100, e 50 alunos, respetivamente). Usando \texttt{sample()}, selecione uma amostra de 20
 alunos, mantendo a proporção original das turmas.
 
-\textbf{9.} Um cartão de Bingo contém 24 números aleatórios entre 1 e 75
-(excluindo o número central ``free''). Crie 5 cartões de Bingo únicos
-usando a função \texttt{sample()}.
+\textbf{9.} Um cartão de Bingo contém 24 números aleatórios entre 1 e 75 (excluindo o número central ``free''). Crie 5 cartões de Bingo únicos usando a função \texttt{sample()}.
 
-\textbf{10.} Em um estudo clínico, 30 pacientes devem ser randomizados em dois
-grupos: tratamento e controle. O grupo de tratamento deve conter 20
-pacientes e o grupo de controle 10. Usando \texttt{sample()}, faça a
+\textbf{10.} Em um estudo clínico, 30 pacientes devem ser randomizados em dois grupos: tratamento e controlo. O grupo de tratamento deve conter 20 pacientes e o grupo de controlo 10. Usando \texttt{sample()}, faça a
 randomização dos pacientes. Dica: use a função \texttt{setdiff()}.
 
 \chapter{Método da transformada inversa}\label{muxe9todo-da-transformada-inversa}
@@ -6240,7 +6286,7 @@ onde \(\lfloor  \rfloor =\) maior inteiro.
 
 A chave para usar o método da transformada inversa para gerar uma tal variável aleatória é dada pela seguinte identidade: \[p_{i+1}=\frac{\lambda}{i+1}p_{i}, \quad i\geq 0.\]
 
-Ao utilizar a recursão acima para calcular as probabilidades de Poisson quando elas são necessárias, o algoritmo da transformada inversa para gerar uma variável aleatória de Poisson com média \(\lambda\) pode ser expresso como segue.
+Ao utilizar a recursão acima para calcular as probabilidades de Poisson quando elas são necessárias, o algoritmo da transformada inversa para gerar uma variável aleatória de Poisson com média \(\lambda\) pode ser expresso da seguinte forma.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6287,15 +6333,15 @@ P(X \leq x) &= P(F^{-1}(U)\leq x) = P(FF^{-1}(U) \leq F(x)) \\
 &= F(x).
 \end{align*}
 
-A última igualdade segue do facto de que \(U\sim U(0,1)\) e \(0\leq F(x) \leq 1\).
+A última igualdade decorre do facto de que \(U\sim U(0,1)\) e \(0\leq F(x) \leq 1\).
 
-Essa proposição mostra que pode-se gerar uma variável aleatória \(X\) de uma função de distribuição contínua \(F\) gerando um número aleatório \(U\) e tomando \(X = F^{-1}(U)\).
+Esta proposição mostra que se pode gerar uma variável aleatória \(X\) de uma função de distribuição contínua \(F\), gerando um número aleatório \(U\) e tomando \(X = F^{-1}(U)\).
 
 \includegraphics{docs/transf_inversa2.png}
 
 \textbf{Exemplo 1}: Considere nossa varíavel aleatória \(X\) com densidade \(f(x)=2x\). A função de distribuição de \(X\) é \[F(x)=P(X\leq x)=\int_{0}^{x}2t\, dt = x^2, \quad \text{para} \quad 0<x<1.\]
 
-A função \(F(x)=x^2\) é invertível no intervalo \((0,1)\) e \(F^{-1}(x)=\sqrt{x}\). O método da transformada inversa diz que se \(U\sim U(0,1)\), então \(F^{-1}(U)=\sqrt{U}\) tem a mesma distribuição que \(X\). Portanto para simular \(X\), basta gerar \(\sqrt{U}\).
+A função \(F(x)=x^2\) é invertível no intervalo \((0,1)\) e \(F^{-1}(x)=\sqrt{x}\). O método da transformada inversa diz que se \(U\sim U(0,1)\), então \(F^{-1}(U)=\sqrt{U}\) tem a mesma distribuição que \(X\). Portanto, para simular \(X\), basta gerar \(\sqrt{U}\).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6326,7 +6372,7 @@ A função \(F(x)=x^2\) é invertível no intervalo \((0,1)\) e \(F^{-1}(x)=\sqr
 \includegraphics{introR_files/figure-latex/unnamed-chunk-209-1.pdf}
 
 \textbf{Exemplo 3}: Geração de uma variável aleatória exponencial. Seja \(X\) uma variável aleatória exponencial com taxa 1, então sua função de distribuição é dada por \[F(x)=1-e^{x}.\]
-Como \(0\leq F(x)\leq 1\), tomando \(F(x)=u\), onde \(u\sim U(0,1)\) tem-se: \[u=F(x)=1-e^{x}\] ou \[1-u=e^{-x}\] ou, aplicando o logaritmo \[x=-ln(1-u).\] Daí, pode-se gerar uma exponencial com parâmetro 1 gerando um número aleatório \(U\) e em seguida fazendo \[X = F^{-1}(U) = -ln(1-U).\] Uma pequena economia de tempo pode ser obtida notando que \(1-U\) também é uniforme em \((0,1)\) e assim, \(-ln(1-U)\) tem a mesma distribuição que \(-ln(U)\). Isto é, o logaritmo negativo de um número aleatório é exponencialmente distribuído com taxa 1.
+Como \(0\leq F(x)\leq 1\), tomando \(F(x)=u\), onde \(u\sim U(0,1)\) tem-se: \[u=F(x)=1-e^{x}\] ou \[1-u=e^{-x}\] ou, aplicando o logaritmo \[x=-ln(1-u).\] Daí, pode-se gerar uma exponencial com parâmetro 1 gerando um número aleatório \(U\) e em seguida fazendo \[X = F^{-1}(U) = -ln(1-U).\] Uma pequena economia de tempo pode ser obtida ao notar que \(1-U\) também é uniforme em \((0,1)\), e assim, \(-ln(1-U)\) tem a mesma distribuição que \(-ln(U)\). Isto é, o logaritmo negativo de um número aleatório é exponencialmente distribuído com taxa 1.
 
 Além disso, note que se \(X\) é uma exponencial com média 1, então para qualquer constante \(c\), \(cX\) é uma exponencial com média \(c\). Assim, uma variável aleatória exponencial \(X\) com taxa \(\lambda\) (média \(\frac{1}{\lambda}\)) pode ser gerada através da geração de um número aleatório \(U\) e fazendo \[X = -\frac{1}{\lambda}ln (U).\]
 
@@ -7474,8 +7520,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 
 \section{Exercícios}\label{exercuxedcios-18}
 
-\textbf{1.} Usando o R e fixando a semente em 123, simule 1000 lançamentos de
-uma moeda com probabilidade de 0.5 de sair cara. Conte o número de caras
+\textbf{1.} Usando o R e fixando a semente em 123, simule 1000 lançamentos de uma moeda com probabilidade de 0.5 de sair cara. Conte o número de caras
 em cada lançamento e plote um histograma dos resultados.
 
 \textbf{2.} Usando o R e fixando a semente em 123, gere uma amostra aleatória
@@ -7739,6 +7784,8 @@ esperado 0 e desvio padrão 1.
   \url{https://cemapre.iseg.ulisboa.pt/~nbrites/CTA/index.html}
 \item
   \url{https://livro.curso-r.com/}
+\item
+  \url{https://www.cs.upc.edu/~robert/teaching/estadistica/TheRBook.pdf}
 \end{itemize}
 
 \chapter{Respostas}\label{respostas}
@@ -7981,7 +8028,7 @@ massa, ou seja, possuem NA em ambas as colunas.
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Modificando e criando novas colunas}\label{modificando-e-criando-novas-colunas-1}
+\subsection{Modificando e criando novas colunas}\label{modificando-e-criando-novas-colunas}
 
 \textbf{1.} Crie uma coluna chamada \texttt{dif\_peso\_altura} (diferença entre altura
 e peso) e salve a nova tabela em um objeto chamado \texttt{sw\_dif}. Em seguida,
