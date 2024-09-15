@@ -3955,7 +3955,6 @@ select(sw, name, mass, hair_color)
 select(sw, name:hair_color)
 ```
 
-
 O `dplyr` possui um conjunto de funções auxiliares muito úteis para seleção de colunas. As principais são:
 
 * `starts_with()`: para colunas que começam com um texto específico.
@@ -4360,9 +4359,6 @@ maneira sistemática de descrever e construir gráficos. Este conceito
 está apresentado no livro [The Grammar of
 graphics](https://link.springer.com/book/10.1007/0-387-28695-0).
 
-Para este capítulo vamos seguir o material disponível em
-[link](https://livro.curso-r.com/8-graficos.html). O ficheiro com a base
-de filmes IMDB está disponível no fénix
 
 # Simulação
 
@@ -4477,6 +4473,17 @@ Para que os números gerados sejam úteis em simulações, as constantes  $a$  e
 1. **Aparência de Aleatoriedade**: A sequência gerada deve ter a “aparência” de uma sequência de variáveis aleatórias uniformemente distribuídas no intervalo (0,1).
 2. **Período Longo**: A sequência deve ter um período longo antes de começar a se repetir, o que significa que deve gerar um grande número de variáveis antes que ocorra uma repetição.
 3. **Eficiência Computacional**: Os valores devem ser computados de forma eficiente para que o algoritmo seja utilizável em aplicações práticas.
+
+## A função `set.seed()`
+
+A função `set.seed()` no R é utilizada para garantir a reprodutibilidade dos resultados ao gerar números aleatórios. Sempre que utilizamos funções como `sample()` ou `runif()`, o R gera uma sequência de números pseudo-aleatórios. Ao especificar um valor na função `set.seed()`, conseguimos que a mesma sequência seja gerada sempre que o código for executado. 
+
+```{r}
+set.seed(123)
+sample(1:100, 5)
+```
+
+Com isso, você sempre obterá os mesmos 5 números aleatórios ao usar esse código.
 
 ## A função `sample()`
 
