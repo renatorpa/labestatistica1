@@ -120,7 +120,7 @@
 
 \title{Introdução ao R}
 \author{Renato de Paula}
-\date{2024-09-15}
+\date{2024-09-17}
 
 \begin{document}
 \maketitle
@@ -145,11 +145,11 @@ Gabinete: 6.4.21
 
 email: \href{mailto:rrpaula@ciencias.ulisboa.pt}{\nolinkurl{rrpaula@ciencias.ulisboa.pt}}
 
-\textbf{Monitora}: Ana
+\textbf{Monitora}: Ana Catarina Fernandes
 
-Gabinete:
+Gabinete: a definir
 
-email:
+email: a definir
 
 \textbf{AVALIAÇÃO}
 
@@ -175,9 +175,9 @@ email:
     \begin{itemize}
     \tightlist
     \item
-      Primeiro teste:
+      Primeiro teste: 5 de novembro de 2024
     \item
-      Segundo teste:
+      Segundo teste: 21 de janeiro de 2025
     \end{itemize}
   \end{itemize}
 \item
@@ -187,10 +187,14 @@ email:
   \tightlist
   \item
     (1): \(0.10\times(Ex1) + 0.10\times(Ex2) + 0.40\times(Teste1) + 0.40\times(Teste2)\)
-    \textbf{ou}
-  \item
-    (2): Nota do Exame final
   \end{itemize}
+\end{itemize}
+
+\textbf{ou}
+
+\begin{itemize}
+\item
+  (2): Nota do Exame final
 \item
   Exercício prático não efetuado tem cotação igual a zero.
 \end{itemize}
@@ -6138,10 +6142,6 @@ maneira sistemática de descrever e construir gráficos. Este conceito
 está apresentado no livro \href{https://link.springer.com/book/10.1007/0-387-28695-0}{The Grammar of
 graphics}.
 
-Para este capítulo vamos seguir o material disponível em
-\href{https://livro.curso-r.com/8-graficos.html}{link}. O ficheiro com a base
-de filmes IMDB está disponível no fénix
-
 \chapter{Simulação}\label{simulauxe7uxe3o}
 
 A simulação é uma ferramenta poderosa que utiliza a capacidade dos computadores modernos para realizar cálculos que, de outra forma, seriam difíceis ou até impossíveis de serem resolvidos analiticamente. A Lei dos Grandes Números assegura-nos que, ao observarmos uma grande amostra de variáveis aleatórias independentes e identicamente distribuídas (i.i.d.) com média finita, a média dessas observações tende a convergir para a média verdadeira da distribuição
@@ -6297,6 +6297,23 @@ Para que os números gerados sejam úteis em simulações, as constantes \(a\) e
 \item
   \textbf{Eficiência Computacional}: Os valores devem ser computados de forma eficiente para que o algoritmo seja utilizável em aplicações práticas.
 \end{enumerate}
+
+\section{\texorpdfstring{A função \texttt{set.seed()}}{A função set.seed()}}\label{a-funuxe7uxe3o-set.seed}
+
+A função \texttt{set.seed()} no R é utilizada para garantir a reprodutibilidade dos resultados ao gerar números aleatórios. Sempre que utilizamos funções como \texttt{sample()} ou \texttt{runif()}, o R gera uma sequência de números pseudoaleatórios. Ao especificar um valor na função \texttt{set.seed()}, conseguimos que a mesma sequência seja gerada sempre que o código for executado.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{100}\NormalTok{, }\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 31 79 51 14 67
+\end{verbatim}
+
+Com isso, você sempre obterá os mesmos 5 números aleatórios ao usar esse código.
 
 \section{\texorpdfstring{A função \texttt{sample()}}{A função sample()}}\label{a-funuxe7uxe3o-sample}
 
@@ -6472,7 +6489,7 @@ Gerar um número aleatório uniforme \(U\) no intervalo {[}0,1{]}. Para determin
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-203-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-204-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6481,7 +6498,7 @@ Gerar um número aleatório uniforme \(U\) no intervalo {[}0,1{]}. Para determin
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 5.5388
+## [1] 5.4786
 \end{verbatim}
 
 \begin{Shaded}
@@ -6491,7 +6508,7 @@ Gerar um número aleatório uniforme \(U\) no intervalo {[}0,1{]}. Para determin
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2.878985
+## [1] 2.868447
 \end{verbatim}
 
 \begin{Shaded}
@@ -6501,7 +6518,7 @@ Gerar um número aleatório uniforme \(U\) no intervalo {[}0,1{]}. Para determin
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 6
+## [1] 5
 \end{verbatim}
 
 \textbf{Exemplo 3}: Geração de uma variável aleatória com distribuição de Bernoulli. A variável aleatória \(X\) é de Bernoulli com parâmetro \(p\) se \[P(X = x) = \begin{cases} 1-p,& \quad \text{se} \quad x=0\\
@@ -6555,7 +6572,7 @@ p,& \quad \text{se} \quad x=1 \end{cases}\] Para gerar uma Bernoulli(p) podemos 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-205-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-206-1.pdf}
 
 \textbf{Exemplo 5}: Geração de uma variável aleatória com distribuição Geométrica(p). Seja \(X\sim Geometrica(p)\). Lembre que \[P(X=x)=p(1-p)^{x-1}\] e que \[F(x) = P(X\leq x) = \begin{cases} 0,& \quad \text{se} \quad x<1 \\
 1-(1-p)^x,& \quad \text{se} \quad x\geq 1\end{cases}\]
@@ -6587,7 +6604,7 @@ onde \(\lfloor  \rfloor =\) maior inteiro.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-206-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-207-1.pdf}
 
 \textbf{Exemplo 6}: Geração de uma variável aleatória com distribuição de Poisson. A variável aleatória \(X\) é de Poisson com média \(\lambda\) se \[p_{i} = P(X = i) = \frac{e^{-\lambda}\lambda^i}{i!}, \quad i=0,1,\ldots\]
 
@@ -6623,7 +6640,7 @@ Ao utilizar a recursão acima para calcular as probabilidades de Poisson quando 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-207-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-208-1.pdf}
 
 \section{Variável aleatória contínua}\label{variuxe1vel-aleatuxf3ria-contuxednua}
 
@@ -6660,7 +6677,7 @@ A função \(F(x)=x^2\) é invertível no intervalo \((0,1)\) e \(F^{-1}(x)=\sqr
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-208-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-209-1.pdf}
 
 \textbf{Exemplo 2}: Geração de uma variável aleatória uniforme(a,b). A geração é feita através de \[X = a+(b-a)U.\]
 
@@ -6676,7 +6693,7 @@ A função \(F(x)=x^2\) é invertível no intervalo \((0,1)\) e \(F^{-1}(x)=\sqr
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-209-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-210-1.pdf}
 
 \textbf{Exemplo 3}: Geração de uma variável aleatória exponencial. Seja \(X\) uma variável aleatória exponencial com taxa 1, então sua função de distribuição é dada por \[F(x)=1-e^{x}.\]
 Como \(0\leq F(x)\leq 1\), tomando \(F(x)=u\), onde \(u\sim U(0,1)\) tem-se: \[u=F(x)=1-e^{x}\] ou \[1-u=e^{-x}\] ou, aplicando o logaritmo \[x=-ln(1-u).\] Daí, pode-se gerar uma exponencial com parâmetro 1 gerando um número aleatório \(U\) e em seguida fazendo \[X = F^{-1}(U) = -ln(1-U).\] Uma pequena economia de tempo pode ser obtida ao notar que \(1-U\) também é uniforme em \((0,1)\), e assim, \(-ln(1-U)\) tem a mesma distribuição que \(-ln(U)\). Isto é, o logaritmo negativo de um número aleatório é exponencialmente distribuído com taxa 1.
@@ -6710,7 +6727,7 @@ Além disso, note que se \(X\) é uma exponencial com média 1, então para qual
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-210-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-211-1.pdf}
 
 \textbf{Exercício}: Seja \(X\) uma variável aleatória com distribuição \(W(\alpha, \beta)\). Assim a fdp de \(X\) é
 \[f(x) = \begin{cases}
@@ -7059,7 +7076,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-218-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-219-1.pdf}
 
 \textbf{Exemplo 1}: Resolva o exemplo 1 usando a função de distribuição empírica.
 
@@ -7112,7 +7129,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-220-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-221-1.pdf}
 
 \subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o}
 
@@ -7137,7 +7154,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-221-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-222-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o}
 
@@ -7165,7 +7182,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-222-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-223-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o}
 
@@ -7188,7 +7205,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-223-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-224-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-1}
 
@@ -7211,7 +7228,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-224-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-225-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7220,7 +7237,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-224-2.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-225-2.pdf}
 
 \textbf{Cálculo de probabilidade}: Seja
 \(X \sim \text{Binomial}(n=10, p=0.5)\).
@@ -7288,7 +7305,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-225-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-226-1.pdf}
 
 \subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o-1}
 
@@ -7321,7 +7338,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-226-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-227-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-1}
 
@@ -7357,7 +7374,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-227-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-228-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-1}
 
@@ -7377,7 +7394,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-228-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-229-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-2}
 
@@ -7398,7 +7415,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-229-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-230-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7413,7 +7430,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-229-2.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-230-2.pdf}
 
 \textbf{Cálculo de probabilidades}: Seja \(X\sim\text{Poisson}(\lambda=5)\).
 
@@ -7453,7 +7470,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-230-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-231-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o}
 
@@ -7478,7 +7495,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-231-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-232-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-2}
 
@@ -7509,7 +7526,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-232-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-233-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-2}
 
@@ -7529,7 +7546,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-233-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-234-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-3}
 
@@ -7554,7 +7571,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-234-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-235-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7591,7 +7608,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-235-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-236-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-1}
 
@@ -7616,7 +7633,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-236-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-237-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-3}
 
@@ -7647,7 +7664,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-237-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-238-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-3}
 
@@ -7667,7 +7684,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-238-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-239-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-4}
 
@@ -7692,7 +7709,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-239-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-240-1.pdf}
 
 \section{Gerando uma variável aleatória com distribuição Normal}\label{gerando-uma-variuxe1vel-aleatuxf3ria-com-distribuiuxe7uxe3o-normal}
 
@@ -7722,7 +7739,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-240-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-241-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-2}
 
@@ -7747,7 +7764,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-241-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-242-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-4}
 
@@ -7778,7 +7795,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-242-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-243-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-4}
 
@@ -7798,7 +7815,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-243-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-244-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-5}
 
@@ -7823,7 +7840,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-244-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-245-1.pdf}
 
 \section{Exercícios}\label{exercuxedcios-18}
 
@@ -8093,6 +8110,8 @@ esperado 0 e desvio padrão 1.
   \url{https://livro.curso-r.com/}
 \item
   \url{https://www.cs.upc.edu/~robert/teaching/estadistica/TheRBook.pdf}
+\item
+  Ross, S. M.: \emph{Simulation}. Sixth edition. Academic Press, 2022.
 \end{itemize}
 
 \chapter{Respostas}\label{respostas}
