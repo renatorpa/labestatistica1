@@ -63,7 +63,8 @@ O R oferece um conjunto integrado de ferramentas para manipulação de dados, c�
 
 - A versão base do R, que inclui o conjunto fundamental de comandos e funções, pode ser descarregada diretamente do site oficial: <https://www.r-project.org/>. Após instalar o R, é altamente recomendável instalar também um ambiente de desenvolvimento integrado (IDE) para facilitar o trabalho com o código R. Um IDE permite ao utilizador escrever, guardar e organizar scripts de código R de forma mais eficiente, além de executar comandos diretamente no Console do R e gerir configurações e saídas de forma conveniente. Uma escolha popular de IDE é o RStudio, que é gratuito e pode ser descarregado em <https://www.rstudio.com/>.
 
-- Além do conjunto base de funções, o R oferece uma vasta gama de pacotes adicionais desenvolvidos pela comunidade de utilizadores. Estes pacotes podem ser instalados diretamente pelo Console do R ou através do menu do RStudio. Para instalar um pacote no Console, pode usar a função `install.packages("nome_do_pacote")`. É importante lembrar que, para instalar pacotes, é necessário estar ligado à internet. Para visualizar todos os pacotes já instalados no seu ambiente R, pode utilizar a função `installed.packages()`.
+- Além do conjunto base de funções, o R oferece uma vasta gama de pacotes adicionais desenvolvidos pela comunidade de utilizadores. Estes pacotes podem ser instalados diretamente pelo Console do R ou através do menu do RStudio. Para instalar um pacote no Console, pode usar a função `install.packages("nome_do_pacote")`. É importante lembrar que, para instalar pacotes, é necessário estar ligado à internet. Para visualizar todos os pacotes já instalados no seu ambiente R, pode utilizar a função `installed.packages()`. Para usar os packages nãoo incluídos na base do R é necessário torna-los activos, usando a
+função `library()`.
 
 ## Navegar no RStudio
 
@@ -657,6 +658,87 @@ result <- paste("I am", age, "years old")
 print(result)
 ## [1] "I am 25 years old"
 ```
+
+## Quizz
+
+1. O que é o ‘prompt’ do R?
+* a) Um símbolo que marca o início de um comando
+* b) Um objeto armazenado na memória
+* c) Uma função para adicionar números
+* d) Um operador lógico
+
+2. Qual comando é usado para imprimir texto no console no R?
+* a) `print()`
+* b) `paste()`
+* c) `cat()`
+* d) `readline()`
+
+3. O que o caractere `#` faz em um script R?
+* a) Executa o comando
+* b) Cria uma variável
+* c) Indica um comentário
+* d) Combina dois números
+
+4. Como você cria um vetor com os números 1 a 5?
+* a) `c(1 2 3 4 5)`
+* b) `combine(1,2,3,4,5)`
+* c) `c(1,2,3,4,5)`
+* d) `vector(1,2,3,4,5)`
+
+5. O que o operador `<-` faz no R?
+* a) Atribui um valor a uma variável
+* b) Compara dois números
+* c) Soma dois números
+* d) Remove um objeto
+
+6. Como remover um objeto da memória no R?
+* a) `delete(x)`
+* b) `remove(x)`
+* c) `rm(x)`
+* d) `clear(x)`
+
+7. Qual operador é usado para divisão inteira em R?
+* a) `/`
+* b) `%/%`
+* c) `%%`
+* d) `^`
+
+8. Qual operador retorna o resto da divisão de dois números?
+* a) `%/%`
+* b) `%%`
+* c) `^`
+* d) `/`
+
+9. Como você controla a precisão dos números exibidos no console do R?
+* a) Usando a função `precision()`
+* b) Alterando a opção `options(digits=)`
+* c) Usando a função `format()`
+* d) Usando o comando `round()`
+
+10. Qual função retorna a classe de um objeto no R?
+* a) `typeof()`
+* b) `class()`
+* c) `str()`
+* d) `is()`
+
+11.	O que `c()` faz no R?
+* a) Cria um vetor
+* b) Calcula a soma de números
+* c) Remove um vetor
+* d) Compara dois números
+
+12. O que a função `readline()` faz?
+* a) Imprime texto no console
+* b) Lê uma linha de texto do usuário
+* c) Remove um objeto da memória
+* d) Soma dois números
+
+13.	O que `paste()` faz?
+* a) Soma números
+* b) Imprime texto sem quebrar linhas
+* c) Combina strings
+* d) Cria vetores
+
 
 ## Operadores Lógicos e Relacionais
 
@@ -2633,6 +2715,28 @@ resultado <- adi(3,2)
 Lembre-se de que IMC = $\frac{\text{Peso}}{\text{Altura}^2}$.
 
 **9.** Crie funções em R para converter valores entre diferentes moedas com base nas taxas de câmbio. Implemente e teste as funções, e escreva um programa que solicite ao utilizador um valor em euros e imprima a conversão desse valor para algumas das principais moedas, como dólar, libra, iene e real.
+
+**10.** Crie uma função que calcule o intervalor de confiança para o valor médio $(1-\alpha)\times 100\%$ (nota: amostras grandes).
+
+$$\left(\bar{x}-z_{1-\frac{\alpha}{2}}\frac{s}{\sqrt{n}},\bar{x}+z_{1-\frac{\alpha}{2}}\frac{s}{\sqrt{n}}  \right)$$
+
+```{r eval=FALSE}
+IC <- function(amostra, alpha){
+  # Coloque seu código aqui
+  
+}
+```
+
+
+**11.** Criar uma função que calcule o intervalo de confiança para o valor médio para $\alpha$ igual a 0.001,
+0.01, 0.05 e 0.10.
+
+```{r eval=FALSE}
+ICs <- function(alphas){
+  # Coloque seu código aqui
+  
+}
+```
 
 # Scripts em R
 
