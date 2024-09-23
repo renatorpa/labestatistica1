@@ -49,7 +49,7 @@ email: a definir
 
 # R e RStudio
 
-O R é um software de código aberto desenvolvido como uma implementação gratuita da linguagem S, que foi concebida especificamente para computação estatística, programação estatística e geração de gráficos. A principal intenção era proporcionar aos usuários a capacidade de explorar dados de maneira intuitiva e interativa, utilizando representações gráficas significativas para facilitar a compreensão dos dados. O software estatístico R foi originalmente criado por Ross Ihaka e Robert Gentleman, da Universidade de Auckland, Nova Zelândia.
+O R é um software de código aberto desenvolvido como uma implementação gratuita da linguagem S, que foi concebida especificamente para computação estatística, programação estatística e geração de gráficos. A principal intenção era proporcionar aos utilizadores a capacidade de explorar dados de maneira intuitiva e interativa, utilizando representações gráficas significativas para facilitar a compreensão dos dados. O software estatístico R foi originalmente criado por Ross Ihaka e Robert Gentleman, da Universidade de Auckland, Nova Zelândia.
 
 O R oferece um conjunto integrado de ferramentas para manipulação de dados, cálculo e visualização gráfica. Ele oferece:
 
@@ -57,7 +57,7 @@ O R oferece um conjunto integrado de ferramentas para manipulação de dados, c�
 - Operadores poderosos para cálculos em arrays e matrizes;
 - Uma coleção abrangente, coerente e integrada de ferramentas para análise de dados;
 - Recursos gráficos avançados para análise e visualização de dados, seja na tela ou em cópia impressa;
-- Uma linguagem de programação robusta, intuitiva e eficaz, que inclui estruturas condicionais, loops, funções recursivas definidas pelo usuário, além de recursos de entrada e saída de dados.
+- Uma linguagem de programação robusta, intuitiva e eficaz, que inclui estruturas condicionais, loops, funções recursivas definidas pelo utilizador, além de recursos de entrada e saída de dados.
 
 ## Instalação e funcionalidades básicas
 
@@ -534,7 +534,7 @@ No R, existem várias funções úteis para exibir, receber e concatenar informa
 
 - `print()`: Utilizada para exibir valores e resultados de expressões no console. É a função básica para mostrar a saída de dados no R.
 
-- `readline()`: Usada para receber entradas do usuário via teclado. Esta função permite que o script pause e aguarde a entrada do usuário.
+- `readline()`: Usada para receber entradas do utilizador via teclado. Esta função permite que o script pause e aguarde a entrada do utilizador
 
 - `paste()`: Utilizada para concatenar (combinar) sequências de caracteres (strings) com um separador específico entre elas. Por padrão, o separador é um espaço.
 
@@ -556,7 +556,7 @@ Neste exemplo, `paste()` concatena as duas strings com um espaço entre elas.
 **Exemplo 2:**
 
 ```{r eval=FALSE}
-# Solicitar entrada do usuário
+# Solicitar entrada do utilizador
 n <- readline(prompt = "Digite um número: ")
 
 # Converta a entrada em um valor numérico
@@ -729,7 +729,7 @@ print(result)
 
 12. O que a função `readline()` faz?
 * a) Imprime texto no console
-* b) Lê uma linha de texto do usuário
+* b) Lê uma linha de texto do utilizador
 * c) Remove um objeto da memória
 * d) Soma dois números
 
@@ -1018,7 +1018,7 @@ w
 
 ### Acesso a Elementos de um Vetor
 
-Pode aceder a elementos específicos de um vetor utilizando colchetes [ ] e índices. O R utiliza indexação baseada em 1, o que significa que o primeiro elemento de um vetor tem índice 1.
+Pode aceder a elementos específicos de um vetor utilizando colchetes [ ] e índices. 
 
 ```{r eval=FALSE}
 # Defina um vetor com inteiros de (-5) a 5 e extraia os números com valor absoluto menor que 3:
@@ -1337,13 +1337,28 @@ print(factor_data)
 A função `gl()` (generate levels) é usada para criar fatores de maneira eficiente, especialmente quando se deseja gerar fatores com padrões repetitivos.
 
 ```{r eval=FALSE}
+# Sintaxe
+gl(n, k, length = n*k, labels = seq_len(n), ordered = FALSE)
+```
+
+* `n`: um inteiro que fornece o número de níveis.
+
+* `k`: um inteiro que fornece o número de replicações.
+
+* `length`: um inteiro que fornece o comprimento do resultado.
+
+* `labels`: um vetor opcional de rótulos para os níveis de fatores resultantes.
+
+* `ordered`: uma lógica que indica se o resultado deve ser ordenado ou não.
+
+```{r eval=FALSE}
 # Gerar níveis de fator com gl()
-gl(4,3)
+gl(n=4,k=3)
 ##  [1] 1 1 1 2 2 2 3 3 3 4 4 4
 ## Levels: 1 2 3 4
 
 # Gerar fatores com labels personalizados
-gl(2, 10, labels = c("mulher", "homem"))
+gl(n=2, k=10, labels = c("mulher", "homem"))
 ##  [1] mulher mulher mulher mulher mulher mulher mulher mulher mulher mulher
 ## [11] homem  homem  homem  homem  homem  homem  homem  homem  homem  homem 
 ## Levels: mulher homem
@@ -1354,6 +1369,22 @@ as.factor(c(rep("mulher", 10), rep("homem", 10)))
 ## [11] homem  homem  homem  homem  homem  homem  homem  homem  homem  homem 
 ## Levels: homem mulher
 ```
+
+### Exercícios
+
+**1.** Crie um vetor com os seguintes valores: "pequeno", "médio", "grande", "pequeno", "grande". Em seguida, transforme esse vetor em um `factor` com níveis ordenados em "pequeno", "médio" e "grande". Exiba os níveis do factor criado.
+
+**2.** Crie um factor com os valores de um vetor categórico representando as cores de carros: "vermelho", "azul", "preto", "vermelho", "branco", "azul". Use a função `table()` para contar quantos carros existem de cada cor.
+
+**3.** Crie um factor representando avaliações de produtos com os valores "bom", "médio", "ruim", e modifique os níveis para "excelente", "razoável" e "insatisfatório". Exiba o factor modificado.
+
+**4.** Crie um vetor com valores categóricos: "solteiro", "casado", "divorciado". Verifique se esse vetor é um factor usando a função `is.factor()` e depois transforme-o em um factor.
+
+**5.** Crie um factor representando níveis de escolaridade com os valores "ensino secundário", "ensino superior", "mestrado", "doutoramento". Defina uma ordem lógica para os níveis e ordene o factor em ordem crescente.
+
+**6.** Crie um factor com os valores "baixo", "alto", "médio", "baixo", "alto", e com as categorias "baixo", "médio" e "alto", representando níveis de pressão. Converta este factor em um vetor numérico, onde "baixo" seja 1, "médio" seja 2, e "alto" seja 3.
+
+**7.** Crie um factor com as categorias "verde", "amarelo", "vermelho". Substitua o nível "amarelo" por "laranja" e exiba o factor atualizado.
 
 ## Matriz e Array
 
@@ -2130,7 +2161,33 @@ summary(iris)
 
 Aplicar `summary()` ao data frame `iris` inteiro fornece resumos estatísticos para todas as colunas, incluindo estatísticas descritivas para variáveis numéricas e uma contagem de frequências para variáveis categóricas (fatores).
 
-### Valores faltantes
+### Valores ausentes
+
+```{r eval=FALSE}
+colMeans(airquality)
+##   Ozone Solar.R    Wind    Temp   Month     Day 
+##      NA      NA   9.958  77.882   6.993  15.804
+```
+
+Para eliminarmos os `NAs` em uma coluna podemos usar
+
+```{r eval=FALSE}
+sem_na <- subset(airquality, !is.na(Ozone))
+colMeans(sem_na)
+##   Ozone Solar.R    Wind    Temp   Month     Day 
+##  42.129      NA   9.862  77.871   7.198  15.534
+```
+
+Note que o argumento `na.rm=TRUE` pode ser passado para a maioria das funções sumárias por exemplo, `sum()`, `mean()`:
+
+```{r}
+mean(airquality$Ozone, na.rm = TRUE)
+```
+
+```{r}
+# ou
+colMeans(airquality, na.rm = TRUE)
+```
 
 ### Exercícios
 
@@ -2151,6 +2208,17 @@ Aplicar `summary()` ao data frame `iris` inteiro fornece resumos estatísticos p
 **8.** Ordene o data frame `mtcars` pela coluna `mpg` em ordem decrescente. Mostre os 5 carros mais económicos e os 5 menos económicos.
 
 **9.** Crie dois data frames, `carros1` e `carros2`, que contenham diferentes subconjuntos de informações do data frame `mtcars`. Depois, use a função `merge()` para combinar esses data frames com base na coluna `car`.
+
+**10.** Carregue o dataset `airquality` e exiba as primeiras 6 linhas e as últimas 6 linhas da tabela.
+
+**11.** Verifique quantos valores ausentes (`NA`) existem em cada coluna do dataset airquality.
+
+**12.** Calcule a média dos valores da coluna `Solar.R` no dataset `airquality`, ignorando os valores ausentes (`NA`).
+
+**13.** Crie um subconjunto do dataset `airquality` onde a velocidade do vento (`Wind`) é maior que 10 e a temperatura (`Temp`) é maior que 80. Exiba as primeiras 6 linhas do resultado.
+
+**14.** Adicione uma nova coluna ao dataset `airquality` chamada `Temp_Wind_Sum`, que seja a soma dos valores das colunas `Temp` e `Wind`. Exiba as primeiras 6 linhas da tabela modificada.
+
 
 ## Listas
 
@@ -3203,7 +3271,7 @@ while (contador <= limite) {
 
 **5.** Use um loop `while` para somar números inteiros positivos até que um número negativo seja inserido.
 
-Crie um programa em R que leia números inteiros inseridos pelo usuário e some-os. O loop deve continuar até que o utilizador insira um número negativo, momento em que o programa deve parar e exibir a soma dos números positivos inseridos.
+Crie um programa em R que leia números inteiros inseridos pelo utilizador e some-os. O loop deve continuar até que o utilizador insira um número negativo, momento em que o programa deve parar e exibir a soma dos números positivos inseridos.
 
 **6.** Use um loop while para implementar uma contagem regressiva.
 

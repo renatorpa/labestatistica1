@@ -120,7 +120,7 @@
 
 \title{Introdução ao R}
 \author{Renato de Paula}
-\date{2024-09-17}
+\date{2024-09-23}
 
 \begin{document}
 \maketitle
@@ -212,7 +212,7 @@ email: a definir
 
 \chapter{R e RStudio}\label{r-e-rstudio}
 
-O R é um software de código aberto desenvolvido como uma implementação gratuita da linguagem S, que foi concebida especificamente para computação estatística, programação estatística e geração de gráficos. A principal intenção era proporcionar aos usuários a capacidade de explorar dados de maneira intuitiva e interativa, utilizando representações gráficas significativas para facilitar a compreensão dos dados. O software estatístico R foi originalmente criado por Ross Ihaka e Robert Gentleman, da Universidade de Auckland, Nova Zelândia.
+O R é um software de código aberto desenvolvido como uma implementação gratuita da linguagem S, que foi concebida especificamente para computação estatística, programação estatística e geração de gráficos. A principal intenção era proporcionar aos utilizadores a capacidade de explorar dados de maneira intuitiva e interativa, utilizando representações gráficas significativas para facilitar a compreensão dos dados. O software estatístico R foi originalmente criado por Ross Ihaka e Robert Gentleman, da Universidade de Auckland, Nova Zelândia.
 
 O R oferece um conjunto integrado de ferramentas para manipulação de dados, cálculo e visualização gráfica. Ele oferece:
 
@@ -227,7 +227,7 @@ O R oferece um conjunto integrado de ferramentas para manipulação de dados, c�
 \item
   Recursos gráficos avançados para análise e visualização de dados, seja na tela ou em cópia impressa;
 \item
-  Uma linguagem de programação robusta, intuitiva e eficaz, que inclui estruturas condicionais, loops, funções recursivas definidas pelo usuário, além de recursos de entrada e saída de dados.
+  Uma linguagem de programação robusta, intuitiva e eficaz, que inclui estruturas condicionais, loops, funções recursivas definidas pelo utilizador, além de recursos de entrada e saída de dados.
 \end{itemize}
 
 \section{Instalação e funcionalidades básicas}\label{instalauxe7uxe3o-e-funcionalidades-buxe1sicas}
@@ -236,7 +236,8 @@ O R oferece um conjunto integrado de ferramentas para manipulação de dados, c�
 \item
   A versão base do R, que inclui o conjunto fundamental de comandos e funções, pode ser descarregada diretamente do site oficial: \url{https://www.r-project.org/}. Após instalar o R, é altamente recomendável instalar também um ambiente de desenvolvimento integrado (IDE) para facilitar o trabalho com o código R. Um IDE permite ao utilizador escrever, guardar e organizar scripts de código R de forma mais eficiente, além de executar comandos diretamente no Console do R e gerir configurações e saídas de forma conveniente. Uma escolha popular de IDE é o RStudio, que é gratuito e pode ser descarregado em \url{https://www.rstudio.com/}.
 \item
-  Além do conjunto base de funções, o R oferece uma vasta gama de pacotes adicionais desenvolvidos pela comunidade de utilizadores. Estes pacotes podem ser instalados diretamente pelo Console do R ou através do menu do RStudio. Para instalar um pacote no Console, pode usar a função \texttt{install.packages("nome\_do\_pacote")}. É importante lembrar que, para instalar pacotes, é necessário estar ligado à internet. Para visualizar todos os pacotes já instalados no seu ambiente R, pode utilizar a função \texttt{installed.packages()}.
+  Além do conjunto base de funções, o R oferece uma vasta gama de pacotes adicionais desenvolvidos pela comunidade de utilizadores. Estes pacotes podem ser instalados diretamente pelo Console do R ou através do menu do RStudio. Para instalar um pacote no Console, pode usar a função \texttt{install.packages("nome\_do\_pacote")}. É importante lembrar que, para instalar pacotes, é necessário estar ligado à internet. Para visualizar todos os pacotes já instalados no seu ambiente R, pode utilizar a função \texttt{installed.packages()}. Para usar os packages nãoo incluídos na base do R é necessário torna-los activos, usando a
+  função \texttt{library()}.
 \end{itemize}
 
 \section{Navegar no RStudio}\label{navegar-no-rstudio}
@@ -803,7 +804,7 @@ No R, existem várias funções úteis para exibir, receber e concatenar informa
 \item
   \texttt{print()}: Utilizada para exibir valores e resultados de expressões no console. É a função básica para mostrar a saída de dados no R.
 \item
-  \texttt{readline()}: Usada para receber entradas do usuário via teclado. Esta função permite que o script pause e aguarde a entrada do usuário.
+  \texttt{readline()}: Usada para receber entradas do utilizador via teclado. Esta função permite que o script pause e aguarde a entrada do utilizador
 \item
   \texttt{paste()}: Utilizada para concatenar (combinar) sequências de caracteres (strings) com um separador específico entre elas. Por padrão, o separador é um espaço.
 \item
@@ -829,7 +830,7 @@ Neste exemplo, \texttt{paste()} concatena as duas strings com um espaço entre e
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Solicitar entrada do usuário}
+\CommentTok{\# Solicitar entrada do utilizador}
 \NormalTok{n }\OtherTok{\textless{}{-}} \FunctionTok{readline}\NormalTok{(}\AttributeTok{prompt =} \StringTok{"Digite um número: "}\NormalTok{)}
 
 \CommentTok{\# Converta a entrada em um valor numérico}
@@ -951,6 +952,566 @@ Este exemplo mostra como verificar se a entrada é numérica usando \texttt{is.n
 \end{Highlighting}
 \end{Shaded}
 
+\section{Quizz}\label{quizz}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  O que é o `prompt' do R?
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \tightlist
+  \item
+    Um símbolo que marca o início de um comando
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{1}
+  \tightlist
+  \item
+    Um objeto armazenado na memória
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{2}
+  \tightlist
+  \item
+    Uma função para adicionar números
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{3}
+  \tightlist
+  \item
+    Um operador lógico
+  \end{enumerate}
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Qual comando é usado para imprimir texto no console no R?
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \tightlist
+  \item
+    \texttt{print()}
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{1}
+  \tightlist
+  \item
+    \texttt{paste()}
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{2}
+  \tightlist
+  \item
+    \texttt{cat()}
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{3}
+  \tightlist
+  \item
+    \texttt{readline()}
+  \end{enumerate}
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  O que o caractere \texttt{\#} faz em um script R?
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \tightlist
+  \item
+    Executa o comando
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{1}
+  \tightlist
+  \item
+    Cria uma variável
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{2}
+  \tightlist
+  \item
+    Indica um comentário
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{3}
+  \tightlist
+  \item
+    Combina dois números
+  \end{enumerate}
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Como você cria um vetor com os números 1 a 5?
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \tightlist
+  \item
+    \texttt{c(1\ 2\ 3\ 4\ 5)}
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{1}
+  \tightlist
+  \item
+    \texttt{combine(1,2,3,4,5)}
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{2}
+  \tightlist
+  \item
+    \texttt{c(1,2,3,4,5)}
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{3}
+  \tightlist
+  \item
+    \texttt{vector(1,2,3,4,5)}
+  \end{enumerate}
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  O que o operador \texttt{\textless{}-} faz no R?
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \tightlist
+  \item
+    Atribui um valor a uma variável
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{1}
+  \tightlist
+  \item
+    Compara dois números
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{2}
+  \tightlist
+  \item
+    Soma dois números
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{3}
+  \tightlist
+  \item
+    Remove um objeto
+  \end{enumerate}
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Como remover um objeto da memória no R?
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \tightlist
+  \item
+    \texttt{delete(x)}
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{1}
+  \tightlist
+  \item
+    \texttt{remove(x)}
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{2}
+  \tightlist
+  \item
+    \texttt{rm(x)}
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{3}
+  \tightlist
+  \item
+    \texttt{clear(x)}
+  \end{enumerate}
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  Qual operador é usado para divisão inteira em R?
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \tightlist
+  \item
+    \texttt{/}
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{1}
+  \tightlist
+  \item
+    \texttt{\%/\%}
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{2}
+  \tightlist
+  \item
+    \texttt{\%\%}
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{3}
+  \tightlist
+  \item
+    \texttt{\^{}}
+  \end{enumerate}
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\tightlist
+\item
+  Qual operador retorna o resto da divisão de dois números?
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \tightlist
+  \item
+    \texttt{\%/\%}
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{1}
+  \tightlist
+  \item
+    \texttt{\%\%}
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{2}
+  \tightlist
+  \item
+    \texttt{\^{}}
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{3}
+  \tightlist
+  \item
+    \texttt{/}
+  \end{enumerate}
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{8}
+\tightlist
+\item
+  Como você controla a precisão dos números exibidos no console do R?
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \tightlist
+  \item
+    Usando a função \texttt{precision()}
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{1}
+  \tightlist
+  \item
+    Alterando a opção \texttt{options(digits=)}
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{2}
+  \tightlist
+  \item
+    Usando a função \texttt{format()}
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{3}
+  \tightlist
+  \item
+    Usando o comando \texttt{round()}
+  \end{enumerate}
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{9}
+\tightlist
+\item
+  Qual função retorna a classe de um objeto no R?
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \tightlist
+  \item
+    \texttt{typeof()}
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{1}
+  \tightlist
+  \item
+    \texttt{class()}
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{2}
+  \tightlist
+  \item
+    \texttt{str()}
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{3}
+  \tightlist
+  \item
+    \texttt{is()}
+  \end{enumerate}
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{10}
+\tightlist
+\item
+  O que \texttt{c()} faz no R?
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \tightlist
+  \item
+    Cria um vetor
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{1}
+  \tightlist
+  \item
+    Calcula a soma de números
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{2}
+  \tightlist
+  \item
+    Remove um vetor
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{3}
+  \tightlist
+  \item
+    Compara dois números
+  \end{enumerate}
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{11}
+\tightlist
+\item
+  O que a função \texttt{readline()} faz?
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \tightlist
+  \item
+    Imprime texto no console
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{1}
+  \tightlist
+  \item
+    Lê uma linha de texto do utilizador
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{2}
+  \tightlist
+  \item
+    Remove um objeto da memória
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{3}
+  \tightlist
+  \item
+    Soma dois números
+  \end{enumerate}
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{12}
+\tightlist
+\item
+  O que \texttt{paste()} faz?
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \tightlist
+  \item
+    Soma números
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{1}
+  \tightlist
+  \item
+    Imprime texto sem quebrar linhas
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{2}
+  \tightlist
+  \item
+    Combina strings
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{3}
+  \tightlist
+  \item
+    Cria vetores
+  \end{enumerate}
+\end{itemize}
+
 \section{Operadores Lógicos e Relacionais}\label{operadores-luxf3gicos-e-relacionais}
 
 Em R, operadores lógicos e relacionais são utilizados para realizar comparações e tomar decisões com base nos resultados dessas comparações. Esses operadores são fundamentais para a construção de estruturas de controle de fluxo, como instruções condicionais (\texttt{if}, \texttt{else}) e loops (\texttt{for}, \texttt{while}).
@@ -1049,7 +1610,7 @@ Os operadores relacionais são usados para comparar valores e retornam valores l
 \end{Highlighting}
 \end{Shaded}
 
-\section{Quizz}\label{quizz}
+\section{Quizz}\label{quizz-1}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1548,7 +2109,7 @@ Um \textbf{vetor} é uma estrutura de dados básica que armazena uma sequência 
 
 \subsection{Acesso a Elementos de um Vetor}\label{acesso-a-elementos-de-um-vetor}
 
-Pode aceder a elementos específicos de um vetor utilizando colchetes {[} {]} e índices. O R utiliza indexação baseada em 1, o que significa que o primeiro elemento de um vetor tem índice 1.
+Pode aceder a elementos específicos de um vetor utilizando colchetes {[} {]} e índices.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1918,13 +2479,33 @@ A função \texttt{gl()} (generate levels) é usada para criar fatores de maneir
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Sintaxe}
+\FunctionTok{gl}\NormalTok{(n, k, }\AttributeTok{length =}\NormalTok{ n}\SpecialCharTok{*}\NormalTok{k, }\AttributeTok{labels =} \FunctionTok{seq\_len}\NormalTok{(n), }\AttributeTok{ordered =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  \texttt{n}: um inteiro que fornece o número de níveis.
+\item
+  \texttt{k}: um inteiro que fornece o número de replicações.
+\item
+  \texttt{length}: um inteiro que fornece o comprimento do resultado.
+\item
+  \texttt{labels}: um vetor opcional de rótulos para os níveis de fatores resultantes.
+\item
+  \texttt{ordered}: uma lógica que indica se o resultado deve ser ordenado ou não.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \CommentTok{\# Gerar níveis de fator com gl()}
-\FunctionTok{gl}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\FunctionTok{gl}\NormalTok{(}\AttributeTok{n=}\DecValTok{4}\NormalTok{,}\AttributeTok{k=}\DecValTok{3}\NormalTok{)}
 \DocumentationTok{\#\#  [1] 1 1 1 2 2 2 3 3 3 4 4 4}
 \DocumentationTok{\#\# Levels: 1 2 3 4}
 
 \CommentTok{\# Gerar fatores com labels personalizados}
-\FunctionTok{gl}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{10}\NormalTok{, }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"mulher"}\NormalTok{, }\StringTok{"homem"}\NormalTok{))}
+\FunctionTok{gl}\NormalTok{(}\AttributeTok{n=}\DecValTok{2}\NormalTok{, }\AttributeTok{k=}\DecValTok{10}\NormalTok{, }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"mulher"}\NormalTok{, }\StringTok{"homem"}\NormalTok{))}
 \DocumentationTok{\#\#  [1] mulher mulher mulher mulher mulher mulher mulher mulher mulher mulher}
 \DocumentationTok{\#\# [11] homem  homem  homem  homem  homem  homem  homem  homem  homem  homem }
 \DocumentationTok{\#\# Levels: mulher homem}
@@ -1936,6 +2517,22 @@ A função \texttt{gl()} (generate levels) é usada para criar fatores de maneir
 \DocumentationTok{\#\# Levels: homem mulher}
 \end{Highlighting}
 \end{Shaded}
+
+\subsection{Exercícios}\label{exercuxedcios-2}
+
+\textbf{1.} Crie um vetor com os seguintes valores: ``pequeno'', ``médio'', ``grande'', ``pequeno'', ``grande''. Em seguida, transforme esse vetor em um \texttt{factor} com níveis ordenados em ``pequeno'', ``médio'' e ``grande''. Exiba os níveis do factor criado.
+
+\textbf{2.} Crie um factor com os valores de um vetor categórico representando as cores de carros: ``vermelho'', ``azul'', ``preto'', ``vermelho'', ``branco'', ``azul''. Use a função \texttt{table()} para contar quantos carros existem de cada cor.
+
+\textbf{3.} Crie um factor representando avaliações de produtos com os valores ``bom'', ``médio'', ``ruim'', e modifique os níveis para ``excelente'', ``razoável'' e ``insatisfatório''. Exiba o factor modificado.
+
+\textbf{4.} Crie um vetor com valores categóricos: ``solteiro'', ``casado'', ``divorciado''. Verifique se esse vetor é um factor usando a função \texttt{is.factor()} e depois transforme-o em um factor.
+
+\textbf{5.} Crie um factor representando níveis de escolaridade com os valores ``ensino secundário'', ``ensino superior'', ``mestrado'', ``doutoramento''. Defina uma ordem lógica para os níveis e ordene o factor em ordem crescente.
+
+\textbf{6.} Crie um factor com os valores ``baixo'', ``alto'', ``médio'', ``baixo'', ``alto'', e com as categorias ``baixo'', ``médio'' e ``alto'', representando níveis de pressão. Converta este factor em um vetor numérico, onde ``baixo'' seja 1, ``médio'' seja 2, e ``alto'' seja 3.
+
+\textbf{7.} Crie um factor com as categorias ``verde'', ``amarelo'', ``vermelho''. Substitua o nível ``amarelo'' por ``laranja'' e exiba o factor atualizado.
 
 \section{Matriz e Array}\label{matriz-e-array}
 
@@ -2215,7 +2812,7 @@ Seja \(M\) uma matriz quadrada.
   \texttt{apply(M,2,\ mean)\ \#\ média\ de\ cada\ coluna}
 \end{itemize}
 
-\subsection{Exercícios}\label{exercuxedcios-2}
+\subsection{Exercícios}\label{exercuxedcios-3}
 
 \textbf{1.} Crie uma matriz \(3 \times 4\) com os números de 1 a 12, preenchendo a matriz por colunas. Exiba a matriz e determine a soma dos elementos da segunda coluna.
 
@@ -2764,9 +3361,52 @@ A função \texttt{summary()} é amplamente usada em R para fornecer resumos est
 
 Aplicar \texttt{summary()} ao data frame \texttt{iris} inteiro fornece resumos estatísticos para todas as colunas, incluindo estatísticas descritivas para variáveis numéricas e uma contagem de frequências para variáveis categóricas (fatores).
 
-\subsection{Valores faltantes}\label{valores-faltantes}
+\subsection{Valores ausentes}\label{valores-ausentes}
 
-\subsection{Exercícios}\label{exercuxedcios-3}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{colMeans}\NormalTok{(airquality)}
+\DocumentationTok{\#\#   Ozone Solar.R    Wind    Temp   Month     Day }
+\DocumentationTok{\#\#      NA      NA   9.958  77.882   6.993  15.804}
+\end{Highlighting}
+\end{Shaded}
+
+Para eliminarmos os \texttt{NAs} em uma coluna podemos usar
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sem\_na }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(airquality, }\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(Ozone))}
+\FunctionTok{colMeans}\NormalTok{(sem\_na)}
+\DocumentationTok{\#\#   Ozone Solar.R    Wind    Temp   Month     Day }
+\DocumentationTok{\#\#  42.129      NA   9.862  77.871   7.198  15.534}
+\end{Highlighting}
+\end{Shaded}
+
+Note que o argumento \texttt{na.rm=TRUE} pode ser passado para a maioria das funções sumárias por exemplo, \texttt{sum()}, \texttt{mean()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(airquality}\SpecialCharTok{$}\NormalTok{Ozone, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 42.12931
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# ou}
+\FunctionTok{colMeans}\NormalTok{(airquality, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      Ozone    Solar.R       Wind       Temp      Month        Day 
+##  42.129310 185.931507   9.957516  77.882353   6.993464  15.803922
+\end{verbatim}
+
+\subsection{Exercícios}\label{exercuxedcios-4}
 
 \textbf{1.} Crie um data frame chamado \texttt{estudantes} com as colunas: Nome (caracteres), Idade (números inteiros), Curso (caracteres) e Nota (números decimais). Adicione os dados de cinco estudantes fictícios e exiba o data frame.
 
@@ -2785,6 +3425,16 @@ Aplicar \texttt{summary()} ao data frame \texttt{iris} inteiro fornece resumos e
 \textbf{8.} Ordene o data frame \texttt{mtcars} pela coluna \texttt{mpg} em ordem decrescente. Mostre os 5 carros mais económicos e os 5 menos económicos.
 
 \textbf{9.} Crie dois data frames, \texttt{carros1} e \texttt{carros2}, que contenham diferentes subconjuntos de informações do data frame \texttt{mtcars}. Depois, use a função \texttt{merge()} para combinar esses data frames com base na coluna \texttt{car}.
+
+\textbf{10.} Carregue o dataset \texttt{airquality} e exiba as primeiras 6 linhas e as últimas 6 linhas da tabela.
+
+\textbf{11.} Verifique quantos valores ausentes (\texttt{NA}) existem em cada coluna do dataset airquality.
+
+\textbf{12.} Calcule a média dos valores da coluna \texttt{Solar.R} no dataset \texttt{airquality}, ignorando os valores ausentes (\texttt{NA}).
+
+\textbf{13.} Crie um subconjunto do dataset \texttt{airquality} onde a velocidade do vento (\texttt{Wind}) é maior que 10 e a temperatura (\texttt{Temp}) é maior que 80. Exiba as primeiras 6 linhas do resultado.
+
+\textbf{14.} Adicione uma nova coluna ao dataset \texttt{airquality} chamada \texttt{Temp\_Wind\_Sum}, que seja a soma dos valores das colunas \texttt{Temp} e \texttt{Wind}. Exiba as primeiras 6 linhas da tabela modificada.
 
 \section{Listas}\label{listas}
 
@@ -2879,7 +3529,7 @@ Listas são extremamente úteis em R para:
   \textbf{Passar múltiplos argumentos para funções}: As listas são usadas para agrupar múltiplos parâmetros para funções, tornando-as uma ferramenta poderosa para programação funcional.
 \end{itemize}
 
-\subsection{Exercícios}\label{exercuxedcios-4}
+\subsection{Exercícios}\label{exercuxedcios-5}
 
 \textbf{1.} Crie uma lista em R chamada \texttt{dados\_estudante} que contenha as seguintes informações sobre um estudante:
 
@@ -3199,7 +3849,7 @@ Código correto
 \end{Highlighting}
 \end{Shaded}
 
-\section{Exercícios}\label{exercuxedcios-5}
+\section{Exercícios}\label{exercuxedcios-6}
 
 \textbf{1.} Escreva um programa em R que leia um número do utilizador e exiba ``O número é positivo'' se for maior que zero.
 
@@ -3468,7 +4118,7 @@ sentido lógico, já que 160 não é um nome válido para um estudante.
 \end{Highlighting}
 \end{Shaded}
 
-\section{Exercícios}\label{exercuxedcios-6}
+\section{Exercícios}\label{exercuxedcios-7}
 
 \textbf{1.} Crie uma função chamada \texttt{quadrado()} que recebe um único argumento numérico \texttt{x} e devolva o quadrado de \texttt{x}. Teste a função com os valores 3, 5 e 7.
 
@@ -3504,6 +4154,31 @@ Igual ou maior que 40 & Obesidade grau III \\
 Lembre-se de que IMC = \(\frac{\text{Peso}}{\text{Altura}^2}\).
 
 \textbf{9.} Crie funções em R para converter valores entre diferentes moedas com base nas taxas de câmbio. Implemente e teste as funções, e escreva um programa que solicite ao utilizador um valor em euros e imprima a conversão desse valor para algumas das principais moedas, como dólar, libra, iene e real.
+
+\textbf{10.} Crie uma função que calcule o intervalor de confiança para o valor médio \((1-\alpha)\times 100\%\) (nota: amostras grandes).
+
+\[\left(\bar{x}-z_{1-\frac{\alpha}{2}}\frac{s}{\sqrt{n}},\bar{x}+z_{1-\frac{\alpha}{2}}\frac{s}{\sqrt{n}}  \right)\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{IC }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(amostra, alpha)\{}
+  \CommentTok{\# Coloque seu código aqui}
+  
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{11.} Criar uma função que calcule o intervalo de confiança para o valor médio para \(\alpha\) igual a 0.001,
+0.01, 0.05 e 0.10.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ICs }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(alphas)\{}
+  \CommentTok{\# Coloque seu código aqui}
+  
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
 
 \chapter{Scripts em R}\label{scripts-em-r}
 
@@ -3576,7 +4251,7 @@ Quando utiliza o comando \texttt{source()}, o R lê e executa todas as linhas do
   \textbf{Diretório de trabalho}: O diretório de trabalho é o local onde o R procura por ficheiros para leitura ou onde guarda ficheiros. Pode verificar o diretório de trabalho atual utilizando \texttt{getwd()} e mudar para um novo diretório com \texttt{setwd("caminho/do/diretorio")}.
 \end{itemize}
 
-\section{Exercícios}\label{exercuxedcios-7}
+\section{Exercícios}\label{exercuxedcios-8}
 
 \textbf{1.} Crie os seguintes scripts:
 
@@ -3922,7 +4597,7 @@ Por exemplo, ao usar o pipe para construir um modelo linear com o conjunto de da
 
 Neste exemplo, o dataset \texttt{airquality} é pré-processado com \texttt{na.omit()} para remover os valores ausentes, e o resultado é usado como o argumento data na função \texttt{lm()} para criar um modelo linear. O pipe permite que este fluxo de operações seja descrito de forma clara e linear.
 
-\section{Exercícios}\label{exercuxedcios-8}
+\section{Exercícios}\label{exercuxedcios-9}
 
 \textbf{1.} Reescreva a expressão abaixo utilizando o \texttt{\%\textgreater{}\%},
 
@@ -4112,7 +4787,7 @@ Explique por que o programa acima não termina. Qual é o erro no nosso código?
   \textbf{Desempenho}: Loops \texttt{while} podem ser menos eficientes do que operações vetorizadas em R. Para grandes conjuntos de dados, considere usar funções vetorizadas como \texttt{apply}, \texttt{lapply}, \texttt{sapply}, etc., para melhorar o desempenho.
 \end{itemize}
 
-\section{Exercícios}\label{exercuxedcios-9}
+\section{Exercícios}\label{exercuxedcios-10}
 
 \textbf{1.} Escreva um programa em R que solicite ao utilizador um número inteiro \(n\). O programa deve imprimir todos os números inteiros de 0 até \(n\), um número por linha.
 
@@ -4124,7 +4799,7 @@ Explique por que o programa acima não termina. Qual é o erro no nosso código?
 
 \textbf{5.} Use um loop \texttt{while} para somar números inteiros positivos até que um número negativo seja inserido.
 
-Crie um programa em R que leia números inteiros inseridos pelo usuário e some-os. O loop deve continuar até que o utilizador insira um número negativo, momento em que o programa deve parar e exibir a soma dos números positivos inseridos.
+Crie um programa em R que leia números inteiros inseridos pelo utilizador e some-os. O loop deve continuar até que o utilizador insira um número negativo, momento em que o programa deve parar e exibir a soma dos números positivos inseridos.
 
 \textbf{6.} Use um loop while para implementar uma contagem regressiva.
 
@@ -4267,7 +4942,7 @@ O loop \texttt{for} em R é uma estrutura de controlo de fluxo que permite execu
 \end{Highlighting}
 \end{Shaded}
 
-\section{Exercícios}\label{exercuxedcios-10}
+\section{Exercícios}\label{exercuxedcios-11}
 
 \textbf{1.} Escreva um programa em R que use um loop \texttt{for} para imprimir todos os números de 1 a 10.
 
@@ -4677,7 +5352,7 @@ A função \texttt{tapply()} aplica uma função a subconjuntos de um vetor, div
 \end{Highlighting}
 \end{Shaded}
 
-\section{Exercícios}\label{exercuxedcios-11}
+\section{Exercícios}\label{exercuxedcios-12}
 
 \textbf{1.} Crie um vetor chamado \texttt{nomes} contendo os nomes ``Alice'', ``Bruno'', ``Carla'', e ``Daniel''. Use a função \texttt{lapply()} para converter todos os nomes para maiúsculas. Verifique o resultado.
 
@@ -4788,7 +5463,7 @@ O R base oferece uma variedade de funções para criar gráficos estatísticos b
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-151-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-158-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4805,7 +5480,7 @@ O R base oferece uma variedade de funções para criar gráficos estatísticos b
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-152-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-159-1.pdf}
 
 \textbf{Personalização de Gráficos de Barras}
 
@@ -4823,7 +5498,7 @@ Pode personalizar ainda mais os gráficos de barras usando argumentos como \text
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-153-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-160-1.pdf}
 
 \section{Gráfico Circular (Pizza)}\label{gruxe1fico-circular-pizza}
 
@@ -4840,7 +5515,7 @@ Pode personalizar ainda mais os gráficos de barras usando argumentos como \text
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-154-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-161-1.pdf}
 
 \section{Histograma}\label{histograma}
 
@@ -4876,7 +5551,7 @@ utilize a opção \texttt{freq=FALSE} nos argumentos da função \texttt{hist()}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-155-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-162-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4904,7 +5579,7 @@ utilize a opção \texttt{freq=FALSE} nos argumentos da função \texttt{hist()}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-157-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-164-1.pdf}
 
 Pode controlar o número de intervalos (bins) usando o argumento \texttt{breaks}. Por exemplo, \texttt{breaks\ =\ 5} divide os dados em 5 intervalos.
 
@@ -4921,7 +5596,7 @@ Pode controlar o número de intervalos (bins) usando o argumento \texttt{breaks}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-158-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-165-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4933,7 +5608,7 @@ Pode controlar o número de intervalos (bins) usando o argumento \texttt{breaks}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-159-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-166-1.pdf}
 
 Pode comparar a distribuição de múltiplas variáveis lado a lado com box-plots. Use a função \texttt{par()} para ajustar o layout gráfico.
 
@@ -4948,7 +5623,7 @@ Pode comparar a distribuição de múltiplas variáveis lado a lado com box-plot
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-160-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-167-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4977,7 +5652,7 @@ Pode comparar a distribuição de múltiplas variáveis lado a lado com box-plot
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-161-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-168-1.pdf}
 
 \section{Gráfico de Linhas}\label{gruxe1fico-de-linhas}
 
@@ -5000,7 +5675,7 @@ Pode comparar a distribuição de múltiplas variáveis lado a lado com box-plot
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-162-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-169-1.pdf}
 
 \chapter{Manipulação de dados}\label{manipulauxe7uxe3o-de-dados}
 
@@ -5328,7 +6003,7 @@ Para remover colunas, basta acrescentar um \texttt{-} antes da seleção.
 ## # i 1 more variable: starships <list>
 \end{verbatim}
 
-\subsection{Exercícios}\label{exercuxedcios-12}
+\subsection{Exercícios}\label{exercuxedcios-13}
 
 Utilize a base \texttt{sw} nos exercícios a seguir.
 
@@ -5422,7 +6097,7 @@ A função \texttt{arrange()} permite ordenar as linhas de uma tabela com base n
 ## #   vehicles <list>, starships <list>
 \end{verbatim}
 
-\subsection{Exercícios}\label{exercuxedcios-13}
+\subsection{Exercícios}\label{exercuxedcios-14}
 
 \textbf{1.} Ordene a base \texttt{sw} pela coluna \texttt{mass} em ordem crescente e pela coluna \texttt{birth\_year} em ordem decrescente. Guarde o resultado em um objeto chamado \texttt{sw\_ordenados}.
 
@@ -5675,7 +6350,7 @@ Podemos utilizá-la para filtrar apenas os personagens com cabelo \texttt{grey}.
 ## #   vehicles <list>, starships <list>
 \end{verbatim}
 
-\subsection{Exercícios}\label{exercuxedcios-14}
+\subsection{Exercícios}\label{exercuxedcios-15}
 
 Utilize a base \texttt{sw} nos exercícios a seguir.
 
@@ -5780,7 +6455,7 @@ Podemos fazer qualquer operação com uma ou mais colunas. Abaixo vamos criar um
 ## # i 77 more rows
 \end{verbatim}
 
-\subsection{Exercícios}\label{exercuxedcios-15}
+\subsection{Exercícios}\label{exercuxedcios-16}
 
 \textbf{1.} Crie uma coluna chamada \texttt{dif\_peso\_altura} (diferença entre altura e peso) e salve a nova tabela em um objeto chamado \texttt{starwars\_dif}. Em seguida, filtre apenas os personagens que têm altura maior que o peso e ordene a tabela por ordem crescente de \texttt{dif\_peso\_altura}.
 
@@ -6072,7 +6747,7 @@ A função \texttt{full\_join()} mantém todas as linhas de ambas as tabelas e a
 
 A tabela \texttt{humanos\_altos\_full\_join} contém todos os personagens altos e humanos. Se um personagem está em apenas uma das tabelas, as colunas da outra tabela são preenchidas com \texttt{NA}.
 
-\subsection{Exercícios}\label{exercuxedcios-16}
+\subsection{Exercícios}\label{exercuxedcios-17}
 
 \textbf{1.} Crie uma tabela \texttt{personagens\_altos} contendo apenas personagens com altura superior a 180 cm e uma outra tabela \texttt{personagens\_leves} contendo apenas personagens com massa inferior a 75 kg. Use \texttt{left\_join()} para combinar as duas tabelas com base no nome do personagem.
 
@@ -6245,7 +6920,7 @@ Para compreender melhor a distribuição do tempo de espera, podemos visualizar 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-198-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-205-1.pdf}
 
 \section{Simulação e Geração de Números Pseudoaleatórios}\label{simulauxe7uxe3o-e-gerauxe7uxe3o-de-nuxfameros-pseudoaleatuxf3rios}
 
@@ -6377,7 +7052,7 @@ A função \texttt{sample()} em R é amplamente utilizada para gerar amostras al
 \end{Highlighting}
 \end{Shaded}
 
-\section{Exercícios}\label{exercuxedcios-17}
+\section{Exercícios}\label{exercuxedcios-18}
 
 \textbf{1.} Crie um vetor com os números de 1 a 20. Utilize a função \texttt{sample()} para selecionar uma amostra aleatória de 5 elementos desse vetor. A amostragem deve ser feita sem reposição.
 
@@ -6489,7 +7164,7 @@ Gerar um número aleatório uniforme \(U\) no intervalo {[}0,1{]}. Para determin
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-204-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-211-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6572,7 +7247,7 @@ p,& \quad \text{se} \quad x=1 \end{cases}\] Para gerar uma Bernoulli(p) podemos 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-206-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-213-1.pdf}
 
 \textbf{Exemplo 5}: Geração de uma variável aleatória com distribuição Geométrica(p). Seja \(X\sim Geometrica(p)\). Lembre que \[P(X=x)=p(1-p)^{x-1}\] e que \[F(x) = P(X\leq x) = \begin{cases} 0,& \quad \text{se} \quad x<1 \\
 1-(1-p)^x,& \quad \text{se} \quad x\geq 1\end{cases}\]
@@ -6604,7 +7279,7 @@ onde \(\lfloor  \rfloor =\) maior inteiro.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-207-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-214-1.pdf}
 
 \textbf{Exemplo 6}: Geração de uma variável aleatória com distribuição de Poisson. A variável aleatória \(X\) é de Poisson com média \(\lambda\) se \[p_{i} = P(X = i) = \frac{e^{-\lambda}\lambda^i}{i!}, \quad i=0,1,\ldots\]
 
@@ -6640,7 +7315,7 @@ Ao utilizar a recursão acima para calcular as probabilidades de Poisson quando 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-208-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-215-1.pdf}
 
 \section{Variável aleatória contínua}\label{variuxe1vel-aleatuxf3ria-contuxednua}
 
@@ -6677,7 +7352,7 @@ A função \(F(x)=x^2\) é invertível no intervalo \((0,1)\) e \(F^{-1}(x)=\sqr
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-209-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-216-1.pdf}
 
 \textbf{Exemplo 2}: Geração de uma variável aleatória uniforme(a,b). A geração é feita através de \[X = a+(b-a)U.\]
 
@@ -6693,7 +7368,7 @@ A função \(F(x)=x^2\) é invertível no intervalo \((0,1)\) e \(F^{-1}(x)=\sqr
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-210-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-217-1.pdf}
 
 \textbf{Exemplo 3}: Geração de uma variável aleatória exponencial. Seja \(X\) uma variável aleatória exponencial com taxa 1, então sua função de distribuição é dada por \[F(x)=1-e^{x}.\]
 Como \(0\leq F(x)\leq 1\), tomando \(F(x)=u\), onde \(u\sim U(0,1)\) tem-se: \[u=F(x)=1-e^{x}\] ou \[1-u=e^{-x}\] ou, aplicando o logaritmo \[x=-ln(1-u).\] Daí, pode-se gerar uma exponencial com parâmetro 1 gerando um número aleatório \(U\) e em seguida fazendo \[X = F^{-1}(U) = -ln(1-U).\] Uma pequena economia de tempo pode ser obtida ao notar que \(1-U\) também é uniforme em \((0,1)\), e assim, \(-ln(1-U)\) tem a mesma distribuição que \(-ln(U)\). Isto é, o logaritmo negativo de um número aleatório é exponencialmente distribuído com taxa 1.
@@ -6727,7 +7402,7 @@ Além disso, note que se \(X\) é uma exponencial com média 1, então para qual
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-211-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-218-1.pdf}
 
 \textbf{Exercício}: Seja \(X\) uma variável aleatória com distribuição \(W(\alpha, \beta)\). Assim a fdp de \(X\) é
 \[f(x) = \begin{cases}
@@ -7076,7 +7751,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-219-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-226-1.pdf}
 
 \textbf{Exemplo 1}: Resolva o exemplo 1 usando a função de distribuição empírica.
 
@@ -7129,7 +7804,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-221-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-228-1.pdf}
 
 \subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o}
 
@@ -7154,7 +7829,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-222-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-229-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o}
 
@@ -7182,7 +7857,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-223-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-230-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o}
 
@@ -7205,7 +7880,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-224-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-231-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-1}
 
@@ -7228,7 +7903,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-225-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-232-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7237,7 +7912,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-225-2.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-232-2.pdf}
 
 \textbf{Cálculo de probabilidade}: Seja
 \(X \sim \text{Binomial}(n=10, p=0.5)\).
@@ -7305,7 +7980,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-226-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-233-1.pdf}
 
 \subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o-1}
 
@@ -7338,7 +8013,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-227-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-234-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-1}
 
@@ -7374,7 +8049,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-228-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-235-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-1}
 
@@ -7394,7 +8069,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-229-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-236-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-2}
 
@@ -7415,7 +8090,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-230-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-237-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7430,7 +8105,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-230-2.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-237-2.pdf}
 
 \textbf{Cálculo de probabilidades}: Seja \(X\sim\text{Poisson}(\lambda=5)\).
 
@@ -7470,7 +8145,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-231-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-238-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o}
 
@@ -7495,7 +8170,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-232-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-239-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-2}
 
@@ -7526,7 +8201,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-233-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-240-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-2}
 
@@ -7546,7 +8221,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-234-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-241-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-3}
 
@@ -7571,7 +8246,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-235-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-242-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7608,7 +8283,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-236-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-243-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-1}
 
@@ -7633,7 +8308,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-237-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-244-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-3}
 
@@ -7664,7 +8339,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-238-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-245-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-3}
 
@@ -7684,7 +8359,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-239-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-246-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-4}
 
@@ -7709,7 +8384,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-240-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-247-1.pdf}
 
 \section{Gerando uma variável aleatória com distribuição Normal}\label{gerando-uma-variuxe1vel-aleatuxf3ria-com-distribuiuxe7uxe3o-normal}
 
@@ -7739,7 +8414,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-241-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-248-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-2}
 
@@ -7764,7 +8439,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-242-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-249-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-4}
 
@@ -7795,7 +8470,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-243-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-250-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-4}
 
@@ -7815,7 +8490,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-244-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-251-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-5}
 
@@ -7840,9 +8515,9 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-245-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-252-1.pdf}
 
-\section{Exercícios}\label{exercuxedcios-18}
+\section{Exercícios}\label{exercuxedcios-19}
 
 \textbf{1.} Usando o R e fixando a semente em 123, simule 1000 lançamentos de uma moeda com probabilidade de 0.5 de sair cara. Conte o número de caras
 em cada lançamento e plote um histograma dos resultados.
