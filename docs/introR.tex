@@ -2577,7 +2577,8 @@ Um array pode ter mais de duas dimensões e é criado usando a função \texttt{
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Criar um array com 4 linhas, 3 colunas, e 2 camadas}
-\FunctionTok{array}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{24}\NormalTok{), }\AttributeTok{dim=}\FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\NormalTok{A }\OtherTok{\textless{}{-}} \FunctionTok{array}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{24}\NormalTok{), }\AttributeTok{dim=}\FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\NormalTok{A}
 \DocumentationTok{\#\# , , 1}
 \DocumentationTok{\#\# }
 \DocumentationTok{\#\#      [,1] [,2] [,3]}
@@ -2593,6 +2594,42 @@ Um array pode ter mais de duas dimensões e é criado usando a função \texttt{
 \DocumentationTok{\#\# [2,]   14   18   22}
 \DocumentationTok{\#\# [3,]   15   19   23}
 \DocumentationTok{\#\# [4,]   16   20   24}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Acessar Elementos de um array}\label{acessar-elementos-de-um-array}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Acessando o elemento na posição [1, 2, 1]}
+\NormalTok{A[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{]}
+\DocumentationTok{\#\# [1] 5}
+
+\CommentTok{\# Acessar todos os elementos da linha 2 da primeira camada}
+\NormalTok{A[}\DecValTok{2}\NormalTok{, ,}\DecValTok{1}\NormalTok{]}
+\DocumentationTok{\#\# [1]  2  6 10}
+
+\CommentTok{\# Acessar toda a primeira camada (todos os elementos onde a terceira dimensão é 1)}
+\NormalTok{A[,,}\DecValTok{1}\NormalTok{]}
+\DocumentationTok{\#\#      [,1] [,2] [,3]}
+\DocumentationTok{\#\# [1,]    1    5    9}
+\DocumentationTok{\#\# [2,]    2    6   10}
+\DocumentationTok{\#\# [3,]    3    7   11}
+\DocumentationTok{\#\# [4,]    4    8   12}
+
+\CommentTok{\# Acessar os elementos [1, 1, 1] e [2, 2, 2]}
+\NormalTok{A[}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{), }\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{), }\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{)]}
+\DocumentationTok{\#\# , , 1}
+\DocumentationTok{\#\# }
+\DocumentationTok{\#\#      [,1] [,2]}
+\DocumentationTok{\#\# [1,]    1    5}
+\DocumentationTok{\#\# [2,]    2    6}
+\DocumentationTok{\#\# }
+\DocumentationTok{\#\# , , 2}
+\DocumentationTok{\#\# }
+\DocumentationTok{\#\#      [,1] [,2]}
+\DocumentationTok{\#\# [1,]   13   17}
+\DocumentationTok{\#\# [2,]   14   18}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2776,6 +2813,12 @@ Podemos aceder a elementos específicos de uma matriz utilizando índices ou exp
 \DocumentationTok{\#\# [1,]    1    3    5    7}
 \DocumentationTok{\#\# [2,]    2    4    6    8}
 
+\CommentTok{\# Adicionar uma coluna no meio}
+\FunctionTok{cbind}\NormalTok{(X[,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{],}\FunctionTok{c}\NormalTok{(}\DecValTok{7}\NormalTok{,}\DecValTok{8}\NormalTok{),X[,}\DecValTok{3}\NormalTok{])}
+\DocumentationTok{\#\#      [,1] [,2] [,3] [,4]}
+\DocumentationTok{\#\# [1,]    1    3    7    5}
+\DocumentationTok{\#\# [2,]    2    4    8    6}
+
 \CommentTok{\# Adicionar uma linha}
 \FunctionTok{rbind}\NormalTok{(X, }\FunctionTok{c}\NormalTok{(}\DecValTok{7}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{9}\NormalTok{))}
 \DocumentationTok{\#\#      [,1] [,2] [,3]}
@@ -2794,6 +2837,8 @@ Seja \(M\) uma matriz quadrada.
   dimensão de uma matriz \(\to\) \texttt{dim(M)}
 \item
   transposta de uma matriz \(\to\) \texttt{t(M)}
+\item
+  diagonal principal de uma matriz \(\to\) \texttt{diag(M)}
 \item
   determinante de uma matriz \(\to\) \texttt{det(M)}
 \item
@@ -2859,6 +2904,18 @@ Seja \(M\) uma matriz quadrada.
   \]
   e troque os números pares por 0.
 \end{enumerate}
+
+\textbf{9.} Crie uma matriz \(3\times 3\) e verifique se ela é simétrica (ou seja, se a matriz é igual à sua transposta). Teste com a matriz \[A = 
+\left[ \begin{matrix}
+1 & 2 & 3 \\
+2 & 4 & 5 \\
+3 & 5 & 6
+\end{matrix}\right]\]
+Dica: use a função \texttt{all()}.
+
+\textbf{10.} Crie uma matriz \(4\times 4\) e calcule o traço da matriz (a soma dos elementos da diagonal principal).
+
+\textbf{11.} Crie uma matriz \(5\times 5\) com valores de 1 a 25. Em seguida, extraia as colunas de índice par (colunas 2 e 4) da matriz.
 
 \section{Data-frame}\label{data-frame}
 
@@ -5463,7 +5520,7 @@ O R base oferece uma variedade de funções para criar gráficos estatísticos b
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-158-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-159-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5480,7 +5537,7 @@ O R base oferece uma variedade de funções para criar gráficos estatísticos b
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-159-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-160-1.pdf}
 
 \textbf{Personalização de Gráficos de Barras}
 
@@ -5498,7 +5555,7 @@ Pode personalizar ainda mais os gráficos de barras usando argumentos como \text
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-160-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-161-1.pdf}
 
 \section{Gráfico Circular (Pizza)}\label{gruxe1fico-circular-pizza}
 
@@ -5515,7 +5572,7 @@ Pode personalizar ainda mais os gráficos de barras usando argumentos como \text
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-161-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-162-1.pdf}
 
 \section{Histograma}\label{histograma}
 
@@ -5551,7 +5608,7 @@ utilize a opção \texttt{freq=FALSE} nos argumentos da função \texttt{hist()}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-162-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-163-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5579,7 +5636,7 @@ utilize a opção \texttt{freq=FALSE} nos argumentos da função \texttt{hist()}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-164-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-165-1.pdf}
 
 Pode controlar o número de intervalos (bins) usando o argumento \texttt{breaks}. Por exemplo, \texttt{breaks\ =\ 5} divide os dados em 5 intervalos.
 
@@ -5596,7 +5653,7 @@ Pode controlar o número de intervalos (bins) usando o argumento \texttt{breaks}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-165-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-166-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5608,7 +5665,7 @@ Pode controlar o número de intervalos (bins) usando o argumento \texttt{breaks}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-166-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-167-1.pdf}
 
 Pode comparar a distribuição de múltiplas variáveis lado a lado com box-plots. Use a função \texttt{par()} para ajustar o layout gráfico.
 
@@ -5623,7 +5680,7 @@ Pode comparar a distribuição de múltiplas variáveis lado a lado com box-plot
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-167-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-168-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5652,7 +5709,7 @@ Pode comparar a distribuição de múltiplas variáveis lado a lado com box-plot
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-168-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-169-1.pdf}
 
 \section{Gráfico de Linhas}\label{gruxe1fico-de-linhas}
 
@@ -5675,7 +5732,7 @@ Pode comparar a distribuição de múltiplas variáveis lado a lado com box-plot
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-169-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-170-1.pdf}
 
 \chapter{Manipulação de dados}\label{manipulauxe7uxe3o-de-dados}
 
@@ -6920,7 +6977,7 @@ Para compreender melhor a distribuição do tempo de espera, podemos visualizar 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-205-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-206-1.pdf}
 
 \section{Simulação e Geração de Números Pseudoaleatórios}\label{simulauxe7uxe3o-e-gerauxe7uxe3o-de-nuxfameros-pseudoaleatuxf3rios}
 
@@ -7164,7 +7221,7 @@ Gerar um número aleatório uniforme \(U\) no intervalo {[}0,1{]}. Para determin
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-211-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-212-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7247,7 +7304,7 @@ p,& \quad \text{se} \quad x=1 \end{cases}\] Para gerar uma Bernoulli(p) podemos 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-213-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-214-1.pdf}
 
 \textbf{Exemplo 5}: Geração de uma variável aleatória com distribuição Geométrica(p). Seja \(X\sim Geometrica(p)\). Lembre que \[P(X=x)=p(1-p)^{x-1}\] e que \[F(x) = P(X\leq x) = \begin{cases} 0,& \quad \text{se} \quad x<1 \\
 1-(1-p)^x,& \quad \text{se} \quad x\geq 1\end{cases}\]
@@ -7279,7 +7336,7 @@ onde \(\lfloor  \rfloor =\) maior inteiro.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-214-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-215-1.pdf}
 
 \textbf{Exemplo 6}: Geração de uma variável aleatória com distribuição de Poisson. A variável aleatória \(X\) é de Poisson com média \(\lambda\) se \[p_{i} = P(X = i) = \frac{e^{-\lambda}\lambda^i}{i!}, \quad i=0,1,\ldots\]
 
@@ -7315,7 +7372,7 @@ Ao utilizar a recursão acima para calcular as probabilidades de Poisson quando 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-215-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-216-1.pdf}
 
 \section{Variável aleatória contínua}\label{variuxe1vel-aleatuxf3ria-contuxednua}
 
@@ -7352,7 +7409,7 @@ A função \(F(x)=x^2\) é invertível no intervalo \((0,1)\) e \(F^{-1}(x)=\sqr
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-216-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-217-1.pdf}
 
 \textbf{Exemplo 2}: Geração de uma variável aleatória uniforme(a,b). A geração é feita através de \[X = a+(b-a)U.\]
 
@@ -7368,7 +7425,7 @@ A função \(F(x)=x^2\) é invertível no intervalo \((0,1)\) e \(F^{-1}(x)=\sqr
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-217-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-218-1.pdf}
 
 \textbf{Exemplo 3}: Geração de uma variável aleatória exponencial. Seja \(X\) uma variável aleatória exponencial com taxa 1, então sua função de distribuição é dada por \[F(x)=1-e^{x}.\]
 Como \(0\leq F(x)\leq 1\), tomando \(F(x)=u\), onde \(u\sim U(0,1)\) tem-se: \[u=F(x)=1-e^{x}\] ou \[1-u=e^{-x}\] ou, aplicando o logaritmo \[x=-ln(1-u).\] Daí, pode-se gerar uma exponencial com parâmetro 1 gerando um número aleatório \(U\) e em seguida fazendo \[X = F^{-1}(U) = -ln(1-U).\] Uma pequena economia de tempo pode ser obtida ao notar que \(1-U\) também é uniforme em \((0,1)\), e assim, \(-ln(1-U)\) tem a mesma distribuição que \(-ln(U)\). Isto é, o logaritmo negativo de um número aleatório é exponencialmente distribuído com taxa 1.
@@ -7402,7 +7459,7 @@ Além disso, note que se \(X\) é uma exponencial com média 1, então para qual
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-218-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-219-1.pdf}
 
 \textbf{Exercício}: Seja \(X\) uma variável aleatória com distribuição \(W(\alpha, \beta)\). Assim a fdp de \(X\) é
 \[f(x) = \begin{cases}
@@ -7751,7 +7808,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-226-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-227-1.pdf}
 
 \textbf{Exemplo 1}: Resolva o exemplo 1 usando a função de distribuição empírica.
 
@@ -7804,7 +7861,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-228-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-229-1.pdf}
 
 \subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o}
 
@@ -7829,7 +7886,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-229-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-230-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o}
 
@@ -7857,7 +7914,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-230-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-231-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o}
 
@@ -7880,7 +7937,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-231-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-232-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-1}
 
@@ -7903,7 +7960,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-232-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-233-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7912,7 +7969,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-232-2.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-233-2.pdf}
 
 \textbf{Cálculo de probabilidade}: Seja
 \(X \sim \text{Binomial}(n=10, p=0.5)\).
@@ -7980,7 +8037,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-233-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-234-1.pdf}
 
 \subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o-1}
 
@@ -8013,7 +8070,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-234-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-235-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-1}
 
@@ -8049,7 +8106,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-235-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-236-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-1}
 
@@ -8069,7 +8126,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-236-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-237-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-2}
 
@@ -8090,7 +8147,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-237-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-238-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8105,7 +8162,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-237-2.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-238-2.pdf}
 
 \textbf{Cálculo de probabilidades}: Seja \(X\sim\text{Poisson}(\lambda=5)\).
 
@@ -8145,7 +8202,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-238-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-239-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o}
 
@@ -8170,7 +8227,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-239-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-240-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-2}
 
@@ -8201,7 +8258,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-240-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-241-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-2}
 
@@ -8221,7 +8278,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-241-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-242-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-3}
 
@@ -8246,7 +8303,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-242-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-243-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8283,7 +8340,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-243-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-244-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-1}
 
@@ -8308,7 +8365,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-244-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-245-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-3}
 
@@ -8339,7 +8396,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-245-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-246-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-3}
 
@@ -8359,7 +8416,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-246-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-247-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-4}
 
@@ -8384,7 +8441,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-247-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-248-1.pdf}
 
 \section{Gerando uma variável aleatória com distribuição Normal}\label{gerando-uma-variuxe1vel-aleatuxf3ria-com-distribuiuxe7uxe3o-normal}
 
@@ -8414,7 +8471,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-248-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-249-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-2}
 
@@ -8439,7 +8496,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-249-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-250-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-4}
 
@@ -8470,7 +8527,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-250-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-251-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-4}
 
@@ -8490,7 +8547,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-251-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-252-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-5}
 
@@ -8515,7 +8572,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-252-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-253-1.pdf}
 
 \section{Exercícios}\label{exercuxedcios-19}
 
