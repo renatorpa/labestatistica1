@@ -1380,7 +1380,7 @@ as.factor(c(rep("mulher", 10), rep("homem", 10)))
 
 **4.** Crie um vetor com valores categóricos: "solteiro", "casado", "divorciado". Verifique se esse vetor é um factor usando a função `is.factor()` e depois transforme-o em um factor.
 
-**5.** Crie um factor representando níveis de escolaridade com os valores "ensino secundário", "ensino superior", "mestrado", "doutoramento". Defina uma ordem lógica para os níveis e ordene o factor em ordem crescente.
+**5.** Crie um factor representando níveis de escolaridade com os valores "ensino superior", "ensino secundário", "doutoramento", "mestrado", "ensino secundário", "ensino superior". Defina uma ordem lógica para os níveis e ordene o factor em ordem crescente.
 
 **6.** Crie um factor com os valores "baixo", "alto", "médio", "baixo", "alto", e com as categorias "baixo", "médio" e "alto", representando níveis de pressão. Converta este factor em um vetor numérico, onde "baixo" seja 1, "médio" seja 2, e "alto" seja 3.
 
@@ -1399,7 +1399,7 @@ Em R, uma **matriz** é uma estrutura de dados bidimensional que contém element
 Podemos criar uma matriz em R usando a função `matrix()`. Veja o exemplo abaixo:
 
 ```{r eval=FALSE}
-matrix(c(1,2,3,4,5,6)+exp(1),nrow=2)
+matrix(c(1,2,3,4,5,6)+exp(1), nrow=2, byrow = FALSE)
 ##      [,1] [,2] [,3]
 ## [1,] 3.72 5.72 7.72
 ## [2,] 4.72 6.72 8.72
@@ -1409,7 +1409,7 @@ Podemos também realizar operações lógicas em matrizes:
 
 ```{r eval=FALSE}
 # Verifica se os elementos da matriz são maiores que 6
-matrix(c(1,2,3,4,5,6)+exp(1),nrow=2) > 6
+matrix(c(1,2,3,4,5,6)+exp(1), nrow=2, byrow = FALSE) > 6
 ##       [,1]  [,2] [,3]
 ## [1,] FALSE FALSE TRUE
 ## [2,] FALSE  TRUE TRUE
@@ -1684,9 +1684,9 @@ Seja $M$ uma matriz quadrada.
 
 **2.** Crie duas matrizes $2 \times 3$ chamadas $A$ e $B$, cada uma preenchida com números aleatórios inteiros de 1 a 10. Em seguida, some as duas matrizes e multiplique-as elemento por elemento.
 
-**3.** Crie uma matriz $3 \times 3$ chamada $M$ com números aleatórios entre 1 e 9. Crie também um vetor de comprimento 3 chamado $v$. Realize a multiplicação entre a matriz $M$ e o vetor $v$ (ou seja, $M \times v$).
+**3.** Crie uma matriz $3 \times 3$ chamada $M$ com números aleatórios entre 1 e 9. Crie também um vetor de comprimento 3 chamado $v$. Realize a multiplicação entre a matriz $M$ e o vetor $v$ (ou seja, $M \times v$). Faça agora a multiplicação $v \times M$.
 
-**4.** Crie uma matriz $4 \times 2$ chamada $N$ com números sequenciais de 1 a 8. Transponha a matriz e calcule a soma dos elementos de cada linha da matriz transposta.
+**4.** Crie uma matriz $4 \times 2$ chamada $N$ com números sequenciais de 1 a 8. Transponha a matriz e calcule a soma dos elementos de cada linha da matriz transposta. Calcule agora a soma da primeira e segunda linha da matriz transposta.
 
 **5.** Crie uma matriz $3 \times 3$ chamada $P$ com valores de sua escolha. Calcule o determinante da matriz $P$. Caso o determinante seja diferente de zero, calcule também a matriz inversa de $P$.
 
