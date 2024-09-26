@@ -120,7 +120,7 @@
 
 \title{Introdução ao R}
 \author{Renato de Paula}
-\date{2024-09-24}
+\date{2024-09-26}
 
 \begin{document}
 \maketitle
@@ -2425,14 +2425,14 @@ Em R, um \textbf{fator} é uma estrutura de dados usada para representar dados \
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Vetor de dados categóricos}
-\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"low"}\NormalTok{, }\StringTok{"medium"}\NormalTok{, }\StringTok{"high"}\NormalTok{, }\StringTok{"medium"}\NormalTok{, }\StringTok{"low"}\NormalTok{, }\StringTok{"high"}\NormalTok{)}
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"baixo"}\NormalTok{, }\StringTok{"medio"}\NormalTok{, }\StringTok{"alto"}\NormalTok{, }\StringTok{"medio"}\NormalTok{, }\StringTok{"baixo"}\NormalTok{, }\StringTok{"alto"}\NormalTok{)}
 
 \CommentTok{\# Criar um fator não ordenado a partir dos dados categóricos}
 \NormalTok{factor\_data }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(data)}
 
 \FunctionTok{print}\NormalTok{(factor\_data)}
-\DocumentationTok{\#\# [1] low    medium high   medium low    high}
-\DocumentationTok{\#\# Levels: high low medium}
+\DocumentationTok{\#\# [1] baixo    medio alto   medio baixo    alto}
+\DocumentationTok{\#\# Levels: alto baixo medio}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2441,10 +2441,10 @@ Por padrão, os níveis são ordenados alfabeticamente. Podemos especificar a or
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Especificar a ordem dos níveis do fator}
-\NormalTok{factor\_data }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(data, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"low"}\NormalTok{, }\StringTok{"medium"}\NormalTok{, }\StringTok{"high"}\NormalTok{))}
+\NormalTok{factor\_data }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(data, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"baixo"}\NormalTok{, }\StringTok{"medio"}\NormalTok{, }\StringTok{"alto"}\NormalTok{))}
 \FunctionTok{print}\NormalTok{(factor\_data)}
-\DocumentationTok{\#\# [1] low    medium high   medium low    high}
-\DocumentationTok{\#\# Levels: low medium high}
+\DocumentationTok{\#\# [1] baixo    medio alto   medio baixo    alto}
+\DocumentationTok{\#\# Levels: baixo medio alto}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2453,10 +2453,10 @@ Para criar um fator ordenado, onde os níveis têm uma ordem específica, usamos
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Criar um fator ordenado}
-\NormalTok{ordered\_factor }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(data, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"low"}\NormalTok{, }\StringTok{"medium"}\NormalTok{, }\StringTok{"high"}\NormalTok{), }\AttributeTok{ordered =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{ordered\_factor }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(data, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"baixo"}\NormalTok{, }\StringTok{"medio"}\NormalTok{, }\StringTok{"alto"}\NormalTok{), }\AttributeTok{ordered =} \ConstantTok{TRUE}\NormalTok{)}
 \FunctionTok{print}\NormalTok{(ordered\_factor)}
-\DocumentationTok{\#\# [1] low    medium high   medium low    high}
-\DocumentationTok{\#\# Levels: low \textless{} medium \textless{} high}
+\DocumentationTok{\#\# [1] baixo    medio alto   medio baixo    alto}
+\DocumentationTok{\#\# Levels: baixo \textless{} medio \textless{} alto}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2468,13 +2468,13 @@ Podemos utilizar várias funções para verificar e modificar os níveis de um f
 \begin{Highlighting}[]
 \CommentTok{\# Verificar Níveis}
 \FunctionTok{levels}\NormalTok{(factor\_data)}
-\DocumentationTok{\#\# [1] "low"    "medium" "high"}
+\DocumentationTok{\#\# [1] "baixo"    "medio" "alto"}
 
 \CommentTok{\# Modificar Níveis}
-\FunctionTok{levels}\NormalTok{(factor\_data) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Low"}\NormalTok{, }\StringTok{"Medium"}\NormalTok{, }\StringTok{"High"}\NormalTok{)}
+\FunctionTok{levels}\NormalTok{(factor\_data) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Baixo"}\NormalTok{, }\StringTok{"Medio"}\NormalTok{, }\StringTok{"Alto"}\NormalTok{)}
 \FunctionTok{print}\NormalTok{(factor\_data)}
-\DocumentationTok{\#\# [1] Low    Medium High   Medium Low    High}
-\DocumentationTok{\#\# Levels: Low Medium High}
+\DocumentationTok{\#\# [1] Baixo    Medio Alto   Medio Baixo    Alto}
+\DocumentationTok{\#\# Levels: Baixo Medio Alto}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2485,7 +2485,7 @@ A função \texttt{gl()} (generate levels) é usada para criar fatores de maneir
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Sintaxe}
-\FunctionTok{gl}\NormalTok{(n, k, }\AttributeTok{length =}\NormalTok{ n}\SpecialCharTok{*}\NormalTok{k, }\AttributeTok{labels =} \FunctionTok{seq\_len}\NormalTok{(n), }\AttributeTok{ordered =} \ConstantTok{FALSE}\NormalTok{)}
+\FunctionTok{gl}\NormalTok{(n, k, }\AttributeTok{labels =} \FunctionTok{seq\_len}\NormalTok{(n), }\AttributeTok{ordered =} \ConstantTok{FALSE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2494,8 +2494,6 @@ A função \texttt{gl()} (generate levels) é usada para criar fatores de maneir
   \texttt{n}: um inteiro que fornece o número de níveis.
 \item
   \texttt{k}: um inteiro que fornece o número de replicações.
-\item
-  \texttt{length}: um inteiro que fornece o comprimento do resultado.
 \item
   \texttt{labels}: um vetor opcional de rótulos para os níveis de fatores resultantes.
 \item

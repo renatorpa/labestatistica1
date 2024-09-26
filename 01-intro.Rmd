@@ -1288,34 +1288,34 @@ Em R, um **fator** é uma estrutura de dados usada para representar dados **cate
 
 ```{r eval=FALSE}
 # Vetor de dados categóricos
-data <- c("low", "medium", "high", "medium", "low", "high")
+data <- c("baixo", "medio", "alto", "medio", "baixo", "alto")
 
 # Criar um fator não ordenado a partir dos dados categóricos
 factor_data <- factor(data)
 
 print(factor_data)
-## [1] low    medium high   medium low    high
-## Levels: high low medium
+## [1] baixo    medio alto   medio baixo    alto
+## Levels: alto baixo medio
 ```
 
 Por padrão, os níveis são ordenados alfabeticamente. Podemos especificar a ordem dos níveis de acordo com a lógica desejada:
 
 ```{r eval=FALSE}
 # Especificar a ordem dos níveis do fator
-factor_data <- factor(data, levels = c("low", "medium", "high"))
+factor_data <- factor(data, levels = c("baixo", "medio", "alto"))
 print(factor_data)
-## [1] low    medium high   medium low    high
-## Levels: low medium high
+## [1] baixo    medio alto   medio baixo    alto
+## Levels: baixo medio alto
 ```
 
 Para criar um fator ordenado, onde os níveis têm uma ordem específica, usamos o argumento `ordered = TRUE`:
 
 ```{r eval=FALSE}
 # Criar um fator ordenado
-ordered_factor <- factor(data, levels = c("low", "medium", "high"), ordered = TRUE)
+ordered_factor <- factor(data, levels = c("baixo", "medio", "alto"), ordered = TRUE)
 print(ordered_factor)
-## [1] low    medium high   medium low    high
-## Levels: low < medium < high
+## [1] baixo    medio alto   medio baixo    alto
+## Levels: baixo < medio < alto
 ```
 
 ### Manipulação de Fatores
@@ -1325,13 +1325,13 @@ Podemos utilizar várias funções para verificar e modificar os níveis de um f
 ```{r eval=FALSE}
 # Verificar Níveis
 levels(factor_data)
-## [1] "low"    "medium" "high"
+## [1] "baixo"    "medio" "alto"
 
 # Modificar Níveis
-levels(factor_data) <- c("Low", "Medium", "High")
+levels(factor_data) <- c("Baixo", "Medio", "Alto")
 print(factor_data)
-## [1] Low    Medium High   Medium Low    High
-## Levels: Low Medium High
+## [1] Baixo    Medio Alto   Medio Baixo    Alto
+## Levels: Baixo Medio Alto
 ```
 
 ### Gerando Fatores com `gl()`
@@ -1340,14 +1340,12 @@ A função `gl()` (generate levels) é usada para criar fatores de maneira efici
 
 ```{r eval=FALSE}
 # Sintaxe
-gl(n, k, length = n*k, labels = seq_len(n), ordered = FALSE)
+gl(n, k, labels = seq_len(n), ordered = FALSE)
 ```
 
 * `n`: um inteiro que fornece o número de níveis.
 
 * `k`: um inteiro que fornece o número de replicações.
-
-* `length`: um inteiro que fornece o comprimento do resultado.
 
 * `labels`: um vetor opcional de rótulos para os níveis de fatores resultantes.
 

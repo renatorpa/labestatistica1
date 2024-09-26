@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Renato de Paula" />
 
 
-<meta name="date" content="2024-09-24" />
+<meta name="date" content="2024-09-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -728,48 +728,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p><strong>Exemplos</strong>:</p>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="estrutura-de-dados-básicas.html#cb46-1" tabindex="-1"></a><span class="co"># Vetor de dados categóricos</span></span>
-<span id="cb46-2"><a href="estrutura-de-dados-básicas.html#cb46-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;low&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;high&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;low&quot;</span>, <span class="st">&quot;high&quot;</span>)</span>
+<span id="cb46-2"><a href="estrutura-de-dados-básicas.html#cb46-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;baixo&quot;</span>, <span class="st">&quot;medio&quot;</span>, <span class="st">&quot;alto&quot;</span>, <span class="st">&quot;medio&quot;</span>, <span class="st">&quot;baixo&quot;</span>, <span class="st">&quot;alto&quot;</span>)</span>
 <span id="cb46-3"><a href="estrutura-de-dados-básicas.html#cb46-3" tabindex="-1"></a></span>
 <span id="cb46-4"><a href="estrutura-de-dados-básicas.html#cb46-4" tabindex="-1"></a><span class="co"># Criar um fator não ordenado a partir dos dados categóricos</span></span>
 <span id="cb46-5"><a href="estrutura-de-dados-básicas.html#cb46-5" tabindex="-1"></a>factor_data <span class="ot">&lt;-</span> <span class="fu">factor</span>(data)</span>
 <span id="cb46-6"><a href="estrutura-de-dados-básicas.html#cb46-6" tabindex="-1"></a></span>
 <span id="cb46-7"><a href="estrutura-de-dados-básicas.html#cb46-7" tabindex="-1"></a><span class="fu">print</span>(factor_data)</span>
-<span id="cb46-8"><a href="estrutura-de-dados-básicas.html#cb46-8" tabindex="-1"></a><span class="do">## [1] low    medium high   medium low    high</span></span>
-<span id="cb46-9"><a href="estrutura-de-dados-básicas.html#cb46-9" tabindex="-1"></a><span class="do">## Levels: high low medium</span></span></code></pre></div>
+<span id="cb46-8"><a href="estrutura-de-dados-básicas.html#cb46-8" tabindex="-1"></a><span class="do">## [1] baixo    medio alto   medio baixo    alto</span></span>
+<span id="cb46-9"><a href="estrutura-de-dados-básicas.html#cb46-9" tabindex="-1"></a><span class="do">## Levels: alto baixo medio</span></span></code></pre></div>
 <p>Por padrão, os níveis são ordenados alfabeticamente. Podemos especificar a ordem dos níveis de acordo com a lógica desejada:</p>
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="estrutura-de-dados-básicas.html#cb47-1" tabindex="-1"></a><span class="co"># Especificar a ordem dos níveis do fator</span></span>
-<span id="cb47-2"><a href="estrutura-de-dados-básicas.html#cb47-2" tabindex="-1"></a>factor_data <span class="ot">&lt;-</span> <span class="fu">factor</span>(data, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;low&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;high&quot;</span>))</span>
+<span id="cb47-2"><a href="estrutura-de-dados-básicas.html#cb47-2" tabindex="-1"></a>factor_data <span class="ot">&lt;-</span> <span class="fu">factor</span>(data, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;baixo&quot;</span>, <span class="st">&quot;medio&quot;</span>, <span class="st">&quot;alto&quot;</span>))</span>
 <span id="cb47-3"><a href="estrutura-de-dados-básicas.html#cb47-3" tabindex="-1"></a><span class="fu">print</span>(factor_data)</span>
-<span id="cb47-4"><a href="estrutura-de-dados-básicas.html#cb47-4" tabindex="-1"></a><span class="do">## [1] low    medium high   medium low    high</span></span>
-<span id="cb47-5"><a href="estrutura-de-dados-básicas.html#cb47-5" tabindex="-1"></a><span class="do">## Levels: low medium high</span></span></code></pre></div>
+<span id="cb47-4"><a href="estrutura-de-dados-básicas.html#cb47-4" tabindex="-1"></a><span class="do">## [1] baixo    medio alto   medio baixo    alto</span></span>
+<span id="cb47-5"><a href="estrutura-de-dados-básicas.html#cb47-5" tabindex="-1"></a><span class="do">## Levels: baixo medio alto</span></span></code></pre></div>
 <p>Para criar um fator ordenado, onde os níveis têm uma ordem específica, usamos o argumento <code>ordered = TRUE</code>:</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="estrutura-de-dados-básicas.html#cb48-1" tabindex="-1"></a><span class="co"># Criar um fator ordenado</span></span>
-<span id="cb48-2"><a href="estrutura-de-dados-básicas.html#cb48-2" tabindex="-1"></a>ordered_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(data, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;low&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;high&quot;</span>), <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb48-2"><a href="estrutura-de-dados-básicas.html#cb48-2" tabindex="-1"></a>ordered_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(data, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;baixo&quot;</span>, <span class="st">&quot;medio&quot;</span>, <span class="st">&quot;alto&quot;</span>), <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb48-3"><a href="estrutura-de-dados-básicas.html#cb48-3" tabindex="-1"></a><span class="fu">print</span>(ordered_factor)</span>
-<span id="cb48-4"><a href="estrutura-de-dados-básicas.html#cb48-4" tabindex="-1"></a><span class="do">## [1] low    medium high   medium low    high</span></span>
-<span id="cb48-5"><a href="estrutura-de-dados-básicas.html#cb48-5" tabindex="-1"></a><span class="do">## Levels: low &lt; medium &lt; high</span></span></code></pre></div>
+<span id="cb48-4"><a href="estrutura-de-dados-básicas.html#cb48-4" tabindex="-1"></a><span class="do">## [1] baixo    medio alto   medio baixo    alto</span></span>
+<span id="cb48-5"><a href="estrutura-de-dados-básicas.html#cb48-5" tabindex="-1"></a><span class="do">## Levels: baixo &lt; medio &lt; alto</span></span></code></pre></div>
 <div id="manipulação-de-fatores" class="section level3 hasAnchor" number="5.2.1">
 <h3><span class="header-section-number">5.2.1</span> Manipulação de Fatores<a href="estrutura-de-dados-básicas.html#manipulação-de-fatores" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Podemos utilizar várias funções para verificar e modificar os níveis de um fator:</p>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="estrutura-de-dados-básicas.html#cb49-1" tabindex="-1"></a><span class="co"># Verificar Níveis</span></span>
 <span id="cb49-2"><a href="estrutura-de-dados-básicas.html#cb49-2" tabindex="-1"></a><span class="fu">levels</span>(factor_data)</span>
-<span id="cb49-3"><a href="estrutura-de-dados-básicas.html#cb49-3" tabindex="-1"></a><span class="do">## [1] &quot;low&quot;    &quot;medium&quot; &quot;high&quot;</span></span>
+<span id="cb49-3"><a href="estrutura-de-dados-básicas.html#cb49-3" tabindex="-1"></a><span class="do">## [1] &quot;baixo&quot;    &quot;medio&quot; &quot;alto&quot;</span></span>
 <span id="cb49-4"><a href="estrutura-de-dados-básicas.html#cb49-4" tabindex="-1"></a></span>
 <span id="cb49-5"><a href="estrutura-de-dados-básicas.html#cb49-5" tabindex="-1"></a><span class="co"># Modificar Níveis</span></span>
-<span id="cb49-6"><a href="estrutura-de-dados-básicas.html#cb49-6" tabindex="-1"></a><span class="fu">levels</span>(factor_data) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Low&quot;</span>, <span class="st">&quot;Medium&quot;</span>, <span class="st">&quot;High&quot;</span>)</span>
+<span id="cb49-6"><a href="estrutura-de-dados-básicas.html#cb49-6" tabindex="-1"></a><span class="fu">levels</span>(factor_data) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Baixo&quot;</span>, <span class="st">&quot;Medio&quot;</span>, <span class="st">&quot;Alto&quot;</span>)</span>
 <span id="cb49-7"><a href="estrutura-de-dados-básicas.html#cb49-7" tabindex="-1"></a><span class="fu">print</span>(factor_data)</span>
-<span id="cb49-8"><a href="estrutura-de-dados-básicas.html#cb49-8" tabindex="-1"></a><span class="do">## [1] Low    Medium High   Medium Low    High</span></span>
-<span id="cb49-9"><a href="estrutura-de-dados-básicas.html#cb49-9" tabindex="-1"></a><span class="do">## Levels: Low Medium High</span></span></code></pre></div>
+<span id="cb49-8"><a href="estrutura-de-dados-básicas.html#cb49-8" tabindex="-1"></a><span class="do">## [1] Baixo    Medio Alto   Medio Baixo    Alto</span></span>
+<span id="cb49-9"><a href="estrutura-de-dados-básicas.html#cb49-9" tabindex="-1"></a><span class="do">## Levels: Baixo Medio Alto</span></span></code></pre></div>
 </div>
 <div id="gerando-fatores-com-gl" class="section level3 hasAnchor" number="5.2.2">
 <h3><span class="header-section-number">5.2.2</span> Gerando Fatores com <code>gl()</code><a href="estrutura-de-dados-básicas.html#gerando-fatores-com-gl" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A função <code>gl()</code> (generate levels) é usada para criar fatores de maneira eficiente, especialmente quando se deseja gerar fatores com padrões repetitivos.</p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="estrutura-de-dados-básicas.html#cb50-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
-<span id="cb50-2"><a href="estrutura-de-dados-básicas.html#cb50-2" tabindex="-1"></a><span class="fu">gl</span>(n, k, <span class="at">length =</span> n<span class="sc">*</span>k, <span class="at">labels =</span> <span class="fu">seq_len</span>(n), <span class="at">ordered =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<span id="cb50-2"><a href="estrutura-de-dados-básicas.html#cb50-2" tabindex="-1"></a><span class="fu">gl</span>(n, k, <span class="at">labels =</span> <span class="fu">seq_len</span>(n), <span class="at">ordered =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <ul>
 <li><p><code>n</code>: um inteiro que fornece o número de níveis.</p></li>
 <li><p><code>k</code>: um inteiro que fornece o número de replicações.</p></li>
-<li><p><code>length</code>: um inteiro que fornece o comprimento do resultado.</p></li>
 <li><p><code>labels</code>: um vetor opcional de rótulos para os níveis de fatores resultantes.</p></li>
 <li><p><code>ordered</code>: uma lógica que indica se o resultado deve ser ordenado ou não.</p></li>
 </ul>
