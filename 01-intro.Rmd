@@ -1403,7 +1403,7 @@ Em R, uma **matriz** é uma estrutura de dados bidimensional que contém element
 Podemos criar uma matriz em R usando a função `matrix()`. Veja o exemplo abaixo:
 
 ```{r eval=FALSE}
-matrix(c(1,2,3,4,5,6)+exp(1), nrow=2, byrow = FALSE)
+matrix(c(1,2,3,4,5,6)+exp(1), nrow=2, ncol= 3, byrow = FALSE)
 ##      [,1] [,2] [,3]
 ## [1,] 3.72 5.72 7.72
 ## [2,] 4.72 6.72 8.72
@@ -1413,7 +1413,7 @@ Podemos também realizar operações lógicas em matrizes:
 
 ```{r eval=FALSE}
 # Verifica se os elementos da matriz são maiores que 6
-matrix(c(1,2,3,4,5,6)+exp(1), nrow=2, byrow = FALSE) > 6
+matrix(c(1,2,3,4,5,6)+exp(1), nrow=2, ncol=3, byrow = FALSE) > 6
 ##       [,1]  [,2] [,3]
 ## [1,] FALSE FALSE TRUE
 ## [2,] FALSE  TRUE TRUE
