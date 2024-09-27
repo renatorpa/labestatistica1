@@ -1316,6 +1316,10 @@ ordered_factor <- factor(data, levels = c("baixo", "medio", "alto"), ordered = T
 print(ordered_factor)
 ## [1] baixo    medio alto   medio baixo    alto
 ## Levels: baixo < medio < alto
+
+# Comparação entre categorias
+ordered_factor[1] < ordered_factor[3]
+## TRUE
 ```
 
 ### Manipulação de Fatores
@@ -1747,7 +1751,7 @@ Dica: use a função `all()`.
 * Calcule a média dos valores resultantes da soma dos dois arrays.
 * Multiplique a primeira matriz do primeiro array pela segunda matriz do segundo array.
 
-## Data-frame
+## Data Frame
 
 Um **data frame** em R é uma estrutura de dados bidimensional usada para armazenar dados tabulares. Cada coluna num data frame pode conter valores de diferentes tipos (como numéricos, caracteres, fatores, etc.), mas todos os elementos dentro de uma coluna devem ser do mesmo tipo. Um data frame é semelhante a uma tabela em um banco de dados ou uma folha de cálculo em programas como o Excel. Os data frames podem ser criados a partir de ficheiros de dados ou convertendo vetores usando a função `as.data.frame()`.
 

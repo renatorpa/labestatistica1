@@ -214,7 +214,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3.9" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#algumas-outras-funções"><i class="fa fa-check"></i><b>5.3.9</b> Algumas outras funções</a></li>
 <li class="chapter" data-level="5.3.10" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#exercícios-3"><i class="fa fa-check"></i><b>5.3.10</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#data-frame"><i class="fa fa-check"></i><b>5.4</b> Data-frame</a>
+<li class="chapter" data-level="5.4" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#data-frame"><i class="fa fa-check"></i><b>5.4</b> Data Frame</a>
 <ul>
 <li class="chapter" data-level="5.4.1" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#criar-um-data-frame"><i class="fa fa-check"></i><b>5.4.1</b> Criar um Data Frame</a></li>
 <li class="chapter" data-level="5.4.2" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#aceder-a-linhas-e-colunas"><i class="fa fa-check"></i><b>5.4.2</b> Aceder a Linhas e Colunas</a></li>
@@ -747,7 +747,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb48-2"><a href="estrutura-de-dados-básicas.html#cb48-2" tabindex="-1"></a>ordered_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(data, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;baixo&quot;</span>, <span class="st">&quot;medio&quot;</span>, <span class="st">&quot;alto&quot;</span>), <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb48-3"><a href="estrutura-de-dados-básicas.html#cb48-3" tabindex="-1"></a><span class="fu">print</span>(ordered_factor)</span>
 <span id="cb48-4"><a href="estrutura-de-dados-básicas.html#cb48-4" tabindex="-1"></a><span class="do">## [1] baixo    medio alto   medio baixo    alto</span></span>
-<span id="cb48-5"><a href="estrutura-de-dados-básicas.html#cb48-5" tabindex="-1"></a><span class="do">## Levels: baixo &lt; medio &lt; alto</span></span></code></pre></div>
+<span id="cb48-5"><a href="estrutura-de-dados-básicas.html#cb48-5" tabindex="-1"></a><span class="do">## Levels: baixo &lt; medio &lt; alto</span></span>
+<span id="cb48-6"><a href="estrutura-de-dados-básicas.html#cb48-6" tabindex="-1"></a></span>
+<span id="cb48-7"><a href="estrutura-de-dados-básicas.html#cb48-7" tabindex="-1"></a><span class="co"># Comparação entre categorias</span></span>
+<span id="cb48-8"><a href="estrutura-de-dados-básicas.html#cb48-8" tabindex="-1"></a>ordered_factor[<span class="dv">1</span>] <span class="sc">&lt;</span> ordered_factor[<span class="dv">3</span>]</span>
+<span id="cb48-9"><a href="estrutura-de-dados-básicas.html#cb48-9" tabindex="-1"></a><span class="do">## TRUE</span></span></code></pre></div>
 <div id="manipulação-de-fatores" class="section level3 hasAnchor" number="5.2.1">
 <h3><span class="header-section-number">5.2.1</span> Manipulação de Fatores<a href="estrutura-de-dados-básicas.html#manipulação-de-fatores" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Podemos utilizar várias funções para verificar e modificar os níveis de um fator:</p>
@@ -1116,7 +1120,7 @@ Dica: use a função <code>all()</code>.</p>
 </div>
 </div>
 <div id="data-frame" class="section level2 hasAnchor" number="5.4">
-<h2><span class="header-section-number">5.4</span> Data-frame<a href="estrutura-de-dados-básicas.html#data-frame" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">5.4</span> Data Frame<a href="estrutura-de-dados-básicas.html#data-frame" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Um <strong>data frame</strong> em R é uma estrutura de dados bidimensional usada para armazenar dados tabulares. Cada coluna num data frame pode conter valores de diferentes tipos (como numéricos, caracteres, fatores, etc.), mas todos os elementos dentro de uma coluna devem ser do mesmo tipo. Um data frame é semelhante a uma tabela em um banco de dados ou uma folha de cálculo em programas como o Excel. Os data frames podem ser criados a partir de ficheiros de dados ou convertendo vetores usando a função <code>as.data.frame()</code>.</p>
 <div id="criar-um-data-frame" class="section level3 hasAnchor" number="5.4.1">
 <h3><span class="header-section-number">5.4.1</span> Criar um Data Frame<a href="estrutura-de-dados-básicas.html#criar-um-data-frame" class="anchor-section" aria-label="Anchor link to header"></a></h3>
