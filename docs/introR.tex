@@ -3883,26 +3883,27 @@ que converta o peso dos carros (\texttt{wt}) de mil libras para quilogramas
 máximo da potência (\texttt{hp}) para cada número diferente de cilindros
 (\texttt{cyl}). Utilize a função \texttt{aggregate()} para realizar esta operação.
 
-\textbf{6.} Transforme a coluna \texttt{am} do data frame \texttt{mtcars} num fator com
+\textbf{6.} Utilizando o data frame \texttt{mtcars}, aplique a função \texttt{sapply()}
+para calcular o desvio padrão de todas as colunas numéricas.
+
+\textbf{7.} Transforme a coluna \texttt{am} do data frame \texttt{mtcars} num fator com
 rótulos significativos: ``Automático'' para 0 e ``Manual'' para 1. Depois,
 conte quantos carros existem para cada tipo de transmissão.
 
-\textbf{7.} Utilizando o data frame \texttt{mtcars}, aplique a função \texttt{sapply()}
-para calcular o desvio padrão de todas as colunas numéricas.
-
 \textbf{8.} Ordene o data frame \texttt{mtcars} pela coluna \texttt{mpg} em ordem
-decrescente. Mostre os 5 carros mais económicos e os 5 menos económicos.
+decrescente. Mostre os 5 carros mais económicos e os 5 menos económicos. Dica: use a função \texttt{order()}.
 
-\textbf{9.} Crie dois data frames, \texttt{carros1} e \texttt{carros2}, que contenham
-diferentes subconjuntos de informações do data frame \texttt{mtcars}. Depois,
-use a função \texttt{merge()} para combinar esses data frames com base na
-coluna \texttt{car}.
+\textbf{9.} Utilize o data frame \texttt{mtcars}, disponível no R, para criar dois novos data frames chamados \texttt{carros1} e \texttt{carros2}. Primeiro, adicione ao data frame \texttt{mtcars} uma nova coluna chamada \texttt{car}, que conterá os nomes dos carros (os nomes das linhas do data frame original).
+
+O data frame \texttt{carros1} deve conter as colunas \texttt{car}, \texttt{mpg} e \texttt{cyl}, enquanto o data frame \texttt{carros2} deve conter as colunas \texttt{car}, \texttt{hp} e \texttt{wt}.
+
+Em seguida, utilize a função \texttt{merge()} para combinar os dois data frames criados (\texttt{carros1} e \texttt{carros2}) com base na coluna \texttt{car}, que contém os nomes dos carros.
 
 \textbf{10.} Carregue o dataset \texttt{airquality} e exiba as primeiras 6 linhas e
 as últimas 6 linhas da tabela.
 
 \textbf{11.} Verifique quantos valores ausentes (\texttt{NA}) existem em cada coluna
-do dataset airquality.
+do dataset airquality. Dica: use a função \texttt{colSums()}.
 
 \textbf{12.} Calcule a média dos valores da coluna \texttt{Solar.R} no dataset
 \texttt{airquality}, ignorando os valores ausentes (\texttt{NA}).
@@ -3914,6 +3915,22 @@ Exiba as primeiras 6 linhas do resultado.
 \textbf{14.} Adicione uma nova coluna ao dataset \texttt{airquality} chamada
 \texttt{Temp\_Wind\_Sum}, que seja a soma dos valores das colunas \texttt{Temp} e
 \texttt{Wind}. Exiba as primeiras 6 linhas da tabela modificada.
+
+\textbf{15.} Carregue o dataset \texttt{iris} e verifique sua estrutura. Filtre as observações que pertencem à espécie ``setosa''.
+
+Crie uma nova coluna chamada \texttt{Petal.Area}, que representa a área das pétalas (comprimento * largura).
+
+Filtre apenas as linhas onde a área da pétala (\texttt{Petal.Area}) é maior que 0.2.
+
+Ordene o data frame resultante de acordo com o comprimento da pétala (\texttt{Petal.Length}) em ordem decrescente.
+
+\textbf{16.} Carregue o dataset \texttt{airquality} e remova todas as linhas que contenham valores ausentes (\texttt{NA}). Use a função \texttt{na.omit()}.
+
+Adicione uma nova coluna chamada \texttt{Temp.Celsius}, que converte a temperatura em Fahrenheit (Temp) para Celsius usando a fórmula: \(Temp.Celsius = \frac{(Temp - 32)}{1.8}\)
+
+Agrupe o data frame pelo mês (\texttt{Month}) e calcule a média da coluna \texttt{Ozone} para cada mês. Use a função \texttt{aggregate()}.
+
+Crie um gráfico de dispersão (\texttt{plot()}) para a relação entre \texttt{Ozone} e a nova coluna \texttt{Temp.Celsius}, colorindo os pontos de acordo com o mês (\texttt{Month}).
 
 \section{Listas}\label{listas}
 

@@ -1747,21 +1747,20 @@ que converta o peso dos carros (<code>wt</code>) de mil libras para quilogramas
 <p><strong>5.</strong> Utilizando o data frame <code>mtcars</code>, calcule a média, o mínimo e o
 máximo da potência (<code>hp</code>) para cada número diferente de cilindros
 (<code>cyl</code>). Utilize a função <code>aggregate()</code> para realizar esta operação.</p>
-<p><strong>6.</strong> Transforme a coluna <code>am</code> do data frame <code>mtcars</code> num fator com
+<p><strong>6.</strong> Utilizando o data frame <code>mtcars</code>, aplique a função <code>sapply()</code>
+para calcular o desvio padrão de todas as colunas numéricas.</p>
+<p><strong>7.</strong> Transforme a coluna <code>am</code> do data frame <code>mtcars</code> num fator com
 rótulos significativos: “Automático” para 0 e “Manual” para 1. Depois,
 conte quantos carros existem para cada tipo de transmissão.</p>
-<p><strong>7.</strong> Utilizando o data frame <code>mtcars</code>, aplique a função <code>sapply()</code>
-para calcular o desvio padrão de todas as colunas numéricas.</p>
 <p><strong>8.</strong> Ordene o data frame <code>mtcars</code> pela coluna <code>mpg</code> em ordem
-decrescente. Mostre os 5 carros mais económicos e os 5 menos económicos.</p>
-<p><strong>9.</strong> Crie dois data frames, <code>carros1</code> e <code>carros2</code>, que contenham
-diferentes subconjuntos de informações do data frame <code>mtcars</code>. Depois,
-use a função <code>merge()</code> para combinar esses data frames com base na
-coluna <code>car</code>.</p>
+decrescente. Mostre os 5 carros mais económicos e os 5 menos económicos. Dica: use a função <code>order()</code>.</p>
+<p><strong>9.</strong> Utilize o data frame <code>mtcars</code>, disponível no R, para criar dois novos data frames chamados <code>carros1</code> e <code>carros2</code>. Primeiro, adicione ao data frame <code>mtcars</code> uma nova coluna chamada <code>car</code>, que conterá os nomes dos carros (os nomes das linhas do data frame original).</p>
+<p>O data frame <code>carros1</code> deve conter as colunas <code>car</code>, <code>mpg</code> e <code>cyl</code>, enquanto o data frame <code>carros2</code> deve conter as colunas <code>car</code>, <code>hp</code> e <code>wt</code>.</p>
+<p>Em seguida, utilize a função <code>merge()</code> para combinar os dois data frames criados (<code>carros1</code> e <code>carros2</code>) com base na coluna <code>car</code>, que contém os nomes dos carros.</p>
 <p><strong>10.</strong> Carregue o dataset <code>airquality</code> e exiba as primeiras 6 linhas e
 as últimas 6 linhas da tabela.</p>
 <p><strong>11.</strong> Verifique quantos valores ausentes (<code>NA</code>) existem em cada coluna
-do dataset airquality.</p>
+do dataset airquality. Dica: use a função <code>colSums()</code>.</p>
 <p><strong>12.</strong> Calcule a média dos valores da coluna <code>Solar.R</code> no dataset
 <code>airquality</code>, ignorando os valores ausentes (<code>NA</code>).</p>
 <p><strong>13.</strong> Crie um subconjunto do dataset <code>airquality</code> onde a velocidade do
@@ -1770,6 +1769,14 @@ Exiba as primeiras 6 linhas do resultado.</p>
 <p><strong>14.</strong> Adicione uma nova coluna ao dataset <code>airquality</code> chamada
 <code>Temp_Wind_Sum</code>, que seja a soma dos valores das colunas <code>Temp</code> e
 <code>Wind</code>. Exiba as primeiras 6 linhas da tabela modificada.</p>
+<p><strong>15.</strong> Carregue o dataset <code>iris</code> e verifique sua estrutura. Filtre as observações que pertencem à espécie “setosa”.</p>
+<p>Crie uma nova coluna chamada <code>Petal.Area</code>, que representa a área das pétalas (comprimento * largura).</p>
+<p>Filtre apenas as linhas onde a área da pétala (<code>Petal.Area</code>) é maior que 0.2.</p>
+<p>Ordene o data frame resultante de acordo com o comprimento da pétala (<code>Petal.Length</code>) em ordem decrescente.</p>
+<p><strong>16.</strong> Carregue o dataset <code>airquality</code> e remova todas as linhas que contenham valores ausentes (<code>NA</code>). Use a função <code>na.omit()</code>.</p>
+<p>Adicione uma nova coluna chamada <code>Temp.Celsius</code>, que converte a temperatura em Fahrenheit (Temp) para Celsius usando a fórmula: <span class="math inline">\(Temp.Celsius = \frac{(Temp - 32)}{1.8}\)</span></p>
+<p>Agrupe o data frame pelo mês (<code>Month</code>) e calcule a média da coluna <code>Ozone</code> para cada mês. Use a função <code>aggregate()</code>.</p>
+<p>Crie um gráfico de dispersão (<code>plot()</code>) para a relação entre <code>Ozone</code> e a nova coluna <code>Temp.Celsius</code>, colorindo os pontos de acordo com o mês (<code>Month</code>).</p>
 </div>
 </div>
 <div id="listas" class="section level2 hasAnchor" number="5.5">

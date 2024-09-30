@@ -2881,26 +2881,27 @@ que converta o peso dos carros (`wt`) de mil libras para quilogramas
 máximo da potência (`hp`) para cada número diferente de cilindros
 (`cyl`). Utilize a função `aggregate()` para realizar esta operação.
 
-**6.** Transforme a coluna `am` do data frame `mtcars` num fator com
+**6.** Utilizando o data frame `mtcars`, aplique a função `sapply()`
+para calcular o desvio padrão de todas as colunas numéricas.
+
+**7.** Transforme a coluna `am` do data frame `mtcars` num fator com
 rótulos significativos: "Automático" para 0 e "Manual" para 1. Depois,
 conte quantos carros existem para cada tipo de transmissão.
 
-**7.** Utilizando o data frame `mtcars`, aplique a função `sapply()`
-para calcular o desvio padrão de todas as colunas numéricas.
-
 **8.** Ordene o data frame `mtcars` pela coluna `mpg` em ordem
-decrescente. Mostre os 5 carros mais económicos e os 5 menos económicos.
+decrescente. Mostre os 5 carros mais económicos e os 5 menos económicos. Dica: use a função `order()`.
 
-**9.** Crie dois data frames, `carros1` e `carros2`, que contenham
-diferentes subconjuntos de informações do data frame `mtcars`. Depois,
-use a função `merge()` para combinar esses data frames com base na
-coluna `car`.
+**9.** Utilize o data frame `mtcars`, disponível no R, para criar dois novos data frames chamados `carros1` e `carros2`. Primeiro, adicione ao data frame `mtcars` uma nova coluna chamada `car`, que conterá os nomes dos carros (os nomes das linhas do data frame original).
+
+O data frame `carros1` deve conter as colunas `car`, `mpg` e `cyl`, enquanto o data frame `carros2` deve conter as colunas `car`, `hp` e `wt`.
+
+Em seguida, utilize a função `merge()` para combinar os dois data frames criados (`carros1` e `carros2`) com base na coluna `car`, que contém os nomes dos carros.
 
 **10.** Carregue o dataset `airquality` e exiba as primeiras 6 linhas e
 as últimas 6 linhas da tabela.
 
 **11.** Verifique quantos valores ausentes (`NA`) existem em cada coluna
-do dataset airquality.
+do dataset airquality. Dica: use a função `colSums()`.
 
 **12.** Calcule a média dos valores da coluna `Solar.R` no dataset
 `airquality`, ignorando os valores ausentes (`NA`).
@@ -2912,6 +2913,23 @@ Exiba as primeiras 6 linhas do resultado.
 **14.** Adicione uma nova coluna ao dataset `airquality` chamada
 `Temp_Wind_Sum`, que seja a soma dos valores das colunas `Temp` e
 `Wind`. Exiba as primeiras 6 linhas da tabela modificada.
+
+**15.** Carregue o dataset `iris` e verifique sua estrutura. Filtre as observações que pertencem à espécie “setosa”.
+
+Crie uma nova coluna chamada `Petal.Area`, que representa a área das pétalas (comprimento * largura).
+
+Filtre apenas as linhas onde a área da pétala (`Petal.Area`) é maior que 0.2.
+
+Ordene o data frame resultante de acordo com o comprimento da pétala (`Petal.Length`) em ordem decrescente.
+
+**16.** Carregue o dataset `airquality` e remova todas as linhas que contenham valores ausentes (`NA`). Use a função `na.omit()`.
+
+Adicione uma nova coluna chamada `Temp.Celsius`, que converte a temperatura em Fahrenheit (Temp) para Celsius usando a fórmula: $Temp.Celsius = \frac{(Temp - 32)}{1.8}$
+
+Agrupe o data frame pelo mês (`Month`) e calcule a média da coluna `Ozone` para cada mês. Use a função `aggregate()`.
+
+Crie um gráfico de dispersão (`plot()`) para a relação entre `Ozone` e a nova coluna `Temp.Celsius`, colorindo os pontos de acordo com o mês (`Month`).
+
 
 ## Listas
 
