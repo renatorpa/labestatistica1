@@ -2436,6 +2436,12 @@ df
 ## 3  3 Carlos    31    7000         7700
 ## 4  4  Diana    28    8000         8800
 
+# ou 
+df[["novo_salario"]] <- df$salario * 1.1 
+
+# ou
+df <- cbind(df, novo_salario = df$salario * 1.1)
+
 # Remover uma coluna existente
 df$id <- NULL
 df

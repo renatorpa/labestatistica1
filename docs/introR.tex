@@ -120,7 +120,7 @@
 
 \title{Introdução ao R}
 \author{Renato de Paula}
-\date{2024-09-30}
+\date{2024-10-01}
 
 \begin{document}
 \maketitle
@@ -3407,6 +3407,12 @@ Adicionar e remover colunas de um data frame é simples e direto:
 \DocumentationTok{\#\# 2  2  Bruno    35    6000         6600}
 \DocumentationTok{\#\# 3  3 Carlos    31    7000         7700}
 \DocumentationTok{\#\# 4  4  Diana    28    8000         8800}
+
+\CommentTok{\# ou }
+\NormalTok{df[[}\StringTok{"novo\_salario"}\NormalTok{]] }\OtherTok{\textless{}{-}}\NormalTok{ df}\SpecialCharTok{$}\NormalTok{salario }\SpecialCharTok{*} \FloatTok{1.1} 
+
+\CommentTok{\# ou}
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(df, }\AttributeTok{novo\_salario =}\NormalTok{ df}\SpecialCharTok{$}\NormalTok{salario }\SpecialCharTok{*} \FloatTok{1.1}\NormalTok{)}
 
 \CommentTok{\# Remover uma coluna existente}
 \NormalTok{df}\SpecialCharTok{$}\NormalTok{id }\OtherTok{\textless{}{-}} \ConstantTok{NULL}

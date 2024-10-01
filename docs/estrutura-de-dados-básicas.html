@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Renato de Paula" />
 
 
-<meta name="date" content="2024-09-30" />
+<meta name="date" content="2024-10-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1340,14 +1340,20 @@ tipo de dados.</p>
 <span id="cb65-7"><a href="estrutura-de-dados-básicas.html#cb65-7" tabindex="-1"></a><span class="do">## 3  3 Carlos    31    7000         7700</span></span>
 <span id="cb65-8"><a href="estrutura-de-dados-básicas.html#cb65-8" tabindex="-1"></a><span class="do">## 4  4  Diana    28    8000         8800</span></span>
 <span id="cb65-9"><a href="estrutura-de-dados-básicas.html#cb65-9" tabindex="-1"></a></span>
-<span id="cb65-10"><a href="estrutura-de-dados-básicas.html#cb65-10" tabindex="-1"></a><span class="co"># Remover uma coluna existente</span></span>
-<span id="cb65-11"><a href="estrutura-de-dados-básicas.html#cb65-11" tabindex="-1"></a>df<span class="sc">$</span>id <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb65-12"><a href="estrutura-de-dados-básicas.html#cb65-12" tabindex="-1"></a>df</span>
-<span id="cb65-13"><a href="estrutura-de-dados-básicas.html#cb65-13" tabindex="-1"></a><span class="do">##     nome idade salario novo_salario</span></span>
-<span id="cb65-14"><a href="estrutura-de-dados-básicas.html#cb65-14" tabindex="-1"></a><span class="do">## 1    Ana    23    5000         5500</span></span>
-<span id="cb65-15"><a href="estrutura-de-dados-básicas.html#cb65-15" tabindex="-1"></a><span class="do">## 2  Bruno    35    6000         6600</span></span>
-<span id="cb65-16"><a href="estrutura-de-dados-básicas.html#cb65-16" tabindex="-1"></a><span class="do">## 3 Carlos    31    7000         7700</span></span>
-<span id="cb65-17"><a href="estrutura-de-dados-básicas.html#cb65-17" tabindex="-1"></a><span class="do">## 4  Diana    28    8000         8800</span></span></code></pre></div>
+<span id="cb65-10"><a href="estrutura-de-dados-básicas.html#cb65-10" tabindex="-1"></a><span class="co"># ou </span></span>
+<span id="cb65-11"><a href="estrutura-de-dados-básicas.html#cb65-11" tabindex="-1"></a>df[[<span class="st">&quot;novo_salario&quot;</span>]] <span class="ot">&lt;-</span> df<span class="sc">$</span>salario <span class="sc">*</span> <span class="fl">1.1</span> </span>
+<span id="cb65-12"><a href="estrutura-de-dados-básicas.html#cb65-12" tabindex="-1"></a></span>
+<span id="cb65-13"><a href="estrutura-de-dados-básicas.html#cb65-13" tabindex="-1"></a><span class="co"># ou</span></span>
+<span id="cb65-14"><a href="estrutura-de-dados-básicas.html#cb65-14" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">cbind</span>(df, <span class="at">novo_salario =</span> df<span class="sc">$</span>salario <span class="sc">*</span> <span class="fl">1.1</span>)</span>
+<span id="cb65-15"><a href="estrutura-de-dados-básicas.html#cb65-15" tabindex="-1"></a></span>
+<span id="cb65-16"><a href="estrutura-de-dados-básicas.html#cb65-16" tabindex="-1"></a><span class="co"># Remover uma coluna existente</span></span>
+<span id="cb65-17"><a href="estrutura-de-dados-básicas.html#cb65-17" tabindex="-1"></a>df<span class="sc">$</span>id <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb65-18"><a href="estrutura-de-dados-básicas.html#cb65-18" tabindex="-1"></a>df</span>
+<span id="cb65-19"><a href="estrutura-de-dados-básicas.html#cb65-19" tabindex="-1"></a><span class="do">##     nome idade salario novo_salario</span></span>
+<span id="cb65-20"><a href="estrutura-de-dados-básicas.html#cb65-20" tabindex="-1"></a><span class="do">## 1    Ana    23    5000         5500</span></span>
+<span id="cb65-21"><a href="estrutura-de-dados-básicas.html#cb65-21" tabindex="-1"></a><span class="do">## 2  Bruno    35    6000         6600</span></span>
+<span id="cb65-22"><a href="estrutura-de-dados-básicas.html#cb65-22" tabindex="-1"></a><span class="do">## 3 Carlos    31    7000         7700</span></span>
+<span id="cb65-23"><a href="estrutura-de-dados-básicas.html#cb65-23" tabindex="-1"></a><span class="do">## 4  Diana    28    8000         8800</span></span></code></pre></div>
 </div>
 <div id="fundir-data-frames" class="section level3 hasAnchor" number="5.4.4">
 <h3><span class="header-section-number">5.4.4</span> Fundir Data Frames<a href="estrutura-de-dados-básicas.html#fundir-data-frames" class="anchor-section" aria-label="Anchor link to header"></a></h3>
