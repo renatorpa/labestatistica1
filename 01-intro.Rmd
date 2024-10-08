@@ -27,10 +27,11 @@ email: acafernandes@fc.ul.pt
 
 -   **Exame final**
 
-    -   Nota mínima de 8.5 valores em cada um dos testes.
-    -   Datas de realização dos testes:
-        -   Primeiro teste: 5 de novembro de 2024
-        -   Segundo teste: 21 de janeiro de 2025
+- Nota mínima de 8.5 valores em cada um dos testes.
+- Datas de realização dos testes:
+- Primeiro Exercício prático: 22 de outubro de 2024
+- Primeiro teste: 5 de novembro de 2024
+- Segundo teste: 21 de janeiro de 2025
 
 -   **Nota final**:
 
@@ -3503,7 +3504,7 @@ print(area_obj)
 ## [1] 8
 ```
 
--   **Argumentos com Valores Padrão**: Se a `altura` não for
+- **Argumentos com Valores Padrão**: Se a `altura` não for
     especificada na chamada da função, seu valor padrão será 2. Assim, a
     função calcula a área usando largura 4 e altura 2.
 
@@ -3525,7 +3526,7 @@ print(area_obj)
 ## [1] 12
 ```
 
--   **Flexibilidade na Ordem dos Argumentos**: Ao usar argumentos
+- **Flexibilidade na Ordem dos Argumentos**: Ao usar argumentos
     nomeados, a ordem em que os argumentos são passados não importa. O R
     associa os valores aos nomes corretos.
 
@@ -3673,8 +3674,12 @@ um programa que solicite ao utilizador um valor em euros e imprima a
 conversão desse valor para algumas das principais moedas, como dólar,
 libra, iene e real.
 
-**10.** Crie uma função que calcule o intervalor de confiança para o
-valor médio $(1-\alpha)\times 100\%$ (nota: amostras grandes).
+**10.** Crie uma função que calcule o intervalo de confiança para o
+valor médio $(1-\alpha)\times 100\%$ (nota: amostras grandes, dimensão $\geq 30$.).
+
+* $s =$ desvio padrão.
+
+* $z_{1-\frac{\alpha}{2}} =$ quantil de probabilidade $1-\alpha/2$.
 
 $$\left(\bar{x}-z_{1-\frac{\alpha}{2}}\frac{s}{\sqrt{n}},\bar{x}+z_{1-\frac{\alpha}{2}}\frac{s}{\sqrt{n}}  \right)$$
 
@@ -3685,8 +3690,7 @@ IC <- function(amostra, alpha){
 }
 ```
 
-**11.** Criar uma função que calcule o intervalo de confiança para o
-valor médio para $\alpha$ igual a 0.001, 0.01, 0.05 e 0.10.
+**11.** Criar uma função que calcule o intervalo de confiança para o valor médio para $\alpha$ igual a 0.001, 0.01, 0.05 e 0.10.
 
 ```{r eval=FALSE}
 ICs <- function(alphas){
@@ -4130,15 +4134,6 @@ round(mean(sum(1:10)/3), digits = 1)
 **Dica**: utilize a função `magrittr::divide_by()`, Veja o help da
 função para mais informações.
 
-```{r eval=FALSE}
-1:10 %>% 
-  sum() %>% 
-  magrittr::divide_by(3) %>% 
-  mean() %>% 
-  round(digits=1)
-## [1] 18.3
-```
-
 **2.** Reescreva o código abaixo utilizando o `%>%`.
 
 ```{r}
@@ -4154,15 +4149,6 @@ saida <- round(media, 2)
 **Dica**: utilize a função `magrittr::extract()`. Veja o help da função
 para mais informações.
 
-```{r eval=FALSE}
-set.seed(123)
-rnorm(100) %>% 
-  magrittr::extract(.>0) %>% 
-  mean() %>% 
-  round(digits = 2)
-## [1] 0.79
-```
-
 **3.** Sem executar, diga qual a saída do código abaixo. Consulte o help
 das funções caso precise.
 
@@ -4173,15 +4159,6 @@ das funções caso precise.
   mean(na.rm = T) %>%
   equals(5)
 ```
-
--   Primeiro, somamos 2 com 2, gerando o valor 4.
-
--   Em seguida, colocamos esse valor num vetor com os valores 6 e `NA`.
-
--   Depois, calculamos a média desse vetor, desconsiderando o `NA`, e
-    obtemos o valor 5.
-
--   Finalmente, verificamos se o valor é igual a 5, obtendo `TRUE`.
 
 # Loop while
 
@@ -5400,8 +5377,8 @@ dados.
 
 As principais funções do `dplyr` são:
 
--   `select()`: Seleciona colunas de um data frame. \*`arrange()`:
-    Ordena as linhas de um data frame com base nos valores de uma ou
+-   `select()`: Seleciona colunas de um data frame. 
+- `arrange()`: Ordena as linhas de um data frame com base nos valores de uma ou
     mais colunas.
 -   `filter()`: Filtra linhas com base em condições lógicas.
 -   `mutate()`: Adiciona novas colunas ou modifica colunas existentes.

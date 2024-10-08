@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Renato de Paula" />
 
 
-<meta name="date" content="2024-10-04" />
+<meta name="date" content="2024-10-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -481,37 +481,37 @@ média:</p>
 <p><span class="math display">\[\theta \approx \frac{1}{10000} \sum_{i=1}^{10000} u_i^2.\]</span></p>
 <p>Ao rodar este processo no R, esperamos obter uma aproximação próxima de
 <span class="math inline">\(\frac{1}{3}\)</span>.</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb263-1" tabindex="-1"></a><span class="co"># Função a ser integrada</span></span>
-<span id="cb263-2"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb263-2" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb263-3"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb263-3" tabindex="-1"></a><span class="co"># Quantidade de números aleatórios</span></span>
-<span id="cb263-4"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb263-4" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
-<span id="cb263-5"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb263-5" tabindex="-1"></a><span class="co"># Números aleatórios no intervalo [0,1]</span></span>
-<span id="cb263-6"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb263-6" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> n, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
-<span id="cb263-7"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb263-7" tabindex="-1"></a><span class="co"># Valor aproximado do integral</span></span>
-<span id="cb263-8"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb263-8" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">f</span>(u))<span class="sc">/</span>n</span></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb261-1" tabindex="-1"></a><span class="co"># Função a ser integrada</span></span>
+<span id="cb261-2"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb261-2" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb261-3"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb261-3" tabindex="-1"></a><span class="co"># Quantidade de números aleatórios</span></span>
+<span id="cb261-4"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb261-4" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb261-5"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb261-5" tabindex="-1"></a><span class="co"># Números aleatórios no intervalo [0,1]</span></span>
+<span id="cb261-6"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb261-6" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> n, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
+<span id="cb261-7"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb261-7" tabindex="-1"></a><span class="co"># Valor aproximado do integral</span></span>
+<span id="cb261-8"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb261-8" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">f</span>(u))<span class="sc">/</span>n</span></code></pre></div>
 <pre><code>## [1] 0.3295952</code></pre>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb265-1" tabindex="-1"></a><span class="co"># Solução exata do integral</span></span>
-<span id="cb265-2"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb265-2" tabindex="-1"></a><span class="fu">integrate</span>(f, <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb263-1" tabindex="-1"></a><span class="co"># Solução exata do integral</span></span>
+<span id="cb263-2"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb263-2" tabindex="-1"></a><span class="fu">integrate</span>(f, <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## 0.3333333 with absolute error &lt; 3.7e-15</code></pre>
 <p>Vamos calcular agora o <span class="math display">\[\int_{1}^{2} x^2\, dx.\]</span></p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb267-1" tabindex="-1"></a><span class="co"># Limites de integração</span></span>
-<span id="cb267-2"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb267-2" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb267-3"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb267-3" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb267-4"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb267-4" tabindex="-1"></a><span class="co"># Função a ser integrada</span></span>
-<span id="cb267-5"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb267-5" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb267-6"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb267-6" tabindex="-1"></a><span class="co"># Quantidade de números aleatórios</span></span>
-<span id="cb267-7"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb267-7" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
-<span id="cb267-8"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb267-8" tabindex="-1"></a><span class="co"># Números aleatórios no intervalo [0,1]</span></span>
-<span id="cb267-9"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb267-9" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> n, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
-<span id="cb267-10"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb267-10" tabindex="-1"></a><span class="co"># Valor aproximado do integral</span></span>
-<span id="cb267-11"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb267-11" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">f</span>(a<span class="sc">+</span>(b<span class="sc">-</span>a)<span class="sc">*</span>u)<span class="sc">*</span>(b<span class="sc">-</span>a))<span class="sc">/</span>n</span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb265-1" tabindex="-1"></a><span class="co"># Limites de integração</span></span>
+<span id="cb265-2"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb265-2" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb265-3"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb265-3" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb265-4"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb265-4" tabindex="-1"></a><span class="co"># Função a ser integrada</span></span>
+<span id="cb265-5"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb265-5" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb265-6"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb265-6" tabindex="-1"></a><span class="co"># Quantidade de números aleatórios</span></span>
+<span id="cb265-7"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb265-7" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb265-8"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb265-8" tabindex="-1"></a><span class="co"># Números aleatórios no intervalo [0,1]</span></span>
+<span id="cb265-9"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb265-9" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> n, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
+<span id="cb265-10"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb265-10" tabindex="-1"></a><span class="co"># Valor aproximado do integral</span></span>
+<span id="cb265-11"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb265-11" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">f</span>(a<span class="sc">+</span>(b<span class="sc">-</span>a)<span class="sc">*</span>u)<span class="sc">*</span>(b<span class="sc">-</span>a))<span class="sc">/</span>n</span></code></pre></div>
 <pre><code>## [1] 2.322161</code></pre>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb269-1" tabindex="-1"></a><span class="co"># Solução exata do integral</span></span>
-<span id="cb269-2"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb269-2" tabindex="-1"></a><span class="fu">integrate</span>(f, <span class="at">lower =</span> <span class="dv">1</span>, <span class="at">upper =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb267-1" tabindex="-1"></a><span class="co"># Solução exata do integral</span></span>
+<span id="cb267-2"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb267-2" tabindex="-1"></a><span class="fu">integrate</span>(f, <span class="at">lower =</span> <span class="dv">1</span>, <span class="at">upper =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## 2.333333 with absolute error &lt; 2.6e-14</code></pre>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb271-1" tabindex="-1"></a><span class="co"># ou</span></span>
-<span id="cb271-2"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb271-2" tabindex="-1"></a>u1 <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, a, b)</span>
-<span id="cb271-3"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb271-3" tabindex="-1"></a>(b<span class="sc">-</span>a)<span class="sc">*</span><span class="fu">mean</span>(<span class="fu">f</span>(u1))</span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb269-1" tabindex="-1"></a><span class="co"># ou</span></span>
+<span id="cb269-2"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb269-2" tabindex="-1"></a>u1 <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, a, b)</span>
+<span id="cb269-3"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cb269-3" tabindex="-1"></a>(b<span class="sc">-</span>a)<span class="sc">*</span><span class="fu">mean</span>(<span class="fu">f</span>(u1))</span></code></pre></div>
 <pre><code>## [1] 2.335583</code></pre>
 </div>
 <div id="cálculo-de-int_0inftygx-dx" class="section level2 hasAnchor" number="18.2">
