@@ -660,11 +660,11 @@ com base nas taxas de câmbio. Implemente e teste as funções, e escreva
 um programa que solicite ao utilizador um valor em euros e imprima a
 conversão desse valor para algumas das principais moedas, como dólar,
 libra, iene e real.</p>
-<p><strong>10.</strong> Crie uma função que calcule o intervalo de confiança para o
-valor médio <span class="math inline">\((1-\alpha)\times 100\%\)</span> (nota: amostras grandes, dimensão <span class="math inline">\(\geq 30\)</span>.).</p>
+<p><strong>10.</strong> Crie uma função que calcule o intervalo de confiança a <span class="math inline">\((1-\alpha)\times 100\%\)</span> para o
+valor médio (nota: amostras grandes, dimensão <span class="math inline">\(\geq 30\)</span>.).</p>
 <ul>
-<li><p><span class="math inline">\(s =\)</span> desvio padrão.</p></li>
-<li><p><span class="math inline">\(z_{1-\frac{\alpha}{2}} =\)</span> quantil de probabilidade <span class="math inline">\(1-\alpha/2\)</span>.</p></li>
+<li><p><span class="math inline">\(s =\)</span> desvio padrão amostral.</p></li>
+<li><p><span class="math inline">\(z_{1-\frac{\alpha}{2}} =\)</span> quantil de probabilidade <span class="math inline">\(1-\alpha/2\)</span>. Use a função <code>qnorm()</code>.</p></li>
 </ul>
 <p><span class="math display">\[\left(\bar{x}-z_{1-\frac{\alpha}{2}}\frac{s}{\sqrt{n}},\bar{x}+z_{1-\frac{\alpha}{2}}\frac{s}{\sqrt{n}}  \right)\]</span></p>
 <div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="funções.html#cb103-1" tabindex="-1"></a>IC <span class="ot">&lt;-</span> <span class="cf">function</span>(amostra, alpha){</span>
@@ -672,10 +672,32 @@ valor médio <span class="math inline">\((1-\alpha)\times 100\%\)</span> (nota: 
 <span id="cb103-3"><a href="funções.html#cb103-3" tabindex="-1"></a>  </span>
 <span id="cb103-4"><a href="funções.html#cb103-4" tabindex="-1"></a>}</span></code></pre></div>
 <p><strong>11.</strong> Criar uma função que calcule o intervalo de confiança para o valor médio para <span class="math inline">\(\alpha\)</span> igual a 0.001, 0.01, 0.05 e 0.10.</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="funções.html#cb104-1" tabindex="-1"></a>ICs <span class="ot">&lt;-</span> <span class="cf">function</span>(alphas){</span>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="funções.html#cb104-1" tabindex="-1"></a>ICs <span class="ot">&lt;-</span> <span class="cf">function</span>(amostra, alphas){</span>
 <span id="cb104-2"><a href="funções.html#cb104-2" tabindex="-1"></a>  <span class="co"># Coloque seu código aqui</span></span>
 <span id="cb104-3"><a href="funções.html#cb104-3" tabindex="-1"></a>  </span>
 <span id="cb104-4"><a href="funções.html#cb104-4" tabindex="-1"></a>}</span></code></pre></div>
+<p><strong>12.</strong> Crie uma função chamada <code>calcula_moda</code> que receba um vetor numérico ou de caracteres e devolva a moda, ou seja, o valor que mais vezes aparece no vetor.</p>
+<ul>
+<li><p>Caso haja mais do que uma moda (valores que aparecem com a mesma frequência), a função deverá retornar todos os valores modais.</p></li>
+<li><p>Utilize a função <code>table()</code> para contar as ocorrências de cada valor no vetor.</p></li>
+<li><p>Teste a função: Aplique a função ao vetor <code>c(1, 2, 2, 3, 3, 4, 4)</code>.</p></li>
+<li><p>Teste também com um vetor de caracteres <code>c("A", "B", "A", "C", "C", "C", "B")</code>.</p></li>
+</ul>
+<p><strong>13.</strong> A distância euclidiana entre dois pontos <span class="math inline">\(A(x_1, y_1)\)</span> e <span class="math inline">\(B(x_2, y_2)\)</span> é dada pela fórmula:
+<span class="math display">\[d(A, B) = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}\]</span></p>
+<p>Crie uma função chamada <code>distancia_euclidiana</code> que aceite como parâmetros as coordenadas dos dois pontos e devolva a distância entre eles.</p>
+<p>Teste a função com dois pontos arbitrários, por exemplo, <span class="math inline">\(A(2, 3)\)</span> e <span class="math inline">\(B(6, 9)\)</span>.</p>
+<p>Generalize a função para trabalhar em qualquer dimensão, ou seja, para pontos com coordenadas n-dimensionais.</p>
+<p>Teste a função para dois vetores de coordenadas de três dimensões, como <span class="math inline">\(A(1, 2, 3)\)</span> e <span class="math inline">\(B(4, 5, 6)\)</span> , garantindo que o código funcione para múltiplas dimensões.</p>
+<p><strong>14.</strong> Crie uma função chamada <code>cria_matriz_aleatoria</code> que aceite dois parâmetros: o número de linhas e o número de colunas, e devolva uma matriz com números aleatórios uniformes entre 0 e 1.</p>
+<p>Adicione uma segunda função <code>analisa_matriz</code> que aceite uma matriz como entrada e devolva as seguintes informações:</p>
+<ul>
+<li>Soma de todos os elementos;</li>
+<li>Média de todos os elementos;</li>
+<li>Traço da matriz (a soma dos elementos da diagonal principal, se a matriz for quadrada).</li>
+</ul>
+<p>Teste as funções criando uma matriz <span class="math inline">\(5 \times 5\)</span> e analisando-a com a função <code>analisa_matriz</code>.</p>
+<p>Generalize a função <code>analisa_matriz</code> para devolver a determinante da matriz, apenas se for quadrada. Se não for quadrada, deve informar que não é possível calcular a determinante.</p>
 </div>
 </div>
             </section>

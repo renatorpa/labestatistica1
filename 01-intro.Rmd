@@ -3674,12 +3674,12 @@ um programa que solicite ao utilizador um valor em euros e imprima a
 conversão desse valor para algumas das principais moedas, como dólar,
 libra, iene e real.
 
-**10.** Crie uma função que calcule o intervalo de confiança para o
-valor médio $(1-\alpha)\times 100\%$ (nota: amostras grandes, dimensão $\geq 30$.).
+**10.** Crie uma função que calcule o intervalo de confiança a $(1-\alpha)\times 100\%$ para o
+valor médio (nota: amostras grandes, dimensão $\geq 30$.).
 
-* $s =$ desvio padrão.
+* $s =$ desvio padrão amostral.
 
-* $z_{1-\frac{\alpha}{2}} =$ quantil de probabilidade $1-\alpha/2$.
+* $z_{1-\frac{\alpha}{2}} =$ quantil de probabilidade $1-\alpha/2$. Use a função `qnorm()`.
 
 $$\left(\bar{x}-z_{1-\frac{\alpha}{2}}\frac{s}{\sqrt{n}},\bar{x}+z_{1-\frac{\alpha}{2}}\frac{s}{\sqrt{n}}  \right)$$
 
@@ -3693,11 +3693,44 @@ IC <- function(amostra, alpha){
 **11.** Criar uma função que calcule o intervalo de confiança para o valor médio para $\alpha$ igual a 0.001, 0.01, 0.05 e 0.10.
 
 ```{r eval=FALSE}
-ICs <- function(alphas){
+ICs <- function(amostra, alphas){
   # Coloque seu código aqui
   
 }
 ```
+
+**12.** Crie uma função chamada `calcula_moda` que receba um vetor numérico ou de caracteres e devolva a moda, ou seja, o valor que mais vezes aparece no vetor.
+
+* Caso haja mais do que uma moda (valores que aparecem com a mesma frequência), a função deverá retornar todos os valores modais.
+
+* Utilize a função `table()` para contar as ocorrências de cada valor no vetor.
+
+* Teste a função: Aplique a função ao vetor `c(1, 2, 2, 3, 3, 4, 4)`.
+
+* Teste também com um vetor de caracteres `c("A", "B", "A", "C", "C", "C", "B")`.
+
+**13.** A distância euclidiana entre dois pontos  $A(x_1, y_1)$ e  $B(x_2, y_2)$  é dada pela fórmula:
+ $$d(A, B) = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$$ 
+
+Crie uma função chamada `distancia_euclidiana` que aceite como parâmetros as coordenadas dos dois pontos e devolva a distância entre eles.
+
+Teste a função com dois pontos arbitrários, por exemplo,  $A(2, 3)$  e  $B(6, 9)$.
+
+Generalize a função para trabalhar em qualquer dimensão, ou seja, para pontos com coordenadas  n-dimensionais.
+
+Teste a função para dois vetores de coordenadas de três dimensões, como  $A(1, 2, 3)$  e  $B(4, 5, 6)$ , garantindo que o código funcione para múltiplas dimensões.
+
+**14.** Crie uma função chamada `cria_matriz_aleatoria` que aceite dois parâmetros: o número de linhas e o número de colunas, e devolva uma matriz com números aleatórios uniformes entre 0 e 1.
+
+Adicione uma segunda função `analisa_matriz` que aceite uma matriz como entrada e devolva as seguintes informações:
+
+* Soma de todos os elementos;
+* Média de todos os elementos;
+* Traço da matriz (a soma dos elementos da diagonal principal, se a matriz for quadrada).
+
+Teste as funções criando uma matriz  $5 \times 5$  e analisando-a com a função `analisa_matriz`.
+
+Generalize a função `analisa_matriz` para devolver a determinante da matriz, apenas se for quadrada. Se não for quadrada, deve informar que não é possível calcular a determinante.
 
 # Scripts em R
 
