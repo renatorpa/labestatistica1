@@ -3705,7 +3705,7 @@ ICs <- function(amostra, alphas){
 
 * Utilize a função `table()` para contar as ocorrências de cada valor no vetor.
 
-* Teste a função: Aplique a função ao vetor `c(1, 2, 2, 3, 3, 4, 4)`.
+* Aplique a função ao vetor `c(1, 2, 2, 3, 3, 4, 4)`.
 
 * Teste também com um vetor de caracteres `c("A", "B", "A", "C", "C", "C", "B")`.
 
@@ -4192,6 +4192,50 @@ das funções caso precise.
   mean(na.rm = T) %>%
   equals(5)
 ```
+
+**4.** Dado o dataset `mtcars`, selecione as colunas `mpg`, `hp`, e `wt`, filtre os carros com mais de 100 cavalos de potência (`hp > 100`), e ordene-os pela coluna `wt` (peso) de forma crescente.
+
+```{r eval=FALSE}
+# Sem o operador pipe
+result <- arrange(filter(select(mtcars, mpg, hp, wt), hp > 100), wt)
+print(result)
+```
+
+Reescreva o código acima usando o operador pipe (`%>%`).
+
+**5.** Dado o dataset `iris`, filtre as linhas onde `Sepal.Length` seja maior que 5, selecione as colunas `Sepal.Length` e `Species`, e depois calcule a média de `Sepal.Length` para cada espécie.
+
+```{r eval=FALSE}
+# Sem o operador pipe
+result <- aggregate(Sepal.Length ~ Species, data = select(filter(iris, Sepal.Length > 5), Sepal.Length, Species), mean)
+print(result)
+```
+
+Reescreva o código acima usando o operador pipe (`%>%`). 
+
+**6.** Utilizando o dataset `airquality`, remova as linhas que contêm valores ausentes (`NA`), selecione as colunas `Ozone` e `Wind`, e calcule a média de `Ozone` para valores onde `Wind` é maior que 10.
+
+```{r eval=FALSE}
+# Sem o operador pipe
+cleaned_data <- na.omit(airquality)
+filtered_data <- filter(cleaned_data, Wind > 10)
+result <- mean(filtered_data$Ozone)
+print(result)
+```
+
+Reescreva o código acima usando o operador pipe (`%>%`). Dica: use a função `summarise()`.
+
+**7.** Dado o dataset `mtcar`s, crie uma nova coluna chamada `hp_per_wt` que seja a razão entre `hp` e `wt`. Em seguida, filtre os carros com essa razão maior que 30, e selecione as colunas `mpg`, `hp_per_wt`, e `gear`.
+
+```{r eval=FALSE}
+# Sem o operador pipe
+mtcars$hp_per_wt <- mtcars$hp / mtcars$wt
+filtered_data <- filter(mtcars, hp_per_wt > 30)
+result <- select(filtered_data, mpg, hp_per_wt, gear)
+print(result)
+```
+
+Reescreva o código acima usando o operador pipe (`%>%`). Dica: use a função `mutate()`.
 
 # Loop while
 

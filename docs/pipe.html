@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Renato de Paula" />
 
 
-<meta name="date" content="2024-10-08" />
+<meta name="date" content="2024-10-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -530,6 +530,30 @@ das funções caso precise.</p>
 <span id="cb131-3"><a href="pipe.html#cb131-3" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">6</span>, <span class="cn">NA</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb131-4"><a href="pipe.html#cb131-4" tabindex="-1"></a>  <span class="fu">mean</span>(<span class="at">na.rm =</span> T) <span class="sc">%&gt;%</span></span>
 <span id="cb131-5"><a href="pipe.html#cb131-5" tabindex="-1"></a>  <span class="fu">equals</span>(<span class="dv">5</span>)</span></code></pre></div>
+<p><strong>4.</strong> Dado o dataset <code>mtcars</code>, selecione as colunas <code>mpg</code>, <code>hp</code>, e <code>wt</code>, filtre os carros com mais de 100 cavalos de potência (<code>hp &gt; 100</code>), e ordene-os pela coluna <code>wt</code> (peso) de forma crescente.</p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="pipe.html#cb132-1" tabindex="-1"></a><span class="co"># Sem o operador pipe</span></span>
+<span id="cb132-2"><a href="pipe.html#cb132-2" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">arrange</span>(<span class="fu">filter</span>(<span class="fu">select</span>(mtcars, mpg, hp, wt), hp <span class="sc">&gt;</span> <span class="dv">100</span>), wt)</span>
+<span id="cb132-3"><a href="pipe.html#cb132-3" tabindex="-1"></a><span class="fu">print</span>(result)</span></code></pre></div>
+<p>Reescreva o código acima usando o operador pipe (<code>%&gt;%</code>).</p>
+<p><strong>5.</strong> Dado o dataset <code>iris</code>, filtre as linhas onde <code>Sepal.Length</code> seja maior que 5, selecione as colunas <code>Sepal.Length</code> e <code>Species</code>, e depois calcule a média de <code>Sepal.Length</code> para cada espécie.</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="pipe.html#cb133-1" tabindex="-1"></a><span class="co"># Sem o operador pipe</span></span>
+<span id="cb133-2"><a href="pipe.html#cb133-2" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(Sepal.Length <span class="sc">~</span> Species, <span class="at">data =</span> <span class="fu">select</span>(<span class="fu">filter</span>(iris, Sepal.Length <span class="sc">&gt;</span> <span class="dv">5</span>), Sepal.Length, Species), mean)</span>
+<span id="cb133-3"><a href="pipe.html#cb133-3" tabindex="-1"></a><span class="fu">print</span>(result)</span></code></pre></div>
+<p>Reescreva o código acima usando o operador pipe (<code>%&gt;%</code>).</p>
+<p><strong>6.</strong> Utilizando o dataset <code>airquality</code>, remova as linhas que contêm valores ausentes (<code>NA</code>), selecione as colunas <code>Ozone</code> e <code>Wind</code>, e calcule a média de <code>Ozone</code> para valores onde <code>Wind</code> é maior que 10.</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="pipe.html#cb134-1" tabindex="-1"></a><span class="co"># Sem o operador pipe</span></span>
+<span id="cb134-2"><a href="pipe.html#cb134-2" tabindex="-1"></a>cleaned_data <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(airquality)</span>
+<span id="cb134-3"><a href="pipe.html#cb134-3" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> <span class="fu">filter</span>(cleaned_data, Wind <span class="sc">&gt;</span> <span class="dv">10</span>)</span>
+<span id="cb134-4"><a href="pipe.html#cb134-4" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">mean</span>(filtered_data<span class="sc">$</span>Ozone)</span>
+<span id="cb134-5"><a href="pipe.html#cb134-5" tabindex="-1"></a><span class="fu">print</span>(result)</span></code></pre></div>
+<p>Reescreva o código acima usando o operador pipe (<code>%&gt;%</code>). Dica: use a função <code>summarise()</code>.</p>
+<p><strong>7.</strong> Dado o dataset <code>mtcar</code>s, crie uma nova coluna chamada <code>hp_per_wt</code> que seja a razão entre <code>hp</code> e <code>wt</code>. Em seguida, filtre os carros com essa razão maior que 30, e selecione as colunas <code>mpg</code>, <code>hp_per_wt</code>, e <code>gear</code>.</p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="pipe.html#cb135-1" tabindex="-1"></a><span class="co"># Sem o operador pipe</span></span>
+<span id="cb135-2"><a href="pipe.html#cb135-2" tabindex="-1"></a>mtcars<span class="sc">$</span>hp_per_wt <span class="ot">&lt;-</span> mtcars<span class="sc">$</span>hp <span class="sc">/</span> mtcars<span class="sc">$</span>wt</span>
+<span id="cb135-3"><a href="pipe.html#cb135-3" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> <span class="fu">filter</span>(mtcars, hp_per_wt <span class="sc">&gt;</span> <span class="dv">30</span>)</span>
+<span id="cb135-4"><a href="pipe.html#cb135-4" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">select</span>(filtered_data, mpg, hp_per_wt, gear)</span>
+<span id="cb135-5"><a href="pipe.html#cb135-5" tabindex="-1"></a><span class="fu">print</span>(result)</span></code></pre></div>
+<p>Reescreva o código acima usando o operador pipe (<code>%&gt;%</code>). Dica: use a função <code>mutate()</code>.</p>
 </div>
 </div>
             </section>

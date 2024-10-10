@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Renato de Paula" />
 
 
-<meta name="date" content="2024-10-08" />
+<meta name="date" content="2024-10-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -489,27 +489,27 @@ determinar o valor de <span class="math inline">\(X\)</span> correspondente a <s
 valores: <span class="math inline">\(1,2,\ldots,10\)</span> com probabilidade <span class="math inline">\(1/10\)</span> para
 <span class="math inline">\(x=1,2,\ldots,10\)</span>. Gerar 5000 valores dessa variável aleatória.
 Representar graficamente e determinar: média, desvio padrão e mediana.</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="método-da-transformada-inversa.html#cb271-1" tabindex="-1"></a>gerar_va_inversa <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
-<span id="cb271-2"><a href="método-da-transformada-inversa.html#cb271-2" tabindex="-1"></a>  <span class="co"># Gerar número aleatório entre 0 e 1</span></span>
-<span id="cb271-3"><a href="método-da-transformada-inversa.html#cb271-3" tabindex="-1"></a>  u <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>)</span>
-<span id="cb271-4"><a href="método-da-transformada-inversa.html#cb271-4" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">10</span> <span class="co"># primeira probabilidade P(X=1)</span></span>
-<span id="cb271-5"><a href="método-da-transformada-inversa.html#cb271-5" tabindex="-1"></a>  F <span class="ot">&lt;-</span> p <span class="co"># inicializar a função de distribuição acumulada</span></span>
-<span id="cb271-6"><a href="método-da-transformada-inversa.html#cb271-6" tabindex="-1"></a>  X <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># inicializar o valor da va X</span></span>
-<span id="cb271-7"><a href="método-da-transformada-inversa.html#cb271-7" tabindex="-1"></a>  </span>
-<span id="cb271-8"><a href="método-da-transformada-inversa.html#cb271-8" tabindex="-1"></a>  <span class="cf">while</span>(u <span class="sc">&gt;</span> F){</span>
-<span id="cb271-9"><a href="método-da-transformada-inversa.html#cb271-9" tabindex="-1"></a>    X <span class="ot">&lt;-</span> X<span class="sc">+</span><span class="dv">1</span></span>
-<span id="cb271-10"><a href="método-da-transformada-inversa.html#cb271-10" tabindex="-1"></a>    F <span class="ot">&lt;-</span> F<span class="sc">+</span>p</span>
-<span id="cb271-11"><a href="método-da-transformada-inversa.html#cb271-11" tabindex="-1"></a>  }</span>
-<span id="cb271-12"><a href="método-da-transformada-inversa.html#cb271-12" tabindex="-1"></a>  <span class="fu">return</span>(X)</span>
-<span id="cb271-13"><a href="método-da-transformada-inversa.html#cb271-13" tabindex="-1"></a>}</span>
-<span id="cb271-14"><a href="método-da-transformada-inversa.html#cb271-14" tabindex="-1"></a>valores <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">5000</span>,<span class="fu">gerar_va_inversa</span>())</span>
-<span id="cb271-15"><a href="método-da-transformada-inversa.html#cb271-15" tabindex="-1"></a><span class="fu">hist</span>(valores, <span class="at">freq =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="introR_files/figure-html/unnamed-chunk-218-1.png" width="672" /></p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="método-da-transformada-inversa.html#cb272-1" tabindex="-1"></a><span class="fu">mean</span>(valores)</span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="método-da-transformada-inversa.html#cb275-1" tabindex="-1"></a>gerar_va_inversa <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb275-2"><a href="método-da-transformada-inversa.html#cb275-2" tabindex="-1"></a>  <span class="co"># Gerar número aleatório entre 0 e 1</span></span>
+<span id="cb275-3"><a href="método-da-transformada-inversa.html#cb275-3" tabindex="-1"></a>  u <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb275-4"><a href="método-da-transformada-inversa.html#cb275-4" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">10</span> <span class="co"># primeira probabilidade P(X=1)</span></span>
+<span id="cb275-5"><a href="método-da-transformada-inversa.html#cb275-5" tabindex="-1"></a>  F <span class="ot">&lt;-</span> p <span class="co"># inicializar a função de distribuição acumulada</span></span>
+<span id="cb275-6"><a href="método-da-transformada-inversa.html#cb275-6" tabindex="-1"></a>  X <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># inicializar o valor da va X</span></span>
+<span id="cb275-7"><a href="método-da-transformada-inversa.html#cb275-7" tabindex="-1"></a>  </span>
+<span id="cb275-8"><a href="método-da-transformada-inversa.html#cb275-8" tabindex="-1"></a>  <span class="cf">while</span>(u <span class="sc">&gt;</span> F){</span>
+<span id="cb275-9"><a href="método-da-transformada-inversa.html#cb275-9" tabindex="-1"></a>    X <span class="ot">&lt;-</span> X<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb275-10"><a href="método-da-transformada-inversa.html#cb275-10" tabindex="-1"></a>    F <span class="ot">&lt;-</span> F<span class="sc">+</span>p</span>
+<span id="cb275-11"><a href="método-da-transformada-inversa.html#cb275-11" tabindex="-1"></a>  }</span>
+<span id="cb275-12"><a href="método-da-transformada-inversa.html#cb275-12" tabindex="-1"></a>  <span class="fu">return</span>(X)</span>
+<span id="cb275-13"><a href="método-da-transformada-inversa.html#cb275-13" tabindex="-1"></a>}</span>
+<span id="cb275-14"><a href="método-da-transformada-inversa.html#cb275-14" tabindex="-1"></a>valores <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">5000</span>,<span class="fu">gerar_va_inversa</span>())</span>
+<span id="cb275-15"><a href="método-da-transformada-inversa.html#cb275-15" tabindex="-1"></a><span class="fu">hist</span>(valores, <span class="at">freq =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-222-1.png" width="672" /></p>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="método-da-transformada-inversa.html#cb276-1" tabindex="-1"></a><span class="fu">mean</span>(valores)</span></code></pre></div>
 <pre><code>## [1] 5.4128</code></pre>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="método-da-transformada-inversa.html#cb274-1" tabindex="-1"></a><span class="fu">sd</span>(valores)</span></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="método-da-transformada-inversa.html#cb278-1" tabindex="-1"></a><span class="fu">sd</span>(valores)</span></code></pre></div>
 <pre><code>## [1] 2.860215</code></pre>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="método-da-transformada-inversa.html#cb276-1" tabindex="-1"></a><span class="fu">median</span>(valores)</span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="método-da-transformada-inversa.html#cb280-1" tabindex="-1"></a><span class="fu">median</span>(valores)</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
 <p><strong>Exemplo 3</strong>: Geração de uma variável aleatória com distribuição de
 Bernoulli. A variável aleatória <span class="math inline">\(X\)</span> é de Bernoulli com parâmetro <span class="math inline">\(p\)</span> se
@@ -521,35 +521,35 @@ método da transformada inversa</p>
 <li>Gerar um número aleatório <span class="math inline">\(U\)</span>;</li>
 <li>Se <span class="math inline">\(U \leq p\)</span> então <span class="math inline">\(X=1\)</span> senão <span class="math inline">\(X=0\)</span>.</li>
 </ol>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="método-da-transformada-inversa.html#cb278-1" tabindex="-1"></a><span class="co"># Gerando uma variável aleatória com distribuição de Bernoulli(p)</span></span>
-<span id="cb278-2"><a href="método-da-transformada-inversa.html#cb278-2" tabindex="-1"></a>gerar_bernoulli_inversa <span class="ot">&lt;-</span> <span class="cf">function</span>(p){</span>
-<span id="cb278-3"><a href="método-da-transformada-inversa.html#cb278-3" tabindex="-1"></a>  U <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>)</span>
-<span id="cb278-4"><a href="método-da-transformada-inversa.html#cb278-4" tabindex="-1"></a>  <span class="cf">if</span> (U <span class="sc">&lt;=</span> p){</span>
-<span id="cb278-5"><a href="método-da-transformada-inversa.html#cb278-5" tabindex="-1"></a>    X <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb278-6"><a href="método-da-transformada-inversa.html#cb278-6" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb278-7"><a href="método-da-transformada-inversa.html#cb278-7" tabindex="-1"></a>    X <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb278-8"><a href="método-da-transformada-inversa.html#cb278-8" tabindex="-1"></a>  }</span>
-<span id="cb278-9"><a href="método-da-transformada-inversa.html#cb278-9" tabindex="-1"></a>  <span class="fu">return</span>(X)</span>
-<span id="cb278-10"><a href="método-da-transformada-inversa.html#cb278-10" tabindex="-1"></a>}</span>
-<span id="cb278-11"><a href="método-da-transformada-inversa.html#cb278-11" tabindex="-1"></a></span>
-<span id="cb278-12"><a href="método-da-transformada-inversa.html#cb278-12" tabindex="-1"></a>valores <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">100</span>,<span class="fu">gerar_bernoulli_inversa</span>(<span class="fl">0.8</span>))</span>
-<span id="cb278-13"><a href="método-da-transformada-inversa.html#cb278-13" tabindex="-1"></a><span class="fu">sum</span>(valores)<span class="sc">/</span><span class="dv">100</span></span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="método-da-transformada-inversa.html#cb282-1" tabindex="-1"></a><span class="co"># Gerando uma variável aleatória com distribuição de Bernoulli(p)</span></span>
+<span id="cb282-2"><a href="método-da-transformada-inversa.html#cb282-2" tabindex="-1"></a>gerar_bernoulli_inversa <span class="ot">&lt;-</span> <span class="cf">function</span>(p){</span>
+<span id="cb282-3"><a href="método-da-transformada-inversa.html#cb282-3" tabindex="-1"></a>  U <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>)</span>
+<span id="cb282-4"><a href="método-da-transformada-inversa.html#cb282-4" tabindex="-1"></a>  <span class="cf">if</span> (U <span class="sc">&lt;=</span> p){</span>
+<span id="cb282-5"><a href="método-da-transformada-inversa.html#cb282-5" tabindex="-1"></a>    X <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb282-6"><a href="método-da-transformada-inversa.html#cb282-6" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb282-7"><a href="método-da-transformada-inversa.html#cb282-7" tabindex="-1"></a>    X <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb282-8"><a href="método-da-transformada-inversa.html#cb282-8" tabindex="-1"></a>  }</span>
+<span id="cb282-9"><a href="método-da-transformada-inversa.html#cb282-9" tabindex="-1"></a>  <span class="fu">return</span>(X)</span>
+<span id="cb282-10"><a href="método-da-transformada-inversa.html#cb282-10" tabindex="-1"></a>}</span>
+<span id="cb282-11"><a href="método-da-transformada-inversa.html#cb282-11" tabindex="-1"></a></span>
+<span id="cb282-12"><a href="método-da-transformada-inversa.html#cb282-12" tabindex="-1"></a>valores <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">100</span>,<span class="fu">gerar_bernoulli_inversa</span>(<span class="fl">0.8</span>))</span>
+<span id="cb282-13"><a href="método-da-transformada-inversa.html#cb282-13" tabindex="-1"></a><span class="fu">sum</span>(valores)<span class="sc">/</span><span class="dv">100</span></span></code></pre></div>
 <pre><code>## [1] 0.81</code></pre>
 <p><strong>Exemplo 4</strong>: Gerar uma variável aleatória com distribuição
 <span class="math inline">\(Binomial(n,p)\)</span>. Aqui podemos usar o facto de que se
 <span class="math inline">\(X_{1},X_{2},\ldots,X_{n}\)</span> são Bernoullis i.i.d., então
 <span class="math display">\[X = X_{1}+X_{2}+\ldots+X_{n}\]</span> é uma <span class="math inline">\(Binomial(n,p)\)</span>.</p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="método-da-transformada-inversa.html#cb280-1" tabindex="-1"></a><span class="co"># Gerando uma variável aleatória com distribuição Binomial(n,p)</span></span>
-<span id="cb280-2"><a href="método-da-transformada-inversa.html#cb280-2" tabindex="-1"></a></span>
-<span id="cb280-3"><a href="método-da-transformada-inversa.html#cb280-3" tabindex="-1"></a>gerar_binomial_inversa <span class="ot">&lt;-</span> <span class="cf">function</span>(n,p){</span>
-<span id="cb280-4"><a href="método-da-transformada-inversa.html#cb280-4" tabindex="-1"></a>  X <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">replicate</span>(n,<span class="fu">gerar_bernoulli_inversa</span>(p)))</span>
-<span id="cb280-5"><a href="método-da-transformada-inversa.html#cb280-5" tabindex="-1"></a>  <span class="fu">return</span>(X)</span>
-<span id="cb280-6"><a href="método-da-transformada-inversa.html#cb280-6" tabindex="-1"></a>}</span>
-<span id="cb280-7"><a href="método-da-transformada-inversa.html#cb280-7" tabindex="-1"></a></span>
-<span id="cb280-8"><a href="método-da-transformada-inversa.html#cb280-8" tabindex="-1"></a>valores <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">10000</span>,<span class="fu">gerar_binomial_inversa</span>(<span class="dv">10</span>,<span class="fl">0.5</span>))</span>
-<span id="cb280-9"><a href="método-da-transformada-inversa.html#cb280-9" tabindex="-1"></a><span class="fu">hist</span>(valores, <span class="at">freq =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb280-10"><a href="método-da-transformada-inversa.html#cb280-10" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="fu">dbinom</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="dv">10</span>,<span class="fl">0.5</span>))</span></code></pre></div>
-<p><img src="introR_files/figure-html/unnamed-chunk-220-1.png" width="672" /></p>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="método-da-transformada-inversa.html#cb284-1" tabindex="-1"></a><span class="co"># Gerando uma variável aleatória com distribuição Binomial(n,p)</span></span>
+<span id="cb284-2"><a href="método-da-transformada-inversa.html#cb284-2" tabindex="-1"></a></span>
+<span id="cb284-3"><a href="método-da-transformada-inversa.html#cb284-3" tabindex="-1"></a>gerar_binomial_inversa <span class="ot">&lt;-</span> <span class="cf">function</span>(n,p){</span>
+<span id="cb284-4"><a href="método-da-transformada-inversa.html#cb284-4" tabindex="-1"></a>  X <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">replicate</span>(n,<span class="fu">gerar_bernoulli_inversa</span>(p)))</span>
+<span id="cb284-5"><a href="método-da-transformada-inversa.html#cb284-5" tabindex="-1"></a>  <span class="fu">return</span>(X)</span>
+<span id="cb284-6"><a href="método-da-transformada-inversa.html#cb284-6" tabindex="-1"></a>}</span>
+<span id="cb284-7"><a href="método-da-transformada-inversa.html#cb284-7" tabindex="-1"></a></span>
+<span id="cb284-8"><a href="método-da-transformada-inversa.html#cb284-8" tabindex="-1"></a>valores <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">10000</span>,<span class="fu">gerar_binomial_inversa</span>(<span class="dv">10</span>,<span class="fl">0.5</span>))</span>
+<span id="cb284-9"><a href="método-da-transformada-inversa.html#cb284-9" tabindex="-1"></a><span class="fu">hist</span>(valores, <span class="at">freq =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb284-10"><a href="método-da-transformada-inversa.html#cb284-10" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="fu">dbinom</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="dv">10</span>,<span class="fl">0.5</span>))</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-224-1.png" width="672" /></p>
 <p><strong>Exemplo 5</strong>: Geração de uma variável aleatória com distribuição
 <span class="math inline">\(Geométrica(p)\)</span>. Seja <span class="math inline">\(X\sim Geometrica(p)\)</span>. Lembre que
 <span class="math display">\[P(X=x)=p(1-p)^{x-1}\]</span> e que
@@ -561,18 +561,18 @@ algoritmo é equivalente ao método da transformada inversa:</p>
 <li><p>Fazer <span class="math inline">\(X = \lfloor ln(U)/ln(1-p)\rfloor\)</span></p></li>
 </ol>
 <p>onde <span class="math inline">\(\lfloor  \rfloor =\)</span> maior inteiro.</p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="método-da-transformada-inversa.html#cb281-1" tabindex="-1"></a><span class="co"># Gerar uma variável aleatória com distribuição Geométrica(p)</span></span>
-<span id="cb281-2"><a href="método-da-transformada-inversa.html#cb281-2" tabindex="-1"></a></span>
-<span id="cb281-3"><a href="método-da-transformada-inversa.html#cb281-3" tabindex="-1"></a>gerar_geometrica_inversa <span class="ot">&lt;-</span> <span class="cf">function</span>(p){</span>
-<span id="cb281-4"><a href="método-da-transformada-inversa.html#cb281-4" tabindex="-1"></a>  U <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>)</span>
-<span id="cb281-5"><a href="método-da-transformada-inversa.html#cb281-5" tabindex="-1"></a>  X <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">log</span>(U)<span class="sc">/</span><span class="fu">log</span>(<span class="dv">1</span><span class="sc">-</span>p))</span>
-<span id="cb281-6"><a href="método-da-transformada-inversa.html#cb281-6" tabindex="-1"></a>  <span class="fu">return</span>(X)</span>
-<span id="cb281-7"><a href="método-da-transformada-inversa.html#cb281-7" tabindex="-1"></a>}</span>
-<span id="cb281-8"><a href="método-da-transformada-inversa.html#cb281-8" tabindex="-1"></a></span>
-<span id="cb281-9"><a href="método-da-transformada-inversa.html#cb281-9" tabindex="-1"></a>valores <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">10000</span>, <span class="fu">gerar_geometrica_inversa</span>(<span class="fl">0.5</span>))</span>
-<span id="cb281-10"><a href="método-da-transformada-inversa.html#cb281-10" tabindex="-1"></a><span class="fu">hist</span>(valores, <span class="at">freq =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb281-11"><a href="método-da-transformada-inversa.html#cb281-11" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="fu">dgeom</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="fl">0.5</span>))</span></code></pre></div>
-<p><img src="introR_files/figure-html/unnamed-chunk-221-1.png" width="672" /></p>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="método-da-transformada-inversa.html#cb285-1" tabindex="-1"></a><span class="co"># Gerar uma variável aleatória com distribuição Geométrica(p)</span></span>
+<span id="cb285-2"><a href="método-da-transformada-inversa.html#cb285-2" tabindex="-1"></a></span>
+<span id="cb285-3"><a href="método-da-transformada-inversa.html#cb285-3" tabindex="-1"></a>gerar_geometrica_inversa <span class="ot">&lt;-</span> <span class="cf">function</span>(p){</span>
+<span id="cb285-4"><a href="método-da-transformada-inversa.html#cb285-4" tabindex="-1"></a>  U <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>)</span>
+<span id="cb285-5"><a href="método-da-transformada-inversa.html#cb285-5" tabindex="-1"></a>  X <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">log</span>(U)<span class="sc">/</span><span class="fu">log</span>(<span class="dv">1</span><span class="sc">-</span>p))</span>
+<span id="cb285-6"><a href="método-da-transformada-inversa.html#cb285-6" tabindex="-1"></a>  <span class="fu">return</span>(X)</span>
+<span id="cb285-7"><a href="método-da-transformada-inversa.html#cb285-7" tabindex="-1"></a>}</span>
+<span id="cb285-8"><a href="método-da-transformada-inversa.html#cb285-8" tabindex="-1"></a></span>
+<span id="cb285-9"><a href="método-da-transformada-inversa.html#cb285-9" tabindex="-1"></a>valores <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">10000</span>, <span class="fu">gerar_geometrica_inversa</span>(<span class="fl">0.5</span>))</span>
+<span id="cb285-10"><a href="método-da-transformada-inversa.html#cb285-10" tabindex="-1"></a><span class="fu">hist</span>(valores, <span class="at">freq =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb285-11"><a href="método-da-transformada-inversa.html#cb285-11" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="fu">dgeom</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="fl">0.5</span>))</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-225-1.png" width="672" /></p>
 <p><strong>Exemplo 6</strong>: Geração de uma variável aleatória com distribuição de
 Poisson. A variável aleatória <span class="math inline">\(X\)</span> é de Poisson com média <span class="math inline">\(\lambda\)</span> se
 <span class="math display">\[p_{i} = P(X = i) = \frac{e^{-\lambda}\lambda^i}{i!}, \quad i=0,1,\ldots\]</span></p>
@@ -583,30 +583,30 @@ variável aleatória é dada pela seguinte identidade:
 quando elas são necessárias, o algoritmo da transformada inversa para
 gerar uma variável aleatória de Poisson com média <span class="math inline">\(\lambda\)</span> pode ser
 expresso da seguinte forma.</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="método-da-transformada-inversa.html#cb282-1" tabindex="-1"></a><span class="co"># Gerando uma va com distribuição de Poisson</span></span>
-<span id="cb282-2"><a href="método-da-transformada-inversa.html#cb282-2" tabindex="-1"></a></span>
-<span id="cb282-3"><a href="método-da-transformada-inversa.html#cb282-3" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="dv">3</span>  <span class="co"># exemplo com lambda = 3</span></span>
-<span id="cb282-4"><a href="método-da-transformada-inversa.html#cb282-4" tabindex="-1"></a></span>
-<span id="cb282-5"><a href="método-da-transformada-inversa.html#cb282-5" tabindex="-1"></a><span class="co"># Função para gerar uma variável aleatória de Poisson usando o método da transformada inversa</span></span>
-<span id="cb282-6"><a href="método-da-transformada-inversa.html#cb282-6" tabindex="-1"></a>gerar_poisson_inversa <span class="ot">&lt;-</span> <span class="cf">function</span>(lambda) {</span>
-<span id="cb282-7"><a href="método-da-transformada-inversa.html#cb282-7" tabindex="-1"></a>  U <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>)  <span class="co"># Gerar um número aleatório uniforme entre 0 e 1</span></span>
-<span id="cb282-8"><a href="método-da-transformada-inversa.html#cb282-8" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="sc">-</span>lambda)  <span class="co"># Inicializar a primeira probabilidade P(X=0)</span></span>
-<span id="cb282-9"><a href="método-da-transformada-inversa.html#cb282-9" tabindex="-1"></a>  F <span class="ot">&lt;-</span> p  <span class="co"># Inicializar a função de distribuição acumulada (CDF)</span></span>
-<span id="cb282-10"><a href="método-da-transformada-inversa.html#cb282-10" tabindex="-1"></a>  X <span class="ot">&lt;-</span> <span class="dv">0</span>  <span class="co"># Inicializar o valor da variável aleatória</span></span>
-<span id="cb282-11"><a href="método-da-transformada-inversa.html#cb282-11" tabindex="-1"></a>  </span>
-<span id="cb282-12"><a href="método-da-transformada-inversa.html#cb282-12" tabindex="-1"></a>  <span class="co"># Acumular probabilidades até que a CDF exceda U</span></span>
-<span id="cb282-13"><a href="método-da-transformada-inversa.html#cb282-13" tabindex="-1"></a>  <span class="cf">while</span> (U <span class="sc">&gt;</span> F) {</span>
-<span id="cb282-14"><a href="método-da-transformada-inversa.html#cb282-14" tabindex="-1"></a>    X <span class="ot">&lt;-</span> X <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb282-15"><a href="método-da-transformada-inversa.html#cb282-15" tabindex="-1"></a>    p <span class="ot">&lt;-</span> p <span class="sc">*</span> lambda <span class="sc">/</span> X  <span class="co"># Atualizar a probabilidade P(X=k)</span></span>
-<span id="cb282-16"><a href="método-da-transformada-inversa.html#cb282-16" tabindex="-1"></a>    F <span class="ot">&lt;-</span> F <span class="sc">+</span> p  <span class="co"># Atualizar a CDF</span></span>
-<span id="cb282-17"><a href="método-da-transformada-inversa.html#cb282-17" tabindex="-1"></a>  }</span>
-<span id="cb282-18"><a href="método-da-transformada-inversa.html#cb282-18" tabindex="-1"></a>  </span>
-<span id="cb282-19"><a href="método-da-transformada-inversa.html#cb282-19" tabindex="-1"></a>  <span class="fu">return</span>(X)</span>
-<span id="cb282-20"><a href="método-da-transformada-inversa.html#cb282-20" tabindex="-1"></a>}</span>
-<span id="cb282-21"><a href="método-da-transformada-inversa.html#cb282-21" tabindex="-1"></a></span>
-<span id="cb282-22"><a href="método-da-transformada-inversa.html#cb282-22" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">replicate</span>(<span class="dv">10000</span>,<span class="fu">gerar_poisson_inversa</span>(<span class="dv">3</span>)),<span class="at">freq =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb282-23"><a href="método-da-transformada-inversa.html#cb282-23" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="fu">dpois</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="dv">3</span>))</span></code></pre></div>
-<p><img src="introR_files/figure-html/unnamed-chunk-222-1.png" width="672" /></p>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="método-da-transformada-inversa.html#cb286-1" tabindex="-1"></a><span class="co"># Gerando uma va com distribuição de Poisson</span></span>
+<span id="cb286-2"><a href="método-da-transformada-inversa.html#cb286-2" tabindex="-1"></a></span>
+<span id="cb286-3"><a href="método-da-transformada-inversa.html#cb286-3" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="dv">3</span>  <span class="co"># exemplo com lambda = 3</span></span>
+<span id="cb286-4"><a href="método-da-transformada-inversa.html#cb286-4" tabindex="-1"></a></span>
+<span id="cb286-5"><a href="método-da-transformada-inversa.html#cb286-5" tabindex="-1"></a><span class="co"># Função para gerar uma variável aleatória de Poisson usando o método da transformada inversa</span></span>
+<span id="cb286-6"><a href="método-da-transformada-inversa.html#cb286-6" tabindex="-1"></a>gerar_poisson_inversa <span class="ot">&lt;-</span> <span class="cf">function</span>(lambda) {</span>
+<span id="cb286-7"><a href="método-da-transformada-inversa.html#cb286-7" tabindex="-1"></a>  U <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>)  <span class="co"># Gerar um número aleatório uniforme entre 0 e 1</span></span>
+<span id="cb286-8"><a href="método-da-transformada-inversa.html#cb286-8" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="sc">-</span>lambda)  <span class="co"># Inicializar a primeira probabilidade P(X=0)</span></span>
+<span id="cb286-9"><a href="método-da-transformada-inversa.html#cb286-9" tabindex="-1"></a>  F <span class="ot">&lt;-</span> p  <span class="co"># Inicializar a função de distribuição acumulada (CDF)</span></span>
+<span id="cb286-10"><a href="método-da-transformada-inversa.html#cb286-10" tabindex="-1"></a>  X <span class="ot">&lt;-</span> <span class="dv">0</span>  <span class="co"># Inicializar o valor da variável aleatória</span></span>
+<span id="cb286-11"><a href="método-da-transformada-inversa.html#cb286-11" tabindex="-1"></a>  </span>
+<span id="cb286-12"><a href="método-da-transformada-inversa.html#cb286-12" tabindex="-1"></a>  <span class="co"># Acumular probabilidades até que a CDF exceda U</span></span>
+<span id="cb286-13"><a href="método-da-transformada-inversa.html#cb286-13" tabindex="-1"></a>  <span class="cf">while</span> (U <span class="sc">&gt;</span> F) {</span>
+<span id="cb286-14"><a href="método-da-transformada-inversa.html#cb286-14" tabindex="-1"></a>    X <span class="ot">&lt;-</span> X <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb286-15"><a href="método-da-transformada-inversa.html#cb286-15" tabindex="-1"></a>    p <span class="ot">&lt;-</span> p <span class="sc">*</span> lambda <span class="sc">/</span> X  <span class="co"># Atualizar a probabilidade P(X=k)</span></span>
+<span id="cb286-16"><a href="método-da-transformada-inversa.html#cb286-16" tabindex="-1"></a>    F <span class="ot">&lt;-</span> F <span class="sc">+</span> p  <span class="co"># Atualizar a CDF</span></span>
+<span id="cb286-17"><a href="método-da-transformada-inversa.html#cb286-17" tabindex="-1"></a>  }</span>
+<span id="cb286-18"><a href="método-da-transformada-inversa.html#cb286-18" tabindex="-1"></a>  </span>
+<span id="cb286-19"><a href="método-da-transformada-inversa.html#cb286-19" tabindex="-1"></a>  <span class="fu">return</span>(X)</span>
+<span id="cb286-20"><a href="método-da-transformada-inversa.html#cb286-20" tabindex="-1"></a>}</span>
+<span id="cb286-21"><a href="método-da-transformada-inversa.html#cb286-21" tabindex="-1"></a></span>
+<span id="cb286-22"><a href="método-da-transformada-inversa.html#cb286-22" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">replicate</span>(<span class="dv">10000</span>,<span class="fu">gerar_poisson_inversa</span>(<span class="dv">3</span>)),<span class="at">freq =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb286-23"><a href="método-da-transformada-inversa.html#cb286-23" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="fu">dpois</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="dv">3</span>))</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-226-1.png" width="672" /></p>
 </div>
 <div id="exercícios-21" class="section level2 hasAnchor" number="19.2">
 <h2><span class="header-section-number">19.2</span> Exercícios<a href="método-da-transformada-inversa.html#exercícios-21" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -660,22 +660,22 @@ e tomando <span class="math inline">\(X = F^{-1}(U)\)</span>.</p>
 <span class="math inline">\(F^{-1}(x)=\sqrt{x}\)</span>. O método da transformada inversa diz que se
 <span class="math inline">\(U\sim U(0,1)\)</span>, então <span class="math inline">\(F^{-1}(U)=\sqrt{U}\)</span> tem a mesma distribuição que
 <span class="math inline">\(X\)</span>. Portanto, para simular <span class="math inline">\(X\)</span>, basta gerar <span class="math inline">\(\sqrt{U}\)</span>.</p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="método-da-transformada-inversa.html#cb283-1" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
-<span id="cb283-2"><a href="método-da-transformada-inversa.html#cb283-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb283-3"><a href="método-da-transformada-inversa.html#cb283-3" tabindex="-1"></a>simlist <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">runif</span>(n))</span>
-<span id="cb283-4"><a href="método-da-transformada-inversa.html#cb283-4" tabindex="-1"></a><span class="fu">hist</span>(simlist, <span class="at">prob=</span>T, <span class="at">main=</span><span class="st">&quot;&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;&quot;</span>)</span>
-<span id="cb283-5"><a href="método-da-transformada-inversa.html#cb283-5" tabindex="-1"></a><span class="fu">curve</span>(<span class="dv">2</span><span class="sc">*</span>x, <span class="dv">0</span>,<span class="dv">1</span>, <span class="at">add=</span>T)</span></code></pre></div>
-<p><img src="introR_files/figure-html/unnamed-chunk-223-1.png" width="672" /></p>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="método-da-transformada-inversa.html#cb287-1" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb287-2"><a href="método-da-transformada-inversa.html#cb287-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb287-3"><a href="método-da-transformada-inversa.html#cb287-3" tabindex="-1"></a>simlist <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">runif</span>(n))</span>
+<span id="cb287-4"><a href="método-da-transformada-inversa.html#cb287-4" tabindex="-1"></a><span class="fu">hist</span>(simlist, <span class="at">prob=</span>T, <span class="at">main=</span><span class="st">&quot;&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb287-5"><a href="método-da-transformada-inversa.html#cb287-5" tabindex="-1"></a><span class="fu">curve</span>(<span class="dv">2</span><span class="sc">*</span>x, <span class="dv">0</span>,<span class="dv">1</span>, <span class="at">add=</span>T)</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-227-1.png" width="672" /></p>
 <p><strong>Exemplo 2</strong>: Geração de uma variável aleatória <span class="math inline">\(Uniforme(a,b)\)</span>. A
 geração é feita através de <span class="math display">\[X = a+(b-a)U.\]</span></p>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="método-da-transformada-inversa.html#cb284-1" tabindex="-1"></a><span class="co"># Geração de uma va uniforme(-2,2)</span></span>
-<span id="cb284-2"><a href="método-da-transformada-inversa.html#cb284-2" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">2</span></span>
-<span id="cb284-3"><a href="método-da-transformada-inversa.html#cb284-3" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb284-4"><a href="método-da-transformada-inversa.html#cb284-4" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
-<span id="cb284-5"><a href="método-da-transformada-inversa.html#cb284-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb284-6"><a href="método-da-transformada-inversa.html#cb284-6" tabindex="-1"></a>simlist <span class="ot">&lt;-</span> a<span class="sc">+</span>(b<span class="sc">-</span>a)<span class="sc">*</span><span class="fu">runif</span>(n)</span>
-<span id="cb284-7"><a href="método-da-transformada-inversa.html#cb284-7" tabindex="-1"></a><span class="fu">hist</span>(simlist, <span class="at">prob=</span>T, <span class="at">main=</span><span class="st">&quot;&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
-<p><img src="introR_files/figure-html/unnamed-chunk-224-1.png" width="672" /></p>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="método-da-transformada-inversa.html#cb288-1" tabindex="-1"></a><span class="co"># Geração de uma va uniforme(-2,2)</span></span>
+<span id="cb288-2"><a href="método-da-transformada-inversa.html#cb288-2" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">2</span></span>
+<span id="cb288-3"><a href="método-da-transformada-inversa.html#cb288-3" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb288-4"><a href="método-da-transformada-inversa.html#cb288-4" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb288-5"><a href="método-da-transformada-inversa.html#cb288-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb288-6"><a href="método-da-transformada-inversa.html#cb288-6" tabindex="-1"></a>simlist <span class="ot">&lt;-</span> a<span class="sc">+</span>(b<span class="sc">-</span>a)<span class="sc">*</span><span class="fu">runif</span>(n)</span>
+<span id="cb288-7"><a href="método-da-transformada-inversa.html#cb288-7" tabindex="-1"></a><span class="fu">hist</span>(simlist, <span class="at">prob=</span>T, <span class="at">main=</span><span class="st">&quot;&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-228-1.png" width="672" /></p>
 <p><strong>Exemplo 3</strong>: Geração de uma variável aleatória exponencial. Seja <span class="math inline">\(X\)</span>
 uma variável aleatória exponencial com taxa 1, então sua função de
 distribuição é dada por <span class="math display">\[F(x)=1-e^{x}.\]</span> Como <span class="math inline">\(0\leq F(x)\leq 1\)</span>,
@@ -692,29 +692,29 @@ qualquer constante <span class="math inline">\(c\)</span>, <span class="math inl
 variável aleatória exponencial <span class="math inline">\(X\)</span> com taxa <span class="math inline">\(\lambda\)</span> (média
 <span class="math inline">\(\frac{1}{\lambda}\)</span>) pode ser gerada através da geração de um número
 aleatório <span class="math inline">\(U\)</span> e fazendo <span class="math display">\[X = -\frac{1}{\lambda}ln (U).\]</span></p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="método-da-transformada-inversa.html#cb285-1" tabindex="-1"></a><span class="co"># Definir a sequência de valores x</span></span>
-<span id="cb285-2"><a href="método-da-transformada-inversa.html#cb285-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">3</span>, <span class="at">by =</span> <span class="fl">0.02</span>)</span>
-<span id="cb285-3"><a href="método-da-transformada-inversa.html#cb285-3" tabindex="-1"></a></span>
-<span id="cb285-4"><a href="método-da-transformada-inversa.html#cb285-4" tabindex="-1"></a><span class="co"># Definir o parâmetro lambda da distribuição exponencial</span></span>
-<span id="cb285-5"><a href="método-da-transformada-inversa.html#cb285-5" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb285-6"><a href="método-da-transformada-inversa.html#cb285-6" tabindex="-1"></a></span>
-<span id="cb285-7"><a href="método-da-transformada-inversa.html#cb285-7" tabindex="-1"></a><span class="co"># Número de simulação</span></span>
-<span id="cb285-8"><a href="método-da-transformada-inversa.html#cb285-8" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
-<span id="cb285-9"><a href="método-da-transformada-inversa.html#cb285-9" tabindex="-1"></a></span>
-<span id="cb285-10"><a href="método-da-transformada-inversa.html#cb285-10" tabindex="-1"></a><span class="co"># Simular valores de uma distribuição exponencial</span></span>
-<span id="cb285-11"><a href="método-da-transformada-inversa.html#cb285-11" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb285-12"><a href="método-da-transformada-inversa.html#cb285-12" tabindex="-1"></a>simlist <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log</span>(<span class="fu">runif</span>(n))<span class="sc">/</span>lambda</span>
-<span id="cb285-13"><a href="método-da-transformada-inversa.html#cb285-13" tabindex="-1"></a></span>
-<span id="cb285-14"><a href="método-da-transformada-inversa.html#cb285-14" tabindex="-1"></a><span class="co"># Plotar o histograma da simulação com a densidade de probabilidade</span></span>
-<span id="cb285-15"><a href="método-da-transformada-inversa.html#cb285-15" tabindex="-1"></a><span class="fu">hist</span>(simlist, <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">main =</span> <span class="st">&quot;Comparação da Distribuição Exponencial Simulada e Teórica&quot;</span>,</span>
-<span id="cb285-16"><a href="método-da-transformada-inversa.html#cb285-16" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Valores&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Densidade&quot;</span>, <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="at">border =</span> <span class="st">&quot;black&quot;</span>)</span>
-<span id="cb285-17"><a href="método-da-transformada-inversa.html#cb285-17" tabindex="-1"></a></span>
-<span id="cb285-18"><a href="método-da-transformada-inversa.html#cb285-18" tabindex="-1"></a><span class="co"># Adicionar a curva de densidade teórica</span></span>
-<span id="cb285-19"><a href="método-da-transformada-inversa.html#cb285-19" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dexp</span>(x, <span class="at">rate =</span> lambda), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb285-20"><a href="método-da-transformada-inversa.html#cb285-20" tabindex="-1"></a></span>
-<span id="cb285-21"><a href="método-da-transformada-inversa.html#cb285-21" tabindex="-1"></a><span class="co"># Adicionar uma legenda</span></span>
-<span id="cb285-22"><a href="método-da-transformada-inversa.html#cb285-22" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;Simulação&quot;</span>, <span class="st">&quot;Teórica&quot;</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;red&quot;</span>), <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">fill =</span> <span class="fu">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="cn">NA</span>))</span></code></pre></div>
-<p><img src="introR_files/figure-html/unnamed-chunk-225-1.png" width="672" /></p>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="método-da-transformada-inversa.html#cb289-1" tabindex="-1"></a><span class="co"># Definir a sequência de valores x</span></span>
+<span id="cb289-2"><a href="método-da-transformada-inversa.html#cb289-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">3</span>, <span class="at">by =</span> <span class="fl">0.02</span>)</span>
+<span id="cb289-3"><a href="método-da-transformada-inversa.html#cb289-3" tabindex="-1"></a></span>
+<span id="cb289-4"><a href="método-da-transformada-inversa.html#cb289-4" tabindex="-1"></a><span class="co"># Definir o parâmetro lambda da distribuição exponencial</span></span>
+<span id="cb289-5"><a href="método-da-transformada-inversa.html#cb289-5" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb289-6"><a href="método-da-transformada-inversa.html#cb289-6" tabindex="-1"></a></span>
+<span id="cb289-7"><a href="método-da-transformada-inversa.html#cb289-7" tabindex="-1"></a><span class="co"># Número de simulação</span></span>
+<span id="cb289-8"><a href="método-da-transformada-inversa.html#cb289-8" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb289-9"><a href="método-da-transformada-inversa.html#cb289-9" tabindex="-1"></a></span>
+<span id="cb289-10"><a href="método-da-transformada-inversa.html#cb289-10" tabindex="-1"></a><span class="co"># Simular valores de uma distribuição exponencial</span></span>
+<span id="cb289-11"><a href="método-da-transformada-inversa.html#cb289-11" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb289-12"><a href="método-da-transformada-inversa.html#cb289-12" tabindex="-1"></a>simlist <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log</span>(<span class="fu">runif</span>(n))<span class="sc">/</span>lambda</span>
+<span id="cb289-13"><a href="método-da-transformada-inversa.html#cb289-13" tabindex="-1"></a></span>
+<span id="cb289-14"><a href="método-da-transformada-inversa.html#cb289-14" tabindex="-1"></a><span class="co"># Plotar o histograma da simulação com a densidade de probabilidade</span></span>
+<span id="cb289-15"><a href="método-da-transformada-inversa.html#cb289-15" tabindex="-1"></a><span class="fu">hist</span>(simlist, <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">main =</span> <span class="st">&quot;Comparação da Distribuição Exponencial Simulada e Teórica&quot;</span>,</span>
+<span id="cb289-16"><a href="método-da-transformada-inversa.html#cb289-16" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Valores&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Densidade&quot;</span>, <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="at">border =</span> <span class="st">&quot;black&quot;</span>)</span>
+<span id="cb289-17"><a href="método-da-transformada-inversa.html#cb289-17" tabindex="-1"></a></span>
+<span id="cb289-18"><a href="método-da-transformada-inversa.html#cb289-18" tabindex="-1"></a><span class="co"># Adicionar a curva de densidade teórica</span></span>
+<span id="cb289-19"><a href="método-da-transformada-inversa.html#cb289-19" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dexp</span>(x, <span class="at">rate =</span> lambda), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb289-20"><a href="método-da-transformada-inversa.html#cb289-20" tabindex="-1"></a></span>
+<span id="cb289-21"><a href="método-da-transformada-inversa.html#cb289-21" tabindex="-1"></a><span class="co"># Adicionar uma legenda</span></span>
+<span id="cb289-22"><a href="método-da-transformada-inversa.html#cb289-22" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;Simulação&quot;</span>, <span class="st">&quot;Teórica&quot;</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;red&quot;</span>), <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">fill =</span> <span class="fu">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="cn">NA</span>))</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-229-1.png" width="672" /></p>
 </div>
 <div id="exercícios-22" class="section level2 hasAnchor" number="19.4">
 <h2><span class="header-section-number">19.4</span> Exercícios<a href="método-da-transformada-inversa.html#exercícios-22" class="anchor-section" aria-label="Anchor link to header"></a></h2>
