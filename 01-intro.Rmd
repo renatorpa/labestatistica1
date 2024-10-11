@@ -4073,12 +4073,7 @@ install.packages("magrittr")
 library(magrittr)
 ```
 
-O operador pipe `%>%` permite que o valor de uma expressão à esquerda
-seja passado como o primeiro argumento para a função à direita. Isso
-permite que o **código seja lido de maneira sequencial, de cima para
-baixo, em vez de dentro para fora**, o que facilita a compreensão do fluxo
-de dados. Por exemplo, considere o seguinte código em R sem o uso do
-pipe:
+O operador pipe `%>%` permite que o **valor de uma expressão à esquerda seja passado como o primeiro argumento para a função à direita**. Isso permite que o **código seja lido de maneira sequencial, de cima para baixo, em vez de dentro para fora**, o que facilita a compreensão do fluxo de dados. Por exemplo, considere o seguinte código em R sem o uso do pipe:
 
 ```{r eval=FALSE}
 x <- c(1, 2, 3, 4)
@@ -4115,10 +4110,7 @@ resultado <- x %>%
 
 **Uso do Ponto (.) no Pipe**
 
-Em alguns casos, o resultado do lado esquerdo do operador pipe deve ser
-passado para um argumento que não é o primeiro na função do lado
-direito. Para esses casos, usamos um ponto (.) como um marcador para
-indicar onde o valor deve ser inserido.
+Em alguns casos, o **resultado do lado esquerdo do operador pipe deve ser passado para um argumento que não é o primeiro na função do lado direito**. Para esses casos, usamos um ponto (.) como um marcador para indicar onde o valor deve ser inserido.
 
 Por exemplo, ao usar o pipe para construir um modelo linear com o
 conjunto de dados `airquality`, queremos que o dataset seja passado como
@@ -4225,7 +4217,7 @@ print(result)
 
 Reescreva o código acima usando o operador pipe (`%>%`). Dica: use a função `summarise()`.
 
-**7.** Dado o dataset `mtcar`s, crie uma nova coluna chamada `hp_per_wt` que seja a razão entre `hp` e `wt`. Em seguida, filtre os carros com essa razão maior que 30, e selecione as colunas `mpg`, `hp_per_wt`, e `gear`.
+**7.** Dado o dataset `mtcars`, crie uma nova coluna chamada `hp_per_wt` que seja a razão entre `hp` e `wt`. Em seguida, filtre os carros com essa razão maior que 30, e selecione as colunas `mpg`, `hp_per_wt`, e `gear`.
 
 ```{r eval=FALSE}
 # Sem o operador pipe

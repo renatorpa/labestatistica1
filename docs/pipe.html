@@ -446,12 +446,7 @@ temporárias.</p>
 carregar o pacote <code>magrittr</code>.</p>
 <div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="pipe.html#cb123-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;magrittr&quot;</span>)</span>
 <span id="cb123-2"><a href="pipe.html#cb123-2" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span></code></pre></div>
-<p>O operador pipe <code>%&gt;%</code> permite que o valor de uma expressão à esquerda
-seja passado como o primeiro argumento para a função à direita. Isso
-permite que o <strong>código seja lido de maneira sequencial, de cima para
-baixo, em vez de dentro para fora</strong>, o que facilita a compreensão do fluxo
-de dados. Por exemplo, considere o seguinte código em R sem o uso do
-pipe:</p>
+<p>O operador pipe <code>%&gt;%</code> permite que o <strong>valor de uma expressão à esquerda seja passado como o primeiro argumento para a função à direita</strong>. Isso permite que o <strong>código seja lido de maneira sequencial, de cima para baixo, em vez de dentro para fora</strong>, o que facilita a compreensão do fluxo de dados. Por exemplo, considere o seguinte código em R sem o uso do pipe:</p>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="pipe.html#cb124-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
 <span id="cb124-2"><a href="pipe.html#cb124-2" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">sum</span>(x))</span>
 <span id="cb124-3"><a href="pipe.html#cb124-3" tabindex="-1"></a><span class="do">## [1] 3.16</span></span></code></pre></div>
@@ -471,10 +466,7 @@ mais clara:</p>
 <span id="cb127-4"><a href="pipe.html#cb127-4" tabindex="-1"></a>  <span class="fu">sum</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb127-5"><a href="pipe.html#cb127-5" tabindex="-1"></a>  <span class="fu">sqrt</span>()</span></code></pre></div>
 <p><strong>Uso do Ponto (.) no Pipe</strong></p>
-<p>Em alguns casos, o resultado do lado esquerdo do operador pipe deve ser
-passado para um argumento que não é o primeiro na função do lado
-direito. Para esses casos, usamos um ponto (.) como um marcador para
-indicar onde o valor deve ser inserido.</p>
+<p>Em alguns casos, o <strong>resultado do lado esquerdo do operador pipe deve ser passado para um argumento que não é o primeiro na função do lado direito</strong>. Para esses casos, usamos um ponto (.) como um marcador para indicar onde o valor deve ser inserido.</p>
 <p>Por exemplo, ao usar o pipe para construir um modelo linear com o
 conjunto de dados <code>airquality</code>, queremos que o dataset seja passado como
 o segundo argumento (<code>data =</code>) da função <code>lm()</code>:</p>
@@ -547,7 +539,7 @@ das funções caso precise.</p>
 <span id="cb134-4"><a href="pipe.html#cb134-4" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">mean</span>(filtered_data<span class="sc">$</span>Ozone)</span>
 <span id="cb134-5"><a href="pipe.html#cb134-5" tabindex="-1"></a><span class="fu">print</span>(result)</span></code></pre></div>
 <p>Reescreva o código acima usando o operador pipe (<code>%&gt;%</code>). Dica: use a função <code>summarise()</code>.</p>
-<p><strong>7.</strong> Dado o dataset <code>mtcar</code>s, crie uma nova coluna chamada <code>hp_per_wt</code> que seja a razão entre <code>hp</code> e <code>wt</code>. Em seguida, filtre os carros com essa razão maior que 30, e selecione as colunas <code>mpg</code>, <code>hp_per_wt</code>, e <code>gear</code>.</p>
+<p><strong>7.</strong> Dado o dataset <code>mtcars</code>, crie uma nova coluna chamada <code>hp_per_wt</code> que seja a razão entre <code>hp</code> e <code>wt</code>. Em seguida, filtre os carros com essa razão maior que 30, e selecione as colunas <code>mpg</code>, <code>hp_per_wt</code>, e <code>gear</code>.</p>
 <div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="pipe.html#cb135-1" tabindex="-1"></a><span class="co"># Sem o operador pipe</span></span>
 <span id="cb135-2"><a href="pipe.html#cb135-2" tabindex="-1"></a>mtcars<span class="sc">$</span>hp_per_wt <span class="ot">&lt;-</span> mtcars<span class="sc">$</span>hp <span class="sc">/</span> mtcars<span class="sc">$</span>wt</span>
 <span id="cb135-3"><a href="pipe.html#cb135-3" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> <span class="fu">filter</span>(mtcars, hp_per_wt <span class="sc">&gt;</span> <span class="dv">30</span>)</span>
