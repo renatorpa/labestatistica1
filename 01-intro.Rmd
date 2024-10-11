@@ -4150,13 +4150,13 @@ este fluxo de operações seja descrito de forma clara e linear.
 
 ## Exercícios
 
-**1.** Reescreva a expressão abaixo utilizando o `%>%`,
+**1.** Reescreva a expressão abaixo utilizando o `%>%`.
 
 ```{r eval=FALSE}
 round(mean(sum(1:10)/3), digits = 1)
 ```
 
-**Dica**: utilize a função `magrittr::divide_by()`, Veja o help da
+**Dica**: utilize a função `magrittr::divide_by()`. Veja o help da
 função para mais informações.
 
 **2.** Reescreva o código abaixo utilizando o `%>%`.
@@ -4189,6 +4189,8 @@ das funções caso precise.
 
 ```{r eval=FALSE}
 # Sem o operador pipe
+install.packages("dplyr")
+library(dplyr)
 result <- arrange(filter(select(mtcars, mpg, hp, wt), hp > 100), wt)
 print(result)
 ```
@@ -4203,7 +4205,7 @@ result <- aggregate(Sepal.Length ~ Species, data = select(filter(iris, Sepal.Len
 print(result)
 ```
 
-Reescreva o código acima usando o operador pipe (`%>%`). 
+Reescreva o código acima usando o operador pipe (`%>%`).
 
 **6.** Utilizando o dataset `airquality`, remova as linhas que contêm valores ausentes (`NA`), selecione as colunas `Ozone` e `Wind`, e calcule a média de `Ozone` para valores onde `Wind` é maior que 10.
 

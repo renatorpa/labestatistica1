@@ -501,9 +501,9 @@ este fluxo de operações seja descrito de forma clara e linear.</p>
 </div>
 <div id="exercícios-9" class="section level2 hasAnchor" number="10.2">
 <h2><span class="header-section-number">10.2</span> Exercícios<a href="pipe.html#exercícios-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>1.</strong> Reescreva a expressão abaixo utilizando o <code>%&gt;%</code>,</p>
+<p><strong>1.</strong> Reescreva a expressão abaixo utilizando o <code>%&gt;%</code>.</p>
 <div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="pipe.html#cb129-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">mean</span>(<span class="fu">sum</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)<span class="sc">/</span><span class="dv">3</span>), <span class="at">digits =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p><strong>Dica</strong>: utilize a função <code>magrittr::divide_by()</code>, Veja o help da
+<p><strong>Dica</strong>: utilize a função <code>magrittr::divide_by()</code>. Veja o help da
 função para mais informações.</p>
 <p><strong>2.</strong> Reescreva o código abaixo utilizando o <code>%&gt;%</code>.</p>
 <div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="pipe.html#cb130-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
@@ -524,8 +524,10 @@ das funções caso precise.</p>
 <span id="cb131-5"><a href="pipe.html#cb131-5" tabindex="-1"></a>  <span class="fu">equals</span>(<span class="dv">5</span>)</span></code></pre></div>
 <p><strong>4.</strong> Dado o dataset <code>mtcars</code>, selecione as colunas <code>mpg</code>, <code>hp</code>, e <code>wt</code>, filtre os carros com mais de 100 cavalos de potência (<code>hp &gt; 100</code>), e ordene-os pela coluna <code>wt</code> (peso) de forma crescente.</p>
 <div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="pipe.html#cb132-1" tabindex="-1"></a><span class="co"># Sem o operador pipe</span></span>
-<span id="cb132-2"><a href="pipe.html#cb132-2" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">arrange</span>(<span class="fu">filter</span>(<span class="fu">select</span>(mtcars, mpg, hp, wt), hp <span class="sc">&gt;</span> <span class="dv">100</span>), wt)</span>
-<span id="cb132-3"><a href="pipe.html#cb132-3" tabindex="-1"></a><span class="fu">print</span>(result)</span></code></pre></div>
+<span id="cb132-2"><a href="pipe.html#cb132-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>)</span>
+<span id="cb132-3"><a href="pipe.html#cb132-3" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb132-4"><a href="pipe.html#cb132-4" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">arrange</span>(<span class="fu">filter</span>(<span class="fu">select</span>(mtcars, mpg, hp, wt), hp <span class="sc">&gt;</span> <span class="dv">100</span>), wt)</span>
+<span id="cb132-5"><a href="pipe.html#cb132-5" tabindex="-1"></a><span class="fu">print</span>(result)</span></code></pre></div>
 <p>Reescreva o código acima usando o operador pipe (<code>%&gt;%</code>).</p>
 <p><strong>5.</strong> Dado o dataset <code>iris</code>, filtre as linhas onde <code>Sepal.Length</code> seja maior que 5, selecione as colunas <code>Sepal.Length</code> e <code>Species</code>, e depois calcule a média de <code>Sepal.Length</code> para cada espécie.</p>
 <div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="pipe.html#cb133-1" tabindex="-1"></a><span class="co"># Sem o operador pipe</span></span>
