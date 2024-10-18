@@ -4555,7 +4555,7 @@ vetor `valores <- c(1, 3, 4, 6, 9, 11, 14)`. Utilize um loop `for`.
 **6.** Escreva um programa em R que leia um número inteiro e use um loop
 `for` para imprimir sua a tabuada de 1 a 10.
 
-**7.** Escreva um programa em R que leia um número inteiro u use um loop `for` para criar o vetor `c(1,2,...,n-1,n)`.
+**7.** Escreva um programa em R que leia um número inteiro e use um loop `for` para criar o vetor `c(1,2,...,n-1,n)`.
 
 **8.** Escreva um programa em R que leia um número inteiro e use um loop
 `for` para determinar se o número é perfeito ou não. Um número perfeito
@@ -4635,7 +4635,7 @@ apply(X, MARGIN, FUN)
 -   `X`: A matriz ou data frame a ser manipulado.
 
 -   `MARGIN`: Um valor que indica se a função deve ser aplicada às
-    linhas (1) ou colunas (2).
+    linhas (1) ou colunas (2) ou ambas `c(1,2)`.
 
 -   `FUN`: A função que será aplicada.
 
@@ -4989,18 +4989,7 @@ minha_lista <- list(1:5, c("A", "B", "C"), matrix(1:4, nrow = 2))
 
 ```
 
-**6.** Crie dois vetores numéricos, `a <- c(2, 4, 6)` e
-`b <- c(3, 5, 7)`. Use `mapply()` para multiplicar cada elemento de `a`
-com o elemento correspondente de `b`. Verifique o resultado.
-
-```{r}
-a <- c(2, 4, 6)
-b <- c(3, 5, 7)
-# Sua solução aqui
-
-```
-
-**7.** Crie um vetor numeros contendo os números de 1 a 10. Use a função
+**6.** Crie um vetor `numeros` contendo os números de 1 a 10. Use a função
 `sapply()` para aplicar uma função personalizada que retorne “par” se o
 número for par e “ímpar” se o número for ímpar.
 
@@ -5010,7 +4999,7 @@ numeros <- 1:10
 
 ```
 
-**8.** Use o conjunto de dados `iris`. Utilize `tapply()` para calcular
+**7.** Use o conjunto de dados `iris`. Utilize `tapply()` para calcular
 a média do comprimento das pétalas (`Petal.Length`) por espécie
 (`Species`) e a variância da largura das sépalas (`Sepal.Width`) por
 espécie.
@@ -5021,10 +5010,10 @@ data(iris)
 
 ```
 
-**9.** Use o conjunto de dados `mtcars`. Use `apply()` para normalizar
-(escala de 0 a 1) todas as colunas numéricas do data frame. Em seguida,
+**8.** Use o conjunto de dados `mtcars`. Use `apply()` para normalizar
+(escala de 0 a 1) todas as colunas numéricas do data frame. Converta o resultado num data frame. Em seguida,
 use `lapply()` para aplicar a função `summary()` a cada coluna
-normalizada para verificar o resultado.
+normalizada para verificar o resultado. Valor normalizado $\frac{x-min(x)}{max(x)-min(x)}$.
 
 ```{r}
 data(mtcars)
@@ -5032,6 +5021,58 @@ data(mtcars)
 
 
 ```
+
+**9.** Um professor quer analisar o desempenho dos alunos em quatro exames. Ele registou as notas de 30 alunos, e agora deseja calcular algumas estatísticas descritivas.
+
+* Crie um data frame `notas_alunos` com 30 linhas (representando 30 alunos) e 4 colunas (representando os 4 exames).
+* Preencha o data frame com valores aleatórios entre 0 e 100, para simular as notas. Use a função `runif()`.
+* Utilize `apply()` para calcular a média de cada aluno em todos os exames.
+* Em seguida, utilize `sapply()` para calcular a nota mínima e a nota máxima de cada exame.
+
+**10.** Um gestor de marketing está a analisar o número de clientes que visitam quatro lojas ao longo de um mês. Ele quer verificar a frequência média e as tendências para cada loja.
+
+* Crie uma matriz chamada `frequencia_lojas` com 4 linhas (representando 4 lojas) e 30 colunas (representando os dias do mês).
+* Preencha a matriz com valores aleatórios entre 0 e 200, representando o número de clientes diários em cada loja. Use a função `sample()`.
+* Utilize `apply()` para calcular a média diária de clientes em cada loja ao longo dos 30 dias.
+* Em seguida, utilize `apply()` para calcular a soma total de clientes de cada loja durante o mês.
+* Converta a matriz `frequencia_lojas` em um data frame e use `sapply()` para calcular o desvio padrão do número de clientes em cada dia do mês (cada coluna), para verificar a variação de clientes ao longo dos dias.
+
+# Exercícios de Revisão
+
+**1** Um pesquisador está a analisar os resultados de uma pesquisa que avalia a satisfação de clientes com diferentes serviços. Ele quer calcular a média de satisfação de cada cliente e classificar os clientes em satisfeitos ou insatisfeitos.
+
+* Crie um data frame chamado `satisfacao` com 10 linhas (clientes) e 3 colunas (representando os serviços).
+* Preencha o data frame com valores aleatórios entre 1 e 10.
+* Escreva uma função chamada `calcula_media` que receba o data frame e calcule a média de satisfação para cada cliente. Adicione uma coluna ao data frame com a média de satisfação.
+* Utilize um loop `for` para percorrer as médias e classificar cada cliente como “Satisfeito” (média >= 7) ou “Insatisfeito” (média < 7), usando a estrutura `if-else`. Adicione uma coluna ao data frame com o grau de satisfação.
+
+**2.** Uma empresa registou o número de tarefas realizadas por 15 funcionários durante 5 dias. A empresa quer saber quem atingiu a meta diária de 20 tarefas.
+
+* Crie um data frame chamado `tarefa_funcionarios` com 15 linhas (funcionários) e 5 colunas (dias).
+* Preencha o data frame com valores aleatórios entre 10 e 30, representando o número de tarefas concluídas por dia.
+* Escreva uma função chamada `verifica_meta` que receba o data frame e verifique, para cada funcionário, se ele atingiu a meta de 20 tarefas em pelo menos 3 dias.
+* Utilize um loop `for` e a estrutura `if-else` para classificar os funcionários como “Atingiu Meta” ou “Não Atingiu Meta”, criando um vetor de saída com esses resultados.
+
+**3.** Um estatístico está a simular amostras de diferentes populações para estudar a variabilidade das médias. Ele quer gerar amostras de diferentes tamanhos e calcular a média de cada amostra, parando a simulação quando a média exceder um valor limite.
+
+* Crie uma matriz `amostras` com 6 linhas e 15 colunas, onde cada linha representa uma amostra de tamanho 15.
+* Preencha a matriz com valores aleatórios entre 0 e 100.
+* Crie uma função chamada `calcula_media_amostra` que receba a matriz e calcule a média de cada amostra.
+* Utilize um loop `while` para calcular as médias das amostras e, em cada iteração, verifique se a média da amostra excede 75. Caso ultrapasse, imprima “Média Excedeu Limite”, e caso contrário, continue o cálculo até todas as amostras serem processadas.
+
+**4.** Um climatologista está a analisar as temperaturas médias diárias em 12 cidades ao longo de uma semana. Ele quer calcular a temperatura média semanal de cada cidade e identificar se a média semanal está acima ou abaixo de uma temperatura de referência de 25ºC.
+
+* Crie uma matriz chamada `temperaturas_cidades` com 12 linhas (cidades) e 7 colunas (dias da semana).
+* Preencha a matriz com valores aleatórios entre 10 e 40, representando as temperaturas diárias.
+* Crie uma função chamada `calcula_media_temperaturas` que receba a matriz e calcule a média de cada cidade.
+* Utilize um loop `while` para iterar sobre as cidades e, com base na média calculada, use `if-else` para indicar se a média semanal de temperatura está “Acima de 25ºC” ou “Abaixo de 25ºC”.
+
+**5.** Uma empresa realizou uma pesquisa de satisfação com 15 clientes, onde os clientes classificaram seu nível de satisfação com notas de 1 a 5. A empresa deseja calcular a média das avaliações e identificar quais clientes deram notas abaixo de 3.
+
+* Crie um vetor chamado `avaliacoes` com 15 elementos, cada um representando a nota de um cliente.
+* Crie uma função chamada `calcula_media_satisfacao` que receba o vetor e calcule a média das avaliações.
+* Use um loop `for` para verificar se alguma avaliação é inferior a 3 e, com if-else, identifique os clientes insatisfeitos.
+* Organize os resultados em uma lista chamada `resultado_pesquisa`, que contenha o vetor de avaliações, a média e os clientes insatisfeitos.
 
 # Gráficos (R base)
 
