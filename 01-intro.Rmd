@@ -5051,7 +5051,7 @@ data(mtcars)
 * Crie um data frame chamado `tarefa_funcionarios` com 15 linhas (funcionários) e 5 colunas (dias).
 * Preencha o data frame com valores aleatórios entre 10 e 30, representando o número de tarefas concluídas por dia.
 * Escreva uma função chamada `verifica_meta` que receba o data frame e verifique, para cada funcionário, se ele atingiu a meta de 20 tarefas em pelo menos 3 dias.
-* Utilize um loop `for` e a estrutura `if-else` para classificar os funcionários como “Atingiu Meta” ou “Não Atingiu Meta”, criando um vetor de saída com esses resultados.
+* Utilize um loop `for` e a estrutura `if-else` para classificar os funcionários como “Atingiu Meta” ou “Não Atingiu Meta”, criando um vetor de saída com esses resultados. Adicione uma coluna ao data frame com a classificação dos funcionários.
 
 **3.** Um estatístico está a simular amostras de diferentes populações para estudar a variabilidade das médias. Ele quer gerar amostras de diferentes tamanhos e calcular a média de cada amostra, parando a simulação quando a média exceder um valor limite.
 
@@ -5076,7 +5076,7 @@ data(mtcars)
 
 # Gráficos (R base)
 
-O R base oferece uma variedade de funções para criar gráficos
+O R oferece uma variedade de funções para criar gráficos
 estatísticos básicos e personalizá-los de acordo com as necessidades da
 análise. A criação de gráficos é uma parte essencial da análise de
 dados, pois permite visualizar padrões, tendências e distribuições de
@@ -5136,20 +5136,53 @@ barplot(frequencia_absoluta,
         horiz = TRUE)
 ```
 
-Usando a base de dados `mtcars` vamos criar um **gráfico de barras
-empilhado** que mostre a contagem de carros com diferentes números de
-marchas (`gear`) para cada número de cilindros (`cyl`).
+**Gráfico de Barras Agrupadas**
+
+Podemos também gerar gráficos de barras que comparam mais de uma variável. Neste exemplo, vamos comparar o número de amostras de dois tipos de rochas em três diferentes regiões geográficas.
 
 ```{r}
-barplot(table(mtcars$cyl, mtcars$gear), beside=FALSE, legend=TRUE, main="Marchas por Cilindros", xlab="Cilindros", ylab="Contagem")
+# Dados: contagem de amostras por tipo de rocha e região
+regioes <- c("Região 1", "Região 2", "Região 3")
+granito <- c(15, 10, 25)
+basalto <- c(20, 15, 10)
+
+# Criando uma matriz para agrupar os dados
+dados_rochas <- rbind(granito, basalto)
+
+# Gerando o gráfico de barras agrupadas
+barplot(dados_rochas, 
+        beside = TRUE, 
+        names.arg = regioes, 
+        col = c("lightblue", "lightcoral"), 
+        legend.text = c("Granito", "Basalto"),
+        main = "Comparação de Amostras de Rochas por Região", 
+        xlab = "Regiões", 
+        ylab = "Quantidade de Amostras")
 ```
 
-Usando o mesmo conjunto de dados `mtcars`, vamos criar um **gráfico de
-barras agrupado** para o número de marchas (`gear`) por cilindros
-(`cyl`).
+Neste exemplo, usamos `rbind()` para agrupar os dados e o argumento `beside = TRUE` para gerar barras lado a lado para comparação entre “Granito” e “Basalto”. O parâmetro `legend.text` cria uma legenda para identificar cada cor de barra.
+
+**Gráfico de Barras Empilhado**
+
+Para gerar um gráfico de barras empilhado em vez de agrupado, basta remover o argumento `beside = TRUE`. No gráfico empilhado, as barras de diferentes categorias serão colocadas uma em cima da outra em vez de lado a lado.
 
 ```{r}
-barplot(table(mtcars$cyl, mtcars$gear), beside=TRUE, legend=TRUE, main="Marchas por Cilindros (Agrupado)", xlab="Cilindros", ylab="Contagem")
+# Dados: contagem de amostras por tipo de rocha e região
+regioes <- c("Região 1", "Região 2", "Região 3")
+granito <- c(15, 10, 25)
+basalto <- c(20, 15, 10)
+
+# Criando uma matriz para agrupar os dados
+dados_rochas <- rbind(granito, basalto)
+
+# Gerando o gráfico de barras empilhadas
+barplot(dados_rochas, 
+        names.arg = regioes, 
+        col = c("lightblue", "lightcoral"), 
+        legend.text = c("Granito", "Basalto"),
+        main = "Comparação de Amostras de Rochas por Região", 
+        xlab = "Regiões", 
+        ylab = "Quantidade de Amostras")
 ```
 
 ## Gráfico Circular (Pizza)
@@ -5353,9 +5386,21 @@ plot(tempo, valores,
 **1.** Usando o dataset `iris`, crie um gráfico de barras para mostrar a
 contagem de cada espécie de flor.
 
+* Nome do gráfico: Contagem Espécies
+* Eixo x: Espécie
+* Eixo y: Frequência Absoluta
+* Cores das barras: Azul, Verde, Amarelo
+
+Refaça o gráfico de barras considerando agora a frequência relativa. 
+
 **2.** Utilizando o dataset `airquality`, crie um gráfico de barras para
 mostrar a média de temperatura (`Temp`) por mês. Dica: use a função
-`tapply()`.
+`tapply()` para encontrar a temperatura média em cada mês.
+
+* Nome do gráfico: Média de Temperatura por Mês
+* Eixo x: Mês
+* Eixo y: Temperatura Média (°F)
+* Cor: Azul
 
 **3.** Crie um gráfico de pizza com as diferentes espécies de flores no
 dataset `iris`.

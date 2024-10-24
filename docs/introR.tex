@@ -120,7 +120,7 @@
 
 \title{Introdução ao R}
 \author{Renato de Paula}
-\date{2024-10-18}
+\date{2024-10-24}
 
 \begin{document}
 \maketitle
@@ -6488,7 +6488,7 @@ normalizada para verificar o resultado. Valor normalizado \(\frac{x-min(x)}{max(
 \item
   Escreva uma função chamada \texttt{verifica\_meta} que receba o data frame e verifique, para cada funcionário, se ele atingiu a meta de 20 tarefas em pelo menos 3 dias.
 \item
-  Utilize um loop \texttt{for} e a estrutura \texttt{if-else} para classificar os funcionários como ``Atingiu Meta'' ou ``Não Atingiu Meta'', criando um vetor de saída com esses resultados.
+  Utilize um loop \texttt{for} e a estrutura \texttt{if-else} para classificar os funcionários como ``Atingiu Meta'' ou ``Não Atingiu Meta'', criando um vetor de saída com esses resultados. Adicione uma coluna ao data frame com a classificação dos funcionários.
 \end{itemize}
 
 \textbf{3.} Um estatístico está a simular amostras de diferentes populações para estudar a variabilidade das médias. Ele quer gerar amostras de diferentes tamanhos e calcular a média de cada amostra, parando a simulação quando a média exceder um valor limite.
@@ -6535,7 +6535,7 @@ normalizada para verificar o resultado. Valor normalizado \(\frac{x-min(x)}{max(
 
 \chapter{Gráficos (R base)}\label{gruxe1ficos-r-base}
 
-O R base oferece uma variedade de funções para criar gráficos
+O R oferece uma variedade de funções para criar gráficos
 estatísticos básicos e personalizá-los de acordo com as necessidades da
 análise. A criação de gráficos é uma parte essencial da análise de
 dados, pois permite visualizar padrões, tendências e distribuições de
@@ -6607,25 +6607,58 @@ barras lado a lado).
 
 \includegraphics{introR_files/figure-latex/unnamed-chunk-162-1.pdf}
 
-Usando a base de dados \texttt{mtcars} vamos criar um \textbf{gráfico de barras
-empilhado} que mostre a contagem de carros com diferentes números de
-marchas (\texttt{gear}) para cada número de cilindros (\texttt{cyl}).
+\textbf{Gráfico de Barras Agrupadas}
+
+Podemos também gerar gráficos de barras que comparam mais de uma variável. Neste exemplo, vamos comparar o número de amostras de dois tipos de rochas em três diferentes regiões geográficas.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{barplot}\NormalTok{(}\FunctionTok{table}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{cyl, mtcars}\SpecialCharTok{$}\NormalTok{gear), }\AttributeTok{beside=}\ConstantTok{FALSE}\NormalTok{, }\AttributeTok{legend=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{main=}\StringTok{"Marchas por Cilindros"}\NormalTok{, }\AttributeTok{xlab=}\StringTok{"Cilindros"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Contagem"}\NormalTok{)}
+\CommentTok{\# Dados: contagem de amostras por tipo de rocha e região}
+\NormalTok{regioes }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Região 1"}\NormalTok{, }\StringTok{"Região 2"}\NormalTok{, }\StringTok{"Região 3"}\NormalTok{)}
+\NormalTok{granito }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{15}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{25}\NormalTok{)}
+\NormalTok{basalto }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{20}\NormalTok{, }\DecValTok{15}\NormalTok{, }\DecValTok{10}\NormalTok{)}
+
+\CommentTok{\# Criando uma matriz para agrupar os dados}
+\NormalTok{dados\_rochas }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(granito, basalto)}
+
+\CommentTok{\# Gerando o gráfico de barras agrupadas}
+\FunctionTok{barplot}\NormalTok{(dados\_rochas, }
+        \AttributeTok{beside =} \ConstantTok{TRUE}\NormalTok{, }
+        \AttributeTok{names.arg =}\NormalTok{ regioes, }
+        \AttributeTok{col =} \FunctionTok{c}\NormalTok{(}\StringTok{"lightblue"}\NormalTok{, }\StringTok{"lightcoral"}\NormalTok{), }
+        \AttributeTok{legend.text =} \FunctionTok{c}\NormalTok{(}\StringTok{"Granito"}\NormalTok{, }\StringTok{"Basalto"}\NormalTok{),}
+        \AttributeTok{main =} \StringTok{"Comparação de Amostras de Rochas por Região"}\NormalTok{, }
+        \AttributeTok{xlab =} \StringTok{"Regiões"}\NormalTok{, }
+        \AttributeTok{ylab =} \StringTok{"Quantidade de Amostras"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \includegraphics{introR_files/figure-latex/unnamed-chunk-163-1.pdf}
 
-Usando o mesmo conjunto de dados \texttt{mtcars}, vamos criar um \textbf{gráfico de
-barras agrupado} para o número de marchas (\texttt{gear}) por cilindros
-(\texttt{cyl}).
+Neste exemplo, usamos \texttt{rbind()} para agrupar os dados e o argumento \texttt{beside\ =\ TRUE} para gerar barras lado a lado para comparação entre ``Granito'' e ``Basalto''. O parâmetro \texttt{legend.text} cria uma legenda para identificar cada cor de barra.
+
+\textbf{Gráfico de Barras Empilhado}
+
+Para gerar um gráfico de barras empilhado em vez de agrupado, basta remover o argumento \texttt{beside\ =\ TRUE}. No gráfico empilhado, as barras de diferentes categorias serão colocadas uma em cima da outra em vez de lado a lado.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{barplot}\NormalTok{(}\FunctionTok{table}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{cyl, mtcars}\SpecialCharTok{$}\NormalTok{gear), }\AttributeTok{beside=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{legend=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{main=}\StringTok{"Marchas por Cilindros (Agrupado)"}\NormalTok{, }\AttributeTok{xlab=}\StringTok{"Cilindros"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Contagem"}\NormalTok{)}
+\CommentTok{\# Dados: contagem de amostras por tipo de rocha e região}
+\NormalTok{regioes }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Região 1"}\NormalTok{, }\StringTok{"Região 2"}\NormalTok{, }\StringTok{"Região 3"}\NormalTok{)}
+\NormalTok{granito }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{15}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{25}\NormalTok{)}
+\NormalTok{basalto }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{20}\NormalTok{, }\DecValTok{15}\NormalTok{, }\DecValTok{10}\NormalTok{)}
+
+\CommentTok{\# Criando uma matriz para agrupar os dados}
+\NormalTok{dados\_rochas }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(granito, basalto)}
+
+\CommentTok{\# Gerando o gráfico de barras empilhadas}
+\FunctionTok{barplot}\NormalTok{(dados\_rochas, }
+        \AttributeTok{names.arg =}\NormalTok{ regioes, }
+        \AttributeTok{col =} \FunctionTok{c}\NormalTok{(}\StringTok{"lightblue"}\NormalTok{, }\StringTok{"lightcoral"}\NormalTok{), }
+        \AttributeTok{legend.text =} \FunctionTok{c}\NormalTok{(}\StringTok{"Granito"}\NormalTok{, }\StringTok{"Basalto"}\NormalTok{),}
+        \AttributeTok{main =} \StringTok{"Comparação de Amostras de Rochas por Região"}\NormalTok{, }
+        \AttributeTok{xlab =} \StringTok{"Regiões"}\NormalTok{, }
+        \AttributeTok{ylab =} \StringTok{"Quantidade de Amostras"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6889,9 +6922,35 @@ temporais ou tendências ao longo de intervalos contínuos, como o tempo.
 \textbf{1.} Usando o dataset \texttt{iris}, crie um gráfico de barras para mostrar a
 contagem de cada espécie de flor.
 
+\begin{itemize}
+\tightlist
+\item
+  Nome do gráfico: Contagem Espécies
+\item
+  Eixo x: Espécie
+\item
+  Eixo y: Frequência Absoluta
+\item
+  Cores das barras: Azul, Verde, Amarelo
+\end{itemize}
+
+Refaça o gráfico de barras considerando agora a frequência relativa.
+
 \textbf{2.} Utilizando o dataset \texttt{airquality}, crie um gráfico de barras para
 mostrar a média de temperatura (\texttt{Temp}) por mês. Dica: use a função
-\texttt{tapply()}.
+\texttt{tapply()} para encontrar a temperatura média em cada mês.
+
+\begin{itemize}
+\tightlist
+\item
+  Nome do gráfico: Média de Temperatura por Mês
+\item
+  Eixo x: Mês
+\item
+  Eixo y: Temperatura Média (°F)
+\item
+  Cor: Azul
+\end{itemize}
 
 \textbf{3.} Crie um gráfico de pizza com as diferentes espécies de flores no
 dataset \texttt{iris}.

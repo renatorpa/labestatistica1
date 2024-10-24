@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Renato de Paula" />
 
 
-<meta name="date" content="2024-10-18" />
+<meta name="date" content="2024-10-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -429,7 +429,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="gráficos-r-base" class="section level1 hasAnchor" number="15">
 <h1><span class="header-section-number">Capítulo 15</span> Gráficos (R base)<a href="gráficos-r-base.html#gráficos-r-base" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>O R base oferece uma variedade de funções para criar gráficos
+<p>O R oferece uma variedade de funções para criar gráficos
 estatísticos básicos e personalizá-los de acordo com as necessidades da
 análise. A criação de gráficos é uma parte essencial da análise de
 dados, pois permite visualizar padrões, tendências e distribuições de
@@ -479,15 +479,45 @@ barras lado a lado).</p>
 <span id="cb165-6"><a href="gráficos-r-base.html#cb165-6" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>),</span>
 <span id="cb165-7"><a href="gráficos-r-base.html#cb165-7" tabindex="-1"></a>        <span class="at">horiz =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="introR_files/figure-html/unnamed-chunk-162-1.png" width="672" /></p>
-<p>Usando a base de dados <code>mtcars</code> vamos criar um <strong>gráfico de barras
-empilhado</strong> que mostre a contagem de carros com diferentes números de
-marchas (<code>gear</code>) para cada número de cilindros (<code>cyl</code>).</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="gráficos-r-base.html#cb166-1" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(mtcars<span class="sc">$</span>cyl, mtcars<span class="sc">$</span>gear), <span class="at">beside=</span><span class="cn">FALSE</span>, <span class="at">legend=</span><span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">&quot;Marchas por Cilindros&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;Cilindros&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;Contagem&quot;</span>)</span></code></pre></div>
+<p><strong>Gráfico de Barras Agrupadas</strong></p>
+<p>Podemos também gerar gráficos de barras que comparam mais de uma variável. Neste exemplo, vamos comparar o número de amostras de dois tipos de rochas em três diferentes regiões geográficas.</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="gráficos-r-base.html#cb166-1" tabindex="-1"></a><span class="co"># Dados: contagem de amostras por tipo de rocha e região</span></span>
+<span id="cb166-2"><a href="gráficos-r-base.html#cb166-2" tabindex="-1"></a>regioes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Região 1&quot;</span>, <span class="st">&quot;Região 2&quot;</span>, <span class="st">&quot;Região 3&quot;</span>)</span>
+<span id="cb166-3"><a href="gráficos-r-base.html#cb166-3" tabindex="-1"></a>granito <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">10</span>, <span class="dv">25</span>)</span>
+<span id="cb166-4"><a href="gráficos-r-base.html#cb166-4" tabindex="-1"></a>basalto <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">15</span>, <span class="dv">10</span>)</span>
+<span id="cb166-5"><a href="gráficos-r-base.html#cb166-5" tabindex="-1"></a></span>
+<span id="cb166-6"><a href="gráficos-r-base.html#cb166-6" tabindex="-1"></a><span class="co"># Criando uma matriz para agrupar os dados</span></span>
+<span id="cb166-7"><a href="gráficos-r-base.html#cb166-7" tabindex="-1"></a>dados_rochas <span class="ot">&lt;-</span> <span class="fu">rbind</span>(granito, basalto)</span>
+<span id="cb166-8"><a href="gráficos-r-base.html#cb166-8" tabindex="-1"></a></span>
+<span id="cb166-9"><a href="gráficos-r-base.html#cb166-9" tabindex="-1"></a><span class="co"># Gerando o gráfico de barras agrupadas</span></span>
+<span id="cb166-10"><a href="gráficos-r-base.html#cb166-10" tabindex="-1"></a><span class="fu">barplot</span>(dados_rochas, </span>
+<span id="cb166-11"><a href="gráficos-r-base.html#cb166-11" tabindex="-1"></a>        <span class="at">beside =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb166-12"><a href="gráficos-r-base.html#cb166-12" tabindex="-1"></a>        <span class="at">names.arg =</span> regioes, </span>
+<span id="cb166-13"><a href="gráficos-r-base.html#cb166-13" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;lightcoral&quot;</span>), </span>
+<span id="cb166-14"><a href="gráficos-r-base.html#cb166-14" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">c</span>(<span class="st">&quot;Granito&quot;</span>, <span class="st">&quot;Basalto&quot;</span>),</span>
+<span id="cb166-15"><a href="gráficos-r-base.html#cb166-15" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Comparação de Amostras de Rochas por Região&quot;</span>, </span>
+<span id="cb166-16"><a href="gráficos-r-base.html#cb166-16" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Regiões&quot;</span>, </span>
+<span id="cb166-17"><a href="gráficos-r-base.html#cb166-17" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Quantidade de Amostras&quot;</span>)</span></code></pre></div>
 <p><img src="introR_files/figure-html/unnamed-chunk-163-1.png" width="672" /></p>
-<p>Usando o mesmo conjunto de dados <code>mtcars</code>, vamos criar um <strong>gráfico de
-barras agrupado</strong> para o número de marchas (<code>gear</code>) por cilindros
-(<code>cyl</code>).</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="gráficos-r-base.html#cb167-1" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(mtcars<span class="sc">$</span>cyl, mtcars<span class="sc">$</span>gear), <span class="at">beside=</span><span class="cn">TRUE</span>, <span class="at">legend=</span><span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">&quot;Marchas por Cilindros (Agrupado)&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;Cilindros&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;Contagem&quot;</span>)</span></code></pre></div>
+<p>Neste exemplo, usamos <code>rbind()</code> para agrupar os dados e o argumento <code>beside = TRUE</code> para gerar barras lado a lado para comparação entre “Granito” e “Basalto”. O parâmetro <code>legend.text</code> cria uma legenda para identificar cada cor de barra.</p>
+<p><strong>Gráfico de Barras Empilhado</strong></p>
+<p>Para gerar um gráfico de barras empilhado em vez de agrupado, basta remover o argumento <code>beside = TRUE</code>. No gráfico empilhado, as barras de diferentes categorias serão colocadas uma em cima da outra em vez de lado a lado.</p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="gráficos-r-base.html#cb167-1" tabindex="-1"></a><span class="co"># Dados: contagem de amostras por tipo de rocha e região</span></span>
+<span id="cb167-2"><a href="gráficos-r-base.html#cb167-2" tabindex="-1"></a>regioes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Região 1&quot;</span>, <span class="st">&quot;Região 2&quot;</span>, <span class="st">&quot;Região 3&quot;</span>)</span>
+<span id="cb167-3"><a href="gráficos-r-base.html#cb167-3" tabindex="-1"></a>granito <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">10</span>, <span class="dv">25</span>)</span>
+<span id="cb167-4"><a href="gráficos-r-base.html#cb167-4" tabindex="-1"></a>basalto <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">15</span>, <span class="dv">10</span>)</span>
+<span id="cb167-5"><a href="gráficos-r-base.html#cb167-5" tabindex="-1"></a></span>
+<span id="cb167-6"><a href="gráficos-r-base.html#cb167-6" tabindex="-1"></a><span class="co"># Criando uma matriz para agrupar os dados</span></span>
+<span id="cb167-7"><a href="gráficos-r-base.html#cb167-7" tabindex="-1"></a>dados_rochas <span class="ot">&lt;-</span> <span class="fu">rbind</span>(granito, basalto)</span>
+<span id="cb167-8"><a href="gráficos-r-base.html#cb167-8" tabindex="-1"></a></span>
+<span id="cb167-9"><a href="gráficos-r-base.html#cb167-9" tabindex="-1"></a><span class="co"># Gerando o gráfico de barras empilhadas</span></span>
+<span id="cb167-10"><a href="gráficos-r-base.html#cb167-10" tabindex="-1"></a><span class="fu">barplot</span>(dados_rochas, </span>
+<span id="cb167-11"><a href="gráficos-r-base.html#cb167-11" tabindex="-1"></a>        <span class="at">names.arg =</span> regioes, </span>
+<span id="cb167-12"><a href="gráficos-r-base.html#cb167-12" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;lightcoral&quot;</span>), </span>
+<span id="cb167-13"><a href="gráficos-r-base.html#cb167-13" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">c</span>(<span class="st">&quot;Granito&quot;</span>, <span class="st">&quot;Basalto&quot;</span>),</span>
+<span id="cb167-14"><a href="gráficos-r-base.html#cb167-14" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Comparação de Amostras de Rochas por Região&quot;</span>, </span>
+<span id="cb167-15"><a href="gráficos-r-base.html#cb167-15" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Regiões&quot;</span>, </span>
+<span id="cb167-16"><a href="gráficos-r-base.html#cb167-16" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Quantidade de Amostras&quot;</span>)</span></code></pre></div>
 <p><img src="introR_files/figure-html/unnamed-chunk-164-1.png" width="672" /></p>
 </div>
 <div id="gráfico-circular-pizza" class="section level2 hasAnchor" number="15.2">
@@ -654,9 +684,22 @@ temporais ou tendências ao longo de intervalos contínuos, como o tempo.</p>
 <h2><span class="header-section-number">15.7</span> Exercícios<a href="gráficos-r-base.html#exercícios-13" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>1.</strong> Usando o dataset <code>iris</code>, crie um gráfico de barras para mostrar a
 contagem de cada espécie de flor.</p>
+<ul>
+<li>Nome do gráfico: Contagem Espécies</li>
+<li>Eixo x: Espécie</li>
+<li>Eixo y: Frequência Absoluta</li>
+<li>Cores das barras: Azul, Verde, Amarelo</li>
+</ul>
+<p>Refaça o gráfico de barras considerando agora a frequência relativa.</p>
 <p><strong>2.</strong> Utilizando o dataset <code>airquality</code>, crie um gráfico de barras para
 mostrar a média de temperatura (<code>Temp</code>) por mês. Dica: use a função
-<code>tapply()</code>.</p>
+<code>tapply()</code> para encontrar a temperatura média em cada mês.</p>
+<ul>
+<li>Nome do gráfico: Média de Temperatura por Mês</li>
+<li>Eixo x: Mês</li>
+<li>Eixo y: Temperatura Média (°F)</li>
+<li>Cor: Azul</li>
+</ul>
 <p><strong>3.</strong> Crie um gráfico de pizza com as diferentes espécies de flores no
 dataset <code>iris</code>.</p>
 <p><strong>4.</strong> Utilizando o dataset <code>Titanic</code>, crie um gráfico de pizza que
