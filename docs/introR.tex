@@ -120,7 +120,7 @@
 
 \title{Introdução ao R}
 \author{Renato de Paula}
-\date{2024-10-24}
+\date{2024-10-25}
 
 \begin{document}
 \maketitle
@@ -6551,9 +6551,38 @@ estatístico.
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Sintaxe }
+\FunctionTok{barplot}\NormalTok{(altura, }
+        \AttributeTok{names.arg =} \ConstantTok{NULL}\NormalTok{, }
+        \AttributeTok{main =} \ConstantTok{NULL}\NormalTok{, }
+        \AttributeTok{xlab =} \ConstantTok{NULL}\NormalTok{, }
+        \AttributeTok{ylab =} \ConstantTok{NULL}\NormalTok{, }
+        \AttributeTok{col =} \ConstantTok{NULL}\NormalTok{, }
+        \AttributeTok{beside =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{altura}: Vetor ou matriz que define a altura das barras. Pode ser um vetor numérico (para um gráfico simples) ou uma matriz (para gráficos empilhados ou agrupados).
+\item
+  \texttt{names.arg}: Define os rótulos que serão exibidos no eixo x para cada barra.
+\item
+  \texttt{main}: Título principal do gráfico.
+\item
+  \texttt{xlab} e \texttt{ylab}: Rótulos dos eixos x e y, respectivamente.
+\item
+  \texttt{col}: Cor ou vetor de cores das barras.
+\item
+  \texttt{beside}: Controla se as barras devem ser exibidas lado a lado (\texttt{TRUE}) ou empilhadas (\texttt{FALSE}).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \CommentTok{\# Dados de exemplo: cores favoritas}
 \NormalTok{cores }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Azul"}\NormalTok{, }\StringTok{"Vermelho"}\NormalTok{, }\StringTok{"Verde"}\NormalTok{, }\StringTok{"Azul"}\NormalTok{, }\StringTok{"Verde"}\NormalTok{, }
-\StringTok{"Vermelho"}\NormalTok{, }\StringTok{"Azul"}\NormalTok{, }\StringTok{"Verde"}\NormalTok{, }\StringTok{"Azul"}\NormalTok{, }\StringTok{"Vermelho"}\NormalTok{)}
+\StringTok{"Vermelho"}\NormalTok{, }\StringTok{"Azul"}\NormalTok{, }\StringTok{"Verde"}\NormalTok{, }\StringTok{"Azul"}\NormalTok{)}
 
 \CommentTok{\# Calcular as frequências absolutas}
 \NormalTok{frequencia\_absoluta }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(cores)}
@@ -6568,7 +6597,7 @@ estatístico.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-160-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-161-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6585,7 +6614,7 @@ estatístico.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-161-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-162-1.pdf}
 
 \textbf{Personalização de Gráficos de Barras}
 
@@ -6605,7 +6634,7 @@ barras lado a lado).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-162-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-163-1.pdf}
 
 \textbf{Gráfico de Barras Agrupadas}
 
@@ -6633,7 +6662,7 @@ Podemos também gerar gráficos de barras que comparam mais de uma variável. Ne
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-163-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-164-1.pdf}
 
 Neste exemplo, usamos \texttt{rbind()} para agrupar os dados e o argumento \texttt{beside\ =\ TRUE} para gerar barras lado a lado para comparação entre ``Granito'' e ``Basalto''. O parâmetro \texttt{legend.text} cria uma legenda para identificar cada cor de barra.
 
@@ -6662,13 +6691,34 @@ Para gerar um gráfico de barras empilhado em vez de agrupado, basta remover o a
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-164-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-165-1.pdf}
 
 \section{Gráfico Circular (Pizza)}\label{gruxe1fico-circular-pizza}
 
 \textbf{Gráfico circular (pizza)}: Mostra a proporção de diferentes
 categorias em relação ao total. Cada fatia representa uma categoria e o
 tamanho de cada fatia é proporcional à sua porcentagem.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Sintaxe}
+\FunctionTok{pie}\NormalTok{(x, }\AttributeTok{labels =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{main =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{col =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{radius =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{x}: Um vetor numérico com os valores de cada fatia. Eles podem ser absolutos, e a função \texttt{pie()} calcula automaticamente a proporção entre eles.
+\item
+  \texttt{labels}: Um vetor de rótulos para cada fatia. Se não for especificado, o R usará os valores de \texttt{x} como rótulos.
+\item
+  \texttt{main}: Título do gráfico.
+\item
+  \texttt{col}: Um vetor de cores para cada fatia.
+\item
+  \texttt{radius}: Ajusta o tamanho do gráfico. O valor padrão é 1, e valores menores ou maiores diminuem ou aumentam o tamanho do gráfico.
+\end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6681,7 +6731,7 @@ tamanho de cada fatia é proporcional à sua porcentagem.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-165-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-167-1.pdf}
 
 \section{Histograma}\label{histograma}
 
@@ -6695,8 +6745,7 @@ relativa) no eixo vertical.
 \item
   A largura de cada retângulo é igual à amplitude da classe.
 \item
-  Se as classes tiverem todas a mesma amplitude, a altura do retângulo
-  é proporcional à frequência.
+  Se as classes tiverem todas a mesma amplitude, a altura do retângulo é proporcional à frequência.
 \end{itemize}
 
 Por default, o R utiliza a frequência absoluta para construir o
@@ -6706,22 +6755,52 @@ de intervalo de classe no R é \((a, b]\).
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Dados referentes à massa (em kg) de 40 bicicletas}
-
-\NormalTok{bicicletas }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{4.3}\NormalTok{,}\FloatTok{6.8}\NormalTok{,}\FloatTok{9.2}\NormalTok{,}\FloatTok{7.2}\NormalTok{,}\FloatTok{8.7}\NormalTok{,}\FloatTok{8.6}\NormalTok{,}\FloatTok{6.6}\NormalTok{,}\FloatTok{5.2}\NormalTok{,}\FloatTok{8.1}\NormalTok{,}\FloatTok{10.9}\NormalTok{,}\FloatTok{7.4}\NormalTok{,}\FloatTok{4.5}\NormalTok{,}\FloatTok{3.8}\NormalTok{,}\FloatTok{7.6}\NormalTok{,}\FloatTok{6.8}\NormalTok{,}\FloatTok{7.8}\NormalTok{,}\FloatTok{8.4}\NormalTok{,}\FloatTok{7.5}\NormalTok{,}\FloatTok{10.5}\NormalTok{,}\FloatTok{6.0}\NormalTok{,}\FloatTok{7.7}\NormalTok{,}\FloatTok{8.1}\NormalTok{,}\FloatTok{7.0}\NormalTok{,}\FloatTok{8.2}\NormalTok{,}\FloatTok{8.4}\NormalTok{,}\FloatTok{8.8}\NormalTok{,}\FloatTok{6.7}\NormalTok{,}\FloatTok{8.2}\NormalTok{,}\FloatTok{9.4}\NormalTok{,}\FloatTok{7.7}\NormalTok{,}\FloatTok{6.3}\NormalTok{,}\FloatTok{7.7}\NormalTok{,}\FloatTok{9.1}\NormalTok{,}\FloatTok{7.9}\NormalTok{,}\FloatTok{7.9}\NormalTok{,}\FloatTok{9.4}\NormalTok{,}\FloatTok{8.2}\NormalTok{,}\FloatTok{6.7}\NormalTok{,}\FloatTok{8.2}\NormalTok{,}\FloatTok{6.5}\NormalTok{)}
-  
-\NormalTok{h }\OtherTok{\textless{}{-}} \FunctionTok{hist}\NormalTok{(bicicletas,     }
-  \AttributeTok{main =} \StringTok{"Histograma"}\NormalTok{,     }
-  \AttributeTok{xlab =} \StringTok{"Massa (kg)"}\NormalTok{,     }
-  \AttributeTok{ylab =} \StringTok{"Frequência absoluta"}\NormalTok{,}
-  \AttributeTok{col =} \StringTok{"lightblue"}\NormalTok{,}
-  \AttributeTok{border =} \StringTok{"black"}\NormalTok{,}
-  \AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{12}\NormalTok{),     }
-  \AttributeTok{labels =} \ConstantTok{TRUE}\NormalTok{)}
+\CommentTok{\# Sintaxe}
+\FunctionTok{hist}\NormalTok{(x, }\AttributeTok{breaks =} \StringTok{"Sturges"}\NormalTok{,}
+     \AttributeTok{main =} \ConstantTok{NULL}\NormalTok{,}
+     \AttributeTok{xlab =} \ConstantTok{NULL}\NormalTok{,}
+     \AttributeTok{ylab =} \ConstantTok{NULL}\NormalTok{,}
+     \AttributeTok{col =} \ConstantTok{NULL}\NormalTok{,}
+     \AttributeTok{border =} \ConstantTok{NULL}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-166-1.pdf}
+\begin{itemize}
+\tightlist
+\item
+  \texttt{x}: Um vetor numérico com os dados para criar o histograma.
+\item
+  \texttt{breaks}: Controla o número de intervalos ou ``bins'' do histograma. Pode ser um número específico ou um método (ex.: ``Sturges'', ``Scott'', ``FD'').
+\item
+  \texttt{main}: Define o título do gráfico.
+\item
+  \texttt{xlab}: Rótulo para o eixo \texttt{x}.
+\item
+  \texttt{ylab}: Rótulo para o eixo \texttt{y}.
+\item
+  \texttt{col}: Cor das barras do histograma.
+\item
+  \texttt{border}: Cor das bordas das barras.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Dados referentes à massa (em kg) de 40 bicicletas}
+\NormalTok{bicicletas }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{4.3}\NormalTok{,}\FloatTok{6.8}\NormalTok{,}\FloatTok{9.2}\NormalTok{,}\FloatTok{7.2}\NormalTok{,}\FloatTok{8.7}\NormalTok{,}\FloatTok{8.6}\NormalTok{,}\FloatTok{6.6}\NormalTok{,}\FloatTok{5.2}\NormalTok{,}\FloatTok{8.1}\NormalTok{,}\FloatTok{10.9}\NormalTok{,}\FloatTok{7.4}\NormalTok{,}\FloatTok{4.5}\NormalTok{,}\FloatTok{3.8}\NormalTok{,}\FloatTok{7.6}\NormalTok{,}\FloatTok{6.8}\NormalTok{,}\FloatTok{7.8}\NormalTok{,}\FloatTok{8.4}\NormalTok{,}\FloatTok{7.5}\NormalTok{,}\FloatTok{10.5}\NormalTok{,}\FloatTok{6.0}\NormalTok{,}\FloatTok{7.7}\NormalTok{,}\FloatTok{8.1}\NormalTok{,}\FloatTok{7.0}\NormalTok{,}\FloatTok{8.2}\NormalTok{,}\FloatTok{8.4}\NormalTok{,}\FloatTok{8.8}\NormalTok{,}\FloatTok{6.7}\NormalTok{,}\FloatTok{8.2}\NormalTok{,}\FloatTok{9.4}\NormalTok{,}\FloatTok{7.7}\NormalTok{,}\FloatTok{6.3}\NormalTok{,}\FloatTok{7.7}\NormalTok{,}\FloatTok{9.1}\NormalTok{,}\FloatTok{7.9}\NormalTok{,}\FloatTok{7.9}\NormalTok{,}\FloatTok{9.4}\NormalTok{,}\FloatTok{8.2}\NormalTok{,}\FloatTok{6.7}\NormalTok{,}\FloatTok{8.2}\NormalTok{,}\FloatTok{6.5}\NormalTok{)}
+  
+\NormalTok{h }\OtherTok{\textless{}{-}} \FunctionTok{hist}\NormalTok{(bicicletas,}
+          \AttributeTok{breaks =} \StringTok{"Sturges"}\NormalTok{,}
+          \AttributeTok{main =} \StringTok{"Histograma Bicicletas"}\NormalTok{,}
+          \AttributeTok{xlab =} \StringTok{"Massa (kg)"}\NormalTok{,}
+          \AttributeTok{ylab =} \StringTok{"Frequência absoluta"}\NormalTok{,}
+          \AttributeTok{col =} \StringTok{"lightblue"}\NormalTok{,}
+          \AttributeTok{border =} \StringTok{"black"}\NormalTok{,}
+          \AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{12}\NormalTok{),}
+          \AttributeTok{labels =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{introR_files/figure-latex/unnamed-chunk-169-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6749,7 +6828,7 @@ de intervalo de classe no R é \((a, b]\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-168-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-171-1.pdf}
 
 Pode controlar o número de intervalos (bins) usando o argumento
 \texttt{breaks}. Por exemplo, \texttt{breaks\ =\ 5} divide os dados em 5 intervalos.
@@ -6773,7 +6852,7 @@ Podemos adicionar também uma curva de densidade em cima do histograma.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-169-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-172-1.pdf}
 
 \section{Box-plot}\label{box-plot}
 
@@ -6784,26 +6863,61 @@ quartil (Q3) e máximo. Também pode mostrar outliers (valores atípicos).
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Box{-}plot vertical}
-\FunctionTok{boxplot}\NormalTok{(bicicletas, }
-        \AttributeTok{main =} \StringTok{"Box{-}plot Vertical"}\NormalTok{, }
-        \AttributeTok{col=}\StringTok{"red"}\NormalTok{)}
+\CommentTok{\# Sintaxe}
+\FunctionTok{boxplot}\NormalTok{(x, }
+        \AttributeTok{main =} \ConstantTok{NULL}\NormalTok{,}
+        \AttributeTok{xlab =} \ConstantTok{NULL}\NormalTok{, }
+        \AttributeTok{ylab =} \ConstantTok{NULL}\NormalTok{, }
+        \AttributeTok{col =} \ConstantTok{NULL}\NormalTok{, }
+        \AttributeTok{border =} \ConstantTok{NULL}\NormalTok{, }
+        \AttributeTok{horizontal =} \ConstantTok{FALSE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-170-1.pdf}
+\begin{itemize}
+\tightlist
+\item
+  \texttt{x}: Vetor numérico, matriz ou lista de dados numéricos para criar o boxplot.
+\item
+  \texttt{main}: Define o título do gráfico.
+\item
+  \texttt{xlab} e \texttt{ylab}: Rótulos para os eixos x e y, respectivamente.
+\item
+  \texttt{col}: Cor do preenchimento da caixa.
+\item
+  \texttt{border}: Cor da borda do boxplot.
+\item
+  \texttt{horizontal}: Define se o boxplot será horizontal (\texttt{TRUE}) ou vertical (\texttt{FALSE}, padrão).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Box{-}plot vertical}
+\FunctionTok{boxplot}\NormalTok{(bicicletas, }
+        \AttributeTok{main =} \StringTok{"Box{-}plot Vertical"}\NormalTok{,}
+        \AttributeTok{xlab =} \StringTok{"Bicicletas"}\NormalTok{,}
+        \AttributeTok{ylab =} \StringTok{"Massa (Kg)"}\NormalTok{,}
+        \AttributeTok{col =} \StringTok{"lightblue"}\NormalTok{,}
+        \AttributeTok{border =} \StringTok{"darkblue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{introR_files/figure-latex/unnamed-chunk-174-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Box{-}plot horizontal}
 \FunctionTok{boxplot}\NormalTok{(bicicletas, }
-        \AttributeTok{main =} \StringTok{"Box{-}plot Horizontal"}\NormalTok{, }
-        \AttributeTok{col=}\StringTok{"green"}\NormalTok{, }
+        \AttributeTok{main =} \StringTok{"Box{-}plot Horizontal"}\NormalTok{,}
+        \AttributeTok{xlab =} \StringTok{"Massa (Kg)"}\NormalTok{,}
+        \AttributeTok{ylab =} \StringTok{"Bicicletas"}\NormalTok{,}
+        \AttributeTok{col =} \StringTok{"lightblue"}\NormalTok{,}
+        \AttributeTok{border =} \StringTok{"darkblue"}\NormalTok{,}
         \AttributeTok{horizontal =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-171-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-175-1.pdf}
 
 Pode comparar a distribuição de múltiplas variáveis lado a lado com
 box-plots. Use a função \texttt{par()} para ajustar o layout gráfico.
@@ -6819,12 +6933,30 @@ box-plots. Use a função \texttt{par()} para ajustar o layout gráfico.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-172-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-176-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Resetar layout gráfico para o padrão}
 \FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Quando temos dados organizados por categorias, podemos usar um boxplot para compará-los:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Dados categorizados}
+\NormalTok{grupo\_A }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{50}\NormalTok{, }\AttributeTok{mean =} \DecValTok{60}\NormalTok{, }\AttributeTok{sd =} \DecValTok{10}\NormalTok{)}
+\NormalTok{grupo\_B }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{50}\NormalTok{, }\AttributeTok{mean =} \DecValTok{50}\NormalTok{, }\AttributeTok{sd =} \DecValTok{15}\NormalTok{)}
+\NormalTok{grupo\_C }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{50}\NormalTok{, }\AttributeTok{mean =} \DecValTok{55}\NormalTok{, }\AttributeTok{sd =} \DecValTok{5}\NormalTok{)}
+
+\CommentTok{\# Boxplot com múltiplas categorias}
+\FunctionTok{boxplot}\NormalTok{(grupo\_A, grupo\_B, grupo\_C, }
+        \AttributeTok{names =} \FunctionTok{c}\NormalTok{(}\StringTok{"Grupo A"}\NormalTok{, }\StringTok{"Grupo B"}\NormalTok{, }\StringTok{"Grupo C"}\NormalTok{),}
+        \AttributeTok{main =} \StringTok{"Boxplot por Grupo"}\NormalTok{,}
+        \AttributeTok{ylab =} \StringTok{"Valores"}\NormalTok{,}
+        \AttributeTok{col =} \FunctionTok{c}\NormalTok{(}\StringTok{"lightgreen"}\NormalTok{, }\StringTok{"lightcoral"}\NormalTok{, }\StringTok{"lightblue"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6834,28 +6966,67 @@ variável \texttt{Sepal.Length}.
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{data}\NormalTok{(iris)}
-\FunctionTok{boxplot}\NormalTok{(iris}\SpecialCharTok{$}\NormalTok{Sepal.Length, }\AttributeTok{main=}\StringTok{"Box{-}Plot de Sepal Length"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Sepal Length"}\NormalTok{)}
+\FunctionTok{boxplot}\NormalTok{(iris}\SpecialCharTok{$}\NormalTok{Sepal.Length, }
+        \AttributeTok{main=}\StringTok{"Box{-}Plot de Sepal Length"}\NormalTok{, }
+        \AttributeTok{ylab=}\StringTok{"Sepal Length"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-173-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-178-1.pdf}
 
 Vamos criar agora um box-plot da variável \texttt{Sepal.Length} agrupado por
 espécie de flor (\texttt{Species}) no conjunto de dados iris.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{boxplot}\NormalTok{(Sepal.Length }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Species, }\AttributeTok{data=}\NormalTok{iris, }\AttributeTok{main=}\StringTok{"Box{-}Plot de Sepal Length por Espécie"}\NormalTok{, }\AttributeTok{xlab=}\StringTok{"Espécie"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Sepal Length"}\NormalTok{)}
+\FunctionTok{boxplot}\NormalTok{(Sepal.Length }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Species, }
+        \AttributeTok{data =}\NormalTok{ iris, }
+        \AttributeTok{main =} \StringTok{"Box{-}Plot de Sepal Length por Espécie"}\NormalTok{, }
+        \AttributeTok{xlab =} \StringTok{"Espécie"}\NormalTok{, }
+        \AttributeTok{ylab =} \StringTok{"Sepal Length"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-174-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-179-1.pdf}
 
 \section{Gráfico de Dispersão}\label{gruxe1fico-de-dispersuxe3o}
 
 \textbf{Gráfico de Dispersão (Scatter Plot)}: Útil para visualizar a relação
 entre duas variáveis quantitativas. É uma boa ferramenta para
 identificar correlações, tendências e outliers.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Sintaxe}
+\FunctionTok{plot}\NormalTok{(x, y, }
+     \AttributeTok{main =} \ConstantTok{NULL}\NormalTok{, }
+     \AttributeTok{xlab =} \ConstantTok{NULL}\NormalTok{, }
+     \AttributeTok{ylab =} \ConstantTok{NULL}\NormalTok{, }
+     \AttributeTok{col =} \ConstantTok{NULL}\NormalTok{, }
+     \AttributeTok{pch =} \ConstantTok{NULL}\NormalTok{, }
+     \AttributeTok{cex =} \DecValTok{1}\NormalTok{, }
+     \AttributeTok{xlim =} \ConstantTok{NULL}\NormalTok{, }
+     \AttributeTok{ylim =} \ConstantTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{x} e \texttt{y}: Vetores numéricos com as coordenadas dos pontos no eixo x e y.
+\item
+  \texttt{main}: Título do gráfico.
+\item
+  \texttt{xlab} e \texttt{ylab}: Rótulos dos eixos x e y.
+\item
+  \texttt{col}: Cor dos pontos. Pode ser um único valor ou um vetor de cores.
+\item
+  \texttt{pch}: Formato dos pontos (e.g., pch = 16 para pontos preenchidos).
+\item
+  \texttt{cex}: Tamanho dos pontos.
+\item
+  \texttt{xlim} e \texttt{ylim}: Limites dos eixos x e y, respectivamente.
+\end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6873,7 +7044,7 @@ identificar correlações, tendências e outliers.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-175-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-181-1.pdf}
 
 Gráfico de dispersão com regressão.
 
@@ -6891,12 +7062,72 @@ Gráfico de dispersão com regressão.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-176-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-182-1.pdf}
+
+Se você tiver grupos de dados diferentes, pode diferenciá-los por cores:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Dados com dois grupos}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{x1 }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{50}\NormalTok{, }\AttributeTok{mean =} \DecValTok{5}\NormalTok{)}
+\NormalTok{y1 }\OtherTok{\textless{}{-}} \DecValTok{3} \SpecialCharTok{*}\NormalTok{ x1 }\SpecialCharTok{+} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{50}\NormalTok{)}
+\NormalTok{x2 }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{50}\NormalTok{, }\AttributeTok{mean =} \DecValTok{7}\NormalTok{)}
+\NormalTok{y2 }\OtherTok{\textless{}{-}} \DecValTok{3} \SpecialCharTok{*}\NormalTok{ x2 }\SpecialCharTok{+} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{50}\NormalTok{)}
+
+\CommentTok{\# Gráfico de dispersão com diferentes cores}
+\FunctionTok{plot}\NormalTok{(x1, y1, }
+     \AttributeTok{main =} \StringTok{"Gráfico de Dispersão com Grupos"}\NormalTok{,}
+     \AttributeTok{xlab =} \StringTok{"Eixo X"}\NormalTok{,}
+     \AttributeTok{ylab =} \StringTok{"Eixo Y"}\NormalTok{,}
+     \AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{pch =} \DecValTok{16}\NormalTok{)}
+\FunctionTok{points}\NormalTok{(x2, y2, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{pch =} \DecValTok{16}\NormalTok{)}
+\FunctionTok{legend}\NormalTok{(}\StringTok{"topright"}\NormalTok{, }\AttributeTok{legend =} \FunctionTok{c}\NormalTok{(}\StringTok{"Grupo 1"}\NormalTok{, }\StringTok{"Grupo 2"}\NormalTok{), }\AttributeTok{col =} \FunctionTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{), }\AttributeTok{pch =} \DecValTok{16}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{introR_files/figure-latex/unnamed-chunk-183-1.pdf}
 
 \section{Gráfico de Linhas}\label{gruxe1fico-de-linhas}
 
 \textbf{Gráfico de Linhas}: É usado para mostrar informações de séries
 temporais ou tendências ao longo de intervalos contínuos, como o tempo.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Sintaxe}
+\FunctionTok{plot}\NormalTok{(x, y, }
+     \AttributeTok{type =} \StringTok{"l"}\NormalTok{, }
+     \AttributeTok{main =} \ConstantTok{NULL}\NormalTok{, }
+     \AttributeTok{xlab =} \ConstantTok{NULL}\NormalTok{, }
+     \AttributeTok{ylab =} \ConstantTok{NULL}\NormalTok{, }
+     \AttributeTok{col =} \ConstantTok{NULL}\NormalTok{, }
+     \AttributeTok{lty =} \DecValTok{1}\NormalTok{, }
+     \AttributeTok{lwd =} \DecValTok{1}\NormalTok{, }
+     \AttributeTok{xlim =} \ConstantTok{NULL}\NormalTok{, }
+     \AttributeTok{ylim =} \ConstantTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{x} e \texttt{y}: Vetores numéricos contendo as coordenadas dos pontos ao longo do eixo x e y.
+\item
+  \texttt{type\ =\ "l"}: Define o tipo de gráfico como ``linha'' (outros valores podem ser \texttt{"p"} para pontos, \texttt{"b"} para linhas e pontos, etc.).
+\item
+  \texttt{main}: Título do gráfico.
+\item
+  \texttt{xlab} e \texttt{ylab}: Rótulos dos eixos x e y.
+\item
+  \texttt{col}: Cor da linha.
+\item
+  \texttt{lty}: Tipo de linha (e.g., 1 para linha contínua, 2 para linha tracejada).
+\item
+  \texttt{lwd}: Espessura da linha.
+\item
+  \texttt{xlim} e \texttt{ylim}: Limites dos eixos x e y, respectivamente.
+\end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6910,12 +7141,13 @@ temporais ou tendências ao longo de intervalos contínuos, como o tempo.
      \AttributeTok{main =} \StringTok{"Gráfico de Linhas"}\NormalTok{, }
      \AttributeTok{xlab =} \StringTok{"Tempo"}\NormalTok{, }
      \AttributeTok{ylab =} \StringTok{"Valores"}\NormalTok{, }
-     \AttributeTok{col =} \StringTok{"blue"}\NormalTok{, }
+     \AttributeTok{col =} \StringTok{"blue"}\NormalTok{,}
+     \AttributeTok{lwd =} \DecValTok{1}\NormalTok{,}
      \AttributeTok{pch =} \DecValTok{19}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-177-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-185-1.pdf}
 
 \section{Exercícios}\label{exercuxedcios-13}
 
@@ -6953,7 +7185,7 @@ mostrar a média de temperatura (\texttt{Temp}) por mês. Dica: use a função
 \end{itemize}
 
 \textbf{3.} Crie um gráfico de pizza com as diferentes espécies de flores no
-dataset \texttt{iris}.
+dataset \texttt{iris}. Adicione ao gráfico o nome das espécies e a percentagem.
 
 \textbf{4.} Utilizando o dataset \texttt{Titanic}, crie um gráfico de pizza que
 mostre a proporção de sobreviventes e não sobreviventes. Dica:
@@ -6963,7 +7195,75 @@ Transforme Titanic num data frame.
 personalize o histograma com cores, ajuste o número de ``bins''
 (intervalos) e adicione um título e rótulos aos eixos.
 
-\textbf{6.} Utilizando o dataset \texttt{airquality}, crie histogramas para a
+\textbf{6.} Um pesquisador está a estudar a distribuição de alturas de plantas em duas espécies diferentes: Espécie A e Espécie B. Ele coletou 100 amostras de altura para cada espécie e tem como objetivo criar histogramas para comparar as distribuições de altura entre as duas espécies.
+
+\begin{itemize}
+\tightlist
+\item
+  Crie dois vetores de 100 alturas (em cm) para as espécies A e B. Use \texttt{rnorm()} para gerar os dados com médias e desvios padrão diferentes.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Gerando os dados}
+\NormalTok{altura\_A }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\AttributeTok{mean =} \DecValTok{150}\NormalTok{, }\AttributeTok{sd =} \DecValTok{10}\NormalTok{)}
+\NormalTok{altura\_B }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\AttributeTok{mean =} \DecValTok{160}\NormalTok{, }\AttributeTok{sd =} \DecValTok{15}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  Gere dois histogramas separados, um para cada espécie, e compare as distribuições de altura.
+\item
+  Altere as cores dos histogrmas. Use \texttt{col\ =\ rgb(1,\ 0,\ 0,\ 0.5)} para o primeiro histograma e \texttt{col\ =\ rgb(0,\ 0,\ 1,\ 0.5)} para o segundo histograma.
+\item
+  Ajuste os histogramas para serem sobrepostos usando a função \texttt{hist()} com o parâmetro \texttt{add\ =\ TRUE}.
+\item
+  Adicione a legenda
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{legend}\NormalTok{(}\StringTok{"topright"}\NormalTok{, }\AttributeTok{legend =} \FunctionTok{c}\NormalTok{(}\StringTok{"Espécie A"}\NormalTok{, }\StringTok{"Espécie B"}\NormalTok{), }\AttributeTok{fill =} \FunctionTok{c}\NormalTok{(}\FunctionTok{rgb}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\FloatTok{0.5}\NormalTok{), }\FunctionTok{rgb}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\FloatTok{0.5}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{7.} Um professor aplicou um exame a uma turma de 200 alunos e quer analisar a distribuição das notas. O objetivo do professor é criar um histograma para visualizar a distribuição das notas e calcular algumas estatísticas descritivas (média, mediana e desvio padrão).
+
+\begin{itemize}
+\tightlist
+\item
+  Crie um vetor de 200 valores, representando as pontuações dos alunos (notas de 0 a 20).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
+\FunctionTok{rnorm}\NormalTok{(}\DecValTok{200}\NormalTok{, }\AttributeTok{mean=}\DecValTok{14}\NormalTok{, }\AttributeTok{sd=}\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  Gere um histograma para as notas.
+\item
+  Calcule a média, mediana e desvio padrão das notas.
+\item
+  Adicione a média e a mediana diretamente no gráfico, usando o comando \texttt{abline()}.
+\item
+  Use a legenda
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{legend}\NormalTok{(}\StringTok{"topright"}\NormalTok{, }\AttributeTok{legend =} \FunctionTok{c}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Média:"}\NormalTok{, }\FunctionTok{round}\NormalTok{(media\_nota, }\DecValTok{2}\NormalTok{)),}
+                              \FunctionTok{paste}\NormalTok{(}\StringTok{"Mediana:"}\NormalTok{, }\FunctionTok{round}\NormalTok{(mediana\_nota, }\DecValTok{2}\NormalTok{)),}
+                              \FunctionTok{paste}\NormalTok{(}\StringTok{"Desvio Padrão:"}\NormalTok{, }\FunctionTok{round}\NormalTok{(desvio\_nota, }\DecValTok{2}\NormalTok{))),}
+       \AttributeTok{bty =} \StringTok{"n"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{8.} Utilizando o dataset \texttt{airquality}, crie histogramas para a
 variável \texttt{Ozone} separadamente para cada mês (de maio a setembro).
 Ajuste o layout para mostrar os histogramas lado a lado e compare a
 distribuição dos níveis de ozônio ao longo dos meses.
@@ -6979,7 +7279,7 @@ distribuição dos níveis de ozônio ao longo dos meses.
   lado e comparar.
 \end{itemize}
 
-\textbf{7.} Utilizando o dataset \texttt{iris} crie um box-plot para comparar a
+\textbf{9.} Utilizando o dataset \texttt{iris} crie um box-plot para comparar a
 distribuição do comprimento da pétala (\texttt{Petal.Length}) entre as
 diferentes espécies.
 
@@ -6994,7 +7294,7 @@ diferentes espécies.
   adicione títulos e rótulos.
 \end{itemize}
 
-\textbf{8.} Utilizando o dataset \texttt{airquality} crie um box-plot para comparar
+\textbf{10.} Utilizando o dataset \texttt{airquality} crie um box-plot para comparar
 a distribuição dos níveis de ozônio (\texttt{Ozone}) para os diferentes meses.
 Observe como os níveis de ozônio variam ao longo do tempo.
 
@@ -7007,6 +7307,34 @@ Observe como os níveis de ozônio variam ao longo do tempo.
 \item
   Adicione uma linha horizontal indicando o valor mediano global dos
   níveis de ozônio. Dica: use a função \texttt{abline()}.
+\end{itemize}
+
+\textbf{11.} Estudando a relação entre altura e peso de um grupo de pessoas.
+
+\begin{itemize}
+\tightlist
+\item
+  Crie um vetor \texttt{altura} com 30 valores aleatórios entre 150 e 200 cm (use \texttt{runif()}).
+\item
+  Crie um vetor peso com 30 valores aleatórios entre 50 e 90 kg, ajustando-o para estar aproximadamente proporcional à altura. Use \texttt{peso\ \textless{}-\ altura\ *\ 0.4\ +\ runif(30,\ -5,\ 5)}.
+\item
+  Use \texttt{plot()} para criar um gráfico de dispersão com altura no eixo x e peso no eixo y.
+\item
+  Adicione rótulos (xlab, ylab) e um título (main) ao gráfico.
+\item
+  Qual é a tendência visual entre altura e peso? Comente sobre a correlação entre as duas variáveis.
+\end{itemize}
+
+\textbf{12.} Analisando o crescimento de uma população ao longo de 20 anos.
+
+\begin{itemize}
+\tightlist
+\item
+  Crie um vetor \texttt{anos} com valores de 2000 a 2019.
+\item
+  Crie um vetor \texttt{populacao} simulando o crescimento populacional a partir de 100.000 pessoas em 2000 e um crescimento de 2\% ao ano. Adicione um pequeno fator aleatório para representar flutuações. Use \texttt{populacao\ \textless{}-\ 100000\ *\ cumprod(1.02\ +\ runif(20,\ -0.01,\ 0.01))}.
+\item
+  Crie um gráfico de linha para mostrar o crescimento populacional ao longo dos anos.
 \end{itemize}
 
 \chapter{Manipulação de dados}\label{manipulauxe7uxe3o-de-dados}
@@ -8440,7 +8768,7 @@ visualizar a distribuição dos valores de \(Z\) utilizando um histograma:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-213-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-225-1.pdf}
 
 \section{Simulação e Geração de Números Pseudoaleatórios}\label{simulauxe7uxe3o-e-gerauxe7uxe3o-de-nuxfameros-pseudoaleatuxf3rios}
 
@@ -8963,7 +9291,7 @@ Representar graficamente e determinar: média, desvio padrão e mediana.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-221-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-233-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9053,7 +9381,7 @@ método da transformada inversa
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-223-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-235-1.pdf}
 
 \textbf{Exemplo 5}: Geração de uma variável aleatória com distribuição
 \(Geométrica(p)\). Seja \(X\sim Geometrica(p)\). Lembre que
@@ -9088,7 +9416,7 @@ onde \(\lfloor  \rfloor =\) maior inteiro.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-224-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-236-1.pdf}
 
 \textbf{Exemplo 6}: Geração de uma variável aleatória com distribuição de
 Poisson. A variável aleatória \(X\) é de Poisson com média \(\lambda\) se
@@ -9131,7 +9459,7 @@ expresso da seguinte forma.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-225-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-237-1.pdf}
 
 \section{Exercícios}\label{exercuxedcios-21}
 
@@ -9212,7 +9540,7 @@ A função \(F(x)=x^2\) é invertível no intervalo \((0,1)\) e
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-226-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-238-1.pdf}
 
 \textbf{Exemplo 2}: Geração de uma variável aleatória \(Uniforme(a,b)\). A
 geração é feita através de \[X = a+(b-a)U.\]
@@ -9229,7 +9557,7 @@ geração é feita através de \[X = a+(b-a)U.\]
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-227-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-239-1.pdf}
 
 \textbf{Exemplo 3}: Geração de uma variável aleatória exponencial. Seja \(X\)
 uma variável aleatória exponencial com taxa 1, então sua função de
@@ -9276,7 +9604,7 @@ aleatório \(U\) e fazendo \[X = -\frac{1}{\lambda}ln (U).\]
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-228-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-240-1.pdf}
 
 \section{Exercícios}\label{exercuxedcios-22}
 
@@ -9415,8 +9743,8 @@ funções tem as seguintes formas:
 \endlastfoot
 \textbf{p}nome( \ldots) & função de distribuição \\
 \textbf{d}nome( \ldots) & função de probabilidade ou densidade de probabilidade \\
-\textbf{q}nome( \ldots) & inversa da função de distribuição \\
-\textbf{r}nome( \ldots) & geração de números aleatórios com a distribuição especificada \\
+\textbf{q}nome( \ldots) & calcula o quantil correspondente a uma dada probabilidade \\
+\textbf{r}nome( \ldots) & retorna uma amostra aleatória da distribuição \\
 \end{longtable}
 
 o \textbf{nome} é uma abreviatura do nome usual da distribuição (\texttt{binom},
@@ -9737,7 +10065,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-236-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-248-1.pdf}
 
 \textbf{Exemplo 1}: Resolva o exemplo 1 usando a função de distribuição
 empírica.
@@ -9916,7 +10244,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-239-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-251-1.pdf}
 
 \subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o}
 
@@ -9941,7 +10269,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-240-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-252-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o}
 
@@ -9969,7 +10297,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-241-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-253-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o}
 
@@ -9992,7 +10320,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-242-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-254-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-1}
 
@@ -10015,7 +10343,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-243-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-255-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10024,7 +10352,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-243-2.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-255-2.pdf}
 
 \textbf{Cálculo de probabilidade}: Seja
 \(X \sim \text{Binomial}(n=10, p=0.5)\).
@@ -10133,7 +10461,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-244-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-256-1.pdf}
 
 \subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o-1}
 
@@ -10166,7 +10494,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-245-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-257-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-1}
 
@@ -10202,7 +10530,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-246-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-258-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-1}
 
@@ -10222,7 +10550,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-247-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-259-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-2}
 
@@ -10243,7 +10571,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-248-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-260-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10258,7 +10586,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-248-2.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-260-2.pdf}
 
 \textbf{Cálculo de probabilidades}: Seja \(X\sim\text{Poisson}(\lambda=5)\).
 
@@ -10347,7 +10675,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-249-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-261-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o}
 
@@ -10372,7 +10700,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-250-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-262-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-2}
 
@@ -10403,7 +10731,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-251-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-263-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-2}
 
@@ -10423,7 +10751,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-252-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-264-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-3}
 
@@ -10448,7 +10776,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-253-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-265-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10501,7 +10829,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-254-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-266-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-1}
 
@@ -10526,7 +10854,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-255-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-267-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-3}
 
@@ -10557,7 +10885,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-256-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-268-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-3}
 
@@ -10577,7 +10905,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-257-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-269-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-4}
 
@@ -10602,7 +10930,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-258-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-270-1.pdf}
 
 \section{Gerando uma variável aleatória com distribuição Normal}\label{gerando-uma-variuxe1vel-aleatuxf3ria-com-distribuiuxe7uxe3o-normal}
 
@@ -10632,7 +10960,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-259-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-271-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-2}
 
@@ -10657,7 +10985,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-260-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-272-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-4}
 
@@ -10688,7 +11016,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-261-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-273-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-4}
 
@@ -10708,7 +11036,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-262-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-274-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-5}
 
@@ -10733,7 +11061,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-263-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-275-1.pdf}
 
 \section{Exercícios}\label{exercuxedcios-23}
 
