@@ -1,6 +1,6 @@
 ---
-editor_options: 
-  markdown: 
+editor_options:
+  markdown:
     wrap: 72
 ---
 
@@ -4047,6 +4047,10 @@ dados_online <- read.table(url, header = TRUE, sep = ",")
 Neste exemplo, url contém o endereço do ficheiro CSV na web, e
 `read.table()` é usado para importar o conteúdo como um data frame.
 
+## Exercícios
+
+
+
 # Pipe
 
 ## O operador pipe
@@ -6790,6 +6794,721 @@ estimativa com a resposta exata, se conhecida.
 **7.** $\int_{0}^{1}\int_{0}^{1}e^{(x+y)^2}\,dy\,dx$.
 
 **8.** $\int_0^1 \int_0^1 x^2 + y^2 \, dx \, dy$.
+
+# Probabilidade e Variáveis Aleatórias
+
+**Exemplo 1**: Dada a função 
+
+$$f(x) = \begin{cases}
+2e^{-2x},& \quad \text{se} \quad x\geq 0 \\
+0,& \quad \text{se} \quad x<0
+\end{cases}$$
+
+a) Mostre que essa função é uma função densidade de probabilidade (f.d.p.).
+b) Calcule a probabilidade de que $X>2$.
+c) Calcule a probabilidade de que $0.3 < X < 0.7$.
+
+Sabemos que para $f$ ser f.d.p. ela deve satisfazer duas condições:
+
+* $f(x)\geq 0, \forall x \in \mathbb{R}$.
+* $\int_{-\infty}^{+\infty}f(x)\, dx = 1$.
+
+```{r}
+f1 <- function(x){
+  fx <- ifelse(x<0, 0, 2*exp(-2*x))
+  return(fx)
+}
+```
+
+Gráfico de $f$:
+
+```{r}
+plot(f1, from = 0, to = 10)
+```
+
+Para verificar que o integral da função é igual a 1 podemos usar a função `integrate()`, que realiza a integração numérica.
+
+```{r}
+integrate(f1, lower = 0, upper = Inf)
+```
+
+Para fazer os cálculos pedidos nas alíneas (a) e (b) lembramos que a probabilidade é dada pela área sob a curva da função no intervalo pedido, ou seja,
+
+$P(X > 2) = \int_{2}^{+\infty}f(x)\, dx = \int_{2}^{+\infty} 2e^{-2x}\,dx$
+
+$P(0.3 < X < 0.7) = \int_{0.3}^{0.7}f(x)\, dx = \int_{0.3}^{0.7} 2e^{-2x}\, dx$
+
+que são obtidas usando os comandos
+
+```{r}
+integrate(f1, lower = 2, upper = Inf)
+
+integrate(f1, lower = 0.3, upper = 0.7)
+```
+
+**Exemplo 2**: A demanda diária de arroz em um supermercado, em centenas de quilos, é uma variável aleatória $X$ com f.d.p. dada por
+
+$$f(x) = \begin{cases}
+\frac{2}{3}x,& \quad \text{se} \quad 0\leq x <1 \\
+-\frac{x}{3}+1,& \quad \text{se} \quad 1\leq x<3 \\
+0,& \quad \text{se} \quad x<0 \,\, \text{ou} \,\, x\geq 3
+\end{cases}$$
+
+(a) Calcular a probabilidade de que sejam vendidos mais que 150 kg.
+(b) Calcular a venda esperada em 30 dias.
+
+```{r}
+f2 <- function(x) {
+  ifelse(x >= 0 & x < 1, (2/3) * x,
+         ifelse(x >= 1 & x < 3, -x/3 + 1, 0))
+}
+```
+
+Vamos verificar que o integral da função é 1 e vamos fazer também o gráfico da função.
+
+```{r}
+integrate(f2, 0, 3)
+plot(f2, -1, 4)
+```
+
+(a) Calcular a probabilidade de que sejam vendidos mais que 150 kg (1.5 centenas de quilos). Ou seja, queremos calcular $P(X>1.5) = \int_{1.5}^{+\infty}f(x)\,dx$.
+
+```{r}
+plot(f2, -1, 4)
+polygon(x = c(1.5, 1.5, 3), y = c(0, f2(1.5), 0), dens = 10)
+```
+
+Podemos resolver o integral numericamente da seguinte forma
+
+```{r}
+integrate(f2, 1.5, 3)
+```
+
+A venda esperada em trinta dias é 30 vezes o valor esperado de venda em um dia. Para calcular o valor esperado $E(X) = \int_{-\infty}^{+\infty}xf(x)\,dx$ definimos uma nova função e resolvemos o integral. A função `integrate()` retorna uma lista onde um dos elementos (`value`) é o valor da integral.
+
+```{r}
+ef2 <- function(x) {
+  x*f2(x)
+}
+integrate(ef2,0,3)
+30*integrate(ef2,0,3)$value
+```
+
+Por fim, ressaltamos que os exemplos abordados aqui são básicos e podem ser resolvidos de forma analítica, sem a necessidade de métodos numéricos. Esses exemplos foram escolhidos apenas para ilustrar o uso do R na obtenção de soluções numéricas. Na prática, o R é mais indicado para problemas complexos, nos quais as soluções analíticas são difíceis ou inviáveis.
+
+## Exercícios
+
+1. Em uma determinada localidade a distribuição de renda, em u.m. (unidade monetária) é uma variável aleatória $X$ com função de distribuição de probabilidade:
+
+$$
+f(x) = 
+\begin{cases} 
+\frac{1}{10}x + \frac{1}{10}, & \text{se } 0 \leq x \leq 2 \\[10pt]
+-\frac{3}{40}x + \frac{9}{20}, & \text{se } 2 < x \leq 6 \\[10pt]
+0, & \text{se } x < 0 \text{ ou } x > 6
+\end{cases}
+$$
+
+(a) Mostre que $f(x)$ é uma f.d.p..
+(b) Qual a renda média nesta localidade?
+(c) Calcule a probabilidade de encontrar uma pessoa com renda acima de 4.5 u.m. e indique o resultado no gráfico da distribuição.
+
+2. Sabe-se que uma variável aleatória contínua $X$ é equiprovável no intervalo 10 e 20.
+
+(a) Apresente o gráfico da função densidade de probabilidade.
+(b) Calcule $P(X < 15)$.
+(c) Calcule $P(12\leq X \leq 18)$.
+(d) Calcule $E(X)$ e $V(X)$.
+
+3. Dois jogadores se alternam lançando dois dados equilibrados. O jogador A vence o jogo se ocorrer soma 6, enquanto B vencerá se ocorrer 7. Faça um estudo de simulação para responder as seguintes questões:
+
+(a) Se A começa jogando, qual é a sua probabilidade de vitória?
+(b) Qual é a probabilidade do iniciante, escolhido ao acaso, vencer o jogo?
+
+4. A duração, em anos, de uma certa lâmpada especial é uma variável aleatória contínua com densidade dada por:
+
+$$
+f(x) = 
+\begin{cases} 
+2\,e^{-2x}, & x\geq0 \\[10pt]
+0,& x<0
+\end{cases}
+$$
+
+(a) Crie uma função para calcular a função de distribuição acumulada de $X$.
+
+(b) Calcule $P(X>2)$.
+
+(c) Calcule $P(0.5 < X <1.2)$.
+
+(d) Calcule $P(X>3)$.
+
+(e) Calcule $P(X<3 | X>1)$.
+
+# Distribuições de Probabilidade
+
+No R temos acesso as mais comuns distribuições univariadas. Todas as
+funções tem as seguintes formas:
+
+| **Função**      | **Descrição**                                                 |
+|------------------|------------------------------------------------------|
+| **p**nome( ...) | função de distribuição                                        |
+| **d**nome( ...) | função de probabilidade ou densidade de probabilidade         |
+| **q**nome( ...) | calcula o quantil correspondente a uma dada probabilidade                           |
+| **r**nome( ...) | retorna uma amostra aleatória da distribuição |
+
+o **nome** é uma abreviatura do nome usual da distribuição (`binom`,
+`geom`, `pois`, `unif`, `exp`, `norm`, ...).
+
+**Modelos Teóricos Discretos**
+
+Um modelo probabilístico teórico discreto é uma representação matemática utilizada para descrever fenómenos onde as variáveis aleatórias assumem apenas valores isolados (discretos) num conjunto finito ou infinito enumerável. 
+
+O modelo define a distribuição de probabilidades associada a cada possível valor da variável, ou seja, especifica a probabilidade de cada evento ocorrer.
+
+## Modelo Uniforme Discreto
+
+**Definição**: A variável aleatória \( X \) diz-se ter **distribuição uniforme discreta** no conjunto \(\{x_1, x_2, \dots, x_n\}\) se sua função massa de probabilida (f.mp.) for dada por
+
+\[
+P(X = x) = 
+\begin{cases}
+\frac{1}{n}, & \text{se } x = x_1, \dots, x_n \\
+0, & \text{caso contrário}
+\end{cases}
+\]
+
+**Notação**
+
+- \( X \sim \text{Uniforme Discreta} (\{x_1, x_2, \dots, x_n\}) \)
+- $E(X) = \frac{1}{n} \sum_{i=1}^{n} x_i = \frac{n+1}{2}$
+- $V(X) = \left(\frac{1}{n} \sum_{i=1}^{n} x_i^2\right) - \left(\frac{1}{n} \sum_{i=1}^{n} x_i \right)^2 = \frac{n^2 - 1}{12}$
+
+> Esta distribuição é razoável quando a variável aleatória discreta toma \( n \) valores distintos, todos com a mesma probabilidade.
+
+Não há entre as funções básicas do R uma função específica para a distribuição uniforme discreta, provavelmente devido a sua simplicidade, embora algumas outras funções possam ser usadas. Por exemplo para sortear números pode-se usar `sample()`, como no exemplo a seguir onde são sorteados 15 valores de uma uniforme discreta com valores (inteiros) entre 1 e 10 ($X\sim \text{Uniforme Discreta}(\{1,\ldots,10\})$).
+
+```{r eval=FALSE}
+sample(1:10, size = 15, replace = TRUE)
+## [1] 2 3 4 4 4 5 7 9 4 2 6 7 1 6 9
+```
+
+## Distribuição de Bernoulli
+
+**Definição**: Uma experiência aleatória diz-se uma **prova de Bernoulli** se possuir apenas dois resultados possíveis
+
+- um sucesso $A$, que ocorre com probabilidade $p$ ($0\leq p \leq 1$);
+
+- um insucesso $\bar{A}$, que ocorre com probabilidade $1-p$.
+
+**Exemplos**
+
+- Lançar uma moeda e observar se o resultado é "cara" ou "coroa".
+- Examinar uma amostra de rocha para verificar a presença de fósseis.
+- Realizar uma perfuração para verificar a presença de petróleo num local específico.
+
+
+**Definição**: A variável aleatória discreta \( X \), que representa o *"número de sucessos numa prova de Bernoulli"*, diz-se com **distribuição de Bernoulli** com parâmetro \( p \) e possui f.m.p. dada por
+
+\[
+P(X = x) = 
+\begin{cases} 
+p, & \text{se } x = 1 \\ 
+1 - p, & \text{se } x = 0 \\ 
+0, & \text{caso contrário}
+\end{cases}
+\]
+
+ou, de forma equivalente,
+
+\[
+P(X = x) = \begin{cases} p^x (1 - p)^{1 - x}, & x = 0, 1 \\ 0, & \text{caso contrário} \end{cases}
+\]
+
+**Notação**
+
+- \( X \sim \text{Bernoulli}(p) \)
+- \( p = P(\text{Sucesso}) \)
+- \( E(X) = p \)
+- \( V(X) = p(1 - p) \)
+
+### Cálculo de probabilidades
+
+Seja $X \sim \text{Bernoulli}(p=0.5)$.
+
+$P(X=0) \to$ `dbinom(x=0, size=1, prob=0.5)` = 0.5
+
+$P(X=1) \to$ `dbinom(x=1, size=1, prob=0.5)` = 0.5
+
+$P(X \leq 1) \to$ `pbinom(q=1, size=1, prob=0.5)` = 1
+
+$P(X>0) \to$ `pbinom(q=0, size=1, prob=0.5, lower.tail=FALSE)` = 0.5
+
+Amostra aleatória de dimensão 5: `rbinom(n = 5, size = 1, prob = 0.5)` = 0 1 0 1 1
+
+**Exemplo**: Considere a experiência aleatória que consiste em lançar
+uma moeda não viciada e observar a face que fica voltada para cima.
+Sendo o objetivo verificar se sai “cara”, defina-se a variável aleatória
+
+$$X - \text{número de vezes, em 1 lançamento, que sai cara}$$ 
+
+(a) Simule a situação descrita, determinando a percentagem de vezes em que saiu cara, para um número total de lançamentos: $n_1 = 5$, $n_2=10$, $n_3=100$ e $n_4=1000$.
+
+(b) Determine, para cada amostra, o valor da média e da variância. Compare com os valores de $E(X)$ e $V(X)$.
+
+```{r}
+# Parâmetro
+p <- 0.5
+# Número de lançamentos
+n <- c(5,10,100,1000)
+# Gerando amostra
+amostra <- list()
+percentagens <- c()
+media <- c()
+variancia <- c()
+# Loop para criar listas
+for (i in 1:length(n)) {
+  amostra[[i]] <- rbinom(n[i], size=1, prob=p)
+  percentagens[i] <- sum(amostra[[i]]/n[i])
+  media[i] <- mean(amostra[[i]])
+  variancia[i] <- var(amostra[[i]])
+}
+resultados <- data.frame(n,percentagens,media,variancia,comp_media = abs(media-p), comp_var = abs(variancia-p*(1-p)))
+resultados
+```
+
+## Distribuição Binomial
+
+**Definição**: A variável aleatória discreta \( X \), que representa o *"número de sucessos num conjunto de \( n \) provas de Bernoulli independentes com probabilidade de sucesso comum e igual a \( p \)"*, diz-se com **distribuição binomial** de parâmetros \( (n, p) \) e possui f.m.p. dada por
+
+\[
+P(X = x) = 
+\begin{cases} 
+\binom{n}{x} p^x (1 - p)^{n - x}, & x = 0, 1, 2, \ldots, n \\ 
+0, & \text{caso contrário}
+\end{cases}
+\]
+
+onde 
+
+\[
+\binom{n}{x} = C_x^n = \frac{n!}{(n - x)! \, x!}.
+\]
+
+Esta fórmula representa a probabilidade de obter exatamente \( x \) sucessos em \( n \) tentativas, com probabilidade \( p \) de sucesso em cada tentativa.
+
+**Notação**
+
+- $X \sim \text{Binomial}(n,p)$
+- $p = P(\text{sucesso})$
+- $E(X) = np$
+- $V(X) = np(1-p)$
+
+### Cálculo de probabilidades
+
+Seja $X\sim\text{Binomial}(n=20, p=0.1)$.
+
+$P(X = 4) \to$ `dbinom(x=4, size=20, prob=0.1)` = 0.08977883
+
+\noindent $P(X\leq 4) \to$ `pbinom(q=4, size=20, prob=0.1)` = 0.9568255
+
+\noindent $P(X > 4)\to$
+`pbinom(q=4, size=20, prob=0.1, lower.tail=FALSE)`= 0.0431745
+
+### Função massa de probabilidade (teórica)
+
+```{r}
+# Simulação de Variáveis aleatórias
+
+# Função massa de probabilidade Binomial(n,p)
+n <- 20
+p <- 0.1
+x <- 0:20
+
+teorico <- data.frame(x = x, y=dbinom(x, size = n, prob = p))
+
+# Carregue o pacote ggplot2
+library(ggplot2)
+
+ggplot(teorico) +  
+  geom_point(aes(x = x, y=y), color = "blue") + 
+  scale_x_continuous(breaks = 0:n) +  
+  labs(title = "Binomial(20,0.1)", x = "Número de sucessos", y = "Probabilidade") +  
+  theme_light()
+```
+
+### Função massa de probabilidade (simulação)
+
+```{r}
+set.seed(1234)
+
+n <- 20
+p <- 0.9
+k <- 1000 # número de simulações
+
+dados <- data.frame(X = rbinom(k, size = n, prob = p))
+
+# Carregue o pacote ggplot2library(ggplot2)
+
+ggplot(dados) +   
+geom_bar(aes(x=X, y=after_stat(prop)), fill = "lightblue") +
+  scale_x_continuous(breaks = 0:n) +   
+  labs(title = "Geração de números aleatórios de Bi(20,0.9)", x="Número de sucessos", 
+  y="Frequência relativa") +  
+  theme_light()
+```
+
+### Comparação
+
+```{r}
+set.seed(1234)
+
+n <- 20
+p <- 0.1
+k <- 1000 # número de simulações
+
+dados <- data.frame(X = rbinom(k, size = n, prob = p))
+teorico <- data.frame(x = 0:n, y=dbinom(0:n, size = n, prob = p))
+
+# Carregue o pacote ggplot2
+library(ggplot2)
+
+ggplot(dados) +  
+  geom_bar(aes(x = X, y = after_stat(prop)), fill = "lightblue") + 
+  geom_point(data = teorico, aes(x, y), color = "magenta") + 
+  scale_x_continuous(breaks = 0:n) +  
+  labs(title = "Geração de números aleatórios de Bi(20,0.1)", x = "Número de sucessos",       
+  y = "Probabilidade") +  
+  theme_light()
+```
+
+### Função de distribuição
+
+```{r}
+# Definir os parâmetros da distribuição binomial
+n <- 10 # Número de tentativas
+p <- 0.5 # Probabilidade de sucesso
+
+# Valores possíveis de sucessos (0 a n)
+x <- 0:n
+
+# Calcular a FD
+cdf_values <- pbinom(x, size = n, prob = p)
+
+# Plotar a FD
+plot(x, cdf_values, type = "s", lwd = 2, col = "blue", 
+xlab = "Número de Sucessos", ylab = "F(x)", 
+main = "Função de Distribuição Acumulada da Binomial(n = 10, p = 0.5)")
+```
+
+### Função de distribuição empírica
+
+```{r}
+# Definir os parâmetros da distribuição binomial
+n <- 10 # Número de tentativas
+p <- 0.5 # Probabilidade de sucesso
+
+set.seed(123)
+# Amostra aleatória de dimensão 1000
+amostra <- rbinom(1000,size = n, prob = p)
+
+# Distribuição empírica 
+Fn <- ecdf(amostra)
+
+# Plotar CDF
+plot(Fn, main = "Função de Distribuição Empírica", xlab = "x", 
+ylab = "Fn(x)", col = "blue")
+
+# OU
+plot.ecdf(amostra)
+```
+
+**Cálculo de probabilidade**: Seja $X \sim \text{Binomial}(n=10, p=0.5)$.
+
+$P(X \leq 4) =$ `pbinom(4,10,0.5)` = 0.377
+
+$P(X \leq 4) \approx$ `Fn(4)` = 0.382
+
+**Exemplo**: Considere a experiência aleatória que consiste em lançar
+uma moeda não viciada e observar a face que fica voltada para cima.
+Suponha que a experiência é realizada 7 vezes, sendo o objetivo
+verificar se sai "cara". Defina-se a variável aleatória
+
+$$X - \text{número de vezes, em 7 lançamentos, que sai cara}$$ 
+
+(a) Calcule a probabilidade de, em 7 lançamentos, sair 2 vezes cara.
+
+(b) Simule a situação descrita para um número total de repetições da
+    experiência: $n_1=5$, $n_2=10$, $n_3=100$ e $n_4=1000$. Para cada
+    caso, determine a percentagem de casos em que saíram 3 vezes cara.
+
+(c) Determine, para cada amostra, o valor da média e da variância.
+    Compare com os valores de $E(X)$ e $V(X)$.
+
+Seja $X$ uma variável aleatória com distribuição binomial, com $n=10$ e $p=0.35$. Vamos ver os comandos do R para:
+
+* Fazer o gráfico da função de probabilidade.
+
+* Fazer o gráfico da função de distribuição acumulada.
+
+* Calcular $P(X=7)$.
+
+* Calcular $P(X \leq 7)$.
+
+* Calcular $P(X>7)$.
+
+* Calcular $P(3<X\leq 6)$.
+
+```{r}
+# Função de probabilidade e fx e função de distribuição Fx
+
+par(mfrow = c(1, 2))
+x <- 0:10
+fx <- dbinom(x, size = 10, prob = 0.35)
+plot(x, fx, type = "h")
+Fx <- pbinom(x, size = 10, prob = 0.35)
+plot(x, Fx, type = "s")
+par(mfrow = c(1, 1))
+```
+
+As probabilidades pedidas são:
+
+```{r eval=FALSE}
+# P(X = 7)
+dbinom(7, size = 10, prob = 0.35)
+## [1] 0.02120302
+# P(X <= 7)
+pbinom(7, size = 10, prob = 0.35)
+## [1] 0.9951787
+# OU
+sum(dbinom(0:7, size = 10, prob = 0.35))
+## [1] 0.9951787
+# P(X > 7)
+1 - pbinom(7, size = 10, prob = 0.35)
+## [1] 0.004821265
+pbinom(7, size = 10, prob = 0.35, lower.tail = FALSE) # melhor
+## [1] 0.004821265
+# P(3 < X <= 6)
+pbinom(6, 10, 0.35) - pbinom(3, 10, 0.35)
+## [1] 0.4601487
+# OU
+sum(dbinom(4:6, 10, 0.35))
+## [1] 0.4601487
+```
+
+## Distribuição de Poisson
+
+Considera-se a contagem do número de ocorrências aleatórias de um acontecimento num intervalo de tempo (comprimento, área, volume, etc.) que verifica as seguintes propriedades:
+
+1. O número de ocorrências de um acontecimento num intervalo é independente do número de ocorrências noutro intervalo disjunto, dizendo-se que não tem memória.
+
+2. A probabilidade de ocorrência de um acontecimento é a mesma para intervalos com a mesma amplitude.
+
+3. A probabilidade de ocorrer mais do que um acontecimento num intervalo suficientemente pequeno é nula.
+
+Então, esta experiência aleatória chama-se **Processo de Poisson**.
+
+**Definição**: A variável aleatória discreta $X = \text{"número de ocorrências de um acontecimento por unidade de tempo ou de espaço (comprimento, área, volume, etc.)"}$
+
+diz-se com **distribuição de Poisson** de parâmetro \( \lambda > 0 \) e possui f.m.p. dada por
+
+\[
+P(X = x) = \begin{cases} 
+\frac{e^{-\lambda} \lambda^x}{x!}, & x = 0, 1, 2, \dots \\
+0, & \text{caso contrário}
+\end{cases}
+\]
+
+**Notação**
+
+- \( X \sim \text{Poisson}(\lambda) \)
+- \( E(X) = \lambda \)
+- \( V(X) = \lambda \)
+
+> \( \lambda \) representa o número médio de ocorrências de um acontecimento por unidade de tempo ou espaço.
+
+**Aditividade da Distribuição de Poisson**: Se \( X_1, \dots, X_n \) são variáveis aleatórias independentes, com \( X_i \sim \text{Poisson}(\lambda_i) \) para \( i = 1, 2, \dots, n \), então
+
+\[
+\sum_{i=1}^n X_i \sim \text{Poisson}\left( \sum_{i=1}^n \lambda_i \right).
+\]
+
+## Cálculo de probabilidades 
+
+**Exemplo**: Geólogos estão a estudar a ocorrência de terramotos numa região específica. Eles observaram que, em média, ocorrem 3 terramotos por mês nessa região. O número de terramotos por mês pode ser modelado por uma distribuição de Poisson.
+
+**(a)** Calcule a probabilidade de ocorrer exatamente 2 terramotos em um mês.
+
+**(b)** Calcule a probabilidade de ocorrer mais de 4 terramotos em um mês.
+
+**(c)** Suponha que a equipa de geólogos está a planear um sistema de alerta para terramotos. Eles querem saber a probabilidade de ocorrer pelo menos 1 terramoto num período de 2 semanas.
+
+**Variável Aleatória**
+
+\( X = \text{"número de terramotos por mês numa região específica"} \)
+
+**Distribuição de \( X \)**
+
+- \( X \sim \text{Poisson}(\lambda = 3) \)
+- \( E(X) = 3 = \lambda \)
+
+**(a)** $P(X=2)$
+
+```{r eval=FALSE}
+# P(X=2)
+dpois(x = 2, lambda = 3)
+## [1] 0.2240418
+```
+
+**(b)** $P(X>4)=1-P(X\leq 4)$
+
+```{r eval=FALSE}
+# P(X>4)
+ppois(q = 4, lambda = 3, lower.tail = FALSE)
+## [1] 0.1847368
+# ou
+1 - ppois(q = 4, lambda = 3, lower.tail = TRUE)
+## [1] 0.1847368
+```
+
+**(c)** 
+
+**Variável aleartória de interesse**
+
+$\tilde{X} = \text{"número de terramotos em 2 semanas"}$
+
+$\tilde{X} \sim \text{Poisson}(\lambda = 1.5)$
+
+$P(X \geq 1) = 1-P(X < 1) = 1-P(X=0)$
+
+```{r eval=FALSE}
+# P(X >= 1)
+1-dpois(x = 0, lambda = 1.5)
+## [1] 0.7768698
+```
+
+## Distribuição Uniforme
+
+**Definição**: A variável aleatória contínua \( X \) diz-se ter **distribuição uniforme contínua** no intervalo \( (a, b) \) (onde \( a < b \)), se sua função densidade de probabilidade (f.d.p.) for dada por
+
+\[
+f(x) = \begin{cases} 
+\frac{1}{b - a}, & a \leq x \leq b \\ 
+0, & \text{caso contrário} 
+\end{cases}
+\]
+
+A função de distribuição acumulada (f.d.a.) de \( X \) é dada por
+
+\[
+F(x) = \begin{cases} 
+0, & x \leq a \\ 
+\frac{x - a}{b - a}, & a < x < b \\ 
+1, & x \geq b 
+\end{cases}
+\]
+
+### Notação
+- \( X \sim \text{Uniforme}(a, b) \)
+- \( E(X) = \frac{a + b}{2} \)
+- \( V(X) = \frac{(b - a)^2}{12} \)
+
+
+
+
+## Distribuição Normal
+
+Vamos ver alguns exemplos com a distribuição normal padrão. Por `default` as funções assumem a distribuição normal padrão $N(\mu=0, \sigma = 1)$.
+
+```{r}
+dnorm(-1)
+
+pnorm(-1)
+
+qnorm(0.975)
+
+rnorm(10)
+```
+
+O primeiro valor acima, de `dnorm(-1)`, corresponde ao valor da densidade da normal reduzida ou normal padrão $N(\mu=0,\sigma=1)$
+
+$$f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{1}{2}\left( \frac{x-\mu}{\sigma}\right)}$$
+no ponto $x=-1$. Portanto, o mesmo valor seria obtido substituindo $x$ por $-1$ na expressão da normal:
+
+```{r}
+mu <- 0
+sigma <- 1
+x <- -1
+(1/(sigma * sqrt(2*pi))) * exp((-1/2) * ((x - mu)/sigma)^2)
+```
+
+* A função `pnorm(-1)` calcula a probabilidade $P(X \leq -1)$.
+
+* A função `qnorm(0.975)` calcula o valor de $x$ tal que $P(X\leq x) = 0.975$.
+
+* A função `rnorm(10)` gera uma amostra aleatória de 10 elementos da normal padrão.
+
+As funções relacionadas à distribuição normal possuem os argumentos `mean` e `sd` para definir a média e o desvio padrão da distribuição que podem ser modificados como nos exemplos a seguir. Note nestes exemplos que os argumentos podem ser passados de diferentes formas.
+
+```{r}
+qnorm(0.975, mean = 100, sd = 8)
+
+qnorm(0.975, m = 100, s = 8)
+
+qnorm(0.975, 100, 8)
+```
+
+Cálculos de probabilidades usuais, para os quais utilizavamos tabelas estatísticas podem ser facilmente obtidos como no exemplo a seguir.
+
+Seja $X$ uma variável aleatória com distribuição $N(\mu=100, \sigma=10)$. Calcular as probabilidades:
+
+* $P(X < 95)$
+
+* $P(90 < X < 110)$
+
+* $P(X > 95)$
+
+Calcule estas probabilidades de forma usual, usando a tabela da normal. Depois compare com os resultados fornecidos pelo R. Os comandos do R para obter as probabilidades pedidas são:
+
+```{r}
+# P(X < 95)
+pnorm(95, 100, 10)
+
+# P(90 < X < 110)
+pnorm(110, 100, 10) - pnorm(90, 100, 10)
+
+# P(X > 95) = 1 - P(X < 95)
+1 - pnorm(95, 100, 10)
+
+# ou
+pnorm(95, 100, 10, lower.tail = FALSE) # melhor
+```
+
+Função densidade de probabilidade e função de distribuição.
+
+```{r}
+par(mfrow = c(1, 2))
+plot(dnorm, from = -3, to = 3, 
+     xlab = "Valores de X",
+     ylab = "Densidade de probabilidade")
+title("Distribuicão Normal\nX ~ N(0, 1)")
+plot(pnorm, from = -3, to = 3)
+par(mfrow = c(1, 1))
+```
+
+
+```{r}
+plot(function(x) dnorm(x, 100, 8), 60, 140, ylab = 'f(x)')
+plot(function(x) dnorm(x, 90, 8), 60, 140, add = TRUE, col = 2)
+plot(function(x) dnorm(x, 100, 15), 60, 140, add = TRUE, col = 3)
+legend(120, 0.05, fill = 1:3,
+       legend = c("N(100,64)", "N(90,64)", "N(100,225)"))
+```
+
+
+
+
+
 
 # Método da transformada inversa
 

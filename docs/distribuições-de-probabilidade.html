@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 21 Distribuições de Probabilidade | Introdução ao R</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 21 Distribuições de Probabilidade | Introdução ao R" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="/docs/ciencias.png" />
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 21 Distribuições de Probabilidade | Introdução ao R" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="twitter:image" content="/docs/ciencias.png" />
+
+<meta name="author" content="Renato de Paula" />
+
+
+<meta name="date" content="2024-11-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="probabilidade-e-variáveis-aleatórias.html"/>
+<link rel="next" href="método-da-transformada-inversa.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Laboratório de Estatistica I</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prefácio</a></li>
+<li class="chapter" data-level="2" data-path="normas-de-funcionamento.html"><a href="normas-de-funcionamento.html"><i class="fa fa-check"></i><b>2</b> Normas de Funcionamento</a></li>
+<li class="chapter" data-level="3" data-path="r-e-rstudio.html"><a href="r-e-rstudio.html"><i class="fa fa-check"></i><b>3</b> R e RStudio</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="r-e-rstudio.html"><a href="r-e-rstudio.html#instalação-e-funcionalidades-básicas"><i class="fa fa-check"></i><b>3.1</b> Instalação e funcionalidades básicas</a></li>
+<li class="chapter" data-level="3.2" data-path="r-e-rstudio.html"><a href="r-e-rstudio.html#navegar-no-rstudio"><i class="fa fa-check"></i><b>3.2</b> Navegar no RStudio</a></li>
+<li class="chapter" data-level="3.3" data-path="r-e-rstudio.html"><a href="r-e-rstudio.html#atalhos"><i class="fa fa-check"></i><b>3.3</b> Atalhos</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html"><i class="fa fa-check"></i><b>4</b> R como Calculadora e Operações Aritméticas</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#o-prompt-do-r"><i class="fa fa-check"></i><b>4.1</b> O Prompt do R</a></li>
+<li class="chapter" data-level="4.2" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#objetos-e-variáveis"><i class="fa fa-check"></i><b>4.2</b> Objetos e Variáveis</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#o-que-é-uma-variável"><i class="fa fa-check"></i><b>4.2.1</b> O que é uma Variável?</a></li>
+<li class="chapter" data-level="4.2.2" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#atribuições"><i class="fa fa-check"></i><b>4.2.2</b> Atribuições</a></li>
+<li class="chapter" data-level="4.2.3" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#regras-para-definição-de-variáveis"><i class="fa fa-check"></i><b>4.2.3</b> Regras para definição de variáveis</a></li>
+<li class="chapter" data-level="4.2.4" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#tipos-de-dados"><i class="fa fa-check"></i><b>4.2.4</b> Tipos de Dados</a></li>
+<li class="chapter" data-level="4.2.5" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#comandos-importantes"><i class="fa fa-check"></i><b>4.2.5</b> Comandos Importantes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#operadores-aritméticos-em-r"><i class="fa fa-check"></i><b>4.3</b> Operadores Aritméticos em R</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#controle-da-quantidade-de-dígitos-mostrados"><i class="fa fa-check"></i><b>4.3.1</b> Controle da Quantidade de Dígitos Mostrados</a></li>
+<li class="chapter" data-level="4.3.2" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#objetos-predefinidos-infinito-indefinido-e-valores-ausentes"><i class="fa fa-check"></i><b>4.3.2</b> Objetos Predefinidos, Infinito, Indefinido e Valores Ausentes</a></li>
+<li class="chapter" data-level="4.3.3" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#lidando-com-nan-e-na-em-operações"><i class="fa fa-check"></i><b>4.3.3</b> Lidando com NaN e NA em Operações</a></li>
+<li class="chapter" data-level="4.3.4" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#funções-úteis-para-detectar-nan-e-na"><i class="fa fa-check"></i><b>4.3.4</b> Funções Úteis para Detectar NaN e NA</a></li>
+<li class="chapter" data-level="4.3.5" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#tipagem-dinâmica-em-r"><i class="fa fa-check"></i><b>4.3.5</b> Tipagem Dinâmica em R</a></li>
+<li class="chapter" data-level="4.3.6" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#conversão-entre-tipos-de-dados"><i class="fa fa-check"></i><b>4.3.6</b> Conversão entre Tipos de Dados</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#funções-print-readline-paste-e-cat"><i class="fa fa-check"></i><b>4.4</b> Funções <code>print()</code>, <code>readline()</code>, <code>paste()</code> e <code>cat()</code></a></li>
+<li class="chapter" data-level="4.5" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#quizz"><i class="fa fa-check"></i><b>4.5</b> Quizz</a></li>
+<li class="chapter" data-level="4.6" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#operadores-lógicos-e-relacionais"><i class="fa fa-check"></i><b>4.6</b> Operadores Lógicos e Relacionais</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#operadores-lógicos"><i class="fa fa-check"></i><b>4.6.1</b> Operadores Lógicos</a></li>
+<li class="chapter" data-level="4.6.2" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#operadores-relacionais"><i class="fa fa-check"></i><b>4.6.2</b> Operadores Relacionais</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#quizz-1"><i class="fa fa-check"></i><b>4.7</b> Quizz</a></li>
+<li class="chapter" data-level="4.8" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#exercícios"><i class="fa fa-check"></i><b>4.8</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html"><i class="fa fa-check"></i><b>5</b> Estrutura de Dados Básicas</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#vetor"><i class="fa fa-check"></i><b>5.1</b> Vetor</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#tipos-comuns-de-vetores"><i class="fa fa-check"></i><b>5.1.1</b> Tipos Comuns de Vetores</a></li>
+<li class="chapter" data-level="5.1.2" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#construindo-vetores"><i class="fa fa-check"></i><b>5.1.2</b> Construindo Vetores</a></li>
+<li class="chapter" data-level="5.1.3" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#acesso-a-elementos-de-um-vetor"><i class="fa fa-check"></i><b>5.1.3</b> Acesso a Elementos de um Vetor</a></li>
+<li class="chapter" data-level="5.1.4" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#funções-comuns-para-vetores"><i class="fa fa-check"></i><b>5.1.4</b> Funções Comuns para Vetores</a></li>
+<li class="chapter" data-level="5.1.5" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#operações-com-vetores"><i class="fa fa-check"></i><b>5.1.5</b> Operações com Vetores</a></li>
+<li class="chapter" data-level="5.1.6" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#exercícios-1"><i class="fa fa-check"></i><b>5.1.6</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#fatores"><i class="fa fa-check"></i><b>5.2</b> Fatores</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#manipulação-de-fatores"><i class="fa fa-check"></i><b>5.2.1</b> Manipulação de Fatores</a></li>
+<li class="chapter" data-level="5.2.2" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#gerando-fatores-com-gl"><i class="fa fa-check"></i><b>5.2.2</b> Gerando Fatores com <code>gl()</code></a></li>
+<li class="chapter" data-level="5.2.3" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#exercícios-2"><i class="fa fa-check"></i><b>5.2.3</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#matriz-e-array"><i class="fa fa-check"></i><b>5.3</b> Matriz e Array</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#criando-matrizes"><i class="fa fa-check"></i><b>5.3.1</b> Criando matrizes</a></li>
+<li class="chapter" data-level="5.3.2" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#criando-um-array"><i class="fa fa-check"></i><b>5.3.2</b> Criando um array</a></li>
+<li class="chapter" data-level="5.3.3" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#acessar-elementos-de-um-array"><i class="fa fa-check"></i><b>5.3.3</b> Acessar Elementos de um array</a></li>
+<li class="chapter" data-level="5.3.4" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#construindo-matrizes"><i class="fa fa-check"></i><b>5.3.4</b> Construindo Matrizes</a></li>
+<li class="chapter" data-level="5.3.5" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#acessar-elementos-de-uma-matriz"><i class="fa fa-check"></i><b>5.3.5</b> Acessar Elementos de uma Matriz</a></li>
+<li class="chapter" data-level="5.3.6" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#nomear-linhas-e-colunas-de-uma-matriz"><i class="fa fa-check"></i><b>5.3.6</b> Nomear Linhas e Colunas de uma Matriz</a></li>
+<li class="chapter" data-level="5.3.7" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#multiplicação-de-matrizes"><i class="fa fa-check"></i><b>5.3.7</b> Multiplicação de matrizes</a></li>
+<li class="chapter" data-level="5.3.8" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#adicionar-linhas-e-colunas-a-uma-matriz"><i class="fa fa-check"></i><b>5.3.8</b> Adicionar Linhas e Colunas a uma Matriz</a></li>
+<li class="chapter" data-level="5.3.9" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#algumas-outras-funções"><i class="fa fa-check"></i><b>5.3.9</b> Algumas outras funções</a></li>
+<li class="chapter" data-level="5.3.10" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#exercícios-3"><i class="fa fa-check"></i><b>5.3.10</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#data-frame"><i class="fa fa-check"></i><b>5.4</b> Data Frame</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#criar-um-data-frame"><i class="fa fa-check"></i><b>5.4.1</b> Criar um Data Frame</a></li>
+<li class="chapter" data-level="5.4.2" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#aceder-a-linhas-e-colunas"><i class="fa fa-check"></i><b>5.4.2</b> Aceder a Linhas e Colunas</a></li>
+<li class="chapter" data-level="5.4.3" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#adicionar-e-remover-colunas"><i class="fa fa-check"></i><b>5.4.3</b> Adicionar e Remover Colunas</a></li>
+<li class="chapter" data-level="5.4.4" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#fundir-data-frames"><i class="fa fa-check"></i><b>5.4.4</b> Fundir Data Frames</a></li>
+<li class="chapter" data-level="5.4.5" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#explorar-o-data-frame"><i class="fa fa-check"></i><b>5.4.5</b> Explorar o Data Frame</a></li>
+<li class="chapter" data-level="5.4.6" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#a-função-subset"><i class="fa fa-check"></i><b>5.4.6</b> A função <code>subset()</code></a></li>
+<li class="chapter" data-level="5.4.7" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#a-função-summary"><i class="fa fa-check"></i><b>5.4.7</b> A Função <code>summary()</code></a></li>
+<li class="chapter" data-level="5.4.8" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#valores-ausentes"><i class="fa fa-check"></i><b>5.4.8</b> Valores ausentes</a></li>
+<li class="chapter" data-level="5.4.9" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#exercícios-4"><i class="fa fa-check"></i><b>5.4.9</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#listas"><i class="fa fa-check"></i><b>5.5</b> Listas</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#criar-e-manipular-listas"><i class="fa fa-check"></i><b>5.5.1</b> Criar e Manipular Listas</a></li>
+<li class="chapter" data-level="5.5.2" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#por-que-usar-listas"><i class="fa fa-check"></i><b>5.5.2</b> Por que usar listas?</a></li>
+<li class="chapter" data-level="5.5.3" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#exercícios-5"><i class="fa fa-check"></i><b>5.5.3</b> Exercícios</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html"><i class="fa fa-check"></i><b>6</b> Estruturas de Seleção</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html#condicional-if"><i class="fa fa-check"></i><b>6.1</b> Condicional <code>if</code></a></li>
+<li class="chapter" data-level="6.2" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html#estrutura-if...else"><i class="fa fa-check"></i><b>6.2</b> Estrutura <code>if...else</code></a></li>
+<li class="chapter" data-level="6.3" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html#condicional-else-if"><i class="fa fa-check"></i><b>6.3</b> Condicional <code>else if</code></a></li>
+<li class="chapter" data-level="6.4" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html#a-função-ifelse"><i class="fa fa-check"></i><b>6.4</b> A função <code>ifelse()</code></a></li>
+<li class="chapter" data-level="6.5" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html#exemplos"><i class="fa fa-check"></i><b>6.5</b> Exemplos</a></li>
+<li class="chapter" data-level="6.6" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html#exercícios-6"><i class="fa fa-check"></i><b>6.6</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="funções.html"><a href="funções.html"><i class="fa fa-check"></i><b>7</b> Funções</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="funções.html"><a href="funções.html#exercícios-7"><i class="fa fa-check"></i><b>7.1</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="scripts-em-r.html"><a href="scripts-em-r.html"><i class="fa fa-check"></i><b>8</b> Scripts em R</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="scripts-em-r.html"><a href="scripts-em-r.html#exercícios-8"><i class="fa fa-check"></i><b>8.1</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html"><i class="fa fa-check"></i><b>9</b> Leitura de dados</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#leitura-de-dados-da-entrada-do-utilizador"><i class="fa fa-check"></i><b>9.1</b> Leitura de Dados da Entrada do Utilizador</a></li>
+<li class="chapter" data-level="9.2" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#diretório-de-trabalho"><i class="fa fa-check"></i><b>9.2</b> Diretório de trabalho</a></li>
+<li class="chapter" data-level="9.3" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.table"><i class="fa fa-check"></i><b>9.3</b> A Função <code>read.table()</code></a></li>
+<li class="chapter" data-level="9.4" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.csv"><i class="fa fa-check"></i><b>9.4</b> A função <code>read.csv()</code></a></li>
+<li class="chapter" data-level="9.5" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.csv2"><i class="fa fa-check"></i><b>9.5</b> A função <code>read.csv2()</code></a></li>
+<li class="chapter" data-level="9.6" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read_excel-do-pacote-readxl"><i class="fa fa-check"></i><b>9.6</b> A Função <code>read_excel()</code> do Pacote <code>readxl</code></a></li>
+<li class="chapter" data-level="9.7" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#leitura-de-dados-online"><i class="fa fa-check"></i><b>9.7</b> Leitura de Dados Online</a></li>
+<li class="chapter" data-level="9.8" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#exercícios-9"><i class="fa fa-check"></i><b>9.8</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>10</b> Pipe</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="pipe.html"><a href="pipe.html#o-operador-pipe"><i class="fa fa-check"></i><b>10.1</b> O operador pipe</a></li>
+<li class="chapter" data-level="10.2" data-path="pipe.html"><a href="pipe.html#exercícios-10"><i class="fa fa-check"></i><b>10.2</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="loop-while.html"><a href="loop-while.html"><i class="fa fa-check"></i><b>11</b> Loop while</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="loop-while.html"><a href="loop-while.html#exercícios-11"><i class="fa fa-check"></i><b>11.1</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="loop-for.html"><a href="loop-for.html"><i class="fa fa-check"></i><b>12</b> Loop for</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="loop-for.html"><a href="loop-for.html#exercícios-12"><i class="fa fa-check"></i><b>12.1</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="família-xapply.html"><a href="família-xapply.html"><i class="fa fa-check"></i><b>13</b> Família <code>Xapply()</code></a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="família-xapply.html"><a href="família-xapply.html#função-apply"><i class="fa fa-check"></i><b>13.1</b> Função <code>apply()</code></a></li>
+<li class="chapter" data-level="13.2" data-path="família-xapply.html"><a href="família-xapply.html#função-lapply"><i class="fa fa-check"></i><b>13.2</b> Função <code>lapply()</code></a></li>
+<li class="chapter" data-level="13.3" data-path="família-xapply.html"><a href="família-xapply.html#função-sapply"><i class="fa fa-check"></i><b>13.3</b> Função <code>sapply()</code></a></li>
+<li class="chapter" data-level="13.4" data-path="família-xapply.html"><a href="família-xapply.html#função-tapply"><i class="fa fa-check"></i><b>13.4</b> Função <code>tapply()</code></a></li>
+<li class="chapter" data-level="13.5" data-path="família-xapply.html"><a href="família-xapply.html#exercícios-13"><i class="fa fa-check"></i><b>13.5</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="exercícios-de-revisão.html"><a href="exercícios-de-revisão.html"><i class="fa fa-check"></i><b>14</b> Exercícios de Revisão</a></li>
+<li class="chapter" data-level="15" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html"><i class="fa fa-check"></i><b>15</b> Gráficos (R base)</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-de-barras"><i class="fa fa-check"></i><b>15.1</b> Gráfico de Barras</a></li>
+<li class="chapter" data-level="15.2" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-circular-pizza"><i class="fa fa-check"></i><b>15.2</b> Gráfico Circular (Pizza)</a></li>
+<li class="chapter" data-level="15.3" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#histograma"><i class="fa fa-check"></i><b>15.3</b> Histograma</a></li>
+<li class="chapter" data-level="15.4" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#box-plot"><i class="fa fa-check"></i><b>15.4</b> Box-plot</a></li>
+<li class="chapter" data-level="15.5" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-de-dispersão"><i class="fa fa-check"></i><b>15.5</b> Gráfico de Dispersão</a></li>
+<li class="chapter" data-level="15.6" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-de-linhas"><i class="fa fa-check"></i><b>15.6</b> Gráfico de Linhas</a></li>
+<li class="chapter" data-level="15.7" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#exercícios-14"><i class="fa fa-check"></i><b>15.7</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html"><i class="fa fa-check"></i><b>16</b> Manipulação de dados</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#tibbles"><i class="fa fa-check"></i><b>16.1</b> Tibbles</a>
+<ul>
+<li class="chapter" data-level="16.1.1" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#criar-e-trabalhar-com-tibbles"><i class="fa fa-check"></i><b>16.1.1</b> Criar e trabalhar com Tibbles</a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#manipulação-de-dados-com-dplyr"><i class="fa fa-check"></i><b>16.2</b> Manipulação de Dados com <code>dplyr</code></a>
+<ul>
+<li class="chapter" data-level="16.2.1" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#seleção-de-colunas-com-select"><i class="fa fa-check"></i><b>16.2.1</b> Seleção de Colunas com <code>select()</code></a></li>
+<li class="chapter" data-level="16.2.2" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#exercícios-15"><i class="fa fa-check"></i><b>16.2.2</b> Exercícios</a></li>
+<li class="chapter" data-level="16.2.3" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#ordenando-a-base-de-dados"><i class="fa fa-check"></i><b>16.2.3</b> Ordenando a Base de Dados</a></li>
+<li class="chapter" data-level="16.2.4" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#exercícios-16"><i class="fa fa-check"></i><b>16.2.4</b> Exercícios</a></li>
+<li class="chapter" data-level="16.2.5" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#filtrando-linhas-da-base-de-dados"><i class="fa fa-check"></i><b>16.2.5</b> Filtrando Linhas da Base de Dados</a></li>
+<li class="chapter" data-level="16.2.6" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#exercícios-17"><i class="fa fa-check"></i><b>16.2.6</b> Exercícios</a></li>
+<li class="chapter" data-level="16.2.7" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#modificar-e-criar-novas-colunas"><i class="fa fa-check"></i><b>16.2.7</b> Modificar e criar novas colunas</a></li>
+<li class="chapter" data-level="16.2.8" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#exercícios-18"><i class="fa fa-check"></i><b>16.2.8</b> Exercícios</a></li>
+<li class="chapter" data-level="16.2.9" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#sumarizar-a-base-de-dados"><i class="fa fa-check"></i><b>16.2.9</b> Sumarizar a Base de Dados</a></li>
+<li class="chapter" data-level="16.2.10" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#exerícios"><i class="fa fa-check"></i><b>16.2.10</b> Exerícios</a></li>
+<li class="chapter" data-level="16.2.11" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#juntando-tabelas-em-r-com-dplyr"><i class="fa fa-check"></i><b>16.2.11</b> Juntando Tabelas em R com dplyr</a></li>
+<li class="chapter" data-level="16.2.12" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#exercícios-19"><i class="fa fa-check"></i><b>16.2.12</b> Exercícios</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="o-pacote-ggplot2.html"><a href="o-pacote-ggplot2.html"><i class="fa fa-check"></i><b>17</b> O pacote <code>ggplot2</code></a></li>
+<li class="chapter" data-level="18" data-path="simulação.html"><a href="simulação.html"><i class="fa fa-check"></i><b>18</b> Simulação</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="simulação.html"><a href="simulação.html#simulação-e-geração-de-números-pseudoaleatórios"><i class="fa fa-check"></i><b>18.1</b> Simulação e Geração de Números Pseudoaleatórios</a></li>
+<li class="chapter" data-level="18.2" data-path="simulação.html"><a href="simulação.html#a-função-set.seed"><i class="fa fa-check"></i><b>18.2</b> A função <code>set.seed()</code></a></li>
+<li class="chapter" data-level="18.3" data-path="simulação.html"><a href="simulação.html#a-função-sample"><i class="fa fa-check"></i><b>18.3</b> A função <code>sample()</code></a></li>
+<li class="chapter" data-level="18.4" data-path="simulação.html"><a href="simulação.html#exercícios-20"><i class="fa fa-check"></i><b>18.4</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="usando-números-aleatórios-para-o-cálculo-de-integrais.html"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html"><i class="fa fa-check"></i><b>19</b> Usando números aleatórios para o cálculo de Integrais</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="usando-números-aleatórios-para-o-cálculo-de-integrais.html"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cálculo-de-int_abgx-dx"><i class="fa fa-check"></i><b>19.1</b> Cálculo de <span class="math inline">\(\int_{a}^{b}g(x)\, dx\)</span></a></li>
+<li class="chapter" data-level="19.2" data-path="usando-números-aleatórios-para-o-cálculo-de-integrais.html"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cálculo-de-int_0inftygx-dx"><i class="fa fa-check"></i><b>19.2</b> Cálculo de <span class="math inline">\(\int_{0}^{\infty}g(x)\, dx\)</span></a></li>
+<li class="chapter" data-level="19.3" data-path="usando-números-aleatórios-para-o-cálculo-de-integrais.html"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cálculo-de-integrais-multidimensionais"><i class="fa fa-check"></i><b>19.3</b> Cálculo de integrais multidimensionais</a></li>
+<li class="chapter" data-level="19.4" data-path="usando-números-aleatórios-para-o-cálculo-de-integrais.html"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#exercícios-21"><i class="fa fa-check"></i><b>19.4</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html"><i class="fa fa-check"></i><b>20</b> Probabilidade e Variáveis Aleatórias</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#exercícios-22"><i class="fa fa-check"></i><b>20.1</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html"><i class="fa fa-check"></i><b>21</b> Distribuições de Probabilidade</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#modelo-uniforme-discreto"><i class="fa fa-check"></i><b>21.1</b> Modelo Uniforme Discreto</a></li>
+<li class="chapter" data-level="21.2" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#distribuição-de-bernoulli"><i class="fa fa-check"></i><b>21.2</b> Distribuição de Bernoulli</a>
+<ul>
+<li class="chapter" data-level="21.2.1" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#cálculo-de-probabilidades"><i class="fa fa-check"></i><b>21.2.1</b> Cálculo de probabilidades</a></li>
+</ul></li>
+<li class="chapter" data-level="21.3" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#distribuição-binomial"><i class="fa fa-check"></i><b>21.3</b> Distribuição Binomial</a>
+<ul>
+<li class="chapter" data-level="21.3.1" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#cálculo-de-probabilidades-1"><i class="fa fa-check"></i><b>21.3.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="21.3.2" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-massa-de-probabilidade-teórica"><i class="fa fa-check"></i><b>21.3.2</b> Função massa de probabilidade (teórica)</a></li>
+<li class="chapter" data-level="21.3.3" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-massa-de-probabilidade-simulação"><i class="fa fa-check"></i><b>21.3.3</b> Função massa de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="21.3.4" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#comparação"><i class="fa fa-check"></i><b>21.3.4</b> Comparação</a></li>
+<li class="chapter" data-level="21.3.5" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-de-distribuição"><i class="fa fa-check"></i><b>21.3.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="21.3.6" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-de-distribuição-empírica"><i class="fa fa-check"></i><b>21.3.6</b> Função de distribuição empírica</a></li>
+</ul></li>
+<li class="chapter" data-level="21.4" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#distribuição-de-poisson"><i class="fa fa-check"></i><b>21.4</b> Distribuição de Poisson</a></li>
+<li class="chapter" data-level="21.5" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#cálculo-de-probabilidades-2"><i class="fa fa-check"></i><b>21.5</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="21.6" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#distribuição-uniforme"><i class="fa fa-check"></i><b>21.6</b> Distribuição Uniforme</a>
+<ul>
+<li class="chapter" data-level="21.6.1" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#notação"><i class="fa fa-check"></i><b>21.6.1</b> Notação</a></li>
+</ul></li>
+<li class="chapter" data-level="21.7" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#distribuição-normal"><i class="fa fa-check"></i><b>21.7</b> Distribuição Normal</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="método-da-transformada-inversa.html"><a href="método-da-transformada-inversa.html"><i class="fa fa-check"></i><b>22</b> Método da transformada inversa</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="método-da-transformada-inversa.html"><a href="método-da-transformada-inversa.html#variável-aleatória-discreta"><i class="fa fa-check"></i><b>22.1</b> Variável aleatória discreta</a></li>
+<li class="chapter" data-level="22.2" data-path="método-da-transformada-inversa.html"><a href="método-da-transformada-inversa.html#exercícios-23"><i class="fa fa-check"></i><b>22.2</b> Exercícios</a></li>
+<li class="chapter" data-level="22.3" data-path="método-da-transformada-inversa.html"><a href="método-da-transformada-inversa.html#variável-aleatória-contínua"><i class="fa fa-check"></i><b>22.3</b> Variável aleatória contínua</a></li>
+<li class="chapter" data-level="22.4" data-path="método-da-transformada-inversa.html"><a href="método-da-transformada-inversa.html#exercícios-24"><i class="fa fa-check"></i><b>22.4</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="método-da-aceitação-rejeição.html"><a href="método-da-aceitação-rejeição.html"><i class="fa fa-check"></i><b>23</b> Método da aceitação-rejeição</a></li>
+<li class="chapter" data-level="24" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html"><i class="fa fa-check"></i><b>24</b> Distribuições univariadas no R</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-1"><i class="fa fa-check"></i><b>24.1</b> Função de distribuição empírica</a>
+<ul>
+<li class="chapter" data-level="24.1.1" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-no-r-função-ecdf"><i class="fa fa-check"></i><b>24.1.1</b> Função de distribuição empírica no R, função <code>ecdf()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="24.2" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#gerando-uma-variável-aleatória-com-distribuição-de-binomial"><i class="fa fa-check"></i><b>24.2</b> Gerando uma variável aleatória com distribuição de Binomial</a>
+<ul>
+<li class="chapter" data-level="24.2.1" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#cálculo-de-probabilidades-3"><i class="fa fa-check"></i><b>24.2.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="24.2.2" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-massa-de-probabilidade-teórica-1"><i class="fa fa-check"></i><b>24.2.2</b> Função massa de probabilidade (teórica)</a></li>
+<li class="chapter" data-level="24.2.3" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-massa-de-probabilidade-simulação-1"><i class="fa fa-check"></i><b>24.2.3</b> Função massa de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="24.2.4" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#comparação-1"><i class="fa fa-check"></i><b>24.2.4</b> Comparação</a></li>
+<li class="chapter" data-level="24.2.5" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-1"><i class="fa fa-check"></i><b>24.2.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="24.2.6" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-2"><i class="fa fa-check"></i><b>24.2.6</b> Função de distribuição empírica</a></li>
+</ul></li>
+<li class="chapter" data-level="24.3" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#gerando-uma-variável-aleatória-com-distribuição-de-poisson"><i class="fa fa-check"></i><b>24.3</b> Gerando uma variável aleatória com distribuição de Poisson</a>
+<ul>
+<li class="chapter" data-level="24.3.1" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#cálculo-de-probabilidades-4"><i class="fa fa-check"></i><b>24.3.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="24.3.2" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-massa-de-probabilidade-teórica-2"><i class="fa fa-check"></i><b>24.3.2</b> Função massa de probabilidade (teórica)</a></li>
+<li class="chapter" data-level="24.3.3" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-massa-de-probabilidade-simulação-2"><i class="fa fa-check"></i><b>24.3.3</b> Função massa de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="24.3.4" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#comparação-2"><i class="fa fa-check"></i><b>24.3.4</b> Comparação</a></li>
+<li class="chapter" data-level="24.3.5" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-2"><i class="fa fa-check"></i><b>24.3.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="24.3.6" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-3"><i class="fa fa-check"></i><b>24.3.6</b> Função de distribuição empírica</a></li>
+</ul></li>
+<li class="chapter" data-level="24.4" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#gerando-uma-variável-aleatória-com-distribuição-de-uniforme"><i class="fa fa-check"></i><b>24.4</b> Gerando uma variável aleatória com distribuição de Uniforme</a>
+<ul>
+<li class="chapter" data-level="24.4.1" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#cálculo-de-probabilidades-5"><i class="fa fa-check"></i><b>24.4.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="24.4.2" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade"><i class="fa fa-check"></i><b>24.4.2</b> Função densidade de probabilidade</a></li>
+<li class="chapter" data-level="24.4.3" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade-simulação"><i class="fa fa-check"></i><b>24.4.3</b> Função densidade de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="24.4.4" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#comparação-3"><i class="fa fa-check"></i><b>24.4.4</b> Comparação</a></li>
+<li class="chapter" data-level="24.4.5" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-3"><i class="fa fa-check"></i><b>24.4.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="24.4.6" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-4"><i class="fa fa-check"></i><b>24.4.6</b> Função de distribuição empírica</a></li>
+</ul></li>
+<li class="chapter" data-level="24.5" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#gerando-uma-variável-aleatória-com-distribuição-exponencial"><i class="fa fa-check"></i><b>24.5</b> Gerando uma variável aleatória com distribuição Exponencial</a>
+<ul>
+<li class="chapter" data-level="24.5.1" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#cálculo-de-probabilidades-6"><i class="fa fa-check"></i><b>24.5.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="24.5.2" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade-teórica"><i class="fa fa-check"></i><b>24.5.2</b> Função densidade de probabilidade (teórica)</a></li>
+<li class="chapter" data-level="24.5.3" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade-simulação-1"><i class="fa fa-check"></i><b>24.5.3</b> Função densidade de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="24.5.4" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#comparação-4"><i class="fa fa-check"></i><b>24.5.4</b> Comparação</a></li>
+<li class="chapter" data-level="24.5.5" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-4"><i class="fa fa-check"></i><b>24.5.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="24.5.6" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-5"><i class="fa fa-check"></i><b>24.5.6</b> Função de distribuição empírica</a></li>
+</ul></li>
+<li class="chapter" data-level="24.6" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#gerando-uma-variável-aleatória-com-distribuição-normal"><i class="fa fa-check"></i><b>24.6</b> Gerando uma variável aleatória com distribuição Normal</a>
+<ul>
+<li class="chapter" data-level="24.6.1" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#cálculo-de-probabilidades-7"><i class="fa fa-check"></i><b>24.6.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="24.6.2" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade-teórica-1"><i class="fa fa-check"></i><b>24.6.2</b> Função densidade de probabilidade (teórica)</a></li>
+<li class="chapter" data-level="24.6.3" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade-simulação-2"><i class="fa fa-check"></i><b>24.6.3</b> Função densidade de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="24.6.4" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#comparação-5"><i class="fa fa-check"></i><b>24.6.4</b> Comparação</a></li>
+<li class="chapter" data-level="24.6.5" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-5"><i class="fa fa-check"></i><b>24.6.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="24.6.6" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-6"><i class="fa fa-check"></i><b>24.6.6</b> Função de distribuição empírica</a></li>
+</ul></li>
+<li class="chapter" data-level="24.7" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#exercícios-25"><i class="fa fa-check"></i><b>24.7</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="relatórios.html"><a href="relatórios.html"><i class="fa fa-check"></i><b>25</b> Relatórios</a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="relatórios.html"><a href="relatórios.html#markdown"><i class="fa fa-check"></i><b>25.1</b> Markdown</a></li>
+<li class="chapter" data-level="25.2" data-path="relatórios.html"><a href="relatórios.html#r-markdown"><i class="fa fa-check"></i><b>25.2</b> R Markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i><b>26</b> Referências</a></li>
+<li class="chapter" data-level="27" data-path="respostas.html"><a href="respostas.html"><i class="fa fa-check"></i><b>27</b> Respostas</a>
+<ul>
+<li class="chapter" data-level="27.1" data-path="respostas.html"><a href="respostas.html#o-pacote-dplyr"><i class="fa fa-check"></i><b>27.1</b> O pacote dplyr</a>
+<ul>
+<li class="chapter" data-level="27.1.1" data-path="respostas.html"><a href="respostas.html#selecionando-colunas"><i class="fa fa-check"></i><b>27.1.1</b> Selecionando colunas</a></li>
+<li class="chapter" data-level="27.1.2" data-path="respostas.html"><a href="respostas.html#ordenando-a-base"><i class="fa fa-check"></i><b>27.1.2</b> Ordenando a base</a></li>
+<li class="chapter" data-level="27.1.3" data-path="respostas.html"><a href="respostas.html#filtrando-linhas"><i class="fa fa-check"></i><b>27.1.3</b> Filtrando linhas</a></li>
+<li class="chapter" data-level="27.1.4" data-path="respostas.html"><a href="respostas.html#modificando-e-criando-novas-colunas"><i class="fa fa-check"></i><b>27.1.4</b> Modificando e criando novas colunas</a></li>
+<li class="chapter" data-level="27.1.5" data-path="respostas.html"><a href="respostas.html#sumarizando-a-base"><i class="fa fa-check"></i><b>27.1.5</b> Sumarizando a base</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introdução ao R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="distribuições-de-probabilidade" class="section level1 hasAnchor" number="21">
+<h1><span class="header-section-number">Capítulo 21</span> Distribuições de Probabilidade<a href="distribuições-de-probabilidade.html#distribuições-de-probabilidade" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>No R temos acesso as mais comuns distribuições univariadas. Todas as
+funções tem as seguintes formas:</p>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Função</strong></th>
+<th><strong>Descrição</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>p</strong>nome( …)</td>
+<td>função de distribuição</td>
+</tr>
+<tr class="even">
+<td><strong>d</strong>nome( …)</td>
+<td>função de probabilidade ou densidade de probabilidade</td>
+</tr>
+<tr class="odd">
+<td><strong>q</strong>nome( …)</td>
+<td>calcula o quantil correspondente a uma dada probabilidade</td>
+</tr>
+<tr class="even">
+<td><strong>r</strong>nome( …)</td>
+<td>retorna uma amostra aleatória da distribuição</td>
+</tr>
+</tbody>
+</table>
+<p>o <strong>nome</strong> é uma abreviatura do nome usual da distribuição (<code>binom</code>,
+<code>geom</code>, <code>pois</code>, <code>unif</code>, <code>exp</code>, <code>norm</code>, …).</p>
+<p><strong>Modelos Teóricos Discretos</strong></p>
+<p>Um modelo probabilístico teórico discreto é uma representação matemática utilizada para descrever fenómenos onde as variáveis aleatórias assumem apenas valores isolados (discretos) num conjunto finito ou infinito enumerável.</p>
+<p>O modelo define a distribuição de probabilidades associada a cada possível valor da variável, ou seja, especifica a probabilidade de cada evento ocorrer.</p>
+<div id="modelo-uniforme-discreto" class="section level2 hasAnchor" number="21.1">
+<h2><span class="header-section-number">21.1</span> Modelo Uniforme Discreto<a href="distribuições-de-probabilidade.html#modelo-uniforme-discreto" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Definição</strong>: A variável aleatória <span class="math inline">\(X\)</span> diz-se ter <strong>distribuição uniforme discreta</strong> no conjunto <span class="math inline">\(\{x_1, x_2, \dots, x_n\}\)</span> se sua função massa de probabilida (f.mp.) for dada por</p>
+<p><span class="math display">\[
+P(X = x) =
+\begin{cases}
+\frac{1}{n}, &amp; \text{se } x = x_1, \dots, x_n \\
+0, &amp; \text{caso contrário}
+\end{cases}
+\]</span></p>
+<p><strong>Notação</strong></p>
+<ul>
+<li><span class="math inline">\(X \sim \text{Uniforme Discreta} (\{x_1, x_2, \dots, x_n\})\)</span></li>
+<li><span class="math inline">\(E(X) = \frac{1}{n} \sum_{i=1}^{n} x_i = \frac{n+1}{2}\)</span></li>
+<li><span class="math inline">\(V(X) = \left(\frac{1}{n} \sum_{i=1}^{n} x_i^2\right) - \left(\frac{1}{n} \sum_{i=1}^{n} x_i \right)^2 = \frac{n^2 - 1}{12}\)</span></li>
+</ul>
+<blockquote>
+<p>Esta distribuição é razoável quando a variável aleatória discreta toma <span class="math inline">\(n\)</span> valores distintos, todos com a mesma probabilidade.</p>
+</blockquote>
+<p>Não há entre as funções básicas do R uma função específica para a distribuição uniforme discreta, provavelmente devido a sua simplicidade, embora algumas outras funções possam ser usadas. Por exemplo para sortear números pode-se usar <code>sample()</code>, como no exemplo a seguir onde são sorteados 15 valores de uma uniforme discreta com valores (inteiros) entre 1 e 10 (<span class="math inline">\(X\sim \text{Uniforme Discreta}(\{1,\ldots,10\})\)</span>).</p>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="distribuições-de-probabilidade.html#cb305-1" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">size =</span> <span class="dv">15</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb305-2"><a href="distribuições-de-probabilidade.html#cb305-2" tabindex="-1"></a><span class="do">## [1] 2 3 4 4 4 5 7 9 4 2 6 7 1 6 9</span></span></code></pre></div>
+</div>
+<div id="distribuição-de-bernoulli" class="section level2 hasAnchor" number="21.2">
+<h2><span class="header-section-number">21.2</span> Distribuição de Bernoulli<a href="distribuições-de-probabilidade.html#distribuição-de-bernoulli" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Definição</strong>: Uma experiência aleatória diz-se uma <strong>prova de Bernoulli</strong> se possuir apenas dois resultados possíveis</p>
+<ul>
+<li><p>um sucesso <span class="math inline">\(A\)</span>, que ocorre com probabilidade <span class="math inline">\(p\)</span> (<span class="math inline">\(0\leq p \leq 1\)</span>);</p></li>
+<li><p>um insucesso <span class="math inline">\(\bar{A}\)</span>, que ocorre com probabilidade <span class="math inline">\(1-p\)</span>.</p></li>
+</ul>
+<p><strong>Exemplos</strong></p>
+<ul>
+<li>Lançar uma moeda e observar se o resultado é “cara” ou “coroa”.</li>
+<li>Examinar uma amostra de rocha para verificar a presença de fósseis.</li>
+<li>Realizar uma perfuração para verificar a presença de petróleo num local específico.</li>
+</ul>
+<p><strong>Definição</strong>: A variável aleatória discreta <span class="math inline">\(X\)</span>, que representa o <em>“número de sucessos numa prova de Bernoulli”</em>, diz-se com <strong>distribuição de Bernoulli</strong> com parâmetro <span class="math inline">\(p\)</span> e possui f.m.p. dada por</p>
+<p><span class="math display">\[
+P(X = x) =
+\begin{cases}
+p, &amp; \text{se } x = 1 \\
+1 - p, &amp; \text{se } x = 0 \\
+0, &amp; \text{caso contrário}
+\end{cases}
+\]</span></p>
+<p>ou, de forma equivalente,</p>
+<p><span class="math display">\[
+P(X = x) = \begin{cases} p^x (1 - p)^{1 - x}, &amp; x = 0, 1 \\ 0, &amp; \text{caso contrário} \end{cases}
+\]</span></p>
+<p><strong>Notação</strong></p>
+<ul>
+<li><span class="math inline">\(X \sim \text{Bernoulli}(p)\)</span></li>
+<li><span class="math inline">\(p = P(\text{Sucesso})\)</span></li>
+<li><span class="math inline">\(E(X) = p\)</span></li>
+<li><span class="math inline">\(V(X) = p(1 - p)\)</span></li>
+</ul>
+<div id="cálculo-de-probabilidades" class="section level3 hasAnchor" number="21.2.1">
+<h3><span class="header-section-number">21.2.1</span> Cálculo de probabilidades<a href="distribuições-de-probabilidade.html#cálculo-de-probabilidades" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Seja <span class="math inline">\(X \sim \text{Bernoulli}(p=0.5)\)</span>.</p>
+<p><span class="math inline">\(P(X=0) \to\)</span> <code>dbinom(x=0, size=1, prob=0.5)</code> = 0.5</p>
+<p><span class="math inline">\(P(X=1) \to\)</span> <code>dbinom(x=1, size=1, prob=0.5)</code> = 0.5</p>
+<p><span class="math inline">\(P(X \leq 1) \to\)</span> <code>pbinom(q=1, size=1, prob=0.5)</code> = 1</p>
+<p><span class="math inline">\(P(X&gt;0) \to\)</span> <code>pbinom(q=0, size=1, prob=0.5, lower.tail=FALSE)</code> = 0.5</p>
+<p>Amostra aleatória de dimensão 5: <code>rbinom(n = 5, size = 1, prob = 0.5)</code> = 0 1 0 1 1</p>
+<p><strong>Exemplo</strong>: Considere a experiência aleatória que consiste em lançar
+uma moeda não viciada e observar a face que fica voltada para cima.
+Sendo o objetivo verificar se sai “cara”, defina-se a variável aleatória</p>
+<p><span class="math display">\[X - \text{número de vezes, em 1 lançamento, que sai cara}\]</span></p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Simule a situação descrita, determinando a percentagem de vezes em que saiu cara, para um número total de lançamentos: <span class="math inline">\(n_1 = 5\)</span>, <span class="math inline">\(n_2=10\)</span>, <span class="math inline">\(n_3=100\)</span> e <span class="math inline">\(n_4=1000\)</span>.</p></li>
+<li><p>Determine, para cada amostra, o valor da média e da variância. Compare com os valores de <span class="math inline">\(E(X)\)</span> e <span class="math inline">\(V(X)\)</span>.</p></li>
+</ol>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="distribuições-de-probabilidade.html#cb306-1" tabindex="-1"></a><span class="co"># Parâmetro</span></span>
+<span id="cb306-2"><a href="distribuições-de-probabilidade.html#cb306-2" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb306-3"><a href="distribuições-de-probabilidade.html#cb306-3" tabindex="-1"></a><span class="co"># Número de lançamentos</span></span>
+<span id="cb306-4"><a href="distribuições-de-probabilidade.html#cb306-4" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">100</span>,<span class="dv">1000</span>)</span>
+<span id="cb306-5"><a href="distribuições-de-probabilidade.html#cb306-5" tabindex="-1"></a><span class="co"># Gerando amostra</span></span>
+<span id="cb306-6"><a href="distribuições-de-probabilidade.html#cb306-6" tabindex="-1"></a>amostra <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb306-7"><a href="distribuições-de-probabilidade.html#cb306-7" tabindex="-1"></a>percentagens <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb306-8"><a href="distribuições-de-probabilidade.html#cb306-8" tabindex="-1"></a>media <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb306-9"><a href="distribuições-de-probabilidade.html#cb306-9" tabindex="-1"></a>variancia <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb306-10"><a href="distribuições-de-probabilidade.html#cb306-10" tabindex="-1"></a><span class="co"># Loop para criar listas</span></span>
+<span id="cb306-11"><a href="distribuições-de-probabilidade.html#cb306-11" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(n)) {</span>
+<span id="cb306-12"><a href="distribuições-de-probabilidade.html#cb306-12" tabindex="-1"></a>  amostra[[i]] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n[i], <span class="at">size=</span><span class="dv">1</span>, <span class="at">prob=</span>p)</span>
+<span id="cb306-13"><a href="distribuições-de-probabilidade.html#cb306-13" tabindex="-1"></a>  percentagens[i] <span class="ot">&lt;-</span> <span class="fu">sum</span>(amostra[[i]]<span class="sc">/</span>n[i])</span>
+<span id="cb306-14"><a href="distribuições-de-probabilidade.html#cb306-14" tabindex="-1"></a>  media[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostra[[i]])</span>
+<span id="cb306-15"><a href="distribuições-de-probabilidade.html#cb306-15" tabindex="-1"></a>  variancia[i] <span class="ot">&lt;-</span> <span class="fu">var</span>(amostra[[i]])</span>
+<span id="cb306-16"><a href="distribuições-de-probabilidade.html#cb306-16" tabindex="-1"></a>}</span>
+<span id="cb306-17"><a href="distribuições-de-probabilidade.html#cb306-17" tabindex="-1"></a>resultados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(n,percentagens,media,variancia,<span class="at">comp_media =</span> <span class="fu">abs</span>(media<span class="sc">-</span>p), <span class="at">comp_var =</span> <span class="fu">abs</span>(variancia<span class="sc">-</span>p<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p)))</span>
+<span id="cb306-18"><a href="distribuições-de-probabilidade.html#cb306-18" tabindex="-1"></a>resultados</span></code></pre></div>
+<pre><code>##      n percentagens media variancia comp_media     comp_var
+## 1    5        0.400 0.400 0.3000000      0.100 0.0500000000
+## 2   10        0.600 0.600 0.2666667      0.100 0.0166666667
+## 3  100        0.500 0.500 0.2525253      0.000 0.0025252525
+## 4 1000        0.505 0.505 0.2502252      0.005 0.0002252252</code></pre>
+</div>
+</div>
+<div id="distribuição-binomial" class="section level2 hasAnchor" number="21.3">
+<h2><span class="header-section-number">21.3</span> Distribuição Binomial<a href="distribuições-de-probabilidade.html#distribuição-binomial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Definição</strong>: A variável aleatória discreta <span class="math inline">\(X\)</span>, que representa o <em>“número de sucessos num conjunto de <span class="math inline">\(n\)</span> provas de Bernoulli independentes com probabilidade de sucesso comum e igual a <span class="math inline">\(p\)</span>”</em>, diz-se com <strong>distribuição binomial</strong> de parâmetros <span class="math inline">\((n, p)\)</span> e possui f.m.p. dada por</p>
+<p><span class="math display">\[
+P(X = x) =
+\begin{cases}
+\binom{n}{x} p^x (1 - p)^{n - x}, &amp; x = 0, 1, 2, \ldots, n \\
+0, &amp; \text{caso contrário}
+\end{cases}
+\]</span></p>
+<p>onde</p>
+<p><span class="math display">\[
+\binom{n}{x} = C_x^n = \frac{n!}{(n - x)! \, x!}.
+\]</span></p>
+<p>Esta fórmula representa a probabilidade de obter exatamente <span class="math inline">\(x\)</span> sucessos em <span class="math inline">\(n\)</span> tentativas, com probabilidade <span class="math inline">\(p\)</span> de sucesso em cada tentativa.</p>
+<p><strong>Notação</strong></p>
+<ul>
+<li><span class="math inline">\(X \sim \text{Binomial}(n,p)\)</span></li>
+<li><span class="math inline">\(p = P(\text{sucesso})\)</span></li>
+<li><span class="math inline">\(E(X) = np\)</span></li>
+<li><span class="math inline">\(V(X) = np(1-p)\)</span></li>
+</ul>
+<div id="cálculo-de-probabilidades-1" class="section level3 hasAnchor" number="21.3.1">
+<h3><span class="header-section-number">21.3.1</span> Cálculo de probabilidades<a href="distribuições-de-probabilidade.html#cálculo-de-probabilidades-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Seja <span class="math inline">\(X\sim\text{Binomial}(n=20, p=0.1)\)</span>.</p>
+<p><span class="math inline">\(P(X = 4) \to\)</span> <code>dbinom(x=4, size=20, prob=0.1)</code> = 0.08977883</p>
+<p><span class="math inline">\(P(X\leq 4) \to\)</span> <code>pbinom(q=4, size=20, prob=0.1)</code> = 0.9568255</p>
+<p><span class="math inline">\(P(X &gt; 4)\to\)</span>
+<code>pbinom(q=4, size=20, prob=0.1, lower.tail=FALSE)</code>= 0.0431745</p>
+</div>
+<div id="função-massa-de-probabilidade-teórica" class="section level3 hasAnchor" number="21.3.2">
+<h3><span class="header-section-number">21.3.2</span> Função massa de probabilidade (teórica)<a href="distribuições-de-probabilidade.html#função-massa-de-probabilidade-teórica" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="distribuições-de-probabilidade.html#cb308-1" tabindex="-1"></a><span class="co"># Simulação de Variáveis aleatórias</span></span>
+<span id="cb308-2"><a href="distribuições-de-probabilidade.html#cb308-2" tabindex="-1"></a></span>
+<span id="cb308-3"><a href="distribuições-de-probabilidade.html#cb308-3" tabindex="-1"></a><span class="co"># Função massa de probabilidade Binomial(n,p)</span></span>
+<span id="cb308-4"><a href="distribuições-de-probabilidade.html#cb308-4" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb308-5"><a href="distribuições-de-probabilidade.html#cb308-5" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.1</span></span>
+<span id="cb308-6"><a href="distribuições-de-probabilidade.html#cb308-6" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span></span>
+<span id="cb308-7"><a href="distribuições-de-probabilidade.html#cb308-7" tabindex="-1"></a></span>
+<span id="cb308-8"><a href="distribuições-de-probabilidade.html#cb308-8" tabindex="-1"></a>teorico <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y=</span><span class="fu">dbinom</span>(x, <span class="at">size =</span> n, <span class="at">prob =</span> p))</span>
+<span id="cb308-9"><a href="distribuições-de-probabilidade.html#cb308-9" tabindex="-1"></a></span>
+<span id="cb308-10"><a href="distribuições-de-probabilidade.html#cb308-10" tabindex="-1"></a><span class="co"># Carregue o pacote ggplot2</span></span>
+<span id="cb308-11"><a href="distribuições-de-probabilidade.html#cb308-11" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb308-12"><a href="distribuições-de-probabilidade.html#cb308-12" tabindex="-1"></a></span>
+<span id="cb308-13"><a href="distribuições-de-probabilidade.html#cb308-13" tabindex="-1"></a><span class="fu">ggplot</span>(teorico) <span class="sc">+</span>  </span>
+<span id="cb308-14"><a href="distribuições-de-probabilidade.html#cb308-14" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y=</span>y), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb308-15"><a href="distribuições-de-probabilidade.html#cb308-15" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">0</span><span class="sc">:</span>n) <span class="sc">+</span>  </span>
+<span id="cb308-16"><a href="distribuições-de-probabilidade.html#cb308-16" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Binomial(20,0.1)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Número de sucessos&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Probabilidade&quot;</span>) <span class="sc">+</span>  </span>
+<span id="cb308-17"><a href="distribuições-de-probabilidade.html#cb308-17" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-244-1.png" width="672" /></p>
+</div>
+<div id="função-massa-de-probabilidade-simulação" class="section level3 hasAnchor" number="21.3.3">
+<h3><span class="header-section-number">21.3.3</span> Função massa de probabilidade (simulação)<a href="distribuições-de-probabilidade.html#função-massa-de-probabilidade-simulação" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="distribuições-de-probabilidade.html#cb309-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb309-2"><a href="distribuições-de-probabilidade.html#cb309-2" tabindex="-1"></a></span>
+<span id="cb309-3"><a href="distribuições-de-probabilidade.html#cb309-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb309-4"><a href="distribuições-de-probabilidade.html#cb309-4" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.9</span></span>
+<span id="cb309-5"><a href="distribuições-de-probabilidade.html#cb309-5" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">1000</span> <span class="co"># número de simulações</span></span>
+<span id="cb309-6"><a href="distribuições-de-probabilidade.html#cb309-6" tabindex="-1"></a></span>
+<span id="cb309-7"><a href="distribuições-de-probabilidade.html#cb309-7" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">X =</span> <span class="fu">rbinom</span>(k, <span class="at">size =</span> n, <span class="at">prob =</span> p))</span>
+<span id="cb309-8"><a href="distribuições-de-probabilidade.html#cb309-8" tabindex="-1"></a></span>
+<span id="cb309-9"><a href="distribuições-de-probabilidade.html#cb309-9" tabindex="-1"></a><span class="co"># Carregue o pacote ggplot2library(ggplot2)</span></span>
+<span id="cb309-10"><a href="distribuições-de-probabilidade.html#cb309-10" tabindex="-1"></a></span>
+<span id="cb309-11"><a href="distribuições-de-probabilidade.html#cb309-11" tabindex="-1"></a><span class="fu">ggplot</span>(dados) <span class="sc">+</span>   </span>
+<span id="cb309-12"><a href="distribuições-de-probabilidade.html#cb309-12" tabindex="-1"></a><span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x=</span>X, <span class="at">y=</span><span class="fu">after_stat</span>(prop)), <span class="at">fill =</span> <span class="st">&quot;lightblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb309-13"><a href="distribuições-de-probabilidade.html#cb309-13" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">0</span><span class="sc">:</span>n) <span class="sc">+</span>   </span>
+<span id="cb309-14"><a href="distribuições-de-probabilidade.html#cb309-14" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Geração de números aleatórios de Bi(20,0.9)&quot;</span>, <span class="at">x=</span><span class="st">&quot;Número de sucessos&quot;</span>, </span>
+<span id="cb309-15"><a href="distribuições-de-probabilidade.html#cb309-15" tabindex="-1"></a>  <span class="at">y=</span><span class="st">&quot;Frequência relativa&quot;</span>) <span class="sc">+</span>  </span>
+<span id="cb309-16"><a href="distribuições-de-probabilidade.html#cb309-16" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-245-1.png" width="672" /></p>
+</div>
+<div id="comparação" class="section level3 hasAnchor" number="21.3.4">
+<h3><span class="header-section-number">21.3.4</span> Comparação<a href="distribuições-de-probabilidade.html#comparação" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="distribuições-de-probabilidade.html#cb310-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb310-2"><a href="distribuições-de-probabilidade.html#cb310-2" tabindex="-1"></a></span>
+<span id="cb310-3"><a href="distribuições-de-probabilidade.html#cb310-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb310-4"><a href="distribuições-de-probabilidade.html#cb310-4" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.1</span></span>
+<span id="cb310-5"><a href="distribuições-de-probabilidade.html#cb310-5" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">1000</span> <span class="co"># número de simulações</span></span>
+<span id="cb310-6"><a href="distribuições-de-probabilidade.html#cb310-6" tabindex="-1"></a></span>
+<span id="cb310-7"><a href="distribuições-de-probabilidade.html#cb310-7" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">X =</span> <span class="fu">rbinom</span>(k, <span class="at">size =</span> n, <span class="at">prob =</span> p))</span>
+<span id="cb310-8"><a href="distribuições-de-probabilidade.html#cb310-8" tabindex="-1"></a>teorico <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">0</span><span class="sc">:</span>n, <span class="at">y=</span><span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span>n, <span class="at">size =</span> n, <span class="at">prob =</span> p))</span>
+<span id="cb310-9"><a href="distribuições-de-probabilidade.html#cb310-9" tabindex="-1"></a></span>
+<span id="cb310-10"><a href="distribuições-de-probabilidade.html#cb310-10" tabindex="-1"></a><span class="co"># Carregue o pacote ggplot2</span></span>
+<span id="cb310-11"><a href="distribuições-de-probabilidade.html#cb310-11" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb310-12"><a href="distribuições-de-probabilidade.html#cb310-12" tabindex="-1"></a></span>
+<span id="cb310-13"><a href="distribuições-de-probabilidade.html#cb310-13" tabindex="-1"></a><span class="fu">ggplot</span>(dados) <span class="sc">+</span>  </span>
+<span id="cb310-14"><a href="distribuições-de-probabilidade.html#cb310-14" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">y =</span> <span class="fu">after_stat</span>(prop)), <span class="at">fill =</span> <span class="st">&quot;lightblue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb310-15"><a href="distribuições-de-probabilidade.html#cb310-15" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> teorico, <span class="fu">aes</span>(x, y), <span class="at">color =</span> <span class="st">&quot;magenta&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb310-16"><a href="distribuições-de-probabilidade.html#cb310-16" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">0</span><span class="sc">:</span>n) <span class="sc">+</span>  </span>
+<span id="cb310-17"><a href="distribuições-de-probabilidade.html#cb310-17" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Geração de números aleatórios de Bi(20,0.1)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Número de sucessos&quot;</span>,       </span>
+<span id="cb310-18"><a href="distribuições-de-probabilidade.html#cb310-18" tabindex="-1"></a>  <span class="at">y =</span> <span class="st">&quot;Probabilidade&quot;</span>) <span class="sc">+</span>  </span>
+<span id="cb310-19"><a href="distribuições-de-probabilidade.html#cb310-19" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-246-1.png" width="672" /></p>
+</div>
+<div id="função-de-distribuição" class="section level3 hasAnchor" number="21.3.5">
+<h3><span class="header-section-number">21.3.5</span> Função de distribuição<a href="distribuições-de-probabilidade.html#função-de-distribuição" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="distribuições-de-probabilidade.html#cb311-1" tabindex="-1"></a><span class="co"># Definir os parâmetros da distribuição binomial</span></span>
+<span id="cb311-2"><a href="distribuições-de-probabilidade.html#cb311-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="co"># Número de tentativas</span></span>
+<span id="cb311-3"><a href="distribuições-de-probabilidade.html#cb311-3" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.5</span> <span class="co"># Probabilidade de sucesso</span></span>
+<span id="cb311-4"><a href="distribuições-de-probabilidade.html#cb311-4" tabindex="-1"></a></span>
+<span id="cb311-5"><a href="distribuições-de-probabilidade.html#cb311-5" tabindex="-1"></a><span class="co"># Valores possíveis de sucessos (0 a n)</span></span>
+<span id="cb311-6"><a href="distribuições-de-probabilidade.html#cb311-6" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span>n</span>
+<span id="cb311-7"><a href="distribuições-de-probabilidade.html#cb311-7" tabindex="-1"></a></span>
+<span id="cb311-8"><a href="distribuições-de-probabilidade.html#cb311-8" tabindex="-1"></a><span class="co"># Calcular a FD</span></span>
+<span id="cb311-9"><a href="distribuições-de-probabilidade.html#cb311-9" tabindex="-1"></a>cdf_values <span class="ot">&lt;-</span> <span class="fu">pbinom</span>(x, <span class="at">size =</span> n, <span class="at">prob =</span> p)</span>
+<span id="cb311-10"><a href="distribuições-de-probabilidade.html#cb311-10" tabindex="-1"></a></span>
+<span id="cb311-11"><a href="distribuições-de-probabilidade.html#cb311-11" tabindex="-1"></a><span class="co"># Plotar a FD</span></span>
+<span id="cb311-12"><a href="distribuições-de-probabilidade.html#cb311-12" tabindex="-1"></a><span class="fu">plot</span>(x, cdf_values, <span class="at">type =</span> <span class="st">&quot;s&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, </span>
+<span id="cb311-13"><a href="distribuições-de-probabilidade.html#cb311-13" tabindex="-1"></a><span class="at">xlab =</span> <span class="st">&quot;Número de Sucessos&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;F(x)&quot;</span>, </span>
+<span id="cb311-14"><a href="distribuições-de-probabilidade.html#cb311-14" tabindex="-1"></a><span class="at">main =</span> <span class="st">&quot;Função de Distribuição Acumulada da Binomial(n = 10, p = 0.5)&quot;</span>)</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-247-1.png" width="672" /></p>
+</div>
+<div id="função-de-distribuição-empírica" class="section level3 hasAnchor" number="21.3.6">
+<h3><span class="header-section-number">21.3.6</span> Função de distribuição empírica<a href="distribuições-de-probabilidade.html#função-de-distribuição-empírica" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="distribuições-de-probabilidade.html#cb312-1" tabindex="-1"></a><span class="co"># Definir os parâmetros da distribuição binomial</span></span>
+<span id="cb312-2"><a href="distribuições-de-probabilidade.html#cb312-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="co"># Número de tentativas</span></span>
+<span id="cb312-3"><a href="distribuições-de-probabilidade.html#cb312-3" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.5</span> <span class="co"># Probabilidade de sucesso</span></span>
+<span id="cb312-4"><a href="distribuições-de-probabilidade.html#cb312-4" tabindex="-1"></a></span>
+<span id="cb312-5"><a href="distribuições-de-probabilidade.html#cb312-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb312-6"><a href="distribuições-de-probabilidade.html#cb312-6" tabindex="-1"></a><span class="co"># Amostra aleatória de dimensão 1000</span></span>
+<span id="cb312-7"><a href="distribuições-de-probabilidade.html#cb312-7" tabindex="-1"></a>amostra <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1000</span>,<span class="at">size =</span> n, <span class="at">prob =</span> p)</span>
+<span id="cb312-8"><a href="distribuições-de-probabilidade.html#cb312-8" tabindex="-1"></a></span>
+<span id="cb312-9"><a href="distribuições-de-probabilidade.html#cb312-9" tabindex="-1"></a><span class="co"># Distribuição empírica </span></span>
+<span id="cb312-10"><a href="distribuições-de-probabilidade.html#cb312-10" tabindex="-1"></a>Fn <span class="ot">&lt;-</span> <span class="fu">ecdf</span>(amostra)</span>
+<span id="cb312-11"><a href="distribuições-de-probabilidade.html#cb312-11" tabindex="-1"></a></span>
+<span id="cb312-12"><a href="distribuições-de-probabilidade.html#cb312-12" tabindex="-1"></a><span class="co"># Plotar CDF</span></span>
+<span id="cb312-13"><a href="distribuições-de-probabilidade.html#cb312-13" tabindex="-1"></a><span class="fu">plot</span>(Fn, <span class="at">main =</span> <span class="st">&quot;Função de Distribuição Empírica&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>, </span>
+<span id="cb312-14"><a href="distribuições-de-probabilidade.html#cb312-14" tabindex="-1"></a><span class="at">ylab =</span> <span class="st">&quot;Fn(x)&quot;</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-248-1.png" width="672" /></p>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="distribuições-de-probabilidade.html#cb313-1" tabindex="-1"></a><span class="co"># OU</span></span>
+<span id="cb313-2"><a href="distribuições-de-probabilidade.html#cb313-2" tabindex="-1"></a><span class="fu">plot.ecdf</span>(amostra)</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-248-2.png" width="672" /></p>
+<p><strong>Cálculo de probabilidade</strong>: Seja <span class="math inline">\(X \sim \text{Binomial}(n=10, p=0.5)\)</span>.</p>
+<p><span class="math inline">\(P(X \leq 4) =\)</span> <code>pbinom(4,10,0.5)</code> = 0.377</p>
+<p><span class="math inline">\(P(X \leq 4) \approx\)</span> <code>Fn(4)</code> = 0.382</p>
+<p><strong>Exemplo</strong>: Considere a experiência aleatória que consiste em lançar
+uma moeda não viciada e observar a face que fica voltada para cima.
+Suponha que a experiência é realizada 7 vezes, sendo o objetivo
+verificar se sai “cara”. Defina-se a variável aleatória</p>
+<p><span class="math display">\[X - \text{número de vezes, em 7 lançamentos, que sai cara}\]</span></p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Calcule a probabilidade de, em 7 lançamentos, sair 2 vezes cara.</p></li>
+<li><p>Simule a situação descrita para um número total de repetições da
+experiência: <span class="math inline">\(n_1=5\)</span>, <span class="math inline">\(n_2=10\)</span>, <span class="math inline">\(n_3=100\)</span> e <span class="math inline">\(n_4=1000\)</span>. Para cada
+caso, determine a percentagem de casos em que saíram 3 vezes cara.</p></li>
+<li><p>Determine, para cada amostra, o valor da média e da variância.
+Compare com os valores de <span class="math inline">\(E(X)\)</span> e <span class="math inline">\(V(X)\)</span>.</p></li>
+</ol>
+<p>Seja <span class="math inline">\(X\)</span> uma variável aleatória com distribuição binomial, com <span class="math inline">\(n=10\)</span> e <span class="math inline">\(p=0.35\)</span>. Vamos ver os comandos do R para:</p>
+<ul>
+<li><p>Fazer o gráfico da função de probabilidade.</p></li>
+<li><p>Fazer o gráfico da função de distribuição acumulada.</p></li>
+<li><p>Calcular <span class="math inline">\(P(X=7)\)</span>.</p></li>
+<li><p>Calcular <span class="math inline">\(P(X \leq 7)\)</span>.</p></li>
+<li><p>Calcular <span class="math inline">\(P(X&gt;7)\)</span>.</p></li>
+<li><p>Calcular <span class="math inline">\(P(3&lt;X\leq 6)\)</span>.</p></li>
+</ul>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="distribuições-de-probabilidade.html#cb314-1" tabindex="-1"></a><span class="co"># Função de probabilidade e fx e função de distribuição Fx</span></span>
+<span id="cb314-2"><a href="distribuições-de-probabilidade.html#cb314-2" tabindex="-1"></a></span>
+<span id="cb314-3"><a href="distribuições-de-probabilidade.html#cb314-3" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb314-4"><a href="distribuições-de-probabilidade.html#cb314-4" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb314-5"><a href="distribuições-de-probabilidade.html#cb314-5" tabindex="-1"></a>fx <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(x, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.35</span>)</span>
+<span id="cb314-6"><a href="distribuições-de-probabilidade.html#cb314-6" tabindex="-1"></a><span class="fu">plot</span>(x, fx, <span class="at">type =</span> <span class="st">&quot;h&quot;</span>)</span>
+<span id="cb314-7"><a href="distribuições-de-probabilidade.html#cb314-7" tabindex="-1"></a>Fx <span class="ot">&lt;-</span> <span class="fu">pbinom</span>(x, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.35</span>)</span>
+<span id="cb314-8"><a href="distribuições-de-probabilidade.html#cb314-8" tabindex="-1"></a><span class="fu">plot</span>(x, Fx, <span class="at">type =</span> <span class="st">&quot;s&quot;</span>)</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-249-1.png" width="672" /></p>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="distribuições-de-probabilidade.html#cb315-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
+<p>As probabilidades pedidas são:</p>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="distribuições-de-probabilidade.html#cb316-1" tabindex="-1"></a><span class="co"># P(X = 7)</span></span>
+<span id="cb316-2"><a href="distribuições-de-probabilidade.html#cb316-2" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="dv">7</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.35</span>)</span>
+<span id="cb316-3"><a href="distribuições-de-probabilidade.html#cb316-3" tabindex="-1"></a><span class="do">## [1] 0.02120302</span></span>
+<span id="cb316-4"><a href="distribuições-de-probabilidade.html#cb316-4" tabindex="-1"></a><span class="co"># P(X &lt;= 7)</span></span>
+<span id="cb316-5"><a href="distribuições-de-probabilidade.html#cb316-5" tabindex="-1"></a><span class="fu">pbinom</span>(<span class="dv">7</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.35</span>)</span>
+<span id="cb316-6"><a href="distribuições-de-probabilidade.html#cb316-6" tabindex="-1"></a><span class="do">## [1] 0.9951787</span></span>
+<span id="cb316-7"><a href="distribuições-de-probabilidade.html#cb316-7" tabindex="-1"></a><span class="co"># OU</span></span>
+<span id="cb316-8"><a href="distribuições-de-probabilidade.html#cb316-8" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">7</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.35</span>))</span>
+<span id="cb316-9"><a href="distribuições-de-probabilidade.html#cb316-9" tabindex="-1"></a><span class="do">## [1] 0.9951787</span></span>
+<span id="cb316-10"><a href="distribuições-de-probabilidade.html#cb316-10" tabindex="-1"></a><span class="co"># P(X &gt; 7)</span></span>
+<span id="cb316-11"><a href="distribuições-de-probabilidade.html#cb316-11" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pbinom</span>(<span class="dv">7</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.35</span>)</span>
+<span id="cb316-12"><a href="distribuições-de-probabilidade.html#cb316-12" tabindex="-1"></a><span class="do">## [1] 0.004821265</span></span>
+<span id="cb316-13"><a href="distribuições-de-probabilidade.html#cb316-13" tabindex="-1"></a><span class="fu">pbinom</span>(<span class="dv">7</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.35</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>) <span class="co"># melhor</span></span>
+<span id="cb316-14"><a href="distribuições-de-probabilidade.html#cb316-14" tabindex="-1"></a><span class="do">## [1] 0.004821265</span></span>
+<span id="cb316-15"><a href="distribuições-de-probabilidade.html#cb316-15" tabindex="-1"></a><span class="co"># P(3 &lt; X &lt;= 6)</span></span>
+<span id="cb316-16"><a href="distribuições-de-probabilidade.html#cb316-16" tabindex="-1"></a><span class="fu">pbinom</span>(<span class="dv">6</span>, <span class="dv">10</span>, <span class="fl">0.35</span>) <span class="sc">-</span> <span class="fu">pbinom</span>(<span class="dv">3</span>, <span class="dv">10</span>, <span class="fl">0.35</span>)</span>
+<span id="cb316-17"><a href="distribuições-de-probabilidade.html#cb316-17" tabindex="-1"></a><span class="do">## [1] 0.4601487</span></span>
+<span id="cb316-18"><a href="distribuições-de-probabilidade.html#cb316-18" tabindex="-1"></a><span class="co"># OU</span></span>
+<span id="cb316-19"><a href="distribuições-de-probabilidade.html#cb316-19" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">dbinom</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">10</span>, <span class="fl">0.35</span>))</span>
+<span id="cb316-20"><a href="distribuições-de-probabilidade.html#cb316-20" tabindex="-1"></a><span class="do">## [1] 0.4601487</span></span></code></pre></div>
+</div>
+</div>
+<div id="distribuição-de-poisson" class="section level2 hasAnchor" number="21.4">
+<h2><span class="header-section-number">21.4</span> Distribuição de Poisson<a href="distribuições-de-probabilidade.html#distribuição-de-poisson" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Considera-se a contagem do número de ocorrências aleatórias de um acontecimento num intervalo de tempo (comprimento, área, volume, etc.) que verifica as seguintes propriedades:</p>
+<ol style="list-style-type: decimal">
+<li><p>O número de ocorrências de um acontecimento num intervalo é independente do número de ocorrências noutro intervalo disjunto, dizendo-se que não tem memória.</p></li>
+<li><p>A probabilidade de ocorrência de um acontecimento é a mesma para intervalos com a mesma amplitude.</p></li>
+<li><p>A probabilidade de ocorrer mais do que um acontecimento num intervalo suficientemente pequeno é nula.</p></li>
+</ol>
+<p>Então, esta experiência aleatória chama-se <strong>Processo de Poisson</strong>.</p>
+<p><strong>Definição</strong>: A variável aleatória discreta <span class="math inline">\(X = \text{&quot;número de ocorrências de um acontecimento por unidade de tempo ou de espaço (comprimento, área, volume, etc.)&quot;}\)</span></p>
+<p>diz-se com <strong>distribuição de Poisson</strong> de parâmetro <span class="math inline">\(\lambda &gt; 0\)</span> e possui f.m.p. dada por</p>
+<p><span class="math display">\[
+P(X = x) = \begin{cases}
+\frac{e^{-\lambda} \lambda^x}{x!}, &amp; x = 0, 1, 2, \dots \\
+0, &amp; \text{caso contrário}
+\end{cases}
+\]</span></p>
+<p><strong>Notação</strong></p>
+<ul>
+<li><span class="math inline">\(X \sim \text{Poisson}(\lambda)\)</span></li>
+<li><span class="math inline">\(E(X) = \lambda\)</span></li>
+<li><span class="math inline">\(V(X) = \lambda\)</span></li>
+</ul>
+<blockquote>
+<p><span class="math inline">\(\lambda\)</span> representa o número médio de ocorrências de um acontecimento por unidade de tempo ou espaço.</p>
+</blockquote>
+<p><strong>Aditividade da Distribuição de Poisson</strong>: Se <span class="math inline">\(X_1, \dots, X_n\)</span> são variáveis aleatórias independentes, com <span class="math inline">\(X_i \sim \text{Poisson}(\lambda_i)\)</span> para <span class="math inline">\(i = 1, 2, \dots, n\)</span>, então</p>
+<p><span class="math display">\[
+\sum_{i=1}^n X_i \sim \text{Poisson}\left( \sum_{i=1}^n \lambda_i \right).
+\]</span></p>
+</div>
+<div id="cálculo-de-probabilidades-2" class="section level2 hasAnchor" number="21.5">
+<h2><span class="header-section-number">21.5</span> Cálculo de probabilidades<a href="distribuições-de-probabilidade.html#cálculo-de-probabilidades-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Exemplo</strong>: Geólogos estão a estudar a ocorrência de terramotos numa região específica. Eles observaram que, em média, ocorrem 3 terramotos por mês nessa região. O número de terramotos por mês pode ser modelado por uma distribuição de Poisson.</p>
+<p><strong>(a)</strong> Calcule a probabilidade de ocorrer exatamente 2 terramotos em um mês.</p>
+<p><strong>(b)</strong> Calcule a probabilidade de ocorrer mais de 4 terramotos em um mês.</p>
+<p><strong>(c)</strong> Suponha que a equipa de geólogos está a planear um sistema de alerta para terramotos. Eles querem saber a probabilidade de ocorrer pelo menos 1 terramoto num período de 2 semanas.</p>
+<p><strong>Variável Aleatória</strong></p>
+<p><span class="math inline">\(X = \text{&quot;número de terramotos por mês numa região específica&quot;}\)</span></p>
+<p><strong>Distribuição de <span class="math inline">\(X\)</span></strong></p>
+<ul>
+<li><span class="math inline">\(X \sim \text{Poisson}(\lambda = 3)\)</span></li>
+<li><span class="math inline">\(E(X) = 3 = \lambda\)</span></li>
+</ul>
+<p><strong>(a)</strong> <span class="math inline">\(P(X=2)\)</span></p>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="distribuições-de-probabilidade.html#cb317-1" tabindex="-1"></a><span class="co"># P(X=2)</span></span>
+<span id="cb317-2"><a href="distribuições-de-probabilidade.html#cb317-2" tabindex="-1"></a><span class="fu">dpois</span>(<span class="at">x =</span> <span class="dv">2</span>, <span class="at">lambda =</span> <span class="dv">3</span>)</span>
+<span id="cb317-3"><a href="distribuições-de-probabilidade.html#cb317-3" tabindex="-1"></a><span class="do">## [1] 0.2240418</span></span></code></pre></div>
+<p><strong>(b)</strong> <span class="math inline">\(P(X&gt;4)=1-P(X\leq 4)\)</span></p>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="distribuições-de-probabilidade.html#cb318-1" tabindex="-1"></a><span class="co"># P(X&gt;4)</span></span>
+<span id="cb318-2"><a href="distribuições-de-probabilidade.html#cb318-2" tabindex="-1"></a><span class="fu">ppois</span>(<span class="at">q =</span> <span class="dv">4</span>, <span class="at">lambda =</span> <span class="dv">3</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb318-3"><a href="distribuições-de-probabilidade.html#cb318-3" tabindex="-1"></a><span class="do">## [1] 0.1847368</span></span>
+<span id="cb318-4"><a href="distribuições-de-probabilidade.html#cb318-4" tabindex="-1"></a><span class="co"># ou</span></span>
+<span id="cb318-5"><a href="distribuições-de-probabilidade.html#cb318-5" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">ppois</span>(<span class="at">q =</span> <span class="dv">4</span>, <span class="at">lambda =</span> <span class="dv">3</span>, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb318-6"><a href="distribuições-de-probabilidade.html#cb318-6" tabindex="-1"></a><span class="do">## [1] 0.1847368</span></span></code></pre></div>
+<p><strong>(c)</strong></p>
+<p><strong>Variável aleartória de interesse</strong></p>
+<p><span class="math inline">\(\tilde{X} = \text{&quot;número de terramotos em 2 semanas&quot;}\)</span></p>
+<p><span class="math inline">\(\tilde{X} \sim \text{Poisson}(\lambda = 1.5)\)</span></p>
+<p><span class="math inline">\(P(X \geq 1) = 1-P(X &lt; 1) = 1-P(X=0)\)</span></p>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="distribuições-de-probabilidade.html#cb319-1" tabindex="-1"></a><span class="co"># P(X &gt;= 1)</span></span>
+<span id="cb319-2"><a href="distribuições-de-probabilidade.html#cb319-2" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">dpois</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">lambda =</span> <span class="fl">1.5</span>)</span>
+<span id="cb319-3"><a href="distribuições-de-probabilidade.html#cb319-3" tabindex="-1"></a><span class="do">## [1] 0.7768698</span></span></code></pre></div>
+</div>
+<div id="distribuição-uniforme" class="section level2 hasAnchor" number="21.6">
+<h2><span class="header-section-number">21.6</span> Distribuição Uniforme<a href="distribuições-de-probabilidade.html#distribuição-uniforme" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Definição</strong>: A variável aleatória contínua <span class="math inline">\(X\)</span> diz-se ter <strong>distribuição uniforme contínua</strong> no intervalo <span class="math inline">\((a, b)\)</span> (onde <span class="math inline">\(a &lt; b\)</span>), se sua função densidade de probabilidade (f.d.p.) for dada por</p>
+<p><span class="math display">\[
+f(x) = \begin{cases}
+\frac{1}{b - a}, &amp; a \leq x \leq b \\
+0, &amp; \text{caso contrário}
+\end{cases}
+\]</span></p>
+<p>A função de distribuição acumulada (f.d.a.) de <span class="math inline">\(X\)</span> é dada por</p>
+<p><span class="math display">\[
+F(x) = \begin{cases}
+0, &amp; x \leq a \\
+\frac{x - a}{b - a}, &amp; a &lt; x &lt; b \\
+1, &amp; x \geq b
+\end{cases}
+\]</span></p>
+<div id="notação" class="section level3 hasAnchor" number="21.6.1">
+<h3><span class="header-section-number">21.6.1</span> Notação<a href="distribuições-de-probabilidade.html#notação" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><span class="math inline">\(X \sim \text{Uniforme}(a, b)\)</span></li>
+<li><span class="math inline">\(E(X) = \frac{a + b}{2}\)</span></li>
+<li><span class="math inline">\(V(X) = \frac{(b - a)^2}{12}\)</span></li>
+</ul>
+</div>
+</div>
+<div id="distribuição-normal" class="section level2 hasAnchor" number="21.7">
+<h2><span class="header-section-number">21.7</span> Distribuição Normal<a href="distribuições-de-probabilidade.html#distribuição-normal" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Vamos ver alguns exemplos com a distribuição normal padrão. Por <code>default</code> as funções assumem a distribuição normal padrão <span class="math inline">\(N(\mu=0, \sigma = 1)\)</span>.</p>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="distribuições-de-probabilidade.html#cb320-1" tabindex="-1"></a><span class="fu">dnorm</span>(<span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] 0.2419707</code></pre>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="distribuições-de-probabilidade.html#cb322-1" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] 0.1586553</code></pre>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="distribuições-de-probabilidade.html#cb324-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span></code></pre></div>
+<pre><code>## [1] 1.959964</code></pre>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="distribuições-de-probabilidade.html#cb326-1" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##  [1] -0.60189285 -0.99369859  1.02678506  0.75106130 -1.50916654 -0.09514745
+##  [7] -0.89594782 -2.07075107  0.15012013 -0.07921171</code></pre>
+<p>O primeiro valor acima, de <code>dnorm(-1)</code>, corresponde ao valor da densidade da normal reduzida ou normal padrão <span class="math inline">\(N(\mu=0,\sigma=1)\)</span></p>
+<p><span class="math display">\[f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{1}{2}\left( \frac{x-\mu}{\sigma}\right)}\]</span>
+no ponto <span class="math inline">\(x=-1\)</span>. Portanto, o mesmo valor seria obtido substituindo <span class="math inline">\(x\)</span> por <span class="math inline">\(-1\)</span> na expressão da normal:</p>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="distribuições-de-probabilidade.html#cb328-1" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb328-2"><a href="distribuições-de-probabilidade.html#cb328-2" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb328-3"><a href="distribuições-de-probabilidade.html#cb328-3" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb328-4"><a href="distribuições-de-probabilidade.html#cb328-4" tabindex="-1"></a>(<span class="dv">1</span><span class="sc">/</span>(sigma <span class="sc">*</span> <span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span>pi))) <span class="sc">*</span> <span class="fu">exp</span>((<span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>) <span class="sc">*</span> ((x <span class="sc">-</span> mu)<span class="sc">/</span>sigma)<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 0.2419707</code></pre>
+<ul>
+<li><p>A função <code>pnorm(-1)</code> calcula a probabilidade <span class="math inline">\(P(X \leq -1)\)</span>.</p></li>
+<li><p>A função <code>qnorm(0.975)</code> calcula o valor de <span class="math inline">\(x\)</span> tal que <span class="math inline">\(P(X\leq x) = 0.975\)</span>.</p></li>
+<li><p>A função <code>rnorm(10)</code> gera uma amostra aleatória de 10 elementos da normal padrão.</p></li>
+</ul>
+<p>As funções relacionadas à distribuição normal possuem os argumentos <code>mean</code> e <code>sd</code> para definir a média e o desvio padrão da distribuição que podem ser modificados como nos exemplos a seguir. Note nestes exemplos que os argumentos podem ser passados de diferentes formas.</p>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="distribuições-de-probabilidade.html#cb330-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.975</span>, <span class="at">mean =</span> <span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">8</span>)</span></code></pre></div>
+<pre><code>## [1] 115.6797</code></pre>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="distribuições-de-probabilidade.html#cb332-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.975</span>, <span class="at">m =</span> <span class="dv">100</span>, <span class="at">s =</span> <span class="dv">8</span>)</span></code></pre></div>
+<pre><code>## [1] 115.6797</code></pre>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="distribuições-de-probabilidade.html#cb334-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.975</span>, <span class="dv">100</span>, <span class="dv">8</span>)</span></code></pre></div>
+<pre><code>## [1] 115.6797</code></pre>
+<p>Cálculos de probabilidades usuais, para os quais utilizavamos tabelas estatísticas podem ser facilmente obtidos como no exemplo a seguir.</p>
+<p>Seja <span class="math inline">\(X\)</span> uma variável aleatória com distribuição <span class="math inline">\(N(\mu=100, \sigma=10)\)</span>. Calcular as probabilidades:</p>
+<ul>
+<li><p><span class="math inline">\(P(X &lt; 95)\)</span></p></li>
+<li><p><span class="math inline">\(P(90 &lt; X &lt; 110)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &gt; 95)\)</span></p></li>
+</ul>
+<p>Calcule estas probabilidades de forma usual, usando a tabela da normal. Depois compare com os resultados fornecidos pelo R. Os comandos do R para obter as probabilidades pedidas são:</p>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="distribuições-de-probabilidade.html#cb336-1" tabindex="-1"></a><span class="co"># P(X &lt; 95)</span></span>
+<span id="cb336-2"><a href="distribuições-de-probabilidade.html#cb336-2" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">95</span>, <span class="dv">100</span>, <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## [1] 0.3085375</code></pre>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="distribuições-de-probabilidade.html#cb338-1" tabindex="-1"></a><span class="co"># P(90 &lt; X &lt; 110)</span></span>
+<span id="cb338-2"><a href="distribuições-de-probabilidade.html#cb338-2" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">110</span>, <span class="dv">100</span>, <span class="dv">10</span>) <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="dv">90</span>, <span class="dv">100</span>, <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## [1] 0.6826895</code></pre>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="distribuições-de-probabilidade.html#cb340-1" tabindex="-1"></a><span class="co"># P(X &gt; 95) = 1 - P(X &lt; 95)</span></span>
+<span id="cb340-2"><a href="distribuições-de-probabilidade.html#cb340-2" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="dv">95</span>, <span class="dv">100</span>, <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## [1] 0.6914625</code></pre>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="distribuições-de-probabilidade.html#cb342-1" tabindex="-1"></a><span class="co"># ou</span></span>
+<span id="cb342-2"><a href="distribuições-de-probabilidade.html#cb342-2" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">95</span>, <span class="dv">100</span>, <span class="dv">10</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>) <span class="co"># melhor</span></span></code></pre></div>
+<pre><code>## [1] 0.6914625</code></pre>
+<p>Função densidade de probabilidade e função de distribuição.</p>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="distribuições-de-probabilidade.html#cb344-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb344-2"><a href="distribuições-de-probabilidade.html#cb344-2" tabindex="-1"></a><span class="fu">plot</span>(dnorm, <span class="at">from =</span> <span class="sc">-</span><span class="dv">3</span>, <span class="at">to =</span> <span class="dv">3</span>, </span>
+<span id="cb344-3"><a href="distribuições-de-probabilidade.html#cb344-3" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Valores de X&quot;</span>,</span>
+<span id="cb344-4"><a href="distribuições-de-probabilidade.html#cb344-4" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Densidade de probabilidade&quot;</span>)</span>
+<span id="cb344-5"><a href="distribuições-de-probabilidade.html#cb344-5" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Distribuicão Normal</span><span class="sc">\n</span><span class="st">X ~ N(0, 1)&quot;</span>)</span>
+<span id="cb344-6"><a href="distribuições-de-probabilidade.html#cb344-6" tabindex="-1"></a><span class="fu">plot</span>(pnorm, <span class="at">from =</span> <span class="sc">-</span><span class="dv">3</span>, <span class="at">to =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-258-1.png" width="672" /></p>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="distribuições-de-probabilidade.html#cb345-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="distribuições-de-probabilidade.html#cb346-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="cf">function</span>(x) <span class="fu">dnorm</span>(x, <span class="dv">100</span>, <span class="dv">8</span>), <span class="dv">60</span>, <span class="dv">140</span>, <span class="at">ylab =</span> <span class="st">&#39;f(x)&#39;</span>)</span>
+<span id="cb346-2"><a href="distribuições-de-probabilidade.html#cb346-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="cf">function</span>(x) <span class="fu">dnorm</span>(x, <span class="dv">90</span>, <span class="dv">8</span>), <span class="dv">60</span>, <span class="dv">140</span>, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="dv">2</span>)</span>
+<span id="cb346-3"><a href="distribuições-de-probabilidade.html#cb346-3" tabindex="-1"></a><span class="fu">plot</span>(<span class="cf">function</span>(x) <span class="fu">dnorm</span>(x, <span class="dv">100</span>, <span class="dv">15</span>), <span class="dv">60</span>, <span class="dv">140</span>, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="dv">3</span>)</span>
+<span id="cb346-4"><a href="distribuições-de-probabilidade.html#cb346-4" tabindex="-1"></a><span class="fu">legend</span>(<span class="dv">120</span>, <span class="fl">0.05</span>, <span class="at">fill =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,</span>
+<span id="cb346-5"><a href="distribuições-de-probabilidade.html#cb346-5" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;N(100,64)&quot;</span>, <span class="st">&quot;N(90,64)&quot;</span>, <span class="st">&quot;N(100,225)&quot;</span>))</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-259-1.png" width="672" /></p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="probabilidade-e-variáveis-aleatórias.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="método-da-transformada-inversa.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-intro.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["introR.pdf", "introR.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
