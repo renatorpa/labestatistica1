@@ -4019,11 +4019,7 @@ read_excel(path, sheet = NULL, range = NULL, col_names = TRUE,
 -   `n_max`: Número máximo de linhas a serem lidas. O padrão é `Inf`, o
     que significa que todas as linhas são lidas.
 
-**Exemplo de Utilização**: Vamos considerar um exemplo em que temos um
-ficheiro Excel chamado `"instragram.xlsx"` com três folhas: `"Sheet1"`,
-`"Sheet2"` e `"Sheet3"`. Este ficheiro pode ser descarregado
-[aqui](https://renatorpaula.wixsite.com/renato/laboratorio-estatistica).
-Vamos ler a primeira folha (`Sheet1`):
+**Exemplo de Utilização**: Vamos considerar um exemplo em que temos um ficheiro Excel chamado `"dados_instagram.xlsx"`. Este ficheiro pode ser descarregado [aqui](https://renatorpaula.wixsite.com/renato/laboratorio-estatistica). Vamos ler a primeira folha (`Sheet1`):
 
 ```{r eval=FALSE}
 dados <- read_excel(path = "instagram.xlsx",
@@ -4049,7 +4045,25 @@ Neste exemplo, url contém o endereço do ficheiro CSV na web, e
 
 ## Exercícios
 
+1. Faça a leitura do ficheiro `dados_instagram` [aqui](https://renatorpaula.wixsite.com/renato/laboratorio-estatistica) e responda às perguntas abaixo:
 
+(a) **Construa uma tabela de frequência**: Crie um data frame que contenha a tabela de frequência de cada variável no conjunto de dados.
+
+(b) **Visualização gráfica**: Crie representações gráficas adequadas para cada variável. Considere o uso de histogramas, gráficos de barras, boxplots..., conforme o tipo de variável.
+
+(c) **Cálculo de medidas descritivas**: Determine as principais medidas descritivas para cada variável, incluindo média, mediana, variância, desvio padrão, coeficiente de variação, primeiro e terceiro quartis ($Q_1$ e $Q_3$), amplitude e amplitude interquartil. Indique quando essas medidas não forem aplicáveis.
+
+(d) Calcule a média e a mediana do “índice de influência” para cada género. Comente sobre as diferenças entre os géneros e discuta se os resultados podem sugerir tendências distintas de influência entre eles.
+
+(e) Calcule a média e a mediana da “média de likes” para cada género. Avalie se há diferenças significativas entre os géneros nesta métrica e discuta possíveis implicações.
+
+(f) **Comparação de dispersão entre variáveis**: Compare a dispersão das variáveis “índice de influência” e “número de publicações” utilizando medidas como variância e desvio padrão. Justifique qual das variáveis apresenta maior dispersão e interprete o que isso pode indicar sobre os dados.
+
+(g) **Análise de percentis para “número de seguidores”**: Identifique os percentis de 10%, 25%, 75% e 90% para a variável “número de seguidores”. Comente sobre como esses percentis podem ser usados para categorizar influenciadores com diferentes níveis de popularidade na plataforma.
+
+(h) **Identificação de outliers**: Investigue a presença de outliers nas variáveis “número de publicações”, “número de seguidores” e “média de likes”. Use métodos como o intervalo interquartil (IQR) e comente sobre o impacto de possíveis outliers na análise.
+
+(i) **Correlação entre “índice de influência” e “média de likes”**: Calcule a correlação entre as variáveis “índice de influência” e “média de likes”. Comente sobre a relação entre essas duas variáveis, discutindo se um alto índice de influência tende a estar associado a uma média maior de curtidas.
 
 # Pipe
 
@@ -6639,6 +6653,21 @@ dois grupos: tratamento e controlo. O grupo de tratamento deve conter 20
 pacientes e o grupo de controlo 10. Usando `sample()`, faça a
 randomização dos pacientes. Dica: use a função `setdiff()`.
 
+# Teoremas limites
+
+Os teoremas limites clássicos de probabilidade se referem à sequencias de variáveis aleatórias independentes e identicamente distribuídas (i.i.d.). Se $X_1,X_2,\ldots$ é uma sequência de variáveis aleatórias com média comum $E(X)=\mu < \infty$, e seja a v.a. $S_n = X_1 + X_2 + \cdots + X_n$.
+
+A **Lei dos Grandes Números** informa que a sequência das médias $S_n/n$ converge para $\mu$, quando $n\to +\infty$. Existem duas versões da Lei, a *fraca* e a *forte*.
+
+## Lei fraca dos grandes números
+
+A Lei Fraca dos Grandes Números é um resultado em Teoria da Probabilidade também conhecido como Teorema de Bernoulli’s. De acordo com a lei, a média dos resultados obtidos por um grande número de tentativas é próximo a média da população.
+
+Sejam $X_1,\ldots,X_n$ uma sequência de variáveis aleatórias identicamente distribuídas e independentes (i.i.d.), cada uma possuindo média $\mu$ e variância $\sigma^2$. 
+
+
+
+
 # Usando números aleatórios para o cálculo de Integrais
 
 Seja $g(x)$ uma função e suponha que se quer calcular $\theta$ onde:
@@ -6828,8 +6857,9 @@ plot(f1, from = 0, to = 10)
 
 Para verificar que o integral da função é igual a 1 podemos usar a função `integrate()`, que realiza a integração numérica.
 
-```{r}
+```{r eval=FALSE}
 integrate(f1, lower = 0, upper = Inf)
+## 1 with absolute error < 5e-07
 ```
 
 Para fazer os cálculos pedidos nas alíneas (a) e (b) lembramos que a probabilidade é dada pela área sob a curva da função no intervalo pedido, ou seja,
@@ -6840,10 +6870,12 @@ $P(0.3 < X < 0.7) = \int_{0.3}^{0.7}f(x)\, dx = \int_{0.3}^{0.7} 2e^{-2x}\, dx$
 
 que são obtidas usando os comandos
 
-```{r}
+```{r eval=FALSE}
 integrate(f1, lower = 2, upper = Inf)
+## 0.01831564 with absolute error < 2.8e-06
 
 integrate(f1, lower = 0.3, upper = 0.7)
+## 0.3022147 with absolute error < 3.4e-15
 ```
 
 **Exemplo 2**: A demanda diária de arroz em um supermercado, em centenas de quilos, é uma variável aleatória $X$ com f.d.p. dada por
@@ -6866,8 +6898,12 @@ f2 <- function(x) {
 
 Vamos verificar que o integral da função é 1 e vamos fazer também o gráfico da função.
 
-```{r}
+```{r eval=FALSE}
 integrate(f2, 0, 3)
+## 1 with absolute error < 1.1e-15
+```
+
+```{r}
 plot(f2, -1, 4)
 ```
 
@@ -6880,8 +6916,9 @@ polygon(x = c(1.5, 1.5, 3), y = c(0, f2(1.5), 0), dens = 10)
 
 Podemos resolver o integral numericamente da seguinte forma
 
-```{r}
+```{r eval=FALSE}
 integrate(f2, 1.5, 3)
+## 0.375 with absolute error < 4.2e-15
 ```
 
 A venda esperada em trinta dias é 30 vezes o valor esperado de venda em um dia. Para calcular o valor esperado $E(X) = \int_{-\infty}^{+\infty}xf(x)\,dx$ definimos uma nova função e resolvemos o integral. A função `integrate()` retorna uma lista onde um dos elementos (`value`) é o valor da integral.
@@ -6890,8 +6927,14 @@ A venda esperada em trinta dias é 30 vezes o valor esperado de venda em um dia.
 ef2 <- function(x) {
   x*f2(x)
 }
+```
+
+```{r eval=FALSE}
 integrate(ef2,0,3)
+## 1.333333 with absolute error < 7.3e-05
+
 30*integrate(ef2,0,3)$value
+## [1] 40
 ```
 
 Por fim, ressaltamos que os exemplos abordados aqui são básicos e podem ser resolvidos de forma analítica, sem a necessidade de métodos numéricos. Esses exemplos foram escolhidos apenas para ilustrar o uso do R na obtenção de soluções numéricas. Na prática, o R é mais indicado para problemas complexos, nos quais as soluções analíticas são difíceis ou inviáveis.
@@ -6966,7 +7009,7 @@ Um modelo probabilístico teórico discreto é uma representação matemática u
 
 O modelo define a distribuição de probabilidades associada a cada possível valor da variável, ou seja, especifica a probabilidade de cada evento ocorrer.
 
-## Modelo Uniforme Discreto
+## Distribuição Uniforme Discreta
 
 **Definição**: A variável aleatória \( X \) diz-se ter **distribuição uniforme discreta** no conjunto \(\{x_1, x_2, \dots, x_n\}\) se sua função massa de probabilida (f.mp.) for dada por
 
@@ -7115,6 +7158,8 @@ $P(X = 4) \to$ `dbinom(x=4, size=20, prob=0.1)` = 0.08977883
 \noindent $P(X > 4)\to$
 `pbinom(q=4, size=20, prob=0.1, lower.tail=FALSE)`= 0.0431745
 
+\noindent Amostra aleatória de dimensão 5: `rbinom(n=5, size=20, prob=0.1)`= 0 1 1 4 0
+
 ### Função massa de probabilidade (teórica)
 
 ```{r}
@@ -7127,14 +7172,13 @@ x <- 0:20
 
 teorico <- data.frame(x = x, y=dbinom(x, size = n, prob = p))
 
-# Carregue o pacote ggplot2
-library(ggplot2)
-
-ggplot(teorico) +  
-  geom_point(aes(x = x, y=y), color = "blue") + 
-  scale_x_continuous(breaks = 0:n) +  
-  labs(title = "Binomial(20,0.1)", x = "Número de sucessos", y = "Probabilidade") +  
-  theme_light()
+plot(teorico$x, teorico$y,
+     main = "Binomial(n=20, p=0.1)",
+     xlab = "Número de sucessos",
+     ylab = "Probabilidades",
+     pch = 19,
+     col = "blue")
+grid(nx=21, ny=NULL)
 ```
 
 ### Função massa de probabilidade (simulação)
@@ -7143,19 +7187,20 @@ ggplot(teorico) +
 set.seed(1234)
 
 n <- 20
-p <- 0.9
+p <- 0.1
 k <- 1000 # número de simulações
 
-dados <- data.frame(X = rbinom(k, size = n, prob = p))
+dados <- rbinom(k, size = n, prob = p)
 
-# Carregue o pacote ggplot2library(ggplot2)
+frequencia_relativa <- table(dados)/length(dados)
 
-ggplot(dados) +   
-geom_bar(aes(x=X, y=after_stat(prop)), fill = "lightblue") +
-  scale_x_continuous(breaks = 0:n) +   
-  labs(title = "Geração de números aleatórios de Bi(20,0.9)", x="Número de sucessos", 
-  y="Frequência relativa") +  
-  theme_light()
+barplot(frequencia_relativa,
+        main = "Geração de números aleatórios de Bi(20,0.1)",
+        col = "lightblue",
+        xlab = "Número de sucessos",
+        ylab = "Frequência relativa",
+        ylim = c(0,0.3))
+grid()
 ```
 
 ### Comparação
@@ -7167,27 +7212,32 @@ n <- 20
 p <- 0.1
 k <- 1000 # número de simulações
 
-dados <- data.frame(X = rbinom(k, size = n, prob = p))
+dados <- rbinom(k, size = n, prob = p)
+frequencia_relativa <- table(dados)/length(dados)
+
 teorico <- data.frame(x = 0:n, y=dbinom(0:n, size = n, prob = p))
 
-# Carregue o pacote ggplot2
-library(ggplot2)
+barplot(frequencia_relativa,
+        main = "Geração de números aleatórios de Bi(20,0.1)",
+        col = "lightblue",
+        xlab = "Número de sucessos",
+        ylab = "Frequência relativa",
+        xlim = c(0,20),
+        ylim = c(-0.01,0.3))
 
-ggplot(dados) +  
-  geom_bar(aes(x = X, y = after_stat(prop)), fill = "lightblue") + 
-  geom_point(data = teorico, aes(x, y), color = "magenta") + 
-  scale_x_continuous(breaks = 0:n) +  
-  labs(title = "Geração de números aleatórios de Bi(20,0.1)", x = "Número de sucessos",       
-  y = "Probabilidade") +  
-  theme_light()
+points(teorico$x, teorico$y,
+       col = "magenta",
+       pch = 19)
+
+grid()
 ```
 
 ### Função de distribuição
 
 ```{r}
 # Definir os parâmetros da distribuição binomial
-n <- 10 # Número de tentativas
-p <- 0.5 # Probabilidade de sucesso
+n <- 20 # Número de tentativas
+p <- 0.1 # Probabilidade de sucesso
 
 # Valores possíveis de sucessos (0 a n)
 x <- 0:n
@@ -7198,15 +7248,15 @@ cdf_values <- pbinom(x, size = n, prob = p)
 # Plotar a FD
 plot(x, cdf_values, type = "s", lwd = 2, col = "blue", 
 xlab = "Número de Sucessos", ylab = "F(x)", 
-main = "Função de Distribuição Acumulada da Binomial(n = 10, p = 0.5)")
+main = "Função de Distribuição Acumulada da Binomial(n = 20, p = 0.1)")
 ```
 
 ### Função de distribuição empírica
 
 ```{r}
 # Definir os parâmetros da distribuição binomial
-n <- 10 # Número de tentativas
-p <- 0.5 # Probabilidade de sucesso
+n <- 20 # Número de tentativas
+p <- 0.1 # Probabilidade de sucesso
 
 set.seed(123)
 # Amostra aleatória de dimensão 1000
@@ -7223,11 +7273,11 @@ ylab = "Fn(x)", col = "blue")
 plot.ecdf(amostra)
 ```
 
-**Cálculo de probabilidade**: Seja $X \sim \text{Binomial}(n=10, p=0.5)$.
+**Cálculo de probabilidade**: Seja $X \sim \text{Binomial}(n=20, p=0.1)$.
 
-$P(X \leq 4) =$ `pbinom(4,10,0.5)` = 0.377
+$P(X \leq 4) =$ `pbinom(4,20,0.1)` = 0.9568255
 
-$P(X \leq 4) \approx$ `Fn(4)` = 0.382
+$P(X \leq 4) \approx$ `Fn(4)` = 0.956
 
 **Exemplo**: Considere a experiência aleatória que consiste em lançar
 uma moeda não viciada e observar a face que fica voltada para cima.
@@ -7245,56 +7295,6 @@ $$X - \text{número de vezes, em 7 lançamentos, que sai cara}$$
 (c) Determine, para cada amostra, o valor da média e da variância.
     Compare com os valores de $E(X)$ e $V(X)$.
 
-Seja $X$ uma variável aleatória com distribuição binomial, com $n=10$ e $p=0.35$. Vamos ver os comandos do R para:
-
-* Fazer o gráfico da função de probabilidade.
-
-* Fazer o gráfico da função de distribuição acumulada.
-
-* Calcular $P(X=7)$.
-
-* Calcular $P(X \leq 7)$.
-
-* Calcular $P(X>7)$.
-
-* Calcular $P(3<X\leq 6)$.
-
-```{r}
-# Função de probabilidade e fx e função de distribuição Fx
-
-par(mfrow = c(1, 2))
-x <- 0:10
-fx <- dbinom(x, size = 10, prob = 0.35)
-plot(x, fx, type = "h")
-Fx <- pbinom(x, size = 10, prob = 0.35)
-plot(x, Fx, type = "s")
-par(mfrow = c(1, 1))
-```
-
-As probabilidades pedidas são:
-
-```{r eval=FALSE}
-# P(X = 7)
-dbinom(7, size = 10, prob = 0.35)
-## [1] 0.02120302
-# P(X <= 7)
-pbinom(7, size = 10, prob = 0.35)
-## [1] 0.9951787
-# OU
-sum(dbinom(0:7, size = 10, prob = 0.35))
-## [1] 0.9951787
-# P(X > 7)
-1 - pbinom(7, size = 10, prob = 0.35)
-## [1] 0.004821265
-pbinom(7, size = 10, prob = 0.35, lower.tail = FALSE) # melhor
-## [1] 0.004821265
-# P(3 < X <= 6)
-pbinom(6, 10, 0.35) - pbinom(3, 10, 0.35)
-## [1] 0.4601487
-# OU
-sum(dbinom(4:6, 10, 0.35))
-## [1] 0.4601487
-```
 
 ## Distribuição de Poisson
 
@@ -7308,7 +7308,7 @@ Considera-se a contagem do número de ocorrências aleatórias de um acontecimen
 
 Então, esta experiência aleatória chama-se **Processo de Poisson**.
 
-**Definição**: A variável aleatória discreta $X = \text{"número de ocorrências de um acontecimento por unidade de tempo ou de espaço (comprimento, área, volume, etc.)"}$
+**Definição**: A variável aleatória discreta *X = \text{"número de ocorrências de um acontecimento por unidade de tempo ou de espaço (comprimento, área, volume, etc.)"}*
 
 diz-se com **distribuição de Poisson** de parâmetro \( \lambda > 0 \) e possui f.m.p. dada por
 
@@ -7333,7 +7333,154 @@ P(X = x) = \begin{cases}
 \sum_{i=1}^n X_i \sim \text{Poisson}\left( \sum_{i=1}^n \lambda_i \right).
 \]
 
-## Cálculo de probabilidades 
+### Cálculo de probabilidades
+
+Seja $X\sim\text{Poisson}(\lambda=5)$.
+
+$P(X =4) \to$ `dpois(4,5)` = 0.1755
+
+\noindent $P(X\leq 4) \to$ `ppois(4,5)` = 0.4405
+
+\noindent $P(X > 4)\to$ `ppois(4,5,lower.tail=FALSE)`= 0.5595
+
+### Função massa de probabilidade (teórica)
+
+```{r}
+# Definir os valores de lambda e x
+p <- c(0.1, 1, 2.5, 5, 15, 30)
+x <- 0:50
+
+# Carregar os pacotes necessários
+library(ggplot2)
+library(latex2exp)
+library(gridExtra)
+
+# Inicializar uma lista para armazenar os gráficos
+plots <- list()
+
+# Loop para criar os data frames e gráficos
+for (i in 1:length(p)) {  
+  teorico <- data.frame(x = x, y = dpois(x, lambda = p[i]))    
+	
+  plots[[i]] <- ggplot(teorico) +    
+    geom_point(aes(x = x, y = y), color = "blue") + 
+    scale_x_continuous(breaks = seq(0, 50, by = 10)) +
+    labs(title = TeX(paste0("$Poisson(lambda=", p[i], ")$")), x="x", y="Probabilidade") +
+    theme_light()
+}
+	
+# Dispor os gráficos em uma grade 2x3
+grid.arrange(grobs = plots, nrow = 2, ncol = 3)
+```
+
+### Função massa de probabilidade (simulação)
+
+```{r}
+p <- c(0.1, 1, 2.5, 5, 15, 30)
+n <- 1000
+
+# Carregar os pacotes necessários
+library(ggplot2)
+library(latex2exp)
+library(gridExtra)
+
+# Inicializar uma lista para armazenar os gráficos
+plots <- list()
+
+# Loop para criar os data frames e gráficos
+for (i in 1:length(p)) {  
+  dados <- data.frame(X = rpois(n, lambda = p[i]))
+  
+  plots[[i]] <- ggplot(dados) +    
+    geom_bar(aes(x = X, y =after_stat(prop)), fill="lightblue") + 
+    labs(title=TeX(paste("$Poisson(lambda=", p[i], ")$")), 
+    x = "x", y = "Frequência relativa") + 
+    theme_light()
+}
+
+# Dispor os gráficos em uma grade 2x3
+grid.arrange(grobs = plots, nrow = 2, ncol = 3)
+```
+
+### Comparação
+
+```{r}
+p <- c(0.1, 1, 2.5, 5, 15, 30)
+n <- 1000
+
+# Carregar os pacotes necessários
+library(ggplot2)
+library(latex2exp)
+library(gridExtra)
+
+# Inicializar uma lista para armazenar os gráficos
+plots <- list()
+
+# Loop para criar os data frames e gráficos
+for (i in 1:length(p)) {  
+  dados <- data.frame(X = rpois(n, lambda = p[i]))  
+  teorico <- data.frame(x=0:50, y=dpois(0:50,p[i]))    
+  
+  plots[[i]] <- ggplot(dados) +    
+    geom_bar(aes(x = X, y =after_stat(prop)), fill="lightblue") +    
+    geom_point(data = teorico, aes(x, y), color = "magenta") +    
+    scale_x_continuous(breaks = seq(0, 50, by = 10)) +
+    labs(title=TeX(paste("$Poisson(lambda=", p[i], ")$")), 
+    x = "x", y = "Frequência relativa") +    
+    theme_light()
+}
+
+# Dispor os gráficos em uma grade 2x3
+grid.arrange(grobs = plots, nrow = 2, ncol = 3)
+```
+
+### Função de distribuição
+
+```{r}
+lambda <- 5  # Parâmetro da Poisson
+x <- 0:15    # Valores de x para plotar a distribuição
+
+# Calcular a FD
+y <- ppois(x, lambda = lambda)
+
+# Plotar a FD
+plot(x,y, type="s", lwd=2, col="blue",     
+  main=TeX(paste("Função de Distribuição da $Poisson (lambda =", lambda, ")$")),    
+  xlab = "x",     
+  ylab = "F(x)")
+```
+
+### Função de distribuição empírica
+
+```{r}
+library(latex2exp)
+# Definir os parâmetros da distribuição de Poisson
+lambda <- 5
+
+dados <- rpois(1000,lambda = lambda)
+Fn <- ecdf(dados)
+
+# Plotar CDF
+plot(Fn, main=TeX("Função de Distribuição Empírica da $Poisson(lambda = 5)$"),
+  xlab = "x",     
+  ylab = "Fn(x)",      
+  col = "blue")
+
+# OU
+#plot.ecdf(dados)
+
+plot(Fn, main="Função de Distribuição Empírica",
+     xlab="x",
+     ylab="Fn",
+     col="blue",
+     verticals = TRUE)
+```
+
+**Cálculo de probabilidades**: Seja $X\sim\text{Poisson}(\lambda=5)$.
+
+$P(X\leq 4) \to$ `ppois(4,5)` = 0.4405
+
+$P(X \leq 4) \to$ `Fn(4)` = 0.433
 
 **Exemplo**: Geólogos estão a estudar a ocorrência de terramotos numa região específica. Eles observaram que, em média, ocorrem 3 terramotos por mês nessa região. O número de terramotos por mês pode ser modelado por uma distribuição de Poisson.
 
@@ -7387,7 +7534,23 @@ $P(X \geq 1) = 1-P(X < 1) = 1-P(X=0)$
 ## [1] 0.7768698
 ```
 
-## Distribuição Uniforme
+**Exemplo**: O número de pedidos recebidos por uma linha de suporte
+técnico de uma empresa num intervalo de 10 minutos é uma variável
+aleatória que segue uma distribuição de Poisson. Neste intervalo de 10
+minutos, espera-se que cheguem, em média, 20 pedidos.
+
+(a) Calcule a probabilidade de, num período de 10 minutos, chegarem 20
+    pedidos.
+
+(b) Simule a situação descrita para um número total de repetições da
+    experiência: $n_1=5$, $n_2=10$, $n_3=100$ e $n_4=1000$. Para cada
+    caso, determine a percentagem de casos em que chegam exatamente 20
+    pedidos.
+
+(c) Determine, para cada amostra, o valor da média e da variância.
+    Compare com os valores de $E(X)$ e $V(X)$. 
+
+## Distribuição Uniforme Contínua
 
 **Definição**: A variável aleatória contínua \( X \) diz-se ter **distribuição uniforme contínua** no intervalo \( (a, b) \) (onde \( a < b \)), se sua função densidade de probabilidade (f.d.p.) for dada por
 
@@ -7413,8 +7576,269 @@ F(x) = \begin{cases}
 - \( E(X) = \frac{a + b}{2} \)
 - \( V(X) = \frac{(b - a)^2}{12} \)
 
+### Cálculo de probabilidades
 
+Seja $X\sim \text{Uniforme}(0,1)$
 
+-   $P(X\leq 0.5) \to$ `punif(0.5, min = 0, max = 1)` = 0.5
+
+-   $P(X > 0.5) \to$ `punif(0.5, min = 0, max = 1, lower.tail = FALSE)`
+    = 0.5
+
+### Função densidade de probabilidade
+
+```{r}
+# Gerar os valores x para a densidade teórica
+x_vals <- seq(0, 1, length.out = 100)
+
+# Calcular a densidade teórica para os valores x
+y_vals <- dunif(x_vals, min = 0, max = 1)
+
+# Desenhar o gráfico da função densidade de probabilidade
+plot(x_vals, y_vals, type = "l", 
+     col = "red", lwd = 2, 
+     main = "Densidade da Distribuição Uniforme (0,1)",
+     xlab = "Valor", ylab = "Densidade")
+```
+
+### Função densidade de probabilidade (simulação)
+
+```{r}
+# Definir o tamanho da amostra
+n <- 10000
+
+# Fixar a semente para reprodutibilidade
+set.seed(123)
+
+# Gerar a variável aleatória com distribuição uniforme (0,1)
+uniform_data <- runif(n, min = 0, max = 1)
+
+# Criar um histograma da amostra 
+hist(uniform_data, probability = TRUE, 
+     main = "Histograma da Densidade - Uniforme(0,1)", 
+     xlab = "Valor", 
+     ylab = "Densidade", 
+     col = "lightblue", 
+     border = "darkblue")
+```
+
+### Comparação
+
+```{r}
+# Definir o tamanho da amostra
+n <- 10000
+
+# Fixar a semente para reprodutibilidade
+set.seed(123)
+
+# Gerar a variável aleatória com distribuição uniforme (0,1)
+uniform_data <- runif(n, min = 0, max = 1)
+
+# Criar um histograma da amostra com densidade
+hist(uniform_data, probability = TRUE, 
+     main = "Comparação da Densidade - Uniforme(0,1)", 
+     xlab = "Valor", 
+     ylab = "Densidade", 
+     col = "lightblue", 
+     border = "darkblue")
+
+# Adicionar a curva da densidade teórica
+curve(dunif(x, min = 0, max = 1), 
+      add = TRUE, 
+      col = "red", 
+      lwd = 2)
+```
+
+### Função de distribuição
+
+```{r}
+# Gerar os valores x para a FD teórica
+x_vals <- seq(0, 1, length.out = 100)
+
+# Calcular a FD teórica para os valores x
+y_vals <- punif(x_vals, min = 0, max = 1)
+
+# Desenhar o gráfico da função de distribuição acumulada
+plot(x_vals, y_vals, type = "l", 
+     col = "blue", lwd = 2, 
+     main = "Função de Distribuição Uniforme (0,1)",
+     xlab = "Valor", ylab = "F(x)")
+```
+
+### Função de distribuição empírica
+
+```{r}
+# Definir o tamanho da amostra
+n <- 10000
+
+# Fixar a semente para reprodutibilidade
+set.seed(123)
+
+# Gerar a variável aleatória com distribuição uniforme (0,1)
+uniform_data <- runif(n, min = 0, max = 1)
+
+# Função de distribuição empírica
+Fn <- ecdf(uniform_data)
+
+plot(Fn, main="Função de Distribuição Empírica",
+     xlab="x",
+     ylab="Fn",
+     col="blue")
+
+# OU
+#plot.ecdf(uniform_data)
+```
+
+**Exemplo**: O peso real de uma barra de chocolate de uma determinada
+marca (que supostamente pesa 100 gramas) é uma variável aleatória, em
+gramas, com distribuição uniforme no intervalo de 85 a 105 gramas.
+
+(a) Qual a probabilidade de uma barra de chocolate ter um peso inferior
+    a 100 gramas?
+
+(b) Simule a situação descrita para um número total de repetições da
+    experiência: $n_1=5$, $n_2=10$, $n_3=100$ e $n_4=1000$. Para cada
+    caso, determine a percentagem de casos em que o peso é inferior a
+    100 gramas.
+    
+## Distribuição Exponencial
+
+O modelo exponencial é frequentemente utilizado na caracterização da duração de equipamentos, modelação dos tempos entre ocorrências consecutivas de eventos do mesmo tipo, por exemplo, chegadas de clientes a um sistema, falhas mecânicas, colisões, etc.
+
+**Definição**: Uma variável aleatória contínua \( X \) diz-se ter distribuição exponencial de parâmetro \( \lambda > 0 \), se sua função densidade de probabilidade (f.d.p.) for dada por
+
+\[
+f_X(x) = 
+\begin{cases}
+\lambda e^{-\lambda x}, & x > 0 \\
+0, & x \leq 0
+\end{cases}
+\]
+
+A função de distribuição de \( X \) é dada por
+
+\[
+F_X(x) = 
+\begin{cases}
+1 - e^{-\lambda x}, & x > 0 \\
+0, & x \leq 0
+\end{cases}
+\]
+
+**Notação**
+
+- \( X \sim \text{Exponencial}(\lambda) \)
+- \( \mathbb{E}(X) = \frac{1}{\lambda} \)
+- \( \text{Var}(X) = \frac{1}{\lambda^2} \)
+
+### Cálculo de probabilidades
+
+Seja $X\sim \text{Exponencial}(\lambda=1)$.
+
+$P(X\leq 0.5) \to$ `pexp(0.5,rate=1)`=0.3935
+
+$P(X > 0.5) \to$ `pexp(0.5,rate=1,lower.tail=FALSE)`=0.6065
+
+### Função densidade de probabilidade (teórica)
+
+```{r}
+# Gerar os valores x para a densidade teórica
+x_vals <- seq(0, 10, length.out = 100)
+
+# Calcular a densidade teórica para os valores x
+y_vals <- dexp(x_vals, rate=1)
+
+# Desenhar o gráfico da função densidade de probabilidade
+plot(x_vals, y_vals, type = "l", 
+     col = "red", lwd = 2, 
+     main = "Densidade da Distribuição Exponencial(1)",
+     xlab = "Valor", ylab = "Densidade")
+```
+
+### Função densidade de probabilidade (simulação)
+
+```{r}
+# Definir o tamanho da amostra
+n <- 10000
+
+# Fixar a semente para reprodutibilidade
+set.seed(123)
+
+# Gerar a variável aleatória com distribuição exponencial(1)
+expo_data <- rexp(n, rate=1)
+
+# Criar um histograma da amostra 
+hist(expo_data, probability = TRUE, 
+     main = "Histograma da Densidade - Exponencial(1)", 
+     xlab = "Valor", 
+     ylab = "Densidade", 
+     col = "lightblue", 
+     border = "darkblue")
+```
+
+### Comparação
+
+```{r}
+# Definir o tamanho da amostra
+n <- 10000
+
+# Fixar a semente para reprodutibilidade
+set.seed(123)
+
+# Gerar a variável aleatória com distribuição exponencial(1)
+expo_data <- rexp(n, rate=1)
+
+# Criar um histograma da amostra 
+hist(expo_data, probability = TRUE, 
+     main = "Comparação da Densidade - Exponencial(1)", 
+     xlab = "Valor", 
+     ylab = "Densidade", 
+     col = "lightblue", 
+     border = "darkblue")
+
+# Adicionar curva da densidade teórica
+curve(dexp(x,rate=1),
+      add=TRUE,
+      col="red",
+      lwd=2)
+```
+
+### Função de distribuição
+
+```{r}
+# Gerar os valores x para a FD teórica
+x_vals <- seq(0, 10, length.out = 100)
+
+# Calcular a FD teórica para os valores x
+y_vals <- pexp(x_vals, rate=1)
+
+# Desenhar o gráfico da FD
+plot(x_vals, y_vals, type = "l", 
+     col = "red", lwd = 2, 
+     main = "Função de Distribuição Exponencial(1)",
+     xlab = "Valor", ylab = "F(x)")
+```
+
+### Função de distribuição empírica
+
+```{r}
+# Definir o tamanho da amostra
+n <- 10000
+
+# Fixar a semente para reprodutibilidade
+set.seed(123)
+
+# Gerar a variável aleatória com distribuição exponencial(1)
+expo_data <- rexp(n, rate=1)
+
+# Função de distribuição empírica
+Fn <- ecdf(expo_data)
+
+plot(Fn, main="Função de Distribuição Empírica",
+     xlab="x",
+     ylab="Fn",
+     col="blue")
+```
 
 ## Distribuição Normal
 
@@ -7505,12 +7929,31 @@ legend(120, 0.05, fill = 1:3,
        legend = c("N(100,64)", "N(90,64)", "N(100,225)"))
 ```
 
-
-
-
-
-
 # Método da transformada inversa
+
+O **método da transformada inversa** é uma técnica fundamental na geração de variáveis aleatórias com distribuições específicas. Embora o R ofereça funções prontas para gerar números aleatórios de diversas distribuições, compreender e aplicar o método da transformada inversa é essencial em situações como:
+
+- **Distribuições Não Implementadas**: Quando se lida com distribuições que não possuem funções dedicadas no R, o método da transformada inversa permite gerar amostras dessas distribuições a partir de números uniformemente distribuídos.
+- **Simulações Personalizadas**: Em simulações que requerem distribuições específicas ou personalizadas, o método oferece flexibilidade para definir e gerar variáveis aleatórias conforme necessário.
+- **Fins Educacionais**: Para estudantes e profissionais que desejam aprofundar-se nos fundamentos da geração de variáveis aleatórias, implementar o método manualmente proporciona uma compreensão mais profunda dos processos subjacentes.
+
+Este método é baseado no seguinte resultado.
+
+Seja $U\sim U(0,1)$. Para qualquer função de distribuição $F$, a variável aleatória $X$ definida por $$X = F^{-1}(U)$$ possui distribuição $F$, onde $$F^{-1}(u) = \inf\{x: F(x)\geq u\}$$ é a inversa generalizada de $F$. Além disso, segue que $F(X)\sim U(0,1)$.
+
+Este resultado afirma que podemos simular um valor de uma variável aleatória $X$ ($X$ com distribuição $F$) aplicando o seguinte algoritmo:
+
+```{r eval=FALSE}
+Algoritmo: método da transformação inversa
+Entrada: invGF() # inversa generalizada de F
+  1 Gere um número aleatório u 
+  2 Calcule x <- invGF(u)
+Saída: x
+```
+
+É simples verificar o seguinte resultado acima. Em geral, observe que
+
+$$P(X \leq x) = P(F^{-1}(U) \leq x) = P(U \leq F(x)) = F(x).$$ Logo $X \sim F$. Em particular, o método também é válido no caso de variáveis aleatórias discretas.
 
 ## Variável aleatória discreta
 
