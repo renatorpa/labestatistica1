@@ -4024,8 +4024,7 @@ read_excel(path, sheet = NULL, range = NULL, col_names = TRUE,
 ```{r eval=FALSE}
 dados <- read_excel(path = "instagram.xlsx",
                     sheet = "Sheet1",
-                    col_names = TRUE,
-                    trim_ws = TRUE)
+                    col_names = TRUE)
 ```
 
 ## Leitura de Dados Online
@@ -4045,9 +4044,42 @@ Neste exemplo, url contém o endereço do ficheiro CSV na web, e
 
 ## Exercícios
 
-1. Faça a leitura do ficheiro `dados_instagram` [aqui](https://renatorpaula.wixsite.com/renato/laboratorio-estatistica) e responda às perguntas abaixo:
+1. Faça a leitura do ficheiro `dados_instagram` [aqui](https://renatorpaula.wixsite.com/renato/laboratorio-estatistica) e responda às perguntas abaixo (lembre de instalar o pacote `readxl`):
 
 (a) **Construa uma tabela de frequência**: Crie um data frame que contenha a tabela de frequência de cada variável no conjunto de dados.
+
+```{r eval=FALSE}
+# --------------------
+# Indice de influência
+# ---------------------
+
+# Calcular o número de classes usando a Regra de Sturges
+n <- length(dados_instagram$indice_influencia)  # Número de observações
+k <- ceiling(1 + 3.322 * log10(n))   # Número de classes arredondado para cima
+
+# Definir os limites das classes
+min_val <- min(dados_instagram$indice_influencia)
+max_val <- max(dados_instagram$indice_influencia)
+intervalos <- seq(min_val, max_val, length.out = k + 1)  # Criação dos intervalos de classe
+
+# Criar a tabela de frequências
+tabela_frequencia_if <- cut(dados_instagram$indice_influencia, breaks = intervalos, include.lowest = TRUE)
+tabela_frequencia_if <- table(tabela_frequencia_if)
+
+# Converter a tabela em um data frame para visualização mais organizada
+tabela_frequencia_if_df <- as.data.frame(tabela_frequencia_if)
+names(tabela_frequencia_if_df) <- c("Intervalo", "Frequencia")
+tabela_frequencia_if_df
+
+# Frequência relativa
+tabela_frequencia_if_df$Freq_Relativa <- round(tabela_frequencia_if_df$Frequencia/length(dados_instagram$indice_influencia), digits = 3)
+
+# Frequência absoluta acumulada
+tabela_frequencia_if_df$Freq_Abs_Acum <- cumsum(tabela_frequencia_if_df$Frequencia)
+
+# Frequência relativa acumulada
+tabela_frequencia_if_df$Freq_Rela_Acum <- cumsum(tabela_frequencia_if_df$Freq_Relativa)
+```
 
 (b) **Visualização gráfica**: Crie representações gráficas adequadas para cada variável. Considere o uso de histogramas, gráficos de barras, boxplots..., conforme o tipo de variável.
 
@@ -7308,7 +7340,7 @@ Considera-se a contagem do número de ocorrências aleatórias de um acontecimen
 
 Então, esta experiência aleatória chama-se **Processo de Poisson**.
 
-**Definição**: A variável aleatória discreta *X = \text{"número de ocorrências de um acontecimento por unidade de tempo ou de espaço (comprimento, área, volume, etc.)"}*
+**Definição**: A variável aleatória discreta *X = "número de ocorrências de um acontecimento por unidade de tempo ou de espaço (comprimento, área, volume, etc.)"*
 
 diz-se com **distribuição de Poisson** de parâmetro \( \lambda > 0 \) e possui f.m.p. dada por
 
@@ -7345,7 +7377,7 @@ $P(X =4) \to$ `dpois(4,5)` = 0.1755
 
 ### Função massa de probabilidade (teórica)
 
-```{r}
+```{r eval=FALSE}
 # Definir os valores de lambda e x
 p <- c(0.1, 1, 2.5, 5, 15, 30)
 x <- 0:50
@@ -7555,7 +7587,7 @@ minutos, espera-se que cheguem, em média, 20 pedidos.
 **Definição**: A variável aleatória contínua \( X \) diz-se ter **distribuição uniforme contínua** no intervalo \( (a, b) \) (onde \( a < b \)), se sua função densidade de probabilidade (f.d.p.) for dada por
 
 \[
-f(x) = \begin{cases} 
+f_{X}(x) = \begin{cases} 
 \frac{1}{b - a}, & a \leq x \leq b \\ 
 0, & \text{caso contrário} 
 \end{cases}
@@ -7564,7 +7596,7 @@ f(x) = \begin{cases}
 A função de distribuição acumulada (f.d.a.) de \( X \) é dada por
 
 \[
-F(x) = \begin{cases} 
+F_{X}(x) = \begin{cases} 
 0, & x \leq a \\ 
 \frac{x - a}{b - a}, & a < x < b \\ 
 1, & x \geq b 
@@ -7705,7 +7737,7 @@ gramas, com distribuição uniforme no intervalo de 85 a 105 gramas.
 
 O modelo exponencial é frequentemente utilizado na caracterização da duração de equipamentos, modelação dos tempos entre ocorrências consecutivas de eventos do mesmo tipo, por exemplo, chegadas de clientes a um sistema, falhas mecânicas, colisões, etc.
 
-**Definição**: Uma variável aleatória contínua \( X \) diz-se ter distribuição exponencial de parâmetro \( \lambda > 0 \), se sua função densidade de probabilidade (f.d.p.) for dada por
+**Definição**: Uma variável aleatória contínua \( X \) diz-se ter **distribuição exponencial** de parâmetro \( \lambda > 0 \), se sua função densidade de probabilidade (f.d.p.) for dada por
 
 \[
 f_X(x) = 
@@ -7844,14 +7876,19 @@ plot(Fn, main="Função de Distribuição Empírica",
 
 Vamos ver alguns exemplos com a distribuição normal padrão. Por `default` as funções assumem a distribuição normal padrão $N(\mu=0, \sigma = 1)$.
 
-```{r}
+```{r eval=FALSE}
 dnorm(-1)
+## [1] 0.2419707
 
 pnorm(-1)
+## [1] 0.1586553
 
 qnorm(0.975)
+## [1] 1.959964
 
 rnorm(10)
+##  [1]  1.76200539  0.53084557  0.53913434 -0.06506084 -1.45792042 -0.19281038
+##  [7]  0.26686001  1.16138850  0.60575811  1.21451547
 ```
 
 O primeiro valor acima, de `dnorm(-1)`, corresponde ao valor da densidade da normal reduzida ou normal padrão $N(\mu=0,\sigma=1)$
@@ -7874,12 +7911,15 @@ x <- -1
 
 As funções relacionadas à distribuição normal possuem os argumentos `mean` e `sd` para definir a média e o desvio padrão da distribuição que podem ser modificados como nos exemplos a seguir. Note nestes exemplos que os argumentos podem ser passados de diferentes formas.
 
-```{r}
+```{r eval=FALSE}
 qnorm(0.975, mean = 100, sd = 8)
+## [1] 115.6797
 
 qnorm(0.975, m = 100, s = 8)
+## [1] 115.6797
 
 qnorm(0.975, 100, 8)
+## [1] 115.6797
 ```
 
 Cálculos de probabilidades usuais, para os quais utilizavamos tabelas estatísticas podem ser facilmente obtidos como no exemplo a seguir.
@@ -7894,18 +7934,22 @@ Seja $X$ uma variável aleatória com distribuição $N(\mu=100, \sigma=10)$. Ca
 
 Calcule estas probabilidades de forma usual, usando a tabela da normal. Depois compare com os resultados fornecidos pelo R. Os comandos do R para obter as probabilidades pedidas são:
 
-```{r}
+```{r eval=FALSE}
 # P(X < 95)
 pnorm(95, 100, 10)
+## [1] 0.3085375
 
 # P(90 < X < 110)
 pnorm(110, 100, 10) - pnorm(90, 100, 10)
+## [1] 0.6826895
 
 # P(X > 95) = 1 - P(X < 95)
 1 - pnorm(95, 100, 10)
+## [1] 0.6914625
 
 # ou
 pnorm(95, 100, 10, lower.tail = FALSE) # melhor
+## [1] 0.6914625
 ```
 
 Função densidade de probabilidade e função de distribuição.
@@ -9621,7 +9665,164 @@ esperado 0 e desvio padrão 1.
 
 # Relatórios
 
+Com a ajuda do R Markdown, uma interface de anotações que combina texto livre com códigos em R, podemos construir relatórios não só reprodutíveis, mas elegantemente bem formatados, sem sair do R!
+
+Antes de mais nada, vamos instalar os pacotes ``{rmarkdown}`` e ``{knitr}``. O primeiro reúne todas as funcionalidades para juntar nossos textos narrativos e códigos de R. O segundo vai fazer a magia de transformar nossos simples arquivos de texto em arquivos HTML, PDF e Word (.doc).
+
+```{r eval=FALSE}
+install.packages(c("rmarkdown", "knitr"))
+```
+
+Nas seções a seguir, vamos mostrar como começar a utilizar o R Markdown para criar esses documentos. Não se esqueça de conferir (e deixar por perto) as folhas de cola sobre R Markdown:
+
+...
+
 ## Markdown
+
+Se você é uma pessoa que utiliza R, sabe das possibilidades de utilizar R Markdown (e os pacotes que expandem mais ainda as possibilidades) e gostaria de começar a utilizá-lo, é importante conhecer o Markdown. Por quê? O R Markdown tem como base a linguagem de marcação Markdown.
+
+Os arquivos markdown podem ser abertos por qualquer software que suporte este formato aberto. Além disso, independente da plataforma de trabalho, pode-se migrar para um arquivo de texto sem perder a formatação. O Markdown também é usado em outros lugares, como no GitHub.
+
+Uma referência interessante para ter sempre em mãos é a Folha de cola (Cheatsheet) do Markdown.
+
+Nas seções seguintes, descreveremos como podemos marcar os nossos textos e códigos usando markdown, e você poderá usar isso tanto em arquivos .Rmd, quanto em outros lugares que também utilizam essa marcação.
+
+### Ênfase
+
+**Negrito**
+
+Para destacar um texto em negrito, coloque `**` ou `__` ao redor do texto.
+
+Por exemplo:
+
+| Como é escrito no código                                | Como aparece no relatório                         |
+|--------------------------------------------------------|--------------------------------------------------|
+| `Esse é um texto com uma palavra destacada em **negrito**.` | Esse é um texto com uma palavra destacada em **negrito**. |
+| `Esse é um texto com uma palavra destacada em __negrito__.` | Esse é um texto com uma palavra destacada em **negrito**. |
+
+**Itálico**
+
+Para destacar um texto em itálico, coloque `*` ou `_` ao redor do texto.
+
+Por exemplo:
+
+| Como é escrito no código                                | Como aparece no relatório                         |
+|--------------------------------------------------------|--------------------------------------------------|
+| `Esse é um texto com uma palavra destacada em *itálico*.` | Esse é um texto com uma palavra destacada em *itálico*. |
+| `Esse é um texto com uma palavra destacada em _itálico_.` | Esse é um texto com uma palavra destacada em *itálico*. |
+
+**Riscado (ou tachado)**
+
+Para riscar/tachar um texto, coloque `~~` ao redor do texto.
+
+Por exemplo:
+
+Esse é um texto com uma palavra riscada/tachada.
+
+| Como é escrito no código                                     | Como aparece no relatório                               |
+|-------------------------------------------------------------|--------------------------------------------------------|
+| `Esse é um texto com uma palavra ~~riscada/tachada~~.`      | Esse é um texto com uma palavra ~~riscada/tachada~~.    |
+
+### Títulos
+
+Os títulos funcionam como uma hierarquia, e para criar um título é necessário colocar um `#` no início da linha. Então, um `#` marca um título, `##` marca um subtítulo, e assim sucessivamente. Veja os exemplos:
+
+| Como é escrito no código | Como aparece no relatório   |
+|--------------------------|-----------------------------|
+| `# Título 1`             | # Título 1                 |
+| `## Título 2`            | ##  Título 2                |
+| `### Título 3`           | ### Título 3               |
+
+### Listas
+
+Você pode fazer uma lista ordenada usando somente números. Você pode repetir o número quantas vezes quiser:
+
+Como é escrito no código:
+
+`1. Maçã`
+
+`1. Banana`
+
+`1. Uva`
+
+Como aparece no relatório:
+
+1. Maçã
+2. Banana
+3. Uva
+
+**Listas não ordenadas**
+
+Você pode fazer uma lista não ordenada escrevendo com hífens ou asteriscos, como a seguir:
+
+`* Maçã`
+
+`* Banana`
+
+`* Uva`
+
+
+`- Maçã`
+
+`- Banana`
+
+`- Uva`
+
+O resultado será:
+
+* Maçã
+* Banana
+* Uva
+
+Você também pode adicionar sub-itens na lista indicando a hierarquia através da identação no Markdown (dica: utilize a tecla `tab` do teclado):
+
+* Frutas
+  * Maçã
+  * Banana
+  * Uva
+
+### Equações
+
+Você pode adicionar equações utilizando LaTeX. Você pode saber mais na [página do Overleaf sobre expressões matemáticas](https://pt.overleaf.com/learn/latex/Mathematical_expressions). Além disso, existem [geradores de equações online](https://www.codecogs.com/latex/eqneditor.php) que ajudam a escrevê-las em LaTeX, HTML, entre outras linguagens de marcação.
+
+É possível centralizar a equação envolvendo o código com `$$`. Veja o exemplo abaixo:
+
+| Como é escrito no código                                 | Como aparece no relatório                            |
+|---------------------------------------------------------|-----------------------------------------------------|
+| `$$y = \mu + \sum_{i=1}^p \beta_i x_i + \epsilon$$`     | $$y = \mu + \sum_{i=1}^p \beta_i x_i + \epsilon$$   |
+
+Também é possível adicionar a equação na mesma linha que o texto, envolvendo o código com `$`. Veja o exemplo abaixo:
+
+| Como é escrito no código                                                        | Como aparece no relatório                                                  |
+|---------------------------------------------------------------------------------|----------------------------------------------------------------------------|
+| `Ou também na linha $y = \mu + \sum_{i=1}^p \beta_i x_i + \epsilon$, junto ao texto!` | Ou também na linha $y = \mu + \sum_{i=1}^p \beta_i x_i + \epsilon$, junto ao texto! |
+
+### Código
+
+É possível **marcar textos para que fiquem formatados como códigos**, usando a crase: `` ` ``
+
+Mas atenção: o texto será **formatado como código**, porém não será executado!
+
+| Como é escrito no código                                     | Como aparece no relatório                               |
+|-------------------------------------------------------------|--------------------------------------------------------|
+| `` `mean(pinguins$massa_corporal, na.rm = TRUE)` ``         | `mean(pinguins$massa_corporal, na.rm = TRUE)`          |
+
+Também é possível delimitar um trecho maior de código, utilizando três crases.
+
+**Exemplo:**
+
+```
+library(dados)
+mean(pinguins$massa_corporal, na.rm = TRUE)
+```
+
+Como o código aparece no relatório
+
+```{r eval=FALSE}
+library(dados)
+mean(pinguins$massa_corporal, na.rm = TRUE)
+```
+
 
 ## R Markdown
 

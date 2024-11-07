@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Renato de Paula" />
 
 
-<meta name="date" content="2024-11-05" />
+<meta name="date" content="2024-11-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -447,7 +447,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="26" data-path="relatórios.html"><a href="relatórios.html"><i class="fa fa-check"></i><b>26</b> Relatórios</a>
 <ul>
-<li class="chapter" data-level="26.1" data-path="relatórios.html"><a href="relatórios.html#markdown"><i class="fa fa-check"></i><b>26.1</b> Markdown</a></li>
+<li class="chapter" data-level="26.1" data-path="relatórios.html"><a href="relatórios.html#markdown"><i class="fa fa-check"></i><b>26.1</b> Markdown</a>
+<ul>
+<li class="chapter" data-level="26.1.1" data-path="relatórios.html"><a href="relatórios.html#ênfase"><i class="fa fa-check"></i><b>26.1.1</b> Ênfase</a></li>
+<li class="chapter" data-level="26.1.2" data-path="relatórios.html"><a href="relatórios.html#títulos"><i class="fa fa-check"></i><b>26.1.2</b> Títulos</a></li>
+<li class="chapter" data-level="26.1.3" data-path="relatórios.html"><a href="relatórios.html#listas-1"><i class="fa fa-check"></i><b>26.1.3</b> Listas</a></li>
+<li class="chapter" data-level="26.1.4" data-path="relatórios.html"><a href="relatórios.html#equações"><i class="fa fa-check"></i><b>26.1.4</b> Equações</a></li>
+<li class="chapter" data-level="26.1.5" data-path="relatórios.html"><a href="relatórios.html#código"><i class="fa fa-check"></i><b>26.1.5</b> Código</a></li>
+</ul></li>
 <li class="chapter" data-level="26.2" data-path="relatórios.html"><a href="relatórios.html#r-markdown"><i class="fa fa-check"></i><b>26.2</b> R Markdown</a></li>
 </ul></li>
 <li class="chapter" data-level="27" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i><b>27</b> Referências</a></li>
@@ -656,8 +663,7 @@ que significa que todas as linhas são lidas.</li>
 <p><strong>Exemplo de Utilização</strong>: Vamos considerar um exemplo em que temos um ficheiro Excel chamado <code>"dados_instagram.xlsx"</code>. Este ficheiro pode ser descarregado <a href="https://renatorpaula.wixsite.com/renato/laboratorio-estatistica">aqui</a>. Vamos ler a primeira folha (<code>Sheet1</code>):</p>
 <div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="leitura-de-dados.html#cb121-1" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="at">path =</span> <span class="st">&quot;instagram.xlsx&quot;</span>,</span>
 <span id="cb121-2"><a href="leitura-de-dados.html#cb121-2" tabindex="-1"></a>                    <span class="at">sheet =</span> <span class="st">&quot;Sheet1&quot;</span>,</span>
-<span id="cb121-3"><a href="leitura-de-dados.html#cb121-3" tabindex="-1"></a>                    <span class="at">col_names =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb121-4"><a href="leitura-de-dados.html#cb121-4" tabindex="-1"></a>                    <span class="at">trim_ws =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<span id="cb121-3"><a href="leitura-de-dados.html#cb121-3" tabindex="-1"></a>                    <span class="at">col_names =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 <div id="leitura-de-dados-online" class="section level2 hasAnchor" number="9.7">
 <h2><span class="header-section-number">9.7</span> Leitura de Dados Online<a href="leitura-de-dados.html#leitura-de-dados-online" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -673,10 +679,42 @@ do ficheiro) para importar dados diretamente de um link online.</p>
 <div id="exercícios-9" class="section level2 hasAnchor" number="9.8">
 <h2><span class="header-section-number">9.8</span> Exercícios<a href="leitura-de-dados.html#exercícios-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
-<li>Faça a leitura do ficheiro <code>dados_instagram</code> <a href="https://renatorpaula.wixsite.com/renato/laboratorio-estatistica">aqui</a> e responda às perguntas abaixo:</li>
+<li>Faça a leitura do ficheiro <code>dados_instagram</code> <a href="https://renatorpaula.wixsite.com/renato/laboratorio-estatistica">aqui</a> e responda às perguntas abaixo (lembre de instalar o pacote <code>readxl</code>):</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li><p><strong>Construa uma tabela de frequência</strong>: Crie um data frame que contenha a tabela de frequência de cada variável no conjunto de dados.</p></li>
+<li><strong>Construa uma tabela de frequência</strong>: Crie um data frame que contenha a tabela de frequência de cada variável no conjunto de dados.</li>
+</ol>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="leitura-de-dados.html#cb123-1" tabindex="-1"></a><span class="co"># --------------------</span></span>
+<span id="cb123-2"><a href="leitura-de-dados.html#cb123-2" tabindex="-1"></a><span class="co"># Indice de influência</span></span>
+<span id="cb123-3"><a href="leitura-de-dados.html#cb123-3" tabindex="-1"></a><span class="co"># ---------------------</span></span>
+<span id="cb123-4"><a href="leitura-de-dados.html#cb123-4" tabindex="-1"></a></span>
+<span id="cb123-5"><a href="leitura-de-dados.html#cb123-5" tabindex="-1"></a><span class="co"># Calcular o número de classes usando a Regra de Sturges</span></span>
+<span id="cb123-6"><a href="leitura-de-dados.html#cb123-6" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(dados_instagram<span class="sc">$</span>indice_influencia)  <span class="co"># Número de observações</span></span>
+<span id="cb123-7"><a href="leitura-de-dados.html#cb123-7" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="fu">ceiling</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="fl">3.322</span> <span class="sc">*</span> <span class="fu">log10</span>(n))   <span class="co"># Número de classes arredondado para cima</span></span>
+<span id="cb123-8"><a href="leitura-de-dados.html#cb123-8" tabindex="-1"></a></span>
+<span id="cb123-9"><a href="leitura-de-dados.html#cb123-9" tabindex="-1"></a><span class="co"># Definir os limites das classes</span></span>
+<span id="cb123-10"><a href="leitura-de-dados.html#cb123-10" tabindex="-1"></a>min_val <span class="ot">&lt;-</span> <span class="fu">min</span>(dados_instagram<span class="sc">$</span>indice_influencia)</span>
+<span id="cb123-11"><a href="leitura-de-dados.html#cb123-11" tabindex="-1"></a>max_val <span class="ot">&lt;-</span> <span class="fu">max</span>(dados_instagram<span class="sc">$</span>indice_influencia)</span>
+<span id="cb123-12"><a href="leitura-de-dados.html#cb123-12" tabindex="-1"></a>intervalos <span class="ot">&lt;-</span> <span class="fu">seq</span>(min_val, max_val, <span class="at">length.out =</span> k <span class="sc">+</span> <span class="dv">1</span>)  <span class="co"># Criação dos intervalos de classe</span></span>
+<span id="cb123-13"><a href="leitura-de-dados.html#cb123-13" tabindex="-1"></a></span>
+<span id="cb123-14"><a href="leitura-de-dados.html#cb123-14" tabindex="-1"></a><span class="co"># Criar a tabela de frequências</span></span>
+<span id="cb123-15"><a href="leitura-de-dados.html#cb123-15" tabindex="-1"></a>tabela_frequencia_if <span class="ot">&lt;-</span> <span class="fu">cut</span>(dados_instagram<span class="sc">$</span>indice_influencia, <span class="at">breaks =</span> intervalos, <span class="at">include.lowest =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb123-16"><a href="leitura-de-dados.html#cb123-16" tabindex="-1"></a>tabela_frequencia_if <span class="ot">&lt;-</span> <span class="fu">table</span>(tabela_frequencia_if)</span>
+<span id="cb123-17"><a href="leitura-de-dados.html#cb123-17" tabindex="-1"></a></span>
+<span id="cb123-18"><a href="leitura-de-dados.html#cb123-18" tabindex="-1"></a><span class="co"># Converter a tabela em um data frame para visualização mais organizada</span></span>
+<span id="cb123-19"><a href="leitura-de-dados.html#cb123-19" tabindex="-1"></a>tabela_frequencia_if_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(tabela_frequencia_if)</span>
+<span id="cb123-20"><a href="leitura-de-dados.html#cb123-20" tabindex="-1"></a><span class="fu">names</span>(tabela_frequencia_if_df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Intervalo&quot;</span>, <span class="st">&quot;Frequencia&quot;</span>)</span>
+<span id="cb123-21"><a href="leitura-de-dados.html#cb123-21" tabindex="-1"></a>tabela_frequencia_if_df</span>
+<span id="cb123-22"><a href="leitura-de-dados.html#cb123-22" tabindex="-1"></a></span>
+<span id="cb123-23"><a href="leitura-de-dados.html#cb123-23" tabindex="-1"></a><span class="co"># Frequência relativa</span></span>
+<span id="cb123-24"><a href="leitura-de-dados.html#cb123-24" tabindex="-1"></a>tabela_frequencia_if_df<span class="sc">$</span>Freq_Relativa <span class="ot">&lt;-</span> <span class="fu">round</span>(tabela_frequencia_if_df<span class="sc">$</span>Frequencia<span class="sc">/</span><span class="fu">length</span>(dados_instagram<span class="sc">$</span>indice_influencia), <span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb123-25"><a href="leitura-de-dados.html#cb123-25" tabindex="-1"></a></span>
+<span id="cb123-26"><a href="leitura-de-dados.html#cb123-26" tabindex="-1"></a><span class="co"># Frequência absoluta acumulada</span></span>
+<span id="cb123-27"><a href="leitura-de-dados.html#cb123-27" tabindex="-1"></a>tabela_frequencia_if_df<span class="sc">$</span>Freq_Abs_Acum <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(tabela_frequencia_if_df<span class="sc">$</span>Frequencia)</span>
+<span id="cb123-28"><a href="leitura-de-dados.html#cb123-28" tabindex="-1"></a></span>
+<span id="cb123-29"><a href="leitura-de-dados.html#cb123-29" tabindex="-1"></a><span class="co"># Frequência relativa acumulada</span></span>
+<span id="cb123-30"><a href="leitura-de-dados.html#cb123-30" tabindex="-1"></a>tabela_frequencia_if_df<span class="sc">$</span>Freq_Rela_Acum <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(tabela_frequencia_if_df<span class="sc">$</span>Freq_Relativa)</span></code></pre></div>
+<ol start="2" style="list-style-type: lower-alpha">
 <li><p><strong>Visualização gráfica</strong>: Crie representações gráficas adequadas para cada variável. Considere o uso de histogramas, gráficos de barras, boxplots…, conforme o tipo de variável.</p></li>
 <li><p><strong>Cálculo de medidas descritivas</strong>: Determine as principais medidas descritivas para cada variável, incluindo média, mediana, variância, desvio padrão, coeficiente de variação, primeiro e terceiro quartis (<span class="math inline">\(Q_1\)</span> e <span class="math inline">\(Q_3\)</span>), amplitude e amplitude interquartil. Indique quando essas medidas não forem aplicáveis.</p></li>
 <li><p>Calcule a média e a mediana do “índice de influência” para cada género. Comente sobre as diferenças entre os géneros e discuta se os resultados podem sugerir tendências distintas de influência entre eles.</p></li>

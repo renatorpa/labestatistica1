@@ -99,6 +99,12 @@
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
+\ifLuaTeX
+  \usepackage{luacolor}
+  \usepackage[soul]{lua-ul}
+\else
+  \usepackage{soul}
+\fi
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -120,7 +126,7 @@
 
 \title{Introdução ao R}
 \author{Renato de Paula}
-\date{2024-11-05}
+\date{2024-11-07}
 
 \begin{document}
 \maketitle
@@ -5299,8 +5305,7 @@ da sua utilização.
 \begin{Highlighting}[]
 \NormalTok{dados }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\AttributeTok{path =} \StringTok{"instagram.xlsx"}\NormalTok{,}
                     \AttributeTok{sheet =} \StringTok{"Sheet1"}\NormalTok{,}
-                    \AttributeTok{col\_names =} \ConstantTok{TRUE}\NormalTok{,}
-                    \AttributeTok{trim\_ws =} \ConstantTok{TRUE}\NormalTok{)}
+                    \AttributeTok{col\_names =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5327,13 +5332,54 @@ Neste exemplo, url contém o endereço do ficheiro CSV na web, e
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Faça a leitura do ficheiro \texttt{dados\_instagram} \href{https://renatorpaula.wixsite.com/renato/laboratorio-estatistica}{aqui} e responda às perguntas abaixo:
+  Faça a leitura do ficheiro \texttt{dados\_instagram} \href{https://renatorpaula.wixsite.com/renato/laboratorio-estatistica}{aqui} e responda às perguntas abaixo (lembre de instalar o pacote \texttt{readxl}):
 \end{enumerate}
 
 \begin{enumerate}
 \def\labelenumi{(\alph{enumi})}
+\tightlist
 \item
   \textbf{Construa uma tabela de frequência}: Crie um data frame que contenha a tabela de frequência de cada variável no conjunto de dados.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\# Indice de influência}
+\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+
+\CommentTok{\# Calcular o número de classes usando a Regra de Sturges}
+\NormalTok{n }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(dados\_instagram}\SpecialCharTok{$}\NormalTok{indice\_influencia)  }\CommentTok{\# Número de observações}
+\NormalTok{k }\OtherTok{\textless{}{-}} \FunctionTok{ceiling}\NormalTok{(}\DecValTok{1} \SpecialCharTok{+} \FloatTok{3.322} \SpecialCharTok{*} \FunctionTok{log10}\NormalTok{(n))   }\CommentTok{\# Número de classes arredondado para cima}
+
+\CommentTok{\# Definir os limites das classes}
+\NormalTok{min\_val }\OtherTok{\textless{}{-}} \FunctionTok{min}\NormalTok{(dados\_instagram}\SpecialCharTok{$}\NormalTok{indice\_influencia)}
+\NormalTok{max\_val }\OtherTok{\textless{}{-}} \FunctionTok{max}\NormalTok{(dados\_instagram}\SpecialCharTok{$}\NormalTok{indice\_influencia)}
+\NormalTok{intervalos }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(min\_val, max\_val, }\AttributeTok{length.out =}\NormalTok{ k }\SpecialCharTok{+} \DecValTok{1}\NormalTok{)  }\CommentTok{\# Criação dos intervalos de classe}
+
+\CommentTok{\# Criar a tabela de frequências}
+\NormalTok{tabela\_frequencia\_if }\OtherTok{\textless{}{-}} \FunctionTok{cut}\NormalTok{(dados\_instagram}\SpecialCharTok{$}\NormalTok{indice\_influencia, }\AttributeTok{breaks =}\NormalTok{ intervalos, }\AttributeTok{include.lowest =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{tabela\_frequencia\_if }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(tabela\_frequencia\_if)}
+
+\CommentTok{\# Converter a tabela em um data frame para visualização mais organizada}
+\NormalTok{tabela\_frequencia\_if\_df }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(tabela\_frequencia\_if)}
+\FunctionTok{names}\NormalTok{(tabela\_frequencia\_if\_df) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Intervalo"}\NormalTok{, }\StringTok{"Frequencia"}\NormalTok{)}
+\NormalTok{tabela\_frequencia\_if\_df}
+
+\CommentTok{\# Frequência relativa}
+\NormalTok{tabela\_frequencia\_if\_df}\SpecialCharTok{$}\NormalTok{Freq\_Relativa }\OtherTok{\textless{}{-}} \FunctionTok{round}\NormalTok{(tabela\_frequencia\_if\_df}\SpecialCharTok{$}\NormalTok{Frequencia}\SpecialCharTok{/}\FunctionTok{length}\NormalTok{(dados\_instagram}\SpecialCharTok{$}\NormalTok{indice\_influencia), }\AttributeTok{digits =} \DecValTok{3}\NormalTok{)}
+
+\CommentTok{\# Frequência absoluta acumulada}
+\NormalTok{tabela\_frequencia\_if\_df}\SpecialCharTok{$}\NormalTok{Freq\_Abs\_Acum }\OtherTok{\textless{}{-}} \FunctionTok{cumsum}\NormalTok{(tabela\_frequencia\_if\_df}\SpecialCharTok{$}\NormalTok{Frequencia)}
+
+\CommentTok{\# Frequência relativa acumulada}
+\NormalTok{tabela\_frequencia\_if\_df}\SpecialCharTok{$}\NormalTok{Freq\_Rela\_Acum }\OtherTok{\textless{}{-}} \FunctionTok{cumsum}\NormalTok{(tabela\_frequencia\_if\_df}\SpecialCharTok{$}\NormalTok{Freq\_Relativa)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
 \item
   \textbf{Visualização gráfica}: Crie representações gráficas adequadas para cada variável. Considere o uso de histogramas, gráficos de barras, boxplots\ldots, conforme o tipo de variável.
 \item
@@ -6624,7 +6670,7 @@ estatístico.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-161-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-162-1.pdf}
 
 Para ter o gráfico com as frequências relativas fazemos:
 
@@ -6643,7 +6689,7 @@ Para ter o gráfico com as frequências relativas fazemos:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-162-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-163-1.pdf}
 
 \textbf{Personalização de Gráficos de Barras}
 
@@ -6663,7 +6709,7 @@ barras lado a lado).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-163-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-164-1.pdf}
 
 \textbf{Gráfico de Barras Agrupadas}
 
@@ -6691,7 +6737,7 @@ Podemos também gerar gráficos de barras que comparam mais de uma variável. Ne
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-164-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-165-1.pdf}
 
 Neste exemplo, usamos \texttt{rbind()} para agrupar os dados e o argumento \texttt{beside\ =\ TRUE} para gerar barras lado a lado para comparação entre ``Granito'' e ``Basalto''. O parâmetro \texttt{legend.text} cria uma legenda para identificar cada cor de barra.
 
@@ -6720,7 +6766,7 @@ Para gerar um gráfico de barras empilhado em vez de agrupado, basta remover o a
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-165-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-166-1.pdf}
 
 \section{Gráfico Circular (Pizza)}\label{gruxe1fico-circular-pizza}
 
@@ -6760,7 +6806,7 @@ tamanho de cada fatia é proporcional à sua porcentagem.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-167-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-168-1.pdf}
 
 \section{Histograma}\label{histograma}
 
@@ -6829,7 +6875,7 @@ de intervalo de classe no R é \((a, b]\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-169-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-170-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6857,7 +6903,7 @@ de intervalo de classe no R é \((a, b]\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-171-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-172-1.pdf}
 
 Pode controlar o número de intervalos (bins) usando o argumento
 \texttt{breaks}. Por exemplo, \texttt{breaks\ =\ 5} divide os dados em 5 intervalos.
@@ -6881,7 +6927,7 @@ Podemos adicionar também uma curva de densidade em cima do histograma.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-172-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-173-1.pdf}
 
 \section{Box-plot}\label{box-plot}
 
@@ -6931,7 +6977,7 @@ quartil (Q3) e máximo. Também pode mostrar outliers (valores atípicos).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-174-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-175-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6946,7 +6992,7 @@ quartil (Q3) e máximo. Também pode mostrar outliers (valores atípicos).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-175-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-176-1.pdf}
 
 Pode comparar a distribuição de múltiplas variáveis lado a lado com
 box-plots. Use a função \texttt{par()} para ajustar o layout gráfico.
@@ -6962,7 +7008,7 @@ box-plots. Use a função \texttt{par()} para ajustar o layout gráfico.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-176-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-177-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7001,7 +7047,7 @@ variável \texttt{Sepal.Length}.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-178-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-179-1.pdf}
 
 Vamos criar agora um box-plot da variável \texttt{Sepal.Length} agrupado por
 espécie de flor (\texttt{Species}) no conjunto de dados iris.
@@ -7016,7 +7062,7 @@ espécie de flor (\texttt{Species}) no conjunto de dados iris.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-179-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-180-1.pdf}
 
 \section{Gráfico de Dispersão}\label{gruxe1fico-de-dispersuxe3o}
 
@@ -7073,7 +7119,7 @@ identificar correlações, tendências e outliers.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-181-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-182-1.pdf}
 
 Gráfico de dispersão com regressão.
 
@@ -7091,7 +7137,7 @@ Gráfico de dispersão com regressão.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-182-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-183-1.pdf}
 
 Se você tiver grupos de dados diferentes, pode diferenciá-los por cores:
 
@@ -7115,7 +7161,7 @@ Se você tiver grupos de dados diferentes, pode diferenciá-los por cores:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-183-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-184-1.pdf}
 
 \section{Gráfico de Linhas}\label{gruxe1fico-de-linhas}
 
@@ -7176,7 +7222,7 @@ temporais ou tendências ao longo de intervalos contínuos, como o tempo.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-185-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-186-1.pdf}
 
 \section{Exercícios}\label{exercuxedcios-14}
 
@@ -8797,7 +8843,7 @@ visualizar a distribuição dos valores de \(Z\) utilizando um histograma:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-225-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-226-1.pdf}
 
 \section{Simulação e Geração de Números Pseudoaleatórios}\label{simulauxe7uxe3o-e-gerauxe7uxe3o-de-nuxfameros-pseudoaleatuxf3rios}
 
@@ -9279,7 +9325,7 @@ Gráfico de \(f\):
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-234-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-235-1.pdf}
 
 Para verificar que o integral da função é igual a 1 podemos usar a função \texttt{integrate()}, que realiza a integração numérica.
 
@@ -9349,7 +9395,7 @@ Vamos verificar que o integral da função é 1 e vamos fazer também o gráfico
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-239-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-240-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{(\alph{enumi})}
@@ -9365,7 +9411,7 @@ Vamos verificar que o integral da função é 1 e vamos fazer também o gráfico
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-240-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-241-1.pdf}
 
 Podemos resolver o integral numericamente da seguinte forma
 
@@ -9748,7 +9794,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-246-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-247-1.pdf}
 
 \subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o}
 
@@ -9774,7 +9820,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-247-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-248-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o}
 
@@ -9807,7 +9853,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-248-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-249-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o}
 
@@ -9830,7 +9876,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-249-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-250-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica}
 
@@ -9853,7 +9899,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-250-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-251-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9862,7 +9908,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-250-2.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-251-2.pdf}
 
 \textbf{Cálculo de probabilidade}: Seja \(X \sim \text{Binomial}(n=20, p=0.1)\).
 
@@ -9906,7 +9952,7 @@ Considera-se a contagem do número de ocorrências aleatórias de um acontecimen
 
 Então, esta experiência aleatória chama-se \textbf{Processo de Poisson}.
 
-\textbf{Definição}: A variável aleatória discreta \emph{X = \text{"número de ocorrências de um acontecimento por unidade de tempo ou de espaço (comprimento, área, volume, etc.)"}}
+\textbf{Definição}: A variável aleatória discreta \emph{X = ``número de ocorrências de um acontecimento por unidade de tempo ou de espaço (comprimento, área, volume, etc.)''}
 
 diz-se com \textbf{distribuição de Poisson} de parâmetro \(\lambda > 0\) e possui f.m.p. dada por
 
@@ -9961,6 +10007,37 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \FunctionTok{library}\NormalTok{(ggplot2)}
 \FunctionTok{library}\NormalTok{(latex2exp)}
 \FunctionTok{library}\NormalTok{(gridExtra)}
+
+\CommentTok{\# Inicializar uma lista para armazenar os gráficos}
+\NormalTok{plots }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{()}
+
+\CommentTok{\# Loop para criar os data frames e gráficos}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(p)) \{  }
+\NormalTok{  teorico }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{x =}\NormalTok{ x, }\AttributeTok{y =} \FunctionTok{dpois}\NormalTok{(x, }\AttributeTok{lambda =}\NormalTok{ p[i]))    }
+    
+\NormalTok{  plots[[i]] }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(teorico) }\SpecialCharTok{+}    
+    \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ x, }\AttributeTok{y =}\NormalTok{ y), }\AttributeTok{color =} \StringTok{"blue"}\NormalTok{) }\SpecialCharTok{+} 
+    \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{50}\NormalTok{, }\AttributeTok{by =} \DecValTok{10}\NormalTok{)) }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \FunctionTok{TeX}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(}\StringTok{"$Poisson(lambda="}\NormalTok{, p[i], }\StringTok{")$"}\NormalTok{)), }\AttributeTok{x=}\StringTok{"x"}\NormalTok{, }\AttributeTok{y=}\StringTok{"Probabilidade"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{theme\_light}\NormalTok{()}
+\NormalTok{\}}
+    
+\CommentTok{\# Dispor os gráficos em uma grade 2x3}
+\FunctionTok{grid.arrange}\NormalTok{(}\AttributeTok{grobs =}\NormalTok{ plots, }\AttributeTok{nrow =} \DecValTok{2}\NormalTok{, }\AttributeTok{ncol =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{0.1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\FloatTok{2.5}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{15}\NormalTok{, }\DecValTok{30}\NormalTok{)}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{1000}
+
+\CommentTok{\# Carregar os pacotes necessários}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(latex2exp)}
+\FunctionTok{library}\NormalTok{(gridExtra)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -9982,39 +10059,6 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 
 \CommentTok{\# Loop para criar os data frames e gráficos}
 \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(p)) \{  }
-\NormalTok{  teorico }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{x =}\NormalTok{ x, }\AttributeTok{y =} \FunctionTok{dpois}\NormalTok{(x, }\AttributeTok{lambda =}\NormalTok{ p[i]))    }
-    
-\NormalTok{  plots[[i]] }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(teorico) }\SpecialCharTok{+}    
-    \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ x, }\AttributeTok{y =}\NormalTok{ y), }\AttributeTok{color =} \StringTok{"blue"}\NormalTok{) }\SpecialCharTok{+} 
-    \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{50}\NormalTok{, }\AttributeTok{by =} \DecValTok{10}\NormalTok{)) }\SpecialCharTok{+}
-    \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \FunctionTok{TeX}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(}\StringTok{"$Poisson(lambda="}\NormalTok{, p[i], }\StringTok{")$"}\NormalTok{)), }\AttributeTok{x=}\StringTok{"x"}\NormalTok{, }\AttributeTok{y=}\StringTok{"Probabilidade"}\NormalTok{) }\SpecialCharTok{+}
-    \FunctionTok{theme\_light}\NormalTok{()}
-\NormalTok{\}}
-    
-\CommentTok{\# Dispor os gráficos em uma grade 2x3}
-\FunctionTok{grid.arrange}\NormalTok{(}\AttributeTok{grobs =}\NormalTok{ plots, }\AttributeTok{nrow =} \DecValTok{2}\NormalTok{, }\AttributeTok{ncol =} \DecValTok{3}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{introR_files/figure-latex/unnamed-chunk-251-1.pdf}
-
-\subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o-1}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{p }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{0.1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\FloatTok{2.5}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{15}\NormalTok{, }\DecValTok{30}\NormalTok{)}
-\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{1000}
-
-\CommentTok{\# Carregar os pacotes necessários}
-\FunctionTok{library}\NormalTok{(ggplot2)}
-\FunctionTok{library}\NormalTok{(latex2exp)}
-\FunctionTok{library}\NormalTok{(gridExtra)}
-
-\CommentTok{\# Inicializar uma lista para armazenar os gráficos}
-\NormalTok{plots }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{()}
-
-\CommentTok{\# Loop para criar os data frames e gráficos}
-\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(p)) \{  }
 \NormalTok{  dados }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{X =} \FunctionTok{rpois}\NormalTok{(n, }\AttributeTok{lambda =}\NormalTok{ p[i]))}
   
 \NormalTok{  plots[[i]] }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(dados) }\SpecialCharTok{+}    
@@ -10029,7 +10073,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-252-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-253-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-1}
 
@@ -10065,7 +10109,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-253-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-254-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-1}
 
@@ -10085,7 +10129,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-254-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-255-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-1}
 
@@ -10106,7 +10150,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-255-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-256-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10121,7 +10165,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-255-2.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-256-2.pdf}
 
 \textbf{Cálculo de probabilidades}: Seja \(X\sim\text{Poisson}(\lambda=5)\).
 
@@ -10217,7 +10261,7 @@ minutos, espera-se que cheguem, em média, 20 pedidos.
 \textbf{Definição}: A variável aleatória contínua \(X\) diz-se ter \textbf{distribuição uniforme contínua} no intervalo \((a, b)\) (onde \(a < b\)), se sua função densidade de probabilidade (f.d.p.) for dada por
 
 \[
-f(x) = \begin{cases} 
+f_{X}(x) = \begin{cases} 
 \frac{1}{b - a}, & a \leq x \leq b \\ 
 0, & \text{caso contrário} 
 \end{cases}
@@ -10226,7 +10270,7 @@ f(x) = \begin{cases}
 A função de distribuição acumulada (f.d.a.) de \(X\) é dada por
 
 \[
-F(x) = \begin{cases} 
+F_{X}(x) = \begin{cases} 
 0, & x \leq a \\ 
 \frac{x - a}{b - a}, & a < x < b \\ 
 1, & x \geq b 
@@ -10275,7 +10319,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-259-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-260-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o}
 
@@ -10300,7 +10344,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-260-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-261-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-2}
 
@@ -10331,7 +10375,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-261-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-262-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-2}
 
@@ -10351,7 +10395,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-262-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-263-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-2}
 
@@ -10376,7 +10420,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-263-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-264-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10405,7 +10449,7 @@ gramas, com distribuição uniforme no intervalo de 85 a 105 gramas.
 
 O modelo exponencial é frequentemente utilizado na caracterização da duração de equipamentos, modelação dos tempos entre ocorrências consecutivas de eventos do mesmo tipo, por exemplo, chegadas de clientes a um sistema, falhas mecânicas, colisões, etc.
 
-\textbf{Definição}: Uma variável aleatória contínua \(X\) diz-se ter distribuição exponencial de parâmetro \(\lambda > 0\), se sua função densidade de probabilidade (f.d.p.) for dada por
+\textbf{Definição}: Uma variável aleatória contínua \(X\) diz-se ter \textbf{distribuição exponencial} de parâmetro \(\lambda > 0\), se sua função densidade de probabilidade (f.d.p.) for dada por
 
 \[
 f_X(x) = 
@@ -10463,7 +10507,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-264-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-265-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-1}
 
@@ -10488,7 +10532,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-265-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-266-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-3}
 
@@ -10519,7 +10563,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-266-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-267-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-3}
 
@@ -10539,7 +10583,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-267-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-268-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-3}
 
@@ -10564,7 +10608,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-268-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-269-1.pdf}
 
 \section{Distribuição Normal}\label{distribuiuxe7uxe3o-normal}
 
@@ -10573,43 +10617,19 @@ Vamos ver alguns exemplos com a distribuição normal padrão. Por \texttt{defau
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{dnorm}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\DocumentationTok{\#\# [1] 0.2419707}
 
-\begin{verbatim}
-## [1] 0.2419707
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{pnorm}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\DocumentationTok{\#\# [1] 0.1586553}
 
-\begin{verbatim}
-## [1] 0.1586553
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{qnorm}\NormalTok{(}\FloatTok{0.975}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\DocumentationTok{\#\# [1] 1.959964}
 
-\begin{verbatim}
-## [1] 1.959964
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{)}
+\DocumentationTok{\#\#  [1]  1.76200539  0.53084557  0.53913434 {-}0.06506084 {-}1.45792042 {-}0.19281038}
+\DocumentationTok{\#\#  [7]  0.26686001  1.16138850  0.60575811  1.21451547}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-##  [1]  1.76200539  0.53084557  0.53913434 -0.06506084 -1.45792042 -0.19281038
-##  [7]  0.26686001  1.16138850  0.60575811  1.21451547
-\end{verbatim}
 
 O primeiro valor acima, de \texttt{dnorm(-1)}, corresponde ao valor da densidade da normal reduzida ou normal padrão \(N(\mu=0,\sigma=1)\)
 
@@ -10643,32 +10663,15 @@ As funções relacionadas à distribuição normal possuem os argumentos \texttt
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{qnorm}\NormalTok{(}\FloatTok{0.975}\NormalTok{, }\AttributeTok{mean =} \DecValTok{100}\NormalTok{, }\AttributeTok{sd =} \DecValTok{8}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\DocumentationTok{\#\# [1] 115.6797}
 
-\begin{verbatim}
-## [1] 115.6797
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{qnorm}\NormalTok{(}\FloatTok{0.975}\NormalTok{, }\AttributeTok{m =} \DecValTok{100}\NormalTok{, }\AttributeTok{s =} \DecValTok{8}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\DocumentationTok{\#\# [1] 115.6797}
 
-\begin{verbatim}
-## [1] 115.6797
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{qnorm}\NormalTok{(}\FloatTok{0.975}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{8}\NormalTok{)}
+\DocumentationTok{\#\# [1] 115.6797}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## [1] 115.6797
-\end{verbatim}
 
 Cálculos de probabilidades usuais, para os quais utilizavamos tabelas estatísticas podem ser facilmente obtidos como no exemplo a seguir.
 
@@ -10689,45 +10692,21 @@ Calcule estas probabilidades de forma usual, usando a tabela da normal. Depois c
 \begin{Highlighting}[]
 \CommentTok{\# P(X \textless{} 95)}
 \FunctionTok{pnorm}\NormalTok{(}\DecValTok{95}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{10}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\DocumentationTok{\#\# [1] 0.3085375}
 
-\begin{verbatim}
-## [1] 0.3085375
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \CommentTok{\# P(90 \textless{} X \textless{} 110)}
 \FunctionTok{pnorm}\NormalTok{(}\DecValTok{110}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{10}\NormalTok{) }\SpecialCharTok{{-}} \FunctionTok{pnorm}\NormalTok{(}\DecValTok{90}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{10}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\DocumentationTok{\#\# [1] 0.6826895}
 
-\begin{verbatim}
-## [1] 0.6826895
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \CommentTok{\# P(X \textgreater{} 95) = 1 {-} P(X \textless{} 95)}
 \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{pnorm}\NormalTok{(}\DecValTok{95}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{10}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\DocumentationTok{\#\# [1] 0.6914625}
 
-\begin{verbatim}
-## [1] 0.6914625
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \CommentTok{\# ou}
 \FunctionTok{pnorm}\NormalTok{(}\DecValTok{95}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{10}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{) }\CommentTok{\# melhor}
+\DocumentationTok{\#\# [1] 0.6914625}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## [1] 0.6914625
-\end{verbatim}
 
 Função densidade de probabilidade e função de distribuição.
 
@@ -10742,7 +10721,7 @@ Função densidade de probabilidade e função de distribuição.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-273-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-274-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10760,7 +10739,7 @@ Função densidade de probabilidade e função de distribuição.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-274-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-275-1.pdf}
 
 \chapter{Método da transformada inversa}\label{muxe9todo-da-transformada-inversa}
 
@@ -10894,7 +10873,7 @@ Representar graficamente e determinar: média, desvio padrão e mediana.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-276-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-277-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10903,7 +10882,7 @@ Representar graficamente e determinar: média, desvio padrão e mediana.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 5.4572
+## [1] 5.4564
 \end{verbatim}
 
 \begin{Shaded}
@@ -10913,7 +10892,7 @@ Representar graficamente e determinar: média, desvio padrão e mediana.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2.860455
+## [1] 2.859184
 \end{verbatim}
 
 \begin{Shaded}
@@ -10961,7 +10940,7 @@ método da transformada inversa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.79
+## [1] 0.78
 \end{verbatim}
 
 \textbf{Exemplo 4}: Gerar uma variável aleatória com distribuição
@@ -10984,7 +10963,7 @@ método da transformada inversa
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-278-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-279-1.pdf}
 
 \textbf{Exemplo 5}: Geração de uma variável aleatória com distribuição
 \(Geométrica(p)\). Seja \(X\sim Geometrica(p)\). Lembre que
@@ -11019,7 +10998,7 @@ onde \(\lfloor  \rfloor =\) maior inteiro.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-279-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-280-1.pdf}
 
 \textbf{Exemplo 6}: Geração de uma variável aleatória com distribuição de
 Poisson. A variável aleatória \(X\) é de Poisson com média \(\lambda\) se
@@ -11062,7 +11041,7 @@ expresso da seguinte forma.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-280-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-281-1.pdf}
 
 \section{Exercícios}\label{exercuxedcios-23}
 
@@ -11143,7 +11122,7 @@ A função \(F(x)=x^2\) é invertível no intervalo \((0,1)\) e
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-281-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-282-1.pdf}
 
 \textbf{Exemplo 2}: Geração de uma variável aleatória \(Uniforme(a,b)\). A
 geração é feita através de \[X = a+(b-a)U.\]
@@ -11160,7 +11139,7 @@ geração é feita através de \[X = a+(b-a)U.\]
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-282-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-283-1.pdf}
 
 \textbf{Exemplo 3}: Geração de uma variável aleatória exponencial. Seja \(X\)
 uma variável aleatória exponencial com taxa 1, então sua função de
@@ -11207,7 +11186,7 @@ aleatório \(U\) e fazendo \[X = -\frac{1}{\lambda}ln (U).\]
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-283-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-284-1.pdf}
 
 \section{Exercícios}\label{exercuxedcios-24}
 
@@ -11668,7 +11647,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-291-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-292-1.pdf}
 
 \textbf{Exemplo 1}: Resolva o exemplo 1 usando a função de distribuição
 empírica.
@@ -11847,7 +11826,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-294-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-295-1.pdf}
 
 \subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o-2}
 
@@ -11872,7 +11851,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-295-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-296-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-4}
 
@@ -11900,7 +11879,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-296-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-297-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-4}
 
@@ -11923,7 +11902,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-297-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-298-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-5}
 
@@ -11946,7 +11925,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-298-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-299-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11955,7 +11934,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-298-2.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-299-2.pdf}
 
 \textbf{Cálculo de probabilidade}: Seja
 \(X \sim \text{Binomial}(n=10, p=0.5)\).
@@ -12049,7 +12028,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-299-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-300-1.pdf}
 
 \subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o-3}
 
@@ -12082,7 +12061,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-300-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-301-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-5}
 
@@ -12118,7 +12097,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-301-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-302-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-5}
 
@@ -12138,7 +12117,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-302-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-303-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-6}
 
@@ -12159,7 +12138,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-303-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-304-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -12174,7 +12153,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-303-2.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-304-2.pdf}
 
 \textbf{Cálculo de probabilidades}: Seja \(X\sim\text{Poisson}(\lambda=5)\).
 
@@ -12263,7 +12242,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-304-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-305-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-2}
 
@@ -12288,7 +12267,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-305-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-306-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-6}
 
@@ -12319,7 +12298,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-306-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-307-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-6}
 
@@ -12339,7 +12318,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-307-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-308-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-7}
 
@@ -12364,7 +12343,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-308-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-309-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -12417,7 +12396,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-309-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-310-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-3}
 
@@ -12442,7 +12421,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-310-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-311-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-7}
 
@@ -12473,7 +12452,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-311-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-312-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-7}
 
@@ -12493,7 +12472,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-312-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-313-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-8}
 
@@ -12518,7 +12497,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-313-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-314-1.pdf}
 
 \section{Gerando uma variável aleatória com distribuição Normal}\label{gerando-uma-variuxe1vel-aleatuxf3ria-com-distribuiuxe7uxe3o-normal}
 
@@ -12548,7 +12527,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-314-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-315-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-4}
 
@@ -12573,7 +12552,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-315-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-316-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-8}
 
@@ -12604,7 +12583,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-316-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-317-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-8}
 
@@ -12624,7 +12603,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-317-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-318-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-9}
 
@@ -12649,7 +12628,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-318-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-319-1.pdf}
 
 \section{Exercícios}\label{exercuxedcios-25}
 
@@ -12906,7 +12885,268 @@ esperado 0 e desvio padrão 1.
 
 \chapter{Relatórios}\label{relatuxf3rios}
 
+Com a ajuda do R Markdown, uma interface de anotações que combina texto livre com códigos em R, podemos construir relatórios não só reprodutíveis, mas elegantemente bem formatados, sem sair do R!
+
+Antes de mais nada, vamos instalar os pacotes \texttt{\{rmarkdown\}} e \texttt{\{knitr\}}. O primeiro reúne todas as funcionalidades para juntar nossos textos narrativos e códigos de R. O segundo vai fazer a magia de transformar nossos simples arquivos de texto em arquivos HTML, PDF e Word (.doc).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"rmarkdown"}\NormalTok{, }\StringTok{"knitr"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Nas seções a seguir, vamos mostrar como começar a utilizar o R Markdown para criar esses documentos. Não se esqueça de conferir (e deixar por perto) as folhas de cola sobre R Markdown:
+
+\ldots{}
+
 \section{Markdown}\label{markdown}
+
+Se você é uma pessoa que utiliza R, sabe das possibilidades de utilizar R Markdown (e os pacotes que expandem mais ainda as possibilidades) e gostaria de começar a utilizá-lo, é importante conhecer o Markdown. Por quê? O R Markdown tem como base a linguagem de marcação Markdown.
+
+Os arquivos markdown podem ser abertos por qualquer software que suporte este formato aberto. Além disso, independente da plataforma de trabalho, pode-se migrar para um arquivo de texto sem perder a formatação. O Markdown também é usado em outros lugares, como no GitHub.
+
+Uma referência interessante para ter sempre em mãos é a Folha de cola (Cheatsheet) do Markdown.
+
+Nas seções seguintes, descreveremos como podemos marcar os nossos textos e códigos usando markdown, e você poderá usar isso tanto em arquivos .Rmd, quanto em outros lugares que também utilizam essa marcação.
+
+\subsection{Ênfase}\label{uxeanfase}
+
+\textbf{Negrito}
+
+Para destacar um texto em negrito, coloque \texttt{**} ou \texttt{\_\_} ao redor do texto.
+
+Por exemplo:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5283}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.4717}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Como é escrito no código
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Como aparece no relatório
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{Esse\ é\ um\ texto\ com\ uma\ palavra\ destacada\ em\ **negrito**.} & Esse é um texto com uma palavra destacada em \textbf{negrito}. \\
+\texttt{Esse\ é\ um\ texto\ com\ uma\ palavra\ destacada\ em\ \_\_negrito\_\_.} & Esse é um texto com uma palavra destacada em \textbf{negrito}. \\
+\end{longtable}
+
+\textbf{Itálico}
+
+Para destacar um texto em itálico, coloque \texttt{*} ou \texttt{\_} ao redor do texto.
+
+Por exemplo:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5283}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.4717}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Como é escrito no código
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Como aparece no relatório
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{Esse\ é\ um\ texto\ com\ uma\ palavra\ destacada\ em\ *itálico*.} & Esse é um texto com uma palavra destacada em \emph{itálico}. \\
+\texttt{Esse\ é\ um\ texto\ com\ uma\ palavra\ destacada\ em\ \_itálico\_.} & Esse é um texto com uma palavra destacada em \emph{itálico}. \\
+\end{longtable}
+
+\textbf{Riscado (ou tachado)}
+
+Para riscar/tachar um texto, coloque \texttt{\textasciitilde{}\textasciitilde{}} ao redor do texto.
+
+Por exemplo:
+
+Esse é um texto com uma palavra riscada/tachada.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5214}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.4786}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Como é escrito no código
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Como aparece no relatório
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{Esse\ é\ um\ texto\ com\ uma\ palavra\ \textasciitilde{}\textasciitilde{}riscada/tachada\textasciitilde{}\textasciitilde{}.} & Esse é um texto com uma palavra \st{riscada/tachada}. \\
+\end{longtable}
+
+\subsection{Títulos}\label{tuxedtulos}
+
+Os títulos funcionam como uma hierarquia, e para criar um título é necessário colocar um \texttt{\#} no início da linha. Então, um \texttt{\#} marca um título, \texttt{\#\#} marca um subtítulo, e assim sucessivamente. Veja os exemplos:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Como é escrito no código & Como aparece no relatório \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{\#\ Título\ 1} & \# Título 1 \\
+\texttt{\#\#\ Título\ 2} & \#\# Título 2 \\
+\texttt{\#\#\#\ Título\ 3} & \#\#\# Título 3 \\
+\end{longtable}
+
+\subsection{Listas}\label{listas-1}
+
+Você pode fazer uma lista ordenada usando somente números. Você pode repetir o número quantas vezes quiser:
+
+Como é escrito no código:
+
+\texttt{1.\ Maçã}
+
+\texttt{1.\ Banana}
+
+\texttt{1.\ Uva}
+
+Como aparece no relatório:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Maçã
+\item
+  Banana
+\item
+  Uva
+\end{enumerate}
+
+\textbf{Listas não ordenadas}
+
+Você pode fazer uma lista não ordenada escrevendo com hífens ou asteriscos, como a seguir:
+
+\texttt{*\ Maçã}
+
+\texttt{*\ Banana}
+
+\texttt{*\ Uva}
+
+\texttt{-\ Maçã}
+
+\texttt{-\ Banana}
+
+\texttt{-\ Uva}
+
+O resultado será:
+
+\begin{itemize}
+\tightlist
+\item
+  Maçã
+\item
+  Banana
+\item
+  Uva
+\end{itemize}
+
+Você também pode adicionar sub-itens na lista indicando a hierarquia através da identação no Markdown (dica: utilize a tecla \texttt{tab} do teclado):
+
+\begin{itemize}
+\tightlist
+\item
+  Frutas
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Maçã
+  \item
+    Banana
+  \item
+    Uva
+  \end{itemize}
+\end{itemize}
+
+\subsection{Equações}\label{equauxe7uxf5es}
+
+Você pode adicionar equações utilizando LaTeX. Você pode saber mais na \href{https://pt.overleaf.com/learn/latex/Mathematical_expressions}{página do Overleaf sobre expressões matemáticas}. Além disso, existem \href{https://www.codecogs.com/latex/eqneditor.php}{geradores de equações online} que ajudam a escrevê-las em LaTeX, HTML, entre outras linguagens de marcação.
+
+É possível centralizar a equação envolvendo o código com \texttt{\$\$}. Veja o exemplo abaixo:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5182}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.4818}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Como é escrito no código
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Como aparece no relatório
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{\$\$y\ =\ \textbackslash{}mu\ +\ \textbackslash{}sum\_\{i=1\}\^{}p\ \textbackslash{}beta\_i\ x\_i\ +\ \textbackslash{}epsilon\$\$} & \(y = \mu + \sum_{i=1}^p \beta_i x_i + \epsilon\) \\
+\end{longtable}
+
+Também é possível adicionar a equação na mesma linha que o texto, envolvendo o código com \texttt{\$}. Veja o exemplo abaixo:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5159}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.4841}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Como é escrito no código
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Como aparece no relatório
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{Ou\ também\ na\ linha\ \$y\ =\ \textbackslash{}mu\ +\ \textbackslash{}sum\_\{i=1\}\^{}p\ \textbackslash{}beta\_i\ x\_i\ +\ \textbackslash{}epsilon\$,\ junto\ ao\ texto!} & Ou também na linha \(y = \mu + \sum_{i=1}^p \beta_i x_i + \epsilon\), junto ao texto! \\
+\end{longtable}
+
+\subsection{Código}\label{cuxf3digo}
+
+É possível \textbf{marcar textos para que fiquem formatados como códigos}, usando a crase: \texttt{\textasciigrave{}}
+
+Mas atenção: o texto será \textbf{formatado como código}, porém não será executado!
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5214}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.4786}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Como é escrito no código
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Como aparece no relatório
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{\textasciigrave{}mean(pinguins\$massa\_corporal,\ na.rm\ =\ TRUE)\textasciigrave{}} & \texttt{mean(pinguins\$massa\_corporal,\ na.rm\ =\ TRUE)} \\
+\end{longtable}
+
+Também é possível delimitar um trecho maior de código, utilizando três crases.
+
+\textbf{Exemplo:}
+
+\begin{verbatim}
+library(dados)
+mean(pinguins$massa_corporal, na.rm = TRUE)
+\end{verbatim}
+
+Como o código aparece no relatório
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(dados)}
+\FunctionTok{mean}\NormalTok{(pinguins}\SpecialCharTok{$}\NormalTok{massa\_corporal, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \section{R Markdown}\label{r-markdown}
 
