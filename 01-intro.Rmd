@@ -4076,9 +4076,11 @@ Neste exemplo, url contém o endereço do ficheiro CSV na web, e
 
 ## Exercícios
 
-1. Faça a leitura do ficheiro `dados_instagram` [aqui](https://renatorpaula.wixsite.com/renato/laboratorio-estatistica) e responda às perguntas abaixo (lembre de instalar o pacote `readxl`):
+**1.** Faça a leitura do ficheiro `dados_instagram` [aqui](https://renatorpaula.wixsite.com/renato/laboratorio-estatistica) e responda às perguntas abaixo (lembre de instalar o pacote `readxl`):
 
-(a) **Construa uma tabela de frequência**: Crie um data frame que contenha a tabela de frequência de cada variável no conjunto de dados.
+(a) Exiba as primeiras 6 linhas do dataset:
+
+(b) **Construa uma tabela de frequência**: Crie um data frame que contenha a tabela de frequência de cada variável no conjunto de dados.
 
 ```{r eval=FALSE}
 # --------------------
@@ -4113,21 +4115,39 @@ tabela_frequencia_if_df$Freq_Abs_Acum <- cumsum(tabela_frequencia_if_df$Frequenc
 tabela_frequencia_if_df$Freq_Rela_Acum <- cumsum(tabela_frequencia_if_df$Freq_Relativa)
 ```
 
-(b) **Visualização gráfica**: Crie representações gráficas adequadas para cada variável. Considere o uso de histogramas, gráficos de barras, boxplots..., conforme o tipo de variável.
+(c) **Visualização gráfica**: Crie representações gráficas adequadas para cada variável. Considere o uso de histogramas, gráficos de barras, boxplots..., conforme o tipo de variável.
 
-(c) **Cálculo de medidas descritivas**: Determine as principais medidas descritivas para cada variável, incluindo média, mediana, variância, desvio padrão, coeficiente de variação, primeiro e terceiro quartis ($Q_1$ e $Q_3$), amplitude e amplitude interquartil. Indique quando essas medidas não forem aplicáveis.
+(d) **Cálculo de medidas descritivas**: Determine as principais medidas descritivas para cada variável, incluindo média, mediana, variância, desvio padrão, coeficiente de variação, primeiro e terceiro quartis ($Q_1$ e $Q_3$), amplitude e amplitude interquartil. Indique quando essas medidas não forem aplicáveis.
 
-(d) Calcule a média e a mediana do “índice de influência” para cada género. Comente sobre as diferenças entre os géneros e discuta se os resultados podem sugerir tendências distintas de influência entre eles.
+(e) Calcule a média e a mediana do “índice de influência” para cada género. Comente sobre as diferenças entre os géneros e discuta se os resultados podem sugerir tendências distintas de influência entre eles.
 
-(e) Calcule a média e a mediana da “média de likes” para cada género. Avalie se há diferenças significativas entre os géneros nesta métrica e discuta possíveis implicações.
+(f) Calcule a média e a mediana da “média de likes” para cada género. Avalie se há diferenças significativas entre os géneros nesta métrica e discuta possíveis implicações.
 
-(f) **Comparação de dispersão entre variáveis**: Compare a dispersão das variáveis “índice de influência” e “número de publicações” utilizando medidas como variância e desvio padrão. Justifique qual das variáveis apresenta maior dispersão e interprete o que isso pode indicar sobre os dados.
+(g) **Comparação de dispersão entre variáveis**: Compare a dispersão das variáveis “índice de influência” e “número de publicações” utilizando medidas como variância e desvio padrão. Justifique qual das variáveis apresenta maior dispersão e interprete o que isso pode indicar sobre os dados.
 
-(g) **Análise de percentis para “número de seguidores”**: Identifique os percentis de 10%, 25%, 75% e 90% para a variável “número de seguidores”. Comente sobre como esses percentis podem ser usados para categorizar influenciadores com diferentes níveis de popularidade na plataforma.
+(h) **Análise de percentis para “número de seguidores”**: Identifique os percentis de 10%, 25%, 75% e 90% para a variável “número de seguidores”. Comente sobre como esses percentis podem ser usados para categorizar influenciadores com diferentes níveis de popularidade na plataforma.
 
-(h) **Identificação de outliers**: Investigue a presença de outliers nas variáveis “número de publicações”, “número de seguidores” e “média de likes”. Use métodos como o intervalo interquartil (IQR) e comente sobre o impacto de possíveis outliers na análise.
+(i) **Identificação de outliers**: Investigue a presença de outliers nas variáveis “número de publicações”, “número de seguidores” e “média de likes”. Use métodos como o intervalo interquartil (IQR) e comente sobre o impacto de possíveis outliers na análise.
 
-(i) **Correlação entre “índice de influência” e “média de likes”**: Calcule a correlação entre as variáveis “índice de influência” e “média de likes”. Comente sobre a relação entre essas duas variáveis, discutindo se um alto índice de influência tende a estar associado a uma média maior de curtidas.
+(j) **Correlação entre “índice de influência” e “média de likes”**: Calcule a correlação entre as variáveis “índice de influência” e “média de likes”. Comente sobre a relação entre essas duas variáveis, discutindo se um alto índice de influência tende a estar associado a uma média maior de curtidas.
+
+**2.** Importe o ficheiro `dataset.csv` [aqui](https://renatorpaula.wixsite.com/renato/laboratorio-estatistica) no R e salve-o como um data frame. Em seguida:
+
+(a) Exiba as primeiras 6 linhas do dataset.
+
+(b) Escolha uma variável categórica no dataset crie uma tabela de frequência para essa variável. Visualize a distribuição da variável usando um gráfico de barras.
+
+(c) Para cada variável numérica no dataset, crie as seguintes visualizações:
+
+- Histogramas para observar a distribuição das variáveis.
+- Boxplots para identificar a presença de outliers e a dispersão dos dados.
+
+(d) Calcule as principais medidas descritivas para uma variável numérica à sua escolha. Inclua: Média, mediana, variância, desvio padrão, coeficiente de variação, quartis (Q1 e Q3), amplitude e amplitude interquartil.
+
+(e) Selecione uma variável numérica e uma variável categórica (por exemplo, comparar uma variável numérica entre diferentes categorias de uma variável categórica). Especificamente:
+
+- Calcule a média e a mediana da variável numérica para cada grupo da variável categórica.
+- Use boxplots para comparar visualmente as distribuições entre os grupos.
 
 # Pipe
 

@@ -678,11 +678,10 @@ do ficheiro) para importar dados diretamente de um link online.</p>
 </div>
 <div id="exercícios-9" class="section level2 hasAnchor" number="9.8">
 <h2><span class="header-section-number">9.8</span> Exercícios<a href="leitura-de-dados.html#exercícios-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ol style="list-style-type: decimal">
-<li>Faça a leitura do ficheiro <code>dados_instagram</code> <a href="https://renatorpaula.wixsite.com/renato/laboratorio-estatistica">aqui</a> e responda às perguntas abaixo (lembre de instalar o pacote <code>readxl</code>):</li>
-</ol>
+<p><strong>1.</strong> Faça a leitura do ficheiro <code>dados_instagram</code> <a href="https://renatorpaula.wixsite.com/renato/laboratorio-estatistica">aqui</a> e responda às perguntas abaixo (lembre de instalar o pacote <code>readxl</code>):</p>
 <ol style="list-style-type: lower-alpha">
-<li><strong>Construa uma tabela de frequência</strong>: Crie um data frame que contenha a tabela de frequência de cada variável no conjunto de dados.</li>
+<li><p>Exiba as primeiras 6 linhas do dataset:</p></li>
+<li><p><strong>Construa uma tabela de frequência</strong>: Crie um data frame que contenha a tabela de frequência de cada variável no conjunto de dados.</p></li>
 </ol>
 <div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="leitura-de-dados.html#cb123-1" tabindex="-1"></a><span class="co"># --------------------</span></span>
 <span id="cb123-2"><a href="leitura-de-dados.html#cb123-2" tabindex="-1"></a><span class="co"># Indice de influência</span></span>
@@ -714,7 +713,7 @@ do ficheiro) para importar dados diretamente de um link online.</p>
 <span id="cb123-28"><a href="leitura-de-dados.html#cb123-28" tabindex="-1"></a></span>
 <span id="cb123-29"><a href="leitura-de-dados.html#cb123-29" tabindex="-1"></a><span class="co"># Frequência relativa acumulada</span></span>
 <span id="cb123-30"><a href="leitura-de-dados.html#cb123-30" tabindex="-1"></a>tabela_frequencia_if_df<span class="sc">$</span>Freq_Rela_Acum <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(tabela_frequencia_if_df<span class="sc">$</span>Freq_Relativa)</span></code></pre></div>
-<ol start="2" style="list-style-type: lower-alpha">
+<ol start="3" style="list-style-type: lower-alpha">
 <li><p><strong>Visualização gráfica</strong>: Crie representações gráficas adequadas para cada variável. Considere o uso de histogramas, gráficos de barras, boxplots…, conforme o tipo de variável.</p></li>
 <li><p><strong>Cálculo de medidas descritivas</strong>: Determine as principais medidas descritivas para cada variável, incluindo média, mediana, variância, desvio padrão, coeficiente de variação, primeiro e terceiro quartis (<span class="math inline">\(Q_1\)</span> e <span class="math inline">\(Q_3\)</span>), amplitude e amplitude interquartil. Indique quando essas medidas não forem aplicáveis.</p></li>
 <li><p>Calcule a média e a mediana do “índice de influência” para cada género. Comente sobre as diferenças entre os géneros e discuta se os resultados podem sugerir tendências distintas de influência entre eles.</p></li>
@@ -724,6 +723,24 @@ do ficheiro) para importar dados diretamente de um link online.</p>
 <li><p><strong>Identificação de outliers</strong>: Investigue a presença de outliers nas variáveis “número de publicações”, “número de seguidores” e “média de likes”. Use métodos como o intervalo interquartil (IQR) e comente sobre o impacto de possíveis outliers na análise.</p></li>
 <li><p><strong>Correlação entre “índice de influência” e “média de likes”</strong>: Calcule a correlação entre as variáveis “índice de influência” e “média de likes”. Comente sobre a relação entre essas duas variáveis, discutindo se um alto índice de influência tende a estar associado a uma média maior de curtidas.</p></li>
 </ol>
+<p><strong>2.</strong> Importe o ficheiro <code>dataset.csv</code> <a href="https://renatorpaula.wixsite.com/renato/laboratorio-estatistica">aqui</a> no R e salve-o como um data frame. Em seguida:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Exiba as primeiras 6 linhas do dataset.</p></li>
+<li><p>Escolha uma variável categórica no dataset crie uma tabela de frequência para essa variável. Visualize a distribuição da variável usando um gráfico de barras.</p></li>
+<li><p>Para cada variável numérica no dataset, crie as seguintes visualizações:</p></li>
+</ol>
+<ul>
+<li>Histogramas para observar a distribuição das variáveis.</li>
+<li>Boxplots para identificar a presença de outliers e a dispersão dos dados.</li>
+</ul>
+<ol start="4" style="list-style-type: lower-alpha">
+<li><p>Calcule as principais medidas descritivas para uma variável numérica à sua escolha. Inclua: Média, mediana, variância, desvio padrão, coeficiente de variação, quartis (Q1 e Q3), amplitude e amplitude interquartil.</p></li>
+<li><p>Selecione uma variável numérica e uma variável categórica (por exemplo, comparar uma variável numérica entre diferentes categorias de uma variável categórica). Especificamente:</p></li>
+</ol>
+<ul>
+<li>Calcule a média e a mediana da variável numérica para cada grupo da variável categórica.</li>
+<li>Use boxplots para comparar visualmente as distribuições entre os grupos.</li>
+</ul>
 </div>
 </div>
             </section>
