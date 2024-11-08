@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 9 Leitura de dados | Introdução ao R</title>
+  <title>Capítulo 9 Leitura de dados | Introdução ao R e Simulação</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 9 Leitura de dados | Introdução ao R" />
+  <meta property="og:title" content="Capítulo 9 Leitura de dados | Introdução ao R e Simulação" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/docs/ciencias.png" />
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
@@ -19,7 +19,7 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 9 Leitura de dados | Introdução ao R" />
+  <meta name="twitter:title" content="Capítulo 9 Leitura de dados | Introdução ao R e Simulação" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
@@ -257,7 +257,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.3" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.table"><i class="fa fa-check"></i><b>9.3</b> A Função <code>read.table()</code></a></li>
 <li class="chapter" data-level="9.4" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.csv"><i class="fa fa-check"></i><b>9.4</b> A função <code>read.csv()</code></a></li>
 <li class="chapter" data-level="9.5" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.csv2"><i class="fa fa-check"></i><b>9.5</b> A função <code>read.csv2()</code></a></li>
-<li class="chapter" data-level="9.6" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read_excel-do-pacote-readxl"><i class="fa fa-check"></i><b>9.6</b> A Função <code>read_excel()</code> do Pacote <code>readxl</code></a></li>
+<li class="chapter" data-level="9.6" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read_excel"><i class="fa fa-check"></i><b>9.6</b> A Função <code>read_excel()</code></a></li>
 <li class="chapter" data-level="9.7" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#leitura-de-dados-online"><i class="fa fa-check"></i><b>9.7</b> Leitura de Dados Online</a></li>
 <li class="chapter" data-level="9.8" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#exercícios-9"><i class="fa fa-check"></i><b>9.8</b> Exercícios</a></li>
 </ul></li>
@@ -481,7 +481,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introdução ao R</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introdução ao R e Simulação</a>
           </h1>
         </div>
 
@@ -624,8 +624,8 @@ países europeus.</p>
 <div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="leitura-de-dados.html#cb119-1" tabindex="-1"></a><span class="co"># Leitura de CSV com separador ponto e vírgula</span></span>
 <span id="cb119-2"><a href="leitura-de-dados.html#cb119-2" tabindex="-1"></a>dados_csv2 <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">&quot;dados.csv2&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
-<div id="a-função-read_excel-do-pacote-readxl" class="section level2 hasAnchor" number="9.6">
-<h2><span class="header-section-number">9.6</span> A Função <code>read_excel()</code> do Pacote <code>readxl</code><a href="leitura-de-dados.html#a-função-read_excel-do-pacote-readxl" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="a-função-read_excel" class="section level2 hasAnchor" number="9.6">
+<h2><span class="header-section-number">9.6</span> A Função <code>read_excel()</code><a href="leitura-de-dados.html#a-função-read_excel" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Para ler ficheiros Excel (.xls e .xlsx), usamos a função <code>read_excel()</code>
 do pacote <code>readxl</code>. Este pacote precisa ser instalado e carregado antes
 da sua utilização.</p>
@@ -734,7 +734,7 @@ do ficheiro) para importar dados diretamente de um link online.</p>
 <li>Boxplots para identificar a presença de outliers e a dispersão dos dados.</li>
 </ul>
 <ol start="4" style="list-style-type: lower-alpha">
-<li><p>Calcule as principais medidas descritivas para uma variável numérica à sua escolha. Inclua: Média, mediana, variância, desvio padrão, coeficiente de variação, quartis (Q1 e Q3), amplitude e amplitude interquartil.</p></li>
+<li><p>Calcule as principais medidas descritivas para uma variável numérica à sua escolha. Inclua: Média, mediana, variância, desvio padrão, coeficiente de variação, quartis (<span class="math inline">\(Q_1\)</span> e <span class="math inline">\(Q_3\)</span>), amplitude e amplitude interquartil.</p></li>
 <li><p>Selecione uma variável numérica e uma variável categórica (por exemplo, comparar uma variável numérica entre diferentes categorias de uma variável categórica). Especificamente:</p></li>
 </ol>
 <ul>
