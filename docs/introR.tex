@@ -126,7 +126,7 @@
 
 \title{Introdução ao R e Simulação}
 \author{Renato de Paula}
-\date{2024-11-08}
+\date{2024-11-10}
 
 \begin{document}
 \maketitle
@@ -9149,213 +9149,6 @@ dois grupos: tratamento e controlo. O grupo de tratamento deve conter 20
 pacientes e o grupo de controlo 10. Usando \texttt{sample()}, faça a
 randomização dos pacientes. Dica: use a função \texttt{setdiff()}.
 
-\chapter{Teoremas limites}\label{teoremas-limites}
-
-Os teoremas limites clássicos de probabilidade se referem à sequencias de variáveis aleatórias independentes e identicamente distribuídas (i.i.d.). Se \(X_1,X_2,\ldots\) é uma sequência de variáveis aleatórias com média comum \(E(X)=\mu < \infty\), e seja a v.a. \(S_n = X_1 + X_2 + \cdots + X_n\).
-
-A \textbf{Lei dos Grandes Números} informa que a sequência das médias \(S_n/n\) converge para \(\mu\), quando \(n\to +\infty\). Existem duas versões da Lei, a \emph{fraca} e a \emph{forte}.
-
-\section{Lei fraca dos grandes números}\label{lei-fraca-dos-grandes-nuxfameros}
-
-A Lei Fraca dos Grandes Números é um resultado em Teoria da Probabilidade também conhecido como Teorema de Bernoulli's. De acordo com a lei, a média dos resultados obtidos por um grande número de tentativas é próximo a média da população.
-
-Sejam \(X_1,\ldots,X_n\) uma sequência de variáveis aleatórias identicamente distribuídas e independentes (i.i.d.), cada uma possuindo média \(\mu\) e variância \(\sigma^2\).
-
-\chapter{Usando números aleatórios para o cálculo de Integrais}\label{usando-nuxfameros-aleatuxf3rios-para-o-cuxe1lculo-de-integrais}
-
-Seja \(g(x)\) uma função e suponha que se quer calcular \(\theta\) onde:
-\[\theta = \int_{0}^{1}g(x)\, dx.\] Um método eficiente para realizar
-esse cálculo é o \emph{método de Monte Carlo}, que utiliza números aleatórios
-para aproximar o valor do integral. Vamos ver como isso funciona em
-detalhes.
-
-\textbf{Aproximação do Integral Usando Variáveis Aleatórias}
-
-Considere \(U\), variável aleatória que segue uma distribuição uniforme no
-intervalo (0,1). Sabemos que o valor esperado de \(g(U)\), ou seja,
-\(E[g(U)]\), pode ser usado para calcular o integral de \(g(x)\) no
-intervalo (0,1). Isto é, podemos reescrever:
-\[\theta = \int_{0}^{1}g(x)\,dx = E[g(U)].\] Agora, se \(U_1,\ldots,U_k\)
-são variáveis aleatórias independentes e uniformemente distribuídas no
-intervalo (0,1), então as variáveis aleatórias
-\(g(U_1),g(U_2),\ldots,g(U_k)\) também são independentes e identicamente
-distribuídas, com média \(\theta\). Portanto, pela Lei Forte dos Grandes
-Números, segue que, com probabilidade 1,
-\[\sum_{i=1}^{k}\frac{g(U_i)}{k} \longrightarrow E[g(U)]=\theta, \quad \text{quando} \quad k\rightarrow \infty.\]
-Em outras palavras, à medida que o número \(k\) de variáveis aleatórias
-\(U_i\) aumenta, a média das avaliações de \(g\) nestes \(U_i\)'s se aproxima
-do valor do integral \(\theta\).
-
-Portanto, para aproximar \(\theta\), podemos gerar uma grande quantidade
-de números aleatórios \(u_1, u_2, \ldots, u_k\) no intervalo (0,1) e
-calcular a média dos valores de \(g(u_i)\):
-\[\theta \approx \frac{1}{k}\sum_{i=1}^{k}g(u_i).\] Esta abordagem é o
-que chamamos de \emph{método de Monte Carlo} para o cálculo de integrais.
-
-\section{\texorpdfstring{Cálculo de \(\int_{a}^{b}g(x)\, dx\)}{Cálculo de \textbackslash int\_\{a\}\^{}\{b\}g(x)\textbackslash, dx}}\label{cuxe1lculo-de-int_abgx-dx}
-
-Agora, suponha que queremos calcular a integral de \(g(x)\) em um
-intervalo diferente, digamos {[}a, b{]}. Podemos resolver este problema
-realizando uma substituição de variáveis.
-
-Definimos uma nova variável \(y\) como
-\[y=\frac{x-a}{b-a}, \quad \text{de modo que} \quad y = \frac{dx}{(b-a)}.\]
-Isso transforma o integral original em:
-\[\theta = \int_{0}^{1}g(a+[b-a]y)(b-a)\,dy = \int_{0}^{1}h(y)\,dy,\]
-onde \(h(y) = (b-a)g(a+[b-a]y)\). Assim, podemos usar novamente o método
-de Monte Carlo para aproximar essa integral. Basta gerar números
-aleatórios uniformemente distribuídos no intervalo (0,1), calcular a
-função \(h(y)\) nesses pontos, e tomar a média. Ou seja, podemos
-aproximar: \[
-\theta \approx \frac{1}{k} \sum_{i=1}^{k} h(y_i),
-\] onde \(y_1, y_2, \ldots, y_k\) são números aleatórios uniformemente
-distribuídos em (0,1), e \(h(y) = (b - a)g(a + (b - a)y)\).
-
-\textbf{Exemplo prático}: Vamos considerar um exemplo simples para ilustrar o
-uso do método de Monte Carlo. Suponha que queremos calcular a integral
-de \(g(x) = x^2\) no intervalo {[}0, 1{]}: \[\theta = \int_{0}^{1} x^2\, dx.\]
-
-Sabemos que a resposta exata é \(\theta = \frac{1}{3}\), mas vamos usar o
-método de Monte Carlo para aproximar este valor.
-
-Geramos \(n = 10.000\) números aleatórios \(u_i\) no intervalo {[}0, 1{]},
-calculamos \(g(u_i) = u_i^2\) para cada um desses valores e tomamos a
-média:
-
-\[\theta \approx \frac{1}{10000} \sum_{i=1}^{10000} u_i^2.\]
-
-Ao rodar este processo no R, esperamos obter uma aproximação próxima de
-\(\frac{1}{3}\).
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Função a ser integrada}
-\NormalTok{f }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) x}\SpecialCharTok{\^{}}\DecValTok{2}
-\CommentTok{\# Quantidade de números aleatórios}
-\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{10000}
-\CommentTok{\# Números aleatórios no intervalo [0,1]}
-\NormalTok{u }\OtherTok{\textless{}{-}} \FunctionTok{runif}\NormalTok{(}\AttributeTok{n =}\NormalTok{ n, }\AttributeTok{min =} \DecValTok{0}\NormalTok{, }\AttributeTok{max =} \DecValTok{1}\NormalTok{)}
-\CommentTok{\# Valor aproximado do integral}
-\FunctionTok{sum}\NormalTok{(}\FunctionTok{f}\NormalTok{(u))}\SpecialCharTok{/}\NormalTok{n}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 0.3295952
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Solução exata do integral}
-\FunctionTok{integrate}\NormalTok{(f, }\AttributeTok{lower =} \DecValTok{0}\NormalTok{, }\AttributeTok{upper =} \DecValTok{1}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 0.3333333 with absolute error < 3.7e-15
-\end{verbatim}
-
-Vamos calcular agora o \[\int_{1}^{2} x^2\, dx.\]
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Limites de integração}
-\NormalTok{a }\OtherTok{\textless{}{-}} \DecValTok{1}
-\NormalTok{b }\OtherTok{\textless{}{-}} \DecValTok{2}
-\CommentTok{\# Função a ser integrada}
-\NormalTok{f }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) x}\SpecialCharTok{\^{}}\DecValTok{2}
-\CommentTok{\# Quantidade de números aleatórios}
-\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{10000}
-\CommentTok{\# Números aleatórios no intervalo [0,1]}
-\NormalTok{u }\OtherTok{\textless{}{-}} \FunctionTok{runif}\NormalTok{(}\AttributeTok{n =}\NormalTok{ n, }\AttributeTok{min =} \DecValTok{0}\NormalTok{, }\AttributeTok{max =} \DecValTok{1}\NormalTok{)}
-\CommentTok{\# Valor aproximado do integral}
-\FunctionTok{sum}\NormalTok{(}\FunctionTok{f}\NormalTok{(a}\SpecialCharTok{+}\NormalTok{(b}\SpecialCharTok{{-}}\NormalTok{a)}\SpecialCharTok{*}\NormalTok{u)}\SpecialCharTok{*}\NormalTok{(b}\SpecialCharTok{{-}}\NormalTok{a))}\SpecialCharTok{/}\NormalTok{n}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 2.322161
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Solução exata do integral}
-\FunctionTok{integrate}\NormalTok{(f, }\AttributeTok{lower =} \DecValTok{1}\NormalTok{, }\AttributeTok{upper =} \DecValTok{2}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 2.333333 with absolute error < 2.6e-14
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# ou}
-\NormalTok{u1 }\OtherTok{\textless{}{-}} \FunctionTok{runif}\NormalTok{(n, a, b)}
-\NormalTok{(b}\SpecialCharTok{{-}}\NormalTok{a)}\SpecialCharTok{*}\FunctionTok{mean}\NormalTok{(}\FunctionTok{f}\NormalTok{(u1))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 2.335583
-\end{verbatim}
-
-\section{\texorpdfstring{Cálculo de \(\int_{0}^{\infty}g(x)\, dx\)}{Cálculo de \textbackslash int\_\{0\}\^{}\{\textbackslash infty\}g(x)\textbackslash, dx}}\label{cuxe1lculo-de-int_0inftygx-dx}
-
-Se o interesse é calcular \(\int_{0}^{\infty}g(x)\, dx\), pode-se aplicar
-a substituição
-\[y=\frac{1}{(x+1)}, \quad \text{de modo que} \quad dy=\frac{-dx}{(x+1)^2}=-y^2\,dx,\]
-
-para obter a identidade:
-
-\[\theta = \int_{0}^{1}h(y)\,dy,\] onde
-\(h(y)=\frac{g(\frac{1}{y}-1)}{y^2}\).
-
-\section{Cálculo de integrais multidimensionais}\label{cuxe1lculo-de-integrais-multidimensionais}
-
-O método também pode ser utilizado para o caso de integrais
-multidimensionais. Suponha que \(g\) é uma função com argumento
-n-dimensional e se quer calcular:
-\[\theta = \int_{0}^{1}\int_{0}^{1}\cdots \int_{0}^{1} g(x_1, \ldots,x_n)\, dx_1 \, dx_2\cdots dx_n.\]
-Tem-se que \(\theta\) pode ser expresso como
-\(\theta = E[g(U_1,\ldots,U_n)]\), onde \(U_1,\ldots,U_n\) são variáveis
-aleatórias independentes uniformes no intervalo (0,1). Portanto, para
-calcular \(\theta\) é preciso gerar \(k\) cojuntos independentes, cada um
-consistindo de \(n\) variáveis uniformes (0,1) independentes:
-
-\begin{align*}
-U_{1}^{1},&\ldots,U_{n}^{1} \\
-U_{1}^{2},&\ldots,U_{n}^{2} \\
-& \;\;\vdots \\
-U_{1}^{k},&\ldots,U_{n}^{k}.
-\end{align*}
-
-Assim, as variáveis \(g(U_{1}^{i},\ldots, U_{n}^{i})\), \(i=1,\ldots,k\) são
-todas independentes e identicamente distribuídas com média \(\mu\).
-Pode-se estimar \(\theta\) por
-\(\sum_{i=1}^{k}g(U_{1}^{i},\ldots, U_{n}^{i})/k\).
-
-\section{Exercícios}\label{exercuxedcios-21}
-
-Use simulação para aproximar as seguintes integrais. Compare sua
-estimativa com a resposta exata, se conhecida.
-
-\textbf{1.} \(\int_{0}^{1}exp(e^x)\, dx\).
-
-\textbf{2.} \(\int_{0}^{1}(1-x^2)^{3/2}\, dx\).
-
-\textbf{3.} \(\int_{-2}^{2}e^{x+x^2}\, dx\).
-
-\textbf{4.} \(\int_{0}^{\pi/2} cos(x)\, dx\).
-
-\textbf{5.} \(\int_{0}^{\infty}x(1+x^2)^{-2}\, dx\).
-
-\textbf{6.} \(\int_{-\infty}^{\infty}e^{-x^2}\, dx\).
-
-\textbf{7.} \(\int_{0}^{1}\int_{0}^{1}e^{(x+y)^2}\,dy\,dx\).
-
-\textbf{8.} \(\int_0^1 \int_0^1 x^2 + y^2 \, dx \, dy\).
-
 \chapter{Probabilidade e Variáveis Aleatórias}\label{probabilidade-e-variuxe1veis-aleatuxf3rias}
 
 \textbf{Exemplo 1}: Dada a função
@@ -9403,7 +9196,7 @@ Gráfico de \(f\):
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-235-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-233-1.pdf}
 
 Para verificar que o integral da função é igual a 1 podemos usar a função \texttt{integrate()}, que realiza a integração numérica.
 
@@ -9473,7 +9266,7 @@ Vamos verificar que o integral da função é 1 e vamos fazer também o gráfico
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-240-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-238-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{(\alph{enumi})}
@@ -9489,7 +9282,7 @@ Vamos verificar que o integral da função é 1 e vamos fazer também o gráfico
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-241-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-239-1.pdf}
 
 Podemos resolver o integral numericamente da seguinte forma
 
@@ -9522,7 +9315,7 @@ A venda esperada em trinta dias é 30 vezes o valor esperado de venda em um dia.
 
 Por fim, ressaltamos que os exemplos abordados aqui são básicos e podem ser resolvidos de forma analítica, sem a necessidade de métodos numéricos. Esses exemplos foram escolhidos apenas para ilustrar o uso do R na obtenção de soluções numéricas. Na prática, o R é mais indicado para problemas complexos, nos quais as soluções analíticas são difíceis ou inviáveis.
 
-\section{Exercícios}\label{exercuxedcios-22}
+\section{Exercícios}\label{exercuxedcios-21}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -9796,10 +9589,10 @@ Sendo o objetivo verificar se sai ``cara'', defina-se a variável aleatória
 
 \begin{verbatim}
 ##      n percentagens media variancia comp_media     comp_var
-## 1    5        0.400 0.400 0.3000000      0.100 0.0500000000
-## 2   10        0.600 0.600 0.2666667      0.100 0.0166666667
-## 3  100        0.500 0.500 0.2525253      0.000 0.0025252525
-## 4 1000        0.505 0.505 0.2502252      0.005 0.0002252252
+## 1    5        0.600 0.600 0.3000000      0.100 0.0500000000
+## 2   10        0.500 0.500 0.2777778      0.000 0.0277777778
+## 3  100        0.470 0.470 0.2516162      0.030 0.0016161616
+## 4 1000        0.494 0.494 0.2502142      0.006 0.0002142142
 \end{verbatim}
 
 \section{Distribuição Binomial}\label{distribuiuxe7uxe3o-binomial}
@@ -9872,7 +9665,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-247-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-245-1.pdf}
 
 \subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o}
 
@@ -9898,7 +9691,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-248-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-246-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o}
 
@@ -9931,7 +9724,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-249-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-247-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o}
 
@@ -9954,7 +9747,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-250-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-248-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica}
 
@@ -9977,7 +9770,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-251-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-249-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9986,7 +9779,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-251-2.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-249-2.pdf}
 
 \textbf{Cálculo de probabilidade}: Seja \(X \sim \text{Binomial}(n=20, p=0.1)\).
 
@@ -10151,7 +9944,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-253-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-251-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-1}
 
@@ -10187,7 +9980,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-254-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-252-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-1}
 
@@ -10207,7 +10000,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-255-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-253-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-1}
 
@@ -10228,7 +10021,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-256-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-254-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10243,7 +10036,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-256-2.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-254-2.pdf}
 
 \textbf{Cálculo de probabilidades}: Seja \(X\sim\text{Poisson}(\lambda=5)\).
 
@@ -10397,7 +10190,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-260-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-258-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o}
 
@@ -10422,7 +10215,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-261-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-259-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-2}
 
@@ -10453,7 +10246,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-262-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-260-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-2}
 
@@ -10473,7 +10266,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-263-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-261-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-2}
 
@@ -10498,7 +10291,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-264-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-262-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10585,7 +10378,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-265-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-263-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-1}
 
@@ -10610,7 +10403,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-266-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-264-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-3}
 
@@ -10641,7 +10434,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-267-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-265-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-3}
 
@@ -10661,7 +10454,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-268-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-266-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-3}
 
@@ -10686,7 +10479,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-269-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-267-1.pdf}
 
 \section{Distribuição Normal}\label{distribuiuxe7uxe3o-normal}
 
@@ -10799,7 +10592,7 @@ Função densidade de probabilidade e função de distribuição.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-274-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-272-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10817,7 +10610,7 @@ Função densidade de probabilidade e função de distribuição.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-275-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-273-1.pdf}
 
 \chapter{Método da transformada inversa}\label{muxe9todo-da-transformada-inversa}
 
@@ -10951,7 +10744,7 @@ Representar graficamente e determinar: média, desvio padrão e mediana.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-277-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-275-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11041,7 +10834,7 @@ método da transformada inversa
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-279-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-277-1.pdf}
 
 \textbf{Exemplo 5}: Geração de uma variável aleatória com distribuição
 \(Geométrica(p)\). Seja \(X\sim Geometrica(p)\). Lembre que
@@ -11076,7 +10869,7 @@ onde \(\lfloor  \rfloor =\) maior inteiro.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-280-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-278-1.pdf}
 
 \textbf{Exemplo 6}: Geração de uma variável aleatória com distribuição de
 Poisson. A variável aleatória \(X\) é de Poisson com média \(\lambda\) se
@@ -11119,9 +10912,9 @@ expresso da seguinte forma.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-281-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-279-1.pdf}
 
-\section{Exercícios}\label{exercuxedcios-23}
+\section{Exercícios}\label{exercuxedcios-22}
 
 \textbf{1.} Considere uma variável aleatória \(X\) com a seguinte distribuição
 de probabilidades:
@@ -11200,7 +10993,7 @@ A função \(F(x)=x^2\) é invertível no intervalo \((0,1)\) e
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-282-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-280-1.pdf}
 
 \textbf{Exemplo 2}: Geração de uma variável aleatória \(Uniforme(a,b)\). A
 geração é feita através de \[X = a+(b-a)U.\]
@@ -11217,7 +11010,7 @@ geração é feita através de \[X = a+(b-a)U.\]
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-283-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-281-1.pdf}
 
 \textbf{Exemplo 3}: Geração de uma variável aleatória exponencial. Seja \(X\)
 uma variável aleatória exponencial com taxa 1, então sua função de
@@ -11264,9 +11057,9 @@ aleatório \(U\) e fazendo \[X = -\frac{1}{\lambda}ln (U).\]
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-284-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-282-1.pdf}
 
-\section{Exercícios}\label{exercuxedcios-24}
+\section{Exercícios}\label{exercuxedcios-23}
 
 \textbf{1.} Dada uma variável aleatória \(X\) com distribuição exponencial de
 parâmetro \(\lambda = 2\), use o Método da Transformada Inversa para gerar
@@ -11382,6 +11175,213 @@ distribuição proposta normal \(N(0, 1)\).
 
 \textbf{6.} Use o método da aceitação-rejeição para gerar variáveis Weibull
 \(W(1, 2)\) usando uma distribuição proposta exponencial.
+
+\chapter{Teoremas limites}\label{teoremas-limites}
+
+Os teoremas limites clássicos de probabilidade se referem à sequencias de variáveis aleatórias independentes e identicamente distribuídas (i.i.d.). Se \(X_1,X_2,\ldots\) é uma sequência de variáveis aleatórias com média comum \(E(X)=\mu < \infty\), e seja a v.a. \(S_n = X_1 + X_2 + \cdots + X_n\).
+
+A \textbf{Lei dos Grandes Números} informa que a sequência das médias \(S_n/n\) converge para \(\mu\), quando \(n\to +\infty\). Existem duas versões da Lei, a \emph{fraca} e a \emph{forte}.
+
+\section{Lei fraca dos grandes números}\label{lei-fraca-dos-grandes-nuxfameros}
+
+A Lei Fraca dos Grandes Números é um resultado em Teoria da Probabilidade também conhecido como Teorema de Bernoulli's. De acordo com a lei, a média dos resultados obtidos por um grande número de tentativas é próximo a média da população.
+
+Sejam \(X_1,\ldots,X_n\) uma sequência de variáveis aleatórias identicamente distribuídas e independentes (i.i.d.), cada uma possuindo média \(\mu\) e variância \(\sigma^2\).
+
+\chapter{Usando números aleatórios para o cálculo de Integrais}\label{usando-nuxfameros-aleatuxf3rios-para-o-cuxe1lculo-de-integrais}
+
+Seja \(g(x)\) uma função e suponha que se quer calcular \(\theta\) onde:
+\[\theta = \int_{0}^{1}g(x)\, dx.\] Um método eficiente para realizar
+esse cálculo é o \emph{método de Monte Carlo}, que utiliza números aleatórios
+para aproximar o valor do integral. Vamos ver como isso funciona em
+detalhes.
+
+\textbf{Aproximação do Integral Usando Variáveis Aleatórias}
+
+Considere \(U\), variável aleatória que segue uma distribuição uniforme no
+intervalo (0,1). Sabemos que o valor esperado de \(g(U)\), ou seja,
+\(E[g(U)]\), pode ser usado para calcular o integral de \(g(x)\) no
+intervalo (0,1). Isto é, podemos reescrever:
+\[\theta = \int_{0}^{1}g(x)\,dx = E[g(U)].\] Agora, se \(U_1,\ldots,U_k\)
+são variáveis aleatórias independentes e uniformemente distribuídas no
+intervalo (0,1), então as variáveis aleatórias
+\(g(U_1),g(U_2),\ldots,g(U_k)\) também são independentes e identicamente
+distribuídas, com média \(\theta\). Portanto, pela Lei Forte dos Grandes
+Números, segue que, com probabilidade 1,
+\[\sum_{i=1}^{k}\frac{g(U_i)}{k} \longrightarrow E[g(U)]=\theta, \quad \text{quando} \quad k\rightarrow \infty.\]
+Em outras palavras, à medida que o número \(k\) de variáveis aleatórias
+\(U_i\) aumenta, a média das avaliações de \(g\) nestes \(U_i\)'s se aproxima
+do valor do integral \(\theta\).
+
+Portanto, para aproximar \(\theta\), podemos gerar uma grande quantidade
+de números aleatórios \(u_1, u_2, \ldots, u_k\) no intervalo (0,1) e
+calcular a média dos valores de \(g(u_i)\):
+\[\theta \approx \frac{1}{k}\sum_{i=1}^{k}g(u_i).\] Esta abordagem é o
+que chamamos de \emph{método de Monte Carlo} para o cálculo de integrais.
+
+\section{\texorpdfstring{Cálculo de \(\int_{a}^{b}g(x)\, dx\)}{Cálculo de \textbackslash int\_\{a\}\^{}\{b\}g(x)\textbackslash, dx}}\label{cuxe1lculo-de-int_abgx-dx}
+
+Agora, suponha que queremos calcular a integral de \(g(x)\) em um
+intervalo diferente, digamos {[}a, b{]}. Podemos resolver este problema
+realizando uma substituição de variáveis.
+
+Definimos uma nova variável \(y\) como
+\[y=\frac{x-a}{b-a}, \quad \text{de modo que} \quad y = \frac{dx}{(b-a)}.\]
+Isso transforma o integral original em:
+\[\theta = \int_{0}^{1}g(a+[b-a]y)(b-a)\,dy = \int_{0}^{1}h(y)\,dy,\]
+onde \(h(y) = (b-a)g(a+[b-a]y)\). Assim, podemos usar novamente o método
+de Monte Carlo para aproximar essa integral. Basta gerar números
+aleatórios uniformemente distribuídos no intervalo (0,1), calcular a
+função \(h(y)\) nesses pontos, e tomar a média. Ou seja, podemos
+aproximar: \[
+\theta \approx \frac{1}{k} \sum_{i=1}^{k} h(y_i),
+\] onde \(y_1, y_2, \ldots, y_k\) são números aleatórios uniformemente
+distribuídos em (0,1), e \(h(y) = (b - a)g(a + (b - a)y)\).
+
+\textbf{Exemplo prático}: Vamos considerar um exemplo simples para ilustrar o
+uso do método de Monte Carlo. Suponha que queremos calcular a integral
+de \(g(x) = x^2\) no intervalo {[}0, 1{]}: \[\theta = \int_{0}^{1} x^2\, dx.\]
+
+Sabemos que a resposta exata é \(\theta = \frac{1}{3}\), mas vamos usar o
+método de Monte Carlo para aproximar este valor.
+
+Geramos \(n = 10.000\) números aleatórios \(u_i\) no intervalo {[}0, 1{]},
+calculamos \(g(u_i) = u_i^2\) para cada um desses valores e tomamos a
+média:
+
+\[\theta \approx \frac{1}{10000} \sum_{i=1}^{10000} u_i^2.\]
+
+Ao rodar este processo no R, esperamos obter uma aproximação próxima de
+\(\frac{1}{3}\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Função a ser integrada}
+\NormalTok{f }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) x}\SpecialCharTok{\^{}}\DecValTok{2}
+\CommentTok{\# Quantidade de números aleatórios}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{10000}
+\CommentTok{\# Números aleatórios no intervalo [0,1]}
+\NormalTok{u }\OtherTok{\textless{}{-}} \FunctionTok{runif}\NormalTok{(}\AttributeTok{n =}\NormalTok{ n, }\AttributeTok{min =} \DecValTok{0}\NormalTok{, }\AttributeTok{max =} \DecValTok{1}\NormalTok{)}
+\CommentTok{\# Valor aproximado do integral}
+\FunctionTok{sum}\NormalTok{(}\FunctionTok{f}\NormalTok{(u))}\SpecialCharTok{/}\NormalTok{n}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.3293839
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Solução exata do integral}
+\FunctionTok{integrate}\NormalTok{(f, }\AttributeTok{lower =} \DecValTok{0}\NormalTok{, }\AttributeTok{upper =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 0.3333333 with absolute error < 3.7e-15
+\end{verbatim}
+
+Vamos calcular agora o \[\int_{1}^{2} x^2\, dx.\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Limites de integração}
+\NormalTok{a }\OtherTok{\textless{}{-}} \DecValTok{1}
+\NormalTok{b }\OtherTok{\textless{}{-}} \DecValTok{2}
+\CommentTok{\# Função a ser integrada}
+\NormalTok{f }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) x}\SpecialCharTok{\^{}}\DecValTok{2}
+\CommentTok{\# Quantidade de números aleatórios}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{10000}
+\CommentTok{\# Números aleatórios no intervalo [0,1]}
+\NormalTok{u }\OtherTok{\textless{}{-}} \FunctionTok{runif}\NormalTok{(}\AttributeTok{n =}\NormalTok{ n, }\AttributeTok{min =} \DecValTok{0}\NormalTok{, }\AttributeTok{max =} \DecValTok{1}\NormalTok{)}
+\CommentTok{\# Valor aproximado do integral}
+\FunctionTok{sum}\NormalTok{(}\FunctionTok{f}\NormalTok{(a}\SpecialCharTok{+}\NormalTok{(b}\SpecialCharTok{{-}}\NormalTok{a)}\SpecialCharTok{*}\NormalTok{u)}\SpecialCharTok{*}\NormalTok{(b}\SpecialCharTok{{-}}\NormalTok{a))}\SpecialCharTok{/}\NormalTok{n}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.33584
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Solução exata do integral}
+\FunctionTok{integrate}\NormalTok{(f, }\AttributeTok{lower =} \DecValTok{1}\NormalTok{, }\AttributeTok{upper =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 2.333333 with absolute error < 2.6e-14
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# ou}
+\NormalTok{u1 }\OtherTok{\textless{}{-}} \FunctionTok{runif}\NormalTok{(n, a, b)}
+\NormalTok{(b}\SpecialCharTok{{-}}\NormalTok{a)}\SpecialCharTok{*}\FunctionTok{mean}\NormalTok{(}\FunctionTok{f}\NormalTok{(u1))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.311123
+\end{verbatim}
+
+\section{\texorpdfstring{Cálculo de \(\int_{0}^{\infty}g(x)\, dx\)}{Cálculo de \textbackslash int\_\{0\}\^{}\{\textbackslash infty\}g(x)\textbackslash, dx}}\label{cuxe1lculo-de-int_0inftygx-dx}
+
+Se o interesse é calcular \(\int_{0}^{\infty}g(x)\, dx\), pode-se aplicar
+a substituição
+\[y=\frac{1}{(x+1)}, \quad \text{de modo que} \quad dy=\frac{-dx}{(x+1)^2}=-y^2\,dx,\]
+
+para obter a identidade:
+
+\[\theta = \int_{0}^{1}h(y)\,dy,\] onde
+\(h(y)=\frac{g(\frac{1}{y}-1)}{y^2}\).
+
+\section{Cálculo de integrais multidimensionais}\label{cuxe1lculo-de-integrais-multidimensionais}
+
+O método também pode ser utilizado para o caso de integrais
+multidimensionais. Suponha que \(g\) é uma função com argumento
+n-dimensional e se quer calcular:
+\[\theta = \int_{0}^{1}\int_{0}^{1}\cdots \int_{0}^{1} g(x_1, \ldots,x_n)\, dx_1 \, dx_2\cdots dx_n.\]
+Tem-se que \(\theta\) pode ser expresso como
+\(\theta = E[g(U_1,\ldots,U_n)]\), onde \(U_1,\ldots,U_n\) são variáveis
+aleatórias independentes uniformes no intervalo (0,1). Portanto, para
+calcular \(\theta\) é preciso gerar \(k\) cojuntos independentes, cada um
+consistindo de \(n\) variáveis uniformes (0,1) independentes:
+
+\begin{align*}
+U_{1}^{1},&\ldots,U_{n}^{1} \\
+U_{1}^{2},&\ldots,U_{n}^{2} \\
+& \;\;\vdots \\
+U_{1}^{k},&\ldots,U_{n}^{k}.
+\end{align*}
+
+Assim, as variáveis \(g(U_{1}^{i},\ldots, U_{n}^{i})\), \(i=1,\ldots,k\) são
+todas independentes e identicamente distribuídas com média \(\mu\).
+Pode-se estimar \(\theta\) por
+\(\sum_{i=1}^{k}g(U_{1}^{i},\ldots, U_{n}^{i})/k\).
+
+\section{Exercícios}\label{exercuxedcios-24}
+
+Use simulação para aproximar as seguintes integrais. Compare sua
+estimativa com a resposta exata, se conhecida.
+
+\textbf{1.} \(\int_{0}^{1}exp(e^x)\, dx\).
+
+\textbf{2.} \(\int_{0}^{1}(1-x^2)^{3/2}\, dx\).
+
+\textbf{3.} \(\int_{-2}^{2}e^{x+x^2}\, dx\).
+
+\textbf{4.} \(\int_{0}^{\pi/2} cos(x)\, dx\).
+
+\textbf{5.} \(\int_{0}^{\infty}x(1+x^2)^{-2}\, dx\).
+
+\textbf{6.} \(\int_{-\infty}^{\infty}e^{-x^2}\, dx\).
+
+\textbf{7.} \(\int_{0}^{1}\int_{0}^{1}e^{(x+y)^2}\,dy\,dx\).
+
+\textbf{8.} \(\int_0^1 \int_0^1 x^2 + y^2 \, dx \, dy\).
 
 \chapter{Distribuições univariadas no R}\label{distribuiuxe7uxf5es-univariadas-no-r}
 

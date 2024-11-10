@@ -6737,177 +6737,6 @@ dois grupos: tratamento e controlo. O grupo de tratamento deve conter 20
 pacientes e o grupo de controlo 10. Usando `sample()`, faça a
 randomização dos pacientes. Dica: use a função `setdiff()`.
 
-# Teoremas limites
-
-Os teoremas limites clássicos de probabilidade se referem à sequencias de variáveis aleatórias independentes e identicamente distribuídas (i.i.d.). Se $X_1,X_2,\ldots$ é uma sequência de variáveis aleatórias com média comum $E(X)=\mu < \infty$, e seja a v.a. $S_n = X_1 + X_2 + \cdots + X_n$.
-
-A **Lei dos Grandes Números** informa que a sequência das médias $S_n/n$ converge para $\mu$, quando $n\to +\infty$. Existem duas versões da Lei, a *fraca* e a *forte*.
-
-## Lei fraca dos grandes números
-
-A Lei Fraca dos Grandes Números é um resultado em Teoria da Probabilidade também conhecido como Teorema de Bernoulli’s. De acordo com a lei, a média dos resultados obtidos por um grande número de tentativas é próximo a média da população.
-
-Sejam $X_1,\ldots,X_n$ uma sequência de variáveis aleatórias identicamente distribuídas e independentes (i.i.d.), cada uma possuindo média $\mu$ e variância $\sigma^2$. 
-
-
-
-
-# Usando números aleatórios para o cálculo de Integrais
-
-Seja $g(x)$ uma função e suponha que se quer calcular $\theta$ onde:
-$$\theta = \int_{0}^{1}g(x)\, dx.$$ Um método eficiente para realizar
-esse cálculo é o *método de Monte Carlo*, que utiliza números aleatórios
-para aproximar o valor do integral. Vamos ver como isso funciona em
-detalhes.
-
-**Aproximação do Integral Usando Variáveis Aleatórias**
-
-Considere $U$, variável aleatória que segue uma distribuição uniforme no
-intervalo (0,1). Sabemos que o valor esperado de $g(U)$, ou seja,
-$E[g(U)]$, pode ser usado para calcular o integral de $g(x)$ no
-intervalo (0,1). Isto é, podemos reescrever:
-$$\theta = \int_{0}^{1}g(x)\,dx = E[g(U)].$$ Agora, se $U_1,\ldots,U_k$
-são variáveis aleatórias independentes e uniformemente distribuídas no
-intervalo (0,1), então as variáveis aleatórias
-$g(U_1),g(U_2),\ldots,g(U_k)$ também são independentes e identicamente
-distribuídas, com média $\theta$. Portanto, pela Lei Forte dos Grandes
-Números, segue que, com probabilidade 1,
-$$\sum_{i=1}^{k}\frac{g(U_i)}{k} \longrightarrow E[g(U)]=\theta, \quad \text{quando} \quad k\rightarrow \infty.$$
-Em outras palavras, à medida que o número $k$ de variáveis aleatórias
-$U_i$ aumenta, a média das avaliações de $g$ nestes $U_i$'s se aproxima
-do valor do integral $\theta$.
-
-Portanto, para aproximar $\theta$, podemos gerar uma grande quantidade
-de números aleatórios $u_1, u_2, \ldots, u_k$ no intervalo (0,1) e
-calcular a média dos valores de $g(u_i)$:
-$$\theta \approx \frac{1}{k}\sum_{i=1}^{k}g(u_i).$$ Esta abordagem é o
-que chamamos de *método de Monte Carlo* para o cálculo de integrais.
-
-## Cálculo de $\int_{a}^{b}g(x)\, dx$
-
-Agora, suponha que queremos calcular a integral de $g(x)$ em um
-intervalo diferente, digamos [a, b]. Podemos resolver este problema
-realizando uma substituição de variáveis.
-
-Definimos uma nova variável $y$ como
-$$y=\frac{x-a}{b-a}, \quad \text{de modo que} \quad y = \frac{dx}{(b-a)}.$$
-Isso transforma o integral original em:
-$$\theta = \int_{0}^{1}g(a+[b-a]y)(b-a)\,dy = \int_{0}^{1}h(y)\,dy,$$
-onde $h(y) = (b-a)g(a+[b-a]y)$. Assim, podemos usar novamente o método
-de Monte Carlo para aproximar essa integral. Basta gerar números
-aleatórios uniformemente distribuídos no intervalo (0,1), calcular a
-função $h(y)$ nesses pontos, e tomar a média. Ou seja, podemos
-aproximar: $$
-\theta \approx \frac{1}{k} \sum_{i=1}^{k} h(y_i),
-$$ onde $y_1, y_2, \ldots, y_k$ são números aleatórios uniformemente
-distribuídos em (0,1), e $h(y) = (b - a)g(a + (b - a)y)$.
-
-**Exemplo prático**: Vamos considerar um exemplo simples para ilustrar o
-uso do método de Monte Carlo. Suponha que queremos calcular a integral
-de $g(x) = x^2$ no intervalo [0, 1]: $$\theta = \int_{0}^{1} x^2\, dx.$$
-
-Sabemos que a resposta exata é $\theta = \frac{1}{3}$, mas vamos usar o
-método de Monte Carlo para aproximar este valor.
-
-Geramos $n = 10.000$ números aleatórios $u_i$ no intervalo [0, 1],
-calculamos $g(u_i) = u_i^2$ para cada um desses valores e tomamos a
-média:
-
-$$\theta \approx \frac{1}{10000} \sum_{i=1}^{10000} u_i^2.$$
-
-Ao rodar este processo no R, esperamos obter uma aproximação próxima de
-$\frac{1}{3}$.
-
-```{r}
-# Função a ser integrada
-f <- function(x) x^2
-# Quantidade de números aleatórios
-n <- 10000
-# Números aleatórios no intervalo [0,1]
-u <- runif(n = n, min = 0, max = 1)
-# Valor aproximado do integral
-sum(f(u))/n
-# Solução exata do integral
-integrate(f, lower = 0, upper = 1)
-```
-
-Vamos calcular agora o $$\int_{1}^{2} x^2\, dx.$$
-
-```{r}
-# Limites de integração
-a <- 1
-b <- 2
-# Função a ser integrada
-f <- function(x) x^2
-# Quantidade de números aleatórios
-n <- 10000
-# Números aleatórios no intervalo [0,1]
-u <- runif(n = n, min = 0, max = 1)
-# Valor aproximado do integral
-sum(f(a+(b-a)*u)*(b-a))/n
-# Solução exata do integral
-integrate(f, lower = 1, upper = 2)
-# ou
-u1 <- runif(n, a, b)
-(b-a)*mean(f(u1))
-```
-
-## Cálculo de $\int_{0}^{\infty}g(x)\, dx$
-
-Se o interesse é calcular $\int_{0}^{\infty}g(x)\, dx$, pode-se aplicar
-a substituição
-$$y=\frac{1}{(x+1)}, \quad \text{de modo que} \quad dy=\frac{-dx}{(x+1)^2}=-y^2\,dx,$$
-
-para obter a identidade:
-
-$$\theta = \int_{0}^{1}h(y)\,dy,$$ onde
-$h(y)=\frac{g(\frac{1}{y}-1)}{y^2}$.
-
-## Cálculo de integrais multidimensionais
-
-O método também pode ser utilizado para o caso de integrais
-multidimensionais. Suponha que $g$ é uma função com argumento
-n-dimensional e se quer calcular:
-$$\theta = \int_{0}^{1}\int_{0}^{1}\cdots \int_{0}^{1} g(x_1, \ldots,x_n)\, dx_1 \, dx_2\cdots dx_n.$$
-Tem-se que $\theta$ pode ser expresso como
-$\theta = E[g(U_1,\ldots,U_n)]$, onde $U_1,\ldots,U_n$ são variáveis
-aleatórias independentes uniformes no intervalo (0,1). Portanto, para
-calcular $\theta$ é preciso gerar $k$ cojuntos independentes, cada um
-consistindo de $n$ variáveis uniformes (0,1) independentes:
-
-\begin{align*}
-U_{1}^{1},&\ldots,U_{n}^{1} \\
-U_{1}^{2},&\ldots,U_{n}^{2} \\
-& \;\;\vdots \\
-U_{1}^{k},&\ldots,U_{n}^{k}.
-\end{align*}
-
-Assim, as variáveis $g(U_{1}^{i},\ldots, U_{n}^{i})$, $i=1,\ldots,k$ são
-todas independentes e identicamente distribuídas com média $\mu$.
-Pode-se estimar $\theta$ por
-$\sum_{i=1}^{k}g(U_{1}^{i},\ldots, U_{n}^{i})/k$.
-
-## Exercícios
-
-Use simulação para aproximar as seguintes integrais. Compare sua
-estimativa com a resposta exata, se conhecida.
-
-**1.** $\int_{0}^{1}exp(e^x)\, dx$.
-
-**2.** $\int_{0}^{1}(1-x^2)^{3/2}\, dx$.
-
-**3.** $\int_{-2}^{2}e^{x+x^2}\, dx$.
-
-**4.** $\int_{0}^{\pi/2} cos(x)\, dx$.
-
-**5.** $\int_{0}^{\infty}x(1+x^2)^{-2}\, dx$.
-
-**6.** $\int_{-\infty}^{\infty}e^{-x^2}\, dx$.
-
-**7.** $\int_{0}^{1}\int_{0}^{1}e^{(x+y)^2}\,dy\,dx$.
-
-**8.** $\int_0^1 \int_0^1 x^2 + y^2 \, dx \, dy$.
-
 # Probabilidade e Variáveis Aleatórias
 
 **Exemplo 1**: Dada a função 
@@ -8490,6 +8319,175 @@ distribuição proposta normal $N(0, 1)$.
 
 **6.** Use o método da aceitação-rejeição para gerar variáveis Weibull
 $W(1, 2)$ usando uma distribuição proposta exponencial.
+
+# Teoremas limites
+
+Os teoremas limites clássicos de probabilidade se referem à sequencias de variáveis aleatórias independentes e identicamente distribuídas (i.i.d.). Se $X_1,X_2,\ldots$ é uma sequência de variáveis aleatórias com média comum $E(X)=\mu < \infty$, e seja a v.a. $S_n = X_1 + X_2 + \cdots + X_n$.
+
+A **Lei dos Grandes Números** informa que a sequência das médias $S_n/n$ converge para $\mu$, quando $n\to +\infty$. Existem duas versões da Lei, a *fraca* e a *forte*.
+
+## Lei fraca dos grandes números
+
+A Lei Fraca dos Grandes Números é um resultado em Teoria da Probabilidade também conhecido como Teorema de Bernoulli’s. De acordo com a lei, a média dos resultados obtidos por um grande número de tentativas é próximo a média da população.
+
+Sejam $X_1,\ldots,X_n$ uma sequência de variáveis aleatórias identicamente distribuídas e independentes (i.i.d.), cada uma possuindo média $\mu$ e variância $\sigma^2$. 
+
+
+# Usando números aleatórios para o cálculo de Integrais
+
+Seja $g(x)$ uma função e suponha que se quer calcular $\theta$ onde:
+$$\theta = \int_{0}^{1}g(x)\, dx.$$ Um método eficiente para realizar
+esse cálculo é o *método de Monte Carlo*, que utiliza números aleatórios
+para aproximar o valor do integral. Vamos ver como isso funciona em
+detalhes.
+
+**Aproximação do Integral Usando Variáveis Aleatórias**
+
+Considere $U$, variável aleatória que segue uma distribuição uniforme no
+intervalo (0,1). Sabemos que o valor esperado de $g(U)$, ou seja,
+$E[g(U)]$, pode ser usado para calcular o integral de $g(x)$ no
+intervalo (0,1). Isto é, podemos reescrever:
+$$\theta = \int_{0}^{1}g(x)\,dx = E[g(U)].$$ Agora, se $U_1,\ldots,U_k$
+são variáveis aleatórias independentes e uniformemente distribuídas no
+intervalo (0,1), então as variáveis aleatórias
+$g(U_1),g(U_2),\ldots,g(U_k)$ também são independentes e identicamente
+distribuídas, com média $\theta$. Portanto, pela Lei Forte dos Grandes
+Números, segue que, com probabilidade 1,
+$$\sum_{i=1}^{k}\frac{g(U_i)}{k} \longrightarrow E[g(U)]=\theta, \quad \text{quando} \quad k\rightarrow \infty.$$
+Em outras palavras, à medida que o número $k$ de variáveis aleatórias
+$U_i$ aumenta, a média das avaliações de $g$ nestes $U_i$'s se aproxima
+do valor do integral $\theta$.
+
+Portanto, para aproximar $\theta$, podemos gerar uma grande quantidade
+de números aleatórios $u_1, u_2, \ldots, u_k$ no intervalo (0,1) e
+calcular a média dos valores de $g(u_i)$:
+$$\theta \approx \frac{1}{k}\sum_{i=1}^{k}g(u_i).$$ Esta abordagem é o
+que chamamos de *método de Monte Carlo* para o cálculo de integrais.
+
+## Cálculo de $\int_{a}^{b}g(x)\, dx$
+
+Agora, suponha que queremos calcular a integral de $g(x)$ em um
+intervalo diferente, digamos [a, b]. Podemos resolver este problema
+realizando uma substituição de variáveis.
+
+Definimos uma nova variável $y$ como
+$$y=\frac{x-a}{b-a}, \quad \text{de modo que} \quad y = \frac{dx}{(b-a)}.$$
+Isso transforma o integral original em:
+$$\theta = \int_{0}^{1}g(a+[b-a]y)(b-a)\,dy = \int_{0}^{1}h(y)\,dy,$$
+onde $h(y) = (b-a)g(a+[b-a]y)$. Assim, podemos usar novamente o método
+de Monte Carlo para aproximar essa integral. Basta gerar números
+aleatórios uniformemente distribuídos no intervalo (0,1), calcular a
+função $h(y)$ nesses pontos, e tomar a média. Ou seja, podemos
+aproximar: $$
+\theta \approx \frac{1}{k} \sum_{i=1}^{k} h(y_i),
+$$ onde $y_1, y_2, \ldots, y_k$ são números aleatórios uniformemente
+distribuídos em (0,1), e $h(y) = (b - a)g(a + (b - a)y)$.
+
+**Exemplo prático**: Vamos considerar um exemplo simples para ilustrar o
+uso do método de Monte Carlo. Suponha que queremos calcular a integral
+de $g(x) = x^2$ no intervalo [0, 1]: $$\theta = \int_{0}^{1} x^2\, dx.$$
+
+Sabemos que a resposta exata é $\theta = \frac{1}{3}$, mas vamos usar o
+método de Monte Carlo para aproximar este valor.
+
+Geramos $n = 10.000$ números aleatórios $u_i$ no intervalo [0, 1],
+calculamos $g(u_i) = u_i^2$ para cada um desses valores e tomamos a
+média:
+
+$$\theta \approx \frac{1}{10000} \sum_{i=1}^{10000} u_i^2.$$
+
+Ao rodar este processo no R, esperamos obter uma aproximação próxima de
+$\frac{1}{3}$.
+
+```{r}
+# Função a ser integrada
+f <- function(x) x^2
+# Quantidade de números aleatórios
+n <- 10000
+# Números aleatórios no intervalo [0,1]
+u <- runif(n = n, min = 0, max = 1)
+# Valor aproximado do integral
+sum(f(u))/n
+# Solução exata do integral
+integrate(f, lower = 0, upper = 1)
+```
+
+Vamos calcular agora o $$\int_{1}^{2} x^2\, dx.$$
+
+```{r}
+# Limites de integração
+a <- 1
+b <- 2
+# Função a ser integrada
+f <- function(x) x^2
+# Quantidade de números aleatórios
+n <- 10000
+# Números aleatórios no intervalo [0,1]
+u <- runif(n = n, min = 0, max = 1)
+# Valor aproximado do integral
+sum(f(a+(b-a)*u)*(b-a))/n
+# Solução exata do integral
+integrate(f, lower = 1, upper = 2)
+# ou
+u1 <- runif(n, a, b)
+(b-a)*mean(f(u1))
+```
+
+## Cálculo de $\int_{0}^{\infty}g(x)\, dx$
+
+Se o interesse é calcular $\int_{0}^{\infty}g(x)\, dx$, pode-se aplicar
+a substituição
+$$y=\frac{1}{(x+1)}, \quad \text{de modo que} \quad dy=\frac{-dx}{(x+1)^2}=-y^2\,dx,$$
+
+para obter a identidade:
+
+$$\theta = \int_{0}^{1}h(y)\,dy,$$ onde
+$h(y)=\frac{g(\frac{1}{y}-1)}{y^2}$.
+
+## Cálculo de integrais multidimensionais
+
+O método também pode ser utilizado para o caso de integrais
+multidimensionais. Suponha que $g$ é uma função com argumento
+n-dimensional e se quer calcular:
+$$\theta = \int_{0}^{1}\int_{0}^{1}\cdots \int_{0}^{1} g(x_1, \ldots,x_n)\, dx_1 \, dx_2\cdots dx_n.$$
+Tem-se que $\theta$ pode ser expresso como
+$\theta = E[g(U_1,\ldots,U_n)]$, onde $U_1,\ldots,U_n$ são variáveis
+aleatórias independentes uniformes no intervalo (0,1). Portanto, para
+calcular $\theta$ é preciso gerar $k$ cojuntos independentes, cada um
+consistindo de $n$ variáveis uniformes (0,1) independentes:
+
+\begin{align*}
+U_{1}^{1},&\ldots,U_{n}^{1} \\
+U_{1}^{2},&\ldots,U_{n}^{2} \\
+& \;\;\vdots \\
+U_{1}^{k},&\ldots,U_{n}^{k}.
+\end{align*}
+
+Assim, as variáveis $g(U_{1}^{i},\ldots, U_{n}^{i})$, $i=1,\ldots,k$ são
+todas independentes e identicamente distribuídas com média $\mu$.
+Pode-se estimar $\theta$ por
+$\sum_{i=1}^{k}g(U_{1}^{i},\ldots, U_{n}^{i})/k$.
+
+## Exercícios
+
+Use simulação para aproximar as seguintes integrais. Compare sua
+estimativa com a resposta exata, se conhecida.
+
+**1.** $\int_{0}^{1}exp(e^x)\, dx$.
+
+**2.** $\int_{0}^{1}(1-x^2)^{3/2}\, dx$.
+
+**3.** $\int_{-2}^{2}e^{x+x^2}\, dx$.
+
+**4.** $\int_{0}^{\pi/2} cos(x)\, dx$.
+
+**5.** $\int_{0}^{\infty}x(1+x^2)^{-2}\, dx$.
+
+**6.** $\int_{-\infty}^{\infty}e^{-x^2}\, dx$.
+
+**7.** $\int_{0}^{1}\int_{0}^{1}e^{(x+y)^2}\,dy\,dx$.
+
+**8.** $\int_0^1 \int_0^1 x^2 + y^2 \, dx \, dy$.
 
 # Distribuições univariadas no R
 
