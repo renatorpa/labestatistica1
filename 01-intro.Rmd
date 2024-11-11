@@ -6739,7 +6739,64 @@ randomização dos pacientes. Dica: use a função `setdiff()`.
 
 # Probabilidade e Variáveis Aleatórias
 
-**Exemplo 1**: Dada a função 
+Uma **variável aleatória** é uma função que atribui a cada resultado possível de um experimento aleatório um valor numérico. Em termos formais, é uma função que mapeia elementos de um espaço de resultados  $\Omega$  para o conjunto dos números reais $\mathbb{R}$. Por exemplo, ao lançar um dado, podemos definir uma variável aleatória  $X$  que representa o número obtido na face superior, assumindo valores de 1 a 6.
+
+As variáveis aleatórias são fundamentais na teoria das probabilidades, pois permitem quantificar e analisar matematicamente fenómenos aleatórios. Elas podem ser classificadas em dois tipos principais:
+
+- **Variáveis Aleatórias Discretas**: assumem valores em um conjunto finito ou numerável, como o número de caras ao lançar uma moeda três vezes.
+- **Variáveis Aleatórias Contínuas**: podem assumir qualquer valor em um intervalo contínuo, como a altura de uma pessoa medida em centímetros.
+
+A compreensão das variáveis aleatórias é essencial para modelar situações incertas e calcular probabilidades associadas a diferentes eventos.
+
+**Exemplo 1**: Em uma empresa, o número de reclamações recebidas por dia é uma variável aleatória discreta  $X$  com a seguinte função de probabilidade:
+
+$$f_{X}(x) = P(X = x) =
+\begin{cases}
+0.1, & x = 0 \\
+0.25, & x = 1 \\
+0.3, & x = 2 \\
+0.2, & x = 3 \\
+0.15, & x = 4
+\end{cases}$$
+
+(a) Mostre que $f_{X}$ é uma função massa de probabilidade (f.m.p.).
+
+(b) Calcule o número esperado de reclamações e a variância do número de reclamações por dia.
+
+(c) Calcule a probabilidade de haver mais de 2 reclamações em um dia.
+
+Sabemos que para $f_{X}$ ser uma f.m.p. ela deve satisfazer duas condições:
+
+- $f_{X}(x) \geq 0, \forall x\in \mathbb{R}$.
+- $\sum_{x}f_{X}(x)=1$.
+
+```{r eval=FALSE}
+# Função de probabilidade do número de reclamações (X)
+X_valores <- c(0, 1, 2, 3, 4)
+P_X <- c(0.1, 0.25, 0.3, 0.2, 0.15)
+
+# a. Verificar se P(X) é uma função massa de probabilidade
+sum(P_X)  # Deve ser igual a 1
+## [1] 1
+```
+
+Sabemos que $E(X)=\sum_{x}x\times f_{X}(x)$ e $V(X) = \sum_{x}(x-E(X))^2\times f_{X}(x)$.
+
+```{r eval=FALSE}
+# b. Cálculo da média e variância do número de reclamações
+E_X <- sum(X_valores * P_X)  # Esperança
+Var_X <- sum((X_valores - E_X)^2 * P_X)  # Variância
+print(E_X)  
+## [1] 2.05
+print(Var_X)
+## [1] 1.4475
+# c. Probabilidade de haver mais de 2 reclamações em um dia
+P_Y_maior_2 <- sum(P_X[X_valores > 2])
+print(P_Y_maior_2)
+## [1] 0.35
+```
+
+**Exemplo 2**: Dada a função 
 
 $$f(x) = \begin{cases}
 2e^{-2x},& \quad \text{se} \quad x\geq 0 \\
@@ -6791,7 +6848,7 @@ integrate(f1, lower = 0.3, upper = 0.7)
 ## 0.3022147 with absolute error < 3.4e-15
 ```
 
-**Exemplo 2**: A demanda diária de arroz em um supermercado, em centenas de quilos, é uma variável aleatória $X$ com f.d.p. dada por
+**Exemplo 3**: A demanda diária de arroz em um supermercado, em centenas de quilos, é uma variável aleatória $X$ com f.d.p. dada por
 
 $$f(x) = \begin{cases}
 \frac{2}{3}x,& \quad \text{se} \quad 0\leq x <1 \\
@@ -6834,7 +6891,7 @@ integrate(f2, 1.5, 3)
 ## 0.375 with absolute error < 4.2e-15
 ```
 
-A venda esperada em trinta dias é 30 vezes o valor esperado de venda em um dia. Para calcular o valor esperado $E(X) = \int_{-\infty}^{+\infty}xf(x)\,dx$ definimos uma nova função e resolvemos o integral. A função `integrate()` retorna uma lista onde um dos elementos (`value`) é o valor da integral.
+A venda esperada em trinta dias é 30 vezes o valor esperado de venda em um dia. Para calcular o valor esperado $E(X) = \int_{-\infty}^{+\infty}xf(x)\,dx$ definimos uma nova função e resolvemos o integral. A função `integrate()` retorna uma lista onde um dos elementos (`value`) é o valor do integral.
 
 ```{r}
 ef2 <- function(x) {
@@ -6854,10 +6911,44 @@ Por fim, ressaltamos que os exemplos abordados aqui são básicos e podem ser re
 
 ## Exercícios
 
-**1.** Em uma determinada localidade a distribuição de renda, em u.m. (unidade monetária) é uma variável aleatória $X$ com função de distribuição de probabilidade:
+**1.** O número de produtos defeituosos em uma linha de produção ao final de cada hora é uma variável aleatória discreta  $X$  com a seguinte função de probabilidade:
+
+$$P(X = x) =
+\begin{cases}
+\frac{1}{10}, & x = 0 \\
+\frac{2}{10}, & x = 1 \\
+\frac{3}{10}, & x = 2 \\
+\frac{2}{10}, & x = 3 \\
+\frac{2}{10}, & x = 4
+\end{cases}$$
+
+(a) Verifique se  $P(X)$  é uma função massa de probabilidade.
+
+(b) Calcule o valor esperado e a variância do número de produtos defeituosos por hora.
+
+(c) Calcule a probabilidade de haver, no máximo, 2 produtos defeituosos em uma hora.
+
+**2.** Uma pesquisa foi realizada em uma universidade sobre o número de cursos que cada aluno está matriculado. A variável aleatória  $Z$  representa o número de cursos e possui a seguinte função de probabilidade:
+
+$$P(Z = z) =
+\begin{cases}
+0.05, & z = 1 \\
+0.15, & z = 2 \\
+0.35, & z = 3 \\
+0.25, & z = 4 \\
+0.2, & z = 5
+\end{cases}$$
+
+(a) Verifique se  $P(Z)$  é uma função massa de probabilidade.
+
+(b) Calcule o valor esperado e a variância do número de cursos em que os alunos estão matriculados.
+
+(c) Calcule a probabilidade de que um aluno esteja matriculado em mais de 3 cursos.
+
+**3.** Em uma determinada localidade a distribuição de renda, em u.m. (unidade monetária) é uma variável aleatória $X$ com função de distribuição de probabilidade:
 
 $$
-f(x) = 
+f_{X}(x) = 
 \begin{cases} 
 \frac{1}{10}x + \frac{1}{10}, & \text{se } 0 \leq x \leq 2 \\[10pt]
 -\frac{3}{40}x + \frac{9}{20}, & \text{se } 2 < x \leq 6 \\[10pt]
@@ -6865,23 +6956,23 @@ f(x) =
 \end{cases}
 $$
 
-(a) Mostre que $f(x)$ é uma f.d.p..
+(a) Mostre que $f(x)$ é uma função densidade de probabilidade.
 (b) Qual a renda média nesta localidade?
 (c) Calcule a probabilidade de encontrar uma pessoa com renda acima de 4.5 u.m. e indique o resultado no gráfico da distribuição.
 
-**2.** Sabe-se que uma variável aleatória contínua $X$ é distribuída uniformemente no intervalo 10 e 20.
+**4.** Sabe-se que uma variável aleatória contínua $X$ é distribuída uniformemente no intervalo 10 e 20.
 
 (a) Apresente o gráfico da função densidade de probabilidade.
 (b) Calcule $P(X < 15)$.
 (c) Calcule $P(12\leq X \leq 18)$.
 (d) Calcule $E(X)$ e $V(X)$.
 
-**3.** O tempo de espera (em minutos) para ser atendido em um posto de atendimento ao cliente é uma variável aleatória contínua  $Y$ , cuja função de densidade de probabilidade é dada por:
+**5.** O tempo de espera (em minutos) para ser atendido em um posto de atendimento ao cliente é uma variável aleatória contínua  $Y$ , cuja função de densidade de probabilidade é dada por:
 
 $$
-f(y) = 
+f_{Y}(y) = 
 \begin{cases} 
-0.5y, & 0\leq y\leq 4 \\[10pt]
+0.125y, & 0\leq y\leq 4 \\[10pt]
 0,& \text{caso contrário}
 \end{cases}
 $$
@@ -6897,10 +6988,10 @@ Com base nesta função de densidade, responda às seguintes questões:
 
 (e) Calcule  $P(Y < 3 \mid Y > 1)$ , que representa a probabilidade de o tempo de espera ser inferior a 3 minutos, dado que já passou mais de 1 minuto.
 
-**4.** A duração, em anos, de uma certa lâmpada especial é uma variável aleatória contínua com densidade dada por:
+**6.** A duração, em anos, de uma certa lâmpada especial é uma variável aleatória contínua $X$ com densidade dada por:
 
 $$
-f(x) = 
+f_{X}(x) = 
 \begin{cases} 
 3\,e^{-3x}, & x\geq0 \\[10pt]
 0,& x<0
