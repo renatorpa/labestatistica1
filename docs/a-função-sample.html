@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 3 R e RStudio | Introdução ao R e Simulação</title>
+  <title>Capítulo 18 A função sample() | Introdução ao R e Simulação</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 3 R e RStudio | Introdução ao R e Simulação" />
+  <meta property="og:title" content="Capítulo 18 A função sample() | Introdução ao R e Simulação" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/docs/ciencias.png" />
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
@@ -19,7 +19,7 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 3 R e RStudio | Introdução ao R e Simulação" />
+  <meta name="twitter:title" content="Capítulo 18 A função sample() | Introdução ao R e Simulação" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
@@ -36,8 +36,8 @@ set in the _output.yml file.</p>" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="normas-de-funcionamento.html"/>
-<link rel="next" href="r-como-calculadora-e-operações-aritméticas.html"/>
+<link rel="prev" href="o-pacote-ggplot2.html"/>
+<link rel="next" href="probabilidade-e-variáveis-aleatórias.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -491,109 +491,85 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="r-e-rstudio" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">Capítulo 3</span> R e RStudio<a href="r-e-rstudio.html#r-e-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>O R é um software de código aberto desenvolvido como uma implementação
-gratuita da linguagem S, que foi concebida especificamente para
-computação estatística, programação estatística e geração de gráficos. A
-principal intenção era proporcionar aos utilizadores a capacidade de
-explorar dados de maneira intuitiva e interativa, utilizando
-representações gráficas significativas para facilitar a compreensão dos
-dados. O software estatístico R foi originalmente criado por Ross Ihaka
-e Robert Gentleman, da Universidade de Auckland, Nova Zelândia.</p>
-<p>O R oferece um conjunto integrado de ferramentas para manipulação de
-dados, cálculo e visualização gráfica. Ele oferece:</p>
+<div id="a-função-sample" class="section level1 hasAnchor" number="18">
+<h1><span class="header-section-number">Capítulo 18</span> A função <code>sample()</code><a href="a-função-sample.html#a-função-sample" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>A função <code>sample()</code> em R é amplamente utilizada para gerar amostras
+aleatórias a partir de um conjunto de dados ou de uma sequência de
+números. É uma função muito flexível que permite definir o tamanho da
+amostra, se a amostragem é feita com ou sem reposição, e se os elementos
+têm diferentes probabilidades de serem selecionados.</p>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="a-função-sample.html#cb267-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
+<span id="cb267-2"><a href="a-função-sample.html#cb267-2" tabindex="-1"></a><span class="fu">sample</span>(x, size, <span class="at">replace =</span> <span class="cn">FALSE</span>, <span class="at">prob =</span> <span class="cn">NULL</span>)</span></code></pre></div>
 <ul>
-<li>Manipulação eficiente de dados e armazenamento flexível;</li>
-<li>Operadores poderosos para cálculos em arrays e matrizes;</li>
-<li>Uma coleção abrangente, coerente e integrada de ferramentas para
-análise de dados;</li>
-<li>Recursos gráficos avançados para análise e visualização de dados,
-seja na tela ou em cópia impressa;</li>
-<li>Uma linguagem de programação robusta, intuitiva e eficaz, que inclui
-estruturas condicionais, loops, funções recursivas definidas pelo
-utilizador, além de recursos de entrada e saída de dados.</li>
+<li><code>x</code>: O vetor de elementos a serem amostrados.</li>
+<li><code>size</code>: O tamanho da amostra desejada.</li>
+<li><code>replace</code>: Um valor lógico que indica se a amostragem é feita com
+reposição (<code>TRUE</code>) ou sem reposição (<code>FALSE</code>).</li>
+<li><code>prob</code>: Um vetor de probabilidades associadas a cada elemento em
+<code>x</code>. Se não especificado, assume-se que todos os elementos têm a
+mesma probabilidade de serem selecionados.</li>
 </ul>
-<div id="instalação-e-funcionalidades-básicas" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> Instalação e funcionalidades básicas<a href="r-e-rstudio.html#instalação-e-funcionalidades-básicas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li><p>A versão base do R, que inclui o conjunto fundamental de comandos e
-funções, pode ser descarregada diretamente do site oficial:
-<a href="https://www.r-project.org/" class="uri">https://www.r-project.org/</a>. Após instalar o R, é altamente
-recomendável instalar também um ambiente de desenvolvimento
-integrado (IDE) para facilitar o trabalho com o código R. Um IDE
-permite ao utilizador escrever, guardar e organizar scripts de
-código R de forma mais eficiente, além de executar comandos
-diretamente no Console do R e gerir configurações e saídas de forma
-conveniente. Uma escolha popular de IDE é o RStudio, que é gratuito
-e pode ser descarregado em <a href="https://www.rstudio.com/" class="uri">https://www.rstudio.com/</a>.</p></li>
-<li><p>Além do conjunto base de funções, o R oferece uma vasta gama de
-pacotes adicionais desenvolvidos pela comunidade de utilizadores.
-Estes pacotes podem ser instalados diretamente pelo Console do R ou
-através do menu do RStudio. Para instalar um pacote no Console, pode
-usar a função <code>install.packages("nome_do_pacote")</code>. É importante
-lembrar que, para instalar pacotes, é necessário estar ligado à
-internet. Para visualizar todos os pacotes já instalados no seu
-ambiente R, pode utilizar a função <code>installed.packages()</code>. Para usar
-os packages nãoo incluídos na base do R é necessário torna-los
-activos, usando a função <code>library()</code>.</p></li>
-</ul>
-</div>
-<div id="navegar-no-rstudio" class="section level2 hasAnchor" number="3.2">
-<h2><span class="header-section-number">3.2</span> Navegar no RStudio<a href="r-e-rstudio.html#navegar-no-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Existem quatro painéis principais no ambiente de trabalho do RStudio:</p>
-<ul>
-<li><p><strong>Editor/Scripts</strong>. Este painel é utilizado para criar, carregar e
-exibir scripts de código R. Ele oferece recursos como realce de
-sintaxe, preenchimento automático e a capacidade de executar o
-código linha por linha ou em blocos, o que facilita a edição e
-depuração do código.</p></li>
-<li><p><strong>Console</strong>. No Console, os comandos são executados diretamente. Ele
-funciona de maneira semelhante ao console padrão do R, mas com
-melhorias significativas, como realce de sintaxe, preenchimento
-automático de código e integração com os demais painéis do RStudio.
-O Console é o local ideal para testes rápidos e execução de comandos
-imediatos.</p></li>
-<li><p><strong>Environment/Histórico</strong>. O painel “Environment” (Ambiente) exibe
-informações sobre os objetos actualmente carregados na sessão do R,
-como conjuntos de dados, funções definidas pelo utilizador e outras
-variáveis. Isto ajuda a gerir e visualizar o conteúdo da memória de
-trabalho. A aba “History” (Histórico) armazena todos os comandos
-executados durante a sessão, permitindo fácil recuperação e
-reutilização de códigos anteriores.</p></li>
-<li><p><strong>Painel Inferior Direito</strong>. Este painel é multifuncional e contém
-várias abas úteis:</p>
-<ul>
-<li><strong>Files</strong> (Ficheiros): lista todos os ficheiros no diretório de
-trabalho actual.</li>
-<li><strong>Plots</strong> (Gráficos): exibe quaisquer gráficos gerados durante a
-análise.</li>
-<li><strong>Packages</strong> (Pacotes): permite visualizar os pacotes instalados
-e carregados na sessão.</li>
-<li><strong>Help</strong> (Ajuda): fornece acesso ao sistema de ajuda embutido em
-HTML, que oferece documentação detalhada sobre funções e
-pacotes.</li>
-<li><strong>Viewer</strong> (Visualizador): utilizado para visualizar documentos
-HTML, PDFs e outros conteúdos dentro do RStudio.</li>
-</ul></li>
-</ul>
-</div>
-<div id="atalhos" class="section level2 hasAnchor" number="3.3">
-<h2><span class="header-section-number">3.3</span> Atalhos<a href="r-e-rstudio.html#atalhos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li><p><strong>CTRL+ENTER</strong>: executa a(s) linha(s) de código selecionada(s) no
-script.</p></li>
-<li><p><strong>ALT+-</strong>: insere o operador de atribuição (<code>&lt;-</code>) no script.</p></li>
-<li><p><strong>CTRL+SHIFT+M</strong>: (%&gt;%) operador pipe no script.</p></li>
-<li><p><strong>CTRL+1</strong>: move o cursor para o painel de script.</p></li>
-<li><p><strong>CTRL+2</strong>: move o cursor para o console.</p></li>
-<li><p><strong>CTRL+ALT+I</strong>: insere um novo “chunk” de código no R Markdown.</p></li>
-<li><p><strong>CTRL+SHIFT+K</strong>: compila um documento R Markdown.</p></li>
-<li><p><strong>ALT+SHIFT+K</strong>: abre uma janela com todos os atalhos de teclado
-disponíveis.</p></li>
-</ul>
-<p>No MacBook, os atalhos geralmente são os mesmos, substituindo o <strong>CTRL</strong>
-por <strong>Command</strong> e o <strong>ALT</strong> por <strong>Option</strong>.</p>
+<p><strong>Exemplo 1 (Amostragem Simples sem Reposição)</strong>: Neste exemplo,
+extraímos uma amostra de 5 elementos a partir de uma população de
+números inteiros de 1 a 10, sem reposição:</p>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="a-função-sample.html#cb268-1" tabindex="-1"></a><span class="co"># População de 1 a 10</span></span>
+<span id="cb268-2"><a href="a-função-sample.html#cb268-2" tabindex="-1"></a>pop <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb268-3"><a href="a-função-sample.html#cb268-3" tabindex="-1"></a></span>
+<span id="cb268-4"><a href="a-função-sample.html#cb268-4" tabindex="-1"></a><span class="co"># Amostra de 5 elementos sem reposição</span></span>
+<span id="cb268-5"><a href="a-função-sample.html#cb268-5" tabindex="-1"></a>amostra <span class="ot">&lt;-</span> <span class="fu">sample</span>(pop, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb268-6"><a href="a-função-sample.html#cb268-6" tabindex="-1"></a><span class="fu">print</span>(amostra)</span>
+<span id="cb268-7"><a href="a-função-sample.html#cb268-7" tabindex="-1"></a><span class="do">## [1]  5  2  4 10  8</span></span></code></pre></div>
+<p><strong>Exemplo 2 (Amostragem com Reposição)</strong>:. Neste exemplo, permitimos que
+os mesmos elementos sejam selecionados mais de uma vez:</p>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="a-função-sample.html#cb269-1" tabindex="-1"></a><span class="co"># Amostra de 5 elementos com reposição</span></span>
+<span id="cb269-2"><a href="a-função-sample.html#cb269-2" tabindex="-1"></a>amostra_repos <span class="ot">&lt;-</span> <span class="fu">sample</span>(pop, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb269-3"><a href="a-função-sample.html#cb269-3" tabindex="-1"></a><span class="fu">print</span>(amostra_repos)</span>
+<span id="cb269-4"><a href="a-função-sample.html#cb269-4" tabindex="-1"></a><span class="do">## [1] 6 8 9 9 6</span></span></code></pre></div>
+<p><strong>Exemplo 3 (Amostragem com Probabilidades Diferentes)</strong>: Neste exemplo,
+associamos diferentes probabilidades a cada elemento da população:</p>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="a-função-sample.html#cb270-1" tabindex="-1"></a><span class="co"># Probabilidades associadas a cada elemento</span></span>
+<span id="cb270-2"><a href="a-função-sample.html#cb270-2" tabindex="-1"></a>prob <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.05</span>, <span class="fl">0.05</span>)</span>
+<span id="cb270-3"><a href="a-função-sample.html#cb270-3" tabindex="-1"></a></span>
+<span id="cb270-4"><a href="a-função-sample.html#cb270-4" tabindex="-1"></a><span class="co"># Amostra com probabilidades diferentes</span></span>
+<span id="cb270-5"><a href="a-função-sample.html#cb270-5" tabindex="-1"></a>amostra_prob <span class="ot">&lt;-</span> <span class="fu">sample</span>(pop, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">prob =</span> prob)</span>
+<span id="cb270-6"><a href="a-função-sample.html#cb270-6" tabindex="-1"></a><span class="fu">print</span>(amostra_prob)</span>
+<span id="cb270-7"><a href="a-função-sample.html#cb270-7" tabindex="-1"></a><span class="do">## [1] 2 4 6 5 3</span></span></code></pre></div>
+<div id="exercícios-20" class="section level2 hasAnchor" number="18.1">
+<h2><span class="header-section-number">18.1</span> Exercícios<a href="a-função-sample.html#exercícios-20" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>1.</strong> Crie um vetor com os números de 1 a 20. Utilize a função
+<code>sample()</code> para selecionar uma amostra aleatória de 5 elementos desse
+vetor. A amostragem deve ser feita sem reposição.</p>
+<p><strong>2.</strong> Suponha que tem uma população representada pelos números de 1 a
+10. Utilize a função <code>sample()</code> para selecionar uma amostra de 10
+elementos com reposição.</p>
+<p><strong>3.</strong> Crie um vetor com as letras A, B, C, D, E. Aplique a função
+<code>sample()</code> para selecionar uma amostra de 3 letras, onde a probabilidade
+de cada letra ser selecionada é dada pelo vetor
+<code>c(0.1, 0.2, 0.3, 0.25, 0.15)</code>.</p>
+<p><strong>4.</strong> Crie um vetor com os números de 1 a 10. Utilize a função
+<code>sample()</code> para reordenar aleatoriamente os elementos desse vetor.</p>
+<p><strong>5.</strong> Crie um vetor com os nomes de cinco frutas: “Maçã”, “Banana”,
+“Laranja”, “Uva”, “Pera”. Utilizando a função <code>sample()</code>, selecione
+aleatoriamente uma fruta desse vetor. Em seguida, selecione uma amostra
+de 3 frutas.</p>
+<p><strong>6.</strong> Você é responsável por realizar um teste de qualidade em uma
+fábrica. Há 1000 produtos fabricados, numerados de 1 a 1000. Selecione
+uma amostra aleatória de 50 produtos para inspeção, garantindo que não
+haja reposição na seleção.</p>
+<p><strong>7.</strong> Simule o lançamento de dois dados justos 10000 vezes e registe as
+somas das faces resultantes. Utilize a função <code>sample()</code> para realizar a
+simulação. Em seguida, crie um histograma das somas obtidas.</p>
+<p><strong>8.</strong> Tem um vetor de 200 estudantes classificados em três turmas: A,
+B, e C. As turmas têm tamanhos diferentes (50, 100, e 50 alunos,
+respetivamente). Usando <code>sample()</code>, selecione uma amostra de 20 alunos,
+mantendo a proporção original das turmas.</p>
+<p><strong>9.</strong> Um cartão de Bingo contém 24 números aleatórios entre 1 e 75
+(excluindo o número central “free”). Crie 5 cartões de Bingo únicos
+usando a função <code>sample()</code>.</p>
+<p><strong>10.</strong> Em um estudo clínico, 30 pacientes devem ser randomizados em
+dois grupos: tratamento e controlo. O grupo de tratamento deve conter 20
+pacientes e o grupo de controlo 10. Usando <code>sample()</code>, faça a
+randomização dos pacientes. Dica: use a função <code>setdiff()</code>.</p>
 </div>
 </div>
             </section>
@@ -601,8 +577,8 @@ por <strong>Command</strong> e o <strong>ALT</strong> por <strong>Option</strong
           </div>
         </div>
       </div>
-<a href="normas-de-funcionamento.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="r-como-calculadora-e-operações-aritméticas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="o-pacote-ggplot2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="probabilidade-e-variáveis-aleatórias.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
