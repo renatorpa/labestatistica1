@@ -682,8 +682,7 @@ correlação entre eles. Na prática, números aleatórios são fundamentais
 em diversas áreas, como criptografia, simulações estatísticas, jogos de
 azar e processos de modelagem onde a imprevisibilidade é crucial.</p>
 <p>A verdadeira aleatoriedade geralmente deriva de processos físicos
-inerentemente imprevisíveis, como a radiação cósmica, o ruído térmico em
-circuitos eletrónicos ou o decaimento radioativo. No entanto, em
+inerentemente imprevisíveis, como a <em>radiação cósmica</em>, o <em>ruído térmico em circuitos eletrónicos</em> ou o <em>decaimento radioativo</em>. No entanto, em
 computação, obter números verdadeiramente aleatórios pode ser difícil e,
 frequentemente, desnecessário. Para muitas aplicações, uma forma de
 aleatoriedade que seja suficientemente imprevisível é suficiente.</p>
@@ -731,6 +730,15 @@ número de variáveis antes que ocorra uma repetição.</li>
 forma eficiente para que o algoritmo seja utilizável em aplicações
 práticas.</li>
 </ol>
+<p>Para ver como o algoritmo funciona, considere-se o seguinte exemplo, arbitrando-se <span class="math inline">\(m=17\)</span>, <span class="math inline">\(a=5\)</span> e <span class="math inline">\(x_0=7\)</span>:</p>
+<ul>
+<li><span class="math inline">\(x_1 = (5\times 7) \, mod \, 17\)</span> = resto da divisão inteira de 35/17=<em>1</em></li>
+<li><span class="math inline">\(x_2 = (5 \times 1)\, mod \, 17= 5\)</span></li>
+<li><span class="math inline">\(x_3 = (5 \times 5)\, mod \, 17= 8\)</span></li>
+</ul>
+<p>Continuando o processo, obtém-se:</p>
+<p><span class="math display">\[7, 1, 5, 8, 6, 13, 14, 2, 10, 16, 12, 9, 11, 4, 3, 15, (R) 7, 1, 5, 8,\ldots\]</span>
+Após R, verifica-se repetição, pelo que o período foi de 16 números.</p>
 </div>
 <div id="a-função-set.seed" class="section level2 hasAnchor" number="20.2">
 <h2><span class="header-section-number">20.2</span> A função <code>set.seed()</code><a href="simulação.html#a-função-set.seed" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -741,6 +749,7 @@ práticas.</li>
 <pre><code>## [1] 31 79 51 14 67</code></pre>
 <p>Com isso, você sempre obterá os mesmos 5 números aleatórios ao usar esse
 código.</p>
+<p>O gerador de números pseudoaleatórios padrão em R é o <a href="https://www.sciencedirect.com/science/article/abs/pii/B9780128093627500108">Mersenne Twister</a>. No R, o Mersenne Twister usa uma semente aleatória como entrada: construída a partir do tempo e ID da sessão. Você pode substituir a semente aleatória por uma semente fixa com a função <code>set.seed()</code>.</p>
 </div>
 <div id="exercícios-22" class="section level2 hasAnchor" number="20.3">
 <h2><span class="header-section-number">20.3</span> Exercícios<a href="simulação.html#exercícios-22" class="anchor-section" aria-label="Anchor link to header"></a></h2>

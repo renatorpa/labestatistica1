@@ -9425,8 +9425,7 @@ em diversas áreas, como criptografia, simulações estatísticas, jogos de
 azar e processos de modelagem onde a imprevisibilidade é crucial.
 
 A verdadeira aleatoriedade geralmente deriva de processos físicos
-inerentemente imprevisíveis, como a radiação cósmica, o ruído térmico em
-circuitos eletrónicos ou o decaimento radioativo. No entanto, em
+inerentemente imprevisíveis, como a \emph{radiação cósmica}, o \emph{ruído térmico em circuitos eletrónicos} ou o \emph{decaimento radioativo}. No entanto, em
 computação, obter números verdadeiramente aleatórios pode ser difícil e,
 frequentemente, desnecessário. Para muitas aplicações, uma forma de
 aleatoriedade que seja suficientemente imprevisível é suficiente.
@@ -9497,6 +9496,23 @@ e \(m\) devem satisfazer os seguintes critérios:
   práticas.
 \end{enumerate}
 
+Para ver como o algoritmo funciona, considere-se o seguinte exemplo, arbitrando-se \(m=17\), \(a=5\) e \(x_0=7\):
+
+\begin{itemize}
+\tightlist
+\item
+  \(x_1 = (5\times 7) \, mod \, 17\) = resto da divisão inteira de 35/17=\emph{1}
+\item
+  \(x_2 = (5 \times 1)\, mod \, 17= 5\)
+\item
+  \(x_3 = (5 \times 5)\, mod \, 17= 8\)
+\end{itemize}
+
+Continuando o processo, obtém-se:
+
+\[7, 1, 5, 8, 6, 13, 14, 2, 10, 16, 12, 9, 11, 4, 3, 15, (R) 7, 1, 5, 8,\ldots\]
+Após R, verifica-se repetição, pelo que o período foi de 16 números.
+
 \section{\texorpdfstring{A função \texttt{set.seed()}}{A função set.seed()}}\label{a-funuxe7uxe3o-set.seed}
 
 A função \texttt{set.seed()} no R é usada para definir uma semente para o gerador de números aleatórios. Isso significa que, ao usar \texttt{set.seed()} com um valor específico, podemos garantir que os resultados de operações aleatórias serão reprodutíveis. Em outras palavras, sempre que executarmos o código com o mesmo valor de semente, os mesmos números aleatórios serão gerados.
@@ -9516,6 +9532,8 @@ A aleatoriedade em R (como em outros softwares estatísticos) é gerada por algo
 
 Com isso, você sempre obterá os mesmos 5 números aleatórios ao usar esse
 código.
+
+O gerador de números pseudoaleatórios padrão em R é o \href{https://www.sciencedirect.com/science/article/abs/pii/B9780128093627500108}{Mersenne Twister}. No R, o Mersenne Twister usa uma semente aleatória como entrada: construída a partir do tempo e ID da sessão. Você pode substituir a semente aleatória por uma semente fixa com a função \texttt{set.seed()}.
 
 \section{Exercícios}\label{exercuxedcios-22}
 
@@ -10017,7 +10035,7 @@ Amostra aleatória de dimensão 5: \texttt{rbinom(n\ =\ 5,\ size\ =\ 1,\ prob\ =
 
 \subsection{Exercícios}\label{exercuxedcios-24}
 
-\textbf{1.}: Considere a experiência aleatória que consiste em lançar
+\textbf{1.} Considere a experiência aleatória que consiste em lançar
 uma moeda não viciada e observar a face que fica voltada para cima.
 Sendo o objetivo verificar se sai ``cara'', defina-se a variável aleatória
 
