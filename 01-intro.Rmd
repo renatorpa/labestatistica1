@@ -7379,7 +7379,9 @@ $P(X>0) \to$ `pbinom(q=0, size=1, prob=0.5, lower.tail=FALSE)` = 0.5
 
 Amostra aleatória de dimensão 5: `rbinom(n = 5, size = 1, prob = 0.5)` = 0 1 0 1 1
 
-**Exemplo**: Considere a experiência aleatória que consiste em lançar
+### Exercícios
+
+**1.**: Considere a experiência aleatória que consiste em lançar
 uma moeda não viciada e observar a face que fica voltada para cima.
 Sendo o objetivo verificar se sai “cara”, defina-se a variável aleatória
 
@@ -7389,26 +7391,23 @@ $$X - \text{número de vezes, em 1 lançamento, que sai cara}$$
 
 (b) Determine, para cada amostra, o valor da média e da variância. Compare com os valores de $E(X)$ e $V(X)$.
 
-```{r}
-# Parâmetro
-p <- 0.5
-# Número de lançamentos
-n <- c(5,10,100,1000)
-# Gerando amostra
-amostra <- list()
-percentagens <- c()
-media <- c()
-variancia <- c()
-# Loop para criar listas
-for (i in 1:length(n)) {
-  amostra[[i]] <- rbinom(n[i], size=1, prob=p)
-  percentagens[i] <- sum(amostra[[i]]/n[i])
-  media[i] <- mean(amostra[[i]])
-  variancia[i] <- var(amostra[[i]])
-}
-resultados <- data.frame(n,percentagens,media,variancia,comp_media = abs(media-p), comp_var = abs(variancia-p*(1-p)))
-resultados
-```
+**2.** Considere uma variável aleatória  $X$  com distribuição de Bernoulli, onde  $P(X = 1) = 0.7$  e  $P(X = 0) = 0.3$.
+
+- Simule 1000 valores de  X .
+- Calcule a frequência relativa de  $X = 1$  e  $X = 0$  na amostra.
+- Compare os resultados empíricos com as probabilidades teóricas.
+
+**3.** Defina uma variável de Bernoulli  $X$  com  $P(X = 1) = 0.4$.
+
+- Simule 10.000 valores de  $X$.
+- Calcule a média empírica de  $X$  e compare com sua esperança teórica  $\mathbb{E}[X] = p$.
+- Calcule a variância empírica e compare com a fórmula teórica  $\text{Var}(X) = p(1 - p)$.
+
+**4.** Considere 5 variáveis  $X_1, X_2, \ldots, X_5$, cada uma com distribuição de Bernoulli  $P(X = 1) = 0.5$.
+
+- Simule 5000 realizações de cada variável.
+- Calcule a soma  $S = X_1 + X_2 + \cdots + X_5$.
+- Verifique a frequência relativa de cada valor possível de  $S$  (de 0 a 5) e compare com a distribuição binomial teórica. Use `dbinom(x = 0:5, size = 5, prob = 0.5)`.
 
 ## Distribuição Binomial
 

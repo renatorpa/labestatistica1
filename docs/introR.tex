@@ -10015,7 +10015,9 @@ Seja \(X \sim \text{Bernoulli}(p=0.5)\).
 
 Amostra aleatória de dimensão 5: \texttt{rbinom(n\ =\ 5,\ size\ =\ 1,\ prob\ =\ 0.5)} = 0 1 0 1 1
 
-\textbf{Exemplo}: Considere a experiência aleatória que consiste em lançar
+\subsection{Exercícios}\label{exercuxedcios-24}
+
+\textbf{1.}: Considere a experiência aleatória que consiste em lançar
 uma moeda não viciada e observar a face que fica voltada para cima.
 Sendo o objetivo verificar se sai ``cara'', defina-se a variável aleatória
 
@@ -10029,36 +10031,41 @@ Sendo o objetivo verificar se sai ``cara'', defina-se a variável aleatória
   Determine, para cada amostra, o valor da média e da variância. Compare com os valores de \(E(X)\) e \(V(X)\).
 \end{enumerate}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Parâmetro}
-\NormalTok{p }\OtherTok{\textless{}{-}} \FloatTok{0.5}
-\CommentTok{\# Número de lançamentos}
-\NormalTok{n }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DecValTok{100}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
-\CommentTok{\# Gerando amostra}
-\NormalTok{amostra }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{()}
-\NormalTok{percentagens }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{()}
-\NormalTok{media }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{()}
-\NormalTok{variancia }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{()}
-\CommentTok{\# Loop para criar listas}
-\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(n)) \{}
-\NormalTok{  amostra[[i]] }\OtherTok{\textless{}{-}} \FunctionTok{rbinom}\NormalTok{(n[i], }\AttributeTok{size=}\DecValTok{1}\NormalTok{, }\AttributeTok{prob=}\NormalTok{p)}
-\NormalTok{  percentagens[i] }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(amostra[[i]]}\SpecialCharTok{/}\NormalTok{n[i])}
-\NormalTok{  media[i] }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(amostra[[i]])}
-\NormalTok{  variancia[i] }\OtherTok{\textless{}{-}} \FunctionTok{var}\NormalTok{(amostra[[i]])}
-\NormalTok{\}}
-\NormalTok{resultados }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(n,percentagens,media,variancia,}\AttributeTok{comp\_media =} \FunctionTok{abs}\NormalTok{(media}\SpecialCharTok{{-}}\NormalTok{p), }\AttributeTok{comp\_var =} \FunctionTok{abs}\NormalTok{(variancia}\SpecialCharTok{{-}}\NormalTok{p}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{p)))}
-\NormalTok{resultados}
-\end{Highlighting}
-\end{Shaded}
+\textbf{2.} Considere uma variável aleatória \(X\) com distribuição de Bernoulli, onde \(P(X = 1) = 0.7\) e \(P(X = 0) = 0.3\).
 
-\begin{verbatim}
-##      n percentagens media variancia comp_media     comp_var
-## 1    5        0.600 0.600 0.3000000      0.100 0.0500000000
-## 2   10        0.500 0.500 0.2777778      0.000 0.0277777778
-## 3  100        0.470 0.470 0.2516162      0.030 0.0016161616
-## 4 1000        0.494 0.494 0.2502142      0.006 0.0002142142
-\end{verbatim}
+\begin{itemize}
+\tightlist
+\item
+  Simule 1000 valores de X .
+\item
+  Calcule a frequência relativa de \(X = 1\) e \(X = 0\) na amostra.
+\item
+  Compare os resultados empíricos com as probabilidades teóricas.
+\end{itemize}
+
+\textbf{3.} Defina uma variável de Bernoulli \(X\) com \(P(X = 1) = 0.4\).
+
+\begin{itemize}
+\tightlist
+\item
+  Simule 10.000 valores de \(X\).
+\item
+  Calcule a média empírica de \(X\) e compare com sua esperança teórica \(\mathbb{E}[X] = p\).
+\item
+  Calcule a variância empírica e compare com a fórmula teórica \(\text{Var}(X) = p(1 - p)\).
+\end{itemize}
+
+\textbf{4.} Considere 5 variáveis \(X_1, X_2, \ldots, X_5\), cada uma com distribuição de Bernoulli \(P(X = 1) = 0.5\).
+
+\begin{itemize}
+\tightlist
+\item
+  Simule 5000 realizações de cada variável.
+\item
+  Calcule a soma \(S = X_1 + X_2 + \cdots + X_5\).
+\item
+  Verifique a frequência relativa de cada valor possível de \(S\) (de 0 a 5) e compare com a distribuição binomial teórica. Use \texttt{dbinom(x\ =\ 0:5,\ size\ =\ 5,\ prob\ =\ 0.5)}.
+\end{itemize}
 
 \section{Distribuição Binomial}\label{distribuiuxe7uxe3o-binomial}
 
@@ -10130,7 +10137,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-256-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-255-1.pdf}
 
 \subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o}
 
@@ -10156,7 +10163,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-257-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-256-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o}
 
@@ -10189,7 +10196,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-258-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-257-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o}
 
@@ -10212,7 +10219,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-259-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-258-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-1}
 
@@ -10235,7 +10242,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-260-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-259-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10244,7 +10251,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-260-2.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-259-2.pdf}
 
 \textbf{Cálculo de probabilidade}: Seja \(X \sim \text{Binomial}(n=20, p=0.1)\).
 
@@ -10409,7 +10416,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-262-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-261-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-1}
 
@@ -10445,7 +10452,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-263-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-262-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-1}
 
@@ -10465,7 +10472,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-264-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-263-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-2}
 
@@ -10486,7 +10493,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-265-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-264-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10501,7 +10508,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-265-2.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-264-2.pdf}
 
 \textbf{Cálculo de probabilidades}: Seja \(X\sim\text{Poisson}(\lambda=5)\).
 
@@ -10655,7 +10662,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-269-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-268-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o}
 
@@ -10680,7 +10687,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-270-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-269-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-2}
 
@@ -10711,7 +10718,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-271-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-270-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-2}
 
@@ -10731,7 +10738,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-272-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-271-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-3}
 
@@ -10756,7 +10763,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-273-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-272-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10843,7 +10850,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-274-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-273-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-1}
 
@@ -10868,7 +10875,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-275-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-274-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-3}
 
@@ -10899,7 +10906,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-276-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-275-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-3}
 
@@ -10919,7 +10926,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-277-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-276-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-4}
 
@@ -10944,7 +10951,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-278-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-277-1.pdf}
 
 \section{Distribuição Normal}\label{distribuiuxe7uxe3o-normal}
 
@@ -11057,7 +11064,7 @@ Função densidade de probabilidade e função de distribuição.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-283-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-282-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11075,9 +11082,9 @@ Função densidade de probabilidade e função de distribuição.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-284-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-283-1.pdf}
 
-\section{Exercícios}\label{exercuxedcios-24}
+\section{Exercícios}\label{exercuxedcios-25}
 
 \textbf{1.} Usando o R e fixando a semente em 123, simule 1000 lançamentos de
 uma moeda com probabilidade de 0.5 de sair cara. Conte o número de caras
@@ -11498,7 +11505,7 @@ Representar graficamente e determinar: média, desvio padrão e mediana.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-286-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-285-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11588,7 +11595,7 @@ método da transformada inversa
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-288-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-287-1.pdf}
 
 \textbf{Exemplo 5}: Geração de uma variável aleatória com distribuição
 \(Geométrica(p)\). Seja \(X\sim Geometrica(p)\). Lembre que
@@ -11623,7 +11630,7 @@ onde \(\lfloor  \rfloor =\) maior inteiro.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-289-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-288-1.pdf}
 
 \textbf{Exemplo 6}: Geração de uma variável aleatória com distribuição de
 Poisson. A variável aleatória \(X\) é de Poisson com média \(\lambda\) se
@@ -11666,9 +11673,9 @@ expresso da seguinte forma.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-290-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-289-1.pdf}
 
-\section{Exercícios}\label{exercuxedcios-25}
+\section{Exercícios}\label{exercuxedcios-26}
 
 \textbf{1.} Considere uma variável aleatória \(X\) com a seguinte distribuição
 de probabilidades:
@@ -11747,7 +11754,7 @@ A função \(F(x)=x^2\) é invertível no intervalo \((0,1)\) e
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-291-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-290-1.pdf}
 
 \textbf{Exemplo 2}: Geração de uma variável aleatória \(Uniforme(a,b)\). A
 geração é feita através de \[X = a+(b-a)U.\]
@@ -11764,7 +11771,7 @@ geração é feita através de \[X = a+(b-a)U.\]
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-292-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-291-1.pdf}
 
 \textbf{Exemplo 3}: Geração de uma variável aleatória exponencial. Seja \(X\)
 uma variável aleatória exponencial com taxa 1, então sua função de
@@ -11811,9 +11818,9 @@ aleatório \(U\) e fazendo \[X = -\frac{1}{\lambda}ln (U).\]
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-293-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-292-1.pdf}
 
-\section{Exercícios}\label{exercuxedcios-26}
+\section{Exercícios}\label{exercuxedcios-27}
 
 \textbf{1.} Dada uma variável aleatória \(X\) com distribuição exponencial de
 parâmetro \(\lambda = 2\), use o Método da Transformada Inversa para gerar
@@ -12116,7 +12123,7 @@ todas independentes e identicamente distribuídas com média \(\mu\).
 Pode-se estimar \(\theta\) por
 \(\sum_{i=1}^{k}g(U_{1}^{i},\ldots, U_{n}^{i})/k\).
 
-\section{Exercícios}\label{exercuxedcios-27}
+\section{Exercícios}\label{exercuxedcios-28}
 
 Use simulação para aproximar as seguintes integrais. Compare sua
 estimativa com a resposta exata, se conhecida.
@@ -12313,7 +12320,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-297-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-296-1.pdf}
 
 \subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o-2}
 
@@ -12338,7 +12345,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-298-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-297-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-4}
 
@@ -12366,7 +12373,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-299-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-298-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-4}
 
@@ -12389,7 +12396,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-300-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-299-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-5}
 
@@ -12412,7 +12419,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-301-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-300-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -12421,7 +12428,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-301-2.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-300-2.pdf}
 
 \textbf{Cálculo de probabilidade}: Seja
 \(X \sim \text{Binomial}(n=10, p=0.5)\).
@@ -12515,7 +12522,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-302-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-301-1.pdf}
 
 \subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o-3}
 
@@ -12548,7 +12555,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-303-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-302-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-5}
 
@@ -12584,7 +12591,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-304-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-303-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-5}
 
@@ -12604,7 +12611,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-305-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-304-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-6}
 
@@ -12625,7 +12632,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-306-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-305-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -12640,7 +12647,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-306-2.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-305-2.pdf}
 
 \textbf{Cálculo de probabilidades}: Seja \(X\sim\text{Poisson}(\lambda=5)\).
 
@@ -12729,7 +12736,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-307-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-306-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-2}
 
@@ -12754,7 +12761,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-308-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-307-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-6}
 
@@ -12785,7 +12792,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-309-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-308-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-6}
 
@@ -12805,7 +12812,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-310-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-309-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-7}
 
@@ -12830,7 +12837,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-311-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-310-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -12883,7 +12890,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-312-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-311-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-3}
 
@@ -12908,7 +12915,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-313-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-312-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-7}
 
@@ -12939,7 +12946,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-314-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-313-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-7}
 
@@ -12959,7 +12966,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-315-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-314-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-8}
 
@@ -12984,7 +12991,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-316-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-315-1.pdf}
 
 \section{Gerando uma variável aleatória com distribuição Normal}\label{gerando-uma-variuxe1vel-aleatuxf3ria-com-distribuiuxe7uxe3o-normal}
 
@@ -13014,7 +13021,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-317-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-316-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-4}
 
@@ -13039,7 +13046,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-318-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-317-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-8}
 
@@ -13070,7 +13077,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-319-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-318-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-8}
 
@@ -13090,7 +13097,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-320-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-319-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-9}
 
@@ -13115,9 +13122,9 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-321-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-320-1.pdf}
 
-\section{Exercícios}\label{exercuxedcios-28}
+\section{Exercícios}\label{exercuxedcios-29}
 
 \textbf{1.} Usando o R e fixando a semente em 123, simule 1000 lançamentos de
 uma moeda com probabilidade de 0.5 de sair cara. Conte o número de caras
