@@ -7580,7 +7580,21 @@ $P(X \leq 4) =$ `pbinom(4,20,0.1)` = 0.9568255
 
 $P(X \leq 4) \approx$ `Fn(4)` = 0.956
 
-**Exemplo**: Considere a experiência aleatória que consiste em lançar
+### Exercícios
+
+**1.** Considere que você está realizando 10 lançamentos de uma moeda justa ($p = 0.5$).
+	
+(a) Calcule a probabilidade de obter exatamente 6 caras.
+(b) Calcule a probabilidade de obter no máximo 4 caras.
+(c) Calcule a probabilidade de obter mais de 7 caras.
+
+**2.** Um dado equilibrado é lançado 12 vezes. O sucesso é definido como “tirar um 6” ($p = \frac{1}{6}$).
+	
+(a) Gere uma amostra de 1000 experimentos e registre o número de sucessos em cada experimento.
+(b) Calcule a média e a variância da amostra.
+(c) Compare os resultados com os valores teóricos  $\mathbb{E}[X] = np$  e  $\text{V}(X) = np(1-p)$.
+
+**3.**: Considere a experiência aleatória que consiste em lançar
 uma moeda não viciada e observar a face que fica voltada para cima.
 Suponha que a experiência é realizada 7 vezes, sendo o objetivo
 verificar se sai "cara". Defina-se a variável aleatória
@@ -7595,11 +7609,37 @@ $$X - \text{número de vezes, em 7 lançamentos, que sai cara}$$
 
 (c) Determine, para cada amostra, o valor da média e da variância.
     Compare com os valores de $E(X)$ e $V(X)$.
+    
+**4.** Um teste de múltipla escolha tem 10 questões, e cada questão tem 4 alternativas, sendo apenas uma correta ($p = 0.25$).
+
+(a) Calcule a probabilidade de acertar exatamente  k  questões, para  $k = 0, 1, \ldots, 10$.
+(b) Plote um gráfico de barras para visualizar a distribuição de probabilidades.
+(c) Identifique o valor de  $k$  que tem maior probabilidade.
+
+**5.** Um time de basquete tem uma probabilidade de acerto de  0.6  em cada lance livre. Durante um jogo, o time tenta 15 lances livres.
+	
+(a)	Calcule a probabilidade de acertar exatamente 9 lances livres.
+(b) Calcule a probabilidade de acertar entre 8 e 12 (inclusive).
+(c) Gere uma amostra de 500 jogos e estime a proporção de jogos em que o time acerta entre 8 e 12 lances livres.
+
+**6.** Em um processo de fabricação, uma variável aleatória  $X$  representa o número de peças defeituosas em um lote de 40 peças. A probabilidade de uma peça ser defeituosa é  $p = 0.05$.
+
+(a)	Usando  R  e fixando a semente em 123, gere uma amostra aleatória de 10.000 observações de  $X$.
+(b) Conte a frequência de lotes com exatamente 2 peças defeituosas.
+(c) Calcule a proporção de lotes com exatamente 2 peças defeituosas e compare com a probabilidade teórica  $P(X = 2)$ , onde  $X \sim \text{Binomial}(40, 0.05)$.
+
+**7.** Em uma loja, a probabilidade de um cliente fazer uma compra é  $p = 0.3$. Suponha que 25 clientes entram na loja em um determinado período. A variável aleatória  $X$  representa o número de clientes que fazem uma compra.
+
+(a) Usando R e fixando a semente em 456, gere uma amostra aleatória de 5.000 observações de  $X$.
+(b) Conte a frequência de períodos em que pelo menos 10 clientes fizeram compras.
+(c) Calcule a proporção de períodos em que pelo menos 10 clientes fizeram compras e compare com a probabilidade teórica  $P(X \geq 10)$, onde  $X \sim \text{Binomial}(25, 0.3)$.
+(d) Encontre o número médio de clientes que fizeram compras na amostra gerada.
+(e) Compare a média amostral com o valor esperado teórico de  $\mathbb{E}[X]$.
 
 ## Distribuição Geométrica
 
 **Definição**: A variável aleatória discreta $X=$ *"número de provas de Bernoulli (independentes e com probabilidade de sucesso
-comum igual a p) realizadas até à ocorrência do primeiro sucesso"* diz-se com **distribuição geométrica com parâmetro p** e possui f.m.p. dada por 
+comum igual a $p$) realizadas até à ocorrência do primeiro sucesso"* diz-se com **distribuição geométrica com parâmetro p** e possui f.m.p. dada por 
 $$P(X=x) = \begin{cases}
 p(1-p)^{x-1},& \quad x=1,2,3,\ldots \\
 0,& \quad \text{caso contrário}
@@ -7632,15 +7672,28 @@ p(1-p)^{y},& \quad y=0,1,2,3,\ldots \\
 
 Seja $X\sim \text{Geométrica}(p=0.5)$.
 
-$P(X=0) \to $ `dgeom(x = 0, prob = 0.5)` = 0.5
+$P(X=0) \to$ `dgeom(x = 0, prob = 0.5)` = 0.5
 
-$P(X=1) \to $ `dgeom(x = 1, prob = 0.5)` = 0.25
+$P(X=1) \to$ `dgeom(x = 1, prob = 0.5)` = 0.25
 
 $P(X \leq 1) \to$ `pgeom(q = 1, prob = 0.5)` = 0.75
 
 $P(X > 1) \to$ `pgeom(q = 1, prob = 0.5, lower.tail = FALSE)` = 0.25
 
 Amostra aleatória de dimensão 5: `rgeom(n = 5, prob = 0.5)` = 3 0 0 0 1
+
+**Exemplo**: Seja $X$ a variável aleatória que indica o número de lançamentos de um dado equilibrado até surgir a primeira face 2.
+
+(a) Qual a probabilidade da face 2 surgir no terceiro lançamento?
+(b) Qual o número esperado de lançamentos do dado até sair a face 2?
+(c) Qual a probabilidade de serem necessários mais de 10 lançamentos sabendo que já houve 6 lançamentos do dado sem que a face 2 saísse?
+
+(a) Lembre que no R a geométrica é definida como $Y = X-1$, então $P(X=3)=P(Y=2)$.
+```{r eval=FALSE}
+# P(Y=2)
+dgeom(x = 2, prob = 1/6)
+## [1] 0.09645062
+```
 
 ### Exercícios
 
@@ -7653,9 +7706,9 @@ Amostra aleatória de dimensão 5: `rgeom(n = 5, prob = 0.5)` = 3 0 0 0 1
 - Calcule a probabilidade empírica de que o número de tentativas até o primeiro sucesso seja menor ou igual a 5.
 - Compare o resultado empírico com o valor teórico utilizando a função `pgeom()`.
 
-**3.** Gere a distribuição geométrica para diferentes valores de  p :  $ = 0.1$,  $p = 0.5$, e  $p = 0.9$.
+**3.** Gere a distribuição geométrica para diferentes valores de  $p$: $p= 0.1$, $p = 0.5$, e $p = 0.9$.
 
-- Plote gráficos de barras para comparar como a probabilidade muda conforme  $p$  aumenta.
+- Plote gráficos de barras para comparar como a probabilidade muda conforme  $p$ aumenta.
 - Descreva como o parâmetro  $p$  afeta a forma e o decaimento da distribuição.
 
 **4.** Defina uma variável geométrica com  $p = 0.3$.
@@ -7924,6 +7977,10 @@ minutos, espera-se que cheguem, em média, 20 pedidos.
 
 (c) Determine, para cada amostra, o valor da média e da variância.
     Compare com os valores de $E(X)$ e $V(X)$. 
+
+### Exercícios
+
+**1.** 
 
 ## Distribuição Uniforme Contínua
 
