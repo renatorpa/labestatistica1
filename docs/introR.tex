@@ -126,7 +126,7 @@
 
 \title{Introdução ao R e Simulação}
 \author{Renato de Paula}
-\date{2024-11-18}
+\date{2024-11-19}
 
 \begin{document}
 \maketitle
@@ -9823,6 +9823,22 @@ distribuições amostrais.
   \end{itemize}
 \end{itemize}
 
+Matematicamente, para uma amostra de tamanho \(n\) , a função de distribuição empírica \(F_n(x)\) é definida como:
+
+\(F_n(x) = \frac{1}{n} \sum_{i=1}^n \mathbb{I}(X_i \leq x)\)
+
+onde:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\mathbb{I}(X_i \leq x)\) é uma função indicadora que vale 1 se \(X_i \leq x\), e 0 caso contrário.
+\item
+  \(n\) é o número total de observações.
+\item
+  \(X_i\) são os valores observados na amostra.
+\end{itemize}
+
 \subsection{\texorpdfstring{Função de distribuição empírica no R, função \texttt{ecdf()}}{Função de distribuição empírica no R, função ecdf()}}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-no-r-funuxe7uxe3o-ecdf}
 
 A função \texttt{ecdf()} no R é usada para calcular a função de distribuição
@@ -10247,7 +10263,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{20} \CommentTok{\# Número de tentativas}
 \NormalTok{p }\OtherTok{\textless{}{-}} \FloatTok{0.1} \CommentTok{\# Probabilidade de sucesso}
 
-\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
 \CommentTok{\# Amostra aleatória de dimensão 1000}
 \NormalTok{amostra }\OtherTok{\textless{}{-}} \FunctionTok{rbinom}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\AttributeTok{size =}\NormalTok{ n, }\AttributeTok{prob =}\NormalTok{ p)}
 
@@ -10298,7 +10314,13 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \def\labelenumi{(\alph{enumi})}
 \tightlist
 \item
+  Calcule a probabilidade de tirar no máximo cinco 6.
+\item
   Gere uma amostra de 1000 experimentos e registre o número de sucessos em cada experimento.
+\item
+  Faça um gráfico de barras de frequência relativa associado aos valores amostrais. Sobreponha no gráfico a distribuição de probabilidade de \(X\).
+\item
+  Use a função de distribuição empírica para estimar a probabilidade da alínea (a) e compare com o valor teórico.
 \item
   Calcule a média e a variância da amostra.
 \item
@@ -10331,9 +10353,9 @@ verificar se sai ``cara''. Defina-se a variável aleatória
 \def\labelenumi{(\alph{enumi})}
 \tightlist
 \item
-  Calcule a probabilidade de acertar exatamente k questões, para \(k = 0, 1, \ldots, 10\).
+  Calcule a probabilidade de acertar exatamente \(k\) questões, para \(k = 0, 1, \ldots, 10\).
 \item
-  Plote um gráfico de barras para visualizar a distribuição de probabilidades.
+  Faça um gráfico para visualizar a distribuição de probabilidades.
 \item
   Identifique o valor de \(k\) que tem maior probabilidade.
 \end{enumerate}
@@ -10379,6 +10401,24 @@ verificar se sai ``cara''. Defina-se a variável aleatória
   Encontre o número médio de clientes que fizeram compras na amostra gerada.
 \item
   Compare a média amostral com o valor esperado teórico de \(\mathbb{E}[X]\).
+\end{enumerate}
+
+\textbf{8.} O número de acertos num alvo em 30 tentativas onde a
+probabilidade de acerto é 0.4, é modelado por uma variável aleatória \(X\)
+com distruibuição Binomial de parâmetros \(n=30\) e \(p=0.4\). Usando o R e
+fixando a semente em 123, gere uma amostra de dimensão \(n=700\) dessa
+variável. Para essa amostra:
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Faça um histograma de frequência relativa associado aos valores
+  amostrais. Sobreponha no gráfico a distribuição de probabilidade de \(X\).
+\item
+  Calcule a função de distribuição empírica e com base nessa
+  função estime a probabilidade do número de acertos no alvo, em 30
+  tentativas, ser maior que 15. Calcule ainda o valor teórico dessa
+  probabilidade.
 \end{enumerate}
 
 \section{Distribuição Geométrica}\label{distribuiuxe7uxe3o-geomuxe9trica}

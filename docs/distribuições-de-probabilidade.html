@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Renato de Paula" />
 
 
-<meta name="date" content="2024-11-18" />
+<meta name="date" content="2024-11-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -685,6 +685,14 @@ valores da amostra.</li>
 para esse ponto será <span class="math inline">\(\frac{k}{n}\)</span>, em vez de <span class="math inline">\(\frac{1}{n}\)</span>.</li>
 </ul></li>
 </ul>
+<p>Matematicamente, para uma amostra de tamanho <span class="math inline">\(n\)</span> , a função de distribuição empírica <span class="math inline">\(F_n(x)\)</span> é definida como:</p>
+<p><span class="math inline">\(F_n(x) = \frac{1}{n} \sum_{i=1}^n \mathbb{I}(X_i \leq x)\)</span></p>
+<p>onde:</p>
+<ul>
+<li><span class="math inline">\(\mathbb{I}(X_i \leq x)\)</span> é uma função indicadora que vale 1 se <span class="math inline">\(X_i \leq x\)</span>, e 0 caso contrário.</li>
+<li><span class="math inline">\(n\)</span> é o número total de observações.</li>
+<li><span class="math inline">\(X_i\)</span> são os valores observados na amostra.</li>
+</ul>
 <div id="função-de-distribuição-empírica-no-r-função-ecdf" class="section level3 hasAnchor" number="21.1.1">
 <h3><span class="header-section-number">21.1.1</span> Função de distribuição empírica no R, função <code>ecdf()</code><a href="distribuições-de-probabilidade.html#função-de-distribuição-empírica-no-r-função-ecdf" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A função <code>ecdf()</code> no R é usada para calcular a função de distribuição
@@ -967,7 +975,7 @@ P(X = x) =
 <span id="cb304-2"><a href="distribuições-de-probabilidade.html#cb304-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">20</span> <span class="co"># Número de tentativas</span></span>
 <span id="cb304-3"><a href="distribuições-de-probabilidade.html#cb304-3" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.1</span> <span class="co"># Probabilidade de sucesso</span></span>
 <span id="cb304-4"><a href="distribuições-de-probabilidade.html#cb304-4" tabindex="-1"></a></span>
-<span id="cb304-5"><a href="distribuições-de-probabilidade.html#cb304-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb304-5"><a href="distribuições-de-probabilidade.html#cb304-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
 <span id="cb304-6"><a href="distribuições-de-probabilidade.html#cb304-6" tabindex="-1"></a><span class="co"># Amostra aleatória de dimensão 1000</span></span>
 <span id="cb304-7"><a href="distribuições-de-probabilidade.html#cb304-7" tabindex="-1"></a>amostra <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1000</span>,<span class="at">size =</span> n, <span class="at">prob =</span> p)</span>
 <span id="cb304-8"><a href="distribuições-de-probabilidade.html#cb304-8" tabindex="-1"></a></span>
@@ -995,7 +1003,10 @@ P(X = x) =
 </ol>
 <p><strong>2.</strong> Um dado equilibrado é lançado 12 vezes. O sucesso é definido como “tirar um 6” (<span class="math inline">\(p = \frac{1}{6}\)</span>).</p>
 <ol style="list-style-type: lower-alpha">
+<li>Calcule a probabilidade de tirar no máximo cinco 6.</li>
 <li>Gere uma amostra de 1000 experimentos e registre o número de sucessos em cada experimento.</li>
+<li>Faça um gráfico de barras de frequência relativa associado aos valores amostrais. Sobreponha no gráfico a distribuição de probabilidade de <span class="math inline">\(X\)</span>.</li>
+<li>Use a função de distribuição empírica para estimar a probabilidade da alínea (a) e compare com o valor teórico.</li>
 <li>Calcule a média e a variância da amostra.</li>
 <li>Compare os resultados com os valores teóricos <span class="math inline">\(\mathbb{E}[X] = np\)</span> e <span class="math inline">\(\text{V}(X) = np(1-p)\)</span>.</li>
 </ol>
@@ -1014,8 +1025,8 @@ Compare com os valores de <span class="math inline">\(E(X)\)</span> e <span clas
 </ol>
 <p><strong>4.</strong> Um teste de múltipla escolha tem 10 questões, e cada questão tem 4 alternativas, sendo apenas uma correta (<span class="math inline">\(p = 0.25\)</span>).</p>
 <ol style="list-style-type: lower-alpha">
-<li>Calcule a probabilidade de acertar exatamente k questões, para <span class="math inline">\(k = 0, 1, \ldots, 10\)</span>.</li>
-<li>Plote um gráfico de barras para visualizar a distribuição de probabilidades.</li>
+<li>Calcule a probabilidade de acertar exatamente <span class="math inline">\(k\)</span> questões, para <span class="math inline">\(k = 0, 1, \ldots, 10\)</span>.</li>
+<li>Faça um gráfico para visualizar a distribuição de probabilidades.</li>
 <li>Identifique o valor de <span class="math inline">\(k\)</span> que tem maior probabilidade.</li>
 </ol>
 <p><strong>5.</strong> Um time de basquete tem uma probabilidade de acerto de 0.6 em cada lance livre. Durante um jogo, o time tenta 15 lances livres.</p>
@@ -1037,6 +1048,19 @@ Compare com os valores de <span class="math inline">\(E(X)\)</span> e <span clas
 <li>Calcule a proporção de períodos em que pelo menos 10 clientes fizeram compras e compare com a probabilidade teórica <span class="math inline">\(P(X \geq 10)\)</span>, onde <span class="math inline">\(X \sim \text{Binomial}(25, 0.3)\)</span>.</li>
 <li>Encontre o número médio de clientes que fizeram compras na amostra gerada.</li>
 <li>Compare a média amostral com o valor esperado teórico de <span class="math inline">\(\mathbb{E}[X]\)</span>.</li>
+</ol>
+<p><strong>8.</strong> O número de acertos num alvo em 30 tentativas onde a
+probabilidade de acerto é 0.4, é modelado por uma variável aleatória <span class="math inline">\(X\)</span>
+com distruibuição Binomial de parâmetros <span class="math inline">\(n=30\)</span> e <span class="math inline">\(p=0.4\)</span>. Usando o R e
+fixando a semente em 123, gere uma amostra de dimensão <span class="math inline">\(n=700\)</span> dessa
+variável. Para essa amostra:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Faça um histograma de frequência relativa associado aos valores
+amostrais. Sobreponha no gráfico a distribuição de probabilidade de <span class="math inline">\(X\)</span>.</p></li>
+<li><p>Calcule a função de distribuição empírica e com base nessa
+função estime a probabilidade do número de acertos no alvo, em 30
+tentativas, ser maior que 15. Calcule ainda o valor teórico dessa
+probabilidade.</p></li>
 </ol>
 </div>
 </div>
