@@ -126,7 +126,7 @@
 
 \title{Introdução ao R e Simulação}
 \author{Renato de Paula}
-\date{2024-11-19}
+\date{2024-11-21}
 
 \begin{document}
 \maketitle
@@ -10327,7 +10327,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
   Compare os resultados com os valores teóricos \(\mathbb{E}[X] = np\) e \(\text{V}(X) = np(1-p)\).
 \end{enumerate}
 
-\textbf{3.}: Considere a experiência aleatória que consiste em lançar
+\textbf{3.} Considere a experiência aleatória que consiste em lançar
 uma moeda não viciada e observar a face que fica voltada para cima.
 Suponha que a experiência é realizada 7 vezes, sendo o objetivo
 verificar se sai ``cara''. Defina-se a variável aleatória
@@ -10856,7 +10856,33 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Exemplo}: O número de pedidos recebidos por uma linha de suporte
+\subsection{Exercícios}\label{exercuxedcios-27}
+
+\textbf{1.} Uma fábrica produz em média 4 defeitos por dia em sua linha de produção. Suponha que o número de defeitos por dia segue uma distribuição de Poisson.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Qual é a probabilidade de ocorrer exatamente 5 defeitos em um dia?
+\item
+  Qual é a probabilidade de ocorrerem 3 ou menos defeitos em um dia?
+\end{enumerate}
+
+\textbf{2.} Simule o número de defeitos em 30 dias consecutivos. Use \texttt{rpois()} para gerar uma amostra com média de 4 defeitos por dia.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Gere uma amostra de tamanho 30 com \(\lambda = 4\).
+\item
+  Calcule a média e o desvio padrão da amostra gerada.
+\item
+  Compare a média e o desvio padrão da amostra com os valores teóricos.
+\end{enumerate}
+
+\textbf{3.}: O número de pedidos recebidos por uma linha de suporte
 técnico de uma empresa num intervalo de 10 minutos é uma variável
 aleatória que segue uma distribuição de Poisson. Neste intervalo de 10
 minutos, espera-se que cheguem, em média, 20 pedidos.
@@ -10876,9 +10902,123 @@ minutos, espera-se que cheguem, em média, 20 pedidos.
   Compare com os valores de \(E(X)\) e \(V(X)\).
 \end{enumerate}
 
-\subsection{Exercícios}\label{exercuxedcios-27}
+\textbf{4.} Uma loja recebe uma média de 12 clientes por hora. Suponha que o número de clientes por hora siga uma distribuição de Poisson.
 
-\textbf{1.}
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Qual é a probabilidade de a loja receber no máximo 10 clientes em uma hora?
+\item
+  Qual é a probabilidade de receber mais de 15 clientes em uma hora?
+\item
+  Simule o número de clientes recebidos em 500 horas.
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  \begin{enumerate}
+  \def\labelenumi{(\roman{enumi})}
+  \tightlist
+  \item
+    Crie um vetor de amostras aleatórias de tamanho 500.
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{(\roman{enumi})}
+  \setcounter{enumi}{1}
+  \tightlist
+  \item
+    Calcule a frequência relativa de horas em que o número de clientes foi menor ou igual a 10. Compare este valor com a probabilidade calculada no item (a).
+  \end{enumerate}
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{3}
+\item
+  Usando a simulação do item (c), calcule a média e o desvio padrão da amostra gerada. Compare com os valores teóricos da média e do desvio padrão de uma distribuição de Poisson com \(\lambda = 12\).
+\item
+  Construa um gráfico que compare a distribuição teórica P(X = x) com a frequência relativa observada na simulação do item (c).
+\end{enumerate}
+
+\textbf{5.} Em uma área de conservação, o número de aves avistadas em uma hora segue uma distribuição de Poisson com \(\lambda = 8\).
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Simule o número de aves avistadas em 1000 horas.
+\item
+  Construa a função de distribuição empírica (usando \texttt{ecdf()}).
+\item
+  Compare a função de distribuição empírica com a função de distribuição teórica \(F(x) = P(X \leq x)\) , calculada com \texttt{ppois()}.
+\end{enumerate}
+
+\textbf{6.} Usando o R e fixando a semente em 543, gere uma amostra aleatória
+de 2400 observações de uma variável aleatória \(Y\) de Poisson com
+parâmetro \(\lambda = 6\).
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Faça um histograma de frequência relativa associado aos valores
+  amostrais. Sobreponha no gráfico a distribuição de probabilidade de \(X\).
+\item
+  Use a função de distribuição empírica para estimar \(P(Y > 5)\) e
+  compare com o valor teórico.
+\end{enumerate}
+
+\textbf{7.} Para \(\lambda = 5\), construa o gráfico da distribuição de probabilidade \(P(X = x)\) , onde x varia de 0 a 15.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Use dpois() para calcular as probabilidades.
+\item
+  Crie um gráfico de barras para representar os valores.
+\end{enumerate}
+
+\textbf{8.} Para \(\lambda = 50\), use a aproximação normal para calcular:
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  A probabilidade de X \geq 55 usando a distribuição de Poisson.
+\item
+  A mesma probabilidade usando a aproximação normal com N(\mu = 50, \sigma\^{}2 = 50) .
+\item
+  Compare os resultados.
+\end{enumerate}
+
+\textbf{9.} Suponha que o número de acidentes por dia em uma rodovia siga uma distribuição de Poisson com \(\lambda = 2\).
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Simule 1000 amostras de tamanho 30 do número de acidentes por dia.
+\item
+  Calcule a média de cada amostra.
+\item
+  Plote o histograma das médias amostrais e sobreponha a densidade de uma distribuição normal com média \(\mu = 2\) e desvio padrão \(\sigma = \sqrt{\lambda / n}\). Use \texttt{curve(dnorm(x,\ mean\ =\ mu,\ sd\ =\ sigma),\ col\ =\ "red",\ lwd\ =\ 2,\ add\ =\ TRUE)}.
+\end{enumerate}
+
+\textbf{10.} Em um hospital, o número de pacientes atendidos por hora segue uma distribuição de Poisson com média de 5 pacientes por hora. Um pesquisador deseja estimar a média do número de pacientes atendidos por hora coletando amostras de diferentes tamanhos.
+
+Usando o R e fixando a semente em 456, realize o seguinte:
+
+\begin{itemize}
+\tightlist
+\item
+  Simule 1000 amostras de tamanho 50, 100 e 1000 do número de pacientes atendidos por hora, onde \(X \sim \text{Poisson}(\lambda = 5)\).
+\item
+  Para cada tamanho de amostra, calcule a média de cada amostra.
+\item
+  Plote o histograma das médias amostrais para cada tamanho de amostra (50, 100 e 1000).
+\item
+  Sobreponha em cada histograma a densidade de uma distribuição normal com: Média teórica: \(E(X) = \lambda\) e Desvio padrão teórico: \(\sigma = \sqrt{\lambda / n}\) , onde \(n\) é o tamanho da amostra.
+\item
+  Comente sobre como as distribuições das médias amostrais se aproximam de uma distribuição normal à medida que o tamanho da amostra aumenta. Relacione suas observações com o Teorema do Limite Central.
+\end{itemize}
 
 \section{Distribuição Uniforme Contínua}\label{distribuiuxe7uxe3o-uniforme-contuxednua}
 

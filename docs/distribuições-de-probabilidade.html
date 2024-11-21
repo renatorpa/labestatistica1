@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Renato de Paula" />
 
 
-<meta name="date" content="2024-11-19" />
+<meta name="date" content="2024-11-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1010,7 +1010,7 @@ P(X = x) =
 <li>Calcule a média e a variância da amostra.</li>
 <li>Compare os resultados com os valores teóricos <span class="math inline">\(\mathbb{E}[X] = np\)</span> e <span class="math inline">\(\text{V}(X) = np(1-p)\)</span>.</li>
 </ol>
-<p><strong>3.</strong>: Considere a experiência aleatória que consiste em lançar
+<p><strong>3.</strong> Considere a experiência aleatória que consiste em lançar
 uma moeda não viciada e observar a face que fica voltada para cima.
 Suponha que a experiência é realizada 7 vezes, sendo o objetivo
 verificar se sai “cara”. Defina-se a variável aleatória</p>
@@ -1341,7 +1341,21 @@ P(X = x) = \begin{cases}
 <div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="distribuições-de-probabilidade.html#cb318-1" tabindex="-1"></a><span class="co"># P(X &gt;= 1)</span></span>
 <span id="cb318-2"><a href="distribuições-de-probabilidade.html#cb318-2" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">dpois</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">lambda =</span> <span class="fl">1.5</span>)</span>
 <span id="cb318-3"><a href="distribuições-de-probabilidade.html#cb318-3" tabindex="-1"></a><span class="do">## [1] 0.7768698</span></span></code></pre></div>
-<p><strong>Exemplo</strong>: O número de pedidos recebidos por uma linha de suporte
+</div>
+<div id="exercícios-27" class="section level3 hasAnchor" number="21.6.7">
+<h3><span class="header-section-number">21.6.7</span> Exercícios<a href="distribuições-de-probabilidade.html#exercícios-27" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>1.</strong> Uma fábrica produz em média 4 defeitos por dia em sua linha de produção. Suponha que o número de defeitos por dia segue uma distribuição de Poisson.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Qual é a probabilidade de ocorrer exatamente 5 defeitos em um dia?</li>
+<li>Qual é a probabilidade de ocorrerem 3 ou menos defeitos em um dia?</li>
+</ol>
+<p><strong>2.</strong> Simule o número de defeitos em 30 dias consecutivos. Use <code>rpois()</code> para gerar uma amostra com média de 4 defeitos por dia.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Gere uma amostra de tamanho 30 com <span class="math inline">\(\lambda = 4\)</span>.</li>
+<li>Calcule a média e o desvio padrão da amostra gerada.</li>
+<li>Compare a média e o desvio padrão da amostra com os valores teóricos.</li>
+</ol>
+<p><strong>3.</strong>: O número de pedidos recebidos por uma linha de suporte
 técnico de uma empresa num intervalo de 10 minutos é uma variável
 aleatória que segue uma distribuição de Poisson. Neste intervalo de 10
 minutos, espera-se que cheguem, em média, 20 pedidos.</p>
@@ -1355,10 +1369,65 @@ pedidos.</p></li>
 <li><p>Determine, para cada amostra, o valor da média e da variância.
 Compare com os valores de <span class="math inline">\(E(X)\)</span> e <span class="math inline">\(V(X)\)</span>.</p></li>
 </ol>
-</div>
-<div id="exercícios-27" class="section level3 hasAnchor" number="21.6.7">
-<h3><span class="header-section-number">21.6.7</span> Exercícios<a href="distribuições-de-probabilidade.html#exercícios-27" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>1.</strong></p>
+<p><strong>4.</strong> Uma loja recebe uma média de 12 clientes por hora. Suponha que o número de clientes por hora siga uma distribuição de Poisson.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Qual é a probabilidade de a loja receber no máximo 10 clientes em uma hora?</p></li>
+<li><p>Qual é a probabilidade de receber mais de 15 clientes em uma hora?</p></li>
+<li><p>Simule o número de clientes recebidos em 500 horas.</p></li>
+</ol>
+<ul>
+<li><ol style="list-style-type: lower-roman">
+<li>Crie um vetor de amostras aleatórias de tamanho 500.</li>
+</ol></li>
+<li><ol start="2" style="list-style-type: lower-roman">
+<li>Calcule a frequência relativa de horas em que o número de clientes foi menor ou igual a 10. Compare este valor com a probabilidade calculada no item (a).</li>
+</ol></li>
+</ul>
+<ol start="4" style="list-style-type: lower-alpha">
+<li><p>Usando a simulação do item (c), calcule a média e o desvio padrão da amostra gerada. Compare com os valores teóricos da média e do desvio padrão de uma distribuição de Poisson com <span class="math inline">\(\lambda = 12\)</span>.</p></li>
+<li><p>Construa um gráfico que compare a distribuição teórica P(X = x) com a frequência relativa observada na simulação do item (c).</p></li>
+</ol>
+<p><strong>5.</strong> Em uma área de conservação, o número de aves avistadas em uma hora segue uma distribuição de Poisson com <span class="math inline">\(\lambda = 8\)</span>.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Simule o número de aves avistadas em 1000 horas.</p></li>
+<li><p>Construa a função de distribuição empírica (usando <code>ecdf()</code>).</p></li>
+<li><p>Compare a função de distribuição empírica com a função de distribuição teórica <span class="math inline">\(F(x) = P(X \leq x)\)</span> , calculada com <code>ppois()</code>.</p></li>
+</ol>
+<p><strong>6.</strong> Usando o R e fixando a semente em 543, gere uma amostra aleatória
+de 2400 observações de uma variável aleatória <span class="math inline">\(Y\)</span> de Poisson com
+parâmetro <span class="math inline">\(\lambda = 6\)</span>.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Faça um histograma de frequência relativa associado aos valores
+amostrais. Sobreponha no gráfico a distribuição de probabilidade de <span class="math inline">\(X\)</span>.</p></li>
+<li><p>Use a função de distribuição empírica para estimar <span class="math inline">\(P(Y &gt; 5)\)</span> e
+compare com o valor teórico.</p></li>
+</ol>
+<p><strong>7.</strong> Para <span class="math inline">\(\lambda = 5\)</span>, construa o gráfico da distribuição de probabilidade <span class="math inline">\(P(X = x)\)</span> , onde x varia de 0 a 15.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Use dpois() para calcular as probabilidades.</p></li>
+<li><p>Crie um gráfico de barras para representar os valores.</p></li>
+</ol>
+<p><strong>8.</strong> Para <span class="math inline">\(\lambda = 50\)</span>, use a aproximação normal para calcular:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>A probabilidade de X usando a distribuição de Poisson.</p></li>
+<li><p>A mesma probabilidade usando a aproximação normal com N(= 50, ^2 = 50) .</p></li>
+<li><p>Compare os resultados.</p></li>
+</ol>
+<p><strong>9.</strong> Suponha que o número de acidentes por dia em uma rodovia siga uma distribuição de Poisson com <span class="math inline">\(\lambda = 2\)</span>.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Simule 1000 amostras de tamanho 30 do número de acidentes por dia.</p></li>
+<li><p>Calcule a média de cada amostra.</p></li>
+<li><p>Plote o histograma das médias amostrais e sobreponha a densidade de uma distribuição normal com média <span class="math inline">\(\mu = 2\)</span> e desvio padrão <span class="math inline">\(\sigma = \sqrt{\lambda / n}\)</span>. Use <code>curve(dnorm(x, mean = mu, sd = sigma), col = "red", lwd = 2, add = TRUE)</code>.</p></li>
+</ol>
+<p><strong>10.</strong> Em um hospital, o número de pacientes atendidos por hora segue uma distribuição de Poisson com média de 5 pacientes por hora. Um pesquisador deseja estimar a média do número de pacientes atendidos por hora coletando amostras de diferentes tamanhos.</p>
+<p>Usando o R e fixando a semente em 456, realize o seguinte:</p>
+<ul>
+<li>Simule 1000 amostras de tamanho 50, 100 e 1000 do número de pacientes atendidos por hora, onde <span class="math inline">\(X \sim \text{Poisson}(\lambda = 5)\)</span>.</li>
+<li>Para cada tamanho de amostra, calcule a média de cada amostra.</li>
+<li>Plote o histograma das médias amostrais para cada tamanho de amostra (50, 100 e 1000).</li>
+<li>Sobreponha em cada histograma a densidade de uma distribuição normal com: Média teórica: <span class="math inline">\(E(X) = \lambda\)</span> e Desvio padrão teórico: <span class="math inline">\(\sigma = \sqrt{\lambda / n}\)</span> , onde <span class="math inline">\(n\)</span> é o tamanho da amostra.</li>
+<li>Comente sobre como as distribuições das médias amostrais se aproximam de uma distribuição normal à medida que o tamanho da amostra aumenta. Relacione suas observações com o Teorema do Limite Central.</li>
+</ul>
 </div>
 </div>
 <div id="distribuição-uniforme-contínua" class="section level2 hasAnchor" number="21.7">
