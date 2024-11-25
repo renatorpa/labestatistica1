@@ -7031,9 +7031,9 @@ O gerador de números pseudoaleatórios padrão em R é o [Mersenne Twister](htt
 - Repita o processo sem redefinir a semente.
 - Redefina a semente com o mesmo valor (`set.seed(123)`) e repita a simulação. Compare os resultados com a primeira simulação.
 
-**3.** Use `set.seed()` para gerar 50 valores aleatórios de uma distribuição normal ($N(\mu=10, \sigma=2)$). Use `rnorm(n = 50, mean = 10, sd = 2)`.
+**3.** Use `set.seed()` para gerar 50 valores aleatórios de uma distribuição normal $N(\mu=10, \sigma=2)$. Use `rnorm(n = 50, mean = 10, sd = 2)`.
 
-- Use a mesma semente para gerar 50 valores de uma distribuição uniforme ($U(0, 1)$). Use `runif(n = 50, min = 0, max = 1)`.
+- Use a mesma semente para gerar 50 valores de uma distribuição uniforme $U(0, 1)$. Use `runif(n = 50, min = 0, max = 1)`.
 - Altere a semente e repita o processo. Compare os conjuntos de dados gerados.
 
 **4.** Defina uma semente usando `set.seed(42)`.
@@ -7759,7 +7759,8 @@ dgeom(x = 2, prob = 1/6)
 
 (c) Simule o número de tentativas necessárias para resolver o problema em 500 casos.
 
--(i) Crie um vetor de amostras aleatórias de tamanho 500 usando `rgeom()`.
+- (i) Crie um vetor de amostras aleatórias de tamanho 500 usando `rgeom()`.
+
 - (ii) Calcule a frequência relativa de casos em que o número de tentativas foi menor ou igual a 5. Compare este valor com a probabilidade calculada no item (a).
 
 (d) Usando a simulação do item (c), calcule a média e o desvio padrão da amostra gerada. Compare com os valores teóricos da média  $\mu = \frac{1-p}{p}$  e do desvio padrão  $\sigma = \sqrt{\frac{1-p}{p^2}}$.
@@ -8237,7 +8238,21 @@ plot(Fn, main="Função de Distribuição Empírica",
 #plot.ecdf(uniform_data)
 ```
 
-**Exemplo**: O peso real de uma barra de chocolate de uma determinada
+### Exercícios
+
+**1.** Simule 1000 valores de uma variável aleatória com distribuição uniforme contínua no intervalo $[0, 1]$.
+
+(a) Calcule a média e a variância dos valores simulados.
+
+(b) Compare os resultados com os valores teóricos da média ($E(X) = 0.5$) e da variância ($V(X) = 1/12$).
+
+**2.** Simule 500 valores de uma variável aleatória com distribuição uniforme contínua no intervalo $[-3, 7]$.
+
+(a) Plote o histograma dos valores simulados.
+
+(b) Adicione ao gráfico a linha da densidade teórica da distribuição uniforme.
+
+**3.**: O peso real de uma barra de chocolate de uma determinada
 marca (que supostamente pesa 100 gramas) é uma variável aleatória, em
 gramas, com distribuição uniforme no intervalo de 85 a 105 gramas.
 
@@ -8249,6 +8264,52 @@ gramas, com distribuição uniforme no intervalo de 85 a 105 gramas.
     caso, determine a percentagem de casos em que o peso é inferior a
     100 gramas.
     
+**4.** Simule 10.000 valores de uma variável aleatória $X \sim U(2, 8)$.
+	
+(a) Calcule a probabilidade empírica de que $X > 5$.
+
+(b) Compare o resultado com a probabilidade teórica calculada usando a função `punif()`.
+
+**5.** Suponha que uma variável aleatória $Y$ segue uma distribuição uniforme contínua no intervalo $[10, 20]$. Simule 1000 valores de $Y$.
+
+(a) Calcule a proporção empírica de valores em $[12, 15]$.
+
+(b) Compare com o valor teórico usando a função `punif()`.   
+
+**6.** Simule 1000 amostras de tamanho 30 de uma variável aleatória $X \sim U(-5, 5)$.
+
+(a) Calcule a média de cada amostra.
+
+(b) Plote o histograma das médias amostrais e sobreponha a curva de densidade de uma normal com $E(X) = 0$ e $V(X) = \frac{(5 - (-5))^2}{12 \cdot n}$.
+
+**7.** Considere que a variável $Z = 3X + 2$, onde $X \sim U(0, 1)$. Simule 1000 valores de $X$ e transforme-os em $Z$.
+
+(a) Calcule a média e a variância de $Z$.
+
+(b) Compare os resultados empíricos com os valores teóricos $E(Z) = 3E(X) + 2$ e $V(Z) = 9V(X)$.
+
+**8.** Uma fábrica produz itens com peso uniformemente distribuído entre 100 e 120 gramas. Simule 2000 itens e analise:
+
+(a) Calcule a proporção de itens com peso inferior a 105 gramas.
+
+(b) Construa um gráfico que compare a densidade empírica com a densidade teórica da distribuição uniforme no intervalo $[100, 120]$.
+
+**9.** Usando o R e fixando a semente em 123, gere amostras de tamanho
+crescente $n = 100, 1000, 10000, 100000$ de uma variável aleatória $W$ com
+distribuição uniforme no intervalo $[0, 1]$. Para cada tamanho de
+amostra, calcule a média amostral e compare-a com o valor esperado
+teórico. Observe e comente a convergência das médias amostrais.
+
+**10.** O tempo necessário para um drone realizar a entrega de um pacote (em minutos) é modelado por uma variável aleatória  $X$  com distribuição $\text{Uniforme}(a=10, b=30)$. Usando o R e fixando a semente em 1430, gere 8000 amostras de dimensão  n=100  dessa variável. Para essas amostras:
+
+(a) Calcule a soma de cada uma das amostras, obtendo assim valores da distribuição da soma  $S_{n} = \sum_{i=1}^{n}X_{n}$.
+
+(b) Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da soma e sobreponha no gráfico uma curva com distribuição normal de valor esperado  $nE(X)$  e desvio padrão  $\sqrt{V(X)n}$.
+
+(c) Calcule a média de cada uma das amostras, obtendo assim valores da distribuição da média  $\bar{X_{n}}$.
+
+(d) Faça um histograma de frequência relativa associado aos valores obtidos da distribuição da média  $\bar{X_{n}}$. Sobreponha no gráfico uma curva com distribuição normal com valor esperado  $E(X)$  e desvio padrão  $\sqrt{V(X)/n}$.
+
 ## Distribuição Exponencial
 
 O modelo exponencial é frequentemente utilizado na caracterização da duração de equipamentos, modelação dos tempos entre ocorrências consecutivas de eventos do mesmo tipo, por exemplo, chegadas de clientes a um sistema, falhas mecânicas, colisões, etc.
