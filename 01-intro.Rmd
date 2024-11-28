@@ -31,18 +31,18 @@ email: acafernandes@fc.ul.pt
 - Datas de realização dos testes:
 - Primeiro Exercício prático: 22 de outubro de 2024
 - Primeiro teste: 5 de novembro de 2024
+- Segundo Exercício prático: 13 de dezembro de 2024
 - Segundo teste: 21 de janeiro de 2025
 
 -   **Nota final**:
 
-    -   (1):
-        $0.10\times(Ex1) + 0.10\times(Ex2) + 0.40\times(Teste1) + 0.40\times(Teste2)$
+    - $0.10\times(Ex1) + 0.10\times(Ex2) + 0.40\times(Teste1) + 0.40\times(Teste2)$
 
 **ou**
 
--   (2): Nota do Exame final
+- Nota do Exame final
 
--   Exercício prático não efetuado tem cotação igual a zero.
+- Exercício prático não efetuado tem cotação igual a zero.
 
 **Consulta permitida**
 
@@ -8300,7 +8300,7 @@ distribuição uniforme no intervalo $[0, 1]$. Para cada tamanho de
 amostra, calcule a média amostral e compare-a com o valor esperado
 teórico. Observe e comente a convergência das médias amostrais.
 
-**10.** O tempo necessário para um drone realizar a entrega de um pacote (em minutos) é modelado por uma variável aleatória  $X$  com distribuição $\text{Uniforme}(a=10, b=30)$. Usando o R e fixando a semente em 1430, gere 8000 amostras de dimensão  n=100  dessa variável. Para essas amostras:
+**10.** O tempo necessário para um drone realizar a entrega de um pacote (em minutos) é modelado por uma variável aleatória  $X$  com distribuição $\text{Uniforme}(a=10, b=30)$. Usando o R e fixando a semente em 1430, gere 8000 amostras de dimensão $n=100$ dessa variável. Para essas amostras:
 
 (a) Calcule a soma de cada uma das amostras, obtendo assim valores da distribuição da soma  $S_{n} = \sum_{i=1}^{n}X_{n}$.
 
@@ -8463,6 +8463,105 @@ plot(Fn, main="Função de Distribuição Empírica",
      col="blue")
 ```
 
+### Exercícios
+
+**1.** Uma central de atendimento recebe chamadas a cada intervalo de tempo, que segue uma distribuição exponencial com taxa $\lambda = 2$ (chamadas por minuto).
+
+(a)	Simule 1000 intervalos de tempo entre chamadas.
+
+(b)	Calcule o tempo médio entre chamadas e compare com o valor teórico $1/\lambda$.
+
+(c) Plote o histograma dos intervalos simulados e sobreponha a densidade teórica.
+
+**2.** Em uma fila de espera, o tempo entre chegadas de clientes segue uma distribuição exponencial com $\lambda = 0.5$.
+
+(a) Calcule a probabilidade teórica de o tempo entre duas chegadas ser maior que 3 minutos.
+
+(b) Simule 5000 intervalos e estime empiricamente a probabilidade de o tempo entre chegadas ser maior que 3 minutos.
+
+(c) Compare o resultado empírico com o teórico.
+
+**3.** O tempo necessário para atender clientes em um restaurante segue uma distribuição exponencial com taxa $\lambda = 0.25$ (atendimentos por minuto).
+
+(a) Simule os tempos de atendimento para 50 clientes.
+
+(b) Calcule o tempo total necessário para atender todos os clientes.
+
+(c) Plote o histograma do tempo total de atendimento após 1000 simulações.
+
+**4.** Um engenheiro está monitorando dois processos independentes, cujos tempos seguem distribuições exponenciais com $\lambda_1 = 3$ e $\lambda_2 = 5$.
+	
+(a) Simule 1000 tempos para cada processo.
+
+(b) Calcule a soma dos tempos de ambos os processos.
+
+(c) Plote o histograma dos tempos somados e discuta se a soma ainda segue uma distribuição exponencial.
+
+**5.** Simule 5000 amostras de tamanho 30 de uma variável $X \sim \text{Exponencial}(\lambda = 1.5)$.
+
+(a) Calcule a média de cada amostra.
+
+(b) Plote o histograma das médias amostrais e sobreponha a curva de densidade normal com média $1/\lambda$ e desvio padrão $1/(\lambda \sqrt{n})$.
+
+(c) Explique como o Teorema do Limite Central se aplica nesse contexto.
+
+**6.** O tempo até o primeiro evento de falha em uma máquina segue uma distribuição exponencial com taxa $\lambda = 0.1$.
+
+(a) Simule o tempo de falha para 100 máquinas.
+
+(b) Estime a probabilidade de uma máquina falhar em menos de 15 horas.
+
+(c) Compare o valor empírico com o teórico calculado pela função de distribuição acumulada.
+
+**7.** Uma rodovia registra acidentes em intervalos de tempo que seguem uma distribuição exponencial com $\lambda = 0.8$ (acidentes por hora).
+
+(a) Simule os tempos entre acidentes para um período de 1000 horas.
+
+(b) Calcule a probabilidade empírica de um intervalo ser inferior a 2 horas.
+
+(c) Plote um gráfico de densidade para os tempos simulados e compare com a densidade teórica.
+
+**8.** Considere dois processos relacionados:
+
+- O tempo de falha do primeiro componente segue $X_1 \sim \text{Exponencial}(\lambda = 0.5)$.
+
+- O tempo de falha do segundo componente é dado por $X_2 = 2X_1 + 1$.
+
+(a) Simule 5000 pares $(X_1, X_2)$.
+
+(b) Calcule a média e a variância de $X_2$.
+
+(c) Plote o gráfico de dispersão entre $X_1$ e $X_2$ e comente sobre a relação entre as variáveis.
+
+**9.** Uma central de atendimento registra o tempo entre chamadas, que segue uma distribuição exponencial com $\lambda = 2$ (chamadas por minuto).
+
+(a) Simule 5000 amostras de tamanho $n = 5$ de uma variável aleatória $X \sim \text{Exponencial}(\lambda = 2)$.
+
+(b) Para cada amostra, calcule a soma $S = \sum_{i=1}^n X_i$.
+
+(c) Compare o histograma de $S$ com a densidade de uma distribuição $\text{Gama}(k = 5, \theta = 1/\lambda)$ sobreposta.
+
+(d) Verifique a média e a variância de $S$ empiricamente e compare com os valores teóricos de uma $\text{Gama}(k, \theta)$, dados por $E(S) = k\theta$ e $V(S) = k\theta^2$.
+
+**10.** O tempo até a falha de uma máquina segue uma distribuição exponencial com $\lambda = 0.5$. Um engenheiro monitora o tempo até a ocorrência de 10 falhas consecutivas.
+
+(a) Simule 10.000 observações do tempo total para 10 falhas consecutivas ($S = \sum_{i=1}^{10} X_i$, onde $X \sim \text{Exponencial}(\lambda = 0.5))$.
+
+(b) Compare o histograma dos tempos totais simulados com a densidade de uma distribuição $\text{Gama}(k = 10, \theta = 1/\lambda)$.
+
+(c) Calcule a probabilidade teórica de o tempo total ser maior que 25 horas usando a densidade $\text{Gama}$. Compare com a probabilidade empírica obtida dos dados simulados.
+
+**11.** Suponha que o tempo para a conclusão de uma tarefa em um laboratório é modelado como uma soma de $n = 7$ tempos de processamento individuais, cada um seguindo uma $\text{Exponencial}(\lambda = 3)$.
+
+(a) Simule 5000 amostras do tempo total para completar a tarefa ($S = \sum_{i=1}^{n} X_i)$.
+
+(b) Ajuste os valores simulados a uma distribuição $\text{Gama}(k = 7, \theta = 1/\lambda)$.
+
+(c) Plote o gráfico de densidade dos valores simulados e compare com a densidade teórica da distribuição gama.
+
+(d) Estime o valor do 90º percentil da soma simulada e compare com o percentil teórico calculado para uma $\text{Gama}(k, \theta)$.
+
+
 ## Distribuição Normal
 
 Vamos ver alguns exemplos com a distribuição normal padrão. Por `default` as funções assumem a distribuição normal padrão $N(\mu=0, \sigma = 1)$.
@@ -8564,7 +8663,77 @@ legend(120, 0.05, fill = 1:3,
        legend = c("N(100,64)", "N(90,64)", "N(100,225)"))
 ```
 
-## Exercícios
+### Exercícios
+
+**1.** Um experimento mede o peso de um mineral em gramas, que segue uma distribuição normal com média $\mu = 50$ e desvio padrão $\sigma = 5$.
+
+(a) Simule 1000 pesos desse mineral.
+
+(b) Calcule a média e o desvio padrão dos pesos simulados e compare com os valores teóricos.
+
+(c) Plote o histograma dos pesos simulados e sobreponha a densidade teórica da distribuição normal.
+
+**2.** Duas variáveis aleatórias $X_1 \sim N(5, 2^2)$ e $X_2 \sim N(10, 3^2)$ são independentes.
+
+(a) Simule 1000 pares de $(X_1, X_2)$.
+
+(b) Calcule a soma $S = X_1 + X_2$.
+
+(c) Plote o histograma de $S$ e sobreponha a densidade de uma normal com média $\mu_S = \mu_{X_1} + \mu_{X_2}$ e variância $\sigma_S^2 = \sigma_{X_1}^2 + \sigma_{X_2}^2$.
+
+**3.** Considere duas variáveis $X_1 \sim N(0, 1)$ e $X_2 \sim N(0, 1)$.
+
+(a) Simule 5000 pares $(X_1, X_2)$.
+
+(b) Calcule $Q = X_1^2 + X_2^2$.
+
+(c) Compare o histograma de $Q$ com a densidade teórica de uma distribuição qui-quadrado com 2 graus de liberdade.
+
+**4.** Suponha que $X \sim N(0, 1)$. Extraia amostras de tamanho 10, 30 e 100 e calcule:
+
+(a) A média de cada amostra.
+
+(b) O histograma das médias amostrais.
+
+(c) Compare as médias amostrais com a densidade de uma distribuição t-Student com $n-1$ graus de liberdade para cada tamanho de amostra.
+
+**5.** Simule 1000 amostras de tamanho 20 de $X \sim N(0, 1)$:
+
+(a) Calcule a soma dos quadrados de cada amostra.
+
+(b) Compare o histograma da soma dos quadrados com a densidade teórica de uma distribuição qui-quadrado com 20 graus de liberdade.
+
+(c) Interprete os resultados e discuta as diferenças.
+
+**6.** Simule 5000 amostras de tamanho 30 de uma variável $X \sim N(10, 4^2)$:
+
+(a) Calcule a média de cada amostra.
+
+(b) Plote o histograma das médias amostrais e sobreponha uma curva normal com média $\mu = 10$ e desvio padrão $\sigma = 4/\sqrt{30}$.
+
+(c) Explique como o Teorema do Limite Central justifica os resultados.
+
+**7.** Considere duas variáveis $X_1 \sim N(0, 1)$ e $X_2 = 0.5X_1 + Z$, onde $Z \sim N(0, 1)$ é independente de $X_1$.
+
+(a) Simule 5000 pares $(X_1, X_2)$.
+
+(b) Calcule a soma $S = X_1 + X_2$.
+
+(c) Plote o histograma de $S$ e comente sobre o impacto da dependência entre $X_1$ e $X_2$ na distribuição de $S$.
+
+**8.** Simule 1000 amostras de tamanho 10 de $X \sim N(0, 1)$. Para cada amostra, calcule:
+
+(a) A média $\bar{X}$,
+
+(b) A variância $S^2$.
+
+(c) Construa a estatística:
+
+$T = \frac{\bar{X}}{S / \sqrt{n}}$
+
+e compare o histograma de $T$ com a densidade de uma distribuição t-Student com $n-1$ graus de liberdade.
+
+# Exercícios extra
 
 **1.** Usando o R e fixando a semente em 123, simule 1000 lançamentos de
 uma moeda com probabilidade de 0.5 de sair cara. Conte o número de caras

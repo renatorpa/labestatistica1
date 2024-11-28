@@ -126,7 +126,7 @@
 
 \title{Introdução ao R e Simulação}
 \author{Renato de Paula}
-\date{2024-11-26}
+\date{2024-11-28}
 
 \begin{document}
 \maketitle
@@ -180,6 +180,8 @@ email: \href{mailto:acafernandes@fc.ul.pt}{\nolinkurl{acafernandes@fc.ul.pt}}
 \item
   Primeiro teste: 5 de novembro de 2024
 \item
+  Segundo Exercício prático: 13 de dezembro de 2024
+\item
   Segundo teste: 21 de janeiro de 2025
 \item
   \textbf{Nota final}:
@@ -187,7 +189,6 @@ email: \href{mailto:acafernandes@fc.ul.pt}{\nolinkurl{acafernandes@fc.ul.pt}}
   \begin{itemize}
   \tightlist
   \item
-    (1):
     \(0.10\times(Ex1) + 0.10\times(Ex2) + 0.40\times(Teste1) + 0.40\times(Teste2)\)
   \end{itemize}
 \end{itemize}
@@ -196,7 +197,7 @@ email: \href{mailto:acafernandes@fc.ul.pt}{\nolinkurl{acafernandes@fc.ul.pt}}
 
 \begin{itemize}
 \item
-  (2): Nota do Exame final
+  Nota do Exame final
 \item
   Exercício prático não efetuado tem cotação igual a zero.
 \end{itemize}
@@ -11327,7 +11328,7 @@ distribuição uniforme no intervalo \([0, 1]\). Para cada tamanho de
 amostra, calcule a média amostral e compare-a com o valor esperado
 teórico. Observe e comente a convergência das médias amostrais.
 
-\textbf{10.} O tempo necessário para um drone realizar a entrega de um pacote (em minutos) é modelado por uma variável aleatória \(X\) com distribuição \(\text{Uniforme}(a=10, b=30)\). Usando o R e fixando a semente em 1430, gere 8000 amostras de dimensão n=100 dessa variável. Para essas amostras:
+\textbf{10.} O tempo necessário para um drone realizar a entrega de um pacote (em minutos) é modelado por uma variável aleatória \(X\) com distribuição \(\text{Uniforme}(a=10, b=30)\). Usando o R e fixando a semente em 1430, gere 8000 amostras de dimensão \(n=100\) dessa variável. Para essas amostras:
 
 \begin{enumerate}
 \def\labelenumi{(\alph{enumi})}
@@ -11523,6 +11524,151 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 
 \includegraphics{introR_files/figure-latex/unnamed-chunk-278-1.pdf}
 
+\subsection{Exercícios}\label{exercuxedcios-29}
+
+\textbf{1.} Uma central de atendimento recebe chamadas a cada intervalo de tempo, que segue uma distribuição exponencial com taxa \(\lambda = 2\) (chamadas por minuto).
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Simule 1000 intervalos de tempo entre chamadas.
+\item
+  Calcule o tempo médio entre chamadas e compare com o valor teórico \(1/\lambda\).
+\item
+  Plote o histograma dos intervalos simulados e sobreponha a densidade teórica.
+\end{enumerate}
+
+\textbf{2.} Em uma fila de espera, o tempo entre chegadas de clientes segue uma distribuição exponencial com \(\lambda = 0.5\).
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Calcule a probabilidade teórica de o tempo entre duas chegadas ser maior que 3 minutos.
+\item
+  Simule 5000 intervalos e estime empiricamente a probabilidade de o tempo entre chegadas ser maior que 3 minutos.
+\item
+  Compare o resultado empírico com o teórico.
+\end{enumerate}
+
+\textbf{3.} O tempo necessário para atender clientes em um restaurante segue uma distribuição exponencial com taxa \(\lambda = 0.25\) (atendimentos por minuto).
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Simule os tempos de atendimento para 50 clientes.
+\item
+  Calcule o tempo total necessário para atender todos os clientes.
+\item
+  Plote o histograma do tempo total de atendimento após 1000 simulações.
+\end{enumerate}
+
+\textbf{4.} Um engenheiro está monitorando dois processos independentes, cujos tempos seguem distribuições exponenciais com \(\lambda_1 = 3\) e \(\lambda_2 = 5\).
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Simule 1000 tempos para cada processo.
+\item
+  Calcule a soma dos tempos de ambos os processos.
+\item
+  Plote o histograma dos tempos somados e discuta se a soma ainda segue uma distribuição exponencial.
+\end{enumerate}
+
+\textbf{5.} Simule 5000 amostras de tamanho 30 de uma variável \(X \sim \text{Exponencial}(\lambda = 1.5)\).
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Calcule a média de cada amostra.
+\item
+  Plote o histograma das médias amostrais e sobreponha a curva de densidade normal com média \(1/\lambda\) e desvio padrão \(1/(\lambda \sqrt{n})\).
+\item
+  Explique como o Teorema do Limite Central se aplica nesse contexto.
+\end{enumerate}
+
+\textbf{6.} O tempo até o primeiro evento de falha em uma máquina segue uma distribuição exponencial com taxa \(\lambda = 0.1\).
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Simule o tempo de falha para 100 máquinas.
+\item
+  Estime a probabilidade de uma máquina falhar em menos de 15 horas.
+\item
+  Compare o valor empírico com o teórico calculado pela função de distribuição acumulada.
+\end{enumerate}
+
+\textbf{7.} Uma rodovia registra acidentes em intervalos de tempo que seguem uma distribuição exponencial com \(\lambda = 0.8\) (acidentes por hora).
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Simule os tempos entre acidentes para um período de 1000 horas.
+\item
+  Calcule a probabilidade empírica de um intervalo ser inferior a 2 horas.
+\item
+  Plote um gráfico de densidade para os tempos simulados e compare com a densidade teórica.
+\end{enumerate}
+
+\textbf{8.} Considere dois processos relacionados:
+
+\begin{itemize}
+\item
+  O tempo de falha do primeiro componente segue \(X_1 \sim \text{Exponencial}(\lambda = 0.5)\).
+\item
+  O tempo de falha do segundo componente é dado por \(X_2 = 2X_1 + 1\).
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Simule 5000 pares \((X_1, X_2)\).
+\item
+  Calcule a média e a variância de \(X_2\).
+\item
+  Plote o gráfico de dispersão entre \(X_1\) e \(X_2\) e comente sobre a relação entre as variáveis.
+\end{enumerate}
+
+\textbf{9.} Uma central de atendimento registra o tempo entre chamadas, que segue uma distribuição exponencial com \(\lambda = 2\) (chamadas por minuto).
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Simule 5000 amostras de tamanho \(n = 5\) de uma variável aleatória \(X \sim \text{Exponencial}(\lambda = 2)\).
+\item
+  Para cada amostra, calcule a soma \(S = \sum_{i=1}^n X_i\).
+\item
+  Compare o histograma de \(S\) com a densidade de uma distribuição \(\text{Gama}(k = 5, \theta = 1/\lambda)\) sobreposta.
+\item
+  Verifique a média e a variância de \(S\) empiricamente e compare com os valores teóricos de uma \(\text{Gama}(k, \theta)\), dados por \(E(S) = k\theta\) e \(V(S) = k\theta^2\).
+\end{enumerate}
+
+\textbf{10.} O tempo até a falha de uma máquina segue uma distribuição exponencial com \(\lambda = 0.5\). Um engenheiro monitora o tempo até a ocorrência de 10 falhas consecutivas.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Simule 10.000 observações do tempo total para 10 falhas consecutivas (\(S = \sum_{i=1}^{10} X_i\), onde \(X \sim \text{Exponencial}(\lambda = 0.5))\).
+\item
+  Compare o histograma dos tempos totais simulados com a densidade de uma distribuição \(\text{Gama}(k = 10, \theta = 1/\lambda)\).
+\item
+  Calcule a probabilidade teórica de o tempo total ser maior que 25 horas usando a densidade \(\text{Gama}\). Compare com a probabilidade empírica obtida dos dados simulados.
+\end{enumerate}
+
+\textbf{11.} Suponha que o tempo para a conclusão de uma tarefa em um laboratório é modelado como uma soma de \(n = 7\) tempos de processamento individuais, cada um seguindo uma \(\text{Exponencial}(\lambda = 3)\).
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Simule 5000 amostras do tempo total para completar a tarefa (\(S = \sum_{i=1}^{n} X_i)\).
+\item
+  Ajuste os valores simulados a uma distribuição \(\text{Gama}(k = 7, \theta = 1/\lambda)\).
+\item
+  Plote o gráfico de densidade dos valores simulados e compare com a densidade teórica da distribuição gama.
+\item
+  Estime o valor do 90º percentil da soma simulada e compare com o percentil teórico calculado para uma \(\text{Gama}(k, \theta)\).
+\end{enumerate}
+
 \section{Distribuição Normal}\label{distribuiuxe7uxe3o-normal}
 
 Vamos ver alguns exemplos com a distribuição normal padrão. Por \texttt{default} as funções assumem a distribuição normal padrão \(N(\mu=0, \sigma = 1)\).
@@ -11654,7 +11800,109 @@ Função densidade de probabilidade e função de distribuição.
 
 \includegraphics{introR_files/figure-latex/unnamed-chunk-284-1.pdf}
 
-\section{Exercícios}\label{exercuxedcios-29}
+\subsection{Exercícios}\label{exercuxedcios-30}
+
+\textbf{1.} Um experimento mede o peso de um mineral em gramas, que segue uma distribuição normal com média \(\mu = 50\) e desvio padrão \(\sigma = 5\).
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Simule 1000 pesos desse mineral.
+\item
+  Calcule a média e o desvio padrão dos pesos simulados e compare com os valores teóricos.
+\item
+  Plote o histograma dos pesos simulados e sobreponha a densidade teórica da distribuição normal.
+\end{enumerate}
+
+\textbf{2.} Duas variáveis aleatórias \(X_1 \sim N(5, 2^2)\) e \(X_2 \sim N(10, 3^2)\) são independentes.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Simule 1000 pares de \((X_1, X_2)\).
+\item
+  Calcule a soma \(S = X_1 + X_2\).
+\item
+  Plote o histograma de \(S\) e sobreponha a densidade de uma normal com média \(\mu_S = \mu_{X_1} + \mu_{X_2}\) e variância \(\sigma_S^2 = \sigma_{X_1}^2 + \sigma_{X_2}^2\).
+\end{enumerate}
+
+\textbf{3.} Considere duas variáveis \(X_1 \sim N(0, 1)\) e \(X_2 \sim N(0, 1)\).
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Simule 5000 pares \((X_1, X_2)\).
+\item
+  Calcule \(Q = X_1^2 + X_2^2\).
+\item
+  Compare o histograma de \(Q\) com a densidade teórica de uma distribuição qui-quadrado com 2 graus de liberdade.
+\end{enumerate}
+
+\textbf{4.} Suponha que \(X \sim N(0, 1)\). Extraia amostras de tamanho 10, 30 e 100 e calcule:
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  A média de cada amostra.
+\item
+  O histograma das médias amostrais.
+\item
+  Compare as médias amostrais com a densidade de uma distribuição t-Student com \(n-1\) graus de liberdade para cada tamanho de amostra.
+\end{enumerate}
+
+\textbf{5.} Simule 1000 amostras de tamanho 20 de \(X \sim N(0, 1)\):
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Calcule a soma dos quadrados de cada amostra.
+\item
+  Compare o histograma da soma dos quadrados com a densidade teórica de uma distribuição qui-quadrado com 20 graus de liberdade.
+\item
+  Interprete os resultados e discuta as diferenças.
+\end{enumerate}
+
+\textbf{6.} Simule 5000 amostras de tamanho 30 de uma variável \(X \sim N(10, 4^2)\):
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Calcule a média de cada amostra.
+\item
+  Plote o histograma das médias amostrais e sobreponha uma curva normal com média \(\mu = 10\) e desvio padrão \(\sigma = 4/\sqrt{30}\).
+\item
+  Explique como o Teorema do Limite Central justifica os resultados.
+\end{enumerate}
+
+\textbf{7.} Considere duas variáveis \(X_1 \sim N(0, 1)\) e \(X_2 = 0.5X_1 + Z\), onde \(Z \sim N(0, 1)\) é independente de \(X_1\).
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Simule 5000 pares \((X_1, X_2)\).
+\item
+  Calcule a soma \(S = X_1 + X_2\).
+\item
+  Plote o histograma de \(S\) e comente sobre o impacto da dependência entre \(X_1\) e \(X_2\) na distribuição de \(S\).
+\end{enumerate}
+
+\textbf{8.} Simule 1000 amostras de tamanho 10 de \(X \sim N(0, 1)\). Para cada amostra, calcule:
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  A média \(\bar{X}\),
+\item
+  A variância \(S^2\).
+\item
+  Construa a estatística:
+\end{enumerate}
+
+\(T = \frac{\bar{X}}{S / \sqrt{n}}\)
+
+e compare o histograma de \(T\) com a densidade de uma distribuição t-Student com \(n-1\) graus de liberdade.
+
+\chapter{Exercícios extra}\label{exercuxedcios-extra}
 
 \textbf{1.} Usando o R e fixando a semente em 123, simule 1000 lançamentos de
 uma moeda com probabilidade de 0.5 de sair cara. Conte o número de caras
@@ -12245,7 +12493,7 @@ expresso da seguinte forma.
 
 \includegraphics{introR_files/figure-latex/unnamed-chunk-290-1.pdf}
 
-\section{Exercícios}\label{exercuxedcios-30}
+\section{Exercícios}\label{exercuxedcios-31}
 
 \textbf{1.} Considere uma variável aleatória \(X\) com a seguinte distribuição
 de probabilidades:
@@ -12390,7 +12638,7 @@ aleatório \(U\) e fazendo \[X = -\frac{1}{\lambda}ln (U).\]
 
 \includegraphics{introR_files/figure-latex/unnamed-chunk-293-1.pdf}
 
-\section{Exercícios}\label{exercuxedcios-31}
+\section{Exercícios}\label{exercuxedcios-32}
 
 \textbf{1.} Dada uma variável aleatória \(X\) com distribuição exponencial de
 parâmetro \(\lambda = 2\), use o Método da Transformada Inversa para gerar
@@ -12693,7 +12941,7 @@ todas independentes e identicamente distribuídas com média \(\mu\).
 Pode-se estimar \(\theta\) por
 \(\sum_{i=1}^{k}g(U_{1}^{i},\ldots, U_{n}^{i})/k\).
 
-\section{Exercícios}\label{exercuxedcios-32}
+\section{Exercícios}\label{exercuxedcios-33}
 
 Use simulação para aproximar as seguintes integrais. Compare sua
 estimativa com a resposta exata, se conhecida.
@@ -13694,7 +13942,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 
 \includegraphics{introR_files/figure-latex/unnamed-chunk-321-1.pdf}
 
-\section{Exercícios}\label{exercuxedcios-33}
+\section{Exercícios}\label{exercuxedcios-34}
 
 \textbf{1.} Usando o R e fixando a semente em 123, simule 1000 lançamentos de
 uma moeda com probabilidade de 0.5 de sair cara. Conte o número de caras
@@ -16639,7 +16887,7 @@ valores lógicos (\texttt{TRUE} ou \texttt{FALSE}) com base na comparação.
   \end{enumerate}
 \end{itemize}
 
-\section{Exercícios}\label{exercuxedcios-34}
+\section{Exercícios}\label{exercuxedcios-35}
 
 \textbf{1.} Escreva um programa em R que leia dois inteiros inseridos pelo
 utilizador e imprima:
@@ -17116,7 +17364,7 @@ Observe que o último elemento do vetor menor foi reciclado para
 corresponder ao comprimento do vetor maior, mas não completamente,
 resultando no aviso.
 
-\subsection{Exercícios}\label{exercuxedcios-35}
+\subsection{Exercícios}\label{exercuxedcios-36}
 
 \textbf{1.} Crie os vetores:
 
@@ -17347,7 +17595,7 @@ repetitivos.
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Exercícios}\label{exercuxedcios-36}
+\subsection{Exercícios}\label{exercuxedcios-37}
 
 \textbf{1.} Crie um vetor com os seguintes valores: ``pequeno'', ``médio'',
 ``grande'', ``pequeno'', ``grande''. Em seguida, transforme esse vetor em um
@@ -17711,7 +17959,7 @@ Seja \(M\) uma matriz quadrada.
   \texttt{apply(M,2,\ mean)\ \#\ média\ de\ cada\ coluna}
 \end{itemize}
 
-\subsection{Exercícios}\label{exercuxedcios-37}
+\subsection{Exercícios}\label{exercuxedcios-38}
 
 \textbf{1.} Crie uma matriz \(3 \times 4\) com os números de 1 a 12,
 preenchendo a matriz por colunas. Exiba a matriz e determine a soma dos
@@ -18392,7 +18640,7 @@ funções sumárias por exemplo, \texttt{sum()}, \texttt{mean()}:
 ##  42.129310 185.931507   9.957516  77.882353   6.993464  15.803922
 \end{verbatim}
 
-\subsection{Exercícios}\label{exercuxedcios-38}
+\subsection{Exercícios}\label{exercuxedcios-39}
 
 \textbf{1.} Crie um data frame chamado \texttt{estudantes} com as colunas: Nome
 (caracteres), Idade (números inteiros), Curso (caracteres) e Nota
@@ -18576,7 +18824,7 @@ Listas são extremamente úteis em R para:
   ferramenta poderosa para programação funcional.
 \end{itemize}
 
-\subsection{Exercícios}\label{exercuxedcios-39}
+\subsection{Exercícios}\label{exercuxedcios-40}
 
 \textbf{1.} Crie uma lista em R chamada \texttt{dados\_estudante} que contenha as
 seguintes informações sobre um estudante:
@@ -18953,7 +19201,7 @@ Código correto
 \end{Highlighting}
 \end{Shaded}
 
-\section{Exercícios}\label{exercuxedcios-40}
+\section{Exercícios}\label{exercuxedcios-41}
 
 \textbf{1.} Escreva um programa em R que leia um número do utilizador e exiba
 ``O número é positivo'' se for maior que zero.
@@ -19307,7 +19555,7 @@ sentido lógico, já que 160 não é um nome válido para um estudante.
 \end{Highlighting}
 \end{Shaded}
 
-\section{Exercícios}\label{exercuxedcios-41}
+\section{Exercícios}\label{exercuxedcios-42}
 
 \textbf{1.} Crie uma função chamada \texttt{quadrado()} que recebe um único
 argumento numérico \texttt{x} e devolva o quadrado de \texttt{x}. Teste a função com
@@ -19532,7 +19780,7 @@ função \texttt{produto()} estará disponível para ser utilizada:
   para um novo diretório com \texttt{setwd("caminho/do/diretorio")}.
 \end{itemize}
 
-\section{Exercícios}\label{exercuxedcios-42}
+\section{Exercícios}\label{exercuxedcios-43}
 
 \textbf{1.} Crie os seguintes scripts:
 
@@ -19898,7 +20146,7 @@ do ficheiro) para importar dados diretamente de um link online.
 Neste exemplo, url contém o endereço do ficheiro CSV na web, e
 \texttt{read.table()} é usado para importar o conteúdo como um data frame.
 
-\section{Exercícios}\label{exercuxedcios-43}
+\section{Exercícios}\label{exercuxedcios-44}
 
 \textbf{1.} Faça a leitura do ficheiro \texttt{dados\_instagram} \href{https://renatorpaula.wixsite.com/renato/laboratorio-estatistica}{aqui} e responda às perguntas abaixo (lembre de instalar o pacote \texttt{readxl}):
 
@@ -20116,7 +20364,7 @@ para remover os valores ausentes, e o resultado é usado como o argumento
 data na função \texttt{lm()} para criar um modelo linear. O pipe permite que
 este fluxo de operações seja descrito de forma clara e linear.
 
-\section{Exercícios}\label{exercuxedcios-44}
+\section{Exercícios}\label{exercuxedcios-45}
 
 \textbf{1.} Reescreva a expressão abaixo utilizando o \texttt{\%\textgreater{}\%}.
 
@@ -20359,7 +20607,7 @@ antecipadamente.
   etc., para melhorar o desempenho.
 \end{itemize}
 
-\section{Exercícios}\label{exercuxedcios-45}
+\section{Exercícios}\label{exercuxedcios-46}
 
 \textbf{1.} Escreva um programa em R que solicite ao utilizador um número
 inteiro \(n\). O programa deve imprimir todos os números inteiros de 0 até
@@ -20562,7 +20810,7 @@ loop \texttt{for}.
 \end{Highlighting}
 \end{Shaded}
 
-\section{Exercícios}\label{exercuxedcios-46}
+\section{Exercícios}\label{exercuxedcios-47}
 
 \textbf{1.} Escreva um programa em R que use um loop \texttt{for} para imprimir
 todos os números de 1 a 10.
@@ -21013,7 +21261,7 @@ pétalas por espécie usando \texttt{tapply()}:
 \end{Highlighting}
 \end{Shaded}
 
-\section{Exercícios}\label{exercuxedcios-47}
+\section{Exercícios}\label{exercuxedcios-48}
 
 \textbf{1.} Crie um vetor chamado \texttt{nomes} contendo os nomes ``Alice'', ``Bruno'',
 ``Carla'', e ``Daniel''. Use a função \texttt{lapply()} para converter todos os
@@ -21829,7 +22077,7 @@ temporais ou tendências ao longo de intervalos contínuos, como o tempo.
 
 \includegraphics{introR_files/figure-latex/unnamed-chunk-530-1.pdf}
 
-\section{Exercícios}\label{exercuxedcios-48}
+\section{Exercícios}\label{exercuxedcios-49}
 
 \textbf{1.} Usando o dataset \texttt{iris}, crie um gráfico de barras para mostrar a
 contagem de cada espécie de flor.
@@ -22343,7 +22591,7 @@ Para remover colunas, basta acrescentar um \texttt{-} antes da seleção.
 ## # i 1 more variable: starships <list>
 \end{verbatim}
 
-\subsection{Exercícios}\label{exercuxedcios-49}
+\subsection{Exercícios}\label{exercuxedcios-50}
 
 Utilize a base \texttt{sw} nos exercícios a seguir.
 
@@ -22445,7 +22693,7 @@ decrescente, conforme a necessidade.
 ## #   vehicles <list>, starships <list>
 \end{verbatim}
 
-\subsection{Exercícios}\label{exercuxedcios-50}
+\subsection{Exercícios}\label{exercuxedcios-51}
 
 \textbf{1.} Ordene a base \texttt{sw} pela coluna \texttt{mass} em ordem crescente e pela
 coluna \texttt{birth\_year} em ordem decrescente. Guarde o resultado em um
@@ -22704,7 +22952,7 @@ Podemos utilizá-la para filtrar apenas os personagens com cabelo \texttt{grey}.
 ## #   vehicles <list>, starships <list>
 \end{verbatim}
 
-\subsection{Exercícios}\label{exercuxedcios-51}
+\subsection{Exercícios}\label{exercuxedcios-52}
 
 Utilize a base \texttt{sw} nos exercícios a seguir.
 
@@ -22823,7 +23071,7 @@ personagem, usando a fórmula \texttt{mass\ /\ (height/100)\^{}2}. Caso \texttt{
 ## # i 77 more rows
 \end{verbatim}
 
-\subsection{Exercícios}\label{exercuxedcios-52}
+\subsection{Exercícios}\label{exercuxedcios-53}
 
 \textbf{1.} Crie uma coluna chamada \texttt{dif\_peso\_altura} (diferença entre altura
 e peso) e salve a nova tabela em um objeto chamado \texttt{starwars\_dif}. Em
@@ -23157,7 +23405,7 @@ A tabela \texttt{humanos\_altos\_full\_join} contém todos os personagens altos 
 humanos. Se um personagem está em apenas uma das tabelas, as colunas da
 outra tabela são preenchidas com \texttt{NA}.
 
-\subsection{Exercícios}\label{exercuxedcios-53}
+\subsection{Exercícios}\label{exercuxedcios-54}
 
 \textbf{1.} Crie uma tabela \texttt{personagens\_altos} contendo apenas personagens
 com altura superior a 180 cm e uma outra tabela \texttt{personagens\_leves}
@@ -23316,7 +23564,7 @@ associamos diferentes probabilidades a cada elemento da população:
 \end{Highlighting}
 \end{Shaded}
 
-\section{Exercícios}\label{exercuxedcios-54}
+\section{Exercícios}\label{exercuxedcios-55}
 
 \textbf{1.} Crie um vetor com os números de 1 a 20. Utilize a função
 \texttt{sample()} para selecionar uma amostra aleatória de 5 elementos desse
@@ -23603,7 +23851,7 @@ A venda esperada em trinta dias é 30 vezes o valor esperado de venda em um dia.
 
 Por fim, ressaltamos que os exemplos abordados aqui são básicos e podem ser resolvidos de forma analítica, sem a necessidade de métodos numéricos. Esses exemplos foram escolhidos apenas para ilustrar o uso do R na obtenção de soluções numéricas. Na prática, o R é mais indicado para problemas complexos, nos quais as soluções analíticas são difíceis ou inviáveis.
 
-\section{Exercícios}\label{exercuxedcios-55}
+\section{Exercícios}\label{exercuxedcios-56}
 
 \textbf{1.} O número de produtos defeituosos em uma linha de produção ao final de cada hora é uma variável aleatória discreta \(X\) com a seguinte função de probabilidade:
 
@@ -24041,7 +24289,7 @@ código.
 
 O gerador de números pseudoaleatórios padrão em R é o \href{https://www.sciencedirect.com/science/article/abs/pii/B9780128093627500108}{Mersenne Twister}. No R, o Mersenne Twister usa uma semente aleatória como entrada: construída a partir do tempo e ID da sessão. Você pode substituir a semente aleatória por uma semente fixa com a função \texttt{set.seed()}.
 
-\section{Exercícios}\label{exercuxedcios-56}
+\section{Exercícios}\label{exercuxedcios-57}
 
 \textbf{1.} Defina uma semente de sua escolha usando \texttt{set.seed()}.
 
@@ -24427,7 +24675,7 @@ Não há entre as funções básicas do R uma função específica para a distri
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Exercícios}\label{exercuxedcios-57}
+\subsection{Exercícios}\label{exercuxedcios-58}
 
 \textbf{1.} Crie uma variável aleatória uniforme discreta \(X\) com valores possíveis de 1 a 10.
 
@@ -24555,7 +24803,7 @@ Seja \(X \sim \text{Bernoulli}(p=0.5)\).
 
 Amostra aleatória de dimensão 5: \texttt{rbinom(n\ =\ 5,\ size\ =\ 1,\ prob\ =\ 0.5)} = 0 1 0 1 1
 
-\subsection{Exercícios}\label{exercuxedcios-58}
+\subsection{Exercícios}\label{exercuxedcios-59}
 
 \textbf{1.} Considere a experiência aleatória que consiste em lançar
 uma moeda não viciada e observar a face que fica voltada para cima.
@@ -24799,7 +25047,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 
 \(P(X \leq 4) \approx\) \texttt{Fn(4)} = 0.956
 
-\subsection{Exercícios}\label{exercuxedcios-59}
+\subsection{Exercícios}\label{exercuxedcios-60}
 
 \textbf{1.} Considere que você está realizando 10 lançamentos de uma moeda justa (\(p = 0.5\)).
 
@@ -25010,7 +25258,7 @@ Amostra aleatória de dimensão 5: \texttt{rgeom(n\ =\ 5,\ prob\ =\ 0.5)} = 3 0 
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Exercícios}\label{exercuxedcios-60}
+\subsection{Exercícios}\label{exercuxedcios-61}
 
 \textbf{1.} Suponha que um dado equilibrado seja lançado repetidamente até que o número ``6'' apareça. A probabilidade de sucesso em cada tentativa é \(p = \frac{1}{6}\).
 
@@ -25371,7 +25619,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Exercícios}\label{exercuxedcios-61}
+\subsection{Exercícios}\label{exercuxedcios-62}
 
 \textbf{1.} Uma fábrica produz em média 4 defeitos por dia em sua linha de produção. Suponha que o número de defeitos por dia segue uma distribuição de Poisson.
 
@@ -26020,7 +26268,7 @@ Função densidade de probabilidade e função de distribuição.
 
 \includegraphics{introR_files/figure-latex/unnamed-chunk-628-1.pdf}
 
-\section{Exercícios}\label{exercuxedcios-62}
+\section{Exercícios}\label{exercuxedcios-63}
 
 \textbf{1.} Usando o R e fixando a semente em 123, simule 1000 lançamentos de
 uma moeda com probabilidade de 0.5 de sair cara. Conte o número de caras
@@ -26611,7 +26859,7 @@ expresso da seguinte forma.
 
 \includegraphics{introR_files/figure-latex/unnamed-chunk-634-1.pdf}
 
-\section{Exercícios}\label{exercuxedcios-63}
+\section{Exercícios}\label{exercuxedcios-64}
 
 \textbf{1.} Considere uma variável aleatória \(X\) com a seguinte distribuição
 de probabilidades:
@@ -26756,7 +27004,7 @@ aleatório \(U\) e fazendo \[X = -\frac{1}{\lambda}ln (U).\]
 
 \includegraphics{introR_files/figure-latex/unnamed-chunk-637-1.pdf}
 
-\section{Exercícios}\label{exercuxedcios-64}
+\section{Exercícios}\label{exercuxedcios-65}
 
 \textbf{1.} Dada uma variável aleatória \(X\) com distribuição exponencial de
 parâmetro \(\lambda = 2\), use o Método da Transformada Inversa para gerar
@@ -27059,7 +27307,7 @@ todas independentes e identicamente distribuídas com média \(\mu\).
 Pode-se estimar \(\theta\) por
 \(\sum_{i=1}^{k}g(U_{1}^{i},\ldots, U_{n}^{i})/k\).
 
-\section{Exercícios}\label{exercuxedcios-65}
+\section{Exercícios}\label{exercuxedcios-66}
 
 Use simulação para aproximar as seguintes integrais. Compare sua
 estimativa com a resposta exata, se conhecida.
@@ -28060,7 +28308,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 
 \includegraphics{introR_files/figure-latex/unnamed-chunk-665-1.pdf}
 
-\section{Exercícios}\label{exercuxedcios-66}
+\section{Exercícios}\label{exercuxedcios-67}
 
 \textbf{1.} Usando o R e fixando a semente em 123, simule 1000 lançamentos de
 uma moeda com probabilidade de 0.5 de sair cara. Conte o número de caras
