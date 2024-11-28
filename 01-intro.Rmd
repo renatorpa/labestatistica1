@@ -8483,11 +8483,11 @@ plot(Fn, main="Função de Distribuição Empírica",
 
 **3.** O tempo necessário para atender clientes em um restaurante segue uma distribuição exponencial com taxa $\lambda = 0.25$ (atendimentos por minuto).
 
-(a) Simule os tempos de atendimento para 50 clientes.
+(a) Simule os tempos de atendimento para $n=50$ clientes.
 
 (b) Calcule o tempo total necessário para atender todos os clientes.
 
-(c) Plote o histograma do tempo total de atendimento após 1000 simulações.
+(c) Plote o histograma do tempo total de atendimento após 1000 simulações e sobreponha a curva de densidade normal com média $nE(X)=n/\lambda$ e desvio padrão $\sqrt{nV(X)} = \sqrt{n/\lambda^2}$.
 
 **4.** Um engenheiro está monitorando dois processos independentes, cujos tempos seguem distribuições exponenciais com $\lambda_1 = 3$ e $\lambda_2 = 5$.
 	
@@ -8507,7 +8507,7 @@ plot(Fn, main="Função de Distribuição Empírica",
 
 **6.** O tempo até o primeiro evento de falha em uma máquina segue uma distribuição exponencial com taxa $\lambda = 0.1$.
 
-(a) Simule o tempo de falha para 100 máquinas.
+(a) Simule o tempo de falha para 10000 máquinas.
 
 (b) Estime a probabilidade de uma máquina falhar em menos de 15 horas.
 
@@ -8519,7 +8519,7 @@ plot(Fn, main="Função de Distribuição Empírica",
 
 (b) Calcule a probabilidade empírica de um intervalo ser inferior a 2 horas.
 
-(c) Plote um gráfico de densidade para os tempos simulados e compare com a densidade teórica.
+(c) Plote um histrograma para os tempos simulados e compare com a densidade teórica.
 
 **8.** Considere dois processos relacionados:
 
@@ -8557,9 +8557,9 @@ plot(Fn, main="Função de Distribuição Empírica",
 
 (b) Ajuste os valores simulados a uma distribuição $\text{Gama}(k = 7, \theta = 1/\lambda)$.
 
-(c) Plote o gráfico de densidade dos valores simulados e compare com a densidade teórica da distribuição gama.
+(c) Plote um histograma dos valores simulados e compare com a densidade teórica da distribuição gama.
 
-(d) Estime o valor do 90º percentil da soma simulada e compare com o percentil teórico calculado para uma $\text{Gama}(k, \theta)$.
+(d) Estime o valor do 90º percentil da soma simulada e compare com o percentil teórico calculado para uma $\text{Gama}(k=7, \theta=1/\lambda)$. Use as funções `qgamma()` e `quantile()`.
 
 
 ## Distribuição Normal
@@ -8673,13 +8673,13 @@ legend(120, 0.05, fill = 1:3,
 
 (c) Plote o histograma dos pesos simulados e sobreponha a densidade teórica da distribuição normal.
 
-**2.** Duas variáveis aleatórias $X_1 \sim N(5, 2^2)$ e $X_2 \sim N(10, 3^2)$ são independentes.
+**2.** Duas variáveis aleatórias $X_1 \sim N(\mu_1=5, \sigma_1=2)$ e $X_2 \sim N(\mu_2=10, \sigma_2=3)$ são independentes.
 
 (a) Simule 1000 pares de $(X_1, X_2)$.
 
 (b) Calcule a soma $S = X_1 + X_2$.
 
-(c) Plote o histograma de $S$ e sobreponha a densidade de uma normal com média $\mu_S = \mu_{X_1} + \mu_{X_2}$ e variância $\sigma_S^2 = \sigma_{X_1}^2 + \sigma_{X_2}^2$.
+(c) Plote o histograma de $S$ e sobreponha a densidade de uma normal com média $\mu_S = \mu_{1} + \mu_{2}$ e variância $\sigma_S^2 = \sigma_{1}^2 + \sigma_{2}^2$.
 
 **3.** Considere duas variáveis $X_1 \sim N(0, 1)$ e $X_2 \sim N(0, 1)$.
 
@@ -8687,15 +8687,27 @@ legend(120, 0.05, fill = 1:3,
 
 (b) Calcule $Q = X_1^2 + X_2^2$.
 
-(c) Compare o histograma de $Q$ com a densidade teórica de uma distribuição qui-quadrado com 2 graus de liberdade.
+(c) Compare o histograma de $Q$ com a densidade teórica de uma distribuição qui-quadrado com 2 graus de liberdade. Use `dchisq()`.
 
-**4.** Suponha que $X \sim N(0, 1)$. Extraia amostras de tamanho 10, 30 e 100 e calcule:
+**4.** Um pesquisador deseja estudar o comportamento da média de amostras extraídas de uma população normal padrão $X \sim N(0, 1)$. Para isso, ele realiza as seguintes etapas:
 
-(a) A média de cada amostra.
+(a) Extraia 1000 amostras para cada um dos tamanhos de amostra: $n=5$, $n = 10$, $n = 30$, e $n = 100$.
 
-(b) O histograma das médias amostrais.
+(b) Para cada amostra, calcule:
 
-(c) Compare as médias amostrais com a densidade de uma distribuição t-Student com $n-1$ graus de liberdade para cada tamanho de amostra.
+- A média amostral.
+
+(c) Plote o histograma das médias amostrais para cada $n$, e sobreponha:
+
+- A densidade de uma distribuição t-Student com $n - 1$ graus de liberdade.
+
+- A densidade de uma distribuição normal com $E(\bar{X}) = 0$ e $\text{Var}(\bar{X}) = 1/n$.
+
+(d) Compare os histogramas e comente:
+
+- Como a densidade da t-Student se aproxima da normal com o aumento de $n$.
+
+- O impacto do tamanho da amostra na variabilidade das médias.
 
 **5.** Simule 1000 amostras de tamanho 20 de $X \sim N(0, 1)$:
 
@@ -8705,7 +8717,7 @@ legend(120, 0.05, fill = 1:3,
 
 (c) Interprete os resultados e discuta as diferenças.
 
-**6.** Simule 5000 amostras de tamanho 30 de uma variável $X \sim N(10, 4^2)$:
+**6.** Simule 5000 amostras de tamanho 30 de uma variável $X \sim N(\mu=10, \sigma=4)$:
 
 (a) Calcule a média de cada amostra.
 
@@ -8719,7 +8731,7 @@ legend(120, 0.05, fill = 1:3,
 
 (b) Calcule a soma $S = X_1 + X_2$.
 
-(c) Plote o histograma de $S$ e comente sobre o impacto da dependência entre $X_1$ e $X_2$ na distribuição de $S$.
+(c) Plote o histograma de $S$.
 
 **8.** Simule 1000 amostras de tamanho 10 de $X \sim N(0, 1)$. Para cada amostra, calcule:
 
@@ -8732,6 +8744,22 @@ legend(120, 0.05, fill = 1:3,
 $T = \frac{\bar{X}}{S / \sqrt{n}}$
 
 e compare o histograma de $T$ com a densidade de uma distribuição t-Student com $n-1$ graus de liberdade.
+
+**9.** Considere a variável  $X \sim N(0, 1)$. Simule 1000 amostras de tamanho  $n = 10$. Para cada amostra, realize as seguintes etapas:
+
+(a) Calcule a variância amostral  $S^2 = \frac{\sum_{i=1}^{n}X_{i}^{2}-n \bar{X}}{n-1}$.
+
+(b) Construa a estatística qui-quadrado:
+
+$Q = \frac{(n-1) S^2}{\sigma^2}$,
+
+onde $\sigma^2 = 1$ é a variância populacional de  $X$.
+
+(c) Construa o histograma dos valores de  $Q$  e compare com a densidade teórica de uma distribuição $\chi^2(n-1)$.
+
+(d) Verifique a média e a variância empíricas de  $Q$  e compare com os valores teóricos da distribuição $\chi^2(n-1)$, dados por:
+
+$E(Q) = n - 1, \quad \text{Var}(Q) = 2(n - 1)$.
 
 # Exercícios extra
 

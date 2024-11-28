@@ -2137,9 +2137,9 @@ F_X(x) =
 </ol>
 <p><strong>3.</strong> O tempo necessário para atender clientes em um restaurante segue uma distribuição exponencial com taxa <span class="math inline">\(\lambda = 0.25\)</span> (atendimentos por minuto).</p>
 <ol style="list-style-type: lower-alpha">
-<li><p>Simule os tempos de atendimento para 50 clientes.</p></li>
+<li><p>Simule os tempos de atendimento para <span class="math inline">\(n=50\)</span> clientes.</p></li>
 <li><p>Calcule o tempo total necessário para atender todos os clientes.</p></li>
-<li><p>Plote o histograma do tempo total de atendimento após 1000 simulações.</p></li>
+<li><p>Plote o histograma do tempo total de atendimento após 1000 simulações e sobreponha a curva de densidade normal com média <span class="math inline">\(nE(X)=n/\lambda\)</span> e desvio padrão <span class="math inline">\(\sqrt{nV(X)} = \sqrt{n/\lambda^2}\)</span>.</p></li>
 </ol>
 <p><strong>4.</strong> Um engenheiro está monitorando dois processos independentes, cujos tempos seguem distribuições exponenciais com <span class="math inline">\(\lambda_1 = 3\)</span> e <span class="math inline">\(\lambda_2 = 5\)</span>.</p>
 <ol style="list-style-type: lower-alpha">
@@ -2155,7 +2155,7 @@ F_X(x) =
 </ol>
 <p><strong>6.</strong> O tempo até o primeiro evento de falha em uma máquina segue uma distribuição exponencial com taxa <span class="math inline">\(\lambda = 0.1\)</span>.</p>
 <ol style="list-style-type: lower-alpha">
-<li><p>Simule o tempo de falha para 100 máquinas.</p></li>
+<li><p>Simule o tempo de falha para 10000 máquinas.</p></li>
 <li><p>Estime a probabilidade de uma máquina falhar em menos de 15 horas.</p></li>
 <li><p>Compare o valor empírico com o teórico calculado pela função de distribuição acumulada.</p></li>
 </ol>
@@ -2163,7 +2163,7 @@ F_X(x) =
 <ol style="list-style-type: lower-alpha">
 <li><p>Simule os tempos entre acidentes para um período de 1000 horas.</p></li>
 <li><p>Calcule a probabilidade empírica de um intervalo ser inferior a 2 horas.</p></li>
-<li><p>Plote um gráfico de densidade para os tempos simulados e compare com a densidade teórica.</p></li>
+<li><p>Plote um histrograma para os tempos simulados e compare com a densidade teórica.</p></li>
 </ol>
 <p><strong>8.</strong> Considere dois processos relacionados:</p>
 <ul>
@@ -2192,8 +2192,8 @@ F_X(x) =
 <ol style="list-style-type: lower-alpha">
 <li><p>Simule 5000 amostras do tempo total para completar a tarefa (<span class="math inline">\(S = \sum_{i=1}^{n} X_i)\)</span>.</p></li>
 <li><p>Ajuste os valores simulados a uma distribuição <span class="math inline">\(\text{Gama}(k = 7, \theta = 1/\lambda)\)</span>.</p></li>
-<li><p>Plote o gráfico de densidade dos valores simulados e compare com a densidade teórica da distribuição gama.</p></li>
-<li><p>Estime o valor do 90º percentil da soma simulada e compare com o percentil teórico calculado para uma <span class="math inline">\(\text{Gama}(k, \theta)\)</span>.</p></li>
+<li><p>Plote um histograma dos valores simulados e compare com a densidade teórica da distribuição gama.</p></li>
+<li><p>Estime o valor do 90º percentil da soma simulada e compare com o percentil teórico calculado para uma <span class="math inline">\(\text{Gama}(k=7, \theta=1/\lambda)\)</span>. Use as funções <code>qgamma()</code> e <code>quantile()</code>.</p></li>
 </ol>
 </div>
 </div>
@@ -2280,31 +2280,47 @@ no ponto <span class="math inline">\(x=-1\)</span>. Portanto, o mesmo valor seri
 <li><p>Calcule a média e o desvio padrão dos pesos simulados e compare com os valores teóricos.</p></li>
 <li><p>Plote o histograma dos pesos simulados e sobreponha a densidade teórica da distribuição normal.</p></li>
 </ol>
-<p><strong>2.</strong> Duas variáveis aleatórias <span class="math inline">\(X_1 \sim N(5, 2^2)\)</span> e <span class="math inline">\(X_2 \sim N(10, 3^2)\)</span> são independentes.</p>
+<p><strong>2.</strong> Duas variáveis aleatórias <span class="math inline">\(X_1 \sim N(\mu_1=5, \sigma_1=2)\)</span> e <span class="math inline">\(X_2 \sim N(\mu_2=10, \sigma_2=3)\)</span> são independentes.</p>
 <ol style="list-style-type: lower-alpha">
 <li><p>Simule 1000 pares de <span class="math inline">\((X_1, X_2)\)</span>.</p></li>
 <li><p>Calcule a soma <span class="math inline">\(S = X_1 + X_2\)</span>.</p></li>
-<li><p>Plote o histograma de <span class="math inline">\(S\)</span> e sobreponha a densidade de uma normal com média <span class="math inline">\(\mu_S = \mu_{X_1} + \mu_{X_2}\)</span> e variância <span class="math inline">\(\sigma_S^2 = \sigma_{X_1}^2 + \sigma_{X_2}^2\)</span>.</p></li>
+<li><p>Plote o histograma de <span class="math inline">\(S\)</span> e sobreponha a densidade de uma normal com média <span class="math inline">\(\mu_S = \mu_{1} + \mu_{2}\)</span> e variância <span class="math inline">\(\sigma_S^2 = \sigma_{1}^2 + \sigma_{2}^2\)</span>.</p></li>
 </ol>
 <p><strong>3.</strong> Considere duas variáveis <span class="math inline">\(X_1 \sim N(0, 1)\)</span> e <span class="math inline">\(X_2 \sim N(0, 1)\)</span>.</p>
 <ol style="list-style-type: lower-alpha">
 <li><p>Simule 5000 pares <span class="math inline">\((X_1, X_2)\)</span>.</p></li>
 <li><p>Calcule <span class="math inline">\(Q = X_1^2 + X_2^2\)</span>.</p></li>
-<li><p>Compare o histograma de <span class="math inline">\(Q\)</span> com a densidade teórica de uma distribuição qui-quadrado com 2 graus de liberdade.</p></li>
+<li><p>Compare o histograma de <span class="math inline">\(Q\)</span> com a densidade teórica de uma distribuição qui-quadrado com 2 graus de liberdade. Use <code>dchisq()</code>.</p></li>
 </ol>
-<p><strong>4.</strong> Suponha que <span class="math inline">\(X \sim N(0, 1)\)</span>. Extraia amostras de tamanho 10, 30 e 100 e calcule:</p>
+<p><strong>4.</strong> Um pesquisador deseja estudar o comportamento da média de amostras extraídas de uma população normal padrão <span class="math inline">\(X \sim N(0, 1)\)</span>. Para isso, ele realiza as seguintes etapas:</p>
 <ol style="list-style-type: lower-alpha">
-<li><p>A média de cada amostra.</p></li>
-<li><p>O histograma das médias amostrais.</p></li>
-<li><p>Compare as médias amostrais com a densidade de uma distribuição t-Student com <span class="math inline">\(n-1\)</span> graus de liberdade para cada tamanho de amostra.</p></li>
+<li><p>Extraia 1000 amostras para cada um dos tamanhos de amostra: <span class="math inline">\(n=5\)</span>, <span class="math inline">\(n = 10\)</span>, <span class="math inline">\(n = 30\)</span>, e <span class="math inline">\(n = 100\)</span>.</p></li>
+<li><p>Para cada amostra, calcule:</p></li>
 </ol>
+<ul>
+<li>A média amostral.</li>
+</ul>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Plote o histograma das médias amostrais para cada <span class="math inline">\(n\)</span>, e sobreponha:</li>
+</ol>
+<ul>
+<li><p>A densidade de uma distribuição t-Student com <span class="math inline">\(n - 1\)</span> graus de liberdade.</p></li>
+<li><p>A densidade de uma distribuição normal com <span class="math inline">\(E(\bar{X}) = 0\)</span> e <span class="math inline">\(\text{Var}(\bar{X}) = 1/n\)</span>.</p></li>
+</ul>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>Compare os histogramas e comente:</li>
+</ol>
+<ul>
+<li><p>Como a densidade da t-Student se aproxima da normal com o aumento de <span class="math inline">\(n\)</span>.</p></li>
+<li><p>O impacto do tamanho da amostra na variabilidade das médias.</p></li>
+</ul>
 <p><strong>5.</strong> Simule 1000 amostras de tamanho 20 de <span class="math inline">\(X \sim N(0, 1)\)</span>:</p>
 <ol style="list-style-type: lower-alpha">
 <li><p>Calcule a soma dos quadrados de cada amostra.</p></li>
 <li><p>Compare o histograma da soma dos quadrados com a densidade teórica de uma distribuição qui-quadrado com 20 graus de liberdade.</p></li>
 <li><p>Interprete os resultados e discuta as diferenças.</p></li>
 </ol>
-<p><strong>6.</strong> Simule 5000 amostras de tamanho 30 de uma variável <span class="math inline">\(X \sim N(10, 4^2)\)</span>:</p>
+<p><strong>6.</strong> Simule 5000 amostras de tamanho 30 de uma variável <span class="math inline">\(X \sim N(\mu=10, \sigma=4)\)</span>:</p>
 <ol style="list-style-type: lower-alpha">
 <li><p>Calcule a média de cada amostra.</p></li>
 <li><p>Plote o histograma das médias amostrais e sobreponha uma curva normal com média <span class="math inline">\(\mu = 10\)</span> e desvio padrão <span class="math inline">\(\sigma = 4/\sqrt{30}\)</span>.</p></li>
@@ -2314,7 +2330,7 @@ no ponto <span class="math inline">\(x=-1\)</span>. Portanto, o mesmo valor seri
 <ol style="list-style-type: lower-alpha">
 <li><p>Simule 5000 pares <span class="math inline">\((X_1, X_2)\)</span>.</p></li>
 <li><p>Calcule a soma <span class="math inline">\(S = X_1 + X_2\)</span>.</p></li>
-<li><p>Plote o histograma de <span class="math inline">\(S\)</span> e comente sobre o impacto da dependência entre <span class="math inline">\(X_1\)</span> e <span class="math inline">\(X_2\)</span> na distribuição de <span class="math inline">\(S\)</span>.</p></li>
+<li><p>Plote o histograma de <span class="math inline">\(S\)</span>.</p></li>
 </ol>
 <p><strong>8.</strong> Simule 1000 amostras de tamanho 10 de <span class="math inline">\(X \sim N(0, 1)\)</span>. Para cada amostra, calcule:</p>
 <ol style="list-style-type: lower-alpha">
@@ -2324,6 +2340,18 @@ no ponto <span class="math inline">\(x=-1\)</span>. Portanto, o mesmo valor seri
 </ol>
 <p><span class="math inline">\(T = \frac{\bar{X}}{S / \sqrt{n}}\)</span></p>
 <p>e compare o histograma de <span class="math inline">\(T\)</span> com a densidade de uma distribuição t-Student com <span class="math inline">\(n-1\)</span> graus de liberdade.</p>
+<p><strong>9.</strong> Considere a variável <span class="math inline">\(X \sim N(0, 1)\)</span>. Simule 1000 amostras de tamanho <span class="math inline">\(n = 10\)</span>. Para cada amostra, realize as seguintes etapas:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Calcule a variância amostral <span class="math inline">\(S^2 = \frac{\sum_{i=1}^{n}X_{i}^{2}-n \bar{X}}{n-1}\)</span>.</p></li>
+<li><p>Construa a estatística qui-quadrado:</p></li>
+</ol>
+<p><span class="math inline">\(Q = \frac{(n-1) S^2}{\sigma^2}\)</span>,</p>
+<p>onde <span class="math inline">\(\sigma^2 = 1\)</span> é a variância populacional de <span class="math inline">\(X\)</span>.</p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li><p>Construa o histograma dos valores de <span class="math inline">\(Q\)</span> e compare com a densidade teórica de uma distribuição <span class="math inline">\(\chi^2(n-1)\)</span>.</p></li>
+<li><p>Verifique a média e a variância empíricas de <span class="math inline">\(Q\)</span> e compare com os valores teóricos da distribuição <span class="math inline">\(\chi^2(n-1)\)</span>, dados por:</p></li>
+</ol>
+<p><span class="math inline">\(E(Q) = n - 1, \quad \text{Var}(Q) = 2(n - 1)\)</span>.</p>
 </div>
 </div>
 </div>

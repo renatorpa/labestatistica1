@@ -11555,11 +11555,11 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \begin{enumerate}
 \def\labelenumi{(\alph{enumi})}
 \item
-  Simule os tempos de atendimento para 50 clientes.
+  Simule os tempos de atendimento para \(n=50\) clientes.
 \item
   Calcule o tempo total necessário para atender todos os clientes.
 \item
-  Plote o histograma do tempo total de atendimento após 1000 simulações.
+  Plote o histograma do tempo total de atendimento após 1000 simulações e sobreponha a curva de densidade normal com média \(nE(X)=n/\lambda\) e desvio padrão \(\sqrt{nV(X)} = \sqrt{n/\lambda^2}\).
 \end{enumerate}
 
 \textbf{4.} Um engenheiro está monitorando dois processos independentes, cujos tempos seguem distribuições exponenciais com \(\lambda_1 = 3\) e \(\lambda_2 = 5\).
@@ -11591,7 +11591,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \begin{enumerate}
 \def\labelenumi{(\alph{enumi})}
 \item
-  Simule o tempo de falha para 100 máquinas.
+  Simule o tempo de falha para 10000 máquinas.
 \item
   Estime a probabilidade de uma máquina falhar em menos de 15 horas.
 \item
@@ -11607,7 +11607,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \item
   Calcule a probabilidade empírica de um intervalo ser inferior a 2 horas.
 \item
-  Plote um gráfico de densidade para os tempos simulados e compare com a densidade teórica.
+  Plote um histrograma para os tempos simulados e compare com a densidade teórica.
 \end{enumerate}
 
 \textbf{8.} Considere dois processos relacionados:
@@ -11664,9 +11664,9 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \item
   Ajuste os valores simulados a uma distribuição \(\text{Gama}(k = 7, \theta = 1/\lambda)\).
 \item
-  Plote o gráfico de densidade dos valores simulados e compare com a densidade teórica da distribuição gama.
+  Plote um histograma dos valores simulados e compare com a densidade teórica da distribuição gama.
 \item
-  Estime o valor do 90º percentil da soma simulada e compare com o percentil teórico calculado para uma \(\text{Gama}(k, \theta)\).
+  Estime o valor do 90º percentil da soma simulada e compare com o percentil teórico calculado para uma \(\text{Gama}(k=7, \theta=1/\lambda)\). Use as funções \texttt{qgamma()} e \texttt{quantile()}.
 \end{enumerate}
 
 \section{Distribuição Normal}\label{distribuiuxe7uxe3o-normal}
@@ -11814,7 +11814,7 @@ Função densidade de probabilidade e função de distribuição.
   Plote o histograma dos pesos simulados e sobreponha a densidade teórica da distribuição normal.
 \end{enumerate}
 
-\textbf{2.} Duas variáveis aleatórias \(X_1 \sim N(5, 2^2)\) e \(X_2 \sim N(10, 3^2)\) são independentes.
+\textbf{2.} Duas variáveis aleatórias \(X_1 \sim N(\mu_1=5, \sigma_1=2)\) e \(X_2 \sim N(\mu_2=10, \sigma_2=3)\) são independentes.
 
 \begin{enumerate}
 \def\labelenumi{(\alph{enumi})}
@@ -11823,7 +11823,7 @@ Função densidade de probabilidade e função de distribuição.
 \item
   Calcule a soma \(S = X_1 + X_2\).
 \item
-  Plote o histograma de \(S\) e sobreponha a densidade de uma normal com média \(\mu_S = \mu_{X_1} + \mu_{X_2}\) e variância \(\sigma_S^2 = \sigma_{X_1}^2 + \sigma_{X_2}^2\).
+  Plote o histograma de \(S\) e sobreponha a densidade de uma normal com média \(\mu_S = \mu_{1} + \mu_{2}\) e variância \(\sigma_S^2 = \sigma_{1}^2 + \sigma_{2}^2\).
 \end{enumerate}
 
 \textbf{3.} Considere duas variáveis \(X_1 \sim N(0, 1)\) e \(X_2 \sim N(0, 1)\).
@@ -11835,20 +11835,54 @@ Função densidade de probabilidade e função de distribuição.
 \item
   Calcule \(Q = X_1^2 + X_2^2\).
 \item
-  Compare o histograma de \(Q\) com a densidade teórica de uma distribuição qui-quadrado com 2 graus de liberdade.
+  Compare o histograma de \(Q\) com a densidade teórica de uma distribuição qui-quadrado com 2 graus de liberdade. Use \texttt{dchisq()}.
 \end{enumerate}
 
-\textbf{4.} Suponha que \(X \sim N(0, 1)\). Extraia amostras de tamanho 10, 30 e 100 e calcule:
+\textbf{4.} Um pesquisador deseja estudar o comportamento da média de amostras extraídas de uma população normal padrão \(X \sim N(0, 1)\). Para isso, ele realiza as seguintes etapas:
 
 \begin{enumerate}
 \def\labelenumi{(\alph{enumi})}
 \item
-  A média de cada amostra.
+  Extraia 1000 amostras para cada um dos tamanhos de amostra: \(n=5\), \(n = 10\), \(n = 30\), e \(n = 100\).
 \item
-  O histograma das médias amostrais.
-\item
-  Compare as médias amostrais com a densidade de uma distribuição t-Student com \(n-1\) graus de liberdade para cada tamanho de amostra.
+  Para cada amostra, calcule:
 \end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  A média amostral.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Plote o histograma das médias amostrais para cada \(n\), e sobreponha:
+\end{enumerate}
+
+\begin{itemize}
+\item
+  A densidade de uma distribuição t-Student com \(n - 1\) graus de liberdade.
+\item
+  A densidade de uma distribuição normal com \(E(\bar{X}) = 0\) e \(\text{Var}(\bar{X}) = 1/n\).
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Compare os histogramas e comente:
+\end{enumerate}
+
+\begin{itemize}
+\item
+  Como a densidade da t-Student se aproxima da normal com o aumento de \(n\).
+\item
+  O impacto do tamanho da amostra na variabilidade das médias.
+\end{itemize}
 
 \textbf{5.} Simule 1000 amostras de tamanho 20 de \(X \sim N(0, 1)\):
 
@@ -11862,7 +11896,7 @@ Função densidade de probabilidade e função de distribuição.
   Interprete os resultados e discuta as diferenças.
 \end{enumerate}
 
-\textbf{6.} Simule 5000 amostras de tamanho 30 de uma variável \(X \sim N(10, 4^2)\):
+\textbf{6.} Simule 5000 amostras de tamanho 30 de uma variável \(X \sim N(\mu=10, \sigma=4)\):
 
 \begin{enumerate}
 \def\labelenumi{(\alph{enumi})}
@@ -11883,7 +11917,7 @@ Função densidade de probabilidade e função de distribuição.
 \item
   Calcule a soma \(S = X_1 + X_2\).
 \item
-  Plote o histograma de \(S\) e comente sobre o impacto da dependência entre \(X_1\) e \(X_2\) na distribuição de \(S\).
+  Plote o histograma de \(S\).
 \end{enumerate}
 
 \textbf{8.} Simule 1000 amostras de tamanho 10 de \(X \sim N(0, 1)\). Para cada amostra, calcule:
@@ -11901,6 +11935,31 @@ Função densidade de probabilidade e função de distribuição.
 \(T = \frac{\bar{X}}{S / \sqrt{n}}\)
 
 e compare o histograma de \(T\) com a densidade de uma distribuição t-Student com \(n-1\) graus de liberdade.
+
+\textbf{9.} Considere a variável \(X \sim N(0, 1)\). Simule 1000 amostras de tamanho \(n = 10\). Para cada amostra, realize as seguintes etapas:
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Calcule a variância amostral \(S^2 = \frac{\sum_{i=1}^{n}X_{i}^{2}-n \bar{X}}{n-1}\).
+\item
+  Construa a estatística qui-quadrado:
+\end{enumerate}
+
+\(Q = \frac{(n-1) S^2}{\sigma^2}\),
+
+onde \(\sigma^2 = 1\) é a variância populacional de \(X\).
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{2}
+\item
+  Construa o histograma dos valores de \(Q\) e compare com a densidade teórica de uma distribuição \(\chi^2(n-1)\).
+\item
+  Verifique a média e a variância empíricas de \(Q\) e compare com os valores teóricos da distribuição \(\chi^2(n-1)\), dados por:
+\end{enumerate}
+
+\(E(Q) = n - 1, \quad \text{Var}(Q) = 2(n - 1)\).
 
 \chapter{Exercícios extra}\label{exercuxedcios-extra}
 
