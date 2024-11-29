@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 19 Probabilidade e Variáveis Aleatórias | Introdução ao R e Simulação</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 19 Probabilidade e Variáveis Aleatórias | Introdução ao R e Simulação" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="/docs/ciencias.png" />
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 19 Probabilidade e Variáveis Aleatórias | Introdução ao R e Simulação" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="twitter:image" content="/docs/ciencias.png" />
+
+<meta name="author" content="Renato de Paula" />
+
+
+<meta name="date" content="2024-11-29" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="a-função-sample.html"/>
+<link rel="next" href="simulação.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Laboratório de Estatistica I</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prefácio</a></li>
+<li class="chapter" data-level="2" data-path="normas-de-funcionamento.html"><a href="normas-de-funcionamento.html"><i class="fa fa-check"></i><b>2</b> Normas de Funcionamento</a></li>
+<li class="chapter" data-level="3" data-path="r-e-rstudio.html"><a href="r-e-rstudio.html"><i class="fa fa-check"></i><b>3</b> R e RStudio</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="r-e-rstudio.html"><a href="r-e-rstudio.html#instalação-e-funcionalidades-básicas"><i class="fa fa-check"></i><b>3.1</b> Instalação e funcionalidades básicas</a></li>
+<li class="chapter" data-level="3.2" data-path="r-e-rstudio.html"><a href="r-e-rstudio.html#navegar-no-rstudio"><i class="fa fa-check"></i><b>3.2</b> Navegar no RStudio</a></li>
+<li class="chapter" data-level="3.3" data-path="r-e-rstudio.html"><a href="r-e-rstudio.html#atalhos"><i class="fa fa-check"></i><b>3.3</b> Atalhos</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html"><i class="fa fa-check"></i><b>4</b> R como Calculadora e Operações Aritméticas</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#o-prompt-do-r"><i class="fa fa-check"></i><b>4.1</b> O Prompt do R</a></li>
+<li class="chapter" data-level="4.2" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#objetos-e-variáveis"><i class="fa fa-check"></i><b>4.2</b> Objetos e Variáveis</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#o-que-é-uma-variável"><i class="fa fa-check"></i><b>4.2.1</b> O que é uma Variável?</a></li>
+<li class="chapter" data-level="4.2.2" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#atribuições"><i class="fa fa-check"></i><b>4.2.2</b> Atribuições</a></li>
+<li class="chapter" data-level="4.2.3" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#regras-para-definição-de-variáveis"><i class="fa fa-check"></i><b>4.2.3</b> Regras para definição de variáveis</a></li>
+<li class="chapter" data-level="4.2.4" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#tipos-de-dados"><i class="fa fa-check"></i><b>4.2.4</b> Tipos de Dados</a></li>
+<li class="chapter" data-level="4.2.5" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#comandos-importantes"><i class="fa fa-check"></i><b>4.2.5</b> Comandos Importantes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#operadores-aritméticos-em-r"><i class="fa fa-check"></i><b>4.3</b> Operadores Aritméticos em R</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#controle-da-quantidade-de-dígitos-mostrados"><i class="fa fa-check"></i><b>4.3.1</b> Controle da Quantidade de Dígitos Mostrados</a></li>
+<li class="chapter" data-level="4.3.2" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#objetos-predefinidos-infinito-indefinido-e-valores-ausentes"><i class="fa fa-check"></i><b>4.3.2</b> Objetos Predefinidos, Infinito, Indefinido e Valores Ausentes</a></li>
+<li class="chapter" data-level="4.3.3" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#lidando-com-nan-e-na-em-operações"><i class="fa fa-check"></i><b>4.3.3</b> Lidando com NaN e NA em Operações</a></li>
+<li class="chapter" data-level="4.3.4" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#funções-úteis-para-detectar-nan-e-na"><i class="fa fa-check"></i><b>4.3.4</b> Funções Úteis para Detectar NaN e NA</a></li>
+<li class="chapter" data-level="4.3.5" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#tipagem-dinâmica-em-r"><i class="fa fa-check"></i><b>4.3.5</b> Tipagem Dinâmica em R</a></li>
+<li class="chapter" data-level="4.3.6" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#conversão-entre-tipos-de-dados"><i class="fa fa-check"></i><b>4.3.6</b> Conversão entre Tipos de Dados</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#funções-print-readline-paste-e-cat"><i class="fa fa-check"></i><b>4.4</b> Funções <code>print()</code>, <code>readline()</code>, <code>paste()</code> e <code>cat()</code></a></li>
+<li class="chapter" data-level="4.5" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#quizz"><i class="fa fa-check"></i><b>4.5</b> Quizz</a></li>
+<li class="chapter" data-level="4.6" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#operadores-lógicos-e-relacionais"><i class="fa fa-check"></i><b>4.6</b> Operadores Lógicos e Relacionais</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#operadores-lógicos"><i class="fa fa-check"></i><b>4.6.1</b> Operadores Lógicos</a></li>
+<li class="chapter" data-level="4.6.2" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#operadores-relacionais"><i class="fa fa-check"></i><b>4.6.2</b> Operadores Relacionais</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#quizz-1"><i class="fa fa-check"></i><b>4.7</b> Quizz</a></li>
+<li class="chapter" data-level="4.8" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#exercícios"><i class="fa fa-check"></i><b>4.8</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html"><i class="fa fa-check"></i><b>5</b> Estrutura de Dados Básicas</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#vetor"><i class="fa fa-check"></i><b>5.1</b> Vetor</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#tipos-comuns-de-vetores"><i class="fa fa-check"></i><b>5.1.1</b> Tipos Comuns de Vetores</a></li>
+<li class="chapter" data-level="5.1.2" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#construindo-vetores"><i class="fa fa-check"></i><b>5.1.2</b> Construindo Vetores</a></li>
+<li class="chapter" data-level="5.1.3" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#acesso-a-elementos-de-um-vetor"><i class="fa fa-check"></i><b>5.1.3</b> Acesso a Elementos de um Vetor</a></li>
+<li class="chapter" data-level="5.1.4" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#funções-comuns-para-vetores"><i class="fa fa-check"></i><b>5.1.4</b> Funções Comuns para Vetores</a></li>
+<li class="chapter" data-level="5.1.5" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#operações-com-vetores"><i class="fa fa-check"></i><b>5.1.5</b> Operações com Vetores</a></li>
+<li class="chapter" data-level="5.1.6" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#exercícios-1"><i class="fa fa-check"></i><b>5.1.6</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#fatores"><i class="fa fa-check"></i><b>5.2</b> Fatores</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#manipulação-de-fatores"><i class="fa fa-check"></i><b>5.2.1</b> Manipulação de Fatores</a></li>
+<li class="chapter" data-level="5.2.2" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#gerando-fatores-com-gl"><i class="fa fa-check"></i><b>5.2.2</b> Gerando Fatores com <code>gl()</code></a></li>
+<li class="chapter" data-level="5.2.3" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#exercícios-2"><i class="fa fa-check"></i><b>5.2.3</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#matriz-e-array"><i class="fa fa-check"></i><b>5.3</b> Matriz e Array</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#criando-matrizes"><i class="fa fa-check"></i><b>5.3.1</b> Criando matrizes</a></li>
+<li class="chapter" data-level="5.3.2" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#criando-um-array"><i class="fa fa-check"></i><b>5.3.2</b> Criando um array</a></li>
+<li class="chapter" data-level="5.3.3" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#acessar-elementos-de-um-array"><i class="fa fa-check"></i><b>5.3.3</b> Acessar Elementos de um array</a></li>
+<li class="chapter" data-level="5.3.4" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#construindo-matrizes"><i class="fa fa-check"></i><b>5.3.4</b> Construindo Matrizes</a></li>
+<li class="chapter" data-level="5.3.5" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#acessar-elementos-de-uma-matriz"><i class="fa fa-check"></i><b>5.3.5</b> Acessar Elementos de uma Matriz</a></li>
+<li class="chapter" data-level="5.3.6" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#nomear-linhas-e-colunas-de-uma-matriz"><i class="fa fa-check"></i><b>5.3.6</b> Nomear Linhas e Colunas de uma Matriz</a></li>
+<li class="chapter" data-level="5.3.7" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#multiplicação-de-matrizes"><i class="fa fa-check"></i><b>5.3.7</b> Multiplicação de matrizes</a></li>
+<li class="chapter" data-level="5.3.8" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#adicionar-linhas-e-colunas-a-uma-matriz"><i class="fa fa-check"></i><b>5.3.8</b> Adicionar Linhas e Colunas a uma Matriz</a></li>
+<li class="chapter" data-level="5.3.9" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#algumas-outras-funções"><i class="fa fa-check"></i><b>5.3.9</b> Algumas outras funções</a></li>
+<li class="chapter" data-level="5.3.10" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#exercícios-3"><i class="fa fa-check"></i><b>5.3.10</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#data-frame"><i class="fa fa-check"></i><b>5.4</b> Data Frame</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#criar-um-data-frame"><i class="fa fa-check"></i><b>5.4.1</b> Criar um Data Frame</a></li>
+<li class="chapter" data-level="5.4.2" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#aceder-a-linhas-e-colunas"><i class="fa fa-check"></i><b>5.4.2</b> Aceder a Linhas e Colunas</a></li>
+<li class="chapter" data-level="5.4.3" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#adicionar-e-remover-colunas"><i class="fa fa-check"></i><b>5.4.3</b> Adicionar e Remover Colunas</a></li>
+<li class="chapter" data-level="5.4.4" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#fundir-data-frames"><i class="fa fa-check"></i><b>5.4.4</b> Fundir Data Frames</a></li>
+<li class="chapter" data-level="5.4.5" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#explorar-o-data-frame"><i class="fa fa-check"></i><b>5.4.5</b> Explorar o Data Frame</a></li>
+<li class="chapter" data-level="5.4.6" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#a-função-subset"><i class="fa fa-check"></i><b>5.4.6</b> A função <code>subset()</code></a></li>
+<li class="chapter" data-level="5.4.7" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#a-função-summary"><i class="fa fa-check"></i><b>5.4.7</b> A Função <code>summary()</code></a></li>
+<li class="chapter" data-level="5.4.8" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#valores-ausentes"><i class="fa fa-check"></i><b>5.4.8</b> Valores ausentes</a></li>
+<li class="chapter" data-level="5.4.9" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#exercícios-4"><i class="fa fa-check"></i><b>5.4.9</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#listas"><i class="fa fa-check"></i><b>5.5</b> Listas</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#criar-e-manipular-listas"><i class="fa fa-check"></i><b>5.5.1</b> Criar e Manipular Listas</a></li>
+<li class="chapter" data-level="5.5.2" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#por-que-usar-listas"><i class="fa fa-check"></i><b>5.5.2</b> Por que usar listas?</a></li>
+<li class="chapter" data-level="5.5.3" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#exercícios-5"><i class="fa fa-check"></i><b>5.5.3</b> Exercícios</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html"><i class="fa fa-check"></i><b>6</b> Estruturas de Seleção</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html#condicional-if"><i class="fa fa-check"></i><b>6.1</b> Condicional <code>if</code></a></li>
+<li class="chapter" data-level="6.2" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html#estrutura-if...else"><i class="fa fa-check"></i><b>6.2</b> Estrutura <code>if...else</code></a></li>
+<li class="chapter" data-level="6.3" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html#condicional-else-if"><i class="fa fa-check"></i><b>6.3</b> Condicional <code>else if</code></a></li>
+<li class="chapter" data-level="6.4" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html#a-função-ifelse"><i class="fa fa-check"></i><b>6.4</b> A função <code>ifelse()</code></a></li>
+<li class="chapter" data-level="6.5" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html#exemplos"><i class="fa fa-check"></i><b>6.5</b> Exemplos</a></li>
+<li class="chapter" data-level="6.6" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html#exercícios-6"><i class="fa fa-check"></i><b>6.6</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="funções.html"><a href="funções.html"><i class="fa fa-check"></i><b>7</b> Funções</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="funções.html"><a href="funções.html#exercícios-7"><i class="fa fa-check"></i><b>7.1</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="scripts-em-r.html"><a href="scripts-em-r.html"><i class="fa fa-check"></i><b>8</b> Scripts em R</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="scripts-em-r.html"><a href="scripts-em-r.html#exercícios-8"><i class="fa fa-check"></i><b>8.1</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html"><i class="fa fa-check"></i><b>9</b> Leitura de dados</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#leitura-de-dados-da-entrada-do-utilizador"><i class="fa fa-check"></i><b>9.1</b> Leitura de Dados da Entrada do Utilizador</a></li>
+<li class="chapter" data-level="9.2" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#diretório-de-trabalho"><i class="fa fa-check"></i><b>9.2</b> Diretório de trabalho</a></li>
+<li class="chapter" data-level="9.3" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.table"><i class="fa fa-check"></i><b>9.3</b> A Função <code>read.table()</code></a></li>
+<li class="chapter" data-level="9.4" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.csv"><i class="fa fa-check"></i><b>9.4</b> A função <code>read.csv()</code></a></li>
+<li class="chapter" data-level="9.5" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.csv2"><i class="fa fa-check"></i><b>9.5</b> A função <code>read.csv2()</code></a></li>
+<li class="chapter" data-level="9.6" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read_excel"><i class="fa fa-check"></i><b>9.6</b> A Função <code>read_excel()</code></a></li>
+<li class="chapter" data-level="9.7" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#leitura-de-dados-online"><i class="fa fa-check"></i><b>9.7</b> Leitura de Dados Online</a></li>
+<li class="chapter" data-level="9.8" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#exercícios-9"><i class="fa fa-check"></i><b>9.8</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>10</b> Pipe</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="pipe.html"><a href="pipe.html#o-operador-pipe"><i class="fa fa-check"></i><b>10.1</b> O operador pipe</a></li>
+<li class="chapter" data-level="10.2" data-path="pipe.html"><a href="pipe.html#exercícios-10"><i class="fa fa-check"></i><b>10.2</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="loop-while.html"><a href="loop-while.html"><i class="fa fa-check"></i><b>11</b> Loop while</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="loop-while.html"><a href="loop-while.html#exercícios-11"><i class="fa fa-check"></i><b>11.1</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="loop-for.html"><a href="loop-for.html"><i class="fa fa-check"></i><b>12</b> Loop for</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="loop-for.html"><a href="loop-for.html#exercícios-12"><i class="fa fa-check"></i><b>12.1</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="família-xapply.html"><a href="família-xapply.html"><i class="fa fa-check"></i><b>13</b> Família <code>Xapply()</code></a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="família-xapply.html"><a href="família-xapply.html#função-apply"><i class="fa fa-check"></i><b>13.1</b> Função <code>apply()</code></a></li>
+<li class="chapter" data-level="13.2" data-path="família-xapply.html"><a href="família-xapply.html#função-lapply"><i class="fa fa-check"></i><b>13.2</b> Função <code>lapply()</code></a></li>
+<li class="chapter" data-level="13.3" data-path="família-xapply.html"><a href="família-xapply.html#função-sapply"><i class="fa fa-check"></i><b>13.3</b> Função <code>sapply()</code></a></li>
+<li class="chapter" data-level="13.4" data-path="família-xapply.html"><a href="família-xapply.html#função-tapply"><i class="fa fa-check"></i><b>13.4</b> Função <code>tapply()</code></a></li>
+<li class="chapter" data-level="13.5" data-path="família-xapply.html"><a href="família-xapply.html#exercícios-13"><i class="fa fa-check"></i><b>13.5</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="exercícios-de-revisão.html"><a href="exercícios-de-revisão.html"><i class="fa fa-check"></i><b>14</b> Exercícios de Revisão</a></li>
+<li class="chapter" data-level="15" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html"><i class="fa fa-check"></i><b>15</b> Gráficos (R base)</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-de-barras"><i class="fa fa-check"></i><b>15.1</b> Gráfico de Barras</a></li>
+<li class="chapter" data-level="15.2" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-circular-pizza"><i class="fa fa-check"></i><b>15.2</b> Gráfico Circular (Pizza)</a></li>
+<li class="chapter" data-level="15.3" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#histograma"><i class="fa fa-check"></i><b>15.3</b> Histograma</a></li>
+<li class="chapter" data-level="15.4" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#box-plot"><i class="fa fa-check"></i><b>15.4</b> Box-plot</a></li>
+<li class="chapter" data-level="15.5" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-de-dispersão"><i class="fa fa-check"></i><b>15.5</b> Gráfico de Dispersão</a></li>
+<li class="chapter" data-level="15.6" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-de-linhas"><i class="fa fa-check"></i><b>15.6</b> Gráfico de Linhas</a></li>
+<li class="chapter" data-level="15.7" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#exercícios-14"><i class="fa fa-check"></i><b>15.7</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html"><i class="fa fa-check"></i><b>16</b> Manipulação de dados</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#tibbles"><i class="fa fa-check"></i><b>16.1</b> Tibbles</a>
+<ul>
+<li class="chapter" data-level="16.1.1" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#criar-e-trabalhar-com-tibbles"><i class="fa fa-check"></i><b>16.1.1</b> Criar e trabalhar com Tibbles</a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#manipulação-de-dados-com-dplyr"><i class="fa fa-check"></i><b>16.2</b> Manipulação de Dados com <code>dplyr</code></a>
+<ul>
+<li class="chapter" data-level="16.2.1" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#seleção-de-colunas-com-select"><i class="fa fa-check"></i><b>16.2.1</b> Seleção de Colunas com <code>select()</code></a></li>
+<li class="chapter" data-level="16.2.2" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#exercícios-15"><i class="fa fa-check"></i><b>16.2.2</b> Exercícios</a></li>
+<li class="chapter" data-level="16.2.3" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#ordenando-a-base-de-dados"><i class="fa fa-check"></i><b>16.2.3</b> Ordenando a Base de Dados</a></li>
+<li class="chapter" data-level="16.2.4" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#exercícios-16"><i class="fa fa-check"></i><b>16.2.4</b> Exercícios</a></li>
+<li class="chapter" data-level="16.2.5" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#filtrando-linhas-da-base-de-dados"><i class="fa fa-check"></i><b>16.2.5</b> Filtrando Linhas da Base de Dados</a></li>
+<li class="chapter" data-level="16.2.6" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#exercícios-17"><i class="fa fa-check"></i><b>16.2.6</b> Exercícios</a></li>
+<li class="chapter" data-level="16.2.7" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#modificar-e-criar-novas-colunas"><i class="fa fa-check"></i><b>16.2.7</b> Modificar e criar novas colunas</a></li>
+<li class="chapter" data-level="16.2.8" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#exercícios-18"><i class="fa fa-check"></i><b>16.2.8</b> Exercícios</a></li>
+<li class="chapter" data-level="16.2.9" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#sumarizar-a-base-de-dados"><i class="fa fa-check"></i><b>16.2.9</b> Sumarizar a Base de Dados</a></li>
+<li class="chapter" data-level="16.2.10" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#exerícios"><i class="fa fa-check"></i><b>16.2.10</b> Exerícios</a></li>
+<li class="chapter" data-level="16.2.11" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#juntando-tabelas-em-r-com-dplyr"><i class="fa fa-check"></i><b>16.2.11</b> Juntando Tabelas em R com dplyr</a></li>
+<li class="chapter" data-level="16.2.12" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#exercícios-19"><i class="fa fa-check"></i><b>16.2.12</b> Exercícios</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="o-pacote-ggplot2.html"><a href="o-pacote-ggplot2.html"><i class="fa fa-check"></i><b>17</b> O pacote <code>ggplot2</code></a></li>
+<li class="chapter" data-level="18" data-path="a-função-sample.html"><a href="a-função-sample.html"><i class="fa fa-check"></i><b>18</b> A função <code>sample()</code></a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="a-função-sample.html"><a href="a-função-sample.html#exercícios-20"><i class="fa fa-check"></i><b>18.1</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html"><i class="fa fa-check"></i><b>19</b> Probabilidade e Variáveis Aleatórias</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#exercícios-21"><i class="fa fa-check"></i><b>19.1</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="simulação.html"><a href="simulação.html"><i class="fa fa-check"></i><b>20</b> Simulação</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="simulação.html"><a href="simulação.html#simulação-e-geração-de-números-pseudoaleatórios"><i class="fa fa-check"></i><b>20.1</b> Simulação e Geração de Números Pseudoaleatórios</a></li>
+<li class="chapter" data-level="20.2" data-path="simulação.html"><a href="simulação.html#a-função-set.seed"><i class="fa fa-check"></i><b>20.2</b> A função <code>set.seed()</code></a></li>
+<li class="chapter" data-level="20.3" data-path="simulação.html"><a href="simulação.html#exercícios-22"><i class="fa fa-check"></i><b>20.3</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html"><i class="fa fa-check"></i><b>21</b> Distribuições de Probabilidade</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-de-distribuição-empírica"><i class="fa fa-check"></i><b>21.1</b> Função de distribuição empírica</a>
+<ul>
+<li class="chapter" data-level="21.1.1" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-de-distribuição-empírica-no-r-função-ecdf"><i class="fa fa-check"></i><b>21.1.1</b> Função de distribuição empírica no R, função <code>ecdf()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="21.2" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#distribuição-uniforme-discreta"><i class="fa fa-check"></i><b>21.2</b> Distribuição Uniforme Discreta</a>
+<ul>
+<li class="chapter" data-level="21.2.1" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#exercícios-23"><i class="fa fa-check"></i><b>21.2.1</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="21.3" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#distribuição-de-bernoulli"><i class="fa fa-check"></i><b>21.3</b> Distribuição de Bernoulli</a>
+<ul>
+<li class="chapter" data-level="21.3.1" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#cálculo-de-probabilidades"><i class="fa fa-check"></i><b>21.3.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="21.3.2" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#exercícios-24"><i class="fa fa-check"></i><b>21.3.2</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="21.4" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#distribuição-binomial"><i class="fa fa-check"></i><b>21.4</b> Distribuição Binomial</a>
+<ul>
+<li class="chapter" data-level="21.4.1" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#cálculo-de-probabilidades-1"><i class="fa fa-check"></i><b>21.4.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="21.4.2" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-massa-de-probabilidade-teórica"><i class="fa fa-check"></i><b>21.4.2</b> Função massa de probabilidade (teórica)</a></li>
+<li class="chapter" data-level="21.4.3" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-massa-de-probabilidade-simulação"><i class="fa fa-check"></i><b>21.4.3</b> Função massa de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="21.4.4" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#comparação"><i class="fa fa-check"></i><b>21.4.4</b> Comparação</a></li>
+<li class="chapter" data-level="21.4.5" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-de-distribuição"><i class="fa fa-check"></i><b>21.4.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="21.4.6" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-de-distribuição-empírica-1"><i class="fa fa-check"></i><b>21.4.6</b> Função de distribuição empírica</a></li>
+<li class="chapter" data-level="21.4.7" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#exercícios-25"><i class="fa fa-check"></i><b>21.4.7</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="21.5" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#distribuição-geométrica"><i class="fa fa-check"></i><b>21.5</b> Distribuição Geométrica</a>
+<ul>
+<li class="chapter" data-level="21.5.1" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#cálculo-de-probabilidades-2"><i class="fa fa-check"></i><b>21.5.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="21.5.2" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#exercícios-26"><i class="fa fa-check"></i><b>21.5.2</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="21.6" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#distribuição-de-poisson"><i class="fa fa-check"></i><b>21.6</b> Distribuição de Poisson</a>
+<ul>
+<li class="chapter" data-level="21.6.1" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#cálculo-de-probabilidades-3"><i class="fa fa-check"></i><b>21.6.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="21.6.2" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-massa-de-probabilidade-teórica-1"><i class="fa fa-check"></i><b>21.6.2</b> Função massa de probabilidade (teórica)</a></li>
+<li class="chapter" data-level="21.6.3" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-massa-de-probabilidade-simulação-1"><i class="fa fa-check"></i><b>21.6.3</b> Função massa de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="21.6.4" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#comparação-1"><i class="fa fa-check"></i><b>21.6.4</b> Comparação</a></li>
+<li class="chapter" data-level="21.6.5" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-de-distribuição-1"><i class="fa fa-check"></i><b>21.6.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="21.6.6" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-de-distribuição-empírica-2"><i class="fa fa-check"></i><b>21.6.6</b> Função de distribuição empírica</a></li>
+<li class="chapter" data-level="21.6.7" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#exercícios-27"><i class="fa fa-check"></i><b>21.6.7</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="21.7" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#distribuição-uniforme-contínua"><i class="fa fa-check"></i><b>21.7</b> Distribuição Uniforme Contínua</a>
+<ul>
+<li class="chapter" data-level="21.7.1" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#notação"><i class="fa fa-check"></i><b>21.7.1</b> Notação</a></li>
+<li class="chapter" data-level="21.7.2" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#cálculo-de-probabilidades-4"><i class="fa fa-check"></i><b>21.7.2</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="21.7.3" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-densidade-de-probabilidade"><i class="fa fa-check"></i><b>21.7.3</b> Função densidade de probabilidade</a></li>
+<li class="chapter" data-level="21.7.4" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-densidade-de-probabilidade-simulação"><i class="fa fa-check"></i><b>21.7.4</b> Função densidade de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="21.7.5" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#comparação-2"><i class="fa fa-check"></i><b>21.7.5</b> Comparação</a></li>
+<li class="chapter" data-level="21.7.6" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-de-distribuição-2"><i class="fa fa-check"></i><b>21.7.6</b> Função de distribuição</a></li>
+<li class="chapter" data-level="21.7.7" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-de-distribuição-empírica-3"><i class="fa fa-check"></i><b>21.7.7</b> Função de distribuição empírica</a></li>
+<li class="chapter" data-level="21.7.8" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#exercícios-28"><i class="fa fa-check"></i><b>21.7.8</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="21.8" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#distribuição-exponencial"><i class="fa fa-check"></i><b>21.8</b> Distribuição Exponencial</a>
+<ul>
+<li class="chapter" data-level="21.8.1" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#cálculo-de-probabilidades-5"><i class="fa fa-check"></i><b>21.8.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="21.8.2" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-densidade-de-probabilidade-teórica"><i class="fa fa-check"></i><b>21.8.2</b> Função densidade de probabilidade (teórica)</a></li>
+<li class="chapter" data-level="21.8.3" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-densidade-de-probabilidade-simulação-1"><i class="fa fa-check"></i><b>21.8.3</b> Função densidade de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="21.8.4" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#comparação-3"><i class="fa fa-check"></i><b>21.8.4</b> Comparação</a></li>
+<li class="chapter" data-level="21.8.5" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-de-distribuição-3"><i class="fa fa-check"></i><b>21.8.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="21.8.6" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-de-distribuição-empírica-4"><i class="fa fa-check"></i><b>21.8.6</b> Função de distribuição empírica</a></li>
+<li class="chapter" data-level="21.8.7" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#exercícios-29"><i class="fa fa-check"></i><b>21.8.7</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="21.9" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#distribuição-normal"><i class="fa fa-check"></i><b>21.9</b> Distribuição Normal</a>
+<ul>
+<li class="chapter" data-level="21.9.1" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#exercícios-30"><i class="fa fa-check"></i><b>21.9.1</b> Exercícios</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="exercícios-extra.html"><a href="exercícios-extra.html"><i class="fa fa-check"></i><b>22</b> Exercícios extra</a></li>
+<li class="chapter" data-level="23" data-path="método-da-transformada-inversa.html"><a href="método-da-transformada-inversa.html"><i class="fa fa-check"></i><b>23</b> Método da transformada inversa</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="método-da-transformada-inversa.html"><a href="método-da-transformada-inversa.html#variável-aleatória-discreta"><i class="fa fa-check"></i><b>23.1</b> Variável aleatória discreta</a></li>
+<li class="chapter" data-level="23.2" data-path="método-da-transformada-inversa.html"><a href="método-da-transformada-inversa.html#exercícios-31"><i class="fa fa-check"></i><b>23.2</b> Exercícios</a></li>
+<li class="chapter" data-level="23.3" data-path="método-da-transformada-inversa.html"><a href="método-da-transformada-inversa.html#variável-aleatória-contínua"><i class="fa fa-check"></i><b>23.3</b> Variável aleatória contínua</a></li>
+<li class="chapter" data-level="23.4" data-path="método-da-transformada-inversa.html"><a href="método-da-transformada-inversa.html#exercícios-32"><i class="fa fa-check"></i><b>23.4</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="método-da-aceitação-rejeição.html"><a href="método-da-aceitação-rejeição.html"><i class="fa fa-check"></i><b>24</b> Método da aceitação-rejeição</a></li>
+<li class="chapter" data-level="25" data-path="teoremas-limites.html"><a href="teoremas-limites.html"><i class="fa fa-check"></i><b>25</b> Teoremas limites</a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="teoremas-limites.html"><a href="teoremas-limites.html#lei-fraca-dos-grandes-números"><i class="fa fa-check"></i><b>25.1</b> Lei fraca dos grandes números</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="usando-números-aleatórios-para-o-cálculo-de-integrais.html"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html"><i class="fa fa-check"></i><b>26</b> Usando números aleatórios para o cálculo de Integrais</a>
+<ul>
+<li class="chapter" data-level="26.1" data-path="usando-números-aleatórios-para-o-cálculo-de-integrais.html"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cálculo-de-int_abgx-dx"><i class="fa fa-check"></i><b>26.1</b> Cálculo de <span class="math inline">\(\int_{a}^{b}g(x)\, dx\)</span></a></li>
+<li class="chapter" data-level="26.2" data-path="usando-números-aleatórios-para-o-cálculo-de-integrais.html"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cálculo-de-int_0inftygx-dx"><i class="fa fa-check"></i><b>26.2</b> Cálculo de <span class="math inline">\(\int_{0}^{\infty}g(x)\, dx\)</span></a></li>
+<li class="chapter" data-level="26.3" data-path="usando-números-aleatórios-para-o-cálculo-de-integrais.html"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cálculo-de-integrais-multidimensionais"><i class="fa fa-check"></i><b>26.3</b> Cálculo de integrais multidimensionais</a></li>
+<li class="chapter" data-level="26.4" data-path="usando-números-aleatórios-para-o-cálculo-de-integrais.html"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#exercícios-33"><i class="fa fa-check"></i><b>26.4</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html"><i class="fa fa-check"></i><b>27</b> Distribuições univariadas no R</a>
+<ul>
+<li class="chapter" data-level="27.1" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#gerando-uma-variável-aleatória-com-distribuição-de-binomial"><i class="fa fa-check"></i><b>27.1</b> Gerando uma variável aleatória com distribuição de Binomial</a>
+<ul>
+<li class="chapter" data-level="27.1.1" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#cálculo-de-probabilidades-6"><i class="fa fa-check"></i><b>27.1.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="27.1.2" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-massa-de-probabilidade-teórica-2"><i class="fa fa-check"></i><b>27.1.2</b> Função massa de probabilidade (teórica)</a></li>
+<li class="chapter" data-level="27.1.3" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-massa-de-probabilidade-simulação-2"><i class="fa fa-check"></i><b>27.1.3</b> Função massa de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="27.1.4" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#comparação-4"><i class="fa fa-check"></i><b>27.1.4</b> Comparação</a></li>
+<li class="chapter" data-level="27.1.5" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-4"><i class="fa fa-check"></i><b>27.1.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="27.1.6" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-5"><i class="fa fa-check"></i><b>27.1.6</b> Função de distribuição empírica</a></li>
+</ul></li>
+<li class="chapter" data-level="27.2" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#gerando-uma-variável-aleatória-com-distribuição-de-poisson"><i class="fa fa-check"></i><b>27.2</b> Gerando uma variável aleatória com distribuição de Poisson</a>
+<ul>
+<li class="chapter" data-level="27.2.1" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#cálculo-de-probabilidades-7"><i class="fa fa-check"></i><b>27.2.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="27.2.2" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-massa-de-probabilidade-teórica-3"><i class="fa fa-check"></i><b>27.2.2</b> Função massa de probabilidade (teórica)</a></li>
+<li class="chapter" data-level="27.2.3" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-massa-de-probabilidade-simulação-3"><i class="fa fa-check"></i><b>27.2.3</b> Função massa de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="27.2.4" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#comparação-5"><i class="fa fa-check"></i><b>27.2.4</b> Comparação</a></li>
+<li class="chapter" data-level="27.2.5" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-5"><i class="fa fa-check"></i><b>27.2.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="27.2.6" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-6"><i class="fa fa-check"></i><b>27.2.6</b> Função de distribuição empírica</a></li>
+</ul></li>
+<li class="chapter" data-level="27.3" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#gerando-uma-variável-aleatória-com-distribuição-de-uniforme"><i class="fa fa-check"></i><b>27.3</b> Gerando uma variável aleatória com distribuição de Uniforme</a>
+<ul>
+<li class="chapter" data-level="27.3.1" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#cálculo-de-probabilidades-8"><i class="fa fa-check"></i><b>27.3.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="27.3.2" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade-1"><i class="fa fa-check"></i><b>27.3.2</b> Função densidade de probabilidade</a></li>
+<li class="chapter" data-level="27.3.3" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade-simulação-2"><i class="fa fa-check"></i><b>27.3.3</b> Função densidade de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="27.3.4" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#comparação-6"><i class="fa fa-check"></i><b>27.3.4</b> Comparação</a></li>
+<li class="chapter" data-level="27.3.5" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-6"><i class="fa fa-check"></i><b>27.3.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="27.3.6" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-7"><i class="fa fa-check"></i><b>27.3.6</b> Função de distribuição empírica</a></li>
+</ul></li>
+<li class="chapter" data-level="27.4" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#gerando-uma-variável-aleatória-com-distribuição-exponencial"><i class="fa fa-check"></i><b>27.4</b> Gerando uma variável aleatória com distribuição Exponencial</a>
+<ul>
+<li class="chapter" data-level="27.4.1" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#cálculo-de-probabilidades-9"><i class="fa fa-check"></i><b>27.4.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="27.4.2" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade-teórica-1"><i class="fa fa-check"></i><b>27.4.2</b> Função densidade de probabilidade (teórica)</a></li>
+<li class="chapter" data-level="27.4.3" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade-simulação-3"><i class="fa fa-check"></i><b>27.4.3</b> Função densidade de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="27.4.4" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#comparação-7"><i class="fa fa-check"></i><b>27.4.4</b> Comparação</a></li>
+<li class="chapter" data-level="27.4.5" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-7"><i class="fa fa-check"></i><b>27.4.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="27.4.6" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-8"><i class="fa fa-check"></i><b>27.4.6</b> Função de distribuição empírica</a></li>
+</ul></li>
+<li class="chapter" data-level="27.5" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#gerando-uma-variável-aleatória-com-distribuição-normal"><i class="fa fa-check"></i><b>27.5</b> Gerando uma variável aleatória com distribuição Normal</a>
+<ul>
+<li class="chapter" data-level="27.5.1" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#cálculo-de-probabilidades-10"><i class="fa fa-check"></i><b>27.5.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="27.5.2" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade-teórica-2"><i class="fa fa-check"></i><b>27.5.2</b> Função densidade de probabilidade (teórica)</a></li>
+<li class="chapter" data-level="27.5.3" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade-simulação-4"><i class="fa fa-check"></i><b>27.5.3</b> Função densidade de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="27.5.4" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#comparação-8"><i class="fa fa-check"></i><b>27.5.4</b> Comparação</a></li>
+<li class="chapter" data-level="27.5.5" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-8"><i class="fa fa-check"></i><b>27.5.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="27.5.6" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-9"><i class="fa fa-check"></i><b>27.5.6</b> Função de distribuição empírica</a></li>
+</ul></li>
+<li class="chapter" data-level="27.6" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#exercícios-34"><i class="fa fa-check"></i><b>27.6</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="relatórios.html"><a href="relatórios.html"><i class="fa fa-check"></i><b>28</b> Relatórios</a>
+<ul>
+<li class="chapter" data-level="28.1" data-path="relatórios.html"><a href="relatórios.html#markdown"><i class="fa fa-check"></i><b>28.1</b> Markdown</a>
+<ul>
+<li class="chapter" data-level="28.1.1" data-path="relatórios.html"><a href="relatórios.html#ênfase"><i class="fa fa-check"></i><b>28.1.1</b> Ênfase</a></li>
+<li class="chapter" data-level="28.1.2" data-path="relatórios.html"><a href="relatórios.html#títulos"><i class="fa fa-check"></i><b>28.1.2</b> Títulos</a></li>
+<li class="chapter" data-level="28.1.3" data-path="relatórios.html"><a href="relatórios.html#listas-1"><i class="fa fa-check"></i><b>28.1.3</b> Listas</a></li>
+<li class="chapter" data-level="28.1.4" data-path="relatórios.html"><a href="relatórios.html#equações"><i class="fa fa-check"></i><b>28.1.4</b> Equações</a></li>
+<li class="chapter" data-level="28.1.5" data-path="relatórios.html"><a href="relatórios.html#código"><i class="fa fa-check"></i><b>28.1.5</b> Código</a></li>
+<li class="chapter" data-level="28.1.6" data-path="relatórios.html"><a href="relatórios.html#links"><i class="fa fa-check"></i><b>28.1.6</b> Links</a></li>
+<li class="chapter" data-level="28.1.7" data-path="relatórios.html"><a href="relatórios.html#imagens"><i class="fa fa-check"></i><b>28.1.7</b> Imagens</a></li>
+<li class="chapter" data-level="28.1.8" data-path="relatórios.html"><a href="relatórios.html#tabelas"><i class="fa fa-check"></i><b>28.1.8</b> Tabelas</a></li>
+</ul></li>
+<li class="chapter" data-level="28.2" data-path="relatórios.html"><a href="relatórios.html#r-markdown"><i class="fa fa-check"></i><b>28.2</b> R Markdown</a>
+<ul>
+<li class="chapter" data-level="28.2.1" data-path="relatórios.html"><a href="relatórios.html#criando-um-arquivo-.rmd"><i class="fa fa-check"></i><b>28.2.1</b> Criando um arquivo <code>.Rmd</code></a></li>
+<li class="chapter" data-level="28.2.2" data-path="relatórios.html"><a href="relatórios.html#estrutura-do-arquivo-r-markdown"><i class="fa fa-check"></i><b>28.2.2</b> Estrutura do arquivo R Markdown</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="29" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i><b>29</b> Referências</a></li>
+<li class="chapter" data-level="30" data-path="respostas.html"><a href="respostas.html"><i class="fa fa-check"></i><b>30</b> Respostas</a>
+<ul>
+<li class="chapter" data-level="30.1" data-path="respostas.html"><a href="respostas.html#o-pacote-dplyr"><i class="fa fa-check"></i><b>30.1</b> O pacote dplyr</a>
+<ul>
+<li class="chapter" data-level="30.1.1" data-path="respostas.html"><a href="respostas.html#selecionando-colunas"><i class="fa fa-check"></i><b>30.1.1</b> Selecionando colunas</a></li>
+<li class="chapter" data-level="30.1.2" data-path="respostas.html"><a href="respostas.html#ordenando-a-base"><i class="fa fa-check"></i><b>30.1.2</b> Ordenando a base</a></li>
+<li class="chapter" data-level="30.1.3" data-path="respostas.html"><a href="respostas.html#filtrando-linhas"><i class="fa fa-check"></i><b>30.1.3</b> Filtrando linhas</a></li>
+<li class="chapter" data-level="30.1.4" data-path="respostas.html"><a href="respostas.html#modificando-e-criando-novas-colunas"><i class="fa fa-check"></i><b>30.1.4</b> Modificando e criando novas colunas</a></li>
+<li class="chapter" data-level="30.1.5" data-path="respostas.html"><a href="respostas.html#sumarizando-a-base"><i class="fa fa-check"></i><b>30.1.5</b> Sumarizando a base</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introdução ao R e Simulação</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="probabilidade-e-variáveis-aleatórias" class="section level1 hasAnchor" number="19">
+<h1><span class="header-section-number">Capítulo 19</span> Probabilidade e Variáveis Aleatórias<a href="probabilidade-e-variáveis-aleatórias.html#probabilidade-e-variáveis-aleatórias" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Uma <strong>variável aleatória</strong> é uma função que atribui a cada resultado possível de um experimento aleatório um valor numérico. Em termos formais, é uma função que mapeia elementos de um espaço de resultados <span class="math inline">\(\Omega\)</span> para o conjunto dos números reais <span class="math inline">\(\mathbb{R}\)</span>. Por exemplo, ao lançar um dado, podemos definir uma variável aleatória <span class="math inline">\(X\)</span> que representa o número obtido na face superior, assumindo valores de 1 a 6.</p>
+<p>As variáveis aleatórias são fundamentais na teoria das probabilidades, pois permitem quantificar e analisar matematicamente fenómenos aleatórios. Elas podem ser classificadas em dois tipos principais:</p>
+<ul>
+<li><strong>Variáveis Aleatórias Discretas</strong>: assumem valores em um conjunto finito ou numerável, como o número de caras ao lançar uma moeda três vezes.</li>
+<li><strong>Variáveis Aleatórias Contínuas</strong>: podem assumir qualquer valor em um intervalo contínuo, como a altura de uma pessoa medida em centímetros.</li>
+</ul>
+<p>A compreensão das variáveis aleatórias é essencial para modelar situações incertas e calcular probabilidades associadas a diferentes eventos.</p>
+<p><strong>Exemplo 1</strong>: Em uma empresa, o número de reclamações recebidas por dia é uma variável aleatória discreta <span class="math inline">\(X\)</span> com a seguinte função de probabilidade:</p>
+<p><span class="math display">\[f_{X}(x) = P(X = x) =
+\begin{cases}
+0.1, &amp; x = 0 \\
+0.25, &amp; x = 1 \\
+0.3, &amp; x = 2 \\
+0.2, &amp; x = 3 \\
+0.15, &amp; x = 4
+\end{cases}\]</span></p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Mostre que <span class="math inline">\(f_{X}\)</span> é uma função massa de probabilidade (f.m.p.).</p></li>
+<li><p>Calcule o número esperado de reclamações e a variância do número de reclamações por dia.</p></li>
+<li><p>Calcule a probabilidade de haver mais de 2 reclamações em um dia.</p></li>
+</ol>
+<p>Sabemos que para <span class="math inline">\(f_{X}\)</span> ser uma f.m.p. ela deve satisfazer duas condições:</p>
+<ul>
+<li><span class="math inline">\(f_{X}(x) \geq 0, \forall x\in \mathbb{R}\)</span>.</li>
+<li><span class="math inline">\(\sum_{x}f_{X}(x)=1\)</span>.</li>
+</ul>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="probabilidade-e-variáveis-aleatórias.html#cb271-1" tabindex="-1"></a><span class="co"># Função de probabilidade do número de reclamações (X)</span></span>
+<span id="cb271-2"><a href="probabilidade-e-variáveis-aleatórias.html#cb271-2" tabindex="-1"></a>X_valores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb271-3"><a href="probabilidade-e-variáveis-aleatórias.html#cb271-3" tabindex="-1"></a>P_X <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.25</span>, <span class="fl">0.3</span>, <span class="fl">0.2</span>, <span class="fl">0.15</span>)</span>
+<span id="cb271-4"><a href="probabilidade-e-variáveis-aleatórias.html#cb271-4" tabindex="-1"></a></span>
+<span id="cb271-5"><a href="probabilidade-e-variáveis-aleatórias.html#cb271-5" tabindex="-1"></a><span class="co"># a. Verificar se P(X) é uma função massa de probabilidade</span></span>
+<span id="cb271-6"><a href="probabilidade-e-variáveis-aleatórias.html#cb271-6" tabindex="-1"></a><span class="fu">sum</span>(P_X)  <span class="co"># Deve ser igual a 1</span></span>
+<span id="cb271-7"><a href="probabilidade-e-variáveis-aleatórias.html#cb271-7" tabindex="-1"></a><span class="do">## [1] 1</span></span></code></pre></div>
+<p>Sabemos que <span class="math inline">\(E(X)=\sum_{x}x\times f_{X}(x)\)</span> e <span class="math inline">\(V(X) = \sum_{x}(x-E(X))^2\times f_{X}(x)\)</span>.</p>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="probabilidade-e-variáveis-aleatórias.html#cb272-1" tabindex="-1"></a><span class="co"># b. Cálculo da média e variância do número de reclamações</span></span>
+<span id="cb272-2"><a href="probabilidade-e-variáveis-aleatórias.html#cb272-2" tabindex="-1"></a>E_X <span class="ot">&lt;-</span> <span class="fu">sum</span>(X_valores <span class="sc">*</span> P_X)  <span class="co"># Esperança</span></span>
+<span id="cb272-3"><a href="probabilidade-e-variáveis-aleatórias.html#cb272-3" tabindex="-1"></a>Var_X <span class="ot">&lt;-</span> <span class="fu">sum</span>((X_valores <span class="sc">-</span> E_X)<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> P_X)  <span class="co"># Variância</span></span>
+<span id="cb272-4"><a href="probabilidade-e-variáveis-aleatórias.html#cb272-4" tabindex="-1"></a><span class="fu">print</span>(E_X)  </span>
+<span id="cb272-5"><a href="probabilidade-e-variáveis-aleatórias.html#cb272-5" tabindex="-1"></a><span class="do">## [1] 2.05</span></span>
+<span id="cb272-6"><a href="probabilidade-e-variáveis-aleatórias.html#cb272-6" tabindex="-1"></a><span class="fu">print</span>(Var_X)</span>
+<span id="cb272-7"><a href="probabilidade-e-variáveis-aleatórias.html#cb272-7" tabindex="-1"></a><span class="do">## [1] 1.4475</span></span>
+<span id="cb272-8"><a href="probabilidade-e-variáveis-aleatórias.html#cb272-8" tabindex="-1"></a><span class="co"># c. Probabilidade de haver mais de 2 reclamações em um dia</span></span>
+<span id="cb272-9"><a href="probabilidade-e-variáveis-aleatórias.html#cb272-9" tabindex="-1"></a>P_Y_maior_2 <span class="ot">&lt;-</span> <span class="fu">sum</span>(P_X[X_valores <span class="sc">&gt;</span> <span class="dv">2</span>])</span>
+<span id="cb272-10"><a href="probabilidade-e-variáveis-aleatórias.html#cb272-10" tabindex="-1"></a><span class="fu">print</span>(P_Y_maior_2)</span>
+<span id="cb272-11"><a href="probabilidade-e-variáveis-aleatórias.html#cb272-11" tabindex="-1"></a><span class="do">## [1] 0.35</span></span></code></pre></div>
+<p><strong>Exemplo 2</strong>: Dada a função</p>
+<p><span class="math display">\[f(x) = \begin{cases}
+2e^{-2x},&amp; \quad \text{se} \quad x\geq 0 \\
+0,&amp; \quad \text{se} \quad x&lt;0
+\end{cases}\]</span></p>
+<ol style="list-style-type: lower-alpha">
+<li>Mostre que essa função é uma função densidade de probabilidade (f.d.p.).</li>
+<li>Calcule a probabilidade de que <span class="math inline">\(X&gt;2\)</span>.</li>
+<li>Calcule a probabilidade de que <span class="math inline">\(0.3 &lt; X &lt; 0.7\)</span>.</li>
+</ol>
+<p>Sabemos que para <span class="math inline">\(f\)</span> ser f.d.p. ela deve satisfazer duas condições:</p>
+<ul>
+<li><span class="math inline">\(f(x)\geq 0, \forall x \in \mathbb{R}\)</span>.</li>
+<li><span class="math inline">\(\int_{-\infty}^{+\infty}f(x)\, dx = 1\)</span>.</li>
+</ul>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="probabilidade-e-variáveis-aleatórias.html#cb273-1" tabindex="-1"></a>f1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb273-2"><a href="probabilidade-e-variáveis-aleatórias.html#cb273-2" tabindex="-1"></a>  fx <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(x<span class="sc">&lt;</span><span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span><span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>x))</span>
+<span id="cb273-3"><a href="probabilidade-e-variáveis-aleatórias.html#cb273-3" tabindex="-1"></a>  <span class="fu">return</span>(fx)</span>
+<span id="cb273-4"><a href="probabilidade-e-variáveis-aleatórias.html#cb273-4" tabindex="-1"></a>}</span></code></pre></div>
+<p>Gráfico de <span class="math inline">\(f\)</span>:</p>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="probabilidade-e-variáveis-aleatórias.html#cb274-1" tabindex="-1"></a><span class="fu">plot</span>(f1, <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">10</span>)</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-231-1.png" width="672" /></p>
+<p>Para verificar que o integral da função é igual a 1 podemos usar a função <code>integrate()</code>, que realiza a integração numérica.</p>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="probabilidade-e-variáveis-aleatórias.html#cb275-1" tabindex="-1"></a><span class="fu">integrate</span>(f1, <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="cn">Inf</span>)</span>
+<span id="cb275-2"><a href="probabilidade-e-variáveis-aleatórias.html#cb275-2" tabindex="-1"></a><span class="do">## 1 with absolute error &lt; 5e-07</span></span></code></pre></div>
+<p>Para fazer os cálculos pedidos nas alíneas (a) e (b) lembramos que a probabilidade é dada pela área sob a curva da função no intervalo pedido, ou seja,</p>
+<p><span class="math inline">\(P(X &gt; 2) = \int_{2}^{+\infty}f(x)\, dx = \int_{2}^{+\infty} 2e^{-2x}\,dx\)</span></p>
+<p><span class="math inline">\(P(0.3 &lt; X &lt; 0.7) = \int_{0.3}^{0.7}f(x)\, dx = \int_{0.3}^{0.7} 2e^{-2x}\, dx\)</span></p>
+<p>que são obtidas usando os comandos</p>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="probabilidade-e-variáveis-aleatórias.html#cb276-1" tabindex="-1"></a><span class="fu">integrate</span>(f1, <span class="at">lower =</span> <span class="dv">2</span>, <span class="at">upper =</span> <span class="cn">Inf</span>)</span>
+<span id="cb276-2"><a href="probabilidade-e-variáveis-aleatórias.html#cb276-2" tabindex="-1"></a><span class="do">## 0.01831564 with absolute error &lt; 2.8e-06</span></span>
+<span id="cb276-3"><a href="probabilidade-e-variáveis-aleatórias.html#cb276-3" tabindex="-1"></a></span>
+<span id="cb276-4"><a href="probabilidade-e-variáveis-aleatórias.html#cb276-4" tabindex="-1"></a><span class="fu">integrate</span>(f1, <span class="at">lower =</span> <span class="fl">0.3</span>, <span class="at">upper =</span> <span class="fl">0.7</span>)</span>
+<span id="cb276-5"><a href="probabilidade-e-variáveis-aleatórias.html#cb276-5" tabindex="-1"></a><span class="do">## 0.3022147 with absolute error &lt; 3.4e-15</span></span></code></pre></div>
+<p><strong>Exemplo 3</strong>: A demanda diária de arroz em um supermercado, em centenas de quilos, é uma variável aleatória <span class="math inline">\(X\)</span> com f.d.p. dada por</p>
+<p><span class="math display">\[f(x) = \begin{cases}
+\frac{2}{3}x,&amp; \quad \text{se} \quad 0\leq x &lt;1 \\
+-\frac{x}{3}+1,&amp; \quad \text{se} \quad 1\leq x&lt;3 \\
+0,&amp; \quad \text{se} \quad x&lt;0 \,\, \text{ou} \,\, x\geq 3
+\end{cases}\]</span></p>
+<ol style="list-style-type: lower-alpha">
+<li>Calcular a probabilidade de que sejam vendidos mais que 150 kg.</li>
+<li>Calcular a venda esperada em 30 dias.</li>
+</ol>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="probabilidade-e-variáveis-aleatórias.html#cb277-1" tabindex="-1"></a>f2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb277-2"><a href="probabilidade-e-variáveis-aleatórias.html#cb277-2" tabindex="-1"></a>  <span class="fu">ifelse</span>(x <span class="sc">&gt;=</span> <span class="dv">0</span> <span class="sc">&amp;</span> x <span class="sc">&lt;</span> <span class="dv">1</span>, (<span class="dv">2</span><span class="sc">/</span><span class="dv">3</span>) <span class="sc">*</span> x,</span>
+<span id="cb277-3"><a href="probabilidade-e-variáveis-aleatórias.html#cb277-3" tabindex="-1"></a>         <span class="fu">ifelse</span>(x <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">&amp;</span> x <span class="sc">&lt;</span> <span class="dv">3</span>, <span class="sc">-</span>x<span class="sc">/</span><span class="dv">3</span> <span class="sc">+</span> <span class="dv">1</span>, <span class="dv">0</span>))</span>
+<span id="cb277-4"><a href="probabilidade-e-variáveis-aleatórias.html#cb277-4" tabindex="-1"></a>}</span></code></pre></div>
+<p>Vamos verificar que o integral da função é 1 e vamos fazer também o gráfico da função.</p>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="probabilidade-e-variáveis-aleatórias.html#cb278-1" tabindex="-1"></a><span class="fu">integrate</span>(f2, <span class="dv">0</span>, <span class="dv">3</span>)</span>
+<span id="cb278-2"><a href="probabilidade-e-variáveis-aleatórias.html#cb278-2" tabindex="-1"></a><span class="do">## 1 with absolute error &lt; 1.1e-15</span></span></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="probabilidade-e-variáveis-aleatórias.html#cb279-1" tabindex="-1"></a><span class="fu">plot</span>(f2, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">4</span>)</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-236-1.png" width="672" /></p>
+<ol style="list-style-type: lower-alpha">
+<li>Calcular a probabilidade de que sejam vendidos mais que 150 kg (1.5 centenas de quilos). Ou seja, queremos calcular <span class="math inline">\(P(X&gt;1.5) = \int_{1.5}^{+\infty}f(x)\,dx\)</span>.</li>
+</ol>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="probabilidade-e-variáveis-aleatórias.html#cb280-1" tabindex="-1"></a><span class="fu">plot</span>(f2, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">4</span>)</span>
+<span id="cb280-2"><a href="probabilidade-e-variáveis-aleatórias.html#cb280-2" tabindex="-1"></a><span class="fu">polygon</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="fl">1.5</span>, <span class="fl">1.5</span>, <span class="dv">3</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">f2</span>(<span class="fl">1.5</span>), <span class="dv">0</span>), <span class="at">dens =</span> <span class="dv">10</span>)</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-237-1.png" width="672" /></p>
+<p>Podemos resolver o integral numericamente da seguinte forma</p>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="probabilidade-e-variáveis-aleatórias.html#cb281-1" tabindex="-1"></a><span class="fu">integrate</span>(f2, <span class="fl">1.5</span>, <span class="dv">3</span>)</span>
+<span id="cb281-2"><a href="probabilidade-e-variáveis-aleatórias.html#cb281-2" tabindex="-1"></a><span class="do">## 0.375 with absolute error &lt; 4.2e-15</span></span></code></pre></div>
+<p>A venda esperada em trinta dias é 30 vezes o valor esperado de venda em um dia. Para calcular o valor esperado <span class="math inline">\(E(X) = \int_{-\infty}^{+\infty}xf(x)\,dx\)</span> definimos uma nova função e resolvemos o integral. A função <code>integrate()</code> retorna uma lista onde um dos elementos (<code>value</code>) é o valor do integral.</p>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="probabilidade-e-variáveis-aleatórias.html#cb282-1" tabindex="-1"></a>ef2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb282-2"><a href="probabilidade-e-variáveis-aleatórias.html#cb282-2" tabindex="-1"></a>  x<span class="sc">*</span><span class="fu">f2</span>(x)</span>
+<span id="cb282-3"><a href="probabilidade-e-variáveis-aleatórias.html#cb282-3" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="probabilidade-e-variáveis-aleatórias.html#cb283-1" tabindex="-1"></a><span class="fu">integrate</span>(ef2,<span class="dv">0</span>,<span class="dv">3</span>)</span>
+<span id="cb283-2"><a href="probabilidade-e-variáveis-aleatórias.html#cb283-2" tabindex="-1"></a><span class="do">## 1.333333 with absolute error &lt; 7.3e-05</span></span>
+<span id="cb283-3"><a href="probabilidade-e-variáveis-aleatórias.html#cb283-3" tabindex="-1"></a></span>
+<span id="cb283-4"><a href="probabilidade-e-variáveis-aleatórias.html#cb283-4" tabindex="-1"></a><span class="dv">30</span><span class="sc">*</span><span class="fu">integrate</span>(ef2,<span class="dv">0</span>,<span class="dv">3</span>)<span class="sc">$</span>value</span>
+<span id="cb283-5"><a href="probabilidade-e-variáveis-aleatórias.html#cb283-5" tabindex="-1"></a><span class="do">## [1] 40</span></span></code></pre></div>
+<p>Por fim, ressaltamos que os exemplos abordados aqui são básicos e podem ser resolvidos de forma analítica, sem a necessidade de métodos numéricos. Esses exemplos foram escolhidos apenas para ilustrar o uso do R na obtenção de soluções numéricas. Na prática, o R é mais indicado para problemas complexos, nos quais as soluções analíticas são difíceis ou inviáveis.</p>
+<div id="exercícios-21" class="section level2 hasAnchor" number="19.1">
+<h2><span class="header-section-number">19.1</span> Exercícios<a href="probabilidade-e-variáveis-aleatórias.html#exercícios-21" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>1.</strong> O número de produtos defeituosos em uma linha de produção ao final de cada hora é uma variável aleatória discreta <span class="math inline">\(X\)</span> com a seguinte função de probabilidade:</p>
+<p><span class="math display">\[P(X = x) =
+\begin{cases}
+\frac{1}{10}, &amp; x = 0 \\
+\frac{2}{10}, &amp; x = 1 \\
+\frac{3}{10}, &amp; x = 2 \\
+\frac{2}{10}, &amp; x = 3 \\
+\frac{2}{10}, &amp; x = 4
+\end{cases}\]</span></p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Verifique se <span class="math inline">\(P(X)\)</span> é uma função massa de probabilidade.</p></li>
+<li><p>Calcule o valor esperado e a variância do número de produtos defeituosos por hora.</p></li>
+<li><p>Calcule a probabilidade de haver, no máximo, 2 produtos defeituosos em uma hora.</p></li>
+</ol>
+<p><strong>2.</strong> Uma pesquisa foi realizada em uma universidade sobre o número de cursos que cada aluno está matriculado. A variável aleatória <span class="math inline">\(Z\)</span> representa o número de cursos e possui a seguinte função de probabilidade:</p>
+<p><span class="math display">\[P(Z = z) =
+\begin{cases}
+0.05, &amp; z = 1 \\
+0.15, &amp; z = 2 \\
+0.35, &amp; z = 3 \\
+0.25, &amp; z = 4 \\
+0.2, &amp; z = 5
+\end{cases}\]</span></p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Verifique se <span class="math inline">\(P(Z)\)</span> é uma função massa de probabilidade.</p></li>
+<li><p>Calcule o valor esperado e a variância do número de cursos em que os alunos estão matriculados.</p></li>
+<li><p>Calcule a probabilidade de que um aluno esteja matriculado em mais de 3 cursos.</p></li>
+</ol>
+<p><strong>3.</strong> Em uma determinada localidade a distribuição de renda, em u.m. (unidade monetária) é uma variável aleatória <span class="math inline">\(X\)</span> com função de distribuição de probabilidade:</p>
+<p><span class="math display">\[
+f_{X}(x) =
+\begin{cases}
+\frac{1}{10}x + \frac{1}{10}, &amp; \text{se } 0 \leq x \leq 2 \\[10pt]
+-\frac{3}{40}x + \frac{9}{20}, &amp; \text{se } 2 &lt; x \leq 6 \\[10pt]
+0, &amp; \text{se } x &lt; 0 \text{ ou } x &gt; 6
+\end{cases}
+\]</span></p>
+<ol style="list-style-type: lower-alpha">
+<li>Mostre que <span class="math inline">\(f(x)\)</span> é uma função densidade de probabilidade.</li>
+<li>Qual a renda média nesta localidade?</li>
+<li>Calcule a probabilidade de encontrar uma pessoa com renda acima de 4.5 u.m. e indique o resultado no gráfico da distribuição.</li>
+</ol>
+<p><strong>4.</strong> Sabe-se que uma variável aleatória contínua <span class="math inline">\(X\)</span> é distribuída uniformemente no intervalo 10 e 20.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Apresente o gráfico da função densidade de probabilidade.</li>
+<li>Calcule <span class="math inline">\(P(X &lt; 15)\)</span>.</li>
+<li>Calcule <span class="math inline">\(P(12\leq X \leq 18)\)</span>.</li>
+<li>Calcule <span class="math inline">\(E(X)\)</span> e <span class="math inline">\(V(X)\)</span>.</li>
+</ol>
+<p><strong>5.</strong> O tempo de espera (em minutos) para ser atendido em um posto de atendimento ao cliente é uma variável aleatória contínua <span class="math inline">\(Y\)</span> , cuja função de densidade de probabilidade é dada por:</p>
+<p><span class="math display">\[
+f_{Y}(y) =
+\begin{cases}
+0.125y, &amp; 0\leq y\leq 4 \\[10pt]
+0,&amp; \text{caso contrário}
+\end{cases}
+\]</span>
+Com base nesta função de densidade, responda às seguintes questões:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Crie uma função para calcular a função de distribuição acumulada de <span class="math inline">\(Y\)</span>.</p></li>
+<li><p>Calcule <span class="math inline">\(P(Y &gt; 3)\)</span>, que representa a probabilidade de o tempo de espera ser superior a 3 minutos.</p></li>
+<li><p>Calcule <span class="math inline">\(P(1 &lt; Y &lt; 3)\)</span>, que representa a probabilidade de o tempo de espera estar entre 1 e 3 minutos.</p></li>
+<li><p>Calcule <span class="math inline">\(P(Y &lt; 2)\)</span>, que representa a probabilidade de o tempo de espera ser inferior a 2 minutos.</p></li>
+<li><p>Calcule <span class="math inline">\(P(Y &lt; 3 \mid Y &gt; 1)\)</span> , que representa a probabilidade de o tempo de espera ser inferior a 3 minutos, dado que já passou mais de 1 minuto.</p></li>
+</ol>
+<p><strong>6.</strong> A duração, em anos, de uma certa lâmpada especial é uma variável aleatória contínua <span class="math inline">\(X\)</span> com densidade dada por:</p>
+<p><span class="math display">\[
+f_{X}(x) =
+\begin{cases}
+3\,e^{-3x}, &amp; x\geq0 \\[10pt]
+0,&amp; x&lt;0
+\end{cases}
+\]</span></p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Crie uma função para calcular a função de distribuição acumulada de <span class="math inline">\(X\)</span>.</p></li>
+<li><p>Calcule <span class="math inline">\(P(X&gt;2)\)</span>.</p></li>
+<li><p>Calcule <span class="math inline">\(P(0.5 &lt; X &lt;1.2)\)</span>.</p></li>
+<li><p>Calcule <span class="math inline">\(P(X&gt;3)\)</span>.</p></li>
+<li><p>Calcule <span class="math inline">\(P(X&lt;3 | X&gt;1)\)</span>.</p></li>
+</ol>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="a-função-sample.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="simulação.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-intro.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["introR.pdf", "introR.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
