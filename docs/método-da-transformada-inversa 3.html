@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 22 Método da transformada inversa | Introdução ao R e Simulação</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 22 Método da transformada inversa | Introdução ao R e Simulação" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="/docs/ciencias.png" />
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 22 Método da transformada inversa | Introdução ao R e Simulação" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="twitter:image" content="/docs/ciencias.png" />
+
+<meta name="author" content="Renato de Paula" />
+
+
+<meta name="date" content="2024-11-22" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="distribuições-de-probabilidade.html"/>
+<link rel="next" href="método-da-aceitação-rejeição.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Laboratório de Estatistica I</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prefácio</a></li>
+<li class="chapter" data-level="2" data-path="normas-de-funcionamento.html"><a href="normas-de-funcionamento.html"><i class="fa fa-check"></i><b>2</b> Normas de Funcionamento</a></li>
+<li class="chapter" data-level="3" data-path="r-e-rstudio.html"><a href="r-e-rstudio.html"><i class="fa fa-check"></i><b>3</b> R e RStudio</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="r-e-rstudio.html"><a href="r-e-rstudio.html#instalação-e-funcionalidades-básicas"><i class="fa fa-check"></i><b>3.1</b> Instalação e funcionalidades básicas</a></li>
+<li class="chapter" data-level="3.2" data-path="r-e-rstudio.html"><a href="r-e-rstudio.html#navegar-no-rstudio"><i class="fa fa-check"></i><b>3.2</b> Navegar no RStudio</a></li>
+<li class="chapter" data-level="3.3" data-path="r-e-rstudio.html"><a href="r-e-rstudio.html#atalhos"><i class="fa fa-check"></i><b>3.3</b> Atalhos</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html"><i class="fa fa-check"></i><b>4</b> R como Calculadora e Operações Aritméticas</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#o-prompt-do-r"><i class="fa fa-check"></i><b>4.1</b> O Prompt do R</a></li>
+<li class="chapter" data-level="4.2" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#objetos-e-variáveis"><i class="fa fa-check"></i><b>4.2</b> Objetos e Variáveis</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#o-que-é-uma-variável"><i class="fa fa-check"></i><b>4.2.1</b> O que é uma Variável?</a></li>
+<li class="chapter" data-level="4.2.2" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#atribuições"><i class="fa fa-check"></i><b>4.2.2</b> Atribuições</a></li>
+<li class="chapter" data-level="4.2.3" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#regras-para-definição-de-variáveis"><i class="fa fa-check"></i><b>4.2.3</b> Regras para definição de variáveis</a></li>
+<li class="chapter" data-level="4.2.4" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#tipos-de-dados"><i class="fa fa-check"></i><b>4.2.4</b> Tipos de Dados</a></li>
+<li class="chapter" data-level="4.2.5" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#comandos-importantes"><i class="fa fa-check"></i><b>4.2.5</b> Comandos Importantes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#operadores-aritméticos-em-r"><i class="fa fa-check"></i><b>4.3</b> Operadores Aritméticos em R</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#controle-da-quantidade-de-dígitos-mostrados"><i class="fa fa-check"></i><b>4.3.1</b> Controle da Quantidade de Dígitos Mostrados</a></li>
+<li class="chapter" data-level="4.3.2" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#objetos-predefinidos-infinito-indefinido-e-valores-ausentes"><i class="fa fa-check"></i><b>4.3.2</b> Objetos Predefinidos, Infinito, Indefinido e Valores Ausentes</a></li>
+<li class="chapter" data-level="4.3.3" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#lidando-com-nan-e-na-em-operações"><i class="fa fa-check"></i><b>4.3.3</b> Lidando com NaN e NA em Operações</a></li>
+<li class="chapter" data-level="4.3.4" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#funções-úteis-para-detectar-nan-e-na"><i class="fa fa-check"></i><b>4.3.4</b> Funções Úteis para Detectar NaN e NA</a></li>
+<li class="chapter" data-level="4.3.5" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#tipagem-dinâmica-em-r"><i class="fa fa-check"></i><b>4.3.5</b> Tipagem Dinâmica em R</a></li>
+<li class="chapter" data-level="4.3.6" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#conversão-entre-tipos-de-dados"><i class="fa fa-check"></i><b>4.3.6</b> Conversão entre Tipos de Dados</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#funções-print-readline-paste-e-cat"><i class="fa fa-check"></i><b>4.4</b> Funções <code>print()</code>, <code>readline()</code>, <code>paste()</code> e <code>cat()</code></a></li>
+<li class="chapter" data-level="4.5" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#quizz"><i class="fa fa-check"></i><b>4.5</b> Quizz</a></li>
+<li class="chapter" data-level="4.6" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#operadores-lógicos-e-relacionais"><i class="fa fa-check"></i><b>4.6</b> Operadores Lógicos e Relacionais</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#operadores-lógicos"><i class="fa fa-check"></i><b>4.6.1</b> Operadores Lógicos</a></li>
+<li class="chapter" data-level="4.6.2" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#operadores-relacionais"><i class="fa fa-check"></i><b>4.6.2</b> Operadores Relacionais</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#quizz-1"><i class="fa fa-check"></i><b>4.7</b> Quizz</a></li>
+<li class="chapter" data-level="4.8" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#exercícios"><i class="fa fa-check"></i><b>4.8</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html"><i class="fa fa-check"></i><b>5</b> Estrutura de Dados Básicas</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#vetor"><i class="fa fa-check"></i><b>5.1</b> Vetor</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#tipos-comuns-de-vetores"><i class="fa fa-check"></i><b>5.1.1</b> Tipos Comuns de Vetores</a></li>
+<li class="chapter" data-level="5.1.2" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#construindo-vetores"><i class="fa fa-check"></i><b>5.1.2</b> Construindo Vetores</a></li>
+<li class="chapter" data-level="5.1.3" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#acesso-a-elementos-de-um-vetor"><i class="fa fa-check"></i><b>5.1.3</b> Acesso a Elementos de um Vetor</a></li>
+<li class="chapter" data-level="5.1.4" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#funções-comuns-para-vetores"><i class="fa fa-check"></i><b>5.1.4</b> Funções Comuns para Vetores</a></li>
+<li class="chapter" data-level="5.1.5" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#operações-com-vetores"><i class="fa fa-check"></i><b>5.1.5</b> Operações com Vetores</a></li>
+<li class="chapter" data-level="5.1.6" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#exercícios-1"><i class="fa fa-check"></i><b>5.1.6</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#fatores"><i class="fa fa-check"></i><b>5.2</b> Fatores</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#manipulação-de-fatores"><i class="fa fa-check"></i><b>5.2.1</b> Manipulação de Fatores</a></li>
+<li class="chapter" data-level="5.2.2" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#gerando-fatores-com-gl"><i class="fa fa-check"></i><b>5.2.2</b> Gerando Fatores com <code>gl()</code></a></li>
+<li class="chapter" data-level="5.2.3" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#exercícios-2"><i class="fa fa-check"></i><b>5.2.3</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#matriz-e-array"><i class="fa fa-check"></i><b>5.3</b> Matriz e Array</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#criando-matrizes"><i class="fa fa-check"></i><b>5.3.1</b> Criando matrizes</a></li>
+<li class="chapter" data-level="5.3.2" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#criando-um-array"><i class="fa fa-check"></i><b>5.3.2</b> Criando um array</a></li>
+<li class="chapter" data-level="5.3.3" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#acessar-elementos-de-um-array"><i class="fa fa-check"></i><b>5.3.3</b> Acessar Elementos de um array</a></li>
+<li class="chapter" data-level="5.3.4" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#construindo-matrizes"><i class="fa fa-check"></i><b>5.3.4</b> Construindo Matrizes</a></li>
+<li class="chapter" data-level="5.3.5" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#acessar-elementos-de-uma-matriz"><i class="fa fa-check"></i><b>5.3.5</b> Acessar Elementos de uma Matriz</a></li>
+<li class="chapter" data-level="5.3.6" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#nomear-linhas-e-colunas-de-uma-matriz"><i class="fa fa-check"></i><b>5.3.6</b> Nomear Linhas e Colunas de uma Matriz</a></li>
+<li class="chapter" data-level="5.3.7" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#multiplicação-de-matrizes"><i class="fa fa-check"></i><b>5.3.7</b> Multiplicação de matrizes</a></li>
+<li class="chapter" data-level="5.3.8" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#adicionar-linhas-e-colunas-a-uma-matriz"><i class="fa fa-check"></i><b>5.3.8</b> Adicionar Linhas e Colunas a uma Matriz</a></li>
+<li class="chapter" data-level="5.3.9" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#algumas-outras-funções"><i class="fa fa-check"></i><b>5.3.9</b> Algumas outras funções</a></li>
+<li class="chapter" data-level="5.3.10" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#exercícios-3"><i class="fa fa-check"></i><b>5.3.10</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#data-frame"><i class="fa fa-check"></i><b>5.4</b> Data Frame</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#criar-um-data-frame"><i class="fa fa-check"></i><b>5.4.1</b> Criar um Data Frame</a></li>
+<li class="chapter" data-level="5.4.2" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#aceder-a-linhas-e-colunas"><i class="fa fa-check"></i><b>5.4.2</b> Aceder a Linhas e Colunas</a></li>
+<li class="chapter" data-level="5.4.3" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#adicionar-e-remover-colunas"><i class="fa fa-check"></i><b>5.4.3</b> Adicionar e Remover Colunas</a></li>
+<li class="chapter" data-level="5.4.4" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#fundir-data-frames"><i class="fa fa-check"></i><b>5.4.4</b> Fundir Data Frames</a></li>
+<li class="chapter" data-level="5.4.5" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#explorar-o-data-frame"><i class="fa fa-check"></i><b>5.4.5</b> Explorar o Data Frame</a></li>
+<li class="chapter" data-level="5.4.6" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#a-função-subset"><i class="fa fa-check"></i><b>5.4.6</b> A função <code>subset()</code></a></li>
+<li class="chapter" data-level="5.4.7" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#a-função-summary"><i class="fa fa-check"></i><b>5.4.7</b> A Função <code>summary()</code></a></li>
+<li class="chapter" data-level="5.4.8" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#valores-ausentes"><i class="fa fa-check"></i><b>5.4.8</b> Valores ausentes</a></li>
+<li class="chapter" data-level="5.4.9" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#exercícios-4"><i class="fa fa-check"></i><b>5.4.9</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#listas"><i class="fa fa-check"></i><b>5.5</b> Listas</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#criar-e-manipular-listas"><i class="fa fa-check"></i><b>5.5.1</b> Criar e Manipular Listas</a></li>
+<li class="chapter" data-level="5.5.2" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#por-que-usar-listas"><i class="fa fa-check"></i><b>5.5.2</b> Por que usar listas?</a></li>
+<li class="chapter" data-level="5.5.3" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#exercícios-5"><i class="fa fa-check"></i><b>5.5.3</b> Exercícios</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html"><i class="fa fa-check"></i><b>6</b> Estruturas de Seleção</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html#condicional-if"><i class="fa fa-check"></i><b>6.1</b> Condicional <code>if</code></a></li>
+<li class="chapter" data-level="6.2" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html#estrutura-if...else"><i class="fa fa-check"></i><b>6.2</b> Estrutura <code>if...else</code></a></li>
+<li class="chapter" data-level="6.3" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html#condicional-else-if"><i class="fa fa-check"></i><b>6.3</b> Condicional <code>else if</code></a></li>
+<li class="chapter" data-level="6.4" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html#a-função-ifelse"><i class="fa fa-check"></i><b>6.4</b> A função <code>ifelse()</code></a></li>
+<li class="chapter" data-level="6.5" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html#exemplos"><i class="fa fa-check"></i><b>6.5</b> Exemplos</a></li>
+<li class="chapter" data-level="6.6" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html#exercícios-6"><i class="fa fa-check"></i><b>6.6</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="funções.html"><a href="funções.html"><i class="fa fa-check"></i><b>7</b> Funções</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="funções.html"><a href="funções.html#exercícios-7"><i class="fa fa-check"></i><b>7.1</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="scripts-em-r.html"><a href="scripts-em-r.html"><i class="fa fa-check"></i><b>8</b> Scripts em R</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="scripts-em-r.html"><a href="scripts-em-r.html#exercícios-8"><i class="fa fa-check"></i><b>8.1</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html"><i class="fa fa-check"></i><b>9</b> Leitura de dados</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#leitura-de-dados-da-entrada-do-utilizador"><i class="fa fa-check"></i><b>9.1</b> Leitura de Dados da Entrada do Utilizador</a></li>
+<li class="chapter" data-level="9.2" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#diretório-de-trabalho"><i class="fa fa-check"></i><b>9.2</b> Diretório de trabalho</a></li>
+<li class="chapter" data-level="9.3" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.table"><i class="fa fa-check"></i><b>9.3</b> A Função <code>read.table()</code></a></li>
+<li class="chapter" data-level="9.4" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.csv"><i class="fa fa-check"></i><b>9.4</b> A função <code>read.csv()</code></a></li>
+<li class="chapter" data-level="9.5" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read.csv2"><i class="fa fa-check"></i><b>9.5</b> A função <code>read.csv2()</code></a></li>
+<li class="chapter" data-level="9.6" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#a-função-read_excel"><i class="fa fa-check"></i><b>9.6</b> A Função <code>read_excel()</code></a></li>
+<li class="chapter" data-level="9.7" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#leitura-de-dados-online"><i class="fa fa-check"></i><b>9.7</b> Leitura de Dados Online</a></li>
+<li class="chapter" data-level="9.8" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#exercícios-9"><i class="fa fa-check"></i><b>9.8</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>10</b> Pipe</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="pipe.html"><a href="pipe.html#o-operador-pipe"><i class="fa fa-check"></i><b>10.1</b> O operador pipe</a></li>
+<li class="chapter" data-level="10.2" data-path="pipe.html"><a href="pipe.html#exercícios-10"><i class="fa fa-check"></i><b>10.2</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="loop-while.html"><a href="loop-while.html"><i class="fa fa-check"></i><b>11</b> Loop while</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="loop-while.html"><a href="loop-while.html#exercícios-11"><i class="fa fa-check"></i><b>11.1</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="loop-for.html"><a href="loop-for.html"><i class="fa fa-check"></i><b>12</b> Loop for</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="loop-for.html"><a href="loop-for.html#exercícios-12"><i class="fa fa-check"></i><b>12.1</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="família-xapply.html"><a href="família-xapply.html"><i class="fa fa-check"></i><b>13</b> Família <code>Xapply()</code></a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="família-xapply.html"><a href="família-xapply.html#função-apply"><i class="fa fa-check"></i><b>13.1</b> Função <code>apply()</code></a></li>
+<li class="chapter" data-level="13.2" data-path="família-xapply.html"><a href="família-xapply.html#função-lapply"><i class="fa fa-check"></i><b>13.2</b> Função <code>lapply()</code></a></li>
+<li class="chapter" data-level="13.3" data-path="família-xapply.html"><a href="família-xapply.html#função-sapply"><i class="fa fa-check"></i><b>13.3</b> Função <code>sapply()</code></a></li>
+<li class="chapter" data-level="13.4" data-path="família-xapply.html"><a href="família-xapply.html#função-tapply"><i class="fa fa-check"></i><b>13.4</b> Função <code>tapply()</code></a></li>
+<li class="chapter" data-level="13.5" data-path="família-xapply.html"><a href="família-xapply.html#exercícios-13"><i class="fa fa-check"></i><b>13.5</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="exercícios-de-revisão.html"><a href="exercícios-de-revisão.html"><i class="fa fa-check"></i><b>14</b> Exercícios de Revisão</a></li>
+<li class="chapter" data-level="15" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html"><i class="fa fa-check"></i><b>15</b> Gráficos (R base)</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-de-barras"><i class="fa fa-check"></i><b>15.1</b> Gráfico de Barras</a></li>
+<li class="chapter" data-level="15.2" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-circular-pizza"><i class="fa fa-check"></i><b>15.2</b> Gráfico Circular (Pizza)</a></li>
+<li class="chapter" data-level="15.3" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#histograma"><i class="fa fa-check"></i><b>15.3</b> Histograma</a></li>
+<li class="chapter" data-level="15.4" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#box-plot"><i class="fa fa-check"></i><b>15.4</b> Box-plot</a></li>
+<li class="chapter" data-level="15.5" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-de-dispersão"><i class="fa fa-check"></i><b>15.5</b> Gráfico de Dispersão</a></li>
+<li class="chapter" data-level="15.6" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#gráfico-de-linhas"><i class="fa fa-check"></i><b>15.6</b> Gráfico de Linhas</a></li>
+<li class="chapter" data-level="15.7" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#exercícios-14"><i class="fa fa-check"></i><b>15.7</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html"><i class="fa fa-check"></i><b>16</b> Manipulação de dados</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#tibbles"><i class="fa fa-check"></i><b>16.1</b> Tibbles</a>
+<ul>
+<li class="chapter" data-level="16.1.1" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#criar-e-trabalhar-com-tibbles"><i class="fa fa-check"></i><b>16.1.1</b> Criar e trabalhar com Tibbles</a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#manipulação-de-dados-com-dplyr"><i class="fa fa-check"></i><b>16.2</b> Manipulação de Dados com <code>dplyr</code></a>
+<ul>
+<li class="chapter" data-level="16.2.1" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#seleção-de-colunas-com-select"><i class="fa fa-check"></i><b>16.2.1</b> Seleção de Colunas com <code>select()</code></a></li>
+<li class="chapter" data-level="16.2.2" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#exercícios-15"><i class="fa fa-check"></i><b>16.2.2</b> Exercícios</a></li>
+<li class="chapter" data-level="16.2.3" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#ordenando-a-base-de-dados"><i class="fa fa-check"></i><b>16.2.3</b> Ordenando a Base de Dados</a></li>
+<li class="chapter" data-level="16.2.4" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#exercícios-16"><i class="fa fa-check"></i><b>16.2.4</b> Exercícios</a></li>
+<li class="chapter" data-level="16.2.5" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#filtrando-linhas-da-base-de-dados"><i class="fa fa-check"></i><b>16.2.5</b> Filtrando Linhas da Base de Dados</a></li>
+<li class="chapter" data-level="16.2.6" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#exercícios-17"><i class="fa fa-check"></i><b>16.2.6</b> Exercícios</a></li>
+<li class="chapter" data-level="16.2.7" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#modificar-e-criar-novas-colunas"><i class="fa fa-check"></i><b>16.2.7</b> Modificar e criar novas colunas</a></li>
+<li class="chapter" data-level="16.2.8" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#exercícios-18"><i class="fa fa-check"></i><b>16.2.8</b> Exercícios</a></li>
+<li class="chapter" data-level="16.2.9" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#sumarizar-a-base-de-dados"><i class="fa fa-check"></i><b>16.2.9</b> Sumarizar a Base de Dados</a></li>
+<li class="chapter" data-level="16.2.10" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#exerícios"><i class="fa fa-check"></i><b>16.2.10</b> Exerícios</a></li>
+<li class="chapter" data-level="16.2.11" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#juntando-tabelas-em-r-com-dplyr"><i class="fa fa-check"></i><b>16.2.11</b> Juntando Tabelas em R com dplyr</a></li>
+<li class="chapter" data-level="16.2.12" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#exercícios-19"><i class="fa fa-check"></i><b>16.2.12</b> Exercícios</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="o-pacote-ggplot2.html"><a href="o-pacote-ggplot2.html"><i class="fa fa-check"></i><b>17</b> O pacote <code>ggplot2</code></a></li>
+<li class="chapter" data-level="18" data-path="a-função-sample.html"><a href="a-função-sample.html"><i class="fa fa-check"></i><b>18</b> A função <code>sample()</code></a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="a-função-sample.html"><a href="a-função-sample.html#exercícios-20"><i class="fa fa-check"></i><b>18.1</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html"><i class="fa fa-check"></i><b>19</b> Probabilidade e Variáveis Aleatórias</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#exercícios-21"><i class="fa fa-check"></i><b>19.1</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="simulação.html"><a href="simulação.html"><i class="fa fa-check"></i><b>20</b> Simulação</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="simulação.html"><a href="simulação.html#simulação-e-geração-de-números-pseudoaleatórios"><i class="fa fa-check"></i><b>20.1</b> Simulação e Geração de Números Pseudoaleatórios</a></li>
+<li class="chapter" data-level="20.2" data-path="simulação.html"><a href="simulação.html#a-função-set.seed"><i class="fa fa-check"></i><b>20.2</b> A função <code>set.seed()</code></a></li>
+<li class="chapter" data-level="20.3" data-path="simulação.html"><a href="simulação.html#exercícios-22"><i class="fa fa-check"></i><b>20.3</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html"><i class="fa fa-check"></i><b>21</b> Distribuições de Probabilidade</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-de-distribuição-empírica"><i class="fa fa-check"></i><b>21.1</b> Função de distribuição empírica</a>
+<ul>
+<li class="chapter" data-level="21.1.1" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-de-distribuição-empírica-no-r-função-ecdf"><i class="fa fa-check"></i><b>21.1.1</b> Função de distribuição empírica no R, função <code>ecdf()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="21.2" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#distribuição-uniforme-discreta"><i class="fa fa-check"></i><b>21.2</b> Distribuição Uniforme Discreta</a>
+<ul>
+<li class="chapter" data-level="21.2.1" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#exercícios-23"><i class="fa fa-check"></i><b>21.2.1</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="21.3" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#distribuição-de-bernoulli"><i class="fa fa-check"></i><b>21.3</b> Distribuição de Bernoulli</a>
+<ul>
+<li class="chapter" data-level="21.3.1" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#cálculo-de-probabilidades"><i class="fa fa-check"></i><b>21.3.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="21.3.2" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#exercícios-24"><i class="fa fa-check"></i><b>21.3.2</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="21.4" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#distribuição-binomial"><i class="fa fa-check"></i><b>21.4</b> Distribuição Binomial</a>
+<ul>
+<li class="chapter" data-level="21.4.1" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#cálculo-de-probabilidades-1"><i class="fa fa-check"></i><b>21.4.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="21.4.2" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-massa-de-probabilidade-teórica"><i class="fa fa-check"></i><b>21.4.2</b> Função massa de probabilidade (teórica)</a></li>
+<li class="chapter" data-level="21.4.3" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-massa-de-probabilidade-simulação"><i class="fa fa-check"></i><b>21.4.3</b> Função massa de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="21.4.4" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#comparação"><i class="fa fa-check"></i><b>21.4.4</b> Comparação</a></li>
+<li class="chapter" data-level="21.4.5" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-de-distribuição"><i class="fa fa-check"></i><b>21.4.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="21.4.6" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-de-distribuição-empírica-1"><i class="fa fa-check"></i><b>21.4.6</b> Função de distribuição empírica</a></li>
+<li class="chapter" data-level="21.4.7" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#exercícios-25"><i class="fa fa-check"></i><b>21.4.7</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="21.5" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#distribuição-geométrica"><i class="fa fa-check"></i><b>21.5</b> Distribuição Geométrica</a>
+<ul>
+<li class="chapter" data-level="21.5.1" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#cálculo-de-probabilidades-2"><i class="fa fa-check"></i><b>21.5.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="21.5.2" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#exercícios-26"><i class="fa fa-check"></i><b>21.5.2</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="21.6" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#distribuição-de-poisson"><i class="fa fa-check"></i><b>21.6</b> Distribuição de Poisson</a>
+<ul>
+<li class="chapter" data-level="21.6.1" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#cálculo-de-probabilidades-3"><i class="fa fa-check"></i><b>21.6.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="21.6.2" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-massa-de-probabilidade-teórica-1"><i class="fa fa-check"></i><b>21.6.2</b> Função massa de probabilidade (teórica)</a></li>
+<li class="chapter" data-level="21.6.3" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-massa-de-probabilidade-simulação-1"><i class="fa fa-check"></i><b>21.6.3</b> Função massa de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="21.6.4" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#comparação-1"><i class="fa fa-check"></i><b>21.6.4</b> Comparação</a></li>
+<li class="chapter" data-level="21.6.5" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-de-distribuição-1"><i class="fa fa-check"></i><b>21.6.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="21.6.6" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-de-distribuição-empírica-2"><i class="fa fa-check"></i><b>21.6.6</b> Função de distribuição empírica</a></li>
+<li class="chapter" data-level="21.6.7" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#exercícios-27"><i class="fa fa-check"></i><b>21.6.7</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="21.7" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#distribuição-uniforme-contínua"><i class="fa fa-check"></i><b>21.7</b> Distribuição Uniforme Contínua</a>
+<ul>
+<li class="chapter" data-level="21.7.1" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#notação"><i class="fa fa-check"></i><b>21.7.1</b> Notação</a></li>
+<li class="chapter" data-level="21.7.2" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#cálculo-de-probabilidades-4"><i class="fa fa-check"></i><b>21.7.2</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="21.7.3" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-densidade-de-probabilidade"><i class="fa fa-check"></i><b>21.7.3</b> Função densidade de probabilidade</a></li>
+<li class="chapter" data-level="21.7.4" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-densidade-de-probabilidade-simulação"><i class="fa fa-check"></i><b>21.7.4</b> Função densidade de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="21.7.5" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#comparação-2"><i class="fa fa-check"></i><b>21.7.5</b> Comparação</a></li>
+<li class="chapter" data-level="21.7.6" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-de-distribuição-2"><i class="fa fa-check"></i><b>21.7.6</b> Função de distribuição</a></li>
+<li class="chapter" data-level="21.7.7" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-de-distribuição-empírica-3"><i class="fa fa-check"></i><b>21.7.7</b> Função de distribuição empírica</a></li>
+</ul></li>
+<li class="chapter" data-level="21.8" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#distribuição-exponencial"><i class="fa fa-check"></i><b>21.8</b> Distribuição Exponencial</a>
+<ul>
+<li class="chapter" data-level="21.8.1" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#cálculo-de-probabilidades-5"><i class="fa fa-check"></i><b>21.8.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="21.8.2" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-densidade-de-probabilidade-teórica"><i class="fa fa-check"></i><b>21.8.2</b> Função densidade de probabilidade (teórica)</a></li>
+<li class="chapter" data-level="21.8.3" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-densidade-de-probabilidade-simulação-1"><i class="fa fa-check"></i><b>21.8.3</b> Função densidade de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="21.8.4" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#comparação-3"><i class="fa fa-check"></i><b>21.8.4</b> Comparação</a></li>
+<li class="chapter" data-level="21.8.5" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-de-distribuição-3"><i class="fa fa-check"></i><b>21.8.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="21.8.6" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#função-de-distribuição-empírica-4"><i class="fa fa-check"></i><b>21.8.6</b> Função de distribuição empírica</a></li>
+</ul></li>
+<li class="chapter" data-level="21.9" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#distribuição-normal"><i class="fa fa-check"></i><b>21.9</b> Distribuição Normal</a></li>
+<li class="chapter" data-level="21.10" data-path="distribuições-de-probabilidade.html"><a href="distribuições-de-probabilidade.html#exercícios-28"><i class="fa fa-check"></i><b>21.10</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="método-da-transformada-inversa.html"><a href="método-da-transformada-inversa.html"><i class="fa fa-check"></i><b>22</b> Método da transformada inversa</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="método-da-transformada-inversa.html"><a href="método-da-transformada-inversa.html#variável-aleatória-discreta"><i class="fa fa-check"></i><b>22.1</b> Variável aleatória discreta</a></li>
+<li class="chapter" data-level="22.2" data-path="método-da-transformada-inversa.html"><a href="método-da-transformada-inversa.html#exercícios-29"><i class="fa fa-check"></i><b>22.2</b> Exercícios</a></li>
+<li class="chapter" data-level="22.3" data-path="método-da-transformada-inversa.html"><a href="método-da-transformada-inversa.html#variável-aleatória-contínua"><i class="fa fa-check"></i><b>22.3</b> Variável aleatória contínua</a></li>
+<li class="chapter" data-level="22.4" data-path="método-da-transformada-inversa.html"><a href="método-da-transformada-inversa.html#exercícios-30"><i class="fa fa-check"></i><b>22.4</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="método-da-aceitação-rejeição.html"><a href="método-da-aceitação-rejeição.html"><i class="fa fa-check"></i><b>23</b> Método da aceitação-rejeição</a></li>
+<li class="chapter" data-level="24" data-path="teoremas-limites.html"><a href="teoremas-limites.html"><i class="fa fa-check"></i><b>24</b> Teoremas limites</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="teoremas-limites.html"><a href="teoremas-limites.html#lei-fraca-dos-grandes-números"><i class="fa fa-check"></i><b>24.1</b> Lei fraca dos grandes números</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="usando-números-aleatórios-para-o-cálculo-de-integrais.html"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html"><i class="fa fa-check"></i><b>25</b> Usando números aleatórios para o cálculo de Integrais</a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="usando-números-aleatórios-para-o-cálculo-de-integrais.html"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cálculo-de-int_abgx-dx"><i class="fa fa-check"></i><b>25.1</b> Cálculo de <span class="math inline">\(\int_{a}^{b}g(x)\, dx\)</span></a></li>
+<li class="chapter" data-level="25.2" data-path="usando-números-aleatórios-para-o-cálculo-de-integrais.html"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cálculo-de-int_0inftygx-dx"><i class="fa fa-check"></i><b>25.2</b> Cálculo de <span class="math inline">\(\int_{0}^{\infty}g(x)\, dx\)</span></a></li>
+<li class="chapter" data-level="25.3" data-path="usando-números-aleatórios-para-o-cálculo-de-integrais.html"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#cálculo-de-integrais-multidimensionais"><i class="fa fa-check"></i><b>25.3</b> Cálculo de integrais multidimensionais</a></li>
+<li class="chapter" data-level="25.4" data-path="usando-números-aleatórios-para-o-cálculo-de-integrais.html"><a href="usando-números-aleatórios-para-o-cálculo-de-integrais.html#exercícios-31"><i class="fa fa-check"></i><b>25.4</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html"><i class="fa fa-check"></i><b>26</b> Distribuições univariadas no R</a>
+<ul>
+<li class="chapter" data-level="26.1" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#gerando-uma-variável-aleatória-com-distribuição-de-binomial"><i class="fa fa-check"></i><b>26.1</b> Gerando uma variável aleatória com distribuição de Binomial</a>
+<ul>
+<li class="chapter" data-level="26.1.1" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#cálculo-de-probabilidades-6"><i class="fa fa-check"></i><b>26.1.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="26.1.2" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-massa-de-probabilidade-teórica-2"><i class="fa fa-check"></i><b>26.1.2</b> Função massa de probabilidade (teórica)</a></li>
+<li class="chapter" data-level="26.1.3" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-massa-de-probabilidade-simulação-2"><i class="fa fa-check"></i><b>26.1.3</b> Função massa de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="26.1.4" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#comparação-4"><i class="fa fa-check"></i><b>26.1.4</b> Comparação</a></li>
+<li class="chapter" data-level="26.1.5" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-4"><i class="fa fa-check"></i><b>26.1.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="26.1.6" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-5"><i class="fa fa-check"></i><b>26.1.6</b> Função de distribuição empírica</a></li>
+</ul></li>
+<li class="chapter" data-level="26.2" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#gerando-uma-variável-aleatória-com-distribuição-de-poisson"><i class="fa fa-check"></i><b>26.2</b> Gerando uma variável aleatória com distribuição de Poisson</a>
+<ul>
+<li class="chapter" data-level="26.2.1" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#cálculo-de-probabilidades-7"><i class="fa fa-check"></i><b>26.2.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="26.2.2" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-massa-de-probabilidade-teórica-3"><i class="fa fa-check"></i><b>26.2.2</b> Função massa de probabilidade (teórica)</a></li>
+<li class="chapter" data-level="26.2.3" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-massa-de-probabilidade-simulação-3"><i class="fa fa-check"></i><b>26.2.3</b> Função massa de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="26.2.4" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#comparação-5"><i class="fa fa-check"></i><b>26.2.4</b> Comparação</a></li>
+<li class="chapter" data-level="26.2.5" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-5"><i class="fa fa-check"></i><b>26.2.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="26.2.6" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-6"><i class="fa fa-check"></i><b>26.2.6</b> Função de distribuição empírica</a></li>
+</ul></li>
+<li class="chapter" data-level="26.3" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#gerando-uma-variável-aleatória-com-distribuição-de-uniforme"><i class="fa fa-check"></i><b>26.3</b> Gerando uma variável aleatória com distribuição de Uniforme</a>
+<ul>
+<li class="chapter" data-level="26.3.1" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#cálculo-de-probabilidades-8"><i class="fa fa-check"></i><b>26.3.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="26.3.2" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade-1"><i class="fa fa-check"></i><b>26.3.2</b> Função densidade de probabilidade</a></li>
+<li class="chapter" data-level="26.3.3" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade-simulação-2"><i class="fa fa-check"></i><b>26.3.3</b> Função densidade de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="26.3.4" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#comparação-6"><i class="fa fa-check"></i><b>26.3.4</b> Comparação</a></li>
+<li class="chapter" data-level="26.3.5" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-6"><i class="fa fa-check"></i><b>26.3.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="26.3.6" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-7"><i class="fa fa-check"></i><b>26.3.6</b> Função de distribuição empírica</a></li>
+</ul></li>
+<li class="chapter" data-level="26.4" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#gerando-uma-variável-aleatória-com-distribuição-exponencial"><i class="fa fa-check"></i><b>26.4</b> Gerando uma variável aleatória com distribuição Exponencial</a>
+<ul>
+<li class="chapter" data-level="26.4.1" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#cálculo-de-probabilidades-9"><i class="fa fa-check"></i><b>26.4.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="26.4.2" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade-teórica-1"><i class="fa fa-check"></i><b>26.4.2</b> Função densidade de probabilidade (teórica)</a></li>
+<li class="chapter" data-level="26.4.3" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade-simulação-3"><i class="fa fa-check"></i><b>26.4.3</b> Função densidade de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="26.4.4" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#comparação-7"><i class="fa fa-check"></i><b>26.4.4</b> Comparação</a></li>
+<li class="chapter" data-level="26.4.5" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-7"><i class="fa fa-check"></i><b>26.4.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="26.4.6" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-8"><i class="fa fa-check"></i><b>26.4.6</b> Função de distribuição empírica</a></li>
+</ul></li>
+<li class="chapter" data-level="26.5" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#gerando-uma-variável-aleatória-com-distribuição-normal"><i class="fa fa-check"></i><b>26.5</b> Gerando uma variável aleatória com distribuição Normal</a>
+<ul>
+<li class="chapter" data-level="26.5.1" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#cálculo-de-probabilidades-10"><i class="fa fa-check"></i><b>26.5.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="26.5.2" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade-teórica-2"><i class="fa fa-check"></i><b>26.5.2</b> Função densidade de probabilidade (teórica)</a></li>
+<li class="chapter" data-level="26.5.3" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-densidade-de-probabilidade-simulação-4"><i class="fa fa-check"></i><b>26.5.3</b> Função densidade de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="26.5.4" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#comparação-8"><i class="fa fa-check"></i><b>26.5.4</b> Comparação</a></li>
+<li class="chapter" data-level="26.5.5" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-8"><i class="fa fa-check"></i><b>26.5.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="26.5.6" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#função-de-distribuição-empírica-9"><i class="fa fa-check"></i><b>26.5.6</b> Função de distribuição empírica</a></li>
+</ul></li>
+<li class="chapter" data-level="26.6" data-path="distribuições-univariadas-no-r.html"><a href="distribuições-univariadas-no-r.html#exercícios-32"><i class="fa fa-check"></i><b>26.6</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="relatórios.html"><a href="relatórios.html"><i class="fa fa-check"></i><b>27</b> Relatórios</a>
+<ul>
+<li class="chapter" data-level="27.1" data-path="relatórios.html"><a href="relatórios.html#markdown"><i class="fa fa-check"></i><b>27.1</b> Markdown</a>
+<ul>
+<li class="chapter" data-level="27.1.1" data-path="relatórios.html"><a href="relatórios.html#ênfase"><i class="fa fa-check"></i><b>27.1.1</b> Ênfase</a></li>
+<li class="chapter" data-level="27.1.2" data-path="relatórios.html"><a href="relatórios.html#títulos"><i class="fa fa-check"></i><b>27.1.2</b> Títulos</a></li>
+<li class="chapter" data-level="27.1.3" data-path="relatórios.html"><a href="relatórios.html#listas-1"><i class="fa fa-check"></i><b>27.1.3</b> Listas</a></li>
+<li class="chapter" data-level="27.1.4" data-path="relatórios.html"><a href="relatórios.html#equações"><i class="fa fa-check"></i><b>27.1.4</b> Equações</a></li>
+<li class="chapter" data-level="27.1.5" data-path="relatórios.html"><a href="relatórios.html#código"><i class="fa fa-check"></i><b>27.1.5</b> Código</a></li>
+</ul></li>
+<li class="chapter" data-level="27.2" data-path="relatórios.html"><a href="relatórios.html#r-markdown"><i class="fa fa-check"></i><b>27.2</b> R Markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i><b>28</b> Referências</a></li>
+<li class="chapter" data-level="29" data-path="respostas.html"><a href="respostas.html"><i class="fa fa-check"></i><b>29</b> Respostas</a>
+<ul>
+<li class="chapter" data-level="29.1" data-path="respostas.html"><a href="respostas.html#o-pacote-dplyr"><i class="fa fa-check"></i><b>29.1</b> O pacote dplyr</a>
+<ul>
+<li class="chapter" data-level="29.1.1" data-path="respostas.html"><a href="respostas.html#selecionando-colunas"><i class="fa fa-check"></i><b>29.1.1</b> Selecionando colunas</a></li>
+<li class="chapter" data-level="29.1.2" data-path="respostas.html"><a href="respostas.html#ordenando-a-base"><i class="fa fa-check"></i><b>29.1.2</b> Ordenando a base</a></li>
+<li class="chapter" data-level="29.1.3" data-path="respostas.html"><a href="respostas.html#filtrando-linhas"><i class="fa fa-check"></i><b>29.1.3</b> Filtrando linhas</a></li>
+<li class="chapter" data-level="29.1.4" data-path="respostas.html"><a href="respostas.html#modificando-e-criando-novas-colunas"><i class="fa fa-check"></i><b>29.1.4</b> Modificando e criando novas colunas</a></li>
+<li class="chapter" data-level="29.1.5" data-path="respostas.html"><a href="respostas.html#sumarizando-a-base"><i class="fa fa-check"></i><b>29.1.5</b> Sumarizando a base</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introdução ao R e Simulação</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="método-da-transformada-inversa" class="section level1 hasAnchor" number="22">
+<h1><span class="header-section-number">Capítulo 22</span> Método da transformada inversa<a href="método-da-transformada-inversa.html#método-da-transformada-inversa" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>O <strong>método da transformada inversa</strong> é uma técnica fundamental na geração de variáveis aleatórias com distribuições específicas. Embora o R ofereça funções prontas para gerar números aleatórios de diversas distribuições, compreender e aplicar o método da transformada inversa é essencial em situações como:</p>
+<ul>
+<li><strong>Distribuições Não Implementadas</strong>: Quando se lida com distribuições que não possuem funções dedicadas no R, o método da transformada inversa permite gerar amostras dessas distribuições a partir de números uniformemente distribuídos.</li>
+<li><strong>Simulações Personalizadas</strong>: Em simulações que requerem distribuições específicas ou personalizadas, o método oferece flexibilidade para definir e gerar variáveis aleatórias conforme necessário.</li>
+<li><strong>Fins Educacionais</strong>: Para estudantes e profissionais que desejam aprofundar-se nos fundamentos da geração de variáveis aleatórias, implementar o método manualmente proporciona uma compreensão mais profunda dos processos subjacentes.</li>
+</ul>
+<p>Este método é baseado no seguinte resultado.</p>
+<p>Seja <span class="math inline">\(U\sim U(0,1)\)</span>. Para qualquer função de distribuição <span class="math inline">\(F\)</span>, a variável aleatória <span class="math inline">\(X\)</span> definida por <span class="math display">\[X = F^{-1}(U)\]</span> possui distribuição <span class="math inline">\(F\)</span>, onde <span class="math display">\[F^{-1}(u) = \inf\{x: F(x)\geq u\}\]</span> é a inversa generalizada de <span class="math inline">\(F\)</span>. Além disso, segue que <span class="math inline">\(F(X)\sim U(0,1)\)</span>.</p>
+<p>Este resultado afirma que podemos simular um valor de uma variável aleatória <span class="math inline">\(X\)</span> (<span class="math inline">\(X\)</span> com distribuição <span class="math inline">\(F\)</span>) aplicando o seguinte algoritmo:</p>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="método-da-transformada-inversa.html#cb338-1" tabindex="-1"></a>Algoritmo<span class="sc">:</span> método da transformação inversa</span>
+<span id="cb338-2"><a href="método-da-transformada-inversa.html#cb338-2" tabindex="-1"></a>Entrada<span class="sc">:</span> <span class="fu">invGF</span>() <span class="co"># inversa generalizada de F</span></span>
+<span id="cb338-3"><a href="método-da-transformada-inversa.html#cb338-3" tabindex="-1"></a>  <span class="dv">1</span> Gere um número aleatório u </span>
+<span id="cb338-4"><a href="método-da-transformada-inversa.html#cb338-4" tabindex="-1"></a>  <span class="dv">2</span> Calcule x <span class="ot">&lt;-</span> <span class="fu">invGF</span>(u)</span>
+<span id="cb338-5"><a href="método-da-transformada-inversa.html#cb338-5" tabindex="-1"></a>Saída<span class="sc">:</span> x</span></code></pre></div>
+<p>É simples verificar o seguinte resultado acima. Em geral, observe que</p>
+<p><span class="math display">\[P(X \leq x) = P(F^{-1}(U) \leq x) = P(U \leq F(x)) = F(x).\]</span> Logo <span class="math inline">\(X \sim F\)</span>. Em particular, o método também é válido no caso de variáveis aleatórias discretas.</p>
+<div id="variável-aleatória-discreta" class="section level2 hasAnchor" number="22.1">
+<h2><span class="header-section-number">22.1</span> Variável aleatória discreta<a href="método-da-transformada-inversa.html#variável-aleatória-discreta" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Suponha que queremos gerar o valor de uma variável aleatória discreta
+<span class="math inline">\(X\)</span> com função massa de probabilidade <span class="math inline">\(P(X = x_{i}) = p_{i}\)</span>,
+<span class="math inline">\(i=0,1,\ldots\)</span>, <span class="math inline">\(\sum_{i}p_{i}=1\)</span>. Para isso, basta gerar um número
+aleatório <span class="math inline">\(U \sim U(0,1)\)</span> e considerar: <span class="math display">\[X = \begin{cases}
+x_{0},&amp; \quad \text{se} \quad U&lt;p_{0} \\
+x_{1},&amp; \quad \text{se} \quad p_{0}\leq U &lt;p_{0}+p_{1}\\
+\vdots&amp; \\
+x_{i},&amp; \quad \text{se} \quad \sum_{j=0}^{i-1}p_{j}\leq U &lt; \sum_{j=0}^{i}p_{j} \\
+\vdots
+\end{cases}\]</span></p>
+<p>Como, para <span class="math inline">\(0&lt;a&lt;b&lt;1\)</span>, <span class="math inline">\(P(a\leq U&lt;b)=b-a\)</span>, temos que
+<span class="math display">\[P(X=x_{i}) = P\left( \sum_{j=0}^{i-1}p_{j} \leq U &lt; \sum_{j=0}^{i}p_{j} \right) = p_{i.}\]</span></p>
+<p>Se os <span class="math inline">\(x_{i}\)</span>, <span class="math inline">\(i\geq 0\)</span>, estão ordenados <span class="math inline">\(x_{0}&lt;x_{1}&lt;\cdots\)</span> e se
+denotarmos por <span class="math inline">\(F\)</span> a função de distribuição de <span class="math inline">\(X\)</span>, então
+<span class="math inline">\(F(x_{k})=\sum_{i=0}^{k}p_{i}\)</span> e assim
+<span class="math display">\[X = x_{i} \quad \text{se} \quad F(x_{i-1})\leq U &lt; F(x_{i})\]</span></p>
+<p>Em outras palavras, depois de gerar um número aleatório <span class="math inline">\(U\)</span> nós
+determinamos o valor de <span class="math inline">\(X\)</span> encontrando o intervalo
+<span class="math inline">\([F(x_{i-1}),F(x_{i})]\)</span> no qual <span class="math inline">\(U\)</span> pertence (ou, equivalentemente,
+encontrando a inversa de <span class="math inline">\(F(U)\)</span>).</p>
+<p><img src="docs/transf_inversa1.png" /> <strong>Exemplo 1</strong>: Seja <span class="math inline">\(X\)</span> uma variável
+aleatória discreta tal que <span class="math inline">\(p_{1}=0.20\)</span>, <span class="math inline">\(p_{2}=0.15\)</span>, <span class="math inline">\(p_{3}=0.25\)</span>,
+<span class="math inline">\(p_{4}=0.40\)</span> onde <span class="math inline">\(p_{j}=P(X=j)\)</span>. Gere 1000 valores dessa variável
+aleatória.</p>
+<p>Para a variável aleatória <span class="math inline">\(X\)</span>, a função de distribuição acumulada é dada
+pela soma cumulativa das probabilidades:</p>
+<p><span class="math display">\[
+F(x) =
+\begin{cases}
+0, &amp; \text{se } x &lt; 1 \\
+p_1, &amp; \text{se } 1 \leq x &lt; 2 \\
+p_1 + p_2, &amp; \text{se } 2 \leq x &lt; 3 \\
+p_1 + p_2 + p_3, &amp; \text{se } 3 \leq x &lt; 4 \\
+1, &amp; \text{se } x \geq 4
+\end{cases}
+\]</span></p>
+<p>Com os valores fornecidos:</p>
+<p><span class="math display">\[
+F(x) =
+\begin{cases}
+0, &amp; \text{se } x &lt; 1 \\
+0.20, &amp; \text{se } 1 \leq x &lt; 2 \\
+0.35, &amp; \text{se } 2 \leq x &lt; 3 \\
+0.60, &amp; \text{se } 3 \leq x &lt; 4 \\
+1, &amp; \text{se } x \geq 4
+\end{cases}
+\]</span></p>
+<p>Gerar um número aleatório uniforme <span class="math inline">\(U\)</span> no intervalo [0,1]. Para
+determinar o valor de <span class="math inline">\(X\)</span> correspondente a <span class="math inline">\(U\)</span>:</p>
+<ul>
+<li>Se <span class="math inline">\(U &lt;0.20\)</span>, então <span class="math inline">\(X=1\)</span></li>
+<li>Se <span class="math inline">\(0.20 \leq U &lt; 0.35\)</span>, então <span class="math inline">\(X=2\)</span></li>
+<li>Se <span class="math inline">\(0.35\leq U &lt; 0.60\)</span>, então <span class="math inline">\(X=3\)</span></li>
+<li>Se <span class="math inline">\(0.60 \leq U \leq 1\)</span>, então <span class="math inline">\(X=4\)</span></li>
+</ul>
+<p><strong>Exemplo 2</strong>: Seja <span class="math inline">\(X\)</span> uma variável aleatória discreta assumindo os
+valores: <span class="math inline">\(1,2,\ldots,10\)</span> com probabilidade <span class="math inline">\(1/10\)</span> para
+<span class="math inline">\(x=1,2,\ldots,10\)</span>. Gerar 5000 valores dessa variável aleatória.
+Representar graficamente e determinar: média, desvio padrão e mediana.</p>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="método-da-transformada-inversa.html#cb339-1" tabindex="-1"></a>gerar_va_inversa <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb339-2"><a href="método-da-transformada-inversa.html#cb339-2" tabindex="-1"></a>  <span class="co"># Gerar número aleatório entre 0 e 1</span></span>
+<span id="cb339-3"><a href="método-da-transformada-inversa.html#cb339-3" tabindex="-1"></a>  u <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb339-4"><a href="método-da-transformada-inversa.html#cb339-4" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">10</span> <span class="co"># primeira probabilidade P(X=1)</span></span>
+<span id="cb339-5"><a href="método-da-transformada-inversa.html#cb339-5" tabindex="-1"></a>  F <span class="ot">&lt;-</span> p <span class="co"># inicializar a função de distribuição acumulada</span></span>
+<span id="cb339-6"><a href="método-da-transformada-inversa.html#cb339-6" tabindex="-1"></a>  X <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># inicializar o valor da va X</span></span>
+<span id="cb339-7"><a href="método-da-transformada-inversa.html#cb339-7" tabindex="-1"></a>  </span>
+<span id="cb339-8"><a href="método-da-transformada-inversa.html#cb339-8" tabindex="-1"></a>  <span class="cf">while</span>(u <span class="sc">&gt;</span> F){</span>
+<span id="cb339-9"><a href="método-da-transformada-inversa.html#cb339-9" tabindex="-1"></a>    X <span class="ot">&lt;-</span> X<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb339-10"><a href="método-da-transformada-inversa.html#cb339-10" tabindex="-1"></a>    F <span class="ot">&lt;-</span> F<span class="sc">+</span>p</span>
+<span id="cb339-11"><a href="método-da-transformada-inversa.html#cb339-11" tabindex="-1"></a>  }</span>
+<span id="cb339-12"><a href="método-da-transformada-inversa.html#cb339-12" tabindex="-1"></a>  <span class="fu">return</span>(X)</span>
+<span id="cb339-13"><a href="método-da-transformada-inversa.html#cb339-13" tabindex="-1"></a>}</span>
+<span id="cb339-14"><a href="método-da-transformada-inversa.html#cb339-14" tabindex="-1"></a>valores <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">5000</span>,<span class="fu">gerar_va_inversa</span>())</span>
+<span id="cb339-15"><a href="método-da-transformada-inversa.html#cb339-15" tabindex="-1"></a><span class="fu">hist</span>(valores, <span class="at">freq =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-286-1.png" width="672" /></p>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="método-da-transformada-inversa.html#cb340-1" tabindex="-1"></a><span class="fu">mean</span>(valores)</span></code></pre></div>
+<pre><code>## [1] 5.4564</code></pre>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="método-da-transformada-inversa.html#cb342-1" tabindex="-1"></a><span class="fu">sd</span>(valores)</span></code></pre></div>
+<pre><code>## [1] 2.859184</code></pre>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="método-da-transformada-inversa.html#cb344-1" tabindex="-1"></a><span class="fu">median</span>(valores)</span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<p><strong>Exemplo 3</strong>: Geração de uma variável aleatória com distribuição de
+Bernoulli. A variável aleatória <span class="math inline">\(X\)</span> é de Bernoulli com parâmetro <span class="math inline">\(p\)</span> se
+<span class="math display">\[P(X = x) = \begin{cases} 1-p,&amp; \quad \text{se} \quad x=0\\
+p,&amp; \quad \text{se} \quad x=1 \end{cases}\]</span> Para gerar uma
+<span class="math inline">\(Bernoulli(p)\)</span> podemos usar o seguinte algoritmo que é equivalente ao
+método da transformada inversa</p>
+<ol style="list-style-type: decimal">
+<li>Gerar um número aleatório <span class="math inline">\(U\)</span>;</li>
+<li>Se <span class="math inline">\(U \leq p\)</span> então <span class="math inline">\(X=1\)</span> senão <span class="math inline">\(X=0\)</span>.</li>
+</ol>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="método-da-transformada-inversa.html#cb346-1" tabindex="-1"></a><span class="co"># Gerando uma variável aleatória com distribuição de Bernoulli(p)</span></span>
+<span id="cb346-2"><a href="método-da-transformada-inversa.html#cb346-2" tabindex="-1"></a>gerar_bernoulli_inversa <span class="ot">&lt;-</span> <span class="cf">function</span>(p){</span>
+<span id="cb346-3"><a href="método-da-transformada-inversa.html#cb346-3" tabindex="-1"></a>  U <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>)</span>
+<span id="cb346-4"><a href="método-da-transformada-inversa.html#cb346-4" tabindex="-1"></a>  <span class="cf">if</span> (U <span class="sc">&lt;=</span> p){</span>
+<span id="cb346-5"><a href="método-da-transformada-inversa.html#cb346-5" tabindex="-1"></a>    X <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb346-6"><a href="método-da-transformada-inversa.html#cb346-6" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb346-7"><a href="método-da-transformada-inversa.html#cb346-7" tabindex="-1"></a>    X <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb346-8"><a href="método-da-transformada-inversa.html#cb346-8" tabindex="-1"></a>  }</span>
+<span id="cb346-9"><a href="método-da-transformada-inversa.html#cb346-9" tabindex="-1"></a>  <span class="fu">return</span>(X)</span>
+<span id="cb346-10"><a href="método-da-transformada-inversa.html#cb346-10" tabindex="-1"></a>}</span>
+<span id="cb346-11"><a href="método-da-transformada-inversa.html#cb346-11" tabindex="-1"></a></span>
+<span id="cb346-12"><a href="método-da-transformada-inversa.html#cb346-12" tabindex="-1"></a>valores <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">100</span>,<span class="fu">gerar_bernoulli_inversa</span>(<span class="fl">0.8</span>))</span>
+<span id="cb346-13"><a href="método-da-transformada-inversa.html#cb346-13" tabindex="-1"></a><span class="fu">sum</span>(valores)<span class="sc">/</span><span class="dv">100</span></span></code></pre></div>
+<pre><code>## [1] 0.78</code></pre>
+<p><strong>Exemplo 4</strong>: Gerar uma variável aleatória com distribuição
+<span class="math inline">\(Binomial(n,p)\)</span>. Aqui podemos usar o facto de que se
+<span class="math inline">\(X_{1},X_{2},\ldots,X_{n}\)</span> são Bernoullis i.i.d., então
+<span class="math display">\[X = X_{1}+X_{2}+\ldots+X_{n}\]</span> é uma <span class="math inline">\(Binomial(n,p)\)</span>.</p>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="método-da-transformada-inversa.html#cb348-1" tabindex="-1"></a><span class="co"># Gerando uma variável aleatória com distribuição Binomial(n,p)</span></span>
+<span id="cb348-2"><a href="método-da-transformada-inversa.html#cb348-2" tabindex="-1"></a></span>
+<span id="cb348-3"><a href="método-da-transformada-inversa.html#cb348-3" tabindex="-1"></a>gerar_binomial_inversa <span class="ot">&lt;-</span> <span class="cf">function</span>(n,p){</span>
+<span id="cb348-4"><a href="método-da-transformada-inversa.html#cb348-4" tabindex="-1"></a>  X <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">replicate</span>(n,<span class="fu">gerar_bernoulli_inversa</span>(p)))</span>
+<span id="cb348-5"><a href="método-da-transformada-inversa.html#cb348-5" tabindex="-1"></a>  <span class="fu">return</span>(X)</span>
+<span id="cb348-6"><a href="método-da-transformada-inversa.html#cb348-6" tabindex="-1"></a>}</span>
+<span id="cb348-7"><a href="método-da-transformada-inversa.html#cb348-7" tabindex="-1"></a></span>
+<span id="cb348-8"><a href="método-da-transformada-inversa.html#cb348-8" tabindex="-1"></a>valores <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">10000</span>,<span class="fu">gerar_binomial_inversa</span>(<span class="dv">10</span>,<span class="fl">0.5</span>))</span>
+<span id="cb348-9"><a href="método-da-transformada-inversa.html#cb348-9" tabindex="-1"></a><span class="fu">hist</span>(valores, <span class="at">freq =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb348-10"><a href="método-da-transformada-inversa.html#cb348-10" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="fu">dbinom</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="dv">10</span>,<span class="fl">0.5</span>))</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-288-1.png" width="672" /></p>
+<p><strong>Exemplo 5</strong>: Geração de uma variável aleatória com distribuição
+<span class="math inline">\(Geométrica(p)\)</span>. Seja <span class="math inline">\(X\sim Geometrica(p)\)</span>. Lembre que
+<span class="math display">\[P(X=x)=p(1-p)^{x-1}\]</span> e que
+<span class="math display">\[F(x) = P(X\leq x) = \begin{cases} 0,&amp; \quad \text{se} \quad x&lt;1 \\
+1-(1-p)^x,&amp; \quad \text{se} \quad x\geq 1\end{cases}\]</span> O seguinte
+algoritmo é equivalente ao método da transformada inversa:</p>
+<ol style="list-style-type: decimal">
+<li><p>Gerar um número aleatório <span class="math inline">\(U\)</span>;</p></li>
+<li><p>Fazer <span class="math inline">\(X = \lfloor ln(1-U)/ln(1-p)\rfloor\)</span></p></li>
+</ol>
+<p>onde <span class="math inline">\(\lfloor  \rfloor =\)</span> maior inteiro.</p>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="método-da-transformada-inversa.html#cb349-1" tabindex="-1"></a><span class="co"># Gerar uma variável aleatória com distribuição Geométrica(p)</span></span>
+<span id="cb349-2"><a href="método-da-transformada-inversa.html#cb349-2" tabindex="-1"></a></span>
+<span id="cb349-3"><a href="método-da-transformada-inversa.html#cb349-3" tabindex="-1"></a>gerar_geometrica_inversa <span class="ot">&lt;-</span> <span class="cf">function</span>(p){</span>
+<span id="cb349-4"><a href="método-da-transformada-inversa.html#cb349-4" tabindex="-1"></a>  U <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>)</span>
+<span id="cb349-5"><a href="método-da-transformada-inversa.html#cb349-5" tabindex="-1"></a>  X <span class="ot">&lt;-</span> <span class="fu">ceiling</span>(<span class="fu">log</span>(<span class="dv">1</span><span class="sc">-</span>U)<span class="sc">/</span><span class="fu">log</span>(<span class="dv">1</span><span class="sc">-</span>p))<span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb349-6"><a href="método-da-transformada-inversa.html#cb349-6" tabindex="-1"></a>  <span class="fu">return</span>(X)</span>
+<span id="cb349-7"><a href="método-da-transformada-inversa.html#cb349-7" tabindex="-1"></a>}</span>
+<span id="cb349-8"><a href="método-da-transformada-inversa.html#cb349-8" tabindex="-1"></a></span>
+<span id="cb349-9"><a href="método-da-transformada-inversa.html#cb349-9" tabindex="-1"></a>valores <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">10000</span>, <span class="fu">gerar_geometrica_inversa</span>(<span class="fl">0.5</span>))</span>
+<span id="cb349-10"><a href="método-da-transformada-inversa.html#cb349-10" tabindex="-1"></a><span class="fu">hist</span>(valores, <span class="at">freq =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb349-11"><a href="método-da-transformada-inversa.html#cb349-11" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="fu">dgeom</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="fl">0.5</span>))</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-289-1.png" width="672" /></p>
+<p><strong>Exemplo 6</strong>: Geração de uma variável aleatória com distribuição de
+Poisson. A variável aleatória <span class="math inline">\(X\)</span> é de Poisson com média <span class="math inline">\(\lambda\)</span> se
+<span class="math display">\[p_{i} = P(X = i) = \frac{e^{-\lambda}\lambda^i}{i!}, \quad i=0,1,\ldots\]</span></p>
+<p>A chave para usar o método da transformada inversa para gerar uma tal
+variável aleatória é dada pela seguinte identidade:
+<span class="math display">\[p_{i+1}=\frac{\lambda}{i+1}p_{i}, \quad i\geq 0.\]</span></p>
+<p>Ao utilizar a recursão acima para calcular as probabilidades de Poisson
+quando elas são necessárias, o algoritmo da transformada inversa para
+gerar uma variável aleatória de Poisson com média <span class="math inline">\(\lambda\)</span> pode ser
+expresso da seguinte forma.</p>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="método-da-transformada-inversa.html#cb350-1" tabindex="-1"></a><span class="co"># Gerando uma va com distribuição de Poisson</span></span>
+<span id="cb350-2"><a href="método-da-transformada-inversa.html#cb350-2" tabindex="-1"></a></span>
+<span id="cb350-3"><a href="método-da-transformada-inversa.html#cb350-3" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="dv">3</span>  <span class="co"># exemplo com lambda = 3</span></span>
+<span id="cb350-4"><a href="método-da-transformada-inversa.html#cb350-4" tabindex="-1"></a></span>
+<span id="cb350-5"><a href="método-da-transformada-inversa.html#cb350-5" tabindex="-1"></a><span class="co"># Função para gerar uma variável aleatória de Poisson usando o método da transformada inversa</span></span>
+<span id="cb350-6"><a href="método-da-transformada-inversa.html#cb350-6" tabindex="-1"></a>gerar_poisson_inversa <span class="ot">&lt;-</span> <span class="cf">function</span>(lambda) {</span>
+<span id="cb350-7"><a href="método-da-transformada-inversa.html#cb350-7" tabindex="-1"></a>  U <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>)  <span class="co"># Gerar um número aleatório uniforme entre 0 e 1</span></span>
+<span id="cb350-8"><a href="método-da-transformada-inversa.html#cb350-8" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="sc">-</span>lambda)  <span class="co"># Inicializar a primeira probabilidade P(X=0)</span></span>
+<span id="cb350-9"><a href="método-da-transformada-inversa.html#cb350-9" tabindex="-1"></a>  F <span class="ot">&lt;-</span> p  <span class="co"># Inicializar a função de distribuição acumulada (CDF)</span></span>
+<span id="cb350-10"><a href="método-da-transformada-inversa.html#cb350-10" tabindex="-1"></a>  X <span class="ot">&lt;-</span> <span class="dv">0</span>  <span class="co"># Inicializar o valor da variável aleatória</span></span>
+<span id="cb350-11"><a href="método-da-transformada-inversa.html#cb350-11" tabindex="-1"></a>  </span>
+<span id="cb350-12"><a href="método-da-transformada-inversa.html#cb350-12" tabindex="-1"></a>  <span class="co"># Acumular probabilidades até que a CDF exceda U</span></span>
+<span id="cb350-13"><a href="método-da-transformada-inversa.html#cb350-13" tabindex="-1"></a>  <span class="cf">while</span> (U <span class="sc">&gt;</span> F) {</span>
+<span id="cb350-14"><a href="método-da-transformada-inversa.html#cb350-14" tabindex="-1"></a>    X <span class="ot">&lt;-</span> X <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb350-15"><a href="método-da-transformada-inversa.html#cb350-15" tabindex="-1"></a>    p <span class="ot">&lt;-</span> p <span class="sc">*</span> lambda <span class="sc">/</span> X  <span class="co"># Atualizar a probabilidade P(X=k)</span></span>
+<span id="cb350-16"><a href="método-da-transformada-inversa.html#cb350-16" tabindex="-1"></a>    F <span class="ot">&lt;-</span> F <span class="sc">+</span> p  <span class="co"># Atualizar a CDF</span></span>
+<span id="cb350-17"><a href="método-da-transformada-inversa.html#cb350-17" tabindex="-1"></a>  }</span>
+<span id="cb350-18"><a href="método-da-transformada-inversa.html#cb350-18" tabindex="-1"></a>  </span>
+<span id="cb350-19"><a href="método-da-transformada-inversa.html#cb350-19" tabindex="-1"></a>  <span class="fu">return</span>(X)</span>
+<span id="cb350-20"><a href="método-da-transformada-inversa.html#cb350-20" tabindex="-1"></a>}</span>
+<span id="cb350-21"><a href="método-da-transformada-inversa.html#cb350-21" tabindex="-1"></a></span>
+<span id="cb350-22"><a href="método-da-transformada-inversa.html#cb350-22" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">replicate</span>(<span class="dv">10000</span>,<span class="fu">gerar_poisson_inversa</span>(<span class="dv">3</span>)),<span class="at">freq =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb350-23"><a href="método-da-transformada-inversa.html#cb350-23" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="fu">dpois</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="dv">3</span>))</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-290-1.png" width="672" /></p>
+</div>
+<div id="exercícios-29" class="section level2 hasAnchor" number="22.2">
+<h2><span class="header-section-number">22.2</span> Exercícios<a href="método-da-transformada-inversa.html#exercícios-29" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>1.</strong> Considere uma variável aleatória <span class="math inline">\(X\)</span> com a seguinte distribuição
+de probabilidades:</p>
+<p><span class="math display">\[P(X = 1) = 0.2, \quad P(X = 2) = 0.5, \quad P(X = 3) = 0.3\]</span> Use o
+método da transformada inversa para gerar 1000 valores de <span class="math inline">\(X\)</span> em R.</p>
+<p><strong>2.</strong> Uma moeda viciada é tal que a probabilidade de cara (C) é 0.7 e a
+probabilidade de coroa (K) é 0.3.</p>
+<p>Use o método da transformada inversa para simular 500 lançamentos desta
+moeda.</p>
+<p><strong>3.</strong> Considere uma variável aleatória <span class="math inline">\(X\)</span> com a seguinte distribuição:</p>
+<p><span class="math display">\[P(X = 1) = 0.1, \quad P(X = 2) = 0.3, \quad P(X = 3) = 0.4, \quad P(X = 4) = 0.2\]</span>
+Gere 2000 amostras de <span class="math inline">\(X\)</span> usando o método da transformada inversa e
+compare a distribuição empírica com a teórica.</p>
+<p><strong>4.</strong> Considere uma variável aleatória <span class="math inline">\(X\)</span> com distribuição geométrica
+com parâmetro <span class="math inline">\(p = 0.2\)</span>. Isso significa que:</p>
+<p><span class="math display">\[P(X = k) = (1 - p)^{k-1}p\]</span>
+Fixando a semente em 1234, gere 1000 valores de <span class="math inline">\(X\)</span> usando o método da transformada inversa.</p>
+<p>Indique a proporção de valores simulados que são superiores à soma da média com o desvio padrão amostrais, de entre os que são superiores à respetiva média amostral. Apresente o resultado com 4 casas decimais. Note que você terá que calcular a função de distribuição acumulada para <span class="math inline">\(X\)</span>.</p>
+</div>
+<div id="variável-aleatória-contínua" class="section level2 hasAnchor" number="22.3">
+<h2><span class="header-section-number">22.3</span> Variável aleatória contínua<a href="método-da-transformada-inversa.html#variável-aleatória-contínua" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Uma variável aleatória <span class="math inline">\(X\)</span> tem densidade <span class="math inline">\(f(x)=2x\)</span>, para <span class="math inline">\(0&lt;x&lt;1\)</span>, e 0,
+caso contrário. Suponha que queremos simular observações de <span class="math inline">\(X\)</span>. Nesta
+secção, apresentaremos um método simples e flexível para simulação de
+uma distribuição contínua.</p>
+<p><strong>Proposição</strong>: Suponha que <span class="math inline">\(X\)</span> é uma variável aleatória com função de
+distribuição <span class="math inline">\(F\)</span>, onde <span class="math inline">\(F\)</span> é invertível com função inversa <span class="math inline">\(F^{-1}\)</span>.
+Seja <span class="math inline">\(U\)</span> uma variável aleatória uniforme <span class="math inline">\((0,1)\)</span>. Então a distribuição
+de <span class="math inline">\(F^{-1}(U)\)</span> é igual a distribuição de <span class="math inline">\(X\)</span>, ou seja, a variável
+aleatória <span class="math inline">\(X\)</span> definida por <span class="math inline">\(X=F^{-1}(U)\)</span> tem distribuição <span class="math inline">\(F\)</span>.</p>
+<p>A prova desta proposição é fácil e rápida. Precisamos mostrar que
+<span class="math inline">\(F^{-1}(U)\)</span> tem a mesma distribuição que <span class="math inline">\(X\)</span>. Assim,</p>
+<p><span class="math display">\[\begin{align*}
+P(X \leq x) &amp;= P(F^{-1}(U)\leq x) = P(FF^{-1}(U) \leq F(x)) \\
+&amp;= P(U \leq F(x)) = P(0\leq U \leq F(x)) \\
+&amp;= F(x)-0 \\
+&amp;= F(x).
+\end{align*}\]</span></p>
+<p>A última igualdade decorre do facto de que <span class="math inline">\(U\sim U(0,1)\)</span> e
+<span class="math inline">\(0\leq F(x) \leq 1\)</span>.</p>
+<p>Esta proposição mostra que se pode gerar uma variável aleatória <span class="math inline">\(X\)</span> de
+uma função de distribuição contínua <span class="math inline">\(F\)</span>, gerando um número aleatório <span class="math inline">\(U\)</span>
+e tomando <span class="math inline">\(X = F^{-1}(U)\)</span>.</p>
+<p><img src="docs/transf_inversa2.png" /></p>
+<p><strong>Exemplo 1</strong>: Considere nossa varíavel aleatória <span class="math inline">\(X\)</span> com densidade
+<span class="math inline">\(f(x)=2x\)</span>. A função de distribuição de <span class="math inline">\(X\)</span> é
+<span class="math display">\[F(x)=P(X\leq x)=\int_{0}^{x}2t\, dt = x^2, \quad \text{para} \quad 0&lt;x&lt;1.\]</span></p>
+<p>A função <span class="math inline">\(F(x)=x^2\)</span> é invertível no intervalo <span class="math inline">\((0,1)\)</span> e
+<span class="math inline">\(F^{-1}(x)=\sqrt{x}\)</span>. O método da transformada inversa diz que se
+<span class="math inline">\(U\sim U(0,1)\)</span>, então <span class="math inline">\(F^{-1}(U)=\sqrt{U}\)</span> tem a mesma distribuição que
+<span class="math inline">\(X\)</span>. Portanto, para simular <span class="math inline">\(X\)</span>, basta gerar <span class="math inline">\(\sqrt{U}\)</span>.</p>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="método-da-transformada-inversa.html#cb351-1" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb351-2"><a href="método-da-transformada-inversa.html#cb351-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb351-3"><a href="método-da-transformada-inversa.html#cb351-3" tabindex="-1"></a>simlist <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">runif</span>(n))</span>
+<span id="cb351-4"><a href="método-da-transformada-inversa.html#cb351-4" tabindex="-1"></a><span class="fu">hist</span>(simlist, <span class="at">prob=</span>T, <span class="at">main=</span><span class="st">&quot;&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb351-5"><a href="método-da-transformada-inversa.html#cb351-5" tabindex="-1"></a><span class="fu">curve</span>(<span class="dv">2</span><span class="sc">*</span>x, <span class="dv">0</span>,<span class="dv">1</span>, <span class="at">add=</span>T)</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-291-1.png" width="672" /></p>
+<p><strong>Exemplo 2</strong>: Geração de uma variável aleatória <span class="math inline">\(Uniforme(a,b)\)</span>. A
+geração é feita através de <span class="math display">\[X = a+(b-a)U.\]</span></p>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="método-da-transformada-inversa.html#cb352-1" tabindex="-1"></a><span class="co"># Geração de uma va uniforme(-2,2)</span></span>
+<span id="cb352-2"><a href="método-da-transformada-inversa.html#cb352-2" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">2</span></span>
+<span id="cb352-3"><a href="método-da-transformada-inversa.html#cb352-3" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb352-4"><a href="método-da-transformada-inversa.html#cb352-4" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb352-5"><a href="método-da-transformada-inversa.html#cb352-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb352-6"><a href="método-da-transformada-inversa.html#cb352-6" tabindex="-1"></a>simlist <span class="ot">&lt;-</span> a<span class="sc">+</span>(b<span class="sc">-</span>a)<span class="sc">*</span><span class="fu">runif</span>(n)</span>
+<span id="cb352-7"><a href="método-da-transformada-inversa.html#cb352-7" tabindex="-1"></a><span class="fu">hist</span>(simlist, <span class="at">prob=</span>T, <span class="at">main=</span><span class="st">&quot;&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-292-1.png" width="672" /></p>
+<p><strong>Exemplo 3</strong>: Geração de uma variável aleatória exponencial. Seja <span class="math inline">\(X\)</span>
+uma variável aleatória exponencial com taxa 1, então sua função de
+distribuição é dada por <span class="math display">\[F(x)=1-e^{x}.\]</span> Como <span class="math inline">\(0\leq F(x)\leq 1\)</span>,
+tomando <span class="math inline">\(F(x)=u\)</span>, onde <span class="math inline">\(u\sim U(0,1)\)</span> tem-se: <span class="math display">\[u=F(x)=1-e^{x}\]</span> ou
+<span class="math display">\[1-u=e^{-x}\]</span> ou, aplicando o logaritmo <span class="math display">\[x=-ln(1-u).\]</span> Daí, pode-se
+gerar uma exponencial com parâmetro 1 gerando um número aleatório <span class="math inline">\(U\)</span> e
+em seguida fazendo <span class="math display">\[X = F^{-1}(U) = -ln(1-U).\]</span> Uma pequena economia de
+tempo pode ser obtida ao notar que <span class="math inline">\(1-U\)</span> também é uniforme em <span class="math inline">\((0,1)\)</span>, e
+assim, <span class="math inline">\(-ln(1-U)\)</span> tem a mesma distribuição que <span class="math inline">\(-ln(U)\)</span>. Isto é, o
+logaritmo negativo de um número aleatório é exponencialmente distribuído
+com taxa 1.</p>
+<p>Além disso, note que se <span class="math inline">\(X\)</span> é uma exponencial com média 1, então para
+qualquer constante <span class="math inline">\(c\)</span>, <span class="math inline">\(cX\)</span> é uma exponencial com média <span class="math inline">\(c\)</span>. Assim, uma
+variável aleatória exponencial <span class="math inline">\(X\)</span> com taxa <span class="math inline">\(\lambda\)</span> (média
+<span class="math inline">\(\frac{1}{\lambda}\)</span>) pode ser gerada através da geração de um número
+aleatório <span class="math inline">\(U\)</span> e fazendo <span class="math display">\[X = -\frac{1}{\lambda}ln (U).\]</span></p>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="método-da-transformada-inversa.html#cb353-1" tabindex="-1"></a><span class="co"># Definir a sequência de valores x</span></span>
+<span id="cb353-2"><a href="método-da-transformada-inversa.html#cb353-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">3</span>, <span class="at">by =</span> <span class="fl">0.02</span>)</span>
+<span id="cb353-3"><a href="método-da-transformada-inversa.html#cb353-3" tabindex="-1"></a></span>
+<span id="cb353-4"><a href="método-da-transformada-inversa.html#cb353-4" tabindex="-1"></a><span class="co"># Definir o parâmetro lambda da distribuição exponencial</span></span>
+<span id="cb353-5"><a href="método-da-transformada-inversa.html#cb353-5" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb353-6"><a href="método-da-transformada-inversa.html#cb353-6" tabindex="-1"></a></span>
+<span id="cb353-7"><a href="método-da-transformada-inversa.html#cb353-7" tabindex="-1"></a><span class="co"># Número de simulação</span></span>
+<span id="cb353-8"><a href="método-da-transformada-inversa.html#cb353-8" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb353-9"><a href="método-da-transformada-inversa.html#cb353-9" tabindex="-1"></a></span>
+<span id="cb353-10"><a href="método-da-transformada-inversa.html#cb353-10" tabindex="-1"></a><span class="co"># Simular valores de uma distribuição exponencial</span></span>
+<span id="cb353-11"><a href="método-da-transformada-inversa.html#cb353-11" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb353-12"><a href="método-da-transformada-inversa.html#cb353-12" tabindex="-1"></a>simlist <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log</span>(<span class="fu">runif</span>(n))<span class="sc">/</span>lambda</span>
+<span id="cb353-13"><a href="método-da-transformada-inversa.html#cb353-13" tabindex="-1"></a></span>
+<span id="cb353-14"><a href="método-da-transformada-inversa.html#cb353-14" tabindex="-1"></a><span class="co"># Plotar o histograma da simulação com a densidade de probabilidade</span></span>
+<span id="cb353-15"><a href="método-da-transformada-inversa.html#cb353-15" tabindex="-1"></a><span class="fu">hist</span>(simlist, <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">main =</span> <span class="st">&quot;Comparação da Distribuição Exponencial Simulada e Teórica&quot;</span>,</span>
+<span id="cb353-16"><a href="método-da-transformada-inversa.html#cb353-16" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Valores&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Densidade&quot;</span>, <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="at">border =</span> <span class="st">&quot;black&quot;</span>)</span>
+<span id="cb353-17"><a href="método-da-transformada-inversa.html#cb353-17" tabindex="-1"></a></span>
+<span id="cb353-18"><a href="método-da-transformada-inversa.html#cb353-18" tabindex="-1"></a><span class="co"># Adicionar a curva de densidade teórica</span></span>
+<span id="cb353-19"><a href="método-da-transformada-inversa.html#cb353-19" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dexp</span>(x, <span class="at">rate =</span> lambda), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb353-20"><a href="método-da-transformada-inversa.html#cb353-20" tabindex="-1"></a></span>
+<span id="cb353-21"><a href="método-da-transformada-inversa.html#cb353-21" tabindex="-1"></a><span class="co"># Adicionar uma legenda</span></span>
+<span id="cb353-22"><a href="método-da-transformada-inversa.html#cb353-22" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;Simulação&quot;</span>, <span class="st">&quot;Teórica&quot;</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;red&quot;</span>), <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">fill =</span> <span class="fu">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="cn">NA</span>))</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-293-1.png" width="672" /></p>
+</div>
+<div id="exercícios-30" class="section level2 hasAnchor" number="22.4">
+<h2><span class="header-section-number">22.4</span> Exercícios<a href="método-da-transformada-inversa.html#exercícios-30" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>1.</strong> Dada uma variável aleatória <span class="math inline">\(X\)</span> com distribuição exponencial de
+parâmetro <span class="math inline">\(\lambda = 2\)</span>, use o Método da Transformada Inversa para gerar
+1000 valores de <span class="math inline">\(X\)</span> e visualize a distribuição com um histograma. Lembre
+que <span class="math inline">\(F_{X}(x) = 1-e^{-\lambda x}\)</span> e mostre que
+<span class="math inline">\(X = -\frac{ln(1-u)}{\lambda}\)</span>.</p>
+<p><strong>2.</strong> Use o Método da Transformada Inversa para gerar 500 valores de
+uma variável aleatória <span class="math inline">\(X\)</span> com distribuição uniforme no intervalo (2,
+5). Lembre que a função de distribuição de uma uniforme <span class="math inline">\(U(a,b)\)</span> é
+<span class="math inline">\(F_{X}(x) = \frac{x-a}{b-a}\)</span>. Mostre que <span class="math inline">\(X = a+u(b-a)\)</span>.</p>
+<p><strong>3.</strong> Dada uma variável aleatória <span class="math inline">\(X\)</span> com distribuição Cauchy padrão
+(com mediana 0 e escala 1), use o Método da Transformada Inversa para
+gerar 1000 valores de <span class="math inline">\(X\)</span> e visualizar sua distribuição. Lembre que
+<span class="math inline">\(F_{X}(x) = \frac{1}{\pi}arctan(x)+\frac{1}{2}\)</span>. Mostre que
+<span class="math inline">\(X = tan[\pi(u-0.5)]\)</span>.</p>
+<p><strong>4.</strong>: Seja <span class="math inline">\(X\)</span> uma variável aleatória com distribuição
+<span class="math inline">\(W(\alpha, \beta)\)</span>. Assim a f.d.p de <span class="math inline">\(X\)</span> é <span class="math display">\[f(x) = \begin{cases}
+\alpha \beta^{-\alpha} x^{\alpha -1} e^{-(x/\beta)^\alpha},&amp; \quad \text{se} \quad x&gt;0 \\
+0,&amp; \quad \text{se} \quad x\leq 0
+\end{cases}\]</span></p>
+<p>A função de distribuição de <span class="math inline">\(X\)</span> é:
+<span class="math display">\[F(x) = \int_{0}^{x}f(u)\, du = \begin{cases}
+1-e^{-(x/\beta)^\alpha},&amp; \quad \text{se} \quad x&gt;0\\
+0,&amp; \quad \text{se} \quad x\leq 0
+\end{cases}\]</span></p>
+<p>Mostre que <span class="math inline">\(X = \beta[-ln(U)]^{1/\alpha}\)</span>. Gere 10000 valores de uma
+<span class="math inline">\(W(2,3)\)</span>. Represente graficamente a distribuição.</p>
+<p><strong>5.</strong> Obtenha o gerador de números aleatórios das distribuições
+especificadas abaixo usando o método da transformada inversa</p>
+<ul>
+<li><p><span class="math inline">\(F(x) = 1-(x-1)^2, \quad 0&lt;x&lt;1\)</span>.</p></li>
+<li><p><span class="math inline">\(F(x) = x^{\theta}, \quad 0&lt;x&lt;1, \theta&gt;1\)</span>.</p></li>
+<li><p><span class="math inline">\(F(x) = 1-exp(-x^2/2\tau^2), \quad x&gt;0, \tau&gt;0\)</span>.</p></li>
+<li><p><span class="math inline">\(f(x) = \frac{1}{2}sin(x), \quad 0&lt;x&lt;\pi\)</span>.</p></li>
+<li><p><span class="math inline">\(f(x) = \frac{sec^2(x)}{\sqrt{3}}, \quad 0&lt;x&lt;\pi/3\)</span>.</p></li>
+</ul>
+<p><strong>Soluções</strong></p>
+<ul>
+<li><p><span class="math inline">\(F^{-1}(u) = 1-\sqrt{1-u}\)</span> ou apenas <span class="math inline">\(F^{-1}(u)=1-\sqrt{u}\)</span> por
+simetria.</p></li>
+<li><p><span class="math inline">\(F^{-1}(u) = u^{1/\theta}\)</span>.</p></li>
+<li><p><span class="math inline">\(F^{-1}(u) = \sqrt{-2\tau \cdot \log(1-u)}\)</span>.</p></li>
+<li><p><span class="math inline">\(F(x) = \frac{1-\cos(x)}{2}\)</span> e <span class="math inline">\(F^{-1}(u)=arcos(1-2u)\)</span>.</p></li>
+<li><p><span class="math inline">\(F(x) = \frac{tan(x)}{\sqrt{3}}\)</span> e <span class="math inline">\(F^{-1}(u) = arctan(u\sqrt3)\)</span>.</p></li>
+</ul>
+<p>Quando usar o método da transformada inversa?</p>
+<p>Sempre que possível.</p>
+<ul>
+<li><p>O método funciona quando <span class="math inline">\(F^{-1}(u)\)</span> existe.</p></li>
+<li><p>Existem distribuições onde <span class="math inline">\(F(x)\)</span> é não inversão analítica.</p></li>
+<li><p>Existem distribuições onde <span class="math inline">\(F(x)\)</span> não existe (apenas <span class="math inline">\(f(x)\)</span>).</p></li>
+</ul>
+<p>Alternativas</p>
+<ul>
+<li><p>Pode-se aproximar numericamente <span class="math inline">\(F(x)\)</span> e/ou <span class="math inline">\(F^{-1}(u)\)</span> para gerador
+de número aleatório.</p></li>
+<li><p>Pode-se considerar métodos não baseados em <span class="math inline">\(F^{-1}(u)\)</span>.</p></li>
+</ul>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="distribuições-de-probabilidade.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="método-da-aceitação-rejeição.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-intro.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["introR.pdf", "introR.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
