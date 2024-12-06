@@ -9198,7 +9198,7 @@ gerar_geometrica_inversa <- function(p){
 
 valores <- replicate(10000, gerar_geometrica_inversa(0.5))
 hist(valores, freq = FALSE)
-points(1:10, dgeom(1:10,0.5))
+points(0:10, dgeom(0:10,0.5))
 ```
 
 **Exemplo 6**: Geração de uma variável aleatória com distribuição de
@@ -9275,7 +9275,7 @@ com parâmetro $p = 0.2$. Isso significa que:
 $$P(X = k) = (1 - p)^{k-1}p$$
 Fixando a semente em 1234, gere 1000 valores de $X$ usando o método da transformada inversa.
 
-Indique a proporção de valores simulados que são superiores à soma da média com o desvio padrão amostrais, de entre os que são superiores à respetiva média amostral. Apresente o resultado com 4 casas decimais. Note que você terá que calcular a função de distribuição acumulada para $X$.
+Indique a proporção de valores simulados que são superiores à soma da média com o desvio padrão amostrais. Apresente o resultado com 4 casas decimais. Note que você terá que calcular a função de distribuição acumulada para $X$.
 
 ## Variável aleatória contínua
 
@@ -9337,6 +9337,7 @@ n <- 10000
 set.seed(123)
 simlist <- a+(b-a)*runif(n)
 hist(simlist, prob=T, main="",xlab="")
+curve(dunif(x,a,b), col="red",add=TRUE)
 ```
 
 **Exemplo 3**: Geração de uma variável aleatória exponencial. Seja $X$
@@ -9398,7 +9399,7 @@ $F_{X}(x) = \frac{x-a}{b-a}$. Mostre que $X = a+u(b-a)$. Visualize a distribuiç
 **3.** Dada uma variável aleatória $X$ com distribuição Cauchy, use o Método da Transformada Inversa para gerar 1000 valores de $X$ com parâmteros 0 e 1. Lembre que $F_{X}(x) = \frac{1}{\pi}arctan(\frac{x-x_0}{\gamma})+\frac{1}{2}$. Mostre que
 $X = x_0 + \gamma \, tan[\pi(u-0.5)]$. Visualize a distribuição com um histograma e compare com a distribuição teórica. Use `dcauchy()`.
 
-**4.**: Seja $X$ uma variável aleatória com distribuição
+**4.** Seja $X$ uma variável aleatória com distribuição
 $W(\alpha, \beta)$. Assim a f.d.p de $X$ é $$f(x) = \begin{cases}
 \alpha \beta^{-\alpha} x^{\alpha -1} e^{-(x/\beta)^\alpha},& \quad \text{se} \quad x>0 \\
 0,& \quad \text{se} \quad x\leq 0

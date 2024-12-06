@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Renato de Paula" />
 
 
-<meta name="date" content="2024-12-05" />
+<meta name="date" content="2024-12-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -681,7 +681,7 @@ algoritmo é equivalente ao método da transformada inversa:</p>
 <span id="cb345-8"><a href="método-da-transformada-inversa.html#cb345-8" tabindex="-1"></a></span>
 <span id="cb345-9"><a href="método-da-transformada-inversa.html#cb345-9" tabindex="-1"></a>valores <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">10000</span>, <span class="fu">gerar_geometrica_inversa</span>(<span class="fl">0.5</span>))</span>
 <span id="cb345-10"><a href="método-da-transformada-inversa.html#cb345-10" tabindex="-1"></a><span class="fu">hist</span>(valores, <span class="at">freq =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb345-11"><a href="método-da-transformada-inversa.html#cb345-11" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="fu">dgeom</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="fl">0.5</span>))</span></code></pre></div>
+<span id="cb345-11"><a href="método-da-transformada-inversa.html#cb345-11" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>, <span class="fu">dgeom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>,<span class="fl">0.5</span>))</span></code></pre></div>
 <p><img src="introR_files/figure-html/unnamed-chunk-290-1.png" width="672" /></p>
 <p><strong>Exemplo 6</strong>: Geração de uma variável aleatória com distribuição de
 Poisson. A variável aleatória <span class="math inline">\(X\)</span> é de Poisson com média <span class="math inline">\(\lambda\)</span> se
@@ -744,7 +744,7 @@ compare a distribuição empírica com a teórica.</p>
 com parâmetro <span class="math inline">\(p = 0.2\)</span>. Isso significa que:</p>
 <p><span class="math display">\[P(X = k) = (1 - p)^{k-1}p\]</span>
 Fixando a semente em 1234, gere 1000 valores de <span class="math inline">\(X\)</span> usando o método da transformada inversa.</p>
-<p>Indique a proporção de valores simulados que são superiores à soma da média com o desvio padrão amostrais, de entre os que são superiores à respetiva média amostral. Apresente o resultado com 4 casas decimais. Note que você terá que calcular a função de distribuição acumulada para <span class="math inline">\(X\)</span>.</p>
+<p>Indique a proporção de valores simulados que são superiores à soma da média com o desvio padrão amostrais. Apresente o resultado com 4 casas decimais. Note que você terá que calcular a função de distribuição acumulada para <span class="math inline">\(X\)</span>.</p>
 </div>
 <div id="variável-aleatória-contínua" class="section level2 hasAnchor" number="23.3">
 <h2><span class="header-section-number">23.3</span> Variável aleatória contínua<a href="método-da-transformada-inversa.html#variável-aleatória-contínua" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -792,7 +792,8 @@ geração é feita através de <span class="math display">\[X = a+(b-a)U.\]</spa
 <span id="cb348-4"><a href="método-da-transformada-inversa.html#cb348-4" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
 <span id="cb348-5"><a href="método-da-transformada-inversa.html#cb348-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb348-6"><a href="método-da-transformada-inversa.html#cb348-6" tabindex="-1"></a>simlist <span class="ot">&lt;-</span> a<span class="sc">+</span>(b<span class="sc">-</span>a)<span class="sc">*</span><span class="fu">runif</span>(n)</span>
-<span id="cb348-7"><a href="método-da-transformada-inversa.html#cb348-7" tabindex="-1"></a><span class="fu">hist</span>(simlist, <span class="at">prob=</span>T, <span class="at">main=</span><span class="st">&quot;&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<span id="cb348-7"><a href="método-da-transformada-inversa.html#cb348-7" tabindex="-1"></a><span class="fu">hist</span>(simlist, <span class="at">prob=</span>T, <span class="at">main=</span><span class="st">&quot;&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb348-8"><a href="método-da-transformada-inversa.html#cb348-8" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dunif</span>(x,a,b), <span class="at">col=</span><span class="st">&quot;red&quot;</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="introR_files/figure-html/unnamed-chunk-293-1.png" width="672" /></p>
 <p><strong>Exemplo 3</strong>: Geração de uma variável aleatória exponencial. Seja <span class="math inline">\(X\)</span>
 uma variável aleatória exponencial com taxa 1, então sua função de
@@ -847,7 +848,7 @@ uma variável aleatória <span class="math inline">\(X\)</span> com distribuiç�
 <span class="math inline">\(F_{X}(x) = \frac{x-a}{b-a}\)</span>. Mostre que <span class="math inline">\(X = a+u(b-a)\)</span>. Visualize a distribuição com um histograma e compare com a distribuição teórica.</p>
 <p><strong>3.</strong> Dada uma variável aleatória <span class="math inline">\(X\)</span> com distribuição Cauchy, use o Método da Transformada Inversa para gerar 1000 valores de <span class="math inline">\(X\)</span> com parâmteros 0 e 1. Lembre que <span class="math inline">\(F_{X}(x) = \frac{1}{\pi}arctan(\frac{x-x_0}{\gamma})+\frac{1}{2}\)</span>. Mostre que
 <span class="math inline">\(X = x_0 + \gamma \, tan[\pi(u-0.5)]\)</span>. Visualize a distribuição com um histograma e compare com a distribuição teórica. Use <code>dcauchy()</code>.</p>
-<p><strong>4.</strong>: Seja <span class="math inline">\(X\)</span> uma variável aleatória com distribuição
+<p><strong>4.</strong> Seja <span class="math inline">\(X\)</span> uma variável aleatória com distribuição
 <span class="math inline">\(W(\alpha, \beta)\)</span>. Assim a f.d.p de <span class="math inline">\(X\)</span> é <span class="math display">\[f(x) = \begin{cases}
 \alpha \beta^{-\alpha} x^{\alpha -1} e^{-(x/\beta)^\alpha},&amp; \quad \text{se} \quad x&gt;0 \\
 0,&amp; \quad \text{se} \quad x\leq 0

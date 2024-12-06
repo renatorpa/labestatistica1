@@ -126,7 +126,7 @@
 
 \title{Introdução ao R e Simulação}
 \author{Renato de Paula}
-\date{2024-12-05}
+\date{2024-12-06}
 
 \begin{document}
 \maketitle
@@ -12489,7 +12489,7 @@ onde \(\lfloor  \rfloor =\) maior inteiro.
 
 \NormalTok{valores }\OtherTok{\textless{}{-}} \FunctionTok{replicate}\NormalTok{(}\DecValTok{10000}\NormalTok{, }\FunctionTok{gerar\_geometrica\_inversa}\NormalTok{(}\FloatTok{0.5}\NormalTok{))}
 \FunctionTok{hist}\NormalTok{(valores, }\AttributeTok{freq =} \ConstantTok{FALSE}\NormalTok{)}
-\FunctionTok{points}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{, }\FunctionTok{dgeom}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{,}\FloatTok{0.5}\NormalTok{))}
+\FunctionTok{points}\NormalTok{(}\DecValTok{0}\SpecialCharTok{:}\DecValTok{10}\NormalTok{, }\FunctionTok{dgeom}\NormalTok{(}\DecValTok{0}\SpecialCharTok{:}\DecValTok{10}\NormalTok{,}\FloatTok{0.5}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -12579,7 +12579,7 @@ com parâmetro \(p = 0.2\). Isso significa que:
 \[P(X = k) = (1 - p)^{k-1}p\]
 Fixando a semente em 1234, gere 1000 valores de \(X\) usando o método da transformada inversa.
 
-Indique a proporção de valores simulados que são superiores à soma da média com o desvio padrão amostrais, de entre os que são superiores à respetiva média amostral. Apresente o resultado com 4 casas decimais. Note que você terá que calcular a função de distribuição acumulada para \(X\).
+Indique a proporção de valores simulados que são superiores à soma da média com o desvio padrão amostrais. Apresente o resultado com 4 casas decimais. Note que você terá que calcular a função de distribuição acumulada para \(X\).
 
 \section{Variável aleatória contínua}\label{variuxe1vel-aleatuxf3ria-contuxednua}
 
@@ -12646,6 +12646,7 @@ geração é feita através de \[X = a+(b-a)U.\]
 \FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
 \NormalTok{simlist }\OtherTok{\textless{}{-}}\NormalTok{ a}\SpecialCharTok{+}\NormalTok{(b}\SpecialCharTok{{-}}\NormalTok{a)}\SpecialCharTok{*}\FunctionTok{runif}\NormalTok{(n)}
 \FunctionTok{hist}\NormalTok{(simlist, }\AttributeTok{prob=}\NormalTok{T, }\AttributeTok{main=}\StringTok{""}\NormalTok{,}\AttributeTok{xlab=}\StringTok{""}\NormalTok{)}
+\FunctionTok{curve}\NormalTok{(}\FunctionTok{dunif}\NormalTok{(x,a,b), }\AttributeTok{col=}\StringTok{"red"}\NormalTok{,}\AttributeTok{add=}\ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -12714,7 +12715,7 @@ uma variável aleatória \(X\) com distribuição uniforme no intervalo (2,
 \textbf{3.} Dada uma variável aleatória \(X\) com distribuição Cauchy, use o Método da Transformada Inversa para gerar 1000 valores de \(X\) com parâmteros 0 e 1. Lembre que \(F_{X}(x) = \frac{1}{\pi}arctan(\frac{x-x_0}{\gamma})+\frac{1}{2}\). Mostre que
 \(X = x_0 + \gamma \, tan[\pi(u-0.5)]\). Visualize a distribuição com um histograma e compare com a distribuição teórica. Use \texttt{dcauchy()}.
 
-\textbf{4.}: Seja \(X\) uma variável aleatória com distribuição
+\textbf{4.} Seja \(X\) uma variável aleatória com distribuição
 \(W(\alpha, \beta)\). Assim a f.d.p de \(X\) é \[f(x) = \begin{cases}
 \alpha \beta^{-\alpha} x^{\alpha -1} e^{-(x/\beta)^\alpha},& \quad \text{se} \quad x>0 \\
 0,& \quad \text{se} \quad x\leq 0
