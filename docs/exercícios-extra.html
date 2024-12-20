@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Renato de Paula" />
 
 
-<meta name="date" content="2024-12-06" />
+<meta name="date" content="2024-12-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -520,15 +520,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Capítulo 22</span> Exercícios extra<a href="exercícios-extra.html#exercícios-extra" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><strong>1.</strong> Usando o R e fixando a semente em 123, simule 1000 lançamentos de
 uma moeda com probabilidade de 0.5 de sair cara. Conte o número de caras
-em cada lançamento e plote um histograma dos resultados.</p>
+em cada lançamento e plote um gráfico de barras dos resultados.</p>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="exercícios-extra.html#cb338-1" tabindex="-1"></a><span class="co"># Fixando a semente</span></span>
+<span id="cb338-2"><a href="exercícios-extra.html#cb338-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb338-3"><a href="exercícios-extra.html#cb338-3" tabindex="-1"></a></span>
+<span id="cb338-4"><a href="exercícios-extra.html#cb338-4" tabindex="-1"></a><span class="co"># Dimensão da amostra</span></span>
+<span id="cb338-5"><a href="exercícios-extra.html#cb338-5" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb338-6"><a href="exercícios-extra.html#cb338-6" tabindex="-1"></a></span>
+<span id="cb338-7"><a href="exercícios-extra.html#cb338-7" tabindex="-1"></a><span class="co"># Probabilidade de sair cara</span></span>
+<span id="cb338-8"><a href="exercícios-extra.html#cb338-8" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb338-9"><a href="exercícios-extra.html#cb338-9" tabindex="-1"></a></span>
+<span id="cb338-10"><a href="exercícios-extra.html#cb338-10" tabindex="-1"></a><span class="co"># Gerando amostra aleatória de dimensão n</span></span>
+<span id="cb338-11"><a href="exercícios-extra.html#cb338-11" tabindex="-1"></a>amostra <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n,<span class="dv">1</span>,p)</span>
+<span id="cb338-12"><a href="exercícios-extra.html#cb338-12" tabindex="-1"></a></span>
+<span id="cb338-13"><a href="exercícios-extra.html#cb338-13" tabindex="-1"></a><span class="co"># Número de caras</span></span>
+<span id="cb338-14"><a href="exercícios-extra.html#cb338-14" tabindex="-1"></a><span class="fu">sum</span>(amostra)</span>
+<span id="cb338-15"><a href="exercícios-extra.html#cb338-15" tabindex="-1"></a></span>
+<span id="cb338-16"><a href="exercícios-extra.html#cb338-16" tabindex="-1"></a><span class="co"># Tabela de frequências</span></span>
+<span id="cb338-17"><a href="exercícios-extra.html#cb338-17" tabindex="-1"></a>freq_relativa <span class="ot">&lt;-</span> <span class="fu">table</span>(amostra)<span class="sc">/</span><span class="fu">length</span>(amostra)</span>
+<span id="cb338-18"><a href="exercícios-extra.html#cb338-18" tabindex="-1"></a></span>
+<span id="cb338-19"><a href="exercícios-extra.html#cb338-19" tabindex="-1"></a><span class="co"># Gráfico de barras dos resultados</span></span>
+<span id="cb338-20"><a href="exercícios-extra.html#cb338-20" tabindex="-1"></a><span class="fu">barplot</span>(freq_relativa, <span class="at">col=</span><span class="st">&quot;lightblue&quot;</span>)</span></code></pre></div>
 <p><strong>2.</strong> Usando o R e fixando a semente em 123, gere uma amostra aleatória
 de 5000 observações de uma variável aleatória binomial com parâmetros
 <span class="math inline">\(n = 10\)</span> e <span class="math inline">\(p = 0.3\)</span>. Calcule a média e a variância das observações
 geradas.</p>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="exercícios-extra.html#cb339-1" tabindex="-1"></a><span class="co"># Fixando a semente</span></span>
+<span id="cb339-2"><a href="exercícios-extra.html#cb339-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb339-3"><a href="exercícios-extra.html#cb339-3" tabindex="-1"></a></span>
+<span id="cb339-4"><a href="exercícios-extra.html#cb339-4" tabindex="-1"></a><span class="co"># Dimensão da amostra</span></span>
+<span id="cb339-5"><a href="exercícios-extra.html#cb339-5" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">5000</span></span>
+<span id="cb339-6"><a href="exercícios-extra.html#cb339-6" tabindex="-1"></a></span>
+<span id="cb339-7"><a href="exercícios-extra.html#cb339-7" tabindex="-1"></a><span class="co"># Amostra aleatória</span></span>
+<span id="cb339-8"><a href="exercícios-extra.html#cb339-8" tabindex="-1"></a>amostra <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="dv">10</span>, <span class="fl">0.3</span>)</span>
+<span id="cb339-9"><a href="exercícios-extra.html#cb339-9" tabindex="-1"></a></span>
+<span id="cb339-10"><a href="exercícios-extra.html#cb339-10" tabindex="-1"></a><span class="co"># Média</span></span>
+<span id="cb339-11"><a href="exercícios-extra.html#cb339-11" tabindex="-1"></a><span class="fu">mean</span>(amostra)</span>
+<span id="cb339-12"><a href="exercícios-extra.html#cb339-12" tabindex="-1"></a></span>
+<span id="cb339-13"><a href="exercícios-extra.html#cb339-13" tabindex="-1"></a><span class="co"># Variância</span></span>
+<span id="cb339-14"><a href="exercícios-extra.html#cb339-14" tabindex="-1"></a><span class="fu">var</span>(amostra)</span></code></pre></div>
 <p><strong>3.</strong> Usando o R e fixando a semente em 123, gere uma amostra aleatória
 de 2300 observações de uma variável aleatória de Poisson com parâmetro
 <span class="math inline">\(\lambda = 4\)</span>. Calcule a média e o desvio padrão das observações
 geradas.</p>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="exercícios-extra.html#cb340-1" tabindex="-1"></a><span class="co"># Fixando a semente</span></span>
+<span id="cb340-2"><a href="exercícios-extra.html#cb340-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb340-3"><a href="exercícios-extra.html#cb340-3" tabindex="-1"></a></span>
+<span id="cb340-4"><a href="exercícios-extra.html#cb340-4" tabindex="-1"></a><span class="co"># Dimensão da amostra</span></span>
+<span id="cb340-5"><a href="exercícios-extra.html#cb340-5" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">2300</span></span>
+<span id="cb340-6"><a href="exercícios-extra.html#cb340-6" tabindex="-1"></a></span>
+<span id="cb340-7"><a href="exercícios-extra.html#cb340-7" tabindex="-1"></a><span class="co"># Gerando amostra aleatória</span></span>
+<span id="cb340-8"><a href="exercícios-extra.html#cb340-8" tabindex="-1"></a>amostra <span class="ot">&lt;-</span> <span class="fu">rpois</span>(n,<span class="dv">4</span>)</span>
+<span id="cb340-9"><a href="exercícios-extra.html#cb340-9" tabindex="-1"></a></span>
+<span id="cb340-10"><a href="exercícios-extra.html#cb340-10" tabindex="-1"></a><span class="co"># Média</span></span>
+<span id="cb340-11"><a href="exercícios-extra.html#cb340-11" tabindex="-1"></a><span class="fu">mean</span>(amostra)</span>
+<span id="cb340-12"><a href="exercícios-extra.html#cb340-12" tabindex="-1"></a></span>
+<span id="cb340-13"><a href="exercícios-extra.html#cb340-13" tabindex="-1"></a><span class="co"># Desvio padrão</span></span>
+<span id="cb340-14"><a href="exercícios-extra.html#cb340-14" tabindex="-1"></a><span class="fu">sd</span>(amostra)</span></code></pre></div>
 <p><strong>4.</strong> Em um processo de qualidade, considere uma variável aleatória <span class="math inline">\(X\)</span>
 que representa o número de produtos defeituosos em um lote de 50
 produtos, onde a probabilidade de um produto ser defeituoso é 0.1.
@@ -537,6 +585,26 @@ Usando o R e fixando a semente em 123 gere uma amostra aleatória de
 produtos defeituosos. Calcule a proporção de lotes com exatamente 5
 produtos defeituosos e compare o valor obtido com a probabilidade
 <span class="math inline">\(P(X=5)\)</span>, onde <span class="math inline">\(X \sim \text{Binomial}(50, 0.1)\)</span>.</p>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="exercícios-extra.html#cb341-1" tabindex="-1"></a><span class="co"># Fixando a semente</span></span>
+<span id="cb341-2"><a href="exercícios-extra.html#cb341-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb341-3"><a href="exercícios-extra.html#cb341-3" tabindex="-1"></a></span>
+<span id="cb341-4"><a href="exercícios-extra.html#cb341-4" tabindex="-1"></a><span class="co"># Dimensão da amostra</span></span>
+<span id="cb341-5"><a href="exercícios-extra.html#cb341-5" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb341-6"><a href="exercícios-extra.html#cb341-6" tabindex="-1"></a></span>
+<span id="cb341-7"><a href="exercícios-extra.html#cb341-7" tabindex="-1"></a><span class="co"># Amostra aleatória</span></span>
+<span id="cb341-8"><a href="exercícios-extra.html#cb341-8" tabindex="-1"></a>amostra <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="dv">50</span>, <span class="fl">0.1</span>)</span>
+<span id="cb341-9"><a href="exercícios-extra.html#cb341-9" tabindex="-1"></a></span>
+<span id="cb341-10"><a href="exercícios-extra.html#cb341-10" tabindex="-1"></a><span class="co"># Contando a frequência de lotes com 5 produtos defeituosos</span></span>
+<span id="cb341-11"><a href="exercícios-extra.html#cb341-11" tabindex="-1"></a>freq_abs <span class="ot">&lt;-</span> <span class="fu">sum</span>(amostra <span class="sc">==</span> <span class="dv">5</span>)</span>
+<span id="cb341-12"><a href="exercícios-extra.html#cb341-12" tabindex="-1"></a>freq_rela <span class="ot">&lt;-</span> freq_abs<span class="sc">/</span><span class="fu">length</span>(amostra)</span>
+<span id="cb341-13"><a href="exercícios-extra.html#cb341-13" tabindex="-1"></a><span class="co"># ou</span></span>
+<span id="cb341-14"><a href="exercícios-extra.html#cb341-14" tabindex="-1"></a><span class="fu">mean</span>(amostra <span class="sc">==</span> <span class="dv">5</span>)</span>
+<span id="cb341-15"><a href="exercícios-extra.html#cb341-15" tabindex="-1"></a></span>
+<span id="cb341-16"><a href="exercícios-extra.html#cb341-16" tabindex="-1"></a><span class="co"># Probabilidade teórica</span></span>
+<span id="cb341-17"><a href="exercícios-extra.html#cb341-17" tabindex="-1"></a>prob_teorica <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(<span class="dv">5</span>, <span class="dv">50</span>, <span class="fl">0.1</span>)</span>
+<span id="cb341-18"><a href="exercícios-extra.html#cb341-18" tabindex="-1"></a></span>
+<span id="cb341-19"><a href="exercícios-extra.html#cb341-19" tabindex="-1"></a><span class="co"># Comparação</span></span>
+<span id="cb341-20"><a href="exercícios-extra.html#cb341-20" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">empirica =</span> freq_rela, <span class="at">teorica =</span> prob_teorica)</span></code></pre></div>
 <p><strong>5.</strong> Usando o R e fixando a semente em 123, gere uma amostra aleatória
 de 5000 observações de uma variável aleatória <span class="math inline">\(X\)</span> binomial com
 parâmetros <span class="math inline">\(n = 20\)</span> e <span class="math inline">\(p = 0.7\)</span>.</p>
@@ -546,6 +614,32 @@ amostrais. Sobreponha no gráfico a distribuição de probabilidade de <span cla
 <li><p>Use a função de distribuição empírica para estimar <span class="math inline">\(P(X\leq 10)\)</span>
 e compare com o valor teórico.</p></li>
 </ol>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="exercícios-extra.html#cb342-1" tabindex="-1"></a><span class="co"># Fixando a semente</span></span>
+<span id="cb342-2"><a href="exercícios-extra.html#cb342-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb342-3"><a href="exercícios-extra.html#cb342-3" tabindex="-1"></a></span>
+<span id="cb342-4"><a href="exercícios-extra.html#cb342-4" tabindex="-1"></a><span class="co"># Dimensão da amostra</span></span>
+<span id="cb342-5"><a href="exercícios-extra.html#cb342-5" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">5000</span></span>
+<span id="cb342-6"><a href="exercícios-extra.html#cb342-6" tabindex="-1"></a></span>
+<span id="cb342-7"><a href="exercícios-extra.html#cb342-7" tabindex="-1"></a><span class="co"># Amostra aleatória</span></span>
+<span id="cb342-8"><a href="exercícios-extra.html#cb342-8" tabindex="-1"></a>amostra <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="dv">20</span>, <span class="fl">0.7</span>)</span>
+<span id="cb342-9"><a href="exercícios-extra.html#cb342-9" tabindex="-1"></a></span>
+<span id="cb342-10"><a href="exercícios-extra.html#cb342-10" tabindex="-1"></a><span class="co"># Histograma</span></span>
+<span id="cb342-11"><a href="exercícios-extra.html#cb342-11" tabindex="-1"></a><span class="fu">hist</span>(amostra, <span class="at">freq =</span> <span class="cn">FALSE</span>, <span class="at">col=</span><span class="st">&quot;lightblue&quot;</span>)</span>
+<span id="cb342-12"><a href="exercícios-extra.html#cb342-12" tabindex="-1"></a></span>
+<span id="cb342-13"><a href="exercícios-extra.html#cb342-13" tabindex="-1"></a><span class="co"># Função de probabilidade de X</span></span>
+<span id="cb342-14"><a href="exercícios-extra.html#cb342-14" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">20</span>,<span class="at">y=</span><span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">20</span>,<span class="dv">20</span>,<span class="fl">0.7</span>), <span class="at">col=</span><span class="st">&quot;magenta&quot;</span>, <span class="at">type=</span><span class="st">&quot;p&quot;</span>)</span>
+<span id="cb342-15"><a href="exercícios-extra.html#cb342-15" tabindex="-1"></a></span>
+<span id="cb342-16"><a href="exercícios-extra.html#cb342-16" tabindex="-1"></a><span class="co"># Função de Distribuição Empírica</span></span>
+<span id="cb342-17"><a href="exercícios-extra.html#cb342-17" tabindex="-1"></a>Fn <span class="ot">&lt;-</span> <span class="fu">ecdf</span>(amostra)</span>
+<span id="cb342-18"><a href="exercícios-extra.html#cb342-18" tabindex="-1"></a></span>
+<span id="cb342-19"><a href="exercícios-extra.html#cb342-19" tabindex="-1"></a><span class="co"># Probabilidade estimada</span></span>
+<span id="cb342-20"><a href="exercícios-extra.html#cb342-20" tabindex="-1"></a>prob_estimada <span class="ot">&lt;-</span> <span class="fu">Fn</span>(<span class="dv">10</span>)</span>
+<span id="cb342-21"><a href="exercícios-extra.html#cb342-21" tabindex="-1"></a></span>
+<span id="cb342-22"><a href="exercícios-extra.html#cb342-22" tabindex="-1"></a><span class="co"># Probabilidade teórica P(X &lt;= 10)</span></span>
+<span id="cb342-23"><a href="exercícios-extra.html#cb342-23" tabindex="-1"></a>prob_teorica <span class="ot">&lt;-</span> <span class="fu">pbinom</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="fl">0.7</span>)</span>
+<span id="cb342-24"><a href="exercícios-extra.html#cb342-24" tabindex="-1"></a></span>
+<span id="cb342-25"><a href="exercícios-extra.html#cb342-25" tabindex="-1"></a><span class="co"># Comparação</span></span>
+<span id="cb342-26"><a href="exercícios-extra.html#cb342-26" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">empirica =</span> prob_estimada, <span class="at">teorica =</span> prob_teorica)</span></code></pre></div>
 <p><strong>6.</strong> Usando o R e fixando a semente em 543, gere uma amostra aleatória
 de 2400 observações de uma variável aleatória <span class="math inline">\(Y\)</span> de Poisson com
 parâmetro <span class="math inline">\(\lambda = 6\)</span>.</p>
@@ -555,10 +649,59 @@ amostrais. Sobreponha no gráfico a distribuição de probabilidade de <span cla
 <li><p>Use a função de distribuição empírica para estimar <span class="math inline">\(P(Y &gt; 5)\)</span> e
 compare com o valor teórico.</p></li>
 </ol>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="exercícios-extra.html#cb343-1" tabindex="-1"></a><span class="co"># Fixando a semente</span></span>
+<span id="cb343-2"><a href="exercícios-extra.html#cb343-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">543</span>)</span>
+<span id="cb343-3"><a href="exercícios-extra.html#cb343-3" tabindex="-1"></a></span>
+<span id="cb343-4"><a href="exercícios-extra.html#cb343-4" tabindex="-1"></a><span class="co"># Dimensão da amostra</span></span>
+<span id="cb343-5"><a href="exercícios-extra.html#cb343-5" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">2400</span></span>
+<span id="cb343-6"><a href="exercícios-extra.html#cb343-6" tabindex="-1"></a></span>
+<span id="cb343-7"><a href="exercícios-extra.html#cb343-7" tabindex="-1"></a><span class="co"># Amostra aleatória</span></span>
+<span id="cb343-8"><a href="exercícios-extra.html#cb343-8" tabindex="-1"></a>amostra <span class="ot">&lt;-</span> <span class="fu">rpois</span>(n,<span class="dv">6</span>)</span>
+<span id="cb343-9"><a href="exercícios-extra.html#cb343-9" tabindex="-1"></a></span>
+<span id="cb343-10"><a href="exercícios-extra.html#cb343-10" tabindex="-1"></a><span class="co"># Histograma</span></span>
+<span id="cb343-11"><a href="exercícios-extra.html#cb343-11" tabindex="-1"></a><span class="fu">hist</span>(amostra, <span class="at">freq =</span> <span class="cn">FALSE</span>, <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>)</span>
+<span id="cb343-12"><a href="exercícios-extra.html#cb343-12" tabindex="-1"></a></span>
+<span id="cb343-13"><a href="exercícios-extra.html#cb343-13" tabindex="-1"></a><span class="co"># Função de probabilidade de Y</span></span>
+<span id="cb343-14"><a href="exercícios-extra.html#cb343-14" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">15</span>, <span class="at">y=</span><span class="fu">dpois</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">15</span>,<span class="dv">6</span>), <span class="at">col=</span><span class="st">&quot;magenta&quot;</span>, <span class="at">type =</span> <span class="st">&quot;p&quot;</span>)</span>
+<span id="cb343-15"><a href="exercícios-extra.html#cb343-15" tabindex="-1"></a></span>
+<span id="cb343-16"><a href="exercícios-extra.html#cb343-16" tabindex="-1"></a><span class="co"># Função de Distribuição Empírica</span></span>
+<span id="cb343-17"><a href="exercícios-extra.html#cb343-17" tabindex="-1"></a>Fn <span class="ot">&lt;-</span> <span class="fu">ecdf</span>(amostra)</span>
+<span id="cb343-18"><a href="exercícios-extra.html#cb343-18" tabindex="-1"></a></span>
+<span id="cb343-19"><a href="exercícios-extra.html#cb343-19" tabindex="-1"></a><span class="co"># Probabilidade Estimada (Y&gt;5)</span></span>
+<span id="cb343-20"><a href="exercícios-extra.html#cb343-20" tabindex="-1"></a>prob_estimada <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">-</span><span class="fu">Fn</span>(<span class="dv">5</span>)</span>
+<span id="cb343-21"><a href="exercícios-extra.html#cb343-21" tabindex="-1"></a></span>
+<span id="cb343-22"><a href="exercícios-extra.html#cb343-22" tabindex="-1"></a><span class="co"># Probabilidade Teórica</span></span>
+<span id="cb343-23"><a href="exercícios-extra.html#cb343-23" tabindex="-1"></a>prob_teorica <span class="ot">&lt;-</span> <span class="fu">ppois</span>(<span class="dv">5</span>,<span class="dv">6</span>,<span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb343-24"><a href="exercícios-extra.html#cb343-24" tabindex="-1"></a></span>
+<span id="cb343-25"><a href="exercícios-extra.html#cb343-25" tabindex="-1"></a><span class="co"># Comparação</span></span>
+<span id="cb343-26"><a href="exercícios-extra.html#cb343-26" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">empirica =</span> prob_estimada, <span class="at">teorica =</span> prob_teorica)</span></code></pre></div>
 <p><strong>7.</strong> Usando o R e fixando a semente em 345, gere uma amostra aleatória
 de 3450 observações de uma variável aleatória <span class="math inline">\(Z\)</span> uniforme no intervalo
 <span class="math inline">\([0, 1]\)</span>. Use a função de distribuição empírica para estimar
 <span class="math inline">\(P(Z \leq 0.5)\)</span> e compare com o valor teórico.</p>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="exercícios-extra.html#cb344-1" tabindex="-1"></a><span class="co"># Fixando a semente</span></span>
+<span id="cb344-2"><a href="exercícios-extra.html#cb344-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">345</span>)</span>
+<span id="cb344-3"><a href="exercícios-extra.html#cb344-3" tabindex="-1"></a></span>
+<span id="cb344-4"><a href="exercícios-extra.html#cb344-4" tabindex="-1"></a><span class="co"># Dimensão da amostra</span></span>
+<span id="cb344-5"><a href="exercícios-extra.html#cb344-5" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">3450</span></span>
+<span id="cb344-6"><a href="exercícios-extra.html#cb344-6" tabindex="-1"></a></span>
+<span id="cb344-7"><a href="exercícios-extra.html#cb344-7" tabindex="-1"></a><span class="co"># Amostra aleatória</span></span>
+<span id="cb344-8"><a href="exercícios-extra.html#cb344-8" tabindex="-1"></a>amostra <span class="ot">&lt;-</span> <span class="fu">runif</span>(n,<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb344-9"><a href="exercícios-extra.html#cb344-9" tabindex="-1"></a></span>
+<span id="cb344-10"><a href="exercícios-extra.html#cb344-10" tabindex="-1"></a><span class="fu">hist</span>(amostra, <span class="at">freq=</span><span class="cn">FALSE</span>, <span class="at">col=</span><span class="st">&quot;lightblue&quot;</span>)</span>
+<span id="cb344-11"><a href="exercícios-extra.html#cb344-11" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dunif</span>(x,<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb344-12"><a href="exercícios-extra.html#cb344-12" tabindex="-1"></a></span>
+<span id="cb344-13"><a href="exercícios-extra.html#cb344-13" tabindex="-1"></a><span class="co"># Função de Distribuição Empírica</span></span>
+<span id="cb344-14"><a href="exercícios-extra.html#cb344-14" tabindex="-1"></a>Fn <span class="ot">&lt;-</span> <span class="fu">ecdf</span>(amostra)</span>
+<span id="cb344-15"><a href="exercícios-extra.html#cb344-15" tabindex="-1"></a></span>
+<span id="cb344-16"><a href="exercícios-extra.html#cb344-16" tabindex="-1"></a><span class="co"># Probabilidade Estimada P(Z &lt;= 0.5)</span></span>
+<span id="cb344-17"><a href="exercícios-extra.html#cb344-17" tabindex="-1"></a>prob_estimada <span class="ot">&lt;-</span> <span class="fu">Fn</span>(<span class="fl">0.5</span>)</span>
+<span id="cb344-18"><a href="exercícios-extra.html#cb344-18" tabindex="-1"></a></span>
+<span id="cb344-19"><a href="exercícios-extra.html#cb344-19" tabindex="-1"></a><span class="co"># Probabilidade Teórica</span></span>
+<span id="cb344-20"><a href="exercícios-extra.html#cb344-20" tabindex="-1"></a>prob_teorica <span class="ot">&lt;-</span> <span class="fu">punif</span>(<span class="fl">0.5</span>,<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb344-21"><a href="exercícios-extra.html#cb344-21" tabindex="-1"></a></span>
+<span id="cb344-22"><a href="exercícios-extra.html#cb344-22" tabindex="-1"></a><span class="co"># Comparação</span></span>
+<span id="cb344-23"><a href="exercícios-extra.html#cb344-23" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">empirica =</span> prob_estimada, <span class="at">teorica =</span> prob_teorica)</span></code></pre></div>
 <p><strong>8.</strong> Usando o R e fixando a semente em 123, gere uma amostra aleatória
 de 3467 observações de uma variável aleatória <span class="math inline">\(W\)</span> normal com média
 <span class="math inline">\(\mu = 0\)</span> e desvio padrão <span class="math inline">\(\sigma = 1\)</span>.</p>
@@ -595,9 +738,31 @@ crescente <span class="math inline">\(n = 100, 1000, 10000, 100000\)</span> de u
 com distribuição de Poisson com parâmetro <span class="math inline">\(\lambda = 3\)</span>. Para cada
 tamanho de amostra, calcule a média amostral e compare-a com o valor
 esperado teórico. Observe e comente a convergência das médias amostrais.</p>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="exercícios-extra.html#cb345-1" tabindex="-1"></a><span class="co"># Fixando a semente</span></span>
+<span id="cb345-2"><a href="exercícios-extra.html#cb345-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb345-3"><a href="exercícios-extra.html#cb345-3" tabindex="-1"></a></span>
+<span id="cb345-4"><a href="exercícios-extra.html#cb345-4" tabindex="-1"></a><span class="co"># Dimensão das amostras</span></span>
+<span id="cb345-5"><a href="exercícios-extra.html#cb345-5" tabindex="-1"></a>tamanhos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">1000</span>, <span class="dv">10000</span>, <span class="dv">100000</span>)</span>
+<span id="cb345-6"><a href="exercícios-extra.html#cb345-6" tabindex="-1"></a></span>
+<span id="cb345-7"><a href="exercícios-extra.html#cb345-7" tabindex="-1"></a><span class="co"># Parâmetro da Poisson</span></span>
+<span id="cb345-8"><a href="exercícios-extra.html#cb345-8" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb345-9"><a href="exercícios-extra.html#cb345-9" tabindex="-1"></a></span>
+<span id="cb345-10"><a href="exercícios-extra.html#cb345-10" tabindex="-1"></a><span class="co"># Média teórica</span></span>
+<span id="cb345-11"><a href="exercícios-extra.html#cb345-11" tabindex="-1"></a>media <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb345-12"><a href="exercícios-extra.html#cb345-12" tabindex="-1"></a></span>
+<span id="cb345-13"><a href="exercícios-extra.html#cb345-13" tabindex="-1"></a>media_amostra <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">length</span>(tamanhos))</span>
+<span id="cb345-14"><a href="exercícios-extra.html#cb345-14" tabindex="-1"></a></span>
+<span id="cb345-15"><a href="exercícios-extra.html#cb345-15" tabindex="-1"></a><span class="co"># Gerando media das amostras</span></span>
+<span id="cb345-16"><a href="exercícios-extra.html#cb345-16" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(tamanhos)){</span>
+<span id="cb345-17"><a href="exercícios-extra.html#cb345-17" tabindex="-1"></a>  media_amostra[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">rpois</span>(tamanhos[i],<span class="at">lambda =</span> lambda))</span>
+<span id="cb345-18"><a href="exercícios-extra.html#cb345-18" tabindex="-1"></a>}</span>
+<span id="cb345-19"><a href="exercícios-extra.html#cb345-19" tabindex="-1"></a></span>
+<span id="cb345-20"><a href="exercícios-extra.html#cb345-20" tabindex="-1"></a><span class="co"># Comparação</span></span>
+<span id="cb345-21"><a href="exercícios-extra.html#cb345-21" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">data.frame</span>(<span class="at">Tamanho_amostra =</span> tamanhos, </span>
+<span id="cb345-22"><a href="exercícios-extra.html#cb345-22" tabindex="-1"></a>                 <span class="at">Media_amostra =</span> media_amostra,</span>
+<span id="cb345-23"><a href="exercícios-extra.html#cb345-23" tabindex="-1"></a>                 <span class="at">Media_teorica =</span> media))</span></code></pre></div>
 <p><strong>12.</strong> Usando o R e fixando a semente em 123, gere amostras de tamanho
-crescente <span class="math inline">\(n = 100, 1000, 10000, 100000\)</span> de uma variável aleatória W com
-distribuição uniforme no intervalo <span class="math inline">\([0, 1]\)</span>. Para cada tamanho de
+crescente <span class="math inline">\(n = 100, 1000, 10000, 100000\)</span> de uma variável aleatória <span class="math inline">\(W\)</span> com distribuição uniforme no intervalo <span class="math inline">\([0, 1]\)</span>. Para cada tamanho de
 amostra, calcule a média amostral e compare-a com o valor esperado
 teórico. Observe e comente a convergência das médias amostrais.</p>
 <p><strong>13.</strong> Um grupo de estudantes de Estatística está realizando uma
@@ -618,6 +783,31 @@ dimensão 9 de uma população, <span class="math inline">\(X\sim \text{Binomial
 média de cada uma dessas amostras, obtendo uma amostra de médias.
 Calcule ainda o valor esperado da distribuição teórica de <span class="math inline">\(X\)</span> e compare
 com a média da amostra de médias.</p>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="exercícios-extra.html#cb346-1" tabindex="-1"></a><span class="co"># Fixando a semente</span></span>
+<span id="cb346-2"><a href="exercícios-extra.html#cb346-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1058</span>)</span>
+<span id="cb346-3"><a href="exercícios-extra.html#cb346-3" tabindex="-1"></a></span>
+<span id="cb346-4"><a href="exercícios-extra.html#cb346-4" tabindex="-1"></a><span class="co"># Número de amostras</span></span>
+<span id="cb346-5"><a href="exercícios-extra.html#cb346-5" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="dv">9060</span></span>
+<span id="cb346-6"><a href="exercícios-extra.html#cb346-6" tabindex="-1"></a></span>
+<span id="cb346-7"><a href="exercícios-extra.html#cb346-7" tabindex="-1"></a><span class="co"># Dimensão de cada amostra</span></span>
+<span id="cb346-8"><a href="exercícios-extra.html#cb346-8" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">9</span></span>
+<span id="cb346-9"><a href="exercícios-extra.html#cb346-9" tabindex="-1"></a></span>
+<span id="cb346-10"><a href="exercícios-extra.html#cb346-10" tabindex="-1"></a><span class="co"># Gerando amostra aleatória de X</span></span>
+<span id="cb346-11"><a href="exercícios-extra.html#cb346-11" tabindex="-1"></a>amostra <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="fu">rbinom</span>(m<span class="sc">*</span>n, <span class="dv">41</span>, <span class="fl">0.81</span>), <span class="at">nrow =</span> m, <span class="at">ncol =</span> <span class="dv">9</span>)</span>
+<span id="cb346-12"><a href="exercícios-extra.html#cb346-12" tabindex="-1"></a></span>
+<span id="cb346-13"><a href="exercícios-extra.html#cb346-13" tabindex="-1"></a><span class="co"># Calculando a média de cada amostra</span></span>
+<span id="cb346-14"><a href="exercícios-extra.html#cb346-14" tabindex="-1"></a>media_amostra <span class="ot">&lt;-</span> <span class="fu">apply</span>(amostra,<span class="dv">1</span>,mean)</span>
+<span id="cb346-15"><a href="exercícios-extra.html#cb346-15" tabindex="-1"></a><span class="co"># ou</span></span>
+<span id="cb346-16"><a href="exercícios-extra.html#cb346-16" tabindex="-1"></a>media_amostra2 <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(amostra)</span>
+<span id="cb346-17"><a href="exercícios-extra.html#cb346-17" tabindex="-1"></a></span>
+<span id="cb346-18"><a href="exercícios-extra.html#cb346-18" tabindex="-1"></a><span class="co"># Média da amostra de médias</span></span>
+<span id="cb346-19"><a href="exercícios-extra.html#cb346-19" tabindex="-1"></a>media <span class="ot">&lt;-</span> <span class="fu">mean</span>(media_amostra)</span>
+<span id="cb346-20"><a href="exercícios-extra.html#cb346-20" tabindex="-1"></a></span>
+<span id="cb346-21"><a href="exercícios-extra.html#cb346-21" tabindex="-1"></a><span class="co"># Média teórica</span></span>
+<span id="cb346-22"><a href="exercícios-extra.html#cb346-22" tabindex="-1"></a>media_teorica <span class="ot">&lt;-</span> <span class="dv">41</span><span class="sc">*</span><span class="fl">0.81</span></span>
+<span id="cb346-23"><a href="exercícios-extra.html#cb346-23" tabindex="-1"></a></span>
+<span id="cb346-24"><a href="exercícios-extra.html#cb346-24" tabindex="-1"></a><span class="co"># Comparação</span></span>
+<span id="cb346-25"><a href="exercícios-extra.html#cb346-25" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">empirica =</span> media, <span class="at">teorica =</span> media_teorica)</span></code></pre></div>
 <p><strong>15.</strong> Em um hospital, o tempo de atendimento de pacientes segue uma
 distribuição exponencial com média de 30 minutos. Um pesquisador deseja
 estimar o tempo médio de atendimento coletando amostras de diferentes
@@ -628,11 +818,11 @@ tamanho 50, 100 e 1000 do tempo de atendimento. Para cada tamanho de
 amostra, calcule a média de cada amostra e plote o histograma das
 médias amostrais para cada tamanho. Compare essas distribuições com
 a distribuição normal com média <span class="math inline">\(E(X)\)</span> e desvio padrão
-<span class="math inline">\(\sqrt{V(X)n}\)</span> e comente sobre a aplicação do Teorema do Limite
+<span class="math inline">\(\sqrt{V(X)/n}\)</span> e comente sobre a aplicação do Teorema do Limite
 Central.</li>
 </ul>
 <p><strong>16.</strong> O tempo de espera (em minutos) para o atendimento no setor de
-informações de um banco é modelado por uma variável aleatória X com
+informações de um banco é modelado por uma variável aleatória <span class="math inline">\(X\)</span> com
 distribuição (<span class="math inline">\(a=5, b=20\)</span>). Usando o R e fixando a
 semente em 1430, gere 8000 amostras de dimensão <span class="math inline">\(n=100\)</span> dessa variável.
 Para essas amostras:</p>
@@ -650,6 +840,45 @@ obtidos da distribuição da média <span class="math inline">\(\bar{X_{n}}\)</s
 uma curva com distribuição normal com valor esperado <span class="math inline">\(E(X)\)</span> e desvio
 padrão <span class="math inline">\(\sqrt{V(x)/n}\)</span>.</p></li>
 </ol>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="exercícios-extra.html#cb347-1" tabindex="-1"></a><span class="co"># Fixando a semente</span></span>
+<span id="cb347-2"><a href="exercícios-extra.html#cb347-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1430</span>)</span>
+<span id="cb347-3"><a href="exercícios-extra.html#cb347-3" tabindex="-1"></a></span>
+<span id="cb347-4"><a href="exercícios-extra.html#cb347-4" tabindex="-1"></a><span class="co"># Número de amostras aleatórias</span></span>
+<span id="cb347-5"><a href="exercícios-extra.html#cb347-5" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="dv">8000</span></span>
+<span id="cb347-6"><a href="exercícios-extra.html#cb347-6" tabindex="-1"></a></span>
+<span id="cb347-7"><a href="exercícios-extra.html#cb347-7" tabindex="-1"></a><span class="co"># Dimensão de cada amostra aleatória</span></span>
+<span id="cb347-8"><a href="exercícios-extra.html#cb347-8" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb347-9"><a href="exercícios-extra.html#cb347-9" tabindex="-1"></a></span>
+<span id="cb347-10"><a href="exercícios-extra.html#cb347-10" tabindex="-1"></a><span class="co"># Parâmetros uniforme</span></span>
+<span id="cb347-11"><a href="exercícios-extra.html#cb347-11" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb347-12"><a href="exercícios-extra.html#cb347-12" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb347-13"><a href="exercícios-extra.html#cb347-13" tabindex="-1"></a></span>
+<span id="cb347-14"><a href="exercícios-extra.html#cb347-14" tabindex="-1"></a><span class="co"># Média teórica</span></span>
+<span id="cb347-15"><a href="exercícios-extra.html#cb347-15" tabindex="-1"></a>media <span class="ot">&lt;-</span> (a<span class="sc">+</span>b)<span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb347-16"><a href="exercícios-extra.html#cb347-16" tabindex="-1"></a></span>
+<span id="cb347-17"><a href="exercícios-extra.html#cb347-17" tabindex="-1"></a><span class="co"># Variância teórica</span></span>
+<span id="cb347-18"><a href="exercícios-extra.html#cb347-18" tabindex="-1"></a>variancia <span class="ot">&lt;-</span> ((b<span class="sc">-</span>a)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="dv">12</span></span>
+<span id="cb347-19"><a href="exercícios-extra.html#cb347-19" tabindex="-1"></a></span>
+<span id="cb347-20"><a href="exercícios-extra.html#cb347-20" tabindex="-1"></a><span class="co"># Amostra aleatória</span></span>
+<span id="cb347-21"><a href="exercícios-extra.html#cb347-21" tabindex="-1"></a>amostras <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="fu">runif</span>(m<span class="sc">*</span>n,a,b), <span class="at">nrow =</span> m, <span class="at">ncol =</span> n)</span>
+<span id="cb347-22"><a href="exercícios-extra.html#cb347-22" tabindex="-1"></a></span>
+<span id="cb347-23"><a href="exercícios-extra.html#cb347-23" tabindex="-1"></a><span class="co"># Calculando a soma de cada amostra</span></span>
+<span id="cb347-24"><a href="exercícios-extra.html#cb347-24" tabindex="-1"></a>soma_amostras <span class="ot">&lt;-</span> <span class="fu">apply</span>(amostras, <span class="dv">1</span>, sum)</span>
+<span id="cb347-25"><a href="exercícios-extra.html#cb347-25" tabindex="-1"></a><span class="co"># ou</span></span>
+<span id="cb347-26"><a href="exercícios-extra.html#cb347-26" tabindex="-1"></a>soma_amostras2 <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(amostras)</span>
+<span id="cb347-27"><a href="exercícios-extra.html#cb347-27" tabindex="-1"></a></span>
+<span id="cb347-28"><a href="exercícios-extra.html#cb347-28" tabindex="-1"></a><span class="co"># Histograma de frequência relativa da Soma + curva normal</span></span>
+<span id="cb347-29"><a href="exercícios-extra.html#cb347-29" tabindex="-1"></a><span class="fu">hist</span>(soma_amostras, <span class="at">freq=</span><span class="cn">FALSE</span>, <span class="at">col=</span><span class="st">&quot;lightblue&quot;</span>)</span>
+<span id="cb347-30"><a href="exercícios-extra.html#cb347-30" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,n<span class="sc">*</span>media,<span class="fu">sqrt</span>(variancia<span class="sc">*</span>n)), <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb347-31"><a href="exercícios-extra.html#cb347-31" tabindex="-1"></a></span>
+<span id="cb347-32"><a href="exercícios-extra.html#cb347-32" tabindex="-1"></a><span class="co"># Calculando a média de cada amostra</span></span>
+<span id="cb347-33"><a href="exercícios-extra.html#cb347-33" tabindex="-1"></a>media_amostras <span class="ot">&lt;-</span> <span class="fu">apply</span>(amostras, <span class="dv">1</span>, mean)</span>
+<span id="cb347-34"><a href="exercícios-extra.html#cb347-34" tabindex="-1"></a><span class="co"># ou</span></span>
+<span id="cb347-35"><a href="exercícios-extra.html#cb347-35" tabindex="-1"></a>media_amostras2 <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(amostras)</span>
+<span id="cb347-36"><a href="exercícios-extra.html#cb347-36" tabindex="-1"></a></span>
+<span id="cb347-37"><a href="exercícios-extra.html#cb347-37" tabindex="-1"></a><span class="co"># Histograma e curva normal</span></span>
+<span id="cb347-38"><a href="exercícios-extra.html#cb347-38" tabindex="-1"></a><span class="fu">hist</span>(media_amostras, <span class="at">freq=</span><span class="cn">FALSE</span>, <span class="at">col=</span><span class="st">&quot;lightblue&quot;</span>)</span>
+<span id="cb347-39"><a href="exercícios-extra.html#cb347-39" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,media,<span class="fu">sqrt</span>(variancia<span class="sc">/</span>n)), <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code></pre></div>
 <p><strong>17.</strong> O tempo de atendimento (em minutos), de doentes graves num
 determinado hospital, é modelado por uma variável aleatória <span class="math inline">\(X\)</span> com
 distribuição Exponencial(<span class="math inline">\(\lambda=0.21\)</span>). Usando o R e fixando a semente

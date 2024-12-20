@@ -8765,17 +8765,74 @@ $E(Q) = n - 1, \quad \text{Var}(Q) = 2(n - 1)$.
 
 **1.** Usando o R e fixando a semente em 123, simule 1000 lançamentos de
 uma moeda com probabilidade de 0.5 de sair cara. Conte o número de caras
-em cada lançamento e plote um histograma dos resultados.
+em cada lançamento e plote um gráfico de barras dos resultados.
+
+```{r eval=FALSE}
+# Fixando a semente
+set.seed(123)
+
+# Dimensão da amostra
+n <- 1000
+
+# Probabilidade de sair cara
+p <- 0.5
+
+# Gerando amostra aleatória de dimensão n
+amostra <- rbinom(n,1,p)
+
+# Número de caras
+sum(amostra)
+
+# Tabela de frequências
+freq_relativa <- table(amostra)/length(amostra)
+
+# Gráfico de barras dos resultados
+barplot(freq_relativa, col="lightblue")
+```
 
 **2.** Usando o R e fixando a semente em 123, gere uma amostra aleatória
 de 5000 observações de uma variável aleatória binomial com parâmetros
 $n = 10$ e $p = 0.3$. Calcule a média e a variância das observações
 geradas.
 
+```{r eval=FALSE}
+# Fixando a semente
+set.seed(123)
+
+# Dimensão da amostra
+n <- 5000
+
+# Amostra aleatória
+amostra <- rbinom(n, 10, 0.3)
+
+# Média
+mean(amostra)
+
+# Variância
+var(amostra)
+```
+
 **3.** Usando o R e fixando a semente em 123, gere uma amostra aleatória
 de 2300 observações de uma variável aleatória de Poisson com parâmetro
 $\lambda = 4$. Calcule a média e o desvio padrão das observações
 geradas.
+
+```{r eval=FALSE}
+# Fixando a semente
+set.seed(123)
+
+# Dimensão da amostra
+n <- 2300
+
+# Gerando amostra aleatória
+amostra <- rpois(n,4)
+
+# Média
+mean(amostra)
+
+# Desvio padrão
+sd(amostra)
+```
 
 **4.** Em um processo de qualidade, considere uma variável aleatória $X$
 que representa o número de produtos defeituosos em um lote de 50
@@ -8785,6 +8842,29 @@ Usando o R e fixando a semente em 123 gere uma amostra aleatória de
 produtos defeituosos. Calcule a proporção de lotes com exatamente 5
 produtos defeituosos e compare o valor obtido com a probabilidade
 $P(X=5)$, onde $X \sim \text{Binomial}(50, 0.1)$.
+
+```{r eval=FALSE}
+# Fixando a semente
+set.seed(123)
+
+# Dimensão da amostra
+n <- 10000
+
+# Amostra aleatória
+amostra <- rbinom(n, 50, 0.1)
+
+# Contando a frequência de lotes com 5 produtos defeituosos
+freq_abs <- sum(amostra == 5)
+freq_rela <- freq_abs/length(amostra)
+# ou
+mean(amostra == 5)
+
+# Probabilidade teórica
+prob_teorica <- dbinom(5, 50, 0.1)
+
+# Comparação
+data.frame(empirica = freq_rela, teorica = prob_teorica)
+```
 
 **5.** Usando o R e fixando a semente em 123, gere uma amostra aleatória
 de 5000 observações de uma variável aleatória $X$ binomial com
@@ -8796,6 +8876,35 @@ amostrais. Sobreponha no gráfico a distribuição de probabilidade de $X$.
 (b) Use a função de distribuição empírica para estimar $P(X\leq 10)$
 e compare com o valor teórico.
 
+```{r eval=FALSE}
+# Fixando a semente
+set.seed(123)
+
+# Dimensão da amostra
+n <- 5000
+
+# Amostra aleatória
+amostra <- rbinom(n, 20, 0.7)
+
+# Histograma
+hist(amostra, freq = FALSE, col="lightblue")
+
+# Função de probabilidade de X
+lines(x=0:20,y=dbinom(0:20,20,0.7), col="magenta", type="p")
+
+# Função de Distribuição Empírica
+Fn <- ecdf(amostra)
+
+# Probabilidade estimada
+prob_estimada <- Fn(10)
+
+# Probabilidade teórica P(X <= 10)
+prob_teorica <- pbinom(10, 20, 0.7)
+
+# Comparação
+data.frame(empirica = prob_estimada, teorica = prob_teorica)
+```
+
 **6.** Usando o R e fixando a semente em 543, gere uma amostra aleatória
 de 2400 observações de uma variável aleatória $Y$ de Poisson com
 parâmetro $\lambda = 6$.
@@ -8806,10 +8915,65 @@ amostrais. Sobreponha no gráfico a distribuição de probabilidade de $X$.
 (b) Use a função de distribuição empírica para estimar $P(Y > 5)$ e
 compare com o valor teórico.
 
+```{r eval=FALSE}
+# Fixando a semente
+set.seed(543)
+
+# Dimensão da amostra
+n <- 2400
+
+# Amostra aleatória
+amostra <- rpois(n,6)
+
+# Histograma
+hist(amostra, freq = FALSE, col = "lightblue")
+
+# Função de probabilidade de Y
+lines(x=0:15, y=dpois(0:15,6), col="magenta", type = "p")
+
+# Função de Distribuição Empírica
+Fn <- ecdf(amostra)
+
+# Probabilidade Estimada (Y>5)
+prob_estimada <- 1-Fn(5)
+
+# Probabilidade Teórica
+prob_teorica <- ppois(5,6,lower.tail = FALSE)
+
+# Comparação
+data.frame(empirica = prob_estimada, teorica = prob_teorica)
+```
+
 **7.** Usando o R e fixando a semente em 345, gere uma amostra aleatória
 de 3450 observações de uma variável aleatória $Z$ uniforme no intervalo
 $[0, 1]$. Use a função de distribuição empírica para estimar
 $P(Z \leq 0.5)$ e compare com o valor teórico.
+
+```{r eval=FALSE}
+# Fixando a semente
+set.seed(345)
+
+# Dimensão da amostra
+n <- 3450
+
+# Amostra aleatória
+amostra <- runif(n,0,1)
+
+hist(amostra, freq=FALSE, col="lightblue")
+curve(dunif(x,0,1), col="red", add=TRUE)
+
+# Função de Distribuição Empírica
+Fn <- ecdf(amostra)
+
+# Probabilidade Estimada P(Z <= 0.5)
+prob_estimada <- Fn(0.5)
+
+# Probabilidade Teórica
+prob_teorica <- punif(0.5,0,1)
+
+# Comparação
+data.frame(empirica = prob_estimada, teorica = prob_teorica)
+```
 
 **8.** Usando o R e fixando a semente em 123, gere uma amostra aleatória
 de 3467 observações de uma variável aleatória $W$ normal com média
@@ -8851,9 +9015,34 @@ com distribuição de Poisson com parâmetro $\lambda = 3$. Para cada
 tamanho de amostra, calcule a média amostral e compare-a com o valor
 esperado teórico. Observe e comente a convergência das médias amostrais.
 
+```{r eval=FALSE}
+# Fixando a semente
+set.seed(123)
+
+# Dimensão das amostras
+tamanhos <- c(100, 1000, 10000, 100000)
+
+# Parâmetro da Poisson
+lambda <- 3
+
+# Média teórica
+media <- 3
+
+media_amostra <- as.numeric(length(tamanhos))
+
+# Gerando media das amostras
+for (i in 1:length(tamanhos)){
+  media_amostra[i] <- mean(rpois(tamanhos[i],lambda = lambda))
+}
+
+# Comparação
+print(data.frame(Tamanho_amostra = tamanhos, 
+                 Media_amostra = media_amostra,
+                 Media_teorica = media))
+```
+
 **12.** Usando o R e fixando a semente em 123, gere amostras de tamanho
-crescente $n = 100, 1000, 10000, 100000$ de uma variável aleatória W com
-distribuição uniforme no intervalo $[0, 1]$. Para cada tamanho de
+crescente $n = 100, 1000, 10000, 100000$ de uma variável aleatória $W$ com distribuição uniforme no intervalo $[0, 1]$. Para cada tamanho de
 amostra, calcule a média amostral e compare-a com o valor esperado
 teórico. Observe e comente a convergência das médias amostrais.
 
@@ -8876,6 +9065,34 @@ média de cada uma dessas amostras, obtendo uma amostra de médias.
 Calcule ainda o valor esperado da distribuição teórica de $X$ e compare
 com a média da amostra de médias.
 
+```{r eval=FALSE}
+# Fixando a semente
+set.seed(1058)
+
+# Número de amostras
+m <- 9060
+
+# Dimensão de cada amostra
+n <- 9
+
+# Gerando amostra aleatória de X
+amostra <- matrix(data = rbinom(m*n, 41, 0.81), nrow = m, ncol = 9)
+
+# Calculando a média de cada amostra
+media_amostra <- apply(amostra,1,mean)
+# ou
+media_amostra2 <- rowMeans(amostra)
+
+# Média da amostra de médias
+media <- mean(media_amostra)
+
+# Média teórica
+media_teorica <- 41*0.81
+
+# Comparação
+data.frame(empirica = media, teorica = media_teorica)
+```
+
 **15.** Em um hospital, o tempo de atendimento de pacientes segue uma
 distribuição exponencial com média de 30 minutos. Um pesquisador deseja
 estimar o tempo médio de atendimento coletando amostras de diferentes
@@ -8886,11 +9103,11 @@ tamanhos.
     amostra, calcule a média de cada amostra e plote o histograma das
     médias amostrais para cada tamanho. Compare essas distribuições com
     a distribuição normal com média $E(X)$ e desvio padrão
-    $\sqrt{V(X)n}$ e comente sobre a aplicação do Teorema do Limite
+    $\sqrt{V(X)/n}$ e comente sobre a aplicação do Teorema do Limite
     Central.
 
 **16.** O tempo de espera (em minutos) para o atendimento no setor de
-informações de um banco é modelado por uma variável aleatória X com
+informações de um banco é modelado por uma variável aleatória $X$ com
 distribuição \text{Uniforme}($a=5, b=20$). Usando o R e fixando a
 semente em 1430, gere 8000 amostras de dimensão $n=100$ dessa variável.
 Para essas amostras:
@@ -8910,6 +9127,48 @@ da distribuição da média $\bar{X_{n}}$.
 obtidos da distribuição da média $\bar{X_{n}}$. Sobreponha no gráfico
 uma curva com distribuição normal com valor esperado $E(X)$ e desvio
 padrão $\sqrt{V(x)/n}$.
+
+```{r eval=FALSE}
+# Fixando a semente
+set.seed(1430)
+
+# Número de amostras aleatórias
+m <- 8000
+
+# Dimensão de cada amostra aleatória
+n <- 100
+
+# Parâmetros uniforme
+a <- 5
+b <- 20
+
+# Média teórica
+media <- (a+b)/2
+
+# Variância teórica
+variancia <- ((b-a)^2)/12
+
+# Amostra aleatória
+amostras <- matrix(data = runif(m*n,a,b), nrow = m, ncol = n)
+
+# Calculando a soma de cada amostra
+soma_amostras <- apply(amostras, 1, sum)
+# ou
+soma_amostras2 <- rowSums(amostras)
+
+# Histograma de frequência relativa da Soma + curva normal
+hist(soma_amostras, freq=FALSE, col="lightblue")
+curve(dnorm(x,n*media,sqrt(variancia*n)), col="red", add=TRUE, lwd=2)
+
+# Calculando a média de cada amostra
+media_amostras <- apply(amostras, 1, mean)
+# ou
+media_amostras2 <- rowMeans(amostras)
+
+# Histograma e curva normal
+hist(media_amostras, freq=FALSE, col="lightblue")
+curve(dnorm(x,media,sqrt(variancia/n)), col="red", add=TRUE, lwd=2)
+```
 
 **17.** O tempo de atendimento (em minutos), de doentes graves num
 determinado hospital, é modelado por uma variável aleatória $X$ com
@@ -9252,7 +9511,7 @@ $$P(X = 1) = 0.2, \quad P(X = 2) = 0.5, \quad P(X = 3) = 0.3$$
 
 - Utilize o método da transformada inversa para gerar 1.000 amostras de  $X$.
 
-- Construa um histograma das amostras geradas e compare com as probabilidades teóricas.
+- Construa um gráfico de barras das amostras geradas e compare com as probabilidades teóricas.
 
 **2.** Uma moeda viciada é tal que a probabilidade de cara (C) é 0.7 e a
 probabilidade de coroa (K) é 0.3.

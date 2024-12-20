@@ -126,7 +126,7 @@
 
 \title{Introdução ao R e Simulação}
 \author{Renato de Paula}
-\date{2024-12-06}
+\date{2024-12-20}
 
 \begin{document}
 \maketitle
@@ -11965,17 +11965,80 @@ onde \(\sigma^2 = 1\) é a variância populacional de \(X\).
 
 \textbf{1.} Usando o R e fixando a semente em 123, simule 1000 lançamentos de
 uma moeda com probabilidade de 0.5 de sair cara. Conte o número de caras
-em cada lançamento e plote um histograma dos resultados.
+em cada lançamento e plote um gráfico de barras dos resultados.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Fixando a semente}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{\# Dimensão da amostra}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{1000}
+
+\CommentTok{\# Probabilidade de sair cara}
+\NormalTok{p }\OtherTok{\textless{}{-}} \FloatTok{0.5}
+
+\CommentTok{\# Gerando amostra aleatória de dimensão n}
+\NormalTok{amostra }\OtherTok{\textless{}{-}} \FunctionTok{rbinom}\NormalTok{(n,}\DecValTok{1}\NormalTok{,p)}
+
+\CommentTok{\# Número de caras}
+\FunctionTok{sum}\NormalTok{(amostra)}
+
+\CommentTok{\# Tabela de frequências}
+\NormalTok{freq\_relativa }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(amostra)}\SpecialCharTok{/}\FunctionTok{length}\NormalTok{(amostra)}
+
+\CommentTok{\# Gráfico de barras dos resultados}
+\FunctionTok{barplot}\NormalTok{(freq\_relativa, }\AttributeTok{col=}\StringTok{"lightblue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \textbf{2.} Usando o R e fixando a semente em 123, gere uma amostra aleatória
 de 5000 observações de uma variável aleatória binomial com parâmetros
 \(n = 10\) e \(p = 0.3\). Calcule a média e a variância das observações
 geradas.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Fixando a semente}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{\# Dimensão da amostra}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{5000}
+
+\CommentTok{\# Amostra aleatória}
+\NormalTok{amostra }\OtherTok{\textless{}{-}} \FunctionTok{rbinom}\NormalTok{(n, }\DecValTok{10}\NormalTok{, }\FloatTok{0.3}\NormalTok{)}
+
+\CommentTok{\# Média}
+\FunctionTok{mean}\NormalTok{(amostra)}
+
+\CommentTok{\# Variância}
+\FunctionTok{var}\NormalTok{(amostra)}
+\end{Highlighting}
+\end{Shaded}
+
 \textbf{3.} Usando o R e fixando a semente em 123, gere uma amostra aleatória
 de 2300 observações de uma variável aleatória de Poisson com parâmetro
 \(\lambda = 4\). Calcule a média e o desvio padrão das observações
 geradas.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Fixando a semente}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{\# Dimensão da amostra}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{2300}
+
+\CommentTok{\# Gerando amostra aleatória}
+\NormalTok{amostra }\OtherTok{\textless{}{-}} \FunctionTok{rpois}\NormalTok{(n,}\DecValTok{4}\NormalTok{)}
+
+\CommentTok{\# Média}
+\FunctionTok{mean}\NormalTok{(amostra)}
+
+\CommentTok{\# Desvio padrão}
+\FunctionTok{sd}\NormalTok{(amostra)}
+\end{Highlighting}
+\end{Shaded}
 
 \textbf{4.} Em um processo de qualidade, considere uma variável aleatória \(X\)
 que representa o número de produtos defeituosos em um lote de 50
@@ -11985,6 +12048,31 @@ Usando o R e fixando a semente em 123 gere uma amostra aleatória de
 produtos defeituosos. Calcule a proporção de lotes com exatamente 5
 produtos defeituosos e compare o valor obtido com a probabilidade
 \(P(X=5)\), onde \(X \sim \text{Binomial}(50, 0.1)\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Fixando a semente}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{\# Dimensão da amostra}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{10000}
+
+\CommentTok{\# Amostra aleatória}
+\NormalTok{amostra }\OtherTok{\textless{}{-}} \FunctionTok{rbinom}\NormalTok{(n, }\DecValTok{50}\NormalTok{, }\FloatTok{0.1}\NormalTok{)}
+
+\CommentTok{\# Contando a frequência de lotes com 5 produtos defeituosos}
+\NormalTok{freq\_abs }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(amostra }\SpecialCharTok{==} \DecValTok{5}\NormalTok{)}
+\NormalTok{freq\_rela }\OtherTok{\textless{}{-}}\NormalTok{ freq\_abs}\SpecialCharTok{/}\FunctionTok{length}\NormalTok{(amostra)}
+\CommentTok{\# ou}
+\FunctionTok{mean}\NormalTok{(amostra }\SpecialCharTok{==} \DecValTok{5}\NormalTok{)}
+
+\CommentTok{\# Probabilidade teórica}
+\NormalTok{prob\_teorica }\OtherTok{\textless{}{-}} \FunctionTok{dbinom}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DecValTok{50}\NormalTok{, }\FloatTok{0.1}\NormalTok{)}
+
+\CommentTok{\# Comparação}
+\FunctionTok{data.frame}\NormalTok{(}\AttributeTok{empirica =}\NormalTok{ freq\_rela, }\AttributeTok{teorica =}\NormalTok{ prob\_teorica)}
+\end{Highlighting}
+\end{Shaded}
 
 \textbf{5.} Usando o R e fixando a semente em 123, gere uma amostra aleatória
 de 5000 observações de uma variável aleatória \(X\) binomial com
@@ -12000,6 +12088,37 @@ parâmetros \(n = 20\) e \(p = 0.7\).
   e compare com o valor teórico.
 \end{enumerate}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Fixando a semente}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{\# Dimensão da amostra}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{5000}
+
+\CommentTok{\# Amostra aleatória}
+\NormalTok{amostra }\OtherTok{\textless{}{-}} \FunctionTok{rbinom}\NormalTok{(n, }\DecValTok{20}\NormalTok{, }\FloatTok{0.7}\NormalTok{)}
+
+\CommentTok{\# Histograma}
+\FunctionTok{hist}\NormalTok{(amostra, }\AttributeTok{freq =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{col=}\StringTok{"lightblue"}\NormalTok{)}
+
+\CommentTok{\# Função de probabilidade de X}
+\FunctionTok{lines}\NormalTok{(}\AttributeTok{x=}\DecValTok{0}\SpecialCharTok{:}\DecValTok{20}\NormalTok{,}\AttributeTok{y=}\FunctionTok{dbinom}\NormalTok{(}\DecValTok{0}\SpecialCharTok{:}\DecValTok{20}\NormalTok{,}\DecValTok{20}\NormalTok{,}\FloatTok{0.7}\NormalTok{), }\AttributeTok{col=}\StringTok{"magenta"}\NormalTok{, }\AttributeTok{type=}\StringTok{"p"}\NormalTok{)}
+
+\CommentTok{\# Função de Distribuição Empírica}
+\NormalTok{Fn }\OtherTok{\textless{}{-}} \FunctionTok{ecdf}\NormalTok{(amostra)}
+
+\CommentTok{\# Probabilidade estimada}
+\NormalTok{prob\_estimada }\OtherTok{\textless{}{-}} \FunctionTok{Fn}\NormalTok{(}\DecValTok{10}\NormalTok{)}
+
+\CommentTok{\# Probabilidade teórica P(X \textless{}= 10)}
+\NormalTok{prob\_teorica }\OtherTok{\textless{}{-}} \FunctionTok{pbinom}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\FloatTok{0.7}\NormalTok{)}
+
+\CommentTok{\# Comparação}
+\FunctionTok{data.frame}\NormalTok{(}\AttributeTok{empirica =}\NormalTok{ prob\_estimada, }\AttributeTok{teorica =}\NormalTok{ prob\_teorica)}
+\end{Highlighting}
+\end{Shaded}
+
 \textbf{6.} Usando o R e fixando a semente em 543, gere uma amostra aleatória
 de 2400 observações de uma variável aleatória \(Y\) de Poisson com
 parâmetro \(\lambda = 6\).
@@ -12014,10 +12133,69 @@ parâmetro \(\lambda = 6\).
   compare com o valor teórico.
 \end{enumerate}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Fixando a semente}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{543}\NormalTok{)}
+
+\CommentTok{\# Dimensão da amostra}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{2400}
+
+\CommentTok{\# Amostra aleatória}
+\NormalTok{amostra }\OtherTok{\textless{}{-}} \FunctionTok{rpois}\NormalTok{(n,}\DecValTok{6}\NormalTok{)}
+
+\CommentTok{\# Histograma}
+\FunctionTok{hist}\NormalTok{(amostra, }\AttributeTok{freq =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{col =} \StringTok{"lightblue"}\NormalTok{)}
+
+\CommentTok{\# Função de probabilidade de Y}
+\FunctionTok{lines}\NormalTok{(}\AttributeTok{x=}\DecValTok{0}\SpecialCharTok{:}\DecValTok{15}\NormalTok{, }\AttributeTok{y=}\FunctionTok{dpois}\NormalTok{(}\DecValTok{0}\SpecialCharTok{:}\DecValTok{15}\NormalTok{,}\DecValTok{6}\NormalTok{), }\AttributeTok{col=}\StringTok{"magenta"}\NormalTok{, }\AttributeTok{type =} \StringTok{"p"}\NormalTok{)}
+
+\CommentTok{\# Função de Distribuição Empírica}
+\NormalTok{Fn }\OtherTok{\textless{}{-}} \FunctionTok{ecdf}\NormalTok{(amostra)}
+
+\CommentTok{\# Probabilidade Estimada (Y\textgreater{}5)}
+\NormalTok{prob\_estimada }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{{-}}\FunctionTok{Fn}\NormalTok{(}\DecValTok{5}\NormalTok{)}
+
+\CommentTok{\# Probabilidade Teórica}
+\NormalTok{prob\_teorica }\OtherTok{\textless{}{-}} \FunctionTok{ppois}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{)}
+
+\CommentTok{\# Comparação}
+\FunctionTok{data.frame}\NormalTok{(}\AttributeTok{empirica =}\NormalTok{ prob\_estimada, }\AttributeTok{teorica =}\NormalTok{ prob\_teorica)}
+\end{Highlighting}
+\end{Shaded}
+
 \textbf{7.} Usando o R e fixando a semente em 345, gere uma amostra aleatória
 de 3450 observações de uma variável aleatória \(Z\) uniforme no intervalo
 \([0, 1]\). Use a função de distribuição empírica para estimar
 \(P(Z \leq 0.5)\) e compare com o valor teórico.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Fixando a semente}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{345}\NormalTok{)}
+
+\CommentTok{\# Dimensão da amostra}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{3450}
+
+\CommentTok{\# Amostra aleatória}
+\NormalTok{amostra }\OtherTok{\textless{}{-}} \FunctionTok{runif}\NormalTok{(n,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{)}
+
+\FunctionTok{hist}\NormalTok{(amostra, }\AttributeTok{freq=}\ConstantTok{FALSE}\NormalTok{, }\AttributeTok{col=}\StringTok{"lightblue"}\NormalTok{)}
+\FunctionTok{curve}\NormalTok{(}\FunctionTok{dunif}\NormalTok{(x,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{col=}\StringTok{"red"}\NormalTok{, }\AttributeTok{add=}\ConstantTok{TRUE}\NormalTok{)}
+
+\CommentTok{\# Função de Distribuição Empírica}
+\NormalTok{Fn }\OtherTok{\textless{}{-}} \FunctionTok{ecdf}\NormalTok{(amostra)}
+
+\CommentTok{\# Probabilidade Estimada P(Z \textless{}= 0.5)}
+\NormalTok{prob\_estimada }\OtherTok{\textless{}{-}} \FunctionTok{Fn}\NormalTok{(}\FloatTok{0.5}\NormalTok{)}
+
+\CommentTok{\# Probabilidade Teórica}
+\NormalTok{prob\_teorica }\OtherTok{\textless{}{-}} \FunctionTok{punif}\NormalTok{(}\FloatTok{0.5}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{)}
+
+\CommentTok{\# Comparação}
+\FunctionTok{data.frame}\NormalTok{(}\AttributeTok{empirica =}\NormalTok{ prob\_estimada, }\AttributeTok{teorica =}\NormalTok{ prob\_teorica)}
+\end{Highlighting}
+\end{Shaded}
 
 \textbf{8.} Usando o R e fixando a semente em 123, gere uma amostra aleatória
 de 3467 observações de uma variável aleatória \(W\) normal com média
@@ -12071,9 +12249,36 @@ com distribuição de Poisson com parâmetro \(\lambda = 3\). Para cada
 tamanho de amostra, calcule a média amostral e compare-a com o valor
 esperado teórico. Observe e comente a convergência das médias amostrais.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Fixando a semente}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{\# Dimensão das amostras}
+\NormalTok{tamanhos }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{100}\NormalTok{, }\DecValTok{1000}\NormalTok{, }\DecValTok{10000}\NormalTok{, }\DecValTok{100000}\NormalTok{)}
+
+\CommentTok{\# Parâmetro da Poisson}
+\NormalTok{lambda }\OtherTok{\textless{}{-}} \DecValTok{3}
+
+\CommentTok{\# Média teórica}
+\NormalTok{media }\OtherTok{\textless{}{-}} \DecValTok{3}
+
+\NormalTok{media\_amostra }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{length}\NormalTok{(tamanhos))}
+
+\CommentTok{\# Gerando media das amostras}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(tamanhos))\{}
+\NormalTok{  media\_amostra[i] }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(}\FunctionTok{rpois}\NormalTok{(tamanhos[i],}\AttributeTok{lambda =}\NormalTok{ lambda))}
+\NormalTok{\}}
+
+\CommentTok{\# Comparação}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(}\AttributeTok{Tamanho\_amostra =}\NormalTok{ tamanhos, }
+                 \AttributeTok{Media\_amostra =}\NormalTok{ media\_amostra,}
+                 \AttributeTok{Media\_teorica =}\NormalTok{ media))}
+\end{Highlighting}
+\end{Shaded}
+
 \textbf{12.} Usando o R e fixando a semente em 123, gere amostras de tamanho
-crescente \(n = 100, 1000, 10000, 100000\) de uma variável aleatória W com
-distribuição uniforme no intervalo \([0, 1]\). Para cada tamanho de
+crescente \(n = 100, 1000, 10000, 100000\) de uma variável aleatória \(W\) com distribuição uniforme no intervalo \([0, 1]\). Para cada tamanho de
 amostra, calcule a média amostral e compare-a com o valor esperado
 teórico. Observe e comente a convergência das médias amostrais.
 
@@ -12100,6 +12305,36 @@ média de cada uma dessas amostras, obtendo uma amostra de médias.
 Calcule ainda o valor esperado da distribuição teórica de \(X\) e compare
 com a média da amostra de médias.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Fixando a semente}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1058}\NormalTok{)}
+
+\CommentTok{\# Número de amostras}
+\NormalTok{m }\OtherTok{\textless{}{-}} \DecValTok{9060}
+
+\CommentTok{\# Dimensão de cada amostra}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{9}
+
+\CommentTok{\# Gerando amostra aleatória de X}
+\NormalTok{amostra }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\AttributeTok{data =} \FunctionTok{rbinom}\NormalTok{(m}\SpecialCharTok{*}\NormalTok{n, }\DecValTok{41}\NormalTok{, }\FloatTok{0.81}\NormalTok{), }\AttributeTok{nrow =}\NormalTok{ m, }\AttributeTok{ncol =} \DecValTok{9}\NormalTok{)}
+
+\CommentTok{\# Calculando a média de cada amostra}
+\NormalTok{media\_amostra }\OtherTok{\textless{}{-}} \FunctionTok{apply}\NormalTok{(amostra,}\DecValTok{1}\NormalTok{,mean)}
+\CommentTok{\# ou}
+\NormalTok{media\_amostra2 }\OtherTok{\textless{}{-}} \FunctionTok{rowMeans}\NormalTok{(amostra)}
+
+\CommentTok{\# Média da amostra de médias}
+\NormalTok{media }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(media\_amostra)}
+
+\CommentTok{\# Média teórica}
+\NormalTok{media\_teorica }\OtherTok{\textless{}{-}} \DecValTok{41}\SpecialCharTok{*}\FloatTok{0.81}
+
+\CommentTok{\# Comparação}
+\FunctionTok{data.frame}\NormalTok{(}\AttributeTok{empirica =}\NormalTok{ media, }\AttributeTok{teorica =}\NormalTok{ media\_teorica)}
+\end{Highlighting}
+\end{Shaded}
+
 \textbf{15.} Em um hospital, o tempo de atendimento de pacientes segue uma
 distribuição exponencial com média de 30 minutos. Um pesquisador deseja
 estimar o tempo médio de atendimento coletando amostras de diferentes
@@ -12113,12 +12348,12 @@ tamanhos.
   amostra, calcule a média de cada amostra e plote o histograma das
   médias amostrais para cada tamanho. Compare essas distribuições com
   a distribuição normal com média \(E(X)\) e desvio padrão
-  \(\sqrt{V(X)n}\) e comente sobre a aplicação do Teorema do Limite
+  \(\sqrt{V(X)/n}\) e comente sobre a aplicação do Teorema do Limite
   Central.
 \end{itemize}
 
 \textbf{16.} O tempo de espera (em minutos) para o atendimento no setor de
-informações de um banco é modelado por uma variável aleatória X com
+informações de um banco é modelado por uma variável aleatória \(X\) com
 distribuição \text{Uniforme}(\(a=5, b=20\)). Usando o R e fixando a
 semente em 1430, gere 8000 amostras de dimensão \(n=100\) dessa variável.
 Para essas amostras:
@@ -12142,6 +12377,50 @@ Para essas amostras:
   uma curva com distribuição normal com valor esperado \(E(X)\) e desvio
   padrão \(\sqrt{V(x)/n}\).
 \end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Fixando a semente}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1430}\NormalTok{)}
+
+\CommentTok{\# Número de amostras aleatórias}
+\NormalTok{m }\OtherTok{\textless{}{-}} \DecValTok{8000}
+
+\CommentTok{\# Dimensão de cada amostra aleatória}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{100}
+
+\CommentTok{\# Parâmetros uniforme}
+\NormalTok{a }\OtherTok{\textless{}{-}} \DecValTok{5}
+\NormalTok{b }\OtherTok{\textless{}{-}} \DecValTok{20}
+
+\CommentTok{\# Média teórica}
+\NormalTok{media }\OtherTok{\textless{}{-}}\NormalTok{ (a}\SpecialCharTok{+}\NormalTok{b)}\SpecialCharTok{/}\DecValTok{2}
+
+\CommentTok{\# Variância teórica}
+\NormalTok{variancia }\OtherTok{\textless{}{-}}\NormalTok{ ((b}\SpecialCharTok{{-}}\NormalTok{a)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}\SpecialCharTok{/}\DecValTok{12}
+
+\CommentTok{\# Amostra aleatória}
+\NormalTok{amostras }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\AttributeTok{data =} \FunctionTok{runif}\NormalTok{(m}\SpecialCharTok{*}\NormalTok{n,a,b), }\AttributeTok{nrow =}\NormalTok{ m, }\AttributeTok{ncol =}\NormalTok{ n)}
+
+\CommentTok{\# Calculando a soma de cada amostra}
+\NormalTok{soma\_amostras }\OtherTok{\textless{}{-}} \FunctionTok{apply}\NormalTok{(amostras, }\DecValTok{1}\NormalTok{, sum)}
+\CommentTok{\# ou}
+\NormalTok{soma\_amostras2 }\OtherTok{\textless{}{-}} \FunctionTok{rowSums}\NormalTok{(amostras)}
+
+\CommentTok{\# Histograma de frequência relativa da Soma + curva normal}
+\FunctionTok{hist}\NormalTok{(soma\_amostras, }\AttributeTok{freq=}\ConstantTok{FALSE}\NormalTok{, }\AttributeTok{col=}\StringTok{"lightblue"}\NormalTok{)}
+\FunctionTok{curve}\NormalTok{(}\FunctionTok{dnorm}\NormalTok{(x,n}\SpecialCharTok{*}\NormalTok{media,}\FunctionTok{sqrt}\NormalTok{(variancia}\SpecialCharTok{*}\NormalTok{n)), }\AttributeTok{col=}\StringTok{"red"}\NormalTok{, }\AttributeTok{add=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{lwd=}\DecValTok{2}\NormalTok{)}
+
+\CommentTok{\# Calculando a média de cada amostra}
+\NormalTok{media\_amostras }\OtherTok{\textless{}{-}} \FunctionTok{apply}\NormalTok{(amostras, }\DecValTok{1}\NormalTok{, mean)}
+\CommentTok{\# ou}
+\NormalTok{media\_amostras2 }\OtherTok{\textless{}{-}} \FunctionTok{rowMeans}\NormalTok{(amostras)}
+
+\CommentTok{\# Histograma e curva normal}
+\FunctionTok{hist}\NormalTok{(media\_amostras, }\AttributeTok{freq=}\ConstantTok{FALSE}\NormalTok{, }\AttributeTok{col=}\StringTok{"lightblue"}\NormalTok{)}
+\FunctionTok{curve}\NormalTok{(}\FunctionTok{dnorm}\NormalTok{(x,media,}\FunctionTok{sqrt}\NormalTok{(variancia}\SpecialCharTok{/}\NormalTok{n)), }\AttributeTok{col=}\StringTok{"red"}\NormalTok{, }\AttributeTok{add=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{lwd=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \textbf{17.} O tempo de atendimento (em minutos), de doentes graves num
 determinado hospital, é modelado por uma variável aleatória \(X\) com
@@ -12398,7 +12677,7 @@ valores: \(1,2,\ldots,10\) com probabilidade \(1/10\) para
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-287-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-297-1.pdf}
 
 \textbf{Exemplo 3}: Geração de uma variável aleatória com distribuição de
 Bernoulli. A variável aleatória \(X\) é de Bernoulli com parâmetro \(p\) se
@@ -12458,7 +12737,7 @@ método da transformada inversa
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-289-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-299-1.pdf}
 
 \textbf{Exemplo 5}: Geração de uma variável aleatória com distribuição
 \(Geométrica(p)\). Seja \(X\sim Geometrica(p)\). Lembre que
@@ -12493,7 +12772,7 @@ onde \(\lfloor  \rfloor =\) maior inteiro.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-290-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-300-1.pdf}
 
 \textbf{Exemplo 6}: Geração de uma variável aleatória com distribuição de
 Poisson. A variável aleatória \(X\) é de Poisson com média \(\lambda\) se
@@ -12537,7 +12816,7 @@ expresso da seguinte forma.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-291-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-301-1.pdf}
 
 \section{Exercícios}\label{exercuxedcios-31}
 
@@ -12552,7 +12831,7 @@ de probabilidades:
 \item
   Utilize o método da transformada inversa para gerar 1.000 amostras de \(X\).
 \item
-  Construa um histograma das amostras geradas e compare com as probabilidades teóricas.
+  Construa um gráfico de barras das amostras geradas e compare com as probabilidades teóricas.
 \end{itemize}
 
 \textbf{2.} Uma moeda viciada é tal que a probabilidade de cara (C) é 0.7 e a
@@ -12632,7 +12911,7 @@ A função \(F(x)=x^2\) é invertível no intervalo \((0,1)\) e
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-292-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-302-1.pdf}
 
 \textbf{Exemplo 2}: Geração de uma variável aleatória \(Uniforme(a,b)\). A
 geração é feita através de \[X = a+(b-a)U.\]
@@ -12650,7 +12929,7 @@ geração é feita através de \[X = a+(b-a)U.\]
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-293-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-303-1.pdf}
 
 \textbf{Exemplo 3}: Geração de uma variável aleatória exponencial. Seja \(X\)
 uma variável aleatória exponencial com taxa 1, então sua função de
@@ -12697,7 +12976,7 @@ aleatório \(U\) e fazendo \[X = -\frac{1}{\lambda}ln (U).\]
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-294-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-304-1.pdf}
 
 \section{Exercícios}\label{exercuxedcios-32}
 
@@ -13196,7 +13475,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-298-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-308-1.pdf}
 
 \subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o-2}
 
@@ -13221,7 +13500,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-299-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-309-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-4}
 
@@ -13249,7 +13528,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-300-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-310-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-4}
 
@@ -13272,7 +13551,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-301-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-311-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-5}
 
@@ -13295,7 +13574,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-302-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-312-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -13304,7 +13583,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-302-2.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-312-2.pdf}
 
 \textbf{Cálculo de probabilidade}: Seja
 \(X \sim \text{Binomial}(n=10, p=0.5)\).
@@ -13398,7 +13677,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-303-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-313-1.pdf}
 
 \subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o-3}
 
@@ -13431,7 +13710,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-304-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-314-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-5}
 
@@ -13467,7 +13746,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-305-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-315-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-5}
 
@@ -13487,7 +13766,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-306-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-316-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-6}
 
@@ -13508,7 +13787,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-307-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-317-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -13523,7 +13802,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-307-2.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-317-2.pdf}
 
 \textbf{Cálculo de probabilidades}: Seja \(X\sim\text{Poisson}(\lambda=5)\).
 
@@ -13612,7 +13891,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-308-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-318-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-2}
 
@@ -13637,7 +13916,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-309-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-319-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-6}
 
@@ -13668,7 +13947,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-310-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-320-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-6}
 
@@ -13688,7 +13967,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-311-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-321-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-7}
 
@@ -13713,7 +13992,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-312-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-322-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -13766,7 +14045,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-313-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-323-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-3}
 
@@ -13791,7 +14070,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-314-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-324-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-7}
 
@@ -13822,7 +14101,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-315-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-325-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-7}
 
@@ -13842,7 +14121,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-316-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-326-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-8}
 
@@ -13867,7 +14146,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-317-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-327-1.pdf}
 
 \section{Gerando uma variável aleatória com distribuição Normal}\label{gerando-uma-variuxe1vel-aleatuxf3ria-com-distribuiuxe7uxe3o-normal}
 
@@ -13897,7 +14176,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-318-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-328-1.pdf}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-4}
 
@@ -13922,7 +14201,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-319-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-329-1.pdf}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-8}
 
@@ -13953,7 +14232,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-320-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-330-1.pdf}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-8}
 
@@ -13973,7 +14252,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-321-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-331-1.pdf}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-9}
 
@@ -13998,7 +14277,7 @@ Seja \(X\sim \text{Normal}(0,1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{introR_files/figure-latex/unnamed-chunk-322-1.pdf}
+\includegraphics{introR_files/figure-latex/unnamed-chunk-332-1.pdf}
 
 \section{Exercícios}\label{exercuxedcios-34}
 
