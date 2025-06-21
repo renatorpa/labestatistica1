@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 29 Respostas | Introdução ao R e Simulação</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 29 Respostas | Introdução ao R e Simulação" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="/docs/ciencias.png" />
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 29 Respostas | Introdução ao R e Simulação" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="twitter:image" content="/docs/ciencias.png" />
+
+<meta name="author" content="Renato de Paula" />
+
+
+<meta name="date" content="2025-06-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="referências.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Laboratório de Estatistica I</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="01-intro.html"><a href="#pref%C3%A1cio"><i class="fa fa-check"></i><b>1</b> Prefácio</a></li>
+<li class="chapter" data-level="2" data-path="normas-de-funcionamento.html"><a href="normas-de-funcionamento.html"><i class="fa fa-check"></i><b>2</b> Normas de Funcionamento</a></li>
+<li class="chapter" data-level="3" data-path="r-e-rstudio.html"><a href="r-e-rstudio.html"><i class="fa fa-check"></i><b>3</b> R e RStudio</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="01-intro.html"><a href="#instala%C3%A7%C3%A3o-e-funcionalidades-b%C3%A1sicas"><i class="fa fa-check"></i><b>3.1</b> Instalação e funcionalidades básicas</a></li>
+<li class="chapter" data-level="3.2" data-path="r-e-rstudio.html"><a href="r-e-rstudio.html#navegar-no-rstudio"><i class="fa fa-check"></i><b>3.2</b> Navegar no RStudio</a></li>
+<li class="chapter" data-level="3.3" data-path="r-e-rstudio.html"><a href="r-e-rstudio.html#atalhos"><i class="fa fa-check"></i><b>3.3</b> Atalhos</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="01-intro.html"><a href="#r-como-calculadora-e-opera%C3%A7%C3%B5es-aritm%C3%A9ticas"><i class="fa fa-check"></i><b>4</b> R como Calculadora e Operações Aritméticas</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html"><i class="fa fa-check"></i><b>4.1</b> O Prompt do R</a></li>
+<li class="chapter" data-level="4.2" data-path="01-intro.html"><a href="#objetos-e-vari%C3%A1veis"><i class="fa fa-check"></i><b>4.2</b> Objetos e Variáveis</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="01-intro.html"><a href="#o-que-%C3%A9-uma-vari%C3%A1vel"><i class="fa fa-check"></i><b>4.2.1</b> O que é uma Variável?</a></li>
+<li class="chapter" data-level="4.2.2" data-path="01-intro.html"><a href="#atribui%C3%A7%C3%B5es"><i class="fa fa-check"></i><b>4.2.2</b> Atribuições</a></li>
+<li class="chapter" data-level="4.2.3" data-path="01-intro.html"><a href="#regras-para-defini%C3%A7%C3%A3o-de-vari%C3%A1veis"><i class="fa fa-check"></i><b>4.2.3</b> Regras para definição de variáveis</a></li>
+<li class="chapter" data-level="4.2.4" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#tipos-de-dados"><i class="fa fa-check"></i><b>4.2.4</b> Tipos de Dados</a></li>
+<li class="chapter" data-level="4.2.5" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#comandos-importantes"><i class="fa fa-check"></i><b>4.2.5</b> Comandos Importantes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="01-intro.html"><a href="#operadores-aritm%C3%A9ticos-em-r"><i class="fa fa-check"></i><b>4.3</b> Operadores Aritméticos em R</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="01-intro.html"><a href="#controle-da-quantidade-de-d%C3%ADgitos-mostrados"><i class="fa fa-check"></i><b>4.3.1</b> Controle da Quantidade de Dígitos Mostrados</a></li>
+<li class="chapter" data-level="4.3.2" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#objetos-predefinidos-infinito-indefinido-e-valores-ausentes"><i class="fa fa-check"></i><b>4.3.2</b> Objetos Predefinidos, Infinito, Indefinido e Valores Ausentes</a></li>
+<li class="chapter" data-level="4.3.3" data-path="01-intro.html"><a href="#lidando-com-nan-e-na-em-opera%C3%A7%C3%B5es"><i class="fa fa-check"></i><b>4.3.3</b> Lidando com NaN e NA em Operações</a></li>
+<li class="chapter" data-level="4.3.4" data-path="01-intro.html"><a href="#fun%C3%A7%C3%B5es-%C3%BAteis-para-detectar-nan-e-na"><i class="fa fa-check"></i><b>4.3.4</b> Funções Úteis para Detectar NaN e NA</a></li>
+<li class="chapter" data-level="4.3.5" data-path="01-intro.html"><a href="#tipagem-din%C3%A2mica-em-r"><i class="fa fa-check"></i><b>4.3.5</b> Tipagem Dinâmica em R</a></li>
+<li class="chapter" data-level="4.3.6" data-path="01-intro.html"><a href="#convers%C3%A3o-entre-tipos-de-dados"><i class="fa fa-check"></i><b>4.3.6</b> Conversão entre Tipos de Dados</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="01-intro.html"><a href="#fun%C3%A7%C3%B5es-print-readline-paste-e-cat"><i class="fa fa-check"></i><b>4.4</b> Funções <code>print()</code>, <code>readline()</code>, <code>paste()</code> e <code>cat()</code></a></li>
+<li class="chapter" data-level="4.5" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#quizz"><i class="fa fa-check"></i><b>4.5</b> Quizz</a></li>
+<li class="chapter" data-level="4.6" data-path="01-intro.html"><a href="#operadores-l%C3%B3gicos-e-relacionais"><i class="fa fa-check"></i><b>4.6</b> Operadores Lógicos e Relacionais</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="01-intro.html"><a href="#operadores-l%C3%B3gicos"><i class="fa fa-check"></i><b>4.6.1</b> Operadores Lógicos</a></li>
+<li class="chapter" data-level="4.6.2" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#operadores-relacionais"><i class="fa fa-check"></i><b>4.6.2</b> Operadores Relacionais</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="r-como-calculadora-e-operações-aritméticas.html"><a href="r-como-calculadora-e-operações-aritméticas.html#quizz-1"><i class="fa fa-check"></i><b>4.7</b> Quizz</a></li>
+<li class="chapter" data-level="4.8" data-path="01-intro.html"><a href="#exerc%C3%ADcios"><i class="fa fa-check"></i><b>4.8</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="01-intro.html"><a href="#estrutura-de-dados-b%C3%A1sicas"><i class="fa fa-check"></i><b>5</b> Estrutura de Dados Básicas</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html"><i class="fa fa-check"></i><b>5.1</b> Vetor</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#tipos-comuns-de-vetores"><i class="fa fa-check"></i><b>5.1.1</b> Tipos Comuns de Vetores</a></li>
+<li class="chapter" data-level="5.1.2" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#construindo-vetores"><i class="fa fa-check"></i><b>5.1.2</b> Construindo Vetores</a></li>
+<li class="chapter" data-level="5.1.3" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#acesso-a-elementos-de-um-vetor"><i class="fa fa-check"></i><b>5.1.3</b> Acesso a Elementos de um Vetor</a></li>
+<li class="chapter" data-level="5.1.4" data-path="01-intro.html"><a href="#fun%C3%A7%C3%B5es-comuns-para-vetores"><i class="fa fa-check"></i><b>5.1.4</b> Funções Comuns para Vetores</a></li>
+<li class="chapter" data-level="5.1.5" data-path="01-intro.html"><a href="#opera%C3%A7%C3%B5es-com-vetores"><i class="fa fa-check"></i><b>5.1.5</b> Operações com Vetores</a></li>
+<li class="chapter" data-level="5.1.6" data-path="01-intro.html"><a href="#exerc%C3%ADcios-1"><i class="fa fa-check"></i><b>5.1.6</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#fatores"><i class="fa fa-check"></i><b>5.2</b> Fatores</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="01-intro.html"><a href="#manipula%C3%A7%C3%A3o-de-fatores"><i class="fa fa-check"></i><b>5.2.1</b> Manipulação de Fatores</a></li>
+<li class="chapter" data-level="5.2.2" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#gerando-fatores-com-gl"><i class="fa fa-check"></i><b>5.2.2</b> Gerando Fatores com <code>gl()</code></a></li>
+<li class="chapter" data-level="5.2.3" data-path="01-intro.html"><a href="#exerc%C3%ADcios-2"><i class="fa fa-check"></i><b>5.2.3</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#matriz-e-array"><i class="fa fa-check"></i><b>5.3</b> Matriz e Array</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#criando-matrizes"><i class="fa fa-check"></i><b>5.3.1</b> Criando matrizes</a></li>
+<li class="chapter" data-level="5.3.2" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#criando-um-array"><i class="fa fa-check"></i><b>5.3.2</b> Criando um array</a></li>
+<li class="chapter" data-level="5.3.3" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#acessar-elementos-de-um-array"><i class="fa fa-check"></i><b>5.3.3</b> Acessar Elementos de um array</a></li>
+<li class="chapter" data-level="5.3.4" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#construindo-matrizes"><i class="fa fa-check"></i><b>5.3.4</b> Construindo Matrizes</a></li>
+<li class="chapter" data-level="5.3.5" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#acessar-elementos-de-uma-matriz"><i class="fa fa-check"></i><b>5.3.5</b> Acessar Elementos de uma Matriz</a></li>
+<li class="chapter" data-level="5.3.6" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#nomear-linhas-e-colunas-de-uma-matriz"><i class="fa fa-check"></i><b>5.3.6</b> Nomear Linhas e Colunas de uma Matriz</a></li>
+<li class="chapter" data-level="5.3.7" data-path="01-intro.html"><a href="#multiplica%C3%A7%C3%A3o-de-matrizes"><i class="fa fa-check"></i><b>5.3.7</b> Multiplicação de matrizes</a></li>
+<li class="chapter" data-level="5.3.8" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#adicionar-linhas-e-colunas-a-uma-matriz"><i class="fa fa-check"></i><b>5.3.8</b> Adicionar Linhas e Colunas a uma Matriz</a></li>
+<li class="chapter" data-level="5.3.9" data-path="01-intro.html"><a href="#algumas-outras-fun%C3%A7%C3%B5es"><i class="fa fa-check"></i><b>5.3.9</b> Algumas outras funções</a></li>
+<li class="chapter" data-level="5.3.10" data-path="01-intro.html"><a href="#exerc%C3%ADcios-3"><i class="fa fa-check"></i><b>5.3.10</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#data-frame"><i class="fa fa-check"></i><b>5.4</b> Data Frame</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#criar-um-data-frame"><i class="fa fa-check"></i><b>5.4.1</b> Criar um Data Frame</a></li>
+<li class="chapter" data-level="5.4.2" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#aceder-a-linhas-e-colunas"><i class="fa fa-check"></i><b>5.4.2</b> Aceder a Linhas e Colunas</a></li>
+<li class="chapter" data-level="5.4.3" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#adicionar-e-remover-colunas"><i class="fa fa-check"></i><b>5.4.3</b> Adicionar e Remover Colunas</a></li>
+<li class="chapter" data-level="5.4.4" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#fundir-data-frames"><i class="fa fa-check"></i><b>5.4.4</b> Fundir Data Frames</a></li>
+<li class="chapter" data-level="5.4.5" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#explorar-o-data-frame"><i class="fa fa-check"></i><b>5.4.5</b> Explorar o Data Frame</a></li>
+<li class="chapter" data-level="5.4.6" data-path="01-intro.html"><a href="#a-fun%C3%A7%C3%A3o-subset"><i class="fa fa-check"></i><b>5.4.6</b> A função <code>subset()</code></a></li>
+<li class="chapter" data-level="5.4.7" data-path="01-intro.html"><a href="#a-fun%C3%A7%C3%A3o-summary"><i class="fa fa-check"></i><b>5.4.7</b> A Função <code>summary()</code></a></li>
+<li class="chapter" data-level="5.4.8" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#valores-ausentes"><i class="fa fa-check"></i><b>5.4.8</b> Valores ausentes</a></li>
+<li class="chapter" data-level="5.4.9" data-path="01-intro.html"><a href="#exerc%C3%ADcios-4"><i class="fa fa-check"></i><b>5.4.9</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#listas"><i class="fa fa-check"></i><b>5.5</b> Listas</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#criar-e-manipular-listas"><i class="fa fa-check"></i><b>5.5.1</b> Criar e Manipular Listas</a></li>
+<li class="chapter" data-level="5.5.2" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#por-que-usar-listas"><i class="fa fa-check"></i><b>5.5.2</b> Por que usar listas?</a></li>
+<li class="chapter" data-level="5.5.3" data-path="01-intro.html"><a href="#exerc%C3%ADcios-5"><i class="fa fa-check"></i><b>5.5.3</b> Exercícios</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="01-intro.html"><a href="#estruturas-de-sele%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>6</b> Estruturas de Seleção</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html"><i class="fa fa-check"></i><b>6.1</b> Condicional <code>if</code></a></li>
+<li class="chapter" data-level="6.2" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html#estrutura-if...else"><i class="fa fa-check"></i><b>6.2</b> Estrutura <code>if...else</code></a></li>
+<li class="chapter" data-level="6.3" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html#condicional-else-if"><i class="fa fa-check"></i><b>6.3</b> Condicional <code>else if</code></a></li>
+<li class="chapter" data-level="6.4" data-path="01-intro.html"><a href="#a-fun%C3%A7%C3%A3o-ifelse"><i class="fa fa-check"></i><b>6.4</b> A função <code>ifelse()</code></a></li>
+<li class="chapter" data-level="6.5" data-path="estruturas-de-seleção.html"><a href="estruturas-de-seleção.html#exemplos"><i class="fa fa-check"></i><b>6.5</b> Exemplos</a></li>
+<li class="chapter" data-level="6.6" data-path="01-intro.html"><a href="#exerc%C3%ADcios-6"><i class="fa fa-check"></i><b>6.6</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="01-intro.html"><a href="#fun%C3%A7%C3%B5es"><i class="fa fa-check"></i><b>7</b> Funções</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="01-intro.html"><a href="#exerc%C3%ADcios-7"><i class="fa fa-check"></i><b>7.1</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="scripts-em-r.html"><a href="scripts-em-r.html"><i class="fa fa-check"></i><b>8</b> Scripts em R</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="01-intro.html"><a href="#exerc%C3%ADcios-8"><i class="fa fa-check"></i><b>8.1</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html"><i class="fa fa-check"></i><b>9</b> Leitura de dados</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#leitura-de-dados-da-entrada-do-utilizador"><i class="fa fa-check"></i><b>9.1</b> Leitura de Dados da Entrada do Utilizador</a></li>
+<li class="chapter" data-level="9.2" data-path="01-intro.html"><a href="#diret%C3%B3rio-de-trabalho"><i class="fa fa-check"></i><b>9.2</b> Diretório de trabalho</a></li>
+<li class="chapter" data-level="9.3" data-path="01-intro.html"><a href="#a-fun%C3%A7%C3%A3o-read.table"><i class="fa fa-check"></i><b>9.3</b> A Função <code>read.table()</code></a></li>
+<li class="chapter" data-level="9.4" data-path="01-intro.html"><a href="#a-fun%C3%A7%C3%A3o-read.csv"><i class="fa fa-check"></i><b>9.4</b> A função <code>read.csv()</code></a></li>
+<li class="chapter" data-level="9.5" data-path="01-intro.html"><a href="#a-fun%C3%A7%C3%A3o-read.csv2"><i class="fa fa-check"></i><b>9.5</b> A função <code>read.csv2()</code></a></li>
+<li class="chapter" data-level="9.6" data-path="01-intro.html"><a href="#a-fun%C3%A7%C3%A3o-read_excel"><i class="fa fa-check"></i><b>9.6</b> A Função <code>read_excel()</code></a></li>
+<li class="chapter" data-level="9.7" data-path="leitura-de-dados.html"><a href="leitura-de-dados.html#leitura-de-dados-online"><i class="fa fa-check"></i><b>9.7</b> Leitura de Dados Online</a></li>
+<li class="chapter" data-level="9.8" data-path="01-intro.html"><a href="#exerc%C3%ADcios-9"><i class="fa fa-check"></i><b>9.8</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>10</b> Pipe</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="pipe.html"><a href="pipe.html#o-operador-pipe"><i class="fa fa-check"></i><b>10.1</b> O operador pipe</a></li>
+<li class="chapter" data-level="10.2" data-path="01-intro.html"><a href="#exerc%C3%ADcios-10"><i class="fa fa-check"></i><b>10.2</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="loop-while.html"><a href="loop-while.html"><i class="fa fa-check"></i><b>11</b> Loop while</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="01-intro.html"><a href="#exerc%C3%ADcios-11"><i class="fa fa-check"></i><b>11.1</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="loop-for.html"><a href="loop-for.html"><i class="fa fa-check"></i><b>12</b> Loop for</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="01-intro.html"><a href="#exerc%C3%ADcios-12"><i class="fa fa-check"></i><b>12.1</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="01-intro.html"><a href="#fam%C3%ADlia-xapply"><i class="fa fa-check"></i><b>13</b> Família <code>Xapply()</code></a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="01-intro.html"><a href="#fun%C3%A7%C3%A3o-apply"><i class="fa fa-check"></i><b>13.1</b> Função <code>apply()</code></a></li>
+<li class="chapter" data-level="13.2" data-path="01-intro.html"><a href="#fun%C3%A7%C3%A3o-lapply"><i class="fa fa-check"></i><b>13.2</b> Função <code>lapply()</code></a></li>
+<li class="chapter" data-level="13.3" data-path="01-intro.html"><a href="#fun%C3%A7%C3%A3o-sapply"><i class="fa fa-check"></i><b>13.3</b> Função <code>sapply()</code></a></li>
+<li class="chapter" data-level="13.4" data-path="01-intro.html"><a href="#fun%C3%A7%C3%A3o-tapply"><i class="fa fa-check"></i><b>13.4</b> Função <code>tapply()</code></a></li>
+<li class="chapter" data-level="13.5" data-path="01-intro.html"><a href="#exerc%C3%ADcios-13"><i class="fa fa-check"></i><b>13.5</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="01-intro.html"><a href="#exerc%C3%ADcios-de-revis%C3%A3o"><i class="fa fa-check"></i><b>14</b> Exercícios de Revisão</a></li>
+<li class="chapter" data-level="15" data-path="01-intro.html"><a href="#gr%C3%A1ficos-r-base"><i class="fa fa-check"></i><b>15</b> Gráficos (R base)</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="01-intro.html"><a href="#gr%C3%A1fico-de-barras"><i class="fa fa-check"></i><b>15.1</b> Gráfico de Barras</a></li>
+<li class="chapter" data-level="15.2" data-path="01-intro.html"><a href="#gr%C3%A1fico-circular-pizza"><i class="fa fa-check"></i><b>15.2</b> Gráfico Circular (Pizza)</a></li>
+<li class="chapter" data-level="15.3" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html"><i class="fa fa-check"></i><b>15.3</b> Histograma</a></li>
+<li class="chapter" data-level="15.4" data-path="gráficos-r-base.html"><a href="gráficos-r-base.html#box-plot"><i class="fa fa-check"></i><b>15.4</b> Box-plot</a></li>
+<li class="chapter" data-level="15.5" data-path="01-intro.html"><a href="#gr%C3%A1fico-de-dispers%C3%A3o"><i class="fa fa-check"></i><b>15.5</b> Gráfico de Dispersão</a></li>
+<li class="chapter" data-level="15.6" data-path="01-intro.html"><a href="#gr%C3%A1fico-de-linhas"><i class="fa fa-check"></i><b>15.6</b> Gráfico de Linhas</a></li>
+<li class="chapter" data-level="15.7" data-path="01-intro.html"><a href="#exerc%C3%ADcios-14"><i class="fa fa-check"></i><b>15.7</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="01-intro.html"><a href="#manipula%C3%A7%C3%A3o-de-dados"><i class="fa fa-check"></i><b>16</b> Manipulação de dados</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html"><i class="fa fa-check"></i><b>16.1</b> Tibbles</a>
+<ul>
+<li class="chapter" data-level="16.1.1" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#criar-e-trabalhar-com-tibbles"><i class="fa fa-check"></i><b>16.1.1</b> Criar e trabalhar com Tibbles</a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="01-intro.html"><a href="#manipula%C3%A7%C3%A3o-de-dados-com-dplyr"><i class="fa fa-check"></i><b>16.2</b> Manipulação de Dados com <code>dplyr</code></a>
+<ul>
+<li class="chapter" data-level="16.2.1" data-path="01-intro.html"><a href="#sele%C3%A7%C3%A3o-de-colunas-com-select"><i class="fa fa-check"></i><b>16.2.1</b> Seleção de Colunas com <code>select()</code></a></li>
+<li class="chapter" data-level="16.2.2" data-path="01-intro.html"><a href="#exerc%C3%ADcios-15"><i class="fa fa-check"></i><b>16.2.2</b> Exercícios</a></li>
+<li class="chapter" data-level="16.2.3" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#ordenando-a-base-de-dados"><i class="fa fa-check"></i><b>16.2.3</b> Ordenando a Base de Dados</a></li>
+<li class="chapter" data-level="16.2.4" data-path="01-intro.html"><a href="#exerc%C3%ADcios-16"><i class="fa fa-check"></i><b>16.2.4</b> Exercícios</a></li>
+<li class="chapter" data-level="16.2.5" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#filtrando-linhas-da-base-de-dados"><i class="fa fa-check"></i><b>16.2.5</b> Filtrando Linhas da Base de Dados</a></li>
+<li class="chapter" data-level="16.2.6" data-path="01-intro.html"><a href="#exerc%C3%ADcios-17"><i class="fa fa-check"></i><b>16.2.6</b> Exercícios</a></li>
+<li class="chapter" data-level="16.2.7" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#modificar-e-criar-novas-colunas"><i class="fa fa-check"></i><b>16.2.7</b> Modificar e criar novas colunas</a></li>
+<li class="chapter" data-level="16.2.8" data-path="01-intro.html"><a href="#exerc%C3%ADcios-18"><i class="fa fa-check"></i><b>16.2.8</b> Exercícios</a></li>
+<li class="chapter" data-level="16.2.9" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#sumarizar-a-base-de-dados"><i class="fa fa-check"></i><b>16.2.9</b> Sumarizar a Base de Dados</a></li>
+<li class="chapter" data-level="16.2.10" data-path="01-intro.html"><a href="#exer%C3%ADcios"><i class="fa fa-check"></i><b>16.2.10</b> Exerícios</a></li>
+<li class="chapter" data-level="16.2.11" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#juntando-tabelas-em-r-com-dplyr"><i class="fa fa-check"></i><b>16.2.11</b> Juntando Tabelas em R com dplyr</a></li>
+<li class="chapter" data-level="16.2.12" data-path="01-intro.html"><a href="#exerc%C3%ADcios-19"><i class="fa fa-check"></i><b>16.2.12</b> Exercícios</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="o-pacote-ggplot2.html"><a href="o-pacote-ggplot2.html"><i class="fa fa-check"></i><b>17</b> O pacote <code>ggplot2</code></a></li>
+<li class="chapter" data-level="18" data-path="01-intro.html"><a href="#a-fun%C3%A7%C3%A3o-sample"><i class="fa fa-check"></i><b>18</b> A função <code>sample()</code></a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="01-intro.html"><a href="#exerc%C3%ADcios-20"><i class="fa fa-check"></i><b>18.1</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="01-intro.html"><a href="#probabilidade-e-vari%C3%A1veis-aleat%C3%B3rias"><i class="fa fa-check"></i><b>19</b> Probabilidade e Variáveis Aleatórias</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="01-intro.html"><a href="#exerc%C3%ADcios-21"><i class="fa fa-check"></i><b>19.1</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="01-intro.html"><a href="#simula%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>20</b> Simulação</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="01-intro.html"><a href="#simula%C3%A7%C3%A3o-e-gera%C3%A7%C3%A3o-de-n%C3%BAmeros-pseudoaleat%C3%B3rios"><i class="fa fa-check"></i><b>20.1</b> Simulação e Geração de Números Pseudoaleatórios</a></li>
+<li class="chapter" data-level="20.2" data-path="01-intro.html"><a href="#a-fun%C3%A7%C3%A3o-set.seed"><i class="fa fa-check"></i><b>20.2</b> A função <code>set.seed()</code></a></li>
+<li class="chapter" data-level="20.3" data-path="01-intro.html"><a href="#exerc%C3%ADcios-22"><i class="fa fa-check"></i><b>20.3</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="01-intro.html"><a href="#distribui%C3%A7%C3%B5es-de-probabilidade"><i class="fa fa-check"></i><b>21</b> Distribuições de Probabilidade</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="01-intro.html"><a href="#fun%C3%A7%C3%A3o-de-distribui%C3%A7%C3%A3o-emp%C3%ADrica"><i class="fa fa-check"></i><b>21.1</b> Função de distribuição empírica</a>
+<ul>
+<li class="chapter" data-level="21.1.1" data-path="01-intro.html"><a href="#fun%C3%A7%C3%A3o-de-distribui%C3%A7%C3%A3o-emp%C3%ADrica-no-r-fun%C3%A7%C3%A3o-ecdf"><i class="fa fa-check"></i><b>21.1.1</b> Função de distribuição empírica no R, função <code>ecdf()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="21.2" data-path="01-intro.html"><a href="#distribui%C3%A7%C3%A3o-uniforme-discreta"><i class="fa fa-check"></i><b>21.2</b> Distribuição Uniforme Discreta</a>
+<ul>
+<li class="chapter" data-level="21.2.1" data-path="01-intro.html"><a href="#exerc%C3%ADcios-23"><i class="fa fa-check"></i><b>21.2.1</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="21.3" data-path="01-intro.html"><a href="#distribui%C3%A7%C3%A3o-de-bernoulli"><i class="fa fa-check"></i><b>21.3</b> Distribuição de Bernoulli</a>
+<ul>
+<li class="chapter" data-level="21.3.1" data-path="01-intro.html"><a href="#c%C3%A1lculo-de-probabilidades"><i class="fa fa-check"></i><b>21.3.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="21.3.2" data-path="01-intro.html"><a href="#exerc%C3%ADcios-24"><i class="fa fa-check"></i><b>21.3.2</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="21.4" data-path="01-intro.html"><a href="#distribui%C3%A7%C3%A3o-binomial"><i class="fa fa-check"></i><b>21.4</b> Distribuição Binomial</a>
+<ul>
+<li class="chapter" data-level="21.4.1" data-path="01-intro.html"><a href="#c%C3%A1lculo-de-probabilidades-1"><i class="fa fa-check"></i><b>21.4.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="21.4.2" data-path="01-intro.html"><a href="#fun%C3%A7%C3%A3o-massa-de-probabilidade-te%C3%B3rica"><i class="fa fa-check"></i><b>21.4.2</b> Função massa de probabilidade (teórica)</a></li>
+<li class="chapter" data-level="21.4.3" data-path="01-intro.html"><a href="#fun%C3%A7%C3%A3o-massa-de-probabilidade-simula%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>21.4.3</b> Função massa de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="21.4.4" data-path="01-intro.html"><a href="#compara%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>21.4.4</b> Comparação</a></li>
+<li class="chapter" data-level="21.4.5" data-path="01-intro.html"><a href="#fun%C3%A7%C3%A3o-de-distribui%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>21.4.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="21.4.6" data-path="01-intro.html"><a href="#fun%C3%A7%C3%A3o-de-distribui%C3%A7%C3%A3o-emp%C3%ADrica-1"><i class="fa fa-check"></i><b>21.4.6</b> Função de distribuição empírica</a></li>
+<li class="chapter" data-level="21.4.7" data-path="01-intro.html"><a href="#exerc%C3%ADcios-25"><i class="fa fa-check"></i><b>21.4.7</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="21.5" data-path="01-intro.html"><a href="#distribui%C3%A7%C3%A3o-geom%C3%A9trica"><i class="fa fa-check"></i><b>21.5</b> Distribuição Geométrica</a>
+<ul>
+<li class="chapter" data-level="21.5.1" data-path="01-intro.html"><a href="#c%C3%A1lculo-de-probabilidades-2"><i class="fa fa-check"></i><b>21.5.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="21.5.2" data-path="01-intro.html"><a href="#exerc%C3%ADcios-26"><i class="fa fa-check"></i><b>21.5.2</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="21.6" data-path="01-intro.html"><a href="#distribui%C3%A7%C3%A3o-de-poisson"><i class="fa fa-check"></i><b>21.6</b> Distribuição de Poisson</a>
+<ul>
+<li class="chapter" data-level="21.6.1" data-path="01-intro.html"><a href="#c%C3%A1lculo-de-probabilidades-3"><i class="fa fa-check"></i><b>21.6.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="21.6.2" data-path="01-intro.html"><a href="#fun%C3%A7%C3%A3o-massa-de-probabilidade-te%C3%B3rica-1"><i class="fa fa-check"></i><b>21.6.2</b> Função massa de probabilidade (teórica)</a></li>
+<li class="chapter" data-level="21.6.3" data-path="01-intro.html"><a href="#fun%C3%A7%C3%A3o-massa-de-probabilidade-simula%C3%A7%C3%A3o-1"><i class="fa fa-check"></i><b>21.6.3</b> Função massa de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="21.6.4" data-path="01-intro.html"><a href="#compara%C3%A7%C3%A3o-1"><i class="fa fa-check"></i><b>21.6.4</b> Comparação</a></li>
+<li class="chapter" data-level="21.6.5" data-path="01-intro.html"><a href="#fun%C3%A7%C3%A3o-de-distribui%C3%A7%C3%A3o-1"><i class="fa fa-check"></i><b>21.6.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="21.6.6" data-path="01-intro.html"><a href="#fun%C3%A7%C3%A3o-de-distribui%C3%A7%C3%A3o-emp%C3%ADrica-2"><i class="fa fa-check"></i><b>21.6.6</b> Função de distribuição empírica</a></li>
+<li class="chapter" data-level="21.6.7" data-path="01-intro.html"><a href="#exerc%C3%ADcios-27"><i class="fa fa-check"></i><b>21.6.7</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="21.7" data-path="01-intro.html"><a href="#distribui%C3%A7%C3%A3o-uniforme-cont%C3%ADnua"><i class="fa fa-check"></i><b>21.7</b> Distribuição Uniforme Contínua</a>
+<ul>
+<li class="chapter" data-level="21.7.1" data-path="01-intro.html"><a href="#nota%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>21.7.1</b> Notação</a></li>
+<li class="chapter" data-level="21.7.2" data-path="01-intro.html"><a href="#c%C3%A1lculo-de-probabilidades-4"><i class="fa fa-check"></i><b>21.7.2</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="21.7.3" data-path="01-intro.html"><a href="#fun%C3%A7%C3%A3o-densidade-de-probabilidade"><i class="fa fa-check"></i><b>21.7.3</b> Função densidade de probabilidade</a></li>
+<li class="chapter" data-level="21.7.4" data-path="01-intro.html"><a href="#fun%C3%A7%C3%A3o-densidade-de-probabilidade-simula%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>21.7.4</b> Função densidade de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="21.7.5" data-path="01-intro.html"><a href="#compara%C3%A7%C3%A3o-2"><i class="fa fa-check"></i><b>21.7.5</b> Comparação</a></li>
+<li class="chapter" data-level="21.7.6" data-path="01-intro.html"><a href="#fun%C3%A7%C3%A3o-de-distribui%C3%A7%C3%A3o-2"><i class="fa fa-check"></i><b>21.7.6</b> Função de distribuição</a></li>
+<li class="chapter" data-level="21.7.7" data-path="01-intro.html"><a href="#fun%C3%A7%C3%A3o-de-distribui%C3%A7%C3%A3o-emp%C3%ADrica-3"><i class="fa fa-check"></i><b>21.7.7</b> Função de distribuição empírica</a></li>
+<li class="chapter" data-level="21.7.8" data-path="01-intro.html"><a href="#exerc%C3%ADcios-28"><i class="fa fa-check"></i><b>21.7.8</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="21.8" data-path="01-intro.html"><a href="#distribui%C3%A7%C3%A3o-exponencial"><i class="fa fa-check"></i><b>21.8</b> Distribuição Exponencial</a>
+<ul>
+<li class="chapter" data-level="21.8.1" data-path="01-intro.html"><a href="#c%C3%A1lculo-de-probabilidades-5"><i class="fa fa-check"></i><b>21.8.1</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="21.8.2" data-path="01-intro.html"><a href="#fun%C3%A7%C3%A3o-densidade-de-probabilidade-te%C3%B3rica"><i class="fa fa-check"></i><b>21.8.2</b> Função densidade de probabilidade (teórica)</a></li>
+<li class="chapter" data-level="21.8.3" data-path="01-intro.html"><a href="#fun%C3%A7%C3%A3o-densidade-de-probabilidade-simula%C3%A7%C3%A3o-1"><i class="fa fa-check"></i><b>21.8.3</b> Função densidade de probabilidade (simulação)</a></li>
+<li class="chapter" data-level="21.8.4" data-path="01-intro.html"><a href="#compara%C3%A7%C3%A3o-3"><i class="fa fa-check"></i><b>21.8.4</b> Comparação</a></li>
+<li class="chapter" data-level="21.8.5" data-path="01-intro.html"><a href="#fun%C3%A7%C3%A3o-de-distribui%C3%A7%C3%A3o-3"><i class="fa fa-check"></i><b>21.8.5</b> Função de distribuição</a></li>
+<li class="chapter" data-level="21.8.6" data-path="01-intro.html"><a href="#fun%C3%A7%C3%A3o-de-distribui%C3%A7%C3%A3o-emp%C3%ADrica-4"><i class="fa fa-check"></i><b>21.8.6</b> Função de distribuição empírica</a></li>
+<li class="chapter" data-level="21.8.7" data-path="01-intro.html"><a href="#exerc%C3%ADcios-29"><i class="fa fa-check"></i><b>21.8.7</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="21.9" data-path="01-intro.html"><a href="#distribui%C3%A7%C3%A3o-normal"><i class="fa fa-check"></i><b>21.9</b> Distribuição Normal</a>
+<ul>
+<li class="chapter" data-level="21.9.1" data-path="01-intro.html"><a href="#exerc%C3%ADcios-30"><i class="fa fa-check"></i><b>21.9.1</b> Exercícios</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="01-intro.html"><a href="#exerc%C3%ADcios-extra"><i class="fa fa-check"></i><b>22</b> Exercícios extra</a></li>
+<li class="chapter" data-level="23" data-path="01-intro.html"><a href="#m%C3%A9todo-da-transformada-inversa"><i class="fa fa-check"></i><b>23</b> Método da transformada inversa</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="01-intro.html"><a href="#vari%C3%A1vel-aleat%C3%B3ria-discreta"><i class="fa fa-check"></i><b>23.1</b> Variável aleatória discreta</a></li>
+<li class="chapter" data-level="23.2" data-path="01-intro.html"><a href="#exerc%C3%ADcios-31"><i class="fa fa-check"></i><b>23.2</b> Exercícios</a></li>
+<li class="chapter" data-level="23.3" data-path="01-intro.html"><a href="#vari%C3%A1vel-aleat%C3%B3ria-cont%C3%ADnua"><i class="fa fa-check"></i><b>23.3</b> Variável aleatória contínua</a></li>
+<li class="chapter" data-level="23.4" data-path="01-intro.html"><a href="#exerc%C3%ADcios-32"><i class="fa fa-check"></i><b>23.4</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="01-intro.html"><a href="#m%C3%A9todo-da-aceita%C3%A7%C3%A3o-rejei%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>24</b> Método da aceitação-rejeição</a></li>
+<li class="chapter" data-level="25" data-path="teoremas-limites.html"><a href="teoremas-limites.html"><i class="fa fa-check"></i><b>25</b> Teoremas limites</a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="01-intro.html"><a href="#lei-fraca-dos-grandes-n%C3%BAmeros"><i class="fa fa-check"></i><b>25.1</b> Lei fraca dos grandes números</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="01-intro.html"><a href="#usando-n%C3%BAmeros-aleat%C3%B3rios-para-o-c%C3%A1lculo-de-integrais"><i class="fa fa-check"></i><b>26</b> Usando números aleatórios para o cálculo de Integrais</a>
+<ul>
+<li class="chapter" data-level="26.1" data-path="01-intro.html"><a href="#c%C3%A1lculo-de-int_abgx-dx"><i class="fa fa-check"></i><b>26.1</b> Cálculo de <span class="math inline">\(\int_{a}^{b}g(x)\, dx\)</span></a></li>
+<li class="chapter" data-level="26.2" data-path="01-intro.html"><a href="#c%C3%A1lculo-de-int_0inftygx-dx"><i class="fa fa-check"></i><b>26.2</b> Cálculo de <span class="math inline">\(\int_{0}^{\infty}g(x)\, dx\)</span></a></li>
+<li class="chapter" data-level="26.3" data-path="01-intro.html"><a href="#c%C3%A1lculo-de-integrais-multidimensionais"><i class="fa fa-check"></i><b>26.3</b> Cálculo de integrais multidimensionais</a></li>
+<li class="chapter" data-level="26.4" data-path="01-intro.html"><a href="#exerc%C3%ADcios-33"><i class="fa fa-check"></i><b>26.4</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="01-intro.html"><a href="#relat%C3%B3rios"><i class="fa fa-check"></i><b>27</b> Relatórios</a>
+<ul>
+<li class="chapter" data-level="27.1" data-path="relatórios.html"><a href="relatórios.html"><i class="fa fa-check"></i><b>27.1</b> Markdown</a>
+<ul>
+<li class="chapter" data-level="27.1.1" data-path="01-intro.html"><a href="#%C3%AAnfase"><i class="fa fa-check"></i><b>27.1.1</b> Ênfase</a></li>
+<li class="chapter" data-level="27.1.2" data-path="01-intro.html"><a href="#t%C3%ADtulos"><i class="fa fa-check"></i><b>27.1.2</b> Títulos</a></li>
+<li class="chapter" data-level="27.1.3" data-path="relatórios.html"><a href="relatórios.html#listas-1"><i class="fa fa-check"></i><b>27.1.3</b> Listas</a></li>
+<li class="chapter" data-level="27.1.4" data-path="01-intro.html"><a href="#equa%C3%A7%C3%B5es"><i class="fa fa-check"></i><b>27.1.4</b> Equações</a></li>
+<li class="chapter" data-level="27.1.5" data-path="01-intro.html"><a href="#c%C3%B3digo"><i class="fa fa-check"></i><b>27.1.5</b> Código</a></li>
+<li class="chapter" data-level="27.1.6" data-path="relatórios.html"><a href="relatórios.html#links"><i class="fa fa-check"></i><b>27.1.6</b> Links</a></li>
+<li class="chapter" data-level="27.1.7" data-path="relatórios.html"><a href="relatórios.html#imagens"><i class="fa fa-check"></i><b>27.1.7</b> Imagens</a></li>
+<li class="chapter" data-level="27.1.8" data-path="relatórios.html"><a href="relatórios.html#tabelas"><i class="fa fa-check"></i><b>27.1.8</b> Tabelas</a></li>
+</ul></li>
+<li class="chapter" data-level="27.2" data-path="relatórios.html"><a href="relatórios.html#r-markdown"><i class="fa fa-check"></i><b>27.2</b> R Markdown</a>
+<ul>
+<li class="chapter" data-level="27.2.1" data-path="relatórios.html"><a href="relatórios.html#criando-um-arquivo-.rmd"><i class="fa fa-check"></i><b>27.2.1</b> Criando um arquivo <code>.Rmd</code></a></li>
+<li class="chapter" data-level="27.2.2" data-path="relatórios.html"><a href="relatórios.html#estrutura-do-arquivo-r-markdown"><i class="fa fa-check"></i><b>27.2.2</b> Estrutura do arquivo R Markdown</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="01-intro.html"><a href="#refer%C3%AAncias"><i class="fa fa-check"></i><b>28</b> Referências</a></li>
+<li class="chapter" data-level="29" data-path="respostas.html"><a href="respostas.html"><i class="fa fa-check"></i><b>29</b> Respostas</a>
+<ul>
+<li class="chapter" data-level="29.1" data-path="respostas.html"><a href="respostas.html#o-pacote-dplyr"><i class="fa fa-check"></i><b>29.1</b> O pacote dplyr</a>
+<ul>
+<li class="chapter" data-level="29.1.1" data-path="respostas.html"><a href="respostas.html#selecionando-colunas"><i class="fa fa-check"></i><b>29.1.1</b> Selecionando colunas</a></li>
+<li class="chapter" data-level="29.1.2" data-path="respostas.html"><a href="respostas.html#ordenando-a-base"><i class="fa fa-check"></i><b>29.1.2</b> Ordenando a base</a></li>
+<li class="chapter" data-level="29.1.3" data-path="respostas.html"><a href="respostas.html#filtrando-linhas"><i class="fa fa-check"></i><b>29.1.3</b> Filtrando linhas</a></li>
+<li class="chapter" data-level="29.1.4" data-path="respostas.html"><a href="respostas.html#modificando-e-criando-novas-colunas"><i class="fa fa-check"></i><b>29.1.4</b> Modificando e criando novas colunas</a></li>
+<li class="chapter" data-level="29.1.5" data-path="respostas.html"><a href="respostas.html#sumarizando-a-base"><i class="fa fa-check"></i><b>29.1.5</b> Sumarizando a base</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introdução ao R e Simulação</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="respostas" class="section level1 hasAnchor" number="29">
+<h1><span class="header-section-number">Capítulo 29</span> Respostas<a href="respostas.html#respostas" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="o-pacote-dplyr" class="section level2 hasAnchor" number="29.1">
+<h2><span class="header-section-number">29.1</span> O pacote dplyr<a href="respostas.html#o-pacote-dplyr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="selecionando-colunas" class="section level3 hasAnchor" number="29.1.1">
+<h3><span class="header-section-number">29.1.1</span> Selecionando colunas<a href="respostas.html#selecionando-colunas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>1.</strong> Teste aplicar a função <code>glimpse()</code> do pacote `<code>dplyr</code> à base
+<code>sw</code>. O que ela faz?</p>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="respostas.html#cb375-1" tabindex="-1"></a><span class="fu">glimpse</span>(sw)</span></code></pre></div>
+<pre><code>## Rows: 87
+## Columns: 14
+## $ name       &lt;chr&gt; &quot;Luke Skywalker&quot;, &quot;C-3PO&quot;, &quot;R2-D2&quot;, &quot;Darth Vader&quot;, &quot;Leia Or…
+## $ height     &lt;int&gt; 172, 167, 96, 202, 150, 178, 165, 97, 183, 182, 188, 180, 2…
+## $ mass       &lt;dbl&gt; 77.0, 75.0, 32.0, 136.0, 49.0, 120.0, 75.0, 32.0, 84.0, 77.…
+## $ hair_color &lt;chr&gt; &quot;blond&quot;, NA, NA, &quot;none&quot;, &quot;brown&quot;, &quot;brown, grey&quot;, &quot;brown&quot;, N…
+## $ skin_color &lt;chr&gt; &quot;fair&quot;, &quot;gold&quot;, &quot;white, blue&quot;, &quot;white&quot;, &quot;light&quot;, &quot;light&quot;, &quot;…
+## $ eye_color  &lt;chr&gt; &quot;blue&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;yellow&quot;, &quot;brown&quot;, &quot;blue&quot;, &quot;blue&quot;,…
+## $ birth_year &lt;dbl&gt; 19.0, 112.0, 33.0, 41.9, 19.0, 52.0, 47.0, NA, 24.0, 57.0, …
+## $ sex        &lt;chr&gt; &quot;male&quot;, &quot;none&quot;, &quot;none&quot;, &quot;male&quot;, &quot;female&quot;, &quot;male&quot;, &quot;female&quot;,…
+## $ gender     &lt;chr&gt; &quot;masculine&quot;, &quot;masculine&quot;, &quot;masculine&quot;, &quot;masculine&quot;, &quot;femini…
+## $ homeworld  &lt;chr&gt; &quot;Tatooine&quot;, &quot;Tatooine&quot;, &quot;Naboo&quot;, &quot;Tatooine&quot;, &quot;Alderaan&quot;, &quot;T…
+## $ species    &lt;chr&gt; &quot;Human&quot;, &quot;Droid&quot;, &quot;Droid&quot;, &quot;Human&quot;, &quot;Human&quot;, &quot;Human&quot;, &quot;Huma…
+## $ films      &lt;list&gt; &lt;&quot;A New Hope&quot;, &quot;The Empire Strikes Back&quot;, &quot;Return of the J…
+## $ vehicles   &lt;list&gt; &lt;&quot;Snowspeeder&quot;, &quot;Imperial Speeder Bike&quot;&gt;, &lt;&gt;, &lt;&gt;, &lt;&gt;, &quot;Imp…
+## $ starships  &lt;list&gt; &lt;&quot;X-wing&quot;, &quot;Imperial shuttle&quot;&gt;, &lt;&gt;, &lt;&gt;, &quot;TIE Advanced x1&quot;,…</code></pre>
+<p>Mostra os nomes das variáveis, os tipos de dados e os primeiros valores
+de cada coluna em uma única visualização, tudo de forma horizontal.</p>
+<p><strong>2.</strong> Crie uma tabela com apenas as colunas <code>name</code>, <code>gender</code>, e
+<code>films</code>. Salve em um objeto chamado <code>sw_simples</code>.</p>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="respostas.html#cb377-1" tabindex="-1"></a>sw_simples <span class="ot">&lt;-</span> <span class="fu">select</span>(sw, name, gender, films)</span>
+<span id="cb377-2"><a href="respostas.html#cb377-2" tabindex="-1"></a>sw_simples</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 3
+##    name               gender    films    
+##    &lt;chr&gt;              &lt;chr&gt;     &lt;list&gt;   
+##  1 Luke Skywalker     masculine &lt;chr [5]&gt;
+##  2 C-3PO              masculine &lt;chr [6]&gt;
+##  3 R2-D2              masculine &lt;chr [7]&gt;
+##  4 Darth Vader        masculine &lt;chr [4]&gt;
+##  5 Leia Organa        feminine  &lt;chr [5]&gt;
+##  6 Owen Lars          masculine &lt;chr [3]&gt;
+##  7 Beru Whitesun Lars feminine  &lt;chr [3]&gt;
+##  8 R5-D4              masculine &lt;chr [1]&gt;
+##  9 Biggs Darklighter  masculine &lt;chr [1]&gt;
+## 10 Obi-Wan Kenobi     masculine &lt;chr [6]&gt;
+## # ℹ 77 more rows</code></pre>
+<p><strong>3.</strong> Selecione apenas as colunas <code>hair_color</code>, <code>skin_color</code> e
+<code>eye_color</code> usando a função auxiliar <code>contains()</code>.</p>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="respostas.html#cb379-1" tabindex="-1"></a><span class="fu">select</span>(sw, <span class="fu">contains</span>(<span class="st">&quot;color&quot;</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 3
+##    hair_color    skin_color  eye_color
+##    &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;    
+##  1 blond         fair        blue     
+##  2 &lt;NA&gt;          gold        yellow   
+##  3 &lt;NA&gt;          white, blue red      
+##  4 none          white       yellow   
+##  5 brown         light       brown    
+##  6 brown, grey   light       blue     
+##  7 brown         light       blue     
+##  8 &lt;NA&gt;          white, red  red      
+##  9 black         light       brown    
+## 10 auburn, white fair        blue-gray
+## # ℹ 77 more rows</code></pre>
+<p><strong>4.</strong> Usando a função <code>select()</code> (e suas funções auxiliares), escreva
+códigos que retornem a base <code>sw</code> sem as colunas <code>hair_color</code>,
+<code>skin_color</code> e <code>eye_color</code>. Escreva todas as soluções diferentes que
+você conseguir pensar.</p>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="respostas.html#cb381-1" tabindex="-1"></a><span class="fu">select</span>(sw, <span class="sc">-</span>hair_color, <span class="sc">-</span>skin_color, <span class="sc">-</span>eye_color)</span>
+<span id="cb381-2"><a href="respostas.html#cb381-2" tabindex="-1"></a></span>
+<span id="cb381-3"><a href="respostas.html#cb381-3" tabindex="-1"></a><span class="fu">select</span>(sw, <span class="sc">-</span><span class="fu">contains</span>(<span class="st">&quot;color&quot;</span>))</span>
+<span id="cb381-4"><a href="respostas.html#cb381-4" tabindex="-1"></a></span>
+<span id="cb381-5"><a href="respostas.html#cb381-5" tabindex="-1"></a><span class="fu">select</span>(sw, <span class="sc">-</span><span class="fu">ends_with</span>(<span class="st">&quot;color&quot;</span>))</span>
+<span id="cb381-6"><a href="respostas.html#cb381-6" tabindex="-1"></a></span>
+<span id="cb381-7"><a href="respostas.html#cb381-7" tabindex="-1"></a><span class="fu">select</span>(sw, name<span class="sc">:</span>mass, birth_year<span class="sc">:</span>starships)</span></code></pre></div>
+</div>
+<div id="ordenando-a-base" class="section level3 hasAnchor" number="29.1.2">
+<h3><span class="header-section-number">29.1.2</span> Ordenando a base<a href="respostas.html#ordenando-a-base" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>1.</strong> Ordene <code>mass</code> em ordem crescente e <code>birth_year</code> em ordem
+decrescente e salve em um objeto chamado <code>sw_ordenados</code>.</p>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="respostas.html#cb382-1" tabindex="-1"></a>sw_ordenados <span class="ot">&lt;-</span> <span class="fu">arrange</span>(sw, mass, <span class="fu">desc</span>(birth_year))</span>
+<span id="cb382-2"><a href="respostas.html#cb382-2" tabindex="-1"></a>sw_ordenados</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 14
+##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Ratts T…     79    15 none       grey, blue unknown           NA male  mascu…
+##  2 Yoda         66    17 white      green      brown            896 male  mascu…
+##  3 Wicket …     88    20 brown      brown      brown              8 male  mascu…
+##  4 R2-D2        96    32 &lt;NA&gt;       white, bl… red               33 none  mascu…
+##  5 R5-D4        97    32 &lt;NA&gt;       white, red red               NA none  mascu…
+##  6 Sebulba     112    40 none       grey, red  orange            NA male  mascu…
+##  7 Padmé A…    185    45 brown      light      brown             46 fema… femin…
+##  8 Dud Bolt     94    45 none       blue, grey yellow            NA male  mascu…
+##  9 Wat Tam…    193    48 none       green, gr… unknown           NA male  mascu…
+## 10 Sly Moo…    178    48 none       pale       white             NA &lt;NA&gt;  &lt;NA&gt;  
+## # ℹ 77 more rows
+## # ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<p><strong>2.</strong> Selecione apenas as colunas <code>name</code> e <code>birth_year</code> e então ordene
+de forma decrescente pelo <code>birth_year</code>.</p>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="respostas.html#cb384-1" tabindex="-1"></a><span class="co"># Aninhando funções</span></span>
+<span id="cb384-2"><a href="respostas.html#cb384-2" tabindex="-1"></a><span class="fu">arrange</span>(<span class="fu">select</span>(sw, name, birth_year), <span class="fu">desc</span>(birth_year))</span>
+<span id="cb384-3"><a href="respostas.html#cb384-3" tabindex="-1"></a></span>
+<span id="cb384-4"><a href="respostas.html#cb384-4" tabindex="-1"></a><span class="co"># Criando um objeto intermediário</span></span>
+<span id="cb384-5"><a href="respostas.html#cb384-5" tabindex="-1"></a>sw_aux <span class="ot">&lt;-</span> <span class="fu">select</span>(sw, name, birth_year)</span>
+<span id="cb384-6"><a href="respostas.html#cb384-6" tabindex="-1"></a><span class="fu">arrange</span>(sw_aux, <span class="fu">desc</span>(birth_year))</span>
+<span id="cb384-7"><a href="respostas.html#cb384-7" tabindex="-1"></a></span>
+<span id="cb384-8"><a href="respostas.html#cb384-8" tabindex="-1"></a><span class="co"># Usando pipe</span></span>
+<span id="cb384-9"><a href="respostas.html#cb384-9" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> </span>
+<span id="cb384-10"><a href="respostas.html#cb384-10" tabindex="-1"></a>  <span class="fu">select</span>(name, birth_year) <span class="sc">%&gt;%</span></span>
+<span id="cb384-11"><a href="respostas.html#cb384-11" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(birth_year))</span></code></pre></div>
+</div>
+<div id="filtrando-linhas" class="section level3 hasAnchor" number="29.1.3">
+<h3><span class="header-section-number">29.1.3</span> Filtrando linhas<a href="respostas.html#filtrando-linhas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Utilize a base <code>sw</code> nos exercícios a seguir.</p>
+<p><strong>1.</strong> Crie um objeto chamado <code>humanos</code> apenas com personagens que sejam
+humanos.</p>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="respostas.html#cb385-1" tabindex="-1"></a>humanos <span class="ot">&lt;-</span> <span class="fu">filter</span>(sw, species <span class="sc">==</span> <span class="st">&quot;Human&quot;</span>)</span>
+<span id="cb385-2"><a href="respostas.html#cb385-2" tabindex="-1"></a></span>
+<span id="cb385-3"><a href="respostas.html#cb385-3" tabindex="-1"></a><span class="co"># O pipe</span></span>
+<span id="cb385-4"><a href="respostas.html#cb385-4" tabindex="-1"></a>humanos <span class="ot">&lt;-</span> sw <span class="sc">%&gt;%</span> </span>
+<span id="cb385-5"><a href="respostas.html#cb385-5" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">&quot;Human&quot;</span>)</span></code></pre></div>
+<p><strong>2.</strong> Crie um objeto chamado <code>altos_fortes</code> com personagens que tenham
+mais de 200 cm de altura e peso maior que 100 kg.</p>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="respostas.html#cb386-1" tabindex="-1"></a>altos_fortes <span class="ot">&lt;-</span> <span class="fu">filter</span>(sw, height <span class="sc">&gt;</span> <span class="dv">200</span>, mass <span class="sc">&gt;</span> <span class="dv">100</span>)</span></code></pre></div>
+<p><strong>3.</strong> Retorne tabelas (<code>tibbles</code>) apenas com:</p>
+<p><strong>a.</strong> Personagens humanos que nasceram antes de 100 anos antes da
+batalha de Yavin (<code>birth_year &lt; 100</code>).</p>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="respostas.html#cb387-1" tabindex="-1"></a><span class="fu">filter</span>(sw, species <span class="sc">==</span> <span class="st">&quot;Human&quot;</span>, birth_year <span class="sc">&lt;</span> <span class="dv">100</span>)</span></code></pre></div>
+<p><strong>b.</strong> Personagens com cor <code>light</code> ou <code>red</code>.</p>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="respostas.html#cb388-1" tabindex="-1"></a><span class="fu">filter</span>(sw, skin_color <span class="sc">==</span> <span class="st">&quot;light&quot;</span> <span class="sc">|</span> skin_color <span class="sc">==</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><strong>c.</strong> Personagens com massa maior que 100 kg, ordenados de forma
+decrescente por altura, mostrando apenas as colunas <code>name</code>, <code>mass</code> e
+<code>height</code>.</p>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="respostas.html#cb389-1" tabindex="-1"></a><span class="fu">select</span>(<span class="fu">arrange</span>(<span class="fu">filter</span>(sw, mass <span class="sc">&gt;</span> <span class="dv">100</span>), <span class="fu">desc</span>(height)), name, mass, height)</span>
+<span id="cb389-2"><a href="respostas.html#cb389-2" tabindex="-1"></a></span>
+<span id="cb389-3"><a href="respostas.html#cb389-3" tabindex="-1"></a><span class="co"># usando o pipe</span></span>
+<span id="cb389-4"><a href="respostas.html#cb389-4" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> </span>
+<span id="cb389-5"><a href="respostas.html#cb389-5" tabindex="-1"></a>  <span class="fu">filter</span>(mass <span class="sc">&gt;</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb389-6"><a href="respostas.html#cb389-6" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(height)) <span class="sc">%&gt;%</span> </span>
+<span id="cb389-7"><a href="respostas.html#cb389-7" tabindex="-1"></a>  <span class="fu">select</span>(name, mass, height)</span></code></pre></div>
+<p><strong>d.</strong> Personagens que sejam “Humano” ou “Droid”, e tenham uma altura
+maior que 170 cm.</p>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="respostas.html#cb390-1" tabindex="-1"></a><span class="fu">filter</span>(sw, species <span class="sc">==</span> <span class="st">&quot;Human&quot;</span> <span class="sc">|</span> species <span class="sc">==</span> <span class="st">&quot;Droid&quot;</span>, height <span class="sc">&gt;</span> <span class="dv">170</span>)</span>
+<span id="cb390-2"><a href="respostas.html#cb390-2" tabindex="-1"></a></span>
+<span id="cb390-3"><a href="respostas.html#cb390-3" tabindex="-1"></a><span class="co"># usando o pipe</span></span>
+<span id="cb390-4"><a href="respostas.html#cb390-4" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> </span>
+<span id="cb390-5"><a href="respostas.html#cb390-5" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Human&quot;</span>, <span class="st">&quot;Droid&quot;</span>), height <span class="sc">&gt;</span> <span class="dv">170</span>)</span></code></pre></div>
+<p><strong>e.</strong> Personagens que não possuem informação tanto de altura quanto de
+massa, ou seja, possuem NA em ambas as colunas.</p>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="respostas.html#cb391-1" tabindex="-1"></a><span class="fu">filter</span>(sw, <span class="fu">is.na</span>(height), <span class="fu">is.na</span>(mass))</span></code></pre></div>
+</div>
+<div id="modificando-e-criando-novas-colunas" class="section level3 hasAnchor" number="29.1.4">
+<h3><span class="header-section-number">29.1.4</span> Modificando e criando novas colunas<a href="respostas.html#modificando-e-criando-novas-colunas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>1.</strong> Crie uma coluna chamada <code>dif_peso_altura</code> (diferença entre altura
+e peso) e salve a nova tabela em um objeto chamado <code>sw_dif</code>. Em seguida,
+filtre apenas os personagens que têm altura maior que o peso e ordene a
+tabela por ordem crescente de <code>dif_peso_altura</code>.</p>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="respostas.html#cb392-1" tabindex="-1"></a>sw_dif <span class="ot">&lt;-</span> <span class="fu">mutate</span>(sw, <span class="at">dif_peso_altura =</span> height<span class="sc">-</span>mass)</span>
+<span id="cb392-2"><a href="respostas.html#cb392-2" tabindex="-1"></a></span>
+<span id="cb392-3"><a href="respostas.html#cb392-3" tabindex="-1"></a><span class="fu">arrange</span>(<span class="fu">filter</span>(sw_dif, height <span class="sc">&gt;</span> mass), dif_peso_altura)</span>
+<span id="cb392-4"><a href="respostas.html#cb392-4" tabindex="-1"></a></span>
+<span id="cb392-5"><a href="respostas.html#cb392-5" tabindex="-1"></a><span class="co"># usando o pipe</span></span>
+<span id="cb392-6"><a href="respostas.html#cb392-6" tabindex="-1"></a>sw_dif <span class="ot">&lt;-</span> sw <span class="sc">%&gt;%</span> </span>
+<span id="cb392-7"><a href="respostas.html#cb392-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dif_peso_altura =</span> height<span class="sc">-</span>mass)</span>
+<span id="cb392-8"><a href="respostas.html#cb392-8" tabindex="-1"></a></span>
+<span id="cb392-9"><a href="respostas.html#cb392-9" tabindex="-1"></a>sw_dif <span class="sc">%&gt;%</span> </span>
+<span id="cb392-10"><a href="respostas.html#cb392-10" tabindex="-1"></a>  <span class="fu">filter</span>(height <span class="sc">&gt;</span> mass) <span class="sc">%&gt;%</span> </span>
+<span id="cb392-11"><a href="respostas.html#cb392-11" tabindex="-1"></a>  <span class="fu">arrange</span>(dif_peso_altura)</span></code></pre></div>
+<p><strong>2.</strong> Fazendo apenas uma chamada da função <code>mutate()</code>, crie as
+seguintes colunas novas na base <code>sw</code>:</p>
+<p><strong>a.</strong> <code>indice_massa_altura</code> = <code>mass</code> / <code>height</code></p>
+<p><strong>b.</strong> <code>indice_massa_medio</code> = <code>mean(mass, na.rm = TRUE)</code></p>
+<p><strong>c.</strong> <code>indice_relativo</code> =
+<code>(indice_massa_altura - indice_massa_medio) / indice_massa_medio</code></p>
+<p><strong>d.</strong> <code>acima_media</code> =
+<code>ifelse(indice_massa_altura &gt; indice_massa_medio, “sim”, “não”)</code></p>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="respostas.html#cb393-1" tabindex="-1"></a><span class="fu">mutate</span>(sw, </span>
+<span id="cb393-2"><a href="respostas.html#cb393-2" tabindex="-1"></a>       <span class="at">indice_massa_altura =</span> mass<span class="sc">/</span>height,</span>
+<span id="cb393-3"><a href="respostas.html#cb393-3" tabindex="-1"></a>       <span class="at">indice_massa_medio =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb393-4"><a href="respostas.html#cb393-4" tabindex="-1"></a>       <span class="at">indice_relativo =</span> (indice_massa_altura <span class="sc">-</span> indice_massa_medio) <span class="sc">/</span> indice_massa_medio,</span>
+<span id="cb393-5"><a href="respostas.html#cb393-5" tabindex="-1"></a>       <span class="at">acima_media =</span> <span class="fu">ifelse</span>(indice_massa_altura <span class="sc">&gt;</span> indice_massa_medio, <span class="st">&quot;sim&quot;</span>, <span class="st">&quot;não&quot;</span>))</span></code></pre></div>
+</div>
+<div id="sumarizando-a-base" class="section level3 hasAnchor" number="29.1.5">
+<h3><span class="header-section-number">29.1.5</span> Sumarizando a base<a href="respostas.html#sumarizando-a-base" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Utilize a base <code>sw</code> nos exercícios a seguir.</p>
+<p><strong>1.</strong> Calcule a altura média e mediana dos personagens.</p>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="respostas.html#cb394-1" tabindex="-1"></a><span class="fu">summarize</span>(sw, </span>
+<span id="cb394-2"><a href="respostas.html#cb394-2" tabindex="-1"></a>          <span class="at">media_altura =</span> <span class="fu">mean</span>(height, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb394-3"><a href="respostas.html#cb394-3" tabindex="-1"></a>          <span class="at">mediana_altura =</span> <span class="fu">median</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 2
+##   media_altura mediana_altura
+##          &lt;dbl&gt;          &lt;int&gt;
+## 1         175.            180</code></pre>
+<p><strong>2.</strong> Calcule a massa média dos personagens cuja altura é maior que 175
+cm.</p>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="respostas.html#cb396-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> </span>
+<span id="cb396-2"><a href="respostas.html#cb396-2" tabindex="-1"></a>  <span class="fu">filter</span>(height <span class="sc">&gt;</span> <span class="dv">175</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb396-3"><a href="respostas.html#cb396-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">media_massa =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 1
+##   media_massa
+##         &lt;dbl&gt;
+## 1        87.2</code></pre>
+<p><strong>3.</strong> Apresente na mesma tabela a massa média dos personagens com
+altura menor que 175 cm e a massa média dos personagens com altura maior
+ou igual a 175 cm.</p>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="respostas.html#cb398-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> </span>
+<span id="cb398-2"><a href="respostas.html#cb398-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">alturas =</span> <span class="fu">ifelse</span>(height <span class="sc">&lt;</span> <span class="dv">175</span>, <span class="st">&quot;menor 175&quot;</span>, <span class="st">&quot;maior 175&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb398-3"><a href="respostas.html#cb398-3" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(height)) <span class="sc">%&gt;%</span> </span>
+<span id="cb398-4"><a href="respostas.html#cb398-4" tabindex="-1"></a>  <span class="fu">group_by</span>(alturas) <span class="sc">%&gt;%</span> </span>
+<span id="cb398-5"><a href="respostas.html#cb398-5" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">altura_media =</span> <span class="fu">mean</span>(height, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb398-6"><a href="respostas.html#cb398-6" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 2
+##   alturas   altura_media
+##   &lt;chr&gt;            &lt;dbl&gt;
+## 1 maior 175         193.
+## 2 menor 175         142.</code></pre>
+<p><strong>4.</strong> Retorne tabelas (<code>tibbles</code>) apenas com:</p>
+<p><strong>a.</strong> A altura média dos personagens por espécie.</p>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="respostas.html#cb400-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> </span>
+<span id="cb400-2"><a href="respostas.html#cb400-2" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
+<span id="cb400-3"><a href="respostas.html#cb400-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">altura_media =</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 38 × 2
+##    species   altura_media
+##    &lt;chr&gt;            &lt;dbl&gt;
+##  1 Aleena             79 
+##  2 Besalisk          198 
+##  3 Cerean            198 
+##  4 Chagrian          196 
+##  5 Clawdite          168 
+##  6 Droid             131.
+##  7 Dug               112 
+##  8 Ewok               88 
+##  9 Geonosian         183 
+## 10 Gungan            209.
+## # ℹ 28 more rows</code></pre>
+<p><strong>b.</strong> A massa média e mediana dos personagens por espécie.</p>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="respostas.html#cb402-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span></span>
+<span id="cb402-2"><a href="respostas.html#cb402-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(mass)) <span class="sc">%&gt;%</span> </span>
+<span id="cb402-3"><a href="respostas.html#cb402-3" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
+<span id="cb402-4"><a href="respostas.html#cb402-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">massa_media =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb402-5"><a href="respostas.html#cb402-5" tabindex="-1"></a>            <span class="at">massa_mediana =</span> <span class="fu">median</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 32 × 3
+##    species   massa_media massa_mediana
+##    &lt;chr&gt;           &lt;dbl&gt;         &lt;dbl&gt;
+##  1 Aleena           15            15  
+##  2 Besalisk        102           102  
+##  3 Cerean           82            82  
+##  4 Clawdite         55            55  
+##  5 Droid            69.8          53.5
+##  6 Dug              40            40  
+##  7 Ewok             20            20  
+##  8 Geonosian        80            80  
+##  9 Gungan           74            74  
+## 10 Human            81.3          79  
+## # ℹ 22 more rows</code></pre>
+<p><strong>c.</strong> Apenas o nome dos personagens que participaram de mais de 2
+filmes.</p>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="respostas.html#cb404-1" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> </span>
+<span id="cb404-2"><a href="respostas.html#cb404-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">length</span>(films) <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb404-3"><a href="respostas.html#cb404-3" tabindex="-1"></a>  <span class="fu">select</span>(name)</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 1
+##    name              
+##    &lt;chr&gt;             
+##  1 Luke Skywalker    
+##  2 C-3PO             
+##  3 R2-D2             
+##  4 Darth Vader       
+##  5 Leia Organa       
+##  6 Owen Lars         
+##  7 Beru Whitesun Lars
+##  8 R5-D4             
+##  9 Biggs Darklighter 
+## 10 Obi-Wan Kenobi    
+## # ℹ 77 more rows</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="referências.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-intro.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["introR.pdf", "introR.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
