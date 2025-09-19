@@ -1,3 +1,35 @@
+--- 
+title: "Introdução ao R e Simulação"
+author: "Renato de Paula"
+date: "2025-09-19"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+# https://renatorpa.github.io/labestatistica1/
+cover-image: "docs/ciencias.png"
+description: |
+  This is a minimal example of using the bookdown package to write a book.
+  The HTML output format for this example is bookdown::gitbook,
+  set in the _output.yml file.
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+---
+
+# Prefácio
+
+Este material, intitulado “Introdução ao R”, foi desenvolvido com o propósito de servir como um guia acessível, claro e prático para os estudantes da unidade curricular Laboratório de Estatística I – Introdução à Simulação, leccionada na Faculdade de Ciências da Universidade de Lisboa. Reconhecendo a crescente relevância da análise de dados na ciência contemporânea, este recurso visa introduzir os conceitos fundamentais e as principais funcionalidades do R — uma linguagem estatística poderosa e amplamente utilizada na investigação científica e aplicada.
+
+Ao longo do material, o leitor é conduzido por uma sequência de tópicos essenciais, desde a instalação do software e a familiarização com o ambiente RStudio, até ao manuseamento de estruturas de dados mais complexas e à criação de visualizações gráficas informativas. Cada capítulo foi cuidadosamente estruturado para proporcionar uma compreensão sólida dos conceitos abordados, combinando explicações teóricas com exemplos práticos e exercícios orientados que reforçam a aprendizagem.
+
+Este guia foi concebido para responder às necessidades de estudantes com diferentes níveis de experiência em Estatística. Quer se trate de iniciantes absolutos, quer de alunos com alguma familiaridade prévia, o material oferece uma abordagem progressiva e estruturada, facilitando a compreensão e a aplicação prática dos conteúdos. Acreditamos que, ao concluir este percurso formativo, os estudantes terão adquirido uma base robusta que lhes permitirá aplicar técnicas estatísticas em diversos domínios do conhecimento, utilizando o R de forma autónoma e eficaz como ferramenta fundamental para a análise de dados.
+
+
+
+
+
+
+<!--chapter:end:index.Rmd-->
+
 ---
 editor_options:
   markdown:
@@ -25,31 +57,17 @@ Os estudantes podem optar por realizar a avaliação contínua através de dois 
 
 ## Exemplos de situações possíveis
 
-```{r echo=FALSE, results='asis'}
-library(knitr)
-kable(
-  data.frame(
-    Situação = c(
-      "Desistência do T1",
-      "Realização do T1 com nota inferior a 4 valores",
-      "T1 ≥ 4 valores + desistência do T2",
-      "T1 ≥ 4 valores + T2 < 4 valores",
-      "T1 e T2 ≥ 4 valores, mas soma final < 9.5 valores",
-      "T1 e T2 ≥ 4 valores, soma final ≥ 9.5 valores"
-    ),
-    Consequência = c(
-      "Acesso ao exame da 1.ª época (por avaliação final)",
-      "Acesso ao exame da 2.ª época (reprovação na contínua)",
-      "Acesso ao exame da 2.ª época",
-      "Acesso ao exame da 2.ª época",
-      "Acesso ao exame da 2.ª época",
-      "**Aprovado** (com direito à melhoria na 2.ª época)"
-    )
-  ),
-  caption = "Tabela de consequências consoante a situação nos testes.",
-  booktabs = TRUE
-)
-```
+
+Table: (\#tab:unnamed-chunk-2)Tabela de consequências consoante a situação nos testes.
+
+|Situação                                          |Consequência                                          |
+|:-------------------------------------------------|:-----------------------------------------------------|
+|Desistência do T1                                 |Acesso ao exame da 1.ª época (por avaliação final)    |
+|Realização do T1 com nota inferior a 4 valores    |Acesso ao exame da 2.ª época (reprovação na contínua) |
+|T1 ≥ 4 valores + desistência do T2                |Acesso ao exame da 2.ª época                          |
+|T1 ≥ 4 valores + T2 < 4 valores                   |Acesso ao exame da 2.ª época                          |
+|T1 e T2 ≥ 4 valores, mas soma final < 9.5 valores |Acesso ao exame da 2.ª época                          |
+|T1 e T2 ≥ 4 valores, soma final ≥ 9.5 valores     |**Aprovado** (com direito à melhoria na 2.ª época)    |
 
 ## Notas importantes
 
@@ -204,7 +222,8 @@ conhecido como o **prompt**. Quando se digita um comando após o prompt e
 se pressiona Enter, o R interpreta o comando, executa a operação
 correspondente e exibe o resultado no ecrã.
 
-```{r eval=FALSE}
+
+``` r
 print("Meu primeiro comando no R!")
 ## [1] "Meu primeiro comando no R!"
 ```
@@ -219,7 +238,8 @@ Qualquer texto que aparece após `#` na mesma linha é ignorado pelo R
 durante a execução. Comentários são úteis para adicionar explicações ou
 anotações no código, como no exemplo abaixo:
 
-```{r eval=FALSE}
+
+``` r
 # Este é um exemplo de comentário
 2 + 2 # O R vai calcular 2 mais 2
 ## [1] 4
@@ -229,7 +249,8 @@ Se conhecer o nome de uma função e desejar aprender mais sobre o seu
 funcionamento, pode utilizar o comando `?` seguido do nome da função
 para aceder à documentação de ajuda correspondente. Por exemplo:
 
-```{r eval=FALSE}
+
+``` r
 ?sum
 ```
 
@@ -240,7 +261,8 @@ Além disso, o R oferece uma forma prática de visualizar exemplos de como
 uma função pode ser utilizada. Para ver exemplos de uso de uma função,
 pode usar o comando `example()` com o nome da função como argumento:
 
-```{r eval=FALSE}
+
+``` r
 example(sum)
 ```
 
@@ -280,13 +302,15 @@ conveniente ao longo do seu script ou análise.
     operador de atribuição e o operador de igualdade, é recomendável
     usar `<-` para atribuições.
 
-```{r}
+
+``` r
 # Atribuição correta 
 a <- 10
 b <- a + 1
 ```
 
-```{r eval=FALSE}
+
+``` r
 # Atribuição incorreta
 10 = a
 a + 2 = 10 # Uma atribuição não é uma equação
@@ -297,7 +321,8 @@ a + 2 = 10 # Uma atribuição não é uma equação
 
 -   Vetores podem ser atribuídos a objetos. Por exemplo:
 
-```{r}
+
+``` r
 X <- c(2,12,22,32)
 ```
 
@@ -310,7 +335,8 @@ Ao definir objetos no console, está a modificar o espaço de trabalho
 actual. Para visualizar todas as variáveis e objetos actualmente
 guardados no seu espaço de trabalho, pode usar o comando:
 
-```{r eval=FALSE}
+
+``` r
 ls()
 ```
 
@@ -343,7 +369,8 @@ letras, números, pontos e sublinhados.
     para que o código seja mais legível e compreensível. Por exemplo,
     use `nome` em vez de `x`.
 
-```{r}
+
+``` r
 idade <- 20
 Idade <- 30
 ```
@@ -370,7 +397,8 @@ Em R, variáveis podem armazenar diferentes tipos de dados, incluindo:
     e são armazenadas como inteiros. São especialmente úteis para
     análises estatísticas que envolvem dados categóricos.
 
-```{r}
+
+``` r
 # Numeric
 a <- 3.14
 
@@ -389,7 +417,8 @@ d <- c(1, 2, 3)
 Abaixo estão alguns comandos úteis para manipular variáveis e objetos no
 R:
 
-```{r eval=FALSE}
+
+``` r
 ls() # Exibe a lista de variáveis atualmente armazenadas na memória
 	
 ls.str() # Mostra a estrutura das variáveis armazenadas na memória
@@ -415,7 +444,8 @@ save.image('nome-do-arquivo.RData') # Salva o espaço de trabalho atual em um ar
 
 **Exemplos:**
 
-```{r eval=FALSE}
+
+``` r
 1+1
 ## [1] 2
 
@@ -461,7 +491,8 @@ aceitam argumentos específicos.
 O R permite ajustar a precisão dos números exibidos alterando a
 configuração global de dígitos. Veja o exemplo a seguir:
 
-```{r eval=FALSE}
+
+``` r
 exp(1)
 ## [1] 2.718282
 
@@ -480,7 +511,8 @@ O R inclui diversos conjuntos de dados predefinidos que podem ser usados
 para prática e teste de funções. Para visualizar todos os conjuntos de
 dados disponíveis, pode-se utilizar o seguinte comando:
 
-```{r eval=FALSE}
+
+``` r
 data()
 ```
 
@@ -489,7 +521,8 @@ dados disponível. Esses conjuntos de dados podem ser utilizados
 diretamente ao simplesmente digitar o nome no console. Por exemplo, ao
 digitar:
 
-```{r eval=FALSE}
+
+``` r
 co2
 ```
 
@@ -500,7 +533,8 @@ Além dos conjuntos de dados, o R também possui objetos predefinidos que
 representam constantes matemáticas, como `pi` para o número $\pi$ e
 `Inf` para o $\infty$.
 
-```{r eval=FALSE}
+
+``` r
 pi
 ## [1] 3.14
 
@@ -593,7 +627,8 @@ retornar `NA` ou `NaN` se contiverem esses valores. Para ignorar `NA` ou
 `NaN` ao realizar cálculos, você pode usar o argumento `na.rm = TRUE`,
 que remove os valores ausentes ou indefinidos da operação.
 
-```{r eval=FALSE}
+
+``` r
 mean(c(1, 2, 3, NA, 5), na.rm = TRUE)  # Calcula a média ignorando NA
 ## [1] 2.75
 
@@ -612,7 +647,8 @@ dados, pode-se usar as funções `is.na()` e `is.nan()`. A função
 `is.nan()` identifica especificamente valores que são `NaN`. Por
 exemplo:
 
-```{r eval=FALSE}
+
+``` r
 is.na(x)
 ## [1] FALSE FALSE  TRUE FALSE FALSE
 
@@ -636,7 +672,8 @@ Em R, o tipo de uma variável é determinado dinamicamente com base no
 valor atribuído a ela. Isso significa que o R automaticamente define o
 tipo de dado de uma variável quando lhe é atribuído um valor.
 
-```{r eval=FALSE}
+
+``` r
 x <- 5         
 class(x) 
 ## [1] "numeric"
@@ -661,7 +698,8 @@ class(z)
     detalhadas sobre como os dados são representados na memória do
     computador.
 
-```{r eval=FALSE}
+
+``` r
 x <- 1:10
 class(x)
 ## [1] "integer"
@@ -705,7 +743,8 @@ usando funções de conversão. Isso é especialmente útil ao trabalhar com
 dados que podem ter sido importados de fontes externas e precisam ser
 manipulados ou analisados de diferentes maneiras.
 
-```{r eval=FALSE}
+
+``` r
 # Convertendo um inteiro em uma string (caractere)
 a <- 15
 b <- as.character(15)
@@ -755,7 +794,8 @@ informações. Aqui estão algumas das mais comuns:
 
 **Exemplo 1:**
 
-```{r eval=FALSE}
+
+``` r
 nome1 <- "faculdade"
 nome2 <- "ciências"
 print(paste(nome1, nome2))
@@ -767,7 +807,8 @@ elas.
 
 **Exemplo 2:**
 
-```{r eval=FALSE}
+
+``` r
 # Solicitar entrada do utilizador
 n <- readline(prompt = "Digite um número: ")
 
@@ -784,7 +825,8 @@ em 1 e exibido.
 
 **Exemplo 3:**
 
-```{r eval=FALSE}
+
+``` r
 # Solicitar entrada do utilizador
 nome <- readline(prompt = "Entre com o seu nome: ")
 	
@@ -797,7 +839,8 @@ o nome do utilizador.
 
 **Exemplo 4:**
 
-```{r eval=FALSE}
+
+``` r
 # Solicitar ao utilizador a entrada numérica
 idade <- readline(prompt = "Digite a sua idade: ")
 	
@@ -817,7 +860,8 @@ Este exemplo mostra como verificar se a entrada é numérica usando
 
 **Concatenando Strings**
 
-```{r eval=FALSE}
+
+``` r
 result <- paste("Hello", "World")
 print(result)
 ## [1] "Hello World"
@@ -825,7 +869,8 @@ print(result)
 
 **Concatenando Múltiplas Strings**
 
-```{r eval=FALSE}
+
+``` r
 result <- paste("Data", "Science", "with", "R")
 print(result)
 ## [1] "Data Science with R"
@@ -833,7 +878,8 @@ print(result)
 
 **Concatenando Strings com um Separador Específico**
 
-```{r eval=FALSE}
+
+``` r
 result <- paste("2024", "04", "28", sep="-")
 print(result)
 ## [1] "2024-04-28"
@@ -841,7 +887,8 @@ print(result)
 
 **Concatenando Vetores de Strings**
 
-```{r eval=FALSE}
+
+``` r
 first_names <- c("Anna", "Bruno", "Carlos")
 last_names <- c("Smith", "Oliveira", "Santos")
 result <- paste(first_names, last_names)
@@ -851,7 +898,8 @@ print(result)
 
 **Concatene com cada elemento de um vetor**
 
-```{r eval=FALSE}
+
+``` r
 numbers <- 1:3
 result <- paste("Number", numbers)
 print(result)
@@ -860,7 +908,8 @@ print(result)
 
 **Usando `paste0()` para Concatenar sem Espaço**
 
-```{r eval=FALSE}
+
+``` r
 result <- paste0("Hello", "World")
 print(result)
 ## [1] "HelloWorld"
@@ -868,7 +917,8 @@ print(result)
 
 **Concatenando Strings com Números**
 
-```{r eval=FALSE}
+
+``` r
 age <- 25
 result <- paste("I am", age, "years old")
 print(result)
@@ -899,7 +949,8 @@ lógicas, retornando valores booleanos (`TRUE` ou `FALSE`).
 
 **Exemplos:**
 
-```{r eval=FALSE}
+
+``` r
 (5 > 3) & (4 > 2)   # Ambas as condições são verdadeiras
 ## [1] TRUE
 
@@ -926,7 +977,8 @@ valores lógicos (`TRUE` ou `FALSE`) com base na comparação.
 
 **Exemplos:**
 
-```{r eval=FALSE}
+
+``` r
 # Maior que 
 2 > 1
 ## [1] TRUE
@@ -1085,7 +1137,8 @@ outros.
 
 ### Tipos Comuns de Vetores
 
-```{r eval=FALSE}
+
+``` r
 # Vetor numérico
 c(1.1, 2.2, 3.3)
 ## [1] 1.1 2.2 3.3
@@ -1108,7 +1161,8 @@ c(3, 1==2, "a") # Observe que o R converteu tudo para "character"!
 
 ### Construindo Vetores
 
-```{r eval=FALSE}
+
+``` r
 # Inteiros de 1 a 10
 x <- 1:10
 x
@@ -1150,7 +1204,8 @@ w
 Pode aceder a elementos específicos de um vetor utilizando colchetes [ ]
 e índices.
 
-```{r eval=FALSE}
+
+``` r
 # Defina um vetor com inteiros de (-5) a 5 e extraia os números com valor absoluto menor que 3:
 x <- (-5):5
 x
@@ -1213,7 +1268,8 @@ existem diversas funções para manipular e obter informações sobre eles.
 Abaixo estão algumas das funções mais comuns usadas com vetores
 numéricos:
 
-```{r eval=FALSE}
+
+``` r
 num_vector <- c(2.2, 1.1, 3.3)
 
 # Obtém o comprimento (número de elementos) de um vetor
@@ -1279,7 +1335,8 @@ A função `which` é utilizada para encontrar os índices dos elementos de
 um vetor que satisfazem uma condição específica. Isto é útil quando se
 quer localizar a posição de certos valores dentro de um vetor.
 
-```{r eval=FALSE}
+
+``` r
 y <- c(8, 3, 5, 7, 6, 6, 8, 9, 2, 3, 9, 4, 10, 4, 11)
 
 # Encontrar os índices dos elementos que são maiores que 5
@@ -1291,7 +1348,8 @@ Aqui, a função `which(y > 5)` retorna os índices dos elementos em `y`
 que são maiores que 5. Se quiser ver os valores em `y` que são maiores
 que 5, basta fazer:
 
-```{r eval=FALSE}
+
+``` r
 y[y>5]
 ## [1]  8  7  6  6  8  9  9 10 11
 ```
@@ -1302,7 +1360,8 @@ Os vetores no R suportam operações aritméticas e lógicas de forma
 elementar. Isto significa que as operações são aplicadas a cada elemento
 do vetor.
 
-```{r eval=FALSE}
+
+``` r
 # Adição de 1 a cada elemento do vetor
 num_vector + 1  
 ## [1] 3.2 2.1 4.3
@@ -1337,14 +1396,16 @@ inteiro do comprimento do vetor menor, o R emitirá um aviso.
 
 Por exemplo:
 
-```{r eval=FALSE}
+
+``` r
 c(2,3,5,7)^c(2,3)
 ## [1]   4  27  25 343
 ```
 
 Este comando é expandido internamente para:
 
-```{r eval=FALSE}
+
+``` r
 c(2,3,5,7)^c(2,3,2,3)
 ## [1]   4  27  25 343
 ```
@@ -1352,7 +1413,8 @@ c(2,3,5,7)^c(2,3,2,3)
 No entanto, se os vetores não puderem ser “reciclados” perfeitamente, o
 R irá gerar um aviso:
 
-```{r eval=FALSE}
+
+``` r
 c(2,3,5,7)^c(2,3,4)
 ## Warning in c(2, 3, 5, 7)^c(2, 3, 4): longer object length is not a multiple of
 ## shorter object length
@@ -1361,7 +1423,8 @@ c(2,3,5,7)^c(2,3,4)
 
 Neste caso, `c(2,3,5,7)^c(2,3,4)` é expandido para:
 
-```{r eval=FALSE}
+
+``` r
 c(2,3,5,7)^c(2,3,4,2)
 ## [1]   4  27 625  49
 ```
@@ -1464,7 +1527,8 @@ nas posições 2, 4 e 6 por 2. Substitua o último elemento por 100.
 
 (a) Crie um vetor chamado `producao` com os seguintes valores (em toneladas), representando a produção total anual por propriedade:
 
-```{r eval=FALSE}
+
+``` r
 producao <- c(80, 95, 70, 68, 105, 120, 73, 89, 110, 66, 92, 78)
 ```
 
@@ -1508,7 +1572,8 @@ eficiente e consistente de variáveis categóricas.
 
 **Exemplos**:
 
-```{r eval=FALSE}
+
+``` r
 # Vetor de dados categóricos
 data <- c("baixo", "medio", "alto", "medio", "baixo", "alto")
 
@@ -1523,7 +1588,8 @@ print(factor_data)
 Por padrão, os níveis são ordenados alfabeticamente. Podemos especificar
 a ordem dos níveis de acordo com a lógica desejada:
 
-```{r eval=FALSE}
+
+``` r
 # Especificar a ordem dos níveis do fator
 factor_data <- factor(data, levels = c("baixo", "medio", "alto"))
 print(factor_data)
@@ -1534,7 +1600,8 @@ print(factor_data)
 Para criar um fator ordenado, onde os níveis têm uma ordem específica,
 usamos o argumento `ordered = TRUE`:
 
-```{r eval=FALSE}
+
+``` r
 # Criar um fator ordenado
 ordered_factor <- factor(data, levels = c("baixo", "medio", "alto"), ordered = TRUE)
 print(ordered_factor)
@@ -1551,7 +1618,8 @@ ordered_factor[1] < ordered_factor[3]
 Podemos utilizar várias funções para verificar e modificar os níveis de
 um fator:
 
-```{r eval=FALSE}
+
+``` r
 # Verificar Níveis
 levels(factor_data)
 ## [1] "baixo"    "medio" "alto"
@@ -1569,7 +1637,8 @@ A função `gl()` (generate levels) é usada para criar fatores de maneira
 eficiente, especialmente quando se deseja gerar fatores com padrões
 repetitivos.
 
-```{r eval=FALSE}
+
+``` r
 # Sintaxe
 gl(n, k, labels = seq_len(n), ordered = FALSE)
 ```
@@ -1584,7 +1653,8 @@ gl(n, k, labels = seq_len(n), ordered = FALSE)
 -   `ordered`: uma lógica que indica se o resultado deve ser ordenado ou
     não.
 
-```{r eval=FALSE}
+
+``` r
 # Gerar níveis de fator com gl()
 gl(n=4,k=3)
 ##  [1] 1 1 1 2 2 2 3 3 3 4 4 4
@@ -1642,7 +1712,8 @@ As respostas foram armazenadas num vetor de texto chamado `respostas`. O objetiv
 
 (a) Crie o vetor `respostas` com os seguintes valores:
 
-```{r eval=FALSE}
+
+``` r
 respostas <- c(
   "Satisfeito", "Muito satisfeito", "Neutro", "Insatisfeito", "Satisfeito",
   "Muito insatisfeito", "Satisfeito", "Neutro", "Insatisfeito", "Satisfeito",
@@ -1680,7 +1751,8 @@ ter mais de duas dimensões.
 Podemos criar uma matriz em R usando a função `matrix()`. Veja o exemplo
 abaixo:
 
-```{r eval=FALSE}
+
+``` r
 matrix(c(1,2,3,4,5,6)+exp(1), nrow=2, ncol= 3, byrow = FALSE)
 ##      [,1] [,2] [,3]
 ## [1,] 3.72 5.72 7.72
@@ -1689,7 +1761,8 @@ matrix(c(1,2,3,4,5,6)+exp(1), nrow=2, ncol= 3, byrow = FALSE)
 
 Podemos também realizar operações lógicas em matrizes:
 
-```{r eval=FALSE}
+
+``` r
 # Verifica se os elementos da matriz são maiores que 6
 matrix(c(1,2,3,4,5,6)+exp(1), nrow=2, ncol=3, byrow = FALSE) > 6
 ##       [,1]  [,2] [,3]
@@ -1702,7 +1775,8 @@ matrix(c(1,2,3,4,5,6)+exp(1), nrow=2, ncol=3, byrow = FALSE) > 6
 Um array pode ter mais de duas dimensões e é criado usando a função
 `array()`:
 
-```{r eval=FALSE}
+
+``` r
 # Criar um array com 4 linhas, 3 colunas, e 2 camadas
 A <- array(c(1:24), dim=c(4,3,2))
 A
@@ -1725,7 +1799,8 @@ A
 
 ### Acessar Elementos de um array
 
-```{r eval=FALSE}
+
+``` r
 # Acessando o elemento na posição [1, 2, 1]
 A[1,2,1]
 ## [1] 5
@@ -1766,7 +1841,8 @@ A[c(1,2), c(1,2), c(1,2)]
 
 **Exemplo com Vetores**
 
-```{r eval=FALSE}
+
+``` r
 # Criar dois vetores
 vector1 <- c(1, 2, 3)
 vector2 <- c(4, 5, 6)
@@ -1789,7 +1865,8 @@ print(result)
 
 **Exemplo com Matrizes**
 
-```{r eval=FALSE}
+
+``` r
 # Criar duas matrizes
 matrix1 <- matrix(1:6, nrow = 2, ncol = 3)
 matrix2 <- matrix(7:12, nrow = 2, ncol = 3)
@@ -1816,7 +1893,8 @@ print(result)
 Podemos aceder a elementos específicos de uma matriz utilizando índices
 ou expressões lógicas.
 
-```{r eval=FALSE}
+
+``` r
 # Criar uma matriz
 A <- matrix((-4):5, nrow=2, ncol=5)
 A
@@ -1852,7 +1930,8 @@ A[,c(2,4)]
 
 ### Nomear Linhas e Colunas de uma Matriz
 
-```{r eval=FALSE}
+
+``` r
 # Criar uma matriz
 x <- matrix(rnorm(12),nrow=4)
 x
@@ -1896,7 +1975,8 @@ y
 
 ### Multiplicação de matrizes
 
-```{r eval=FALSE}
+
+``` r
 M<-matrix(rnorm(20),nrow=4,ncol=5)
 N<-matrix(rnorm(15),nrow=5,ncol=3)
 
@@ -1911,7 +1991,8 @@ M%*%N
 
 ### Adicionar Linhas e Colunas a uma Matriz
 
-```{r eval=FALSE}
+
+``` r
 X <- matrix(c(1,2,3,4,5,6),nrow=2)
 X
 ##      [,1] [,2] [,3]
@@ -2067,7 +2148,8 @@ partir de ficheiros de dados ou convertendo vetores usando a função
 Para criar um data frame, pode usar a função `data.frame()`,
 especificando os nomes das colunas e os dados correspondentes:
 
-```{r eval=FALSE}
+
+``` r
 df <- data.frame(
 id = 1:4,
 nome = c("Ana", "Bruno", "Carlos", "Diana"),
@@ -2084,7 +2166,8 @@ df
 Um data frame pode parecer semelhante a uma matriz, mas há diferenças
 importantes. Veja o exemplo de uma matriz criada com os mesmos dados:
 
-```{r eval=FALSE}
+
+``` r
 # Comparando com uma matriz
 cbind(id = 1:4,
 nome = c("Ana", "Bruno", "Carlos", "Diana"),
@@ -2105,7 +2188,8 @@ tipo de dados.
 
 Existem várias maneiras de acedeer a linhas e colunas num data frame:
 
-```{r eval=FALSE}
+
+``` r
 # Aceder à coluna 'id' usando índice
 df[,1]
 ## [1] 1 2 3 4
@@ -2154,7 +2238,8 @@ df[c("nome", "idade")]
 
 Adicionar e remover colunas de um data frame é simples e direto:
 
-```{r eval=FALSE}
+
+``` r
 # Adicionar uma nova coluna calculada
 df$novo_salario <- df$salario * 1.1 
 df
@@ -2184,7 +2269,8 @@ df
 
 Data frames podem ser combinados ou fundidos usando a função `merge()`.
 
-```{r eval=FALSE}
+
+``` r
 # Criar dois data frames
 df1 <- data.frame(curso = c("PE", "LE", "CAL"), horas = c(60, 75, 90))
 df2 <- data.frame(curso = c("CAL", "PE", "LE"), creditos = c(8, 6, 7))
@@ -2202,7 +2288,8 @@ df12
 
 Funções úteis para explorar e entender a estrutura de um data frame:
 
-```{r eval=FALSE}
+
+``` r
 df <- iris
 
 # Nomes das colunas
@@ -2261,7 +2348,8 @@ frame com base em condições lógicas. É particularmente útil quando se
 deseja filtrar linhas que satisfaçam certos critérios e selecionar
 colunas específicas ao mesmo tempo.
 
-```{r eval=FALSE}
+
+``` r
 # Carregar o conjunto de dados 'iris'
 df <- iris
 
@@ -2352,7 +2440,8 @@ No exemplo acima, ambas as abordagens (indexação direta e `subset()`)
 produzem o mesmo resultado, mas `subset()` é geralmente mais legível e
 conveniente quando se trata de filtragem condicional.
 
-```{r eval=FALSE}
+
+``` r
 # Criar um subconjunto com Petal.Width igual a 0.3, excluindo a coluna Sepal.Width
 (df3 <- subset(df, Petal.Width == 0.3, select = -Sepal.Width))
 ##    Sepal.Length Petal.Length Petal.Width Species
@@ -2369,7 +2458,8 @@ Neste exemplo, a função `subset()` é utilizada para filtrar linhas em
 que `Petal.Width` é exatamente 0.3, ao mesmo tempo que exclui a coluna
 `Sepal.Width`.
 
-```{r eval=FALSE}
+
+``` r
 # Criar um subconjunto selecionando as colunas de Sepal.Width a Petal.Width
 (df4 <- subset(df, select = Sepal.Width:Petal.Width))
 ##     Sepal.Width Petal.Length Petal.Width
@@ -2534,7 +2624,8 @@ A função `summary()` é amplamente usada em R para fornecer resumos
 estatísticos dos dados. O comportamento de `summary()` varia conforme o
 tipo de objeto ao qual é aplicado.
 
-```{r eval=FALSE}
+
+``` r
 # Aplicando summary() a um vetor numérico
 x <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 summary(x)	
@@ -2564,7 +2655,8 @@ categóricas (fatores).
 
 ### Valores ausentes
 
-```{r eval=FALSE}
+
+``` r
 colMeans(airquality)
 ##   Ozone Solar.R    Wind    Temp   Month     Day 
 ##      NA      NA   9.958  77.882   6.993  15.804
@@ -2572,7 +2664,8 @@ colMeans(airquality)
 
 Para eliminarmos os `NAs` em uma coluna podemos usar
 
-```{r eval=FALSE}
+
+``` r
 sem_na <- subset(airquality, !is.na(Ozone))
 colMeans(sem_na)
 ##   Ozone Solar.R    Wind    Temp   Month     Day 
@@ -2582,13 +2675,24 @@ colMeans(sem_na)
 Note que o argumento `na.rm=TRUE` pode ser passado para a maioria das
 funções sumárias por exemplo, `sum()`, `mean()`:
 
-```{r}
+
+``` r
 mean(airquality$Ozone, na.rm = TRUE)
 ```
 
-```{r}
+```
+## [1] 42.12931
+```
+
+
+``` r
 # ou
 colMeans(airquality, na.rm = TRUE)
+```
+
+```
+##      Ozone    Solar.R       Wind       Temp      Month        Day 
+##  42.129310 185.931507   9.957516  77.882353   6.993464  15.803922
 ```
 
 ### Exercícios
@@ -2689,7 +2793,8 @@ armazenar uma coleção heterogénea de elementos em um único objeto.
 Vamos criar uma lista que contém diferentes tipos de elementos,
 incluindo um vetor, um vetor de caracteres, uma matriz e uma função:
 
-```{r eval=FALSE}
+
+``` r
 # Criar uma lista com diferentes tipos de elementos
 minha_lista <- list(
   nome = "Estudante",
@@ -2853,7 +2958,8 @@ são `if`, `else`, e `else if`.
 A instrução `if` executa um bloco de código apenas se uma condição for
 verdadeira. Caso contrário, o bloco de código dentro do `if` é ignorado.
 
-```{r eval=FALSE}
+
+``` r
 # Sintaxe	
 if (condição) {
 	  # Código a ser executado se a condição for TRUE
@@ -2862,7 +2968,8 @@ if (condição) {
 
 **Exemplo 1:**
 
-```{r eval=FALSE}
+
+``` r
 idade <- 18
 
 if (idade >= 18) {
@@ -2881,7 +2988,8 @@ A estrutura `if...else` permite executar um bloco de código se a
 condição for verdadeira, e um outro bloco de código se a condição for
 falsa.
 
-```{r eval=FALSE}
+
+``` r
 # Sintaxe
 if (condição) {
 	  # Código a ser executado se a condição for TRUE
@@ -2892,7 +3000,8 @@ if (condição) {
 
 **Exemplo 2:**
 
-```{r eval=FALSE}
+
+``` r
 idade <- 16
 
 if (idade >= 18) {
@@ -2913,7 +3022,8 @@ A estrutura `else if` permite testar múltiplas condições. Quando uma das
 condições é verdadeira, o R executa o código associado e ignora os
 restantes `else if` ou `else`.
 
-```{r eval=FALSE}
+
+``` r
 # Sintaxe
 if (condição1) {
 	  # Código se condição1 for TRUE
@@ -2926,7 +3036,8 @@ if (condição1) {
 
 **Exemplo 3:**
 
-```{r eval=FALSE}
+
+``` r
 nota <- 85
 
 if (nota >= 90) {
@@ -2948,14 +3059,16 @@ A função `ifelse` é uma versão vetorizada de if...else que retorna
 valores dependendo de uma condição. É especialmente útil para aplicar
 condições a vetores ou data frames.
 
-```{r eval=FALSE}
+
+``` r
 # Sintaxe
 resultado <- ifelse(condição, valor_se_true, valor_se_false)
 ```
 
 **Exemplo 4:**
 
-```{r eval=FALSE}
+
+``` r
 valores <- c(4, 6, 9, 3)
 resultado <- ifelse(valores > 5, "maior que 5", "não é maior que 5")
 print(resultado)
@@ -2971,7 +3084,8 @@ vetor `valores` e retorna “maior que 5” se a condição for verdadeira ou
 
 **Exemplo 5:** Indique o(os) erro(os) no código abaixo
 
-```{r eval=FALSE}
+
+``` r
 if (x%%2 = 0){  
 	  print("Par")
 } else {  
@@ -2981,7 +3095,8 @@ if (x%%2 = 0){
 
 Código correto
 
-```{r eval=FALSE}
+
+``` r
 if (x%%2 == 0){  
   print("Par")
 } else {  
@@ -2991,7 +3106,8 @@ if (x%%2 == 0){
 
 **Exemplo 6:** Indique o(os) erro(os) no código abaixo
 
-```{r eval=FALSE}
+
+``` r
 if (a>0) {  
   print("Positivo")  
   if (a%%5 = 0)     
@@ -3005,7 +3121,8 @@ if (a>0) {
 
 Código correto
 
-```{r eval=FALSE}
+
+``` r
 if (a>0) {  
   print("Positivo")  
   if (a%%5 == 0) {    
@@ -3020,7 +3137,8 @@ if (a>0) {
 
 **Exemplo 7:** Quais são os valores de `x` e `y` no final da execução?
 
-```{r eval=FALSE}
+
+``` r
 x = 1
 y = 0
 if (x == 1){  
@@ -3040,7 +3158,8 @@ if (y == 1){
 
 -   Há uma parte do programa que nunca é executada: qual é e porquê?
 
-```{r eval=FALSE}
+
+``` r
 if (x == 1){  
   x = x + 1  
   if (x == 1){    
@@ -3161,7 +3280,8 @@ facilitando a manutenção, reutilização e compreensão.
 
 A estrutura básica de uma função em R é a seguinte:
 
-```{r eval=FALSE}
+
+``` r
 # Sintaxe
 nome_da_funcao <- function(argumentos) {
   # Corpo da função: código que realiza operações
@@ -3187,7 +3307,8 @@ eficiente de scripts em R.
 Vamos criar uma função para calcular a área de um retângulo, dada a sua
 largura e altura:
 
-```{r eval=FALSE}
+
+``` r
 calcula_area <- function(largura, altura) {
   area <- largura * altura
   return(area)
@@ -3218,7 +3339,8 @@ Funções em R podem ser definidas com valores padrão para seus
 argumentos, o que permite chamadas de função sem a necessidade de
 especificar todos os argumentos.
 
-```{r eval=FALSE}
+
+``` r
 calcula_area <- function(largura, altura=2) { 
   area <- largura * altura  
   return(area)
@@ -3240,7 +3362,8 @@ print(area_obj)
 Em R, ao chamar uma função, os argumentos podem ser passados por nome
 (palavra-chave), permitindo maior flexibilidade na ordem dos argumentos.
 
-```{r eval=FALSE}
+
+``` r
 calcula_area <- function(largura, altura=2) { 
 		area <- largura * altura  
 		return(area)
@@ -3263,7 +3386,8 @@ A função `stop()` em R é usada para interromper a execução de uma função
 ou script, exibindo uma mensagem de erro personalizada. É útil para
 tratar casos em que certas condições pré-definidas não são atendidas.
 
-```{r eval=FALSE}
+
+``` r
 f <- function(x) {
   if (x < 0) {
     stop("Erro: x não pode ser negativo")  # Interrompe a função com uma mensagem de erro
@@ -3282,7 +3406,8 @@ f(-2)
 
 **Exercício 1:** Qual será o output do script abaixo?
 
-```{r eval=FALSE}
+
+``` r
 x <- 10  
 
 minha_funcao <- function() {
@@ -3297,7 +3422,8 @@ print(x)
 **Exercício 2:** Qual é o resultado da chamada da função
 `dados_estudante`?
 
-```{r eval=FALSE}
+
+``` r
 dados_estudante <- function(nome, altura=167){
   print(paste("O(A) estudante",nome,"tem",altura,"centímetros de altura."))
 }
@@ -3318,7 +3444,8 @@ que soma dois números?
 
 **Exercício 4:** Qual das seguintes chamadas à função estão corretas?
 
-```{r eval=FALSE}
+
+``` r
 dados_estudante <- function(nome, altura=167) {
   print(paste("O(A) estudante",nome,"tem",altura,"centímetros de altura."))
 }
@@ -3339,7 +3466,8 @@ sentido lógico, já que 160 não é um nome válido para um estudante.
 
 **Exercício 5:** Qual o resultado do seguinte programa?
 
-```{r eval=FALSE}
+
+``` r
 adi <- function(a,b) {  
   return(c(a+5, b+5))
 }
@@ -3410,7 +3538,8 @@ valor médio (nota: amostras grandes, dimensão $\geq 30$.).
 
 $$\left(\bar{x}-z_{1-\frac{\alpha}{2}}\frac{s}{\sqrt{n}},\bar{x}+z_{1-\frac{\alpha}{2}}\frac{s}{\sqrt{n}}  \right)$$
 
-```{r eval=FALSE}
+
+``` r
 IC <- function(amostra, alpha){
   # Coloque seu código aqui
   
@@ -3419,7 +3548,8 @@ IC <- function(amostra, alpha){
 
 **11.** Criar uma função que calcule o intervalo de confiança para o valor médio para $\alpha$ igual a 0.001, 0.01, 0.05 e 0.10.
 
-```{r eval=FALSE}
+
+``` r
 ICs <- function(amostra, alphas){
   # Coloque seu código aqui
   
@@ -3474,7 +3604,8 @@ dados.
 **Exemplo:** Guarde o seguinte código num ficheiro chamado
 `meu_script.R`:
 
-```{r eval=FALSE}
+
+``` r
 produto <- function(x,y){
   return(x*y)
 }
@@ -3490,7 +3621,8 @@ todas as linhas de código do script.
     `meu_script.R` estiver no diretório de trabalho atual, pode
     executá-lo simplesmente escrevendo:
 
-```{r eval=FALSE}
+
+``` r
 source("meu_script.R")
 ```
 
@@ -3498,7 +3630,8 @@ source("meu_script.R")
     localizado num diretório diferente do diretório de trabalho atual,
     terá de fornecer o caminho completo para o ficheiro:
 
-```{r eval=FALSE}
+
+``` r
 source("/caminho/para/o/seu/script/meu_script.R")
 ```
 
@@ -3510,7 +3643,8 @@ dentro do script será carregado e ficará disponível no ambiente de
 trabalho após a execução. Por exemplo, após executar o script acima, a
 função `produto()` estará disponível para ser utilizada:
 
-```{r eval=FALSE}
+
+``` r
 # Agora pode utilizar a função 'produto'
 produto(2,3)
 ## [1] 6
@@ -3594,7 +3728,8 @@ A função `scan()` é usada para ler dados da entrada padrão (teclado) ou
 de um ficheiro, e devolve um vetor. Um uso comum de `scan()` é para
 entrada de dados manual:
 
-```{r eval=FALSE}
+
+``` r
 # Solicita ao utilizador para introduzir números
 numeros <- scan()
 ```
@@ -3619,13 +3754,15 @@ saídas.
 
 Para verificar o diretório de trabalho atual, utilize `getwd()`:
 
-```{r eval=FALSE}
+
+``` r
 getwd()
 ```
 
 A saída pode ser semelhante a esta, dependendo do seu sistema operativo:
 
-```{r eval=FALSE}
+
+``` r
 # Exemplo de saída no Windows
 ## [1] "C:/Users/Utilizador/Documents"
 
@@ -3636,7 +3773,8 @@ A saída pode ser semelhante a esta, dependendo do seu sistema operativo:
 Para alterar o diretório de trabalho para uma pasta específica, use
 `setwd()`:
 
-```{r eval=FALSE}
+
+``` r
 # Define o diretório de trabalho para "C:/Users/Utilizador/Documents/ProjetosR"
 setwd("C:/Users/Utilizador/Documents/ProjetosR")
 
@@ -3650,7 +3788,8 @@ diretamente sem precisar especificar o caminho completo. Por exemplo, se
 o ficheiro `dados.csv` estiver no diretório de trabalho, pode lê-lo
 facilmente:
 
-```{r eval=FALSE}
+
+``` r
 # Lê o ficheiro "dados.csv" no diretório de trabalho atual
 dados <- read.csv("dados.csv")
 
@@ -3667,7 +3806,8 @@ Faça o download do ficheiro `dados.txt` em
 [link](https://renatorpaula.wixsite.com/renato/laboratorio-estatistica)
 para praticar.
 
-```{r eval=FALSE}
+
+``` r
 # Leitura de ficheiro txt com read.table()
 dados <- read.table(file = "dados.txt", header = TRUE, sep = "")
 print(dados)
@@ -3698,14 +3838,28 @@ print(dados)
 Para ver todas as opções disponíveis na função `read.table()`, pode
 usar:
 
-```{r}
+
+``` r
 args(read.table)
+```
+
+```
+## function (file, header = FALSE, sep = "", quote = "\"'", dec = ".", 
+##     numerals = c("allow.loss", "warn.loss", "no.loss"), row.names, 
+##     col.names, as.is = !stringsAsFactors, tryLogical = TRUE, 
+##     na.strings = "NA", colClasses = NA, nrows = -1, skip = 0, 
+##     check.names = TRUE, fill = !blank.lines.skip, strip.white = FALSE, 
+##     blank.lines.skip = TRUE, comment.char = "#", allowEscapes = FALSE, 
+##     flush = FALSE, stringsAsFactors = FALSE, fileEncoding = "", 
+##     encoding = "unknown", text, skipNul = FALSE) 
+## NULL
 ```
 
 Se o ficheiro for um CSV (valores separados por vírgula), pode utilizar
 `read.table()` com o argumento `sep` apropriado:
 
-```{r eval=FALSE}
+
+``` r
 dados_csv <- read.table("dados.csv", header = TRUE, sep = ",")
 ```
 
@@ -3717,7 +3871,8 @@ representa um registo e os valores são separados por vírgulas. A
 principal diferença entre `read.csv()` e `read.table()` é que o
 separador padrão em `read.csv()` é uma vírgula.
 
-```{r eval=FALSE}
+
+``` r
 # Leitura de ficheiro CSV com read.csv
 dados_csv <- read.csv("dados.csv", header = TRUE)
 ```
@@ -3733,7 +3888,8 @@ lidar com ficheiros CSV onde o separador padrão é um ponto e vírgula (;)
 e o separador decimal é uma vírgula (,). Este formato é comum em alguns
 países europeus.
 
-```{r eval=FALSE}
+
+``` r
 # Leitura de CSV com separador ponto e vírgula
 dados_csv2 <- read.csv2("dados.csv2", header = TRUE)
 ```
@@ -3744,7 +3900,8 @@ Para ler ficheiros Excel (.xls e .xlsx), usamos a função `read_excel()`
 do pacote `readxl`. Este pacote precisa ser instalado e carregado antes
 da sua utilização.
 
-```{r eval=FALSE}
+
+``` r
 library(readxl)
 
 # Sintaxe básica
@@ -3780,7 +3937,8 @@ read_excel(path, sheet = NULL, range = NULL, col_names = TRUE,
 
 **Exemplo de Utilização**: Vamos considerar um exemplo em que temos um ficheiro Excel chamado `"dados_instagram.xlsx"`. Este ficheiro pode ser descarregado [aqui](https://renatorpaula.wixsite.com/renato/laboratorio-estatistica). Vamos ler a primeira folha (`Sheet1`):
 
-```{r eval=FALSE}
+
+``` r
 dados <- read_excel(path = "instagram.xlsx",
                     sheet = "Sheet1",
                     col_names = TRUE)
@@ -3792,7 +3950,8 @@ O R também permite ler dados diretamente de URLs. Pode usar funções como
 `read.table()`, `read.csv()`, ou `read_excel()` (dependendo do formato
 do ficheiro) para importar dados diretamente de um link online.
 
-```{r eval=FALSE}
+
+``` r
 # Leitura de dados online com read.table
 url <- "https://example.com/data.csv"
 dados_online <- read.table(url, header = TRUE, sep = ",")
@@ -3809,7 +3968,8 @@ Neste exemplo, url contém o endereço do ficheiro CSV na web, e
 
 (b) **Construa uma tabela de frequência**: Crie um data frame que contenha a tabela de frequência de cada variável no conjunto de dados.
 
-```{r eval=FALSE}
+
+``` r
 # --------------------
 # Indice de influência
 # ---------------------
@@ -3897,14 +4057,16 @@ temporárias.
 Para começar a utilizar o operador pipe, é necessário instalar e
 carregar o pacote `magrittr`.
 
-```{r eval=FALSE}
+
+``` r
 install.packages("magrittr")
 library(magrittr)
 ```
 
 O operador pipe `%>%` permite que o **valor de uma expressão à esquerda seja passado como o primeiro argumento para a função à direita**. Isso permite que o **código seja lido de maneira sequencial, de cima para baixo, em vez de dentro para fora**, o que facilita a compreensão do fluxo de dados. Por exemplo, considere o seguinte código em R sem o uso do pipe:
 
-```{r eval=FALSE}
+
+``` r
 x <- c(1, 2, 3, 4)
 sqrt(sum(x))
 ## [1] 3.16
@@ -3913,7 +4075,8 @@ sqrt(sum(x))
 Com o operador pipe, o código pode ser reescrito de forma mais clara e
 legível:
 
-```{r eval=FALSE}
+
+``` r
 library(magrittr)
 x %>% sum() %>% sqrt()
 ## [1] 3.16
@@ -3922,14 +4085,16 @@ x %>% sum() %>% sqrt()
 Considere um exemplo onde queremos calcular a raiz quadrada da soma dos
 logaritmos dos valores absolutos de um vetor `x`:
 
-```{r eval=FALSE}
+
+``` r
 resultado <- sqrt(sum(log(abs(x))))
 ```
 
 Usando o operador pipe, o mesmo código pode ser reescrito de maneira
 mais clara:
 
-```{r eval=FALSE}
+
+``` r
 resultado <- x %>% 
   abs() %>% 
   log() %>% 
@@ -3945,7 +4110,8 @@ Por exemplo, ao usar o pipe para construir um modelo linear com o
 conjunto de dados `airquality`, queremos que o dataset seja passado como
 o segundo argumento (`data =`) da função `lm()`:
 
-```{r eval=FALSE}
+
+``` r
 airquality %>%
   na.omit() %>% # Remove valores ausentes
   lm(Ozone ~ Wind + Temp + Solar.R, data = .) %>% # Cria o modelo linear
@@ -3981,7 +4147,8 @@ este fluxo de operações seja descrito de forma clara e linear.
 
 **1.** Reescreva a expressão abaixo utilizando o `%>%`.
 
-```{r eval=FALSE}
+
+``` r
 round(mean(sum(1:10)/3), digits = 1)
 ```
 
@@ -3990,7 +4157,8 @@ função para mais informações.
 
 **2.** Reescreva o código abaixo utilizando o `%>%`.
 
-```{r}
+
+``` r
 x <- rnorm(100)
 
 x.pos <- x[x>0]
@@ -4006,7 +4174,8 @@ para mais informações.
 **3.** Sem executar, diga qual a saída do código abaixo. Consulte o help
 das funções caso precise.
 
-```{r eval=FALSE}
+
+``` r
 2 %>%
   add(2) %>%
   c(6, NA) %>%
@@ -4016,7 +4185,8 @@ das funções caso precise.
 
 **4.** Dado o dataset `mtcars`, selecione as colunas `mpg`, `hp`, e `wt`, filtre os carros com mais de 100 cavalos de potência (`hp > 100`), e ordene-os pela coluna `wt` (peso) de forma crescente.
 
-```{r eval=FALSE}
+
+``` r
 # Sem o operador pipe
 install.packages("dplyr")
 library(dplyr)
@@ -4028,7 +4198,8 @@ Reescreva o código acima usando o operador pipe (`%>%`).
 
 **5.** Dado o dataset `iris`, filtre as linhas onde `Sepal.Length` seja maior que 5, selecione as colunas `Sepal.Length` e `Species`, e depois calcule a média de `Sepal.Length` para cada espécie.
 
-```{r eval=FALSE}
+
+``` r
 # Sem o operador pipe
 result <- aggregate(Sepal.Length ~ Species, data = select(filter(iris, Sepal.Length > 5), Sepal.Length, Species), mean)
 print(result)
@@ -4038,7 +4209,8 @@ Reescreva o código acima usando o operador pipe (`%>%`).
 
 **6.** Utilizando o dataset `airquality`, remova as linhas que contêm valores ausentes (`NA`), selecione as colunas `Ozone` e `Wind`, e calcule a média de `Ozone` para valores onde `Wind` é maior que 10.
 
-```{r eval=FALSE}
+
+``` r
 # Sem o operador pipe
 cleaned_data <- na.omit(airquality)
 filtered_data <- filter(cleaned_data, Wind > 10)
@@ -4050,7 +4222,8 @@ Reescreva o código acima usando o operador pipe (`%>%`). Dica: use a função `
 
 **7.** Dado o dataset `mtcars`, crie uma nova coluna chamada `hp_per_wt` que seja a razão entre `hp` e `wt`. Em seguida, filtre os carros com essa razão maior que 30, e selecione as colunas `mpg`, `hp_per_wt`, e `gear`.
 
-```{r eval=FALSE}
+
+``` r
 # Sem o operador pipe
 mtcars$hp_per_wt <- mtcars$hp / mtcars$wt
 filtered_data <- filter(mtcars, hp_per_wt > 30)
@@ -4068,7 +4241,8 @@ específica for verdadeira. Esse tipo de loop é especialmente útil quando
 o número de iterações não é conhecido antecipadamente e depende de uma
 condição lógica ser atendida.
 
-```{r eval=FALSE}
+
+``` r
 # Sintaxe
 while (condição) {
   # Bloco de código a ser executado repetidamente
@@ -4098,7 +4272,8 @@ while (condição) {
 **Exemplo 1**: Somando números até um limite. O exemplo seguinte calcula
 a soma de todos os números de 1 a 10.
 
-```{r eval=FALSE}
+
+``` r
 limite <- 10
 soma <- 0
 contador <- 1
@@ -4122,7 +4297,8 @@ Neste exemplo:
 **Exemplo 2**: Escrever a tabuada de um número inteiro. O programa
 abaixo imprime a tabuada de um número fornecido pelo utilizador.
 
-```{r eval=FALSE}
+
+``` r
 n <- as.numeric(readline("Digite um número inteiro: "))
 
 print(paste("Tabuada do",n, ":"))
@@ -4143,7 +4319,8 @@ atualizar a variável `i` a cada iteração.
 demonstra como usar a instrução `break` para sair de um loop
 antecipadamente.
 
-```{r eval=FALSE}
+
+``` r
 limite <- 10
 soma <- 0
 contador <- 1
@@ -4245,7 +4422,8 @@ conhecido de antecipadamente. O loop `for` é amplamente utilizado em R
 para iterar sobre vetores, listas, data frames, e outras estruturas de
 dados.
 
-```{r eval=FALSE}
+
+``` r
 # Sintaxe
 for (variável in sequência) {
   # Bloco de código a ser executado
@@ -4277,7 +4455,8 @@ for (variável in sequência) {
 
 **Exemplo 1**: Imprima os números de 0 a 10 no ecrã.
 
-```{r eval=FALSE}
+
+``` r
 for (i in 0:10) {
   print(i)
 }
@@ -4296,7 +4475,8 @@ for (i in 0:10) {
 
 **Exemplo 2**: Soma dos elementos de um vetor.
 
-```{r eval=FALSE}
+
+``` r
 numeros <- c(1, 2, 3, 4, 5)
 soma <- 0
 
@@ -4312,7 +4492,8 @@ print(paste("A soma dos números é:", soma))
 para iterar sobre índices de vetores ou listas, o que pode ser útil
 quando se deseja aceder ou modificar elementos em posições específicas.
 
-```{r eval=FALSE}
+
+``` r
 numeros <- c(10, 20, 30, 40, 50)
 
 for (i in 1:length(numeros)) {
@@ -4329,7 +4510,8 @@ utilizado para percorrer elementos de uma matriz, seja por linha ou por
 coluna. No exemplo abaixo, calculamos a soma dos elementos de cada linha
 de uma matriz.
 
-```{r eval=FALSE}
+
+``` r
 matriz <- matrix(1:9, nrow=3, ncol=3)
 soma_linhas <- numeric(nrow(matriz))
 
@@ -4346,7 +4528,8 @@ print(soma_linhas)
 exemplo, calculamos a média de cada coluna de um data frame usando um
 loop `for`.
 
-```{r eval=FALSE}
+
+``` r
 dados <- data.frame(
 A = c(1, 2, 3),
 B = c(4, 5, 6),
@@ -4456,7 +4639,8 @@ A função `apply()` aplica uma função a margens específicas (linhas ou
 colunas) de uma matriz ou data frame e devolve um vetor, lista ou array.
 É frequentemente usada para evitar loops explícitos.
 
-```{r eval=FALSE}
+
+``` r
 # Sintaxe
 apply(X, MARGIN, FUN)
 ```
@@ -4471,7 +4655,8 @@ apply(X, MARGIN, FUN)
 **Exemplo**: Calcular a soma, a média e a raíz quadrada de cada coluna
 de uma matriz.
 
-```{r eval=FALSE}
+
+``` r
 matriz <- matrix(1:9, nrow = 3)
 
 apply(matriz, 2, sum)
@@ -4494,7 +4679,8 @@ A função `lapply()` aplica uma função a cada elemento de uma lista ou
 vetor e devolve uma lista. É útil quando se deseja manter a estrutura de
 saída como uma lista.
 
-```{r eval=FALSE}
+
+``` r
 # Sintaxe
 lapply(X, FUN, ...)
 ```
@@ -4505,7 +4691,8 @@ lapply(X, FUN, ...)
 
 **Exemplo 1:**
 
-```{r eval=FALSE}
+
+``` r
 nomes <- c("ANA", "JOAO", "PAULO", "FILIPA")
 nomes_minusc <- lapply(nomes, tolower)
 print(nomes_minusc)
@@ -4531,7 +4718,8 @@ str(nomes_minusc)
 
 **Exemplo 2:**
 
-```{r eval=FALSE}
+
+``` r
 # Aplicar a função sqrt a cada elemento de uma lista
 vetor_dados <- list(a = 1:4, b = 5:8)
 lapply(vetor_dados, sqrt)
@@ -4547,14 +4735,16 @@ lapply(vetor_dados, sqrt)
 A função `sapply()` é semelhante à `lapply()`, mas tenta simplificar o
 resultado para um vetor ou matriz, se possível.
 
-```{r eval=FALSE}
+
+``` r
 # Sintaxe
 sapply(X, FUN, ...)
 ```
 
 **Exemplo**
 
-```{r eval=FALSE}
+
+``` r
 dados <- 1:5
 f <- function(x) x^2
 
@@ -4584,7 +4774,8 @@ A função `tapply()` aplica uma função a subconjuntos de um vetor,
 divididos de acordo com fatores. É ideal para operações em subconjuntos
 de dados categorizados.
 
-```{r eval=FALSE}
+
+``` r
 # Sintaxe
 tapply(X, INDEX, FUN, ...)
 ```
@@ -4604,7 +4795,8 @@ informações sobre três espécies de flores (`Setosa`, `Versicolor`,
 das sépalas e pétalas). Vamos calcular a média do comprimento das
 pétalas por espécie usando `tapply()`:
 
-```{r eval=FALSE}
+
+``` r
 iris
 ##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
 ## 1            5.1         3.5          1.4         0.2     setosa
@@ -4769,10 +4961,10 @@ tapply(iris$Petal.Length, iris$Species, mean)
 "Carla", e "Daniel". Use a função `lapply()` para converter todos os
 nomes para maiúsculas. Verifique o resultado.
 
-```{r eval=FALSE}
+
+``` r
 nomes <- c("Alice", "Bruno", "Carla", "Daniel")
 # Sua solução aqui
-
 ```
 
 **2.** Crie um vetor chamado `palavras` contendo as palavras "cachorro",
@@ -4780,7 +4972,8 @@ nomes <- c("Alice", "Bruno", "Carla", "Daniel")
 comprimento (número de caracteres) de cada palavra. Verifique o
 resultado. Dica, veja `?nchar`.
 
-```{r}
+
+``` r
 palavras <- c("cachorro", "gato", "elefante", "leão")
 # Sua solução aqui
 ```
@@ -4790,20 +4983,20 @@ a 9. Use a função `apply()` para calcular a soma de cada linha da
 matriz. Em seguida, use a função `apply()` novamente para calcular a
 média de cada coluna.
 
-```{r}
+
+``` r
 matriz_exemplo <- matrix(1:9, nrow = 3)
 # Sua solução aqui
-
 ```
 
 **4.** Use o conjunto de dados embutido `mtcars` em R. Use a função
 `tapply()` para calcular a média do consumo de combustível (`mpg`) para
 cada número de cilindros (`cyl`).
 
-```{r}
+
+``` r
 data(mtcars)
 # Sua solução aqui
-
 ```
 
 **5.** Crie uma lista chamada `minha_lista` contendo três elementos: um
@@ -4812,20 +5005,20 @@ vetor numérico de 1 a 5, um vetor de caracteres com os valores "A", "B",
 o comprimento de cada elemento da lista e, em seguida, use `sapply()`
 para simplificar o resultado num vetor.
 
-```{r}
+
+``` r
 minha_lista <- list(1:5, c("A", "B", "C"), matrix(1:4, nrow = 2))
 # Sua solução aqui
-
 ```
 
 **6.** Crie um vetor `numeros` contendo os números de 1 a 10. Use a função
 `sapply()` para aplicar uma função personalizada que retorne “par” se o
 número for par e “ímpar” se o número for ímpar.
 
-```{r}
+
+``` r
 numeros <- 1:10
 # Sua solução aqui
-
 ```
 
 **7.** Use o conjunto de dados `iris`. Utilize `tapply()` para calcular
@@ -4833,10 +5026,10 @@ a média do comprimento das pétalas (`Petal.Length`) por espécie
 (`Species`) e a variância da largura das sépalas (`Sepal.Width`) por
 espécie.
 
-```{r}
+
+``` r
 data(iris)
 # Sua solução aqui
-
 ```
 
 **8.** Use o conjunto de dados `mtcars`. Use `apply()` para normalizar
@@ -4844,11 +5037,10 @@ data(iris)
 use `lapply()` para aplicar a função `summary()` a cada coluna
 normalizada para verificar o resultado. Valor normalizado $\frac{x-min(x)}{max(x)-min(x)}$.
 
-```{r}
+
+``` r
 data(mtcars)
 # Sua solução aqui
-
-
 ```
 
 **9.** Um professor quer analisar o desempenho dos alunos em quatro exames. Ele registou as notas de 30 alunos, e agora deseja calcular algumas estatísticas descritivas.
@@ -4919,7 +5111,8 @@ ou horizontais, onde cada barra representa uma categoria e sua altura
 categoria. A largura das barras é constante e não possui significado
 estatístico.
 
-```{r eval=FALSE}
+
+``` r
 # Sintaxe 
 barplot(altura, 
         names.arg = NULL, 
@@ -4937,7 +5130,8 @@ barplot(altura,
 * `col`: Cor ou vetor de cores das barras.
 * `beside`: Controla se as barras devem ser exibidas lado a lado (`TRUE`) ou empilhadas (`FALSE`).
 
-```{r}
+
+``` r
 # Dados de exemplo: cores favoritas
 cores <- c("Azul", "Vermelho", "Verde", "Azul", "Verde", 
 "Vermelho", "Azul", "Verde", "Azul")
@@ -4954,9 +5148,12 @@ barplot(frequencia_absoluta,
   border = "black") 
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-165-1.png" width="672" />
+
 Para ter o gráfico com as frequências relativas fazemos:
 
-```{r}
+
+``` r
 # Calcular as frequências relativas
 frequencia_relativa <- frequencia_absoluta / length(cores)	
 	
@@ -4969,13 +5166,16 @@ barplot(frequencia_relativa,
   border = "black") 
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-166-1.png" width="672" />
+
 **Personalização de Gráficos de Barras**
 
 Pode personalizar ainda mais os gráficos de barras usando argumentos
 como `horiz` (para gráficos de barras horizontais), e `beside` (para
 barras lado a lado).
 
-```{r}
+
+``` r
 # Gráfico de barras horizontal
 barplot(frequencia_absoluta, 
         main = "Gráfico de Barras Horizontal",
@@ -4985,11 +5185,14 @@ barplot(frequencia_absoluta,
         horiz = TRUE)
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-167-1.png" width="672" />
+
 **Gráfico de Barras Agrupadas**
 
 Podemos também gerar gráficos de barras que comparam mais de uma variável. Neste exemplo, vamos comparar o número de amostras de dois tipos de rochas em três diferentes regiões geográficas.
 
-```{r}
+
+``` r
 # Dados: contagem de amostras por tipo de rocha e região
 regioes <- c("Região 1", "Região 2", "Região 3")
 granito <- c(15, 10, 25)
@@ -5009,13 +5212,16 @@ barplot(dados_rochas,
         ylab = "Quantidade de Amostras")
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-168-1.png" width="672" />
+
 Neste exemplo, usamos `rbind()` para agrupar os dados e o argumento `beside = TRUE` para gerar barras lado a lado para comparação entre “Granito” e “Basalto”. O parâmetro `legend.text` cria uma legenda para identificar cada cor de barra.
 
 **Gráfico de Barras Empilhado**
 
 Para gerar um gráfico de barras empilhado em vez de agrupado, basta remover o argumento `beside = TRUE`. No gráfico empilhado, as barras de diferentes categorias serão colocadas uma em cima da outra em vez de lado a lado.
 
-```{r}
+
+``` r
 # Dados: contagem de amostras por tipo de rocha e região
 regioes <- c("Região 1", "Região 2", "Região 3")
 granito <- c(15, 10, 25)
@@ -5034,13 +5240,16 @@ barplot(dados_rochas,
         ylab = "Quantidade de Amostras")
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-169-1.png" width="672" />
+
 ## Gráfico Circular (Pizza)
 
 **Gráfico circular (pizza)**: Mostra a proporção de diferentes
 categorias em relação ao total. Cada fatia representa uma categoria e o
 tamanho de cada fatia é proporcional à sua porcentagem.
 
-```{r eval=FALSE}
+
+``` r
 # Sintaxe
 pie(x, labels = NULL, main = NULL, col = NULL, radius = 1)
 ```
@@ -5051,7 +5260,8 @@ pie(x, labels = NULL, main = NULL, col = NULL, radius = 1)
 * `col`: Um vetor de cores para cada fatia.
 * `radius`: Ajusta o tamanho do gráfico. O valor padrão é 1, e valores menores ou maiores diminuem ou aumentam o tamanho do gráfico.
 
-```{r}
+
+``` r
 # Criar gráfico circular
 pie(frequencia_relativa, 
     main = "Gráfico Circular (Pizza)",
@@ -5059,6 +5269,8 @@ pie(frequencia_relativa,
     labels = paste(names(frequencia_relativa), 
                    round(frequencia_relativa * 100, 1), "%"))
 ```
+
+<img src="introR_files/figure-html/unnamed-chunk-171-1.png" width="672" />
 
 ## Histograma
 
@@ -5077,7 +5289,8 @@ histograma. Se tiver interesse em representar as frequências relativas,
 utilize a opção `freq=FALSE` nos argumentos da função `hist()`. O padrão
 de intervalo de classe no R é $(a, b]$.
 
-```{r eval=FALSE}
+
+``` r
 # Sintaxe
 hist(x, breaks = "Sturges",
      main = NULL,
@@ -5095,7 +5308,8 @@ hist(x, breaks = "Sturges",
 * `col`: Cor das barras do histograma.
 * `border`: Cor das bordas das barras.
 
-```{r}
+
+``` r
 # Dados referentes à massa (em kg) de 40 bicicletas
 bicicletas <- c(4.3,6.8,9.2,7.2,8.7,8.6,6.6,5.2,8.1,10.9,7.4,4.5,3.8,7.6,6.8,7.8,8.4,7.5,10.5,6.0,7.7,8.1,7.0,8.2,8.4,8.8,6.7,8.2,9.4,7.7,6.3,7.7,9.1,7.9,7.9,9.4,8.2,6.7,8.2,6.5)
   
@@ -5110,7 +5324,10 @@ h <- hist(bicicletas,
           labels = TRUE)
 ```
 
-```{r eval=FALSE}
+<img src="introR_files/figure-html/unnamed-chunk-173-1.png" width="672" />
+
+
+``` r
 # Pontos limites das classes
 h$breaks
 ## [1]  3  4  5  6  7  8  9 10 11
@@ -5120,7 +5337,8 @@ h$counts
 ## [1]  1  2  2  8 10 11  4  2
 ```
 
-```{r}
+
+``` r
 # Histograma com frequência relativa
 hist(bicicletas,
   main = "Histograma",          
@@ -5132,12 +5350,15 @@ hist(bicicletas,
   labels = TRUE)
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-175-1.png" width="672" />
+
 Pode controlar o número de intervalos (bins) usando o argumento
 `breaks`. Por exemplo, `breaks = 5` divide os dados em 5 intervalos.
 
 Podemos adicionar também uma curva de densidade em cima do histograma.
 
-```{r}
+
+``` r
 # Histograma com frequência relativa
 hist(bicicletas,
   main = "Histograma",          
@@ -5152,6 +5373,8 @@ hist(bicicletas,
 lines(density(bicicletas), col="red", lwd=2)
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-176-1.png" width="672" />
+
 ## Box-plot
 
 **Box-plot (Caixa de Bigodes)**: O box-plot é uma representação gráfica
@@ -5159,7 +5382,8 @@ que resume a distribuição de uma variável através de cinco estatísticas
 principais: mínimo, primeiro quartil (Q1), mediana (Q2), terceiro
 quartil (Q3) e máximo. Também pode mostrar outliers (valores atípicos).
 
-```{r eval=FALSE}
+
+``` r
 # Sintaxe
 boxplot(x, 
         main = NULL,
@@ -5177,7 +5401,8 @@ boxplot(x,
 * `border`: Cor da borda do boxplot.
 * `horizontal`: Define se o boxplot será horizontal (`TRUE`) ou vertical (`FALSE`, padrão).
 
-```{r}
+
+``` r
 # Box-plot vertical
 boxplot(bicicletas, 
         main = "Box-plot Vertical",
@@ -5187,7 +5412,10 @@ boxplot(bicicletas,
         border = "darkblue")
 ```
 
-```{r}
+<img src="introR_files/figure-html/unnamed-chunk-178-1.png" width="672" />
+
+
+``` r
 # Box-plot horizontal
 boxplot(bicicletas, 
         main = "Box-plot Horizontal",
@@ -5198,24 +5426,32 @@ boxplot(bicicletas,
         horizontal = TRUE)
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-179-1.png" width="672" />
+
 Pode comparar a distribuição de múltiplas variáveis lado a lado com
 box-plots. Use a função `par()` para ajustar o layout gráfico.
 
-```{r}
+
+``` r
 # Ajuste do layout gráfico
 par(mfrow = c(1, 2))
 
 # Box-plot vertical e horizontal lado a lado
 boxplot(bicicletas, main = "Box-plot Vertical", col = "red")
 boxplot(bicicletas, main = "Box-plot Horizontal", col = "green", horizontal = TRUE)
+```
 
+<img src="introR_files/figure-html/unnamed-chunk-180-1.png" width="672" />
+
+``` r
 # Resetar layout gráfico para o padrão
 par(mfrow = c(1, 1))
 ```
 
 Quando temos dados organizados por categorias, podemos usar um boxplot para compará-los:
 
-```{r eval=FALSE}
+
+``` r
 # Dados categorizados
 grupo_A <- rnorm(50, mean = 60, sd = 10)
 grupo_B <- rnorm(50, mean = 50, sd = 15)
@@ -5232,17 +5468,21 @@ boxplot(grupo_A, grupo_B, grupo_C,
 Usando o conjunto de dados `iris`, vamos criar um box-plot simples da
 variável `Sepal.Length`.
 
-```{r}
+
+``` r
 data(iris)
 boxplot(iris$Sepal.Length, 
         main="Box-Plot de Sepal Length", 
         ylab="Sepal Length")
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-182-1.png" width="672" />
+
 Vamos criar agora um box-plot da variável `Sepal.Length` agrupado por
 espécie de flor (`Species`) no conjunto de dados iris.
 
-```{r}
+
+``` r
 boxplot(Sepal.Length ~ Species, 
         data = iris, 
         main = "Box-Plot de Sepal Length por Espécie", 
@@ -5250,13 +5490,16 @@ boxplot(Sepal.Length ~ Species,
         ylab = "Sepal Length")
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-183-1.png" width="672" />
+
 ## Gráfico de Dispersão
 
 **Gráfico de Dispersão (Scatter Plot)**: Útil para visualizar a relação
 entre duas variáveis quantitativas. É uma boa ferramenta para
 identificar correlações, tendências e outliers.
 
-```{r eval=FALSE}
+
+``` r
 # Sintaxe
 plot(x, y, 
      main = NULL, 
@@ -5277,7 +5520,8 @@ plot(x, y,
 * `cex`: Tamanho dos pontos.
 * `xlim` e `ylim`: Limites dos eixos x e y, respectivamente.
 
-```{r}
+
+``` r
 # Dados de exemplo
 x <- rnorm(100)
 y <- x + rnorm(100, sd = 0.5)
@@ -5291,9 +5535,12 @@ plot(x, y,
      pch = 19)
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-185-1.png" width="672" />
+
 Gráfico de dispersão com regressão.
 
-```{r}
+
+``` r
 # Criar gráfico de dispersão
 plot(x, y, 
      main = "Gráfico de Dispersão", 
@@ -5305,9 +5552,12 @@ plot(x, y,
 abline(lm(y~x), col="green", lwd=2)
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-186-1.png" width="672" />
+
 Se você tiver grupos de dados diferentes, pode diferenciá-los por cores:
 
-```{r}
+
+``` r
 # Dados com dois grupos
 set.seed(123)
 x1 <- rnorm(50, mean = 5)
@@ -5325,12 +5575,15 @@ points(x2, y2, col = "blue", pch = 16)
 legend("topright", legend = c("Grupo 1", "Grupo 2"), col = c("red", "blue"), pch = 16)
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-187-1.png" width="672" />
+
 ## Gráfico de Linhas
 
 **Gráfico de Linhas**: É usado para mostrar informações de séries
 temporais ou tendências ao longo de intervalos contínuos, como o tempo.
 
-```{r eval=FALSE}
+
+``` r
 # Sintaxe
 plot(x, y, 
      type = "l", 
@@ -5353,7 +5606,8 @@ plot(x, y,
 * `lwd`: Espessura da linha.
 * `xlim` e `ylim`: Limites dos eixos x e y, respectivamente.
 
-```{r}
+
+``` r
 # Dados de exemplo
 tempo <- 1:10
 valores <- c(3, 5, 7, 9, 11, 10, 8, 6, 4, 2)
@@ -5368,6 +5622,8 @@ plot(tempo, valores,
      lwd = 1,
      pch = 19)
 ```
+
+<img src="introR_files/figure-html/unnamed-chunk-189-1.png" width="672" />
 
 ## Exercícios
 
@@ -5405,7 +5661,8 @@ personalize o histograma com cores, ajuste o número de “bins”
 
 * Crie dois vetores de 100 alturas (em cm) para as espécies A e B. Use `rnorm()` para gerar os dados com médias e desvios padrão diferentes.
 
-```{r eval=FALSE}
+
+``` r
 # Gerando os dados
 altura_A <- rnorm(100, mean = 150, sd = 10)
 altura_B <- rnorm(100, mean = 160, sd = 15)
@@ -5419,7 +5676,8 @@ altura_B <- rnorm(100, mean = 160, sd = 15)
 
 * Adicione a legenda
 
-```{r eval=FALSE}
+
+``` r
 legend("topright", legend = c("Espécie A", "Espécie B"), fill = c(rgb(1, 0, 0, 0.5), rgb(0, 0, 1, 0.5)))
 ```
 
@@ -5427,7 +5685,8 @@ legend("topright", legend = c("Espécie A", "Espécie B"), fill = c(rgb(1, 0, 0,
 
 * Crie um vetor de 200 valores, representando as pontuações dos alunos (notas de 0 a 20). 
 
-```{r eval=FALSE}
+
+``` r
 set.seed(1234)
 rnorm(200, mean=14, sd=4)
 ```
@@ -5440,7 +5699,8 @@ rnorm(200, mean=14, sd=4)
 
 * Use a legenda
 
-```{r eval=FALSE}
+
+``` r
 legend("topright", legend = c(paste("Média:", round(media_nota, 2)),
                               paste("Mediana:", round(mediana_nota, 2)),
                               paste("Desvio Padrão:", round(desvio_nota, 2))),
@@ -5528,7 +5788,8 @@ Criar um `tibble` é semelhante a criar um data frame, mas com uma
 sintaxe ligeiramente diferente que facilita a criação de colunas
 complexas.
 
-```{r eval=FALSE}
+
+``` r
 # Carregar o pacote tibble
 library(tibble)
 
@@ -5553,7 +5814,8 @@ print(tb)
 Também pode converter um data frame existente para um tibble usando a
 função `as_tibble()`:
 
-```{r eval=FALSE}
+
+``` r
 # Criar um data frame
 df <- data.frame(
   x = 1:5,
@@ -5599,12 +5861,51 @@ disponível no pacote dplyr.
 
 Assim, utilizaremos o objeto `sw` para acessar os dados.
 
-```{r}
-library(dplyr)
 
+``` r
+library(dplyr)
+```
+
+```
+## 
+## Attaching package: 'dplyr'
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+``` r
 # Carregar o dataset Star Wars
 sw <- starwars
 glimpse(sw) # Exibe uma visão geral dos dados
+```
+
+```
+## Rows: 87
+## Columns: 14
+## $ name       <chr> "Luke Skywalker", "C-3PO", "R2-D2", "Darth Vader", "Leia Or…
+## $ height     <int> 172, 167, 96, 202, 150, 178, 165, 97, 183, 182, 188, 180, 2…
+## $ mass       <dbl> 77.0, 75.0, 32.0, 136.0, 49.0, 120.0, 75.0, 32.0, 84.0, 77.…
+## $ hair_color <chr> "blond", NA, NA, "none", "brown", "brown, grey", "brown", N…
+## $ skin_color <chr> "fair", "gold", "white, blue", "white", "light", "light", "…
+## $ eye_color  <chr> "blue", "yellow", "red", "yellow", "brown", "blue", "blue",…
+## $ birth_year <dbl> 19.0, 112.0, 33.0, 41.9, 19.0, 52.0, 47.0, NA, 24.0, 57.0, …
+## $ sex        <chr> "male", "none", "none", "male", "female", "male", "female",…
+## $ gender     <chr> "masculine", "masculine", "masculine", "masculine", "femini…
+## $ homeworld  <chr> "Tatooine", "Tatooine", "Naboo", "Tatooine", "Alderaan", "T…
+## $ species    <chr> "Human", "Droid", "Droid", "Human", "Human", "Human", "Huma…
+## $ films      <list> <"A New Hope", "The Empire Strikes Back", "Return of the J…
+## $ vehicles   <list> <"Snowspeeder", "Imperial Speeder Bike">, <>, <>, <>, "Imp…
+## $ starships  <list> <"X-wing", "Imperial shuttle">, <>, <>, "TIE Advanced x1",…
 ```
 
 ### Seleção de Colunas com `select()`
@@ -5612,15 +5913,71 @@ glimpse(sw) # Exibe uma visão geral dos dados
 A função `select()` é usada para selecionar uma ou mais colunas de um
 tibble ou data frame. Pode usar nomes de colunas diretamente sem aspas.
 
-```{r}
+
+``` r
 # Selecionar uma coluna
 select(sw, name)
+```
 
+```
+## # A tibble: 87 × 1
+##    name              
+##    <chr>             
+##  1 Luke Skywalker    
+##  2 C-3PO             
+##  3 R2-D2             
+##  4 Darth Vader       
+##  5 Leia Organa       
+##  6 Owen Lars         
+##  7 Beru Whitesun Lars
+##  8 R5-D4             
+##  9 Biggs Darklighter 
+## 10 Obi-Wan Kenobi    
+## # ℹ 77 more rows
+```
+
+``` r
 # Selecionar várias colunas
 select(sw, name, mass, hair_color)
+```
 
+```
+## # A tibble: 87 × 3
+##    name                mass hair_color   
+##    <chr>              <dbl> <chr>        
+##  1 Luke Skywalker        77 blond        
+##  2 C-3PO                 75 <NA>         
+##  3 R2-D2                 32 <NA>         
+##  4 Darth Vader          136 none         
+##  5 Leia Organa           49 brown        
+##  6 Owen Lars            120 brown, grey  
+##  7 Beru Whitesun Lars    75 brown        
+##  8 R5-D4                 32 <NA>         
+##  9 Biggs Darklighter     84 black        
+## 10 Obi-Wan Kenobi        77 auburn, white
+## # ℹ 77 more rows
+```
+
+``` r
 # Selecionar um intervalo de colunas
 select(sw, name:hair_color)
+```
+
+```
+## # A tibble: 87 × 4
+##    name               height  mass hair_color   
+##    <chr>               <int> <dbl> <chr>        
+##  1 Luke Skywalker        172    77 blond        
+##  2 C-3PO                 167    75 <NA>         
+##  3 R2-D2                  96    32 <NA>         
+##  4 Darth Vader           202   136 none         
+##  5 Leia Organa           150    49 brown        
+##  6 Owen Lars             178   120 brown, grey  
+##  7 Beru Whitesun Lars    165    75 brown        
+##  8 R5-D4                  97    32 <NA>         
+##  9 Biggs Darklighter     183    84 black        
+## 10 Obi-Wan Kenobi        182    77 auburn, white
+## # ℹ 77 more rows
 ```
 
 O `dplyr` possui um conjunto de funções auxiliares muito úteis para
@@ -5630,20 +5987,76 @@ seleção de colunas. As principais são:
 -   `ends_with()`: para colunas que terminam com um texto específico.
 -   `contains()`: para colunas que contêm um texto específico.
 
-```{r}
+
+``` r
 # Selecionar colunas que terminam com "color"
 select(sw, ends_with("color"))
 ```
 
+```
+## # A tibble: 87 × 3
+##    hair_color    skin_color  eye_color
+##    <chr>         <chr>       <chr>    
+##  1 blond         fair        blue     
+##  2 <NA>          gold        yellow   
+##  3 <NA>          white, blue red      
+##  4 none          white       yellow   
+##  5 brown         light       brown    
+##  6 brown, grey   light       blue     
+##  7 brown         light       blue     
+##  8 <NA>          white, red  red      
+##  9 black         light       brown    
+## 10 auburn, white fair        blue-gray
+## # ℹ 77 more rows
+```
+
 Para remover colunas, basta acrescentar um `-` antes da seleção.
 
-```{r}
+
+``` r
 select(sw, -name, -hair_color)
 ```
 
-```{r}
+```
+## # A tibble: 87 × 12
+##    height  mass skin_color  eye_color birth_year sex    gender homeworld species
+##     <int> <dbl> <chr>       <chr>          <dbl> <chr>  <chr>  <chr>     <chr>  
+##  1    172    77 fair        blue            19   male   mascu… Tatooine  Human  
+##  2    167    75 gold        yellow         112   none   mascu… Tatooine  Droid  
+##  3     96    32 white, blue red             33   none   mascu… Naboo     Droid  
+##  4    202   136 white       yellow          41.9 male   mascu… Tatooine  Human  
+##  5    150    49 light       brown           19   female femin… Alderaan  Human  
+##  6    178   120 light       blue            52   male   mascu… Tatooine  Human  
+##  7    165    75 light       blue            47   female femin… Tatooine  Human  
+##  8     97    32 white, red  red             NA   none   mascu… Tatooine  Droid  
+##  9    183    84 light       brown           24   male   mascu… Tatooine  Human  
+## 10    182    77 fair        blue-gray       57   male   mascu… Stewjon   Human  
+## # ℹ 77 more rows
+## # ℹ 3 more variables: films <list>, vehicles <list>, starships <list>
+```
+
+
+``` r
 # Remover múltiplas colunas
 select(sw, -ends_with("color"))
+```
+
+```
+## # A tibble: 87 × 11
+##    name    height  mass birth_year sex   gender homeworld species films vehicles
+##    <chr>    <int> <dbl>      <dbl> <chr> <chr>  <chr>     <chr>   <lis> <list>  
+##  1 Luke S…    172    77       19   male  mascu… Tatooine  Human   <chr> <chr>   
+##  2 C-3PO      167    75      112   none  mascu… Tatooine  Droid   <chr> <chr>   
+##  3 R2-D2       96    32       33   none  mascu… Naboo     Droid   <chr> <chr>   
+##  4 Darth …    202   136       41.9 male  mascu… Tatooine  Human   <chr> <chr>   
+##  5 Leia O…    150    49       19   fema… femin… Alderaan  Human   <chr> <chr>   
+##  6 Owen L…    178   120       52   male  mascu… Tatooine  Human   <chr> <chr>   
+##  7 Beru W…    165    75       47   fema… femin… Tatooine  Human   <chr> <chr>   
+##  8 R5-D4       97    32       NA   none  mascu… Tatooine  Droid   <chr> <chr>   
+##  9 Biggs …    183    84       24   male  mascu… Tatooine  Human   <chr> <chr>   
+## 10 Obi-Wa…    182    77       57   male  mascu… Stewjon   Human   <chr> <chr>   
+## # ℹ 77 more rows
+## # ℹ 1 more variable: starships <list>
 ```
 
 ### Exercícios
@@ -5670,15 +6083,77 @@ A função `arrange()` permite ordenar as linhas de uma tabela com base
 nos valores de uma ou mais colunas. Pode ordenar em ordem crescente ou
 decrescente, conforme a necessidade.
 
-```{r}
+
+``` r
 # Exemplo de ordenação crescente
 arrange(sw, mass)
+```
 
+```
+## # A tibble: 87 × 14
+##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+##    <chr>     <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
+##  1 Ratts T…     79    15 none       grey, blue unknown           NA male  mascu…
+##  2 Yoda         66    17 white      green      brown            896 male  mascu…
+##  3 Wicket …     88    20 brown      brown      brown              8 male  mascu…
+##  4 R2-D2        96    32 <NA>       white, bl… red               33 none  mascu…
+##  5 R5-D4        97    32 <NA>       white, red red               NA none  mascu…
+##  6 Sebulba     112    40 none       grey, red  orange            NA male  mascu…
+##  7 Padmé A…    185    45 brown      light      brown             46 fema… femin…
+##  8 Dud Bolt     94    45 none       blue, grey yellow            NA male  mascu…
+##  9 Wat Tam…    193    48 none       green, gr… unknown           NA male  mascu…
+## 10 Sly Moo…    178    48 none       pale       white             NA <NA>  <NA>  
+## # ℹ 77 more rows
+## # ℹ 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
+```
+
+``` r
 # Exemplo de ordenação decrescente
 arrange(sw, desc(mass))
+```
 
+```
+## # A tibble: 87 × 14
+##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+##    <chr>     <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
+##  1 Jabba D…    175  1358 <NA>       green-tan… orange         600   herm… mascu…
+##  2 Grievous    216   159 none       brown, wh… green, y…       NA   male  mascu…
+##  3 IG-88       200   140 none       metal      red             15   none  mascu…
+##  4 Darth V…    202   136 none       white      yellow          41.9 male  mascu…
+##  5 Tarfful     234   136 brown      brown      blue            NA   male  mascu…
+##  6 Owen La…    178   120 brown, gr… light      blue            52   male  mascu…
+##  7 Bossk       190   113 none       green      red             53   male  mascu…
+##  8 Chewbac…    228   112 brown      unknown    blue           200   male  mascu…
+##  9 Jek Ton…    180   110 brown      fair       blue            NA   <NA>  <NA>  
+## 10 Dexter …    198   102 none       brown      yellow          NA   male  mascu…
+## # ℹ 77 more rows
+## # ℹ 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
+```
+
+``` r
 # Ordenar por múltiplas colunas
 arrange(sw, desc(height), desc(mass))
+```
+
+```
+## # A tibble: 87 × 14
+##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+##    <chr>     <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
+##  1 Yarael …    264    NA none       white      yellow          NA   male  mascu…
+##  2 Tarfful     234   136 brown      brown      blue            NA   male  mascu…
+##  3 Lama Su     229    88 none       grey       black           NA   male  mascu…
+##  4 Chewbac…    228   112 brown      unknown    blue           200   male  mascu…
+##  5 Roos Ta…    224    82 none       grey       orange          NA   male  mascu…
+##  6 Grievous    216   159 none       brown, wh… green, y…       NA   male  mascu…
+##  7 Taun We     213    NA none       grey       black           NA   fema… femin…
+##  8 Tion Me…    206    80 none       grey       black           NA   male  mascu…
+##  9 Rugor N…    206    NA none       green      orange          NA   male  mascu…
+## 10 Darth V…    202   136 none       white      yellow          41.9 male  mascu…
+## # ℹ 77 more rows
+## # ℹ 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
 ```
 
 ### Exercícios
@@ -5687,7 +6162,8 @@ arrange(sw, desc(height), desc(mass))
 coluna `birth_year` em ordem decrescente. Guarde o resultado em um
 objeto chamado `sw_ordenados`.
 
-```{r eval=FALSE}
+
+``` r
 sw_ordenados <- arrange(sw, mass, desc(birth_year))
 sw_ordenados
 ```
@@ -5695,7 +6171,8 @@ sw_ordenados
 **2.** Selecione apenas as colunas `name` e `birth_year`, então ordene
 de forma decrescente pelo `birth_year`.
 
-```{r eval=FALSE}
+
+``` r
 # Usando aninhamento de funções
 arrange(select(sw, name, birth_year), desc(birth_year))
 
@@ -5714,49 +6191,168 @@ sw %>%
 Para selecionar linhas específicas com base em uma ou mais condições,
 utilizamos a função `filter()`.
 
-```{r}
+
+``` r
 # filter(sw, height > 170)
 # Ou
 sw %>% filter(height > 170)
 ```
 
+```
+## # A tibble: 55 × 14
+##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+##    <chr>     <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
+##  1 Luke Sk…    172    77 blond      fair       blue            19   male  mascu…
+##  2 Darth V…    202   136 none       white      yellow          41.9 male  mascu…
+##  3 Owen La…    178   120 brown, gr… light      blue            52   male  mascu…
+##  4 Biggs D…    183    84 black      light      brown           24   male  mascu…
+##  5 Obi-Wan…    182    77 auburn, w… fair       blue-gray       57   male  mascu…
+##  6 Anakin …    188    84 blond      fair       blue            41.9 male  mascu…
+##  7 Wilhuff…    180    NA auburn, g… fair       blue            64   male  mascu…
+##  8 Chewbac…    228   112 brown      unknown    blue           200   male  mascu…
+##  9 Han Solo    180    80 brown      fair       brown           29   male  mascu…
+## 10 Greedo      173    74 <NA>       green      black           44   male  mascu…
+## # ℹ 45 more rows
+## # ℹ 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
+```
+
 Podemos selecionar apenas as colunas `name` e `height` para
 visualizarmos as alturas:
 
-```{r}
+
+``` r
 sw %>% 
   filter(height > 170) %>% 
   select(name, height)
 ```
 
+```
+## # A tibble: 55 × 2
+##    name              height
+##    <chr>              <int>
+##  1 Luke Skywalker       172
+##  2 Darth Vader          202
+##  3 Owen Lars            178
+##  4 Biggs Darklighter    183
+##  5 Obi-Wan Kenobi       182
+##  6 Anakin Skywalker     188
+##  7 Wilhuff Tarkin       180
+##  8 Chewbacca            228
+##  9 Han Solo             180
+## 10 Greedo               173
+## # ℹ 45 more rows
+```
+
 Podemos estender o filtro para duas ou mais colunas.
 
-```{r}
+
+``` r
 filter(sw, height>170, mass>80)
 ```
 
-```{r}
+```
+## # A tibble: 21 × 14
+##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+##    <chr>     <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
+##  1 Darth V…    202   136 none       white      yellow          41.9 male  mascu…
+##  2 Owen La…    178   120 brown, gr… light      blue            52   male  mascu…
+##  3 Biggs D…    183    84 black      light      brown           24   male  mascu…
+##  4 Anakin …    188    84 blond      fair       blue            41.9 male  mascu…
+##  5 Chewbac…    228   112 brown      unknown    blue           200   male  mascu…
+##  6 Jabba D…    175  1358 <NA>       green-tan… orange         600   herm… mascu…
+##  7 Jek Ton…    180   110 brown      fair       blue            NA   <NA>  <NA>  
+##  8 IG-88       200   140 none       metal      red             15   none  mascu…
+##  9 Bossk       190   113 none       green      red             53   male  mascu…
+## 10 Ackbar      180    83 none       brown mot… orange          41   male  mascu…
+## # ℹ 11 more rows
+## # ℹ 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
+```
+
+
+``` r
 sw %>% filter(height > 170, mass > 80)
+```
+
+```
+## # A tibble: 21 × 14
+##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+##    <chr>     <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
+##  1 Darth V…    202   136 none       white      yellow          41.9 male  mascu…
+##  2 Owen La…    178   120 brown, gr… light      blue            52   male  mascu…
+##  3 Biggs D…    183    84 black      light      brown           24   male  mascu…
+##  4 Anakin …    188    84 blond      fair       blue            41.9 male  mascu…
+##  5 Chewbac…    228   112 brown      unknown    blue           200   male  mascu…
+##  6 Jabba D…    175  1358 <NA>       green-tan… orange         600   herm… mascu…
+##  7 Jek Ton…    180   110 brown      fair       blue            NA   <NA>  <NA>  
+##  8 IG-88       200   140 none       metal      red             15   none  mascu…
+##  9 Bossk       190   113 none       green      red             53   male  mascu…
+## 10 Ackbar      180    83 none       brown mot… orange          41   male  mascu…
+## # ℹ 11 more rows
+## # ℹ 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
 ```
 
 Podemos filtrar colunas categóricas. O exemplo abaixo retorna uma tabela
 apenas com os personagens com cabelo preto ou castanho.
 
-```{r}
+
+``` r
 # Filtrar texto com correspondência exata
 filter(sw, hair_color == "black" | hair_color == "brown")
 ```
 
-```{r}
+```
+## # A tibble: 31 × 14
+##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+##    <chr>     <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
+##  1 Leia Or…    150  49   brown      light      brown           19   fema… femin…
+##  2 Beru Wh…    165  75   brown      light      blue            47   fema… femin…
+##  3 Biggs D…    183  84   black      light      brown           24   male  mascu…
+##  4 Chewbac…    228 112   brown      unknown    blue           200   male  mascu…
+##  5 Han Solo    180  80   brown      fair       brown           29   male  mascu…
+##  6 Wedge A…    170  77   brown      fair       hazel           21   male  mascu…
+##  7 Jek Ton…    180 110   brown      fair       blue            NA   <NA>  <NA>  
+##  8 Boba Fe…    183  78.2 black      fair       brown           31.5 male  mascu…
+##  9 Lando C…    177  79   black      dark       brown           31   male  mascu…
+## 10 Arvel C…     NA  NA   brown      fair       brown           NA   male  mascu…
+## # ℹ 21 more rows
+## # ℹ 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
+```
+
+
+``` r
 # Filtrar texto com correspondência exata
 sw %>% filter(hair_color %in% c("black","brown"))
+```
+
+```
+## # A tibble: 31 × 14
+##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+##    <chr>     <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
+##  1 Leia Or…    150  49   brown      light      brown           19   fema… femin…
+##  2 Beru Wh…    165  75   brown      light      blue            47   fema… femin…
+##  3 Biggs D…    183  84   black      light      brown           24   male  mascu…
+##  4 Chewbac…    228 112   brown      unknown    blue           200   male  mascu…
+##  5 Han Solo    180  80   brown      fair       brown           29   male  mascu…
+##  6 Wedge A…    170  77   brown      fair       hazel           21   male  mascu…
+##  7 Jek Ton…    180 110   brown      fair       blue            NA   <NA>  <NA>  
+##  8 Boba Fe…    183  78.2 black      fair       brown           31.5 male  mascu…
+##  9 Lando C…    177  79   black      dark       brown           31   male  mascu…
+## 10 Arvel C…     NA  NA   brown      fair       brown           NA   male  mascu…
+## # ℹ 21 more rows
+## # ℹ 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
 ```
 
 Para filtrar textos sem correspondência exata, podemos utilizar a função
 auxiliar `str_detect()` do pacote `{stringr}`. Ela serve para verificar
 se cada string de um vetor contém um determinado padrão de texto.
 
-```{r}
+
+``` r
 library(stringr)
 
 str_detect(
@@ -5765,9 +6361,14 @@ str_detect(
 )
 ```
 
+```
+## [1]  TRUE  TRUE  TRUE FALSE FALSE    NA
+```
+
 Podemos utilizá-la para filtrar apenas os personagens com cabelo `grey`.
 
-```{r}
+
+``` r
 # Podemos detetar se o cabelo grey aparece na string
 str_detect(
   string = sw$hair_color,
@@ -5775,9 +6376,32 @@ str_detect(
 )
 ```
 
-```{r}
+```
+##  [1] FALSE    NA    NA FALSE FALSE  TRUE FALSE    NA FALSE FALSE FALSE  TRUE
+## [13] FALSE FALSE    NA    NA FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
+## [25] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [37] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [49] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [61] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [73] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [85] FALSE FALSE FALSE
+```
+
+
+``` r
 library(stringr)
 sw %>% filter(str_detect(hair_color,"grey"))
+```
+
+```
+## # A tibble: 3 × 14
+##   name      height  mass hair_color skin_color eye_color birth_year sex   gender
+##   <chr>      <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
+## 1 Owen Lars    178   120 brown, gr… light      blue              52 male  mascu…
+## 2 Wilhuff …    180    NA auburn, g… fair       blue              64 male  mascu…
+## 3 Palpatine    170    75 grey       pale       yellow            82 male  mascu…
+## # ℹ 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
 ```
 
 ### Exercícios
@@ -5814,16 +6438,56 @@ existentes, facilitando transformações de dados. O código abaixo divide
 os valores da coluna `height` por 100, mudando a unidade de medida dessa
 variável de centímetros para metros.
 
-```{r}
+
+``` r
 # Modificar a unidade de medida da coluna height
 sw %>% mutate(height = height/100)
+```
+
+```
+## # A tibble: 87 × 14
+##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+##    <chr>     <dbl> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
+##  1 Luke Sk…   1.72    77 blond      fair       blue            19   male  mascu…
+##  2 C-3PO      1.67    75 <NA>       gold       yellow         112   none  mascu…
+##  3 R2-D2      0.96    32 <NA>       white, bl… red             33   none  mascu…
+##  4 Darth V…   2.02   136 none       white      yellow          41.9 male  mascu…
+##  5 Leia Or…   1.5     49 brown      light      brown           19   fema… femin…
+##  6 Owen La…   1.78   120 brown, gr… light      blue            52   male  mascu…
+##  7 Beru Wh…   1.65    75 brown      light      blue            47   fema… femin…
+##  8 R5-D4      0.97    32 <NA>       white, red red             NA   none  mascu…
+##  9 Biggs D…   1.83    84 black      light      brown           24   male  mascu…
+## 10 Obi-Wan…   1.82    77 auburn, w… fair       blue-gray       57   male  mascu…
+## # ℹ 77 more rows
+## # ℹ 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
 ```
 
 Também poderíamos ter criado essa variável em uma nova coluna. Repare
 que a nova coluna `height_meters` é colocada no final da tabela.
 
-```{r}
+
+``` r
 sw %>% mutate(height_meters = height/100)
+```
+
+```
+## # A tibble: 87 × 15
+##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+##    <chr>     <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
+##  1 Luke Sk…    172    77 blond      fair       blue            19   male  mascu…
+##  2 C-3PO       167    75 <NA>       gold       yellow         112   none  mascu…
+##  3 R2-D2        96    32 <NA>       white, bl… red             33   none  mascu…
+##  4 Darth V…    202   136 none       white      yellow          41.9 male  mascu…
+##  5 Leia Or…    150    49 brown      light      brown           19   fema… femin…
+##  6 Owen La…    178   120 brown, gr… light      blue            52   male  mascu…
+##  7 Beru Wh…    165    75 brown      light      blue            47   fema… femin…
+##  8 R5-D4        97    32 <NA>       white, red red             NA   none  mascu…
+##  9 Biggs D…    183    84 black      light      brown           24   male  mascu…
+## 10 Obi-Wan…    182    77 auburn, w… fair       blue-gray       57   male  mascu…
+## # ℹ 77 more rows
+## # ℹ 6 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>, height_meters <dbl>
 ```
 
 Podemos fazer qualquer operação com uma ou mais colunas. Abaixo vamos
@@ -5832,10 +6496,28 @@ nova coluna `BMI`, que calcule o Índice de Massa Corporal (IMC) de cada
 personagem, usando a fórmula `mass / (height/100)^2`. Caso `height` ou
 `mass` seja `NA`, a coluna `BMI` deve ser `NA`.
 
-```{r}
+
+``` r
 sw %>%
   mutate(BMI = ifelse(!is.na(height) & !is.na(mass), mass / (height/100)^2, NA)) %>%
   select(name, height, mass, BMI)
+```
+
+```
+## # A tibble: 87 × 4
+##    name               height  mass   BMI
+##    <chr>               <int> <dbl> <dbl>
+##  1 Luke Skywalker        172    77  26.0
+##  2 C-3PO                 167    75  26.9
+##  3 R2-D2                  96    32  34.7
+##  4 Darth Vader           202   136  33.3
+##  5 Leia Organa           150    49  21.8
+##  6 Owen Lars             178   120  37.9
+##  7 Beru Whitesun Lars    165    75  27.5
+##  8 R5-D4                  97    32  34.0
+##  9 Biggs Darklighter     183    84  25.1
+## 10 Obi-Wan Kenobi        182    77  23.2
+## # ℹ 77 more rows
 ```
 
 ### Exercícios
@@ -5869,19 +6551,47 @@ combinamos `summarize()` com `group_by()`.
 
 O código abaixo resume a coluna `mass` pela sua média.
 
-```{r}
+
+``` r
 # Exemplo de sumarização
 sw %>% summarize(media_massa = mean(mass, na.rm = TRUE))
+```
 
+```
+## # A tibble: 1 × 1
+##   media_massa
+##         <dbl>
+## 1        97.3
+```
+
+``` r
 # Sumarização agrupada por categorias
 sw %>%
   group_by(species) %>%
   summarize(media_massa = mean(mass, na.rm = TRUE))
 ```
 
+```
+## # A tibble: 38 × 2
+##    species   media_massa
+##    <chr>           <dbl>
+##  1 Aleena           15  
+##  2 Besalisk        102  
+##  3 Cerean           82  
+##  4 Chagrian        NaN  
+##  5 Clawdite         55  
+##  6 Droid            69.8
+##  7 Dug              40  
+##  8 Ewok             20  
+##  9 Geonosian        80  
+## 10 Gungan           74  
+## # ℹ 28 more rows
+```
+
 Podemos calcular ao mesmo tempo sumarizações diferentes.
 
-```{r}
+
+``` r
 sw %>% summarize(
   media_massa = mean(mass, na.rm = TRUE),
   mediana_massa = median(mass, na.rm = TRUE),
@@ -5889,14 +6599,29 @@ sw %>% summarize(
 )
 ```
 
+```
+## # A tibble: 1 × 3
+##   media_massa mediana_massa variancia_massa
+##         <dbl>         <dbl>           <dbl>
+## 1        97.3            79          28716.
+```
+
 Podemos também sumarizar diversas colunas.
 
-```{r}
+
+``` r
 sw %>% summarize(
   media_massa = mean(mass, na.rm = TRUE),
   media_altura = mean(height, na.rm = TRUE),
   media_ano = mean(birth_year, na.rm = TRUE)
 )
+```
+
+```
+## # A tibble: 1 × 3
+##   media_massa media_altura media_ano
+##         <dbl>        <dbl>     <dbl>
+## 1        97.3         175.      87.6
 ```
 
 Para sumarizar uma coluna agrupada pelas categorias de uma segunda
@@ -5905,11 +6630,29 @@ coluna usamos além do `summarize()` a função `group_by()`.
 O código a abaixo calcula a altura média dos personagens para cada
 categoria da coluna `hair_color`.
 
-```{r}
+
+``` r
 sw %>% 
   filter(!is.na(hair_color), !is.na(height)) %>% 
   group_by(hair_color) %>% 
   summarize(media_altura = mean(height, na.rm = TRUE))
+```
+
+```
+## # A tibble: 11 × 2
+##    hair_color    media_altura
+##    <chr>                <dbl>
+##  1 auburn                150 
+##  2 auburn, grey          180 
+##  3 auburn, white         182 
+##  4 black                 174.
+##  5 blond                 177.
+##  6 blonde                168 
+##  7 brown                 177.
+##  8 brown, grey           178 
+##  9 grey                  170 
+## 10 none                  181.
+## 11 white                 156
 ```
 
 ### Exerícios
@@ -5968,7 +6711,8 @@ Para ilustrar como estas funções funcionam, vamos usar a base de dados
 Vamos criar os nossos subconjuntos de dados usando a função `filter()`
 do dplyr.
 
-```{r}
+
+``` r
 # Criar subconjunto de personagens altos (altura > 180 cm)
 personagens_altos <- sw %>%
   filter(height > 180) %>%
@@ -5989,12 +6733,30 @@ tabela à esquerda (primeira tabela) e adicionando colunas da tabela à
 direita (segunda tabela) para as quais existe uma correspondência.
 Valores sem correspondência entre as bases receberão `NA` na nova base.
 
-```{r}
+
+``` r
 # Combinar tabelas mantendo todas as linhas de personagens_altos
 humanos_altos_left_join <- left_join(personagens_altos, personagens_humanos, by = "name")
 
 # Visualizar o resultado
 print(humanos_altos_left_join)
+```
+
+```
+## # A tibble: 39 × 3
+##    name              height species
+##    <chr>              <int> <chr>  
+##  1 Darth Vader          202 Human  
+##  2 Biggs Darklighter    183 Human  
+##  3 Obi-Wan Kenobi       182 Human  
+##  4 Anakin Skywalker     188 Human  
+##  5 Chewbacca            228 <NA>   
+##  6 Boba Fett            183 Human  
+##  7 IG-88                200 <NA>   
+##  8 Bossk                190 <NA>   
+##  9 Qui-Gon Jinn         193 Human  
+## 10 Nute Gunray          191 <NA>   
+## # ℹ 29 more rows
 ```
 
 Neste exemplo, a tabela resultante `humanos_altos_left_join` inclui
@@ -6006,12 +6768,30 @@ A função `right_join()` faz o oposto de `left_join()`: mantém todas as
 linhas da tabela à direita e adiciona colunas da tabela à esquerda para
 as quais existe uma correspondência.
 
-```{r}
+
+``` r
 # Combinar tabelas mantendo todas as linhas de personagens_humanos
 humanos_altos_right_join <- right_join(personagens_altos, personagens_humanos, by = "name")
 
 # Visualizar o resultado
 print(humanos_altos_right_join)
+```
+
+```
+## # A tibble: 35 × 3
+##    name              height species
+##    <chr>              <int> <chr>  
+##  1 Darth Vader          202 Human  
+##  2 Biggs Darklighter    183 Human  
+##  3 Obi-Wan Kenobi       182 Human  
+##  4 Anakin Skywalker     188 Human  
+##  5 Boba Fett            183 Human  
+##  6 Qui-Gon Jinn         193 Human  
+##  7 Padmé Amidala        185 Human  
+##  8 Ric Olié             183 Human  
+##  9 Quarsh Panaka        183 Human  
+## 10 Mace Windu           188 Human  
+## # ℹ 25 more rows
 ```
 
 A tabela `humanos_altos_right_join` inclui todos os personagens humanos
@@ -6022,12 +6802,30 @@ altura será preenchida com `NA`.
 A função `full_join()` mantém todas as linhas de ambas as tabelas e
 adiciona `NA` onde não há correspondência.
 
-```{r}
+
+``` r
 # Combinar todas as informações de personagens altos e humanos
 humanos_altos_full_join <- full_join(personagens_altos, personagens_humanos, by = "name")
 
 # Visualizar o resultado
 print(humanos_altos_full_join)
+```
+
+```
+## # A tibble: 59 × 3
+##    name              height species
+##    <chr>              <int> <chr>  
+##  1 Darth Vader          202 Human  
+##  2 Biggs Darklighter    183 Human  
+##  3 Obi-Wan Kenobi       182 Human  
+##  4 Anakin Skywalker     188 Human  
+##  5 Chewbacca            228 <NA>   
+##  6 Boba Fett            183 Human  
+##  7 IG-88                200 <NA>   
+##  8 Bossk                190 <NA>   
+##  9 Qui-Gon Jinn         193 Human  
+## 10 Nute Gunray          191 <NA>   
+## # ℹ 49 more rows
 ```
 
 A tabela `humanos_altos_full_join` contém todos os personagens altos e
@@ -6042,7 +6840,8 @@ contendo apenas personagens com massa inferior a 75 kg. Use
 `left_join()` para combinar as duas tabelas com base no nome do
 personagem.
 
-```{r eval=FALSE}
+
+``` r
 # Criação dos subconjuntos
 personagens_altos <- sw %>% 
   filter(height > 180) %>% 
@@ -6065,7 +6864,8 @@ humanos e uma outra tabela `cor_cabelo` contendo apenas personagens com
 cor de cabelo diferente de `NA`. Use `right_join()` para combinar
 `personagens_humanos` e `cor_cabelo` com base no nome do personagem.
 
-```{r eval=FALSE}
+
+``` r
 # Criação dos subconjuntos
 personagens_humanos <- sw %>% 
   filter(species == "Human") %>% 
@@ -6089,7 +6889,8 @@ personagens de espécies conhecidas (não `NA`) e uma outra tabela
 `NA`). Use `full_join()` para combinar as duas tabelas com base no nome
 do personagem.
 
-```{r eval=FALSE}
+
+``` r
 # Criação dos subconjuntos
 especies_personagens <- sw %>% 
   filter(!is.na(species)) %>% 
@@ -6132,58 +6933,83 @@ O `ggplot2` baseia-se na ideia de que um gráfico pode ser decomposto nos seguin
 
 ### Estrutura básica
 
-```{r}
+
+``` r
 library(ggplot2)
 ggplot(data = mtcars, aes(x = wt, y = mpg)) +
   geom_point()
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-227-1.png" width="672" />
+
 ### Exemplos práticos
 
 **Gráfico de Dispersão**
 
-```{r}
+
+``` r
 ggplot(data = mtcars, aes(x = wt, y = mpg)) +
   geom_point()
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-228-1.png" width="672" />
+
 **Gráfico de Barras**
 
-```{r}
+
+``` r
 ggplot(data = mpg, aes(x = class)) +
   geom_bar()
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-229-1.png" width="672" />
+
 **Boxplot por Grupo**
 
-```{r}
+
+``` r
 ggplot(data = mpg, aes(x = class, y = hwy)) +
   geom_boxplot()
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-230-1.png" width="672" />
+
 **Gráfico com Regressão Linear**
 
-```{r}
+
+``` r
 ggplot(data = mtcars, aes(x = wt, y = mpg)) +
   geom_point() +
   geom_smooth(method = "lm")
 ```
 
+```
+## `geom_smooth()` using formula = 'y ~ x'
+```
+
+<img src="introR_files/figure-html/unnamed-chunk-231-1.png" width="672" />
+
 **Facetamento**
 
-```{r}
+
+``` r
 ggplot(data = mpg, aes(x = displ, y = hwy)) +
   geom_point() +
   facet_wrap(~ class)
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-232-1.png" width="672" />
+
 **Customizações com Theme**
 
-```{r}
+
+``` r
 ggplot(data = mpg, aes(x = displ, y = hwy)) +
   geom_point() +
   theme_minimal()
 ```
+
+<img src="introR_files/figure-html/unnamed-chunk-233-1.png" width="672" />
 
 ### Boas práticas
 
@@ -6222,7 +7048,8 @@ números. É uma função muito flexível que permite definir o tamanho da
 amostra, se a amostragem é feita com ou sem reposição, e se os elementos
 têm diferentes probabilidades de serem selecionados.
 
-```{r eval=FALSE}
+
+``` r
 # Sintaxe
 sample(x, size, replace = FALSE, prob = NULL)
 ```
@@ -6239,7 +7066,8 @@ sample(x, size, replace = FALSE, prob = NULL)
 extraímos uma amostra de 5 elementos a partir de uma população de
 números inteiros de 1 a 10, sem reposição:
 
-```{r eval=FALSE}
+
+``` r
 # População de 1 a 10
 pop <- 1:10
 
@@ -6252,7 +7080,8 @@ print(amostra)
 **Exemplo 2 (Amostragem com Reposição)**:. Neste exemplo, permitimos que
 os mesmos elementos sejam selecionados mais de uma vez:
 
-```{r eval=FALSE}
+
+``` r
 # Amostra de 5 elementos com reposição
 amostra_repos <- sample(pop, size = 5, replace = TRUE)
 print(amostra_repos)
@@ -6262,7 +7091,8 @@ print(amostra_repos)
 **Exemplo 3 (Amostragem com Probabilidades Diferentes)**: Neste exemplo,
 associamos diferentes probabilidades a cada elemento da população:
 
-```{r eval=FALSE}
+
+``` r
 # Probabilidades associadas a cada elemento
 prob <- c(0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.05, 0.05)
 
@@ -6351,7 +7181,8 @@ Sabemos que para $f_{X}$ ser uma f.m.p. ela deve satisfazer duas condições:
 - $f_{X}(x) \geq 0, \forall x\in \mathbb{R}$.
 - $\sum_{x}f_{X}(x)=1$.
 
-```{r eval=FALSE}
+
+``` r
 # Função de probabilidade do número de reclamações (X)
 X_valores <- c(0, 1, 2, 3, 4)
 P_X <- c(0.1, 0.25, 0.3, 0.2, 0.15)
@@ -6363,7 +7194,8 @@ sum(P_X)  # Deve ser igual a 1
 
 Sabemos que $E(X)=\sum_{x}x\times f_{X}(x)$ e $V(X) = \sum_{x}(x-E(X))^2\times f_{X}(x)$.
 
-```{r eval=FALSE}
+
+``` r
 # b. Cálculo da média e variância do número de reclamações
 E_X <- sum(X_valores * P_X)  # Esperança
 Var_X <- sum((X_valores - E_X)^2 * P_X)  # Variância
@@ -6393,7 +7225,8 @@ Sabemos que para $f$ ser f.d.p. ela deve satisfazer duas condições:
 * $f(x)\geq 0, \forall x \in \mathbb{R}$.
 * $\int_{-\infty}^{+\infty}f(x)\, dx = 1$.
 
-```{r}
+
+``` r
 f1 <- function(x){
   fx <- ifelse(x<0, 0, 2*exp(-2*x))
   return(fx)
@@ -6402,13 +7235,17 @@ f1 <- function(x){
 
 Gráfico de $f$:
 
-```{r}
+
+``` r
 plot(f1, from = 0, to = 10)
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-241-1.png" width="672" />
+
 Para verificar que o integral da função é igual a 1 podemos usar a função `integrate()`, que realiza a integração numérica.
 
-```{r eval=FALSE}
+
+``` r
 integrate(f1, lower = 0, upper = Inf)
 ## 1 with absolute error < 5e-07
 ```
@@ -6421,7 +7258,8 @@ $P(0.3 < X < 0.7) = \int_{0.3}^{0.7}f(x)\, dx = \int_{0.3}^{0.7} 2e^{-2x}\, dx$
 
 que são obtidas usando os comandos
 
-```{r eval=FALSE}
+
+``` r
 integrate(f1, lower = 2, upper = Inf)
 ## 0.01831564 with absolute error < 2.8e-06
 
@@ -6440,7 +7278,8 @@ $$f(x) = \begin{cases}
 (a) Calcular a probabilidade de que sejam vendidos mais que 150 kg.
 (b) Calcular a venda esperada em 30 dias.
 
-```{r}
+
+``` r
 f2 <- function(x) {
   ifelse(x >= 0 & x < 1, (2/3) * x,
          ifelse(x >= 1 & x < 3, -x/3 + 1, 0))
@@ -6449,38 +7288,48 @@ f2 <- function(x) {
 
 Vamos verificar que o integral da função é 1 e vamos fazer também o gráfico da função.
 
-```{r eval=FALSE}
+
+``` r
 integrate(f2, 0, 3)
 ## 1 with absolute error < 1.1e-15
 ```
 
-```{r}
+
+``` r
 plot(f2, -1, 4)
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-246-1.png" width="672" />
+
 (a) Calcular a probabilidade de que sejam vendidos mais que 150 kg (1.5 centenas de quilos). Ou seja, queremos calcular $P(X>1.5) = \int_{1.5}^{+\infty}f(x)\,dx$.
 
-```{r}
+
+``` r
 plot(f2, -1, 4)
 polygon(x = c(1.5, 1.5, 3), y = c(0, f2(1.5), 0), dens = 10)
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-247-1.png" width="672" />
+
 Podemos resolver o integral numericamente da seguinte forma
 
-```{r eval=FALSE}
+
+``` r
 integrate(f2, 1.5, 3)
 ## 0.375 with absolute error < 4.2e-15
 ```
 
 A venda esperada em trinta dias é 30 vezes o valor esperado de venda em um dia. Para calcular o valor esperado $E(X) = \int_{-\infty}^{+\infty}xf(x)\,dx$ definimos uma nova função e resolvemos o integral. A função `integrate()` retorna uma lista onde um dos elementos (`value`) é o valor do integral.
 
-```{r}
+
+``` r
 ef2 <- function(x) {
   x*f2(x)
 }
 ```
 
-```{r eval=FALSE}
+
+``` r
 integrate(ef2,0,3)
 ## 1.333333 with absolute error < 7.3e-05
 
@@ -6664,7 +7513,8 @@ valores de $n$ (10.000 e 100.000).
 Para gerar uma amostra aleatória uniforme no intervalo [0,1], utilizamos
 a função `runif` no R:
 
-```{r eval=FALSE}
+
+``` r
 runif(100, 0, 1)
 ```
 
@@ -6720,7 +7570,8 @@ servirá como uma estimativa da média de $|X - Y|$.
 
 Vamos utilizar o R para realizar a simulação:
 
-```{r}
+
+``` r
 # Definir a semente para reprodutibilidade
 set.seed(123)
 
@@ -6735,13 +7586,18 @@ z <- abs(x-y)
 mean(z)
 ```
 
+```
+## [1] 11.75882
+```
+
 A saída do código acima dá-nos um tempo médio de espera de
 aproximadamente 11.75 minutos.
 
 Para compreender melhor a distribuição do tempo de espera, podemos
 visualizar a distribuição dos valores de $Z$ utilizando um histograma:
 
-```{r}
+
+``` r
 hist(z, 
      main = "Distribuição do Tempo de Espera",
      xlab = "Tempo de espera (minutos)", 
@@ -6749,6 +7605,8 @@ hist(z,
      col = "lightblue", 
      border = "black")
 ```
+
+<img src="introR_files/figure-html/unnamed-chunk-253-1.png" width="672" />
 
 ## Simulação e Geração de Números Pseudoaleatórios
 
@@ -6834,9 +7692,14 @@ A função `set.seed()` no R é usada para definir uma semente para o gerador de
 
 A aleatoriedade em R (como em outros softwares estatísticos) é gerada por algoritmos, e a “semente” inicial determina a sequência de números aleatórios que serão produzidos. Ao definir uma semente com `set.seed()`, controlamos o ponto de partida dessa sequência, garantindo que as operações subsequentes que dependem de aleatoriedade sempre retornem os mesmos resultados quando a semente é a mesma.
 
-```{r}
+
+``` r
 set.seed(123)
 sample(1:100, 5)
+```
+
+```
+## [1] 31 79 51 14 67
 ```
 
 Com isso, você sempre obterá os mesmos 5 números aleatórios ao usar esse
@@ -6897,7 +7760,8 @@ do número de caras X.
 **(b)** Modifique a alínea anterior para permitir uma moeda viciada onde
 $P(cara)=3/4$.
 
-```{r eval=FALSE}
+
+``` r
 set.seed(123)
 n <- 10000
 sim1 <- numeric(n)
@@ -6915,7 +7779,8 @@ mean(sim2)
 ## [1] 1.4928
 ```
 
-```{r eval=FALSE}
+
+``` r
 set.seed(123)
 n <- 10000
 sim1 <- numeric(n)
@@ -6937,7 +7802,8 @@ Sabemos também que $X-$ número de caras no lançamneto de três moedas
 honestas tem distribuição $Binomial(n=3,p=0.5)$. Assim, podemos resolver
 a questão da seguinte maneira
 
-```{r eval=FALSE}
+
+``` r
 set.seed(123)
 valores <- rbinom(10000,3,0.5)
 # P(X=1)
@@ -6952,7 +7818,8 @@ mean(valores)
 
 No segundo caso teremos $X \sim Binomial(n=3,p=3/4)$.
 
-```{r eval=FALSE}
+
+``` r
 set.seed(123)
 valores <- rbinom(10000,3,3/4)
 # P(X=1)
@@ -6973,7 +7840,8 @@ chegar nos primeiros 20 minutos.
 
 **(b)** Use o comando `pexp()` para comparar com a probabilidade exata.
 
-```{r eval=FALSE}
+
+``` r
 set.seed(123)
 valores <- rexp(10000, 1/30)
 # Probabilidade P(X <=20)
@@ -6988,7 +7856,8 @@ pexp(20, 1/30)
 reposição, até que um ás apareça. Simule a média e a variância do número
 de cartas necessárias.
 
-```{r eval=FALSE}
+
+``` r
 set.seed(123)
 n <- 10000
 # Denote os ases por 1,2,3,4 
@@ -7017,7 +7886,8 @@ primeiro sucesso (aparecer um ás), que tem distribuição
 $Geométrica(p=4/52)$. Lembre que o R trabalha com a geométrica como
 sendo $X-$ número de insucessos até o primeiro sucesso.
 
-```{r eval=FALSE}
+
+``` r
 set.seed(123)
 
 valores <- rgeom(10000, 4/52) + 1
@@ -7083,7 +7953,8 @@ A função `ecdf()` no R é usada para calcular a função de distribuição
 empírica (Empirical Cumulative Distribution Function - ECDF) de um
 conjunto de dados.
 
-```{r}
+
+``` r
 # Conjunto de dados
 dados <- c(3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5)
 
@@ -7094,10 +7965,13 @@ Fn <- ecdf(dados)
 plot(Fn, main = "Função de Distribuição Empírica", xlab = "x", ylab = "Fn(x)", col = "blue", lwd = 2)
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-262-1.png" width="672" />
+
 **Exemplo 1**: Resolva o exemplo 1 usando a função de distribuição
 empírica.
 
-```{r eval=FALSE}
+
+``` r
 set.seed(123)
 valores <- rexp(10000, 1/30)
 # Função de distribuição empírica
@@ -7138,7 +8012,8 @@ P(X = x) =
 
 Não há entre as funções básicas do R uma função específica para a distribuição uniforme discreta, provavelmente devido a sua simplicidade, embora algumas outras funções possam ser usadas. Por exemplo para sortear números pode-se usar `sample()`, como no exemplo a seguir onde são sorteados 15 valores de uma uniforme discreta com valores (inteiros) entre 1 e 10 ($X\sim \text{Uniforme Discreta}(\{1,\ldots,10\})$).
 
-```{r eval=FALSE}
+
+``` r
 sample(1:10, size = 15, replace = TRUE)
 ## [1] 2 3 4 4 4 5 7 9 4 2 6 7 1 6 9
 ```
@@ -7300,7 +8175,8 @@ $P(X = 4) \to$ `dbinom(x=4, size=20, prob=0.1)` = 0.08977883
 
 ### Função massa de probabilidade (teórica)
 
-```{r}
+
+``` r
 # Simulação de Variáveis aleatórias
 
 # Função massa de probabilidade Binomial(n,p)
@@ -7319,9 +8195,12 @@ plot(teorico$x, teorico$y,
 grid(nx=21, ny=NULL)
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-265-1.png" width="672" />
+
 ### Função massa de probabilidade (simulação)
 
-```{r}
+
+``` r
 set.seed(1234)
 
 n <- 20
@@ -7341,9 +8220,12 @@ barplot(frequencia_relativa,
 grid()
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-266-1.png" width="672" />
+
 ### Comparação
 
-```{r}
+
+``` r
 set.seed(1234)
 
 n <- 20
@@ -7370,9 +8252,12 @@ points(teorico$x, teorico$y,
 grid()
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-267-1.png" width="672" />
+
 ### Função de distribuição
 
-```{r}
+
+``` r
 # Definir os parâmetros da distribuição binomial
 n <- 20 # Número de tentativas
 p <- 0.1 # Probabilidade de sucesso
@@ -7389,9 +8274,12 @@ xlab = "Número de Sucessos", ylab = "F(x)",
 main = "Função de Distribuição Acumulada da Binomial(n = 20, p = 0.1)")
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-268-1.png" width="672" />
+
 ### Função de distribuição empírica
 
-```{r}
+
+``` r
 # Definir os parâmetros da distribuição binomial
 n <- 20 # Número de tentativas
 p <- 0.1 # Probabilidade de sucesso
@@ -7406,10 +8294,16 @@ Fn <- ecdf(amostra)
 # Plotar CDF
 plot(Fn, main = "Função de Distribuição Empírica", xlab = "x", 
 ylab = "Fn(x)", col = "blue")
+```
 
+<img src="introR_files/figure-html/unnamed-chunk-269-1.png" width="672" />
+
+``` r
 # OU
 plot.ecdf(amostra)
 ```
+
+<img src="introR_files/figure-html/unnamed-chunk-269-2.png" width="672" />
 
 **Cálculo de probabilidade**: Seja $X \sim \text{Binomial}(n=20, p=0.1)$.
 
@@ -7543,7 +8437,8 @@ Amostra aleatória de dimensão 5: `rgeom(n = 5, prob = 0.5)` = 3 0 0 0 1
 (c) Qual a probabilidade de serem necessários mais de 10 lançamentos sabendo que já houve 6 lançamentos do dado sem que a face 2 saísse?
 
 (a) Lembre que no R a geométrica é definida como $Y = X-1$, então $P(X=3)=P(Y=2)$.
-```{r eval=FALSE}
+
+``` r
 # P(Y=2)
 dgeom(x = 2, prob = 1/6)
 ## [1] 0.09645062
@@ -7643,7 +8538,8 @@ $P(X =4) \to$ `dpois(4,5)` = 0.1755
 
 ### Função massa de probabilidade (teórica)
 
-```{r eval=FALSE}
+
+``` r
 # Definir os valores de lambda e x
 p <- c(0.1, 1, 2.5, 5, 15, 30)
 x <- 0:50
@@ -7673,7 +8569,8 @@ grid.arrange(grobs = plots, nrow = 2, ncol = 3)
 
 ### Função massa de probabilidade (simulação)
 
-```{r}
+
+``` r
 p <- c(0.1, 1, 2.5, 5, 15, 30)
 n <- 1000
 
@@ -7681,7 +8578,20 @@ n <- 1000
 library(ggplot2)
 library(latex2exp)
 library(gridExtra)
+```
 
+```
+## 
+## Attaching package: 'gridExtra'
+```
+
+```
+## The following object is masked from 'package:dplyr':
+## 
+##     combine
+```
+
+``` r
 # Inicializar uma lista para armazenar os gráficos
 plots <- list()
 
@@ -7700,9 +8610,12 @@ for (i in 1:length(p)) {
 grid.arrange(grobs = plots, nrow = 2, ncol = 3)
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-272-1.png" width="672" />
+
 ### Comparação
 
-```{r}
+
+``` r
 p <- c(0.1, 1, 2.5, 5, 15, 30)
 n <- 1000
 
@@ -7732,9 +8645,12 @@ for (i in 1:length(p)) {
 grid.arrange(grobs = plots, nrow = 2, ncol = 3)
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-273-1.png" width="672" />
+
 ### Função de distribuição
 
-```{r}
+
+``` r
 lambda <- 5  # Parâmetro da Poisson
 x <- 0:15    # Valores de x para plotar a distribuição
 
@@ -7748,9 +8664,12 @@ plot(x,y, type="s", lwd=2, col="blue",
   ylab = "F(x)")
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-274-1.png" width="672" />
+
 ### Função de distribuição empírica
 
-```{r}
+
+``` r
 library(latex2exp)
 # Definir os parâmetros da distribuição de Poisson
 lambda <- 5
@@ -7763,7 +8682,11 @@ plot(Fn, main=TeX("Função de Distribuição Empírica da $Poisson(lambda = 5)$
   xlab = "x",     
   ylab = "Fn(x)",      
   col = "blue")
+```
 
+<img src="introR_files/figure-html/unnamed-chunk-275-1.png" width="672" />
+
+``` r
 # OU
 #plot.ecdf(dados)
 
@@ -7773,6 +8696,8 @@ plot(Fn, main="Função de Distribuição Empírica",
      col="blue",
      verticals = TRUE)
 ```
+
+<img src="introR_files/figure-html/unnamed-chunk-275-2.png" width="672" />
 
 **Cálculo de probabilidades**: Seja $X\sim\text{Poisson}(\lambda=5)$.
 
@@ -7799,7 +8724,8 @@ $P(X \leq 4) \to$ `Fn(4)` = 0.433
 
 **(a)** $P(X=2)$
 
-```{r eval=FALSE}
+
+``` r
 # P(X=2)
 dpois(x = 2, lambda = 3)
 ## [1] 0.2240418
@@ -7807,7 +8733,8 @@ dpois(x = 2, lambda = 3)
 
 **(b)** $P(X>4)=1-P(X\leq 4)$
 
-```{r eval=FALSE}
+
+``` r
 # P(X>4)
 ppois(q = 4, lambda = 3, lower.tail = FALSE)
 ## [1] 0.1847368
@@ -7826,7 +8753,8 @@ $\tilde{X} \sim \text{Poisson}(\lambda = 1.5)$
 
 $P(X \geq 1) = 1-P(X < 1) = 1-P(X=0)$
 
-```{r eval=FALSE}
+
+``` r
 # P(X >= 1)
 1-dpois(x = 0, lambda = 1.5)
 ## [1] 0.7768698
@@ -7963,7 +8891,8 @@ Seja $X\sim \text{Uniforme}(0,1)$
 
 ### Função densidade de probabilidade
 
-```{r}
+
+``` r
 # Gerar os valores x para a densidade teórica
 x_vals <- seq(0, 1, length.out = 100)
 
@@ -7977,9 +8906,12 @@ plot(x_vals, y_vals, type = "l",
      xlab = "Valor", ylab = "Densidade")
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-279-1.png" width="672" />
+
 ### Função densidade de probabilidade (simulação)
 
-```{r}
+
+``` r
 # Definir o tamanho da amostra
 n <- 10000
 
@@ -7998,9 +8930,12 @@ hist(uniform_data, probability = TRUE,
      border = "darkblue")
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-280-1.png" width="672" />
+
 ### Comparação
 
-```{r}
+
+``` r
 # Definir o tamanho da amostra
 n <- 10000
 
@@ -8025,9 +8960,12 @@ curve(dunif(x, min = 0, max = 1),
       lwd = 2)
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-281-1.png" width="672" />
+
 ### Função de distribuição
 
-```{r}
+
+``` r
 # Gerar os valores x para a FD teórica
 x_vals <- seq(0, 1, length.out = 100)
 
@@ -8041,9 +8979,12 @@ plot(x_vals, y_vals, type = "l",
      xlab = "Valor", ylab = "F(x)")
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-282-1.png" width="672" />
+
 ### Função de distribuição empírica
 
-```{r}
+
+``` r
 # Definir o tamanho da amostra
 n <- 10000
 
@@ -8060,7 +9001,11 @@ plot(Fn, main="Função de Distribuição Empírica",
      xlab="x",
      ylab="Fn",
      col="blue")
+```
 
+<img src="introR_files/figure-html/unnamed-chunk-283-1.png" width="672" />
+
+``` r
 # OU
 #plot.ecdf(uniform_data)
 ```
@@ -8191,7 +9136,8 @@ $P(X > 0.5) \to$ `pexp(0.5,rate=1,lower.tail=FALSE)`=0.6065
 
 ### Função densidade de probabilidade (teórica)
 
-```{r}
+
+``` r
 # Gerar os valores x para a densidade teórica
 x_vals <- seq(0, 10, length.out = 100)
 
@@ -8205,9 +9151,12 @@ plot(x_vals, y_vals, type = "l",
      xlab = "Valor", ylab = "Densidade")
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-284-1.png" width="672" />
+
 ### Função densidade de probabilidade (simulação)
 
-```{r}
+
+``` r
 # Definir o tamanho da amostra
 n <- 10000
 
@@ -8226,9 +9175,12 @@ hist(expo_data, probability = TRUE,
      border = "darkblue")
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-285-1.png" width="672" />
+
 ### Comparação
 
-```{r}
+
+``` r
 # Definir o tamanho da amostra
 n <- 10000
 
@@ -8253,9 +9205,12 @@ curve(dexp(x,rate=1),
       lwd=2)
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-286-1.png" width="672" />
+
 ### Função de distribuição
 
-```{r}
+
+``` r
 # Gerar os valores x para a FD teórica
 x_vals <- seq(0, 10, length.out = 100)
 
@@ -8269,9 +9224,12 @@ plot(x_vals, y_vals, type = "l",
      xlab = "Valor", ylab = "F(x)")
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-287-1.png" width="672" />
+
 ### Função de distribuição empírica
 
-```{r}
+
+``` r
 # Definir o tamanho da amostra
 n <- 10000
 
@@ -8289,6 +9247,8 @@ plot(Fn, main="Função de Distribuição Empírica",
      ylab="Fn",
      col="blue")
 ```
+
+<img src="introR_files/figure-html/unnamed-chunk-288-1.png" width="672" />
 
 ### Exercícios
 
@@ -8393,7 +9353,8 @@ plot(Fn, main="Função de Distribuição Empírica",
 
 Vamos ver alguns exemplos com a distribuição normal padrão. Por `default` as funções assumem a distribuição normal padrão $N(\mu=0, \sigma = 1)$.
 
-```{r eval=FALSE}
+
+``` r
 dnorm(-1)
 ## [1] 0.2419707
 
@@ -8413,11 +9374,16 @@ O primeiro valor acima, de `dnorm(-1)`, corresponde ao valor da densidade da nor
 $$f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{1}{2}\left( \frac{x-\mu}{\sigma}\right)}$$
 no ponto $x=-1$. Portanto, o mesmo valor seria obtido substituindo $x$ por $-1$ na expressão da normal:
 
-```{r}
+
+``` r
 mu <- 0
 sigma <- 1
 x <- -1
 (1/(sigma * sqrt(2*pi))) * exp((-1/2) * ((x - mu)/sigma)^2)
+```
+
+```
+## [1] 0.2419707
 ```
 
 * A função `pnorm(-1)` calcula a probabilidade $P(X \leq -1)$.
@@ -8428,7 +9394,8 @@ x <- -1
 
 As funções relacionadas à distribuição normal possuem os argumentos `mean` e `sd` para definir a média e o desvio padrão da distribuição que podem ser modificados como nos exemplos a seguir. Note nestes exemplos que os argumentos podem ser passados de diferentes formas.
 
-```{r eval=FALSE}
+
+``` r
 qnorm(0.975, mean = 100, sd = 8)
 ## [1] 115.6797
 
@@ -8451,7 +9418,8 @@ Seja $X$ uma variável aleatória com distribuição $N(\mu=100, \sigma=10)$. Ca
 
 Calcule estas probabilidades de forma usual, usando a tabela da normal. Depois compare com os resultados fornecidos pelo R. Os comandos do R para obter as probabilidades pedidas são:
 
-```{r eval=FALSE}
+
+``` r
 # P(X < 95)
 pnorm(95, 100, 10)
 ## [1] 0.3085375
@@ -8471,24 +9439,33 @@ pnorm(95, 100, 10, lower.tail = FALSE) # melhor
 
 Função densidade de probabilidade e função de distribuição.
 
-```{r}
+
+``` r
 par(mfrow = c(1, 2))
 plot(dnorm, from = -3, to = 3, 
      xlab = "Valores de X",
      ylab = "Densidade de probabilidade")
 title("Distribuicão Normal\nX ~ N(0, 1)")
 plot(pnorm, from = -3, to = 3)
+```
+
+<img src="introR_files/figure-html/unnamed-chunk-293-1.png" width="672" />
+
+``` r
 par(mfrow = c(1, 1))
 ```
 
 
-```{r}
+
+``` r
 plot(function(x) dnorm(x, 100, 8), 60, 140, ylab = 'f(x)')
 plot(function(x) dnorm(x, 90, 8), 60, 140, add = TRUE, col = 2)
 plot(function(x) dnorm(x, 100, 15), 60, 140, add = TRUE, col = 3)
 legend(120, 0.05, fill = 1:3,
        legend = c("N(100,64)", "N(90,64)", "N(100,225)"))
 ```
+
+<img src="introR_files/figure-html/unnamed-chunk-294-1.png" width="672" />
 
 ### Exercícios
 
@@ -8594,7 +9571,8 @@ $E(Q) = n - 1, \quad \text{Var}(Q) = 2(n - 1)$.
 uma moeda com probabilidade de 0.5 de sair cara. Conte o número de caras
 em cada lançamento e plote um gráfico de barras dos resultados.
 
-```{r eval=FALSE}
+
+``` r
 # Fixando a semente
 set.seed(123)
 
@@ -8622,7 +9600,8 @@ de 5000 observações de uma variável aleatória binomial com parâmetros
 $n = 10$ e $p = 0.3$. Calcule a média e a variância das observações
 geradas.
 
-```{r eval=FALSE}
+
+``` r
 # Fixando a semente
 set.seed(123)
 
@@ -8644,7 +9623,8 @@ de 2300 observações de uma variável aleatória de Poisson com parâmetro
 $\lambda = 4$. Calcule a média e o desvio padrão das observações
 geradas.
 
-```{r eval=FALSE}
+
+``` r
 # Fixando a semente
 set.seed(123)
 
@@ -8670,7 +9650,8 @@ produtos defeituosos. Calcule a proporção de lotes com exatamente 5
 produtos defeituosos e compare o valor obtido com a probabilidade
 $P(X=5)$, onde $X \sim \text{Binomial}(50, 0.1)$.
 
-```{r eval=FALSE}
+
+``` r
 # Fixando a semente
 set.seed(123)
 
@@ -8703,7 +9684,8 @@ amostrais. Sobreponha no gráfico a distribuição de probabilidade de $X$.
 (b) Use a função de distribuição empírica para estimar $P(X\leq 10)$
 e compare com o valor teórico.
 
-```{r eval=FALSE}
+
+``` r
 # Fixando a semente
 set.seed(123)
 
@@ -8742,7 +9724,8 @@ amostrais. Sobreponha no gráfico a distribuição de probabilidade de $X$.
 (b) Use a função de distribuição empírica para estimar $P(Y > 5)$ e
 compare com o valor teórico.
 
-```{r eval=FALSE}
+
+``` r
 # Fixando a semente
 set.seed(543)
 
@@ -8776,7 +9759,8 @@ de 3450 observações de uma variável aleatória $Z$ uniforme no intervalo
 $[0, 1]$. Use a função de distribuição empírica para estimar
 $P(Z \leq 0.5)$ e compare com o valor teórico.
 
-```{r eval=FALSE}
+
+``` r
 # Fixando a semente
 set.seed(345)
 
@@ -8842,7 +9826,8 @@ com distribuição de Poisson com parâmetro $\lambda = 3$. Para cada
 tamanho de amostra, calcule a média amostral e compare-a com o valor
 esperado teórico. Observe e comente a convergência das médias amostrais.
 
-```{r eval=FALSE}
+
+``` r
 # Fixando a semente
 set.seed(123)
 
@@ -8892,7 +9877,8 @@ média de cada uma dessas amostras, obtendo uma amostra de médias.
 Calcule ainda o valor esperado da distribuição teórica de $X$ e compare
 com a média da amostra de médias.
 
-```{r eval=FALSE}
+
+``` r
 # Fixando a semente
 set.seed(1058)
 
@@ -8955,7 +9941,8 @@ obtidos da distribuição da média $\bar{X_{n}}$. Sobreponha no gráfico
 uma curva com distribuição normal com valor esperado $E(X)$ e desvio
 padrão $\sqrt{V(x)/n}$.
 
-```{r eval=FALSE}
+
+``` r
 # Fixando a semente
 set.seed(1430)
 
@@ -9108,7 +10095,8 @@ Seja $U\sim U(0,1)$. Para qualquer função de distribuição $F$, a variável a
 
 Este resultado afirma que podemos simular um valor de uma variável aleatória $X$ ($X$ com distribuição $F$) aplicando o seguinte algoritmo:
 
-```{r eval=FALSE}
+
+``` r
 Algoritmo: método da transformação inversa
 Entrada: invGF() # inversa generalizada de F
   1 Gere um número aleatório u 
@@ -9180,7 +10168,8 @@ determinar o valor de $X$ correspondente a $U$:
 -   Se $0.35\leq U < 0.60$, então $X=3$
 -   Se $0.60 \leq U \leq 1$, então $X=4$
 
-```{r}
+
+``` r
 gerar_inversa <- function(){
   u <- runif(1,0,1)
   ifelse(u<0.20, return(1), 
@@ -9193,12 +10182,19 @@ valores <- replicate(10000, gerar_inversa())
 table(valores)/10000
 ```
 
+```
+## valores
+##      1      2      3      4 
+## 0.1979 0.1561 0.2417 0.4043
+```
+
 
 **Exemplo 2**: Seja $X$ uma variável aleatória discreta assumindo os
 valores: $1,2,\ldots,10$ com probabilidade $1/10$ para
 $x=1,2,\ldots,10$. Gerar 5000 valores dessa variável aleatória e representar graficamente.
 
-```{r}
+
+``` r
 gerar_va_inversa <- function(){
   # Gerar número aleatório entre 0 e 1
   u <- runif(1,0,1)
@@ -9216,6 +10212,8 @@ valores <- replicate(5000,gerar_va_inversa())
 barplot(table(valores)/5000)
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-307-1.png" width="672" />
+
 **Exemplo 3**: Geração de uma variável aleatória com distribuição de
 Bernoulli. A variável aleatória $X$ é de Bernoulli com parâmetro $p$ se
 $$P(X = x) = \begin{cases} 1-p,& \quad \text{se} \quad x=0\\
@@ -9226,7 +10224,8 @@ método da transformada inversa
 1.  Gerar um número aleatório $U$;
 2.  Se $U \leq p$ então $X=1$ senão $X=0$.
 
-```{r}
+
+``` r
 # Gerando uma variável aleatória com distribuição de Bernoulli(p)
 gerar_bernoulli_inversa <- function(p){
   U <- runif(1)
@@ -9242,12 +10241,17 @@ valores <- replicate(100,gerar_bernoulli_inversa(0.8))
 sum(valores)/100
 ```
 
+```
+## [1] 0.75
+```
+
 **Exemplo 4**: Gerar uma variável aleatória com distribuição
 $Binomial(n,p)$. Aqui podemos usar o facto de que se
 $X_{1},X_{2},\ldots,X_{n}$ são Bernoullis i.i.d., então
 $$X = X_{1}+X_{2}+\ldots+X_{n}$$ é uma $Binomial(n,p)$.
 
-```{r}
+
+``` r
 # Gerando uma variável aleatória com distribuição Binomial(n,p)
 
 gerar_binomial_inversa <- function(n,p){
@@ -9259,6 +10263,8 @@ valores <- replicate(10000,gerar_binomial_inversa(10,0.5))
 hist(valores, freq = FALSE, breaks = 11)
 points(0:10, dbinom(0:10,10,0.5))
 ```
+
+<img src="introR_files/figure-html/unnamed-chunk-309-1.png" width="672" />
 
 **Exemplo 5**: Geração de uma variável aleatória com distribuição
 $Geométrica(p)$. Seja $X\sim Geometrica(p)$. Lembre que
@@ -9273,7 +10279,8 @@ algoritmo é equivalente ao método da transformada inversa:
 
 onde $\lfloor  \rfloor =$ maior inteiro.
 
-```{r}
+
+``` r
 # Gerar uma variável aleatória com distribuição Geométrica(p)
 
 gerar_geometrica_inversa <- function(p){
@@ -9286,6 +10293,8 @@ valores <- replicate(10000, gerar_geometrica_inversa(0.5))
 hist(valores, freq = FALSE)
 points(0:10, dgeom(0:10,0.5))
 ```
+
+<img src="introR_files/figure-html/unnamed-chunk-310-1.png" width="672" />
 
 **Exemplo 6**: Geração de uma variável aleatória com distribuição de
 Poisson. A variável aleatória $X$ é de Poisson com média $\lambda$ se
@@ -9300,7 +10309,8 @@ quando elas são necessárias, o algoritmo da transformada inversa para
 gerar uma variável aleatória de Poisson com média $\lambda$ pode ser
 expresso da seguinte forma.
 
-```{r}
+
+``` r
 # Gerando uma va com distribuição de Poisson
 
 lambda <- 3  # exemplo com lambda = 3
@@ -9326,6 +10336,8 @@ set.seed(123)
 hist(replicate(10000,gerar_poisson_inversa(3)),freq = FALSE, breaks = 12)
 points(0:10,dpois(0:10,3))
 ```
+
+<img src="introR_files/figure-html/unnamed-chunk-311-1.png" width="672" />
 
 ## Exercícios
 
@@ -9404,7 +10416,8 @@ $F^{-1}(x)=\sqrt{x}$. O método da transformada inversa diz que se
 $U\sim U(0,1)$, então $F^{-1}(U)=\sqrt{U}$ tem a mesma distribuição que
 $X$. Portanto, para simular $X$, basta gerar $\sqrt{U}$.
 
-```{r}
+
+``` r
 n <- 10000
 set.seed(123)
 simlist <- sqrt(runif(n))
@@ -9412,10 +10425,13 @@ hist(simlist, prob=T, main="", xlab="")
 curve(2*x, 0,1, add=T)
 ```
 
+<img src="introR_files/figure-html/unnamed-chunk-312-1.png" width="672" />
+
 **Exemplo 2**: Geração de uma variável aleatória $Uniforme(a,b)$. A
 geração é feita através de $$X = a+(b-a)U.$$
 
-```{r}
+
+``` r
 # Geração de uma va uniforme(-2,2)
 a <- -2
 b <- 2
@@ -9425,6 +10441,8 @@ simlist <- a+(b-a)*runif(n)
 hist(simlist, prob=T, main="",xlab="")
 curve(dunif(x,a,b), col="red",add=TRUE)
 ```
+
+<img src="introR_files/figure-html/unnamed-chunk-313-1.png" width="672" />
 
 **Exemplo 3**: Geração de uma variável aleatória exponencial. Seja $X$
 uma variável aleatória exponencial com taxa 1, então sua função de
@@ -9444,7 +10462,8 @@ variável aleatória exponencial $X$ com taxa $\lambda$ (média
 $\frac{1}{\lambda}$) pode ser gerada através da geração de um número
 aleatório $U$ e fazendo $$X = -\frac{1}{\lambda}ln (U).$$
 
-```{r}
+
+``` r
 # Definir a sequência de valores x
 x <- seq(0,3, by = 0.02)
 
@@ -9468,6 +10487,8 @@ curve(dexp(x, rate = lambda), add = TRUE, col = "red", lwd = 2)
 # Adicionar uma legenda
 legend("topright", legend = c("Simulação", "Teórica"), col = c("lightblue", "red"), lwd = 2, fill = c("lightblue", NA))
 ```
+
+<img src="introR_files/figure-html/unnamed-chunk-314-1.png" width="672" />
 
 ## Exercícios
 
@@ -9650,7 +10671,8 @@ $$\theta \approx \frac{1}{10000} \sum_{i=1}^{10000} u_i^2.$$
 Ao rodar este processo no R, esperamos obter uma aproximação próxima de
 $\frac{1}{3}$.
 
-```{r}
+
+``` r
 # Função a ser integrada
 f <- function(x) x^2
 # Quantidade de números aleatórios
@@ -9659,13 +10681,25 @@ n <- 10000
 u <- runif(n = n, min = 0, max = 1)
 # Valor aproximado do integral
 sum(f(u))/n
+```
+
+```
+## [1] 0.3293839
+```
+
+``` r
 # Solução exata do integral
 integrate(f, lower = 0, upper = 1)
 ```
 
+```
+## 0.3333333 with absolute error < 3.7e-15
+```
+
 Vamos calcular agora o $$\int_{1}^{2} x^2\, dx.$$
 
-```{r}
+
+``` r
 # Limites de integração
 a <- 1
 b <- 2
@@ -9677,11 +10711,29 @@ n <- 10000
 u <- runif(n = n, min = 0, max = 1)
 # Valor aproximado do integral
 sum(f(a+(b-a)*u)*(b-a))/n
+```
+
+```
+## [1] 2.33584
+```
+
+``` r
 # Solução exata do integral
 integrate(f, lower = 1, upper = 2)
+```
+
+```
+## 2.333333 with absolute error < 2.6e-14
+```
+
+``` r
 # ou
 u1 <- runif(n, a, b)
 (b-a)*mean(f(u1))
+```
+
+```
+## [1] 2.311123
 ```
 
 ## Cálculo de $\int_{0}^{\infty}g(x)\, dx$
@@ -9746,7 +10798,8 @@ Com a ajuda do R Markdown, uma interface de anotações que combina texto livre 
 
 Antes de mais nada, vamos instalar os pacotes ``{rmarkdown}`` e ``{knitr}``. O primeiro reúne todas as funcionalidades para juntar nossos textos narrativos e códigos de R. O segundo vai fazer a magia de transformar nossos simples arquivos de texto em arquivos HTML, PDF e Word (.doc).
 
-```{r eval=FALSE}
+
+``` r
 install.packages(c("rmarkdown", "knitr"))
 ```
 
@@ -9895,7 +10948,8 @@ mean(pinguins$massa_corporal, na.rm = TRUE)
 
 Como o código aparece no relatório
 
-```{r eval=FALSE}
+
+``` r
 library(dados)
 mean(pinguins$massa_corporal, na.rm = TRUE)
 ```
@@ -9932,7 +10986,8 @@ As tabelas em Markdown têm uma estrutura definida, como mostra o exemplo abaixo
 
 Em Markdown:
 
-```{r eval=FALSE}
+
+``` r
 | a  | b  | c  |
 |:--:|:--:|:--:|
 | 1  | 2  | 3  |
@@ -9972,9 +11027,12 @@ O arquivo `.Rmd` possui a seguinte estrutura, ilustrada pela figura a seguir:
 
 - **2. Chunks** - Nos campos de código (também chamados de *chunks*) podemos adicionar códigos em R (ou em algumas outras linguagens). Os chunks são delimitados por três crases, e a linguagem deve ser especificada entre chaves. Caso queira adicionar chunks com código em Python, é necessário ter o pacote {reticulate} instalado. Exemplo de um chunk que apresenta código em R:
 
-```{r, echo=FALSE}
-cat("```{r}\n código em R aqui\n```")
-```
+
+````
+## ```{r}
+##  código em R aqui
+## ```
+````
 
 - **3. Markdown** - Textos marcados com Markdown podem ser adicionados ao longo do relatório, fora das demarcações do YAMl e dos Chunks.
 
@@ -9996,8 +11054,28 @@ cat("```{r}\n código em R aqui\n```")
 **1.** Teste aplicar a função `glimpse()` do pacote \``dplyr` à base
 `sw`. O que ela faz?
 
-```{r}
+
+``` r
 glimpse(sw)
+```
+
+```
+## Rows: 87
+## Columns: 14
+## $ name       <chr> "Luke Skywalker", "C-3PO", "R2-D2", "Darth Vader", "Leia Or…
+## $ height     <int> 172, 167, 96, 202, 150, 178, 165, 97, 183, 182, 188, 180, 2…
+## $ mass       <dbl> 77.0, 75.0, 32.0, 136.0, 49.0, 120.0, 75.0, 32.0, 84.0, 77.…
+## $ hair_color <chr> "blond", NA, NA, "none", "brown", "brown, grey", "brown", N…
+## $ skin_color <chr> "fair", "gold", "white, blue", "white", "light", "light", "…
+## $ eye_color  <chr> "blue", "yellow", "red", "yellow", "brown", "blue", "blue",…
+## $ birth_year <dbl> 19.0, 112.0, 33.0, 41.9, 19.0, 52.0, 47.0, NA, 24.0, 57.0, …
+## $ sex        <chr> "male", "none", "none", "male", "female", "male", "female",…
+## $ gender     <chr> "masculine", "masculine", "masculine", "masculine", "femini…
+## $ homeworld  <chr> "Tatooine", "Tatooine", "Naboo", "Tatooine", "Alderaan", "T…
+## $ species    <chr> "Human", "Droid", "Droid", "Human", "Human", "Human", "Huma…
+## $ films      <list> <"A New Hope", "The Empire Strikes Back", "Return of the J…
+## $ vehicles   <list> <"Snowspeeder", "Imperial Speeder Bike">, <>, <>, <>, "Imp…
+## $ starships  <list> <"X-wing", "Imperial shuttle">, <>, <>, "TIE Advanced x1",…
 ```
 
 Mostra os nomes das variáveis, os tipos de dados e os primeiros valores
@@ -10006,16 +11084,52 @@ de cada coluna em uma única visualização, tudo de forma horizontal.
 **2.** Crie uma tabela com apenas as colunas `name`, `gender`, e
 `films`. Salve em um objeto chamado `sw_simples`.
 
-```{r}
+
+``` r
 sw_simples <- select(sw, name, gender, films)
 sw_simples
+```
+
+```
+## # A tibble: 87 × 3
+##    name               gender    films    
+##    <chr>              <chr>     <list>   
+##  1 Luke Skywalker     masculine <chr [5]>
+##  2 C-3PO              masculine <chr [6]>
+##  3 R2-D2              masculine <chr [7]>
+##  4 Darth Vader        masculine <chr [4]>
+##  5 Leia Organa        feminine  <chr [5]>
+##  6 Owen Lars          masculine <chr [3]>
+##  7 Beru Whitesun Lars feminine  <chr [3]>
+##  8 R5-D4              masculine <chr [1]>
+##  9 Biggs Darklighter  masculine <chr [1]>
+## 10 Obi-Wan Kenobi     masculine <chr [6]>
+## # ℹ 77 more rows
 ```
 
 **3.** Selecione apenas as colunas `hair_color`, `skin_color` e
 `eye_color` usando a função auxiliar `contains()`.
 
-```{r}
+
+``` r
 select(sw, contains("color"))
+```
+
+```
+## # A tibble: 87 × 3
+##    hair_color    skin_color  eye_color
+##    <chr>         <chr>       <chr>    
+##  1 blond         fair        blue     
+##  2 <NA>          gold        yellow   
+##  3 <NA>          white, blue red      
+##  4 none          white       yellow   
+##  5 brown         light       brown    
+##  6 brown, grey   light       blue     
+##  7 brown         light       blue     
+##  8 <NA>          white, red  red      
+##  9 black         light       brown    
+## 10 auburn, white fair        blue-gray
+## # ℹ 77 more rows
 ```
 
 **4.** Usando a função `select()` (e suas funções auxiliares), escreva
@@ -10023,7 +11137,8 @@ códigos que retornem a base `sw` sem as colunas `hair_color`,
 `skin_color` e `eye_color`. Escreva todas as soluções diferentes que
 você conseguir pensar.
 
-```{r eval=FALSE}
+
+``` r
 select(sw, -hair_color, -skin_color, -eye_color)
 
 select(sw, -contains("color"))
@@ -10038,15 +11153,36 @@ select(sw, name:mass, birth_year:starships)
 **1.** Ordene `mass` em ordem crescente e `birth_year` em ordem
 decrescente e salve em um objeto chamado `sw_ordenados`.
 
-```{r}
+
+``` r
 sw_ordenados <- arrange(sw, mass, desc(birth_year))
 sw_ordenados
+```
+
+```
+## # A tibble: 87 × 14
+##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+##    <chr>     <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
+##  1 Ratts T…     79    15 none       grey, blue unknown           NA male  mascu…
+##  2 Yoda         66    17 white      green      brown            896 male  mascu…
+##  3 Wicket …     88    20 brown      brown      brown              8 male  mascu…
+##  4 R2-D2        96    32 <NA>       white, bl… red               33 none  mascu…
+##  5 R5-D4        97    32 <NA>       white, red red               NA none  mascu…
+##  6 Sebulba     112    40 none       grey, red  orange            NA male  mascu…
+##  7 Padmé A…    185    45 brown      light      brown             46 fema… femin…
+##  8 Dud Bolt     94    45 none       blue, grey yellow            NA male  mascu…
+##  9 Wat Tam…    193    48 none       green, gr… unknown           NA male  mascu…
+## 10 Sly Moo…    178    48 none       pale       white             NA <NA>  <NA>  
+## # ℹ 77 more rows
+## # ℹ 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
 ```
 
 **2.** Selecione apenas as colunas `name` e `birth_year` e então ordene
 de forma decrescente pelo `birth_year`.
 
-```{r eval=FALSE}
+
+``` r
 # Aninhando funções
 arrange(select(sw, name, birth_year), desc(birth_year))
 
@@ -10067,7 +11203,8 @@ Utilize a base `sw` nos exercícios a seguir.
 **1.** Crie um objeto chamado `humanos` apenas com personagens que sejam
 humanos.
 
-```{r eval=FALSE}
+
+``` r
 humanos <- filter(sw, species == "Human")
 
 # O pipe
@@ -10078,7 +11215,8 @@ humanos <- sw %>%
 **2.** Crie um objeto chamado `altos_fortes` com personagens que tenham
 mais de 200 cm de altura e peso maior que 100 kg.
 
-```{r eval=FALSE}
+
+``` r
 altos_fortes <- filter(sw, height > 200, mass > 100)
 ```
 
@@ -10087,13 +11225,15 @@ altos_fortes <- filter(sw, height > 200, mass > 100)
 **a.** Personagens humanos que nasceram antes de 100 anos antes da
 batalha de Yavin (`birth_year < 100`).
 
-```{r eval=FALSE}
+
+``` r
 filter(sw, species == "Human", birth_year < 100)
 ```
 
 **b.** Personagens com cor `light` ou `red`.
 
-```{r eval=FALSE}
+
+``` r
 filter(sw, skin_color == "light" | skin_color == "red")
 ```
 
@@ -10101,7 +11241,8 @@ filter(sw, skin_color == "light" | skin_color == "red")
 decrescente por altura, mostrando apenas as colunas `name`, `mass` e
 `height`.
 
-```{r eval=FALSE}
+
+``` r
 select(arrange(filter(sw, mass > 100), desc(height)), name, mass, height)
 
 # usando o pipe
@@ -10114,7 +11255,8 @@ sw %>%
 **d.** Personagens que sejam “Humano” ou “Droid”, e tenham uma altura
 maior que 170 cm.
 
-```{r eval=FALSE}
+
+``` r
 filter(sw, species == "Human" | species == "Droid", height > 170)
 
 # usando o pipe
@@ -10125,7 +11267,8 @@ sw %>%
 **e.** Personagens que não possuem informação tanto de altura quanto de
 massa, ou seja, possuem NA em ambas as colunas.
 
-```{r eval=FALSE}
+
+``` r
 filter(sw, is.na(height), is.na(mass))
 ```
 
@@ -10136,7 +11279,8 @@ e peso) e salve a nova tabela em um objeto chamado `sw_dif`. Em seguida,
 filtre apenas os personagens que têm altura maior que o peso e ordene a
 tabela por ordem crescente de `dif_peso_altura`.
 
-```{r eval=FALSE}
+
+``` r
 sw_dif <- mutate(sw, dif_peso_altura = height-mass)
 
 arrange(filter(sw_dif, height > mass), dif_peso_altura)
@@ -10163,7 +11307,8 @@ seguintes colunas novas na base `sw`:
 **d.** `acima_media` =
 `ifelse(indice_massa_altura > indice_massa_medio, “sim”, “não”)`
 
-```{r eval=FALSE}
+
+``` r
 mutate(sw, 
        indice_massa_altura = mass/height,
        indice_massa_medio = mean(mass, na.rm = TRUE),
@@ -10177,48 +11322,91 @@ Utilize a base `sw` nos exercícios a seguir.
 
 **1.** Calcule a altura média e mediana dos personagens.
 
-```{r}
+
+``` r
 summarize(sw, 
           media_altura = mean(height, na.rm=TRUE),
           mediana_altura = median(height, na.rm = TRUE))
 ```
 
+```
+## # A tibble: 1 × 2
+##   media_altura mediana_altura
+##          <dbl>          <int>
+## 1         175.            180
+```
+
 **2.** Calcule a massa média dos personagens cuja altura é maior que 175
 cm.
 
-```{r}
+
+``` r
 sw %>% 
   filter(height > 175) %>% 
   summarize(media_massa = mean(mass, na.rm = TRUE))
+```
+
+```
+## # A tibble: 1 × 1
+##   media_massa
+##         <dbl>
+## 1        87.2
 ```
 
 **3.** Apresente na mesma tabela a massa média dos personagens com
 altura menor que 175 cm e a massa média dos personagens com altura maior
 ou igual a 175 cm.
 
-```{r}
+
+``` r
 sw %>% 
   mutate(alturas = ifelse(height < 175, "menor 175", "maior 175")) %>%
   filter(!is.na(height)) %>% 
   group_by(alturas) %>% 
   summarize(altura_media = mean(height, na.rm=TRUE)
   )
-  
+```
+
+```
+## # A tibble: 2 × 2
+##   alturas   altura_media
+##   <chr>            <dbl>
+## 1 maior 175         193.
+## 2 menor 175         142.
 ```
 
 **4.** Retorne tabelas (`tibbles`) apenas com:
 
 **a.** A altura média dos personagens por espécie.
 
-```{r}
+
+``` r
 sw %>% 
   group_by(species) %>% 
   summarize(altura_media = mean(height, na.rm = TRUE))
 ```
 
+```
+## # A tibble: 38 × 2
+##    species   altura_media
+##    <chr>            <dbl>
+##  1 Aleena             79 
+##  2 Besalisk          198 
+##  3 Cerean            198 
+##  4 Chagrian          196 
+##  5 Clawdite          168 
+##  6 Droid             131.
+##  7 Dug               112 
+##  8 Ewok               88 
+##  9 Geonosian         183 
+## 10 Gungan            209.
+## # ℹ 28 more rows
+```
+
 **b.** A massa média e mediana dos personagens por espécie.
 
-```{r}
+
+``` r
 sw %>%
   filter(!is.na(mass)) %>% 
   group_by(species) %>% 
@@ -10226,11 +11414,49 @@ sw %>%
             massa_mediana = median(mass, na.rm = TRUE))
 ```
 
+```
+## # A tibble: 32 × 3
+##    species   massa_media massa_mediana
+##    <chr>           <dbl>         <dbl>
+##  1 Aleena           15            15  
+##  2 Besalisk        102           102  
+##  3 Cerean           82            82  
+##  4 Clawdite         55            55  
+##  5 Droid            69.8          53.5
+##  6 Dug              40            40  
+##  7 Ewok             20            20  
+##  8 Geonosian        80            80  
+##  9 Gungan           74            74  
+## 10 Human            81.3          79  
+## # ℹ 22 more rows
+```
+
 **c.** Apenas o nome dos personagens que participaram de mais de 2
 filmes.
 
-```{r}
+
+``` r
 sw %>% 
   filter(length(films) > 2) %>% 
   select(name)
 ```
+
+```
+## # A tibble: 87 × 1
+##    name              
+##    <chr>             
+##  1 Luke Skywalker    
+##  2 C-3PO             
+##  3 R2-D2             
+##  4 Darth Vader       
+##  5 Leia Organa       
+##  6 Owen Lars         
+##  7 Beru Whitesun Lars
+##  8 R5-D4             
+##  9 Biggs Darklighter 
+## 10 Obi-Wan Kenobi    
+## # ℹ 77 more rows
+```
+
+<!--chapter:end:01-intro.Rmd-->
+
