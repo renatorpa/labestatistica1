@@ -1636,6 +1636,34 @@ níveis de pressão. Converta este factor em um vetor numérico, onde
 **7.** Crie um factor com as categorias "verde", "amarelo", "vermelho".
 Substitua o nível "amarelo" por "laranja" e exiba o factor atualizado.
 
+**8.** Uma empresa de serviços de internet realizou uma pesquisa de satisfação com o atendimento ao cliente. Foram entrevistados 20 clientes, e as suas respostas foram categorizadas como: "Muito insatisfeito", "Insatisfeito", "Neutro", "Satisfeito", "Muito satisfeito".
+
+As respostas foram armazenadas num vetor de texto chamado `respostas`. O objetivo agora é transformar estas respostas em fatores ordenados e extrair informações úteis.
+
+(a) Crie o vetor `respostas` com os seguintes valores:
+
+```{r eval=FALSE}
+respostas <- c(
+  "Satisfeito", "Muito satisfeito", "Neutro", "Insatisfeito", "Satisfeito",
+  "Muito insatisfeito", "Satisfeito", "Neutro", "Insatisfeito", "Satisfeito",
+  "Muito satisfeito", "Neutro", "Insatisfeito", "Satisfeito", "Neutro",
+  "Satisfeito", "Muito satisfeito", "Muito insatisfeito", "Neutro", "Satisfeito"
+)
+```
+
+(b) Converta `respostas` num fator chamado `respostas_fator`, com níveis ordenados do mais negativo para o mais positivo.
+
+(c) Verifique a estrutura de `respostas_fator` usando `str()`. O R reconhece a ordem dos níveis?
+
+(d) Quantos clientes ficaram insatisfeitos ou muito insatisfeitos?
+
+(e) Qual a resposta mais frequente entre os clientes? Dica: use `table()` ou `which.max(table(...))`.
+
+(f) Calcule a frequência relativa (%) de cada nível de satisfação.
+
+(g) Substitua todas as respostas "Neutro" por "Indiferente" e actualize o fator. Certifique-se de manter a ordem dos níveis.
+
+
 ## Matriz e Array
 
 Em R, uma **matriz** é uma estrutura de dados bidimensional que contém
