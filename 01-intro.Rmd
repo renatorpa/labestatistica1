@@ -2081,6 +2081,62 @@ Quantos zumbis existirão na 10a hora?
 - Em geral, uma cadeia de Markov descreve um sistema que evolui em estados sucessivos, em que a próxima situação depende apenas do estado atual e de uma matriz de transição como a que usamos aqui.
 - No nosso caso, os estados são apenas 2 (Humanos e Zumbis), e a cada hora aplicamos a mesma regra de transição.
 
+**15.** Uma maneira de codificar uma mensagem é através de **multiplicação por matrizes**. Vamos associar as letras do alfabeto aos números, segundo a correspondência abaixo
+(**sem a letra K** e com **espaço = 0**):
+
+A B C D E F G H I J L M N O P Q R S T U V W X Y Z  
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+
+Suponhamos que a mensagem é **"PUXA VIDA"**. Podemos formar uma matriz $3\times3$:
+
+$$
+\begin{bmatrix}
+P & U & X \\
+A & \ \,& V \\
+I & D & A
+\end{bmatrix}
+\quad\longrightarrow\quad
+M=
+\begin{bmatrix}
+15 & 20 & 23\\
+1  & 0  & 21\\
+9  & 4  & 1
+\end{bmatrix}
+$$
+
+Considere agora a **matriz chave** (invertível) $C$:
+
+$$
+C=\begin{bmatrix}
+1&0&1\\
+-1&3&1\\
+0&1&1
+\end{bmatrix}.
+$$
+
+A codificação faz-se por **multiplicação à direita**: $M_{\text{cod}} = M\cdot C$.
+No exemplo acima obtém-se
+
+$$
+M\cdot C=\begin{bmatrix}
+-5 & 83 & 58\\
+1 & 21 & 22\\
+5 & 13 & 14
+\end{bmatrix},
+$$
+e transmite-se a **cadeia de números por linhas**:  
+$-5,\ 83,\ 58,\ 1,\ 21,\ 22,\ 5,\ 13,\ 14$.
+
+Quem recebe a mensagem decodifica-a através da multiplicação pela inversa:
+$(M\cdot C)\cdot C^{-1}=M$, e depois transcreve os números de volta para letras.
+
+(a) Recebeu-se a mensagem (em blocos $3\times3$, lida por linhas):
+
+$$-12,\ 48,\ 23,\ -2,\ 42,\ 26,\ 1,\ 42,\ 29.$$
+Usando a **mesma chave $C$**, traduza a mensagem.
+
+(b) Escolha uma matriz-chave que dê para codificar palavras até 16 letras. Codifique e descodifique à vontade!
+
 ## Data Frame
 
 Um **data frame** em R é uma estrutura de dados bidimensional usada para
