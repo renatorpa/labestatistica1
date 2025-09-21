@@ -125,7 +125,7 @@
 
 \title{Introdução ao R e Simulação}
 \author{Renato de Paula}
-\date{2025-09-19}
+\date{2025-09-21}
 
 \begin{document}
 \maketitle
@@ -2534,6 +2534,62 @@ seguida:
 \item
   Multiplique a primeira matriz do primeiro array pela segunda matriz
   do segundo array.
+\end{itemize}
+
+\textbf{14.} Numa certa região há dois grupos de seres: Humanos (H) e Zumbis (Z). A dinâmica da população segue estas regras:
+
+\begin{itemize}
+\tightlist
+\item
+  A cada hora, 20\% dos humanos tornam-se zumbis (e os restantes 80\% continuam humanos).
+\item
+  Ao mesmo tempo, 10\% dos zumbis tornam-se humanos (e os restantes 90\% continuam zumbis).
+\end{itemize}
+
+Podemos organizar estas probabilidades numa matriz especial chamada \textbf{matriz de transição}.
+
+\begin{itemize}
+\tightlist
+\item
+  Cada coluna da matriz representa o estado atual (Humanos ou Zumbis).
+\item
+  Cada linha representa o estado futuro (Humanos ou Zumbis).
+\item
+  O número em cada posição diz a proporção que passa de um grupo para o outro.
+\end{itemize}
+
+Se \(\mathbf{x}_t\) representa o vetor com o número de humanos e zumbis no instante \(t\), então: \[\mathbf{x}_{t+1} = P \cdot \mathbf{x}_t\]
+
+No instante inicial (hora 0) existem: \(H_0\) = 150 humanos e \(Z_0\) = 150 zumbis.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Crie no R a matriz de transição \(P\) e o vetor inicial \(\mathbf{x}_0 = (150,\,150)^\top\).
+\item
+  Calcule, utilizando multiplicações de matrizes no R:
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  O vetor \(\mathbf{x}_1\) (hora 1)
+\item
+  O vetor \(\mathbf{x}_2\) (hora 2)
+\item
+  O vetor \(\mathbf{x}_{10}\) (hora 10)
+\end{itemize}
+
+Quantos zumbis existirão na 10a hora?
+
+\textbf{Nota:} Este exemplo é, na verdade, um caso simples de \textbf{cadeia de Markov}.
+
+\begin{itemize}
+\tightlist
+\item
+  Em geral, uma cadeia de Markov descreve um sistema que evolui em estados sucessivos, em que a próxima situação depende apenas do estado atual e de uma matriz de transição como a que usamos aqui.
+\item
+  No nosso caso, os estados são apenas 2 (Humanos e Zumbis), e a cada hora aplicamos a mesma regra de transição.
 \end{itemize}
 
 \section{Data Frame}\label{data-frame}

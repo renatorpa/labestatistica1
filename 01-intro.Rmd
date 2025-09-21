@@ -2050,6 +2050,36 @@ seguida:
 -   Calcule a média dos valores resultantes da soma dos dois arrays.
 -   Multiplique a primeira matriz do primeiro array pela segunda matriz
     do segundo array.
+    
+**14.** Numa certa região há dois grupos de seres: Humanos (H) e Zumbis (Z). A dinâmica da população segue estas regras:
+
+- A cada hora, 20% dos humanos tornam-se zumbis (e os restantes 80% continuam humanos).
+- Ao mesmo tempo, 10% dos zumbis tornam-se humanos (e os restantes 90% continuam zumbis).
+
+Podemos organizar estas probabilidades numa matriz especial chamada **matriz de transição**.
+
+- Cada coluna da matriz representa o estado atual (Humanos ou Zumbis).
+- Cada linha representa o estado futuro (Humanos ou Zumbis).
+- O número em cada posição diz a proporção que passa de um grupo para o outro.
+
+Se $\mathbf{x}_t$ representa o vetor com o número de humanos e zumbis no instante $t$, então: $$\mathbf{x}_{t+1} = P \cdot \mathbf{x}_t$$
+
+No instante inicial (hora 0) existem: $H_0$ = 150 humanos e $Z_0$ = 150 zumbis.
+
+(a) Crie no R a matriz de transição $P$ e o vetor inicial $\mathbf{x}_0 = (150,\,150)^\top$.
+
+(b) Calcule, utilizando multiplicações de matrizes no R:
+
+- O vetor $\mathbf{x}_1$ (hora 1)
+- O vetor $\mathbf{x}_2$ (hora 2)
+- O vetor $\mathbf{x}_{10}$ (hora 10)
+
+Quantos zumbis existirão na 10a hora?
+
+**Nota:** Este exemplo é, na verdade, um caso simples de **cadeia de Markov**.
+
+- Em geral, uma cadeia de Markov descreve um sistema que evolui em estados sucessivos, em que a próxima situação depende apenas do estado atual e de uma matriz de transição como a que usamos aqui.
+- No nosso caso, os estados são apenas 2 (Humanos e Zumbis), e a cada hora aplicamos a mesma regra de transição.
 
 ## Data Frame
 
