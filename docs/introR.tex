@@ -125,7 +125,7 @@
 
 \title{Introdução ao R e Simulação}
 \author{Renato de Paula}
-\date{2025-09-21}
+\date{2025-09-22}
 
 \begin{document}
 \maketitle
@@ -2099,6 +2099,75 @@ As respostas foram armazenadas num vetor de texto chamado \texttt{respostas}. O 
   Calcule a frequência relativa (\%) de cada nível de satisfação.
 \item
   Substitua todas as respostas ``Neutro'' por ``Indiferente'' e actualize o fator. Certifique-se de manter a ordem dos níveis.
+\end{enumerate}
+
+\textbf{9.} O Transtorno de Défice de Atenção e Hiperatividade (TDAH) é uma variação neurodesenvolvimental que influencia o modo como o cérebro regula a atenção, o impulso e a atividade. Longe de ser um défice de capacidade, o TDAH envolve diferenças na forma de processar estímulos, gerir prioridades e sustentar foco, que se manifestam de maneira única em cada pessoa.
+
+Estima-se que cerca de 5\% dos adultos vivenciem o TDAH, muitas vezes sem diagnóstico durante a infância. No contexto do ensino superior, é comum que estudantes neurodivergentes com TDAH relatem desafios em áreas como organização pessoal, foco sustentado, gestão do tempo e procrastinação --- não por falta de interesse ou competência, mas devido a um funcionamento atencional naturalmente oscilante, criativo e intenso.
+
+Ao mesmo tempo, muitas pessoas com TDAH demonstram hiperfoco em áreas de interesse profundo, pensamento fora da caixa, energia contagiante e capacidade de adaptação rápida a ambientes dinâmicos. Valorizar essas qualidades e promover estratégias pedagógicas flexíveis é essencial para que esses estudantes possam expressar todo o seu potencial académico.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Crie um vetor chamado \texttt{tdah\_desafios} com os seguintes valores:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tdah\_desafios }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Foco"}\NormalTok{, }\StringTok{"Procrastinação"}\NormalTok{, }\StringTok{"Gestão do tempo"}\NormalTok{, }\StringTok{"Organização"}\NormalTok{, }\StringTok{"Nenhum"}\NormalTok{, }\StringTok{"Foco"}\NormalTok{, }\StringTok{"Foco"}\NormalTok{, }\StringTok{"Organização"}\NormalTok{, }\StringTok{"Organização"}\NormalTok{, }\StringTok{"Organização"}\NormalTok{, }\StringTok{"Gestão do tempo"}\NormalTok{, }\StringTok{"Gestão do tempo"}\NormalTok{, }\StringTok{"Procrastinação"}\NormalTok{, }\StringTok{"Procrastinação"}\NormalTok{, }\StringTok{"Procrastinação"}\NormalTok{, }\StringTok{"Procrastinação"}\NormalTok{, }\StringTok{"Foco"}\NormalTok{, }\StringTok{"Foco"}\NormalTok{, }\StringTok{"Foco"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Converta-o num fator não ordenado \texttt{tdah\_fator}.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\item
+  Obtenha as frequências absolutas e relativas de cada desafio.
+\item
+  Quantos estudantes relataram como principal dificuldade o ``Foco'' ou a ``Procrastinação''?
+\item
+  Recode ``Nenhum'' para ``Sem dificuldade declarada''.
+\item
+  Crie um gráfico de barras com os desafios, incluindo rótulos de frequência. Dica: use a função \texttt{barplot()}
+\end{enumerate}
+
+\textbf{10.} A Dislexia é uma condição neurológica que afeta a forma como o cérebro processa a linguagem escrita. Trata-se de uma diferença específica de aprendizagem, caracterizada por desafios na leitura fluente, escrita, ortografia e reconhecimento automático de palavras, que não estão relacionados a níveis de inteligência ou empenho.
+
+Pessoas com dislexia possuem potenciais cognitivos diversos, muitas vezes acompanhados de criatividade, pensamento visual, raciocínio não linear e outras formas únicas de compreender o mundo. Estima-se que entre 5\% e 10\% da população seja disléxica, e essa característica costuma ser identificada nos primeiros anos de escolaridade, quando a leitura se torna uma ferramenta central do processo de aprendizagem.
+
+Reconhecer a dislexia como parte da neurodiversidade humana é essencial para promover ambientes de ensino mais inclusivos, que valorizem diferentes formas de aprender e de expressar conhecimento.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Crie o vetor dificuldades com as respostas de 10 crianças, utilizando:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dificuldades }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}
+  \StringTok{"Leitura"}\NormalTok{, }\StringTok{"Escrita"}\NormalTok{, }\StringTok{"Ortografia"}\NormalTok{, }\StringTok{"Leitura"}\NormalTok{, }\StringTok{"Compreensão"}\NormalTok{,}
+  \StringTok{"Ortografia"}\NormalTok{, }\StringTok{"Memória auditiva"}\NormalTok{, }\StringTok{"Leitura"}\NormalTok{, }\StringTok{"Escrita"}\NormalTok{, }\StringTok{"Ortografia"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Converta em um fator não ordenado chamado \texttt{dislexia\_fator}.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\item
+  Crie uma tabela de frequências e identifique a dificuldade mais prevalente.
+\item
+  Recode ``Ortografia'' para ``Erros ortográficos'', mantendo o vetor como fator.
+\item
+  Visualize as frequências com \texttt{barplot()}.
 \end{enumerate}
 
 \section{Matriz e Array}\label{matriz-e-array}
@@ -6119,7 +6188,7 @@ estatístico.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-165-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-167-1.pdf}}
 
 Para ter o gráfico com as frequências relativas fazemos:
 
@@ -6138,7 +6207,7 @@ Para ter o gráfico com as frequências relativas fazemos:
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-166-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-168-1.pdf}}
 
 \textbf{Personalização de Gráficos de Barras}
 
@@ -6158,7 +6227,7 @@ barras lado a lado).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-167-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-169-1.pdf}}
 
 \textbf{Gráfico de Barras Agrupadas}
 
@@ -6186,7 +6255,7 @@ Podemos também gerar gráficos de barras que comparam mais de uma variável. Ne
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-168-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-170-1.pdf}}
 
 Neste exemplo, usamos \texttt{rbind()} para agrupar os dados e o argumento \texttt{beside\ =\ TRUE} para gerar barras lado a lado para comparação entre ``Granito'' e ``Basalto''. O parâmetro \texttt{legend.text} cria uma legenda para identificar cada cor de barra.
 
@@ -6215,7 +6284,7 @@ Para gerar um gráfico de barras empilhado em vez de agrupado, basta remover o a
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-169-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-171-1.pdf}}
 
 \section{Gráfico Circular (Pizza)}\label{gruxe1fico-circular-pizza}
 
@@ -6255,7 +6324,7 @@ tamanho de cada fatia é proporcional à sua porcentagem.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-171-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-173-1.pdf}}
 
 \section{Histograma}\label{histograma}
 
@@ -6324,7 +6393,7 @@ de intervalo de classe no R é \((a, b]\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-173-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-175-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6352,7 +6421,7 @@ de intervalo de classe no R é \((a, b]\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-175-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-177-1.pdf}}
 
 Pode controlar o número de intervalos (bins) usando o argumento
 \texttt{breaks}. Por exemplo, \texttt{breaks\ =\ 5} divide os dados em 5 intervalos.
@@ -6376,7 +6445,7 @@ Podemos adicionar também uma curva de densidade em cima do histograma.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-176-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-178-1.pdf}}
 
 \section{Box-plot}\label{box-plot}
 
@@ -6426,7 +6495,7 @@ quartil (Q3) e máximo. Também pode mostrar outliers (valores atípicos).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-178-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-180-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6441,7 +6510,7 @@ quartil (Q3) e máximo. Também pode mostrar outliers (valores atípicos).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-179-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-181-1.pdf}}
 
 Pode comparar a distribuição de múltiplas variáveis lado a lado com
 box-plots. Use a função \texttt{par()} para ajustar o layout gráfico.
@@ -6457,7 +6526,7 @@ box-plots. Use a função \texttt{par()} para ajustar o layout gráfico.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-180-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-182-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6496,7 +6565,7 @@ variável \texttt{Sepal.Length}.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-182-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-184-1.pdf}}
 
 Vamos criar agora um box-plot da variável \texttt{Sepal.Length} agrupado por
 espécie de flor (\texttt{Species}) no conjunto de dados iris.
@@ -6511,7 +6580,7 @@ espécie de flor (\texttt{Species}) no conjunto de dados iris.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-183-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-185-1.pdf}}
 
 \section{Gráfico de Dispersão}\label{gruxe1fico-de-dispersuxe3o}
 
@@ -6568,7 +6637,7 @@ identificar correlações, tendências e outliers.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-185-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-187-1.pdf}}
 
 Gráfico de dispersão com regressão.
 
@@ -6586,7 +6655,7 @@ Gráfico de dispersão com regressão.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-186-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-188-1.pdf}}
 
 Se você tiver grupos de dados diferentes, pode diferenciá-los por cores:
 
@@ -6610,7 +6679,7 @@ Se você tiver grupos de dados diferentes, pode diferenciá-los por cores:
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-187-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-189-1.pdf}}
 
 \section{Gráfico de Linhas}\label{gruxe1fico-de-linhas}
 
@@ -6671,7 +6740,7 @@ temporais ou tendências ao longo de intervalos contínuos, como o tempo.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-189-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-191-1.pdf}}
 
 \section{Exercícios}\label{exercuxedcios-14}
 
@@ -8138,7 +8207,7 @@ O \texttt{ggplot2} baseia-se na ideia de que um gráfico pode ser decomposto nos
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-227-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-229-1.pdf}}
 
 \subsection{Exemplos práticos}\label{exemplos-pruxe1ticos}
 
@@ -8151,7 +8220,7 @@ O \texttt{ggplot2} baseia-se na ideia de que um gráfico pode ser decomposto nos
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-228-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-230-1.pdf}}
 
 \textbf{Gráfico de Barras}
 
@@ -8162,7 +8231,7 @@ O \texttt{ggplot2} baseia-se na ideia de que um gráfico pode ser decomposto nos
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-229-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-231-1.pdf}}
 
 \textbf{Boxplot por Grupo}
 
@@ -8173,7 +8242,7 @@ O \texttt{ggplot2} baseia-se na ideia de que um gráfico pode ser decomposto nos
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-230-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-232-1.pdf}}
 
 \textbf{Gráfico com Regressão Linear}
 
@@ -8189,7 +8258,7 @@ O \texttt{ggplot2} baseia-se na ideia de que um gráfico pode ser decomposto nos
 ## `geom_smooth()` using formula = 'y ~ x'
 \end{verbatim}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-231-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-233-1.pdf}}
 
 \textbf{Facetamento}
 
@@ -8201,7 +8270,7 @@ O \texttt{ggplot2} baseia-se na ideia de que um gráfico pode ser decomposto nos
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-232-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-234-1.pdf}}
 
 \textbf{Customizações com Theme}
 
@@ -8213,7 +8282,7 @@ O \texttt{ggplot2} baseia-se na ideia de que um gráfico pode ser decomposto nos
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-233-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-235-1.pdf}}
 
 \subsection{Boas práticas}\label{boas-pruxe1ticas}
 
@@ -8496,7 +8565,7 @@ Gráfico de \(f\):
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-241-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-243-1.pdf}}
 
 Para verificar que o integral da função é igual a 1 podemos usar a função \texttt{integrate()}, que realiza a integração numérica.
 
@@ -8566,7 +8635,7 @@ Vamos verificar que o integral da função é 1 e vamos fazer também o gráfico
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-246-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-248-1.pdf}}
 
 \begin{enumerate}
 \def\labelenumi{(\alph{enumi})}
@@ -8582,7 +8651,7 @@ Vamos verificar que o integral da função é 1 e vamos fazer também o gráfico
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-247-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-249-1.pdf}}
 
 Podemos resolver o integral numericamente da seguinte forma
 
@@ -8929,7 +8998,7 @@ visualizar a distribuição dos valores de \(Z\) utilizando um histograma:
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-253-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-255-1.pdf}}
 
 \section{Simulação e Geração de Números Pseudoaleatórios}\label{simulauxe7uxe3o-e-gerauxe7uxe3o-de-nuxfameros-pseudoaleatuxf3rios}
 
@@ -9376,7 +9445,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-262-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-264-1.pdf}}
 
 \textbf{Exemplo 1}: Resolva o exemplo 1 usando a função de distribuição
 empírica.
@@ -9689,7 +9758,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-265-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-267-1.pdf}}
 
 \subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o}
 
@@ -9715,7 +9784,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-266-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-268-1.pdf}}
 
 \subsection{Comparação}\label{comparauxe7uxe3o}
 
@@ -9748,7 +9817,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-267-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-269-1.pdf}}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o}
 
@@ -9771,7 +9840,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-268-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-270-1.pdf}}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-1}
 
@@ -9794,7 +9863,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-269-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-271-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9803,7 +9872,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-269-2.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-271-2.pdf}}
 
 \textbf{Cálculo de probabilidade}: Seja \(X \sim \text{Binomial}(n=20, p=0.1)\).
 
@@ -10251,7 +10320,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-272-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-274-1.pdf}}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-1}
 
@@ -10287,7 +10356,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-273-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-275-1.pdf}}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-1}
 
@@ -10307,7 +10376,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-274-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-276-1.pdf}}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-2}
 
@@ -10328,7 +10397,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-275-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-277-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10343,7 +10412,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-275-2.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-277-2.pdf}}
 
 \textbf{Cálculo de probabilidades}: Seja \(X\sim\text{Poisson}(\lambda=5)\).
 
@@ -10641,7 +10710,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-279-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-281-1.pdf}}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o}
 
@@ -10666,7 +10735,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-280-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-282-1.pdf}}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-2}
 
@@ -10697,7 +10766,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-281-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-283-1.pdf}}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-2}
 
@@ -10717,7 +10786,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-282-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-284-1.pdf}}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-3}
 
@@ -10742,7 +10811,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-283-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-285-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10938,7 +11007,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-284-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-286-1.pdf}}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-1}
 
@@ -10963,7 +11032,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-285-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-287-1.pdf}}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-3}
 
@@ -10994,7 +11063,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-286-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-288-1.pdf}}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-3}
 
@@ -11014,7 +11083,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-287-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-289-1.pdf}}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-4}
 
@@ -11039,7 +11108,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-288-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-290-1.pdf}}
 
 \subsection{Exercícios}\label{exercuxedcios-30}
 
@@ -11297,7 +11366,7 @@ Função densidade de probabilidade e função de distribuição.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-293-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-295-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11315,7 +11384,7 @@ Função densidade de probabilidade e função de distribuição.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-294-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-296-1.pdf}}
 
 \subsection{Exercícios}\label{exercuxedcios-31}
 
@@ -12194,7 +12263,7 @@ valores: \(1,2,\ldots,10\) com probabilidade \(1/10\) para
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-307-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-309-1.pdf}}
 
 \textbf{Exemplo 3}: Geração de uma variável aleatória com distribuição de
 Bernoulli. A variável aleatória \(X\) é de Bernoulli com parâmetro \(p\) se
@@ -12254,7 +12323,7 @@ método da transformada inversa
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-309-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-311-1.pdf}}
 
 \textbf{Exemplo 5}: Geração de uma variável aleatória com distribuição
 \(Geométrica(p)\). Seja \(X\sim Geometrica(p)\). Lembre que
@@ -12289,7 +12358,7 @@ onde \(\lfloor  \rfloor =\) maior inteiro.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-310-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-312-1.pdf}}
 
 \textbf{Exemplo 6}: Geração de uma variável aleatória com distribuição de
 Poisson. A variável aleatória \(X\) é de Poisson com média \(\lambda\) se
@@ -12333,7 +12402,7 @@ expresso da seguinte forma.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-311-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-313-1.pdf}}
 
 \section{Exercícios}\label{exercuxedcios-32}
 
@@ -12428,7 +12497,7 @@ A função \(F(x)=x^2\) é invertível no intervalo \((0,1)\) e
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-312-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-314-1.pdf}}
 
 \textbf{Exemplo 2}: Geração de uma variável aleatória \(Uniforme(a,b)\). A
 geração é feita através de \[X = a+(b-a)U.\]
@@ -12446,7 +12515,7 @@ geração é feita através de \[X = a+(b-a)U.\]
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-313-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-315-1.pdf}}
 
 \textbf{Exemplo 3}: Geração de uma variável aleatória exponencial. Seja \(X\)
 uma variável aleatória exponencial com taxa 1, então sua função de
@@ -12493,7 +12562,7 @@ aleatório \(U\) e fazendo \[X = -\frac{1}{\lambda}ln (U).\]
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-314-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-316-1.pdf}}
 
 \section{Exercícios}\label{exercuxedcios-33}
 
