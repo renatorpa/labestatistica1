@@ -1683,7 +1683,7 @@ Converta-o num fator não ordenado `tdah_fator`.
 
 (d) Recode "Nenhum" para "Sem dificuldade declarada".
 
-(e) Crie um gráfico de barras com os desafios, incluindo rótulos de frequência. Dica: use a função `barplot()`
+(e) Crie um gráfico de barras com os desafios, incluindo rótulos de frequência. Dica: use a função `barplot()`.
 
 **10.** A Dislexia é uma condição neurológica que afeta a forma como o cérebro processa a linguagem escrita. Trata-se de uma diferença específica de aprendizagem, caracterizada por desafios na leitura fluente, escrita, ortografia e reconhecimento automático de palavras, que não estão relacionados a níveis de inteligência ou empenho.
 
@@ -1725,80 +1725,20 @@ Podemos criar uma matriz em R usando a função `matrix()`. Veja o exemplo
 abaixo:
 
 ```{r eval=FALSE}
-matrix(c(1,2,3,4,5,6)+exp(1), nrow=2, ncol= 3, byrow = FALSE)
+matrix(c(1,2,3,4,5,6), nrow=2, ncol= 3, byrow = FALSE)
 ##      [,1] [,2] [,3]
-## [1,] 3.72 5.72 7.72
-## [2,] 4.72 6.72 8.72
+## [1,]    1    3    5
+## [2,]    2    4    6
 ```
 
 Podemos também realizar operações lógicas em matrizes:
 
 ```{r eval=FALSE}
 # Verifica se os elementos da matriz são maiores que 6
-matrix(c(1,2,3,4,5,6)+exp(1), nrow=2, ncol=3, byrow = FALSE) > 6
+matrix(c(1,2,3,4,5,6), nrow=2, ncol=3, byrow = FALSE) > 5
 ##       [,1]  [,2] [,3]
-## [1,] FALSE FALSE TRUE
-## [2,] FALSE  TRUE TRUE
-```
-
-### Criando um array
-
-Um array pode ter mais de duas dimensões e é criado usando a função
-`array()`:
-
-```{r eval=FALSE}
-# Criar um array com 4 linhas, 3 colunas, e 2 camadas
-A <- array(c(1:24), dim=c(4,3,2))
-A
-## , , 1
-## 
-##      [,1] [,2] [,3]
-## [1,]    1    5    9
-## [2,]    2    6   10
-## [3,]    3    7   11
-## [4,]    4    8   12
-## 
-## , , 2
-## 
-##      [,1] [,2] [,3]
-## [1,]   13   17   21
-## [2,]   14   18   22
-## [3,]   15   19   23
-## [4,]   16   20   24
-```
-
-### Acessar Elementos de um array
-
-```{r eval=FALSE}
-# Acessando o elemento na posição [1, 2, 1]
-A[1,2,1]
-## [1] 5
-
-# Acessar todos os elementos da linha 2 da primeira camada
-A[2, ,1]
-## [1]  2  6 10
-
-# Acessar toda a primeira camada (todos os elementos onde a terceira dimensão é 1)
-A[,,1]
-##      [,1] [,2] [,3]
-## [1,]    1    5    9
-## [2,]    2    6   10
-## [3,]    3    7   11
-## [4,]    4    8   12
-
-# Acessar os elementos [1, 1, 1] e [2, 2, 2]
-A[c(1,2), c(1,2), c(1,2)]
-## , , 1
-## 
-##      [,1] [,2]
-## [1,]    1    5
-## [2,]    2    6
-## 
-## , , 2
-## 
-##      [,1] [,2]
-## [1,]   13   17
-## [2,]   14   18
+## [1,] FALSE FALSE FALSE
+## [2,] FALSE FALSE TRUE
 ```
 
 ### Construindo Matrizes
@@ -2008,6 +1948,66 @@ Seja $M$ uma matriz quadrada.
 -   aplicar uma função a cada linha ou coluna $\to$
     `apply(M,2, mean) # média de cada coluna`
 
+### Criando um array
+
+Um array pode ter mais de duas dimensões e é criado usando a função
+`array()`:
+
+```{r eval=FALSE}
+# Criar um array com 4 linhas, 3 colunas, e 2 camadas
+A <- array(c(1:24), dim=c(4,3,2))
+A
+## , , 1
+## 
+##      [,1] [,2] [,3]
+## [1,]    1    5    9
+## [2,]    2    6   10
+## [3,]    3    7   11
+## [4,]    4    8   12
+## 
+## , , 2
+## 
+##      [,1] [,2] [,3]
+## [1,]   13   17   21
+## [2,]   14   18   22
+## [3,]   15   19   23
+## [4,]   16   20   24
+```
+
+### Acessar Elementos de um array
+
+```{r eval=FALSE}
+# Acessando o elemento na posição [1, 2, 1]
+A[1,2,1]
+## [1] 5
+
+# Acessar todos os elementos da linha 2 da primeira camada
+A[2, ,1]
+## [1]  2  6 10
+
+# Acessar toda a primeira camada (todos os elementos onde a terceira dimensão é 1)
+A[,,1]
+##      [,1] [,2] [,3]
+## [1,]    1    5    9
+## [2,]    2    6   10
+## [3,]    3    7   11
+## [4,]    4    8   12
+
+# Acessar os elementos [1, 1, 1] e [2, 2, 2]
+A[c(1,2), c(1,2), c(1,2)]
+## , , 1
+## 
+##      [,1] [,2]
+## [1,]    1    5
+## [2,]    2    6
+## 
+## , , 2
+## 
+##      [,1] [,2]
+## [1,]   13   17
+## [2,]   14   18
+```
+
 ### Exercícios
 
 **1.** Crie uma matriz $3 \times 4$ com os números de 1 a 12,
@@ -2016,11 +2016,10 @@ elementos da segunda coluna.
 
 **2.** Crie duas matrizes $2 \times 3$ chamadas $A$ e $B$, cada uma
 preenchida com números aleatórios inteiros de 1 a 10. Em seguida, some
-as duas matrizes e multiplique-as elemento por elemento.
+as duas matrizes e multiplique-as elemento por elemento. Dica: use a função `sample()`.
 
 **3.** Crie uma matriz $3 \times 3$ chamada $M$ com números aleatórios
-entre 1 e 9. Crie também um vetor de comprimento 3 chamado $v$. Realize
-a multiplicação entre a matriz $M$ e o vetor $v$ (ou seja,
+entre 1 e 9. Crie também um vetor de comprimento 3 chamado $v$ com valores quaisquer. Realize a multiplicação entre a matriz $M$ e o vetor $v$ (ou seja,
 $M \times v$). Faça agora a multiplicação $v \times M$.
 
 **4.** Crie uma matriz $4 \times 2$ chamada $N$ com números sequenciais
@@ -2079,14 +2078,91 @@ dos elementos da diagonal principal).
 **11.** Crie uma matriz $5\times 5$ com valores de 1 a 25. Em seguida,
 extraia as colunas de índice par (colunas 2 e 4) da matriz.
 
-**12.** Crie um array de dimensão 3x3x3 com valores de 1 a 27. Em
+**12** Uma turma de estudantes usou o ChatGPT como ferramenta auxiliar de estudo. Para cada estudante registou-se:
+
+1. Número de perguntas feitas ao ChatGPT durante a semana  
+2. Tempo médio de resposta em segundos  
+3. Nível de satisfação (escala de 1 a 5)  
+
+Os dados de 3 alunos estão organizados na matriz:
+
+\[
+M = \begin{bmatrix}
+12 & 8 & 5 \\
+20 & 10 & 4 \\
+15 & 9 & 5
+\end{bmatrix}
+\]
+
+- **Linha 1** → Aluno A  
+- **Linha 2** → Aluno B  
+- **Linha 3** → Aluno C  
+- **Colunas** → (Perguntas, Tempo médio de resposta, Satisfação)
+
+(a) Crie a matriz `M` no R com os dados apresentados.  
+
+(b) Use `rbind()` para adicionar os dados de um novo estudante D, que fez **18 perguntas, teve tempo médio de 11 segundos e satisfação 3**.  
+
+(c) Use `cbind()` para adicionar uma nova coluna com a variável “Horas totais de uso do ChatGPT”, com os valores **[5, 7, 6, 8]**.  
+
+(d) Calcule a **média de cada métrica** (coluna) usando a função `colMeans()`.  
+
+(e) Qual aluno fez o maior número de perguntas? (use `which.max()`). 
+
+**13.** Um ecrã digital pode ser representado por uma **matriz**, onde cada célula (entrada) corresponde à intensidade de cor de um pixel. Suponha um ecrã simplificado em **tons de cinzento** (escala de 0 a 9, em que 0 = preto e 9 = branco).  
+
+A seguinte matriz representa uma imagem de **10×10 pixels**:
+
+\[
+I =
+\begin{bmatrix}
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 9 & 9 & 9 & 0 & 0 & 9 & 9 & 9 & 0 \\
+0 & 9 & 0 & 9 & 0 & 0 & 9 & 0 & 9 & 0 \\
+0 & 9 & 9 & 9 & 0 & 0 & 9 & 9 & 9 & 0 \\
+0 & 9 & 0 & 0 & 0 & 0 & 0 & 0 & 9 & 0 \\
+0 & 9 & 0 & 0 & 0 & 0 & 0 & 0 & 9 & 0 \\
+0 & 9 & 0 & 0 & 0 & 0 & 0 & 0 & 9 & 0 \\
+0 & 9 & 0 & 0 & 0 & 0 & 0 & 0 & 9 & 0 \\
+0 & 9 & 9 & 9 & 9 & 9 & 9 & 9 & 9 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0
+\end{bmatrix}
+\]
+
+(a) Crie a matriz `I` no R usando a função `matrix()`.  
+
+```{r eval=FALSE}
+I <- matrix(c(
+  0,0,0,0,0,0,0,0,0,0,
+  0,9,9,9,0,0,9,9,9,0,
+  0,9,0,9,0,0,9,0,9,0,
+  0,9,9,9,0,0,9,9,9,0,
+  0,9,0,0,0,0,0,0,9,0,
+  0,9,0,0,0,0,0,0,9,0,
+  0,9,0,0,0,0,0,0,9,0,
+  0,9,0,0,0,0,0,0,9,0,
+  0,9,9,9,9,9,9,9,9,0,
+  0,0,0,0,0,0,0,0,0,0
+), nrow = 10, byrow = TRUE)
+```
+
+(b) Visualize a matriz como uma imagem usando a função `image()`.  
+   - Dica: use `col = gray.colors(10)` para tons de cinzento.  
+
+(c) Inverta as cores da imagem (substitua cada valor $x$ por $9 - x$).  
+
+(d) Calcule a média da intensidade de cor de todos os pixels (isto corresponde ao brilho médio da imagem).  
+
+(e) Adicione uma nova linha de zeros no final da matriz, simulando um ecrã com mais uma linha de pixels apagados.
+
+**14.** Crie um array de dimensão 3x3x3 com valores de 1 a 27. Em
 seguida:
 
 -   Acesse o elemento localizado na posição [2, 3, 1] do array.
 -   Acesse a segunda “camada” (a segunda matriz) do array.
 -   Todos os elementos da terceira linha da segunda camada.
 
-**13.** Crie dois arrays de dimensão 2x2x2 com valores aleatórios entre
+**15.** Crie dois arrays de dimensão 2x2x2 com valores aleatórios entre
 1 e 10. Realize as seguintes operações:
 
 -   Some os dois arrays.
@@ -2095,7 +2171,7 @@ seguida:
 -   Multiplique a primeira matriz do primeiro array pela segunda matriz
     do segundo array.
     
-**14.** Numa certa região há dois grupos de seres: Humanos (H) e Zumbis (Z). A dinâmica da população segue estas regras:
+**16.** Numa certa região há dois grupos de seres: Humanos (H) e Zumbis (Z). A dinâmica da população segue estas regras:
 
 - A cada hora, 20% dos humanos tornam-se zumbis (e os restantes 80% continuam humanos).
 - Ao mesmo tempo, 10% dos zumbis tornam-se humanos (e os restantes 90% continuam zumbis).
@@ -2125,7 +2201,7 @@ Quantos zumbis existirão na 10a hora?
 - Em geral, uma cadeia de Markov descreve um sistema que evolui em estados sucessivos, em que a próxima situação depende apenas do estado atual e de uma matriz de transição como a que usamos aqui.
 - No nosso caso, os estados são apenas 2 (Humanos e Zumbis), e a cada hora aplicamos a mesma regra de transição.
 
-**15.** Uma maneira de codificar uma mensagem é através de **multiplicação por matrizes**. Vamos associar as letras do alfabeto aos números, segundo a correspondência abaixo
+**17.** Uma maneira de codificar uma mensagem é através de **multiplicação por matrizes**. Vamos associar as letras do alfabeto aos números, segundo a correspondência abaixo
 (**sem a letra K** e com **espaço = 0**):
 
 A B C D E F G H I J L M N O P Q R S T U V W X Y Z  
