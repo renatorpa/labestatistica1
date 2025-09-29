@@ -125,7 +125,7 @@
 
 \title{Introdução ao R e Simulação}
 \author{Renato de Paula}
-\date{2025-09-26}
+\date{2025-09-29}
 
 \begin{document}
 \maketitle
@@ -2899,9 +2899,9 @@ Observe que na matriz, todos os dados são convertidos para o tipo
 \texttt{character}, enquanto em um data frame, cada coluna mantém seu próprio
 tipo de dados.
 
-\subsection{Aceder a Linhas e Colunas}\label{aceder-a-linhas-e-colunas}
+\subsection{Aceder a Colunas}\label{aceder-a-colunas}
 
-Existem várias maneiras de acedeer a linhas e colunas num data frame:
+Existem várias maneiras de aceder a colunas num data frame:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2917,6 +2917,22 @@ Existem várias maneiras de acedeer a linhas e colunas num data frame:
 \NormalTok{df[[}\StringTok{"id"}\NormalTok{]]}
 \DocumentationTok{\#\# [1] 1 2 3 4}
 
+\CommentTok{\# Subdata.frame com a coluna \textasciigrave{}"id"}
+\NormalTok{df[}\StringTok{"id"}\NormalTok{]}
+\DocumentationTok{\#\#   id}
+\DocumentationTok{\#\# 1  1}
+\DocumentationTok{\#\# 2  2}
+\DocumentationTok{\#\# 3  3}
+\DocumentationTok{\#\# 4  4}
+
+\CommentTok{\# Subdata.frame com a coluna \textasciigrave{}"id"}
+\NormalTok{df[}\DecValTok{1}\NormalTok{]}
+\DocumentationTok{\#\#   id}
+\DocumentationTok{\#\# 1  1}
+\DocumentationTok{\#\# 2  2}
+\DocumentationTok{\#\# 3  3}
+\DocumentationTok{\#\# 4  4}
+
 \CommentTok{\# Aceder à primeira linha}
 \NormalTok{df[}\DecValTok{1}\NormalTok{, ] }
 \DocumentationTok{\#\#   id nome idade salario}
@@ -2925,6 +2941,73 @@ Existem várias maneiras de acedeer a linhas e colunas num data frame:
 \CommentTok{\# Aceder à segunda coluna}
 \NormalTok{df[, }\DecValTok{2}\NormalTok{] }
 \DocumentationTok{\#\# [1] "Ana"    "Bruno"  "Carlos" "Diana"}
+
+\CommentTok{\# Aceder a múltiplas colunas por nome}
+\NormalTok{df[}\FunctionTok{c}\NormalTok{(}\StringTok{"nome"}\NormalTok{, }\StringTok{"idade"}\NormalTok{)]}
+\DocumentationTok{\#\#     nome idade}
+\DocumentationTok{\#\# 1    Ana    23}
+\DocumentationTok{\#\# 2  Bruno    35}
+\DocumentationTok{\#\# 3 Carlos    31}
+\DocumentationTok{\#\# 4  Diana    28}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1029}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2647}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.0956}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1838}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.3529}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Expressão
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Resultado
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Classe
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Tipo de retorno
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Observações
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{df{[},1{]}} & Vetor com os valores da coluna \texttt{id} & \texttt{integer} & vetor & Acessa por posição \\
+\texttt{df\$id} & Vetor com os valores da coluna \texttt{id} & \texttt{integer} & vetor & Acessa por nome (forma mais legível) \\
+\texttt{df{[}{[}"id"{]}{]}} & Vetor com os valores da coluna \texttt{id} & \texttt{integer} & vetor & Acessa por nome explicitamente \\
+\texttt{df{[}"id"{]}} & \texttt{data.frame} com uma única coluna \texttt{id} & \texttt{data.frame} & ainda é um \texttt{data.frame} & Retém estrutura de \texttt{data.frame} \\
+\texttt{df{[}1{]}} & \texttt{data.frame} com uma única coluna \texttt{id} & \texttt{data.frame} & mesma coisa que \texttt{df{[}"id"{]}} & Acessa por posição, mas mantém a estrutura \\
+\end{longtable}
+
+\subsection{Aceder a Linhas}\label{aceder-a-linhas}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Aceder ao elemento na primira linha}
+\NormalTok{df[}\DecValTok{1}\NormalTok{, ]}
+\DocumentationTok{\#\#  id nome idade salario}
+\DocumentationTok{\#\# 1  1  Ana    23    5000}
+
+\CommentTok{\# Aceder as primeiras duas linhas}
+\NormalTok{df[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{, ]}
+\DocumentationTok{\#\#   id  nome idade salario}
+\DocumentationTok{\#\# 1  1   Ana    23    5000}
+\DocumentationTok{\#\# 2  2 Bruno    35    6000}
+
+\CommentTok{\# Linhas 1 e 4}
+\NormalTok{df[}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{4}\NormalTok{), ]}
+\DocumentationTok{\#\#   id  nome idade salario}
+\DocumentationTok{\#\# 1  1   Ana    23    5000}
+\DocumentationTok{\#\# 4  4 Diana    28    8000}
+
+\CommentTok{\# Todas as linhas exceto a 1}
+\NormalTok{df[}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, ]}
+\DocumentationTok{\#\# id   nome idade salario}
+\DocumentationTok{\#\# 2  2  Bruno    35    6000}
+\DocumentationTok{\#\# 3  3 Carlos    31    7000}
+\DocumentationTok{\#\# 4  4  Diana    28    8000}
 
 \CommentTok{\# Aceder ao elemento na primeira linha, segunda coluna}
 \NormalTok{df[}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{] }
@@ -2939,16 +3022,37 @@ Existem várias maneiras de acedeer a linhas e colunas num data frame:
 \CommentTok{\# Aceder a uma entrada por nome de coluna}
 \NormalTok{df[}\DecValTok{1}\NormalTok{, }\StringTok{"nome"}\NormalTok{] }
 \DocumentationTok{\#\# [1] "Ana"}
-
-\CommentTok{\# Aceder a múltiplas colunas por nome}
-\NormalTok{df[}\FunctionTok{c}\NormalTok{(}\StringTok{"nome"}\NormalTok{, }\StringTok{"idade"}\NormalTok{)]}
-\DocumentationTok{\#\#     nome idade}
-\DocumentationTok{\#\# 1    Ana    23}
-\DocumentationTok{\#\# 2  Bruno    35}
-\DocumentationTok{\#\# 3 Carlos    31}
-\DocumentationTok{\#\# 4  Diana    28}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1184}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2763}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.0987}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1579}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.3487}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Expressão
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Resultado
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Classe
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Tipo de retorno
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Observações
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{df{[}1,\ {]}} & Primeira linha do \texttt{data.frame} & \texttt{data.frame} & linha como \texttt{data.frame} & Mantém estrutura de \texttt{data.frame} \\
+\texttt{df{[}1,\ ,\ drop=TRUE{]}} & Primeira linha como vetor & \texttt{named\ vector} & vetor nomeado & Converte linha para vetor, perde estrutura tabular \\
+\texttt{df{[}1:2,\ {]}} & Primeiras duas linhas & \texttt{data.frame} & subconjunto de linhas & Acede a várias linhas por intervalo \\
+\texttt{df{[}c(1,\ 4),\ {]}} & Linhas 1 e 4 & \texttt{data.frame} & subconjunto de linhas & Acede por índice arbitrário \\
+\texttt{df{[}-1,\ {]}} & Todas as linhas exceto a 1 & \texttt{data.frame} & subconjunto de linhas & Exclusão de linhas \\
+\end{longtable}
 
 \subsection{Adicionar e Remover Colunas}\label{adicionar-e-remover-colunas}
 
@@ -2968,6 +3072,9 @@ Adicionar e remover colunas de um data frame é simples e direto:
 \CommentTok{\# ou }
 \NormalTok{df[[}\StringTok{"novo\_salario"}\NormalTok{]] }\OtherTok{\textless{}{-}}\NormalTok{ df}\SpecialCharTok{$}\NormalTok{salario }\SpecialCharTok{*} \FloatTok{1.1} 
 
+\CommentTok{\# ou }
+\NormalTok{df[}\StringTok{"novo\_salario"}\NormalTok{] }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(df}\SpecialCharTok{$}\NormalTok{salario }\SpecialCharTok{*} \FloatTok{1.1}\NormalTok{)}
+
 \CommentTok{\# ou}
 \NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(df, }\AttributeTok{novo\_salario =}\NormalTok{ df}\SpecialCharTok{$}\NormalTok{salario }\SpecialCharTok{*} \FloatTok{1.1}\NormalTok{)}
 
@@ -2979,12 +3086,69 @@ Adicionar e remover colunas de um data frame é simples e direto:
 \DocumentationTok{\#\# 2  Bruno    35    6000         6600}
 \DocumentationTok{\#\# 3 Carlos    31    7000         7700}
 \DocumentationTok{\#\# 4  Diana    28    8000         8800}
+
+\CommentTok{\# ou}
+\NormalTok{df[[}\StringTok{"id"}\NormalTok{]] }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
+
+\CommentTok{\# ou}
+\NormalTok{df[}\StringTok{"id"}\NormalTok{] }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
+
+\CommentTok{\# Remover múltiplas colunas}
+\NormalTok{df[, }\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{)]}
+\DocumentationTok{\#\#     nome novo\_salario}
+\DocumentationTok{\#\# 1    Ana         5500}
+\DocumentationTok{\#\# 2  Bruno         6600}
+\DocumentationTok{\#\# 3 Carlos         7700}
+\DocumentationTok{\#\# 4  Diana         8800}
 \end{Highlighting}
 \end{Shaded}
 
 \subsection{Fundir Data Frames}\label{fundir-data-frames}
 
-Data frames podem ser combinados ou fundidos usando a função \texttt{merge()}.
+\textbf{Empilhar data.frames pela vertical (linhas) --- \texttt{rbind()}}
+
+Quando os \texttt{data.frames} têm as mesmas colunas e queremos juntar mais observações (linhas).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df1 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{id =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{, }\AttributeTok{nome =} \FunctionTok{c}\NormalTok{(}\StringTok{"Ana"}\NormalTok{, }\StringTok{"Bruno"}\NormalTok{))}
+\NormalTok{df2 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{id =} \DecValTok{3}\SpecialCharTok{:}\DecValTok{4}\NormalTok{, }\AttributeTok{nome =} \FunctionTok{c}\NormalTok{(}\StringTok{"Carlos"}\NormalTok{, }\StringTok{"Diana"}\NormalTok{))}
+
+\NormalTok{df\_total }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(df1, df2)}
+\NormalTok{df\_total}
+\DocumentationTok{\#\#   id   nome}
+\DocumentationTok{\#\# 1  1    Ana}
+\DocumentationTok{\#\# 2  2  Bruno}
+\DocumentationTok{\#\# 3  3 Carlos}
+\DocumentationTok{\#\# 4  4  Diana}
+\end{Highlighting}
+\end{Shaded}
+
+Obs: \texttt{rbind()} exige que os nomes e número de colunas sejam iguais.
+
+\textbf{Juntar data.frames pela horizontal (colunas) --- \texttt{cbind()}}
+
+Quando os \texttt{data.frames} têm o mesmo número de linhas e queremos anexar novas variáveis (colunas).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df\_a }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{id =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{)}
+\NormalTok{df\_b }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{idade =} \FunctionTok{c}\NormalTok{(}\DecValTok{23}\NormalTok{, }\DecValTok{31}\NormalTok{, }\DecValTok{28}\NormalTok{))}
+
+\NormalTok{df\_completo }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(df\_a, df\_b)}
+\NormalTok{df\_completo}
+\DocumentationTok{\#\#   id idade}
+\DocumentationTok{\#\# 1  1    23}
+\DocumentationTok{\#\# 2  2    31}
+\DocumentationTok{\#\# 3  3    28}
+\end{Highlighting}
+\end{Shaded}
+
+Obs: \texttt{cbind()} não garante correspondência por chave (como \texttt{id}) --- apenas alinha pela ordem das linhas.
+
+\textbf{Fazer joins por uma chave comum --- \texttt{merge()}}
+
+Quando queremos fundir duas tabelas por uma variável comum (chave), como \texttt{id}, \texttt{nome}, etc.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2999,6 +3163,49 @@ Data frames podem ser combinados ou fundidos usando a função \texttt{merge()}.
 \DocumentationTok{\#\# 1   CAL    90        8}
 \DocumentationTok{\#\# 2    LE    75        7}
 \DocumentationTok{\#\# 3    PE    60        6}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df1 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{id =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{, }\AttributeTok{nome =} \FunctionTok{c}\NormalTok{(}\StringTok{"Ana"}\NormalTok{, }\StringTok{"Bruno"}\NormalTok{, }\StringTok{"Carlos"}\NormalTok{))}
+\NormalTok{df2 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{id =} \DecValTok{2}\SpecialCharTok{:}\DecValTok{4}\NormalTok{, }\AttributeTok{idade =} \FunctionTok{c}\NormalTok{(}\DecValTok{35}\NormalTok{, }\DecValTok{40}\NormalTok{, }\DecValTok{28}\NormalTok{))}
+
+\FunctionTok{merge}\NormalTok{(df1, df2, }\AttributeTok{by =} \StringTok{"id"}\NormalTok{)  }\CommentTok{\# INNER JOIN}
+\DocumentationTok{\#\#   id   nome idade}
+\DocumentationTok{\#\# 1  2  Bruno    35}
+\DocumentationTok{\#\# 2  3 Carlos    40}
+
+\FunctionTok{merge}\NormalTok{(df1, df2, }\AttributeTok{by =} \StringTok{"id"}\NormalTok{, }\AttributeTok{all.x =} \ConstantTok{TRUE}\NormalTok{) }\CommentTok{\# LEFT JOIN}
+\DocumentationTok{\#\# id   nome idade}
+\DocumentationTok{\#\# 1  1    Ana    NA}
+\DocumentationTok{\#\# 2  2  Bruno    35}
+\DocumentationTok{\#\# 3  3 Carlos    40}
+
+\FunctionTok{merge}\NormalTok{(df1, df2, }\AttributeTok{by =} \StringTok{"id"}\NormalTok{, }\AttributeTok{all.Y =} \ConstantTok{TRUE}\NormalTok{) }\CommentTok{\# RIGHT JOIN}
+\DocumentationTok{\#\#   id   nome idade}
+\DocumentationTok{\#\# 1  2  Bruno    35}
+\DocumentationTok{\#\# 2  3 Carlos    40}
+
+\FunctionTok{merge}\NormalTok{(df1, df2, }\AttributeTok{by =} \StringTok{"id"}\NormalTok{, }\AttributeTok{all =} \ConstantTok{TRUE}\NormalTok{) }\CommentTok{\# FULL OUTER JOIN}
+\DocumentationTok{\#\#   id   nome idade}
+\DocumentationTok{\#\# 1  1    Ana    NA}
+\DocumentationTok{\#\# 2  2  Bruno    35}
+\DocumentationTok{\#\# 3  3 Carlos    40}
+\DocumentationTok{\#\# 4  4   \textless{}NA\textgreater{}    28}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Usando \texttt{dplyr} (mais moderno e legível)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(dplyr)}
+
+\FunctionTok{left\_join}\NormalTok{(df1, df2, }\AttributeTok{by =} \StringTok{"id"}\NormalTok{)}
+\FunctionTok{right\_join}\NormalTok{(df1, df2, }\AttributeTok{by =} \StringTok{"id"}\NormalTok{)}
+\FunctionTok{inner\_join}\NormalTok{(df1, df2, }\AttributeTok{by =} \StringTok{"id"}\NormalTok{)}
+\FunctionTok{full\_join}\NormalTok{(df1, df2, }\AttributeTok{by =} \StringTok{"id"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3060,7 +3267,7 @@ Funções úteis para explorar e entender a estrutura de um data frame:
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{\texorpdfstring{A função \texttt{subset()}}{A função subset()}}\label{a-funuxe7uxe3o-subset}
+\subsection{\texorpdfstring{Filtragem condicional num \texttt{data.frame}}{Filtragem condicional num data.frame}}\label{filtragem-condicional-num-data.frame}
 
 A função \texttt{subset()} em R é usada para criar subconjuntos de um data
 frame com base em condições lógicas. É particularmente útil quando se
@@ -3069,276 +3276,63 @@ colunas específicas ao mesmo tempo.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Carregar o conjunto de dados \textquotesingle{}iris\textquotesingle{}}
-\NormalTok{df }\OtherTok{\textless{}{-}}\NormalTok{ iris}
-
-\CommentTok{\# Criar um subconjunto com Sepal.Width maior que 3, selecionando apenas as colunas Petal.Width e Species}
-\NormalTok{df1 }\OtherTok{\textless{}{-}}\NormalTok{ df[df}\SpecialCharTok{$}\NormalTok{Sepal.Width }\SpecialCharTok{\textgreater{}} \DecValTok{3}\NormalTok{, }\FunctionTok{c}\NormalTok{(}\StringTok{"Petal.Width"}\NormalTok{,}\StringTok{"Species"}\NormalTok{)]}
-\FunctionTok{head}\NormalTok{(df1)}
-\DocumentationTok{\#\#   Petal.Width Species}
-\DocumentationTok{\#\# 1         0.2  setosa}
-\DocumentationTok{\#\# 3         0.2  setosa}
-\DocumentationTok{\#\# 4         0.2  setosa}
-\DocumentationTok{\#\# 5         0.2  setosa}
-\DocumentationTok{\#\# 6         0.4  setosa}
-\DocumentationTok{\#\# 7         0.3  setosa}
-
-\CommentTok{\# Utilizando a função subset() para o mesmo subconjunto  }
-\NormalTok{(df2 }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(df, Sepal.Width }\SpecialCharTok{\textgreater{}} \DecValTok{3}\NormalTok{, }\AttributeTok{select =} \FunctionTok{c}\NormalTok{(Petal.Width, Species)))}
-\DocumentationTok{\#\#     Petal.Width    Species}
-\DocumentationTok{\#\# 1           0.2     setosa}
-\DocumentationTok{\#\# 3           0.2     setosa}
-\DocumentationTok{\#\# 4           0.2     setosa}
-\DocumentationTok{\#\# 5           0.2     setosa}
-\DocumentationTok{\#\# 6           0.4     setosa}
-\DocumentationTok{\#\# 7           0.3     setosa}
-\DocumentationTok{\#\# 8           0.2     setosa}
-\DocumentationTok{\#\# 10          0.1     setosa}
-\DocumentationTok{\#\# 11          0.2     setosa}
-\DocumentationTok{\#\# 12          0.2     setosa}
-\DocumentationTok{\#\# 15          0.2     setosa}
-\DocumentationTok{\#\# 16          0.4     setosa}
-\DocumentationTok{\#\# 17          0.4     setosa}
-\DocumentationTok{\#\# 18          0.3     setosa}
-\DocumentationTok{\#\# 19          0.3     setosa}
-\DocumentationTok{\#\# 20          0.3     setosa}
-\DocumentationTok{\#\# 21          0.2     setosa}
-\DocumentationTok{\#\# 22          0.4     setosa}
-\DocumentationTok{\#\# 23          0.2     setosa}
-\DocumentationTok{\#\# 24          0.5     setosa}
-\DocumentationTok{\#\# 25          0.2     setosa}
-\DocumentationTok{\#\# 27          0.4     setosa}
-\DocumentationTok{\#\# 28          0.2     setosa}
-\DocumentationTok{\#\# 29          0.2     setosa}
-\DocumentationTok{\#\# 30          0.2     setosa}
-\DocumentationTok{\#\# 31          0.2     setosa}
-\DocumentationTok{\#\# 32          0.4     setosa}
-\DocumentationTok{\#\# 33          0.1     setosa}
-\DocumentationTok{\#\# 34          0.2     setosa}
-\DocumentationTok{\#\# 35          0.2     setosa}
-\DocumentationTok{\#\# 36          0.2     setosa}
-\DocumentationTok{\#\# 37          0.2     setosa}
-\DocumentationTok{\#\# 38          0.1     setosa}
-\DocumentationTok{\#\# 40          0.2     setosa}
-\DocumentationTok{\#\# 41          0.3     setosa}
-\DocumentationTok{\#\# 43          0.2     setosa}
-\DocumentationTok{\#\# 44          0.6     setosa}
-\DocumentationTok{\#\# 45          0.4     setosa}
-\DocumentationTok{\#\# 47          0.2     setosa}
-\DocumentationTok{\#\# 48          0.2     setosa}
-\DocumentationTok{\#\# 49          0.2     setosa}
-\DocumentationTok{\#\# 50          0.2     setosa}
-\DocumentationTok{\#\# 51          1.4 versicolor}
-\DocumentationTok{\#\# 52          1.5 versicolor}
-\DocumentationTok{\#\# 53          1.5 versicolor}
-\DocumentationTok{\#\# 57          1.6 versicolor}
-\DocumentationTok{\#\# 66          1.4 versicolor}
-\DocumentationTok{\#\# 71          1.8 versicolor}
-\DocumentationTok{\#\# 86          1.6 versicolor}
-\DocumentationTok{\#\# 87          1.5 versicolor}
-\DocumentationTok{\#\# 101         2.5  virginica}
-\DocumentationTok{\#\# 110         2.5  virginica}
-\DocumentationTok{\#\# 111         2.0  virginica}
-\DocumentationTok{\#\# 116         2.3  virginica}
-\DocumentationTok{\#\# 118         2.2  virginica}
-\DocumentationTok{\#\# 121         2.3  virginica}
-\DocumentationTok{\#\# 125         2.1  virginica}
-\DocumentationTok{\#\# 126         1.8  virginica}
-\DocumentationTok{\#\# 132         2.0  virginica}
-\DocumentationTok{\#\# 137         2.4  virginica}
-\DocumentationTok{\#\# 138         1.8  virginica}
-\DocumentationTok{\#\# 140         2.1  virginica}
-\DocumentationTok{\#\# 141         2.4  virginica}
-\DocumentationTok{\#\# 142         2.3  virginica}
-\DocumentationTok{\#\# 144         2.3  virginica}
-\DocumentationTok{\#\# 145         2.5  virginica}
-\DocumentationTok{\#\# 149         2.3  virginica}
+\FunctionTok{subset}\NormalTok{(x, subset, select, }\AttributeTok{drop =} \ConstantTok{FALSE}\NormalTok{, ...)}
 \end{Highlighting}
 \end{Shaded}
 
-No exemplo acima, ambas as abordagens (indexação direta e \texttt{subset()})
-produzem o mesmo resultado, mas \texttt{subset()} é geralmente mais legível e
-conveniente quando se trata de filtragem condicional.
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Parâmetro
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Descrição
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{x} & Objeto a ser subsetado (geralmente um \texttt{data.frame}, mas também pode ser vetor, matriz ou lista). É o primeiro argumento obrigatório. \\
+\texttt{subset} & Expressão lógica usada para filtrar \textbf{linhas} do objeto \texttt{x}. Avaliada no ambiente de \texttt{x}. Ex.: \texttt{idade\ \textgreater{}\ 30}. \\
+\texttt{select} & Expressão para selecionar \textbf{colunas} (por nome ou posição). Pode usar índices positivos, negativos ou nomes. Ex.: \texttt{select\ =\ c(nome,\ salario)} ou \texttt{select\ =\ -id}. \\
+\texttt{drop} & Lógico. Se \texttt{TRUE}, quando apenas uma coluna é selecionada, retorna um vetor. Se \texttt{FALSE}, mantém a estrutura de \texttt{data.frame} mesmo com uma única coluna. Valor padrão: \texttt{FALSE}. \\
+\texttt{...} & Argumentos adicionais (geralmente ignorados para \texttt{data.frames}, usados internamente para outros métodos). \\
+\end{longtable}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Criar um subconjunto com Petal.Width igual a 0.3, excluindo a coluna Sepal.Width}
-\NormalTok{(df3 }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(df, Petal.Width }\SpecialCharTok{==} \FloatTok{0.3}\NormalTok{, }\AttributeTok{select =} \SpecialCharTok{{-}}\NormalTok{Sepal.Width))}
-\DocumentationTok{\#\#    Sepal.Length Petal.Length Petal.Width Species}
-\DocumentationTok{\#\# 7           4.6          1.4         0.3  setosa}
-\DocumentationTok{\#\# 18          5.1          1.4         0.3  setosa}
-\DocumentationTok{\#\# 19          5.7          1.7         0.3  setosa}
-\DocumentationTok{\#\# 20          5.1          1.5         0.3  setosa}
-\DocumentationTok{\#\# 41          5.0          1.3         0.3  setosa}
-\DocumentationTok{\#\# 42          4.5          1.3         0.3  setosa}
-\DocumentationTok{\#\# 46          4.8          1.4         0.3  setosa}
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+\AttributeTok{id =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{,}
+\AttributeTok{nome =} \FunctionTok{c}\NormalTok{(}\StringTok{"Ana"}\NormalTok{, }\StringTok{"Bruno"}\NormalTok{, }\StringTok{"Carlos"}\NormalTok{, }\StringTok{"Diana"}\NormalTok{),}
+\AttributeTok{idade =} \FunctionTok{c}\NormalTok{(}\DecValTok{23}\NormalTok{, }\DecValTok{35}\NormalTok{, }\DecValTok{31}\NormalTok{, }\DecValTok{28}\NormalTok{),}
+\AttributeTok{salario =} \FunctionTok{c}\NormalTok{(}\DecValTok{5000}\NormalTok{, }\DecValTok{6000}\NormalTok{, }\DecValTok{7000}\NormalTok{, }\DecValTok{8000}\NormalTok{))}
+
+\CommentTok{\# Filtrar linhas (idade \textgreater{} 30):}
+\FunctionTok{subset}\NormalTok{(df, idade }\SpecialCharTok{\textgreater{}} \DecValTok{30}\NormalTok{)}
+\DocumentationTok{\#\#   id   nome idade salario}
+\DocumentationTok{\#\# 2  2  Bruno    35    6000}
+\DocumentationTok{\#\# 3  3 Carlos    31    7000}
+
+\CommentTok{\# Filtrar linhas e selecionar colunas:}
+\FunctionTok{subset}\NormalTok{(df, idade }\SpecialCharTok{\textgreater{}} \DecValTok{30}\NormalTok{, }\AttributeTok{select =} \FunctionTok{c}\NormalTok{(nome, salario))}
+\DocumentationTok{\#\#     nome salario}
+\DocumentationTok{\#\# 2  Bruno    6000}
+\DocumentationTok{\#\# 3 Carlos    7000}
+
+\CommentTok{\# Selecionar colunas por padrão:}
+\FunctionTok{subset}\NormalTok{(df, idade }\SpecialCharTok{\textgreater{}} \DecValTok{25}\NormalTok{, }\AttributeTok{select =} \SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(id))  }\CommentTok{\# remove coluna \textquotesingle{}id\textquotesingle{}}
+\DocumentationTok{\#\#     nome idade salario}
+\DocumentationTok{\#\# 2  Bruno    35    6000}
+\DocumentationTok{\#\# 3 Carlos    31    7000}
+\DocumentationTok{\#\# 4  Diana    28    8000}
+
+\CommentTok{\# Evitar conversão para vetor (drop = FALSE):}
+\FunctionTok{subset}\NormalTok{(df, idade }\SpecialCharTok{==} \DecValTok{35}\NormalTok{, }\AttributeTok{select =}\NormalTok{ salario, }\AttributeTok{drop =} \ConstantTok{FALSE}\NormalTok{)}
+\DocumentationTok{\#\#   salario}
+\DocumentationTok{\#\# 2    6000}
 \end{Highlighting}
 \end{Shaded}
-
-Neste exemplo, a função \texttt{subset()} é utilizada para filtrar linhas em
-que \texttt{Petal.Width} é exatamente 0.3, ao mesmo tempo que exclui a coluna
-\texttt{Sepal.Width}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Criar um subconjunto selecionando as colunas de Sepal.Width a Petal.Width}
-\NormalTok{(df4 }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(df, }\AttributeTok{select =}\NormalTok{ Sepal.Width}\SpecialCharTok{:}\NormalTok{Petal.Width))}
-\DocumentationTok{\#\#     Sepal.Width Petal.Length Petal.Width}
-\DocumentationTok{\#\# 1           3.5          1.4         0.2}
-\DocumentationTok{\#\# 2           3.0          1.4         0.2}
-\DocumentationTok{\#\# 3           3.2          1.3         0.2}
-\DocumentationTok{\#\# 4           3.1          1.5         0.2}
-\DocumentationTok{\#\# 5           3.6          1.4         0.2}
-\DocumentationTok{\#\# 6           3.9          1.7         0.4}
-\DocumentationTok{\#\# 7           3.4          1.4         0.3}
-\DocumentationTok{\#\# 8           3.4          1.5         0.2}
-\DocumentationTok{\#\# 9           2.9          1.4         0.2}
-\DocumentationTok{\#\# 10          3.1          1.5         0.1}
-\DocumentationTok{\#\# 11          3.7          1.5         0.2}
-\DocumentationTok{\#\# 12          3.4          1.6         0.2}
-\DocumentationTok{\#\# 13          3.0          1.4         0.1}
-\DocumentationTok{\#\# 14          3.0          1.1         0.1}
-\DocumentationTok{\#\# 15          4.0          1.2         0.2}
-\DocumentationTok{\#\# 16          4.4          1.5         0.4}
-\DocumentationTok{\#\# 17          3.9          1.3         0.4}
-\DocumentationTok{\#\# 18          3.5          1.4         0.3}
-\DocumentationTok{\#\# 19          3.8          1.7         0.3}
-\DocumentationTok{\#\# 20          3.8          1.5         0.3}
-\DocumentationTok{\#\# 21          3.4          1.7         0.2}
-\DocumentationTok{\#\# 22          3.7          1.5         0.4}
-\DocumentationTok{\#\# 23          3.6          1.0         0.2}
-\DocumentationTok{\#\# 24          3.3          1.7         0.5}
-\DocumentationTok{\#\# 25          3.4          1.9         0.2}
-\DocumentationTok{\#\# 26          3.0          1.6         0.2}
-\DocumentationTok{\#\# 27          3.4          1.6         0.4}
-\DocumentationTok{\#\# 28          3.5          1.5         0.2}
-\DocumentationTok{\#\# 29          3.4          1.4         0.2}
-\DocumentationTok{\#\# 30          3.2          1.6         0.2}
-\DocumentationTok{\#\# 31          3.1          1.6         0.2}
-\DocumentationTok{\#\# 32          3.4          1.5         0.4}
-\DocumentationTok{\#\# 33          4.1          1.5         0.1}
-\DocumentationTok{\#\# 34          4.2          1.4         0.2}
-\DocumentationTok{\#\# 35          3.1          1.5         0.2}
-\DocumentationTok{\#\# 36          3.2          1.2         0.2}
-\DocumentationTok{\#\# 37          3.5          1.3         0.2}
-\DocumentationTok{\#\# 38          3.6          1.4         0.1}
-\DocumentationTok{\#\# 39          3.0          1.3         0.2}
-\DocumentationTok{\#\# 40          3.4          1.5         0.2}
-\DocumentationTok{\#\# 41          3.5          1.3         0.3}
-\DocumentationTok{\#\# 42          2.3          1.3         0.3}
-\DocumentationTok{\#\# 43          3.2          1.3         0.2}
-\DocumentationTok{\#\# 44          3.5          1.6         0.6}
-\DocumentationTok{\#\# 45          3.8          1.9         0.4}
-\DocumentationTok{\#\# 46          3.0          1.4         0.3}
-\DocumentationTok{\#\# 47          3.8          1.6         0.2}
-\DocumentationTok{\#\# 48          3.2          1.4         0.2}
-\DocumentationTok{\#\# 49          3.7          1.5         0.2}
-\DocumentationTok{\#\# 50          3.3          1.4         0.2}
-\DocumentationTok{\#\# 51          3.2          4.7         1.4}
-\DocumentationTok{\#\# 52          3.2          4.5         1.5}
-\DocumentationTok{\#\# 53          3.1          4.9         1.5}
-\DocumentationTok{\#\# 54          2.3          4.0         1.3}
-\DocumentationTok{\#\# 55          2.8          4.6         1.5}
-\DocumentationTok{\#\# 56          2.8          4.5         1.3}
-\DocumentationTok{\#\# 57          3.3          4.7         1.6}
-\DocumentationTok{\#\# 58          2.4          3.3         1.0}
-\DocumentationTok{\#\# 59          2.9          4.6         1.3}
-\DocumentationTok{\#\# 60          2.7          3.9         1.4}
-\DocumentationTok{\#\# 61          2.0          3.5         1.0}
-\DocumentationTok{\#\# 62          3.0          4.2         1.5}
-\DocumentationTok{\#\# 63          2.2          4.0         1.0}
-\DocumentationTok{\#\# 64          2.9          4.7         1.4}
-\DocumentationTok{\#\# 65          2.9          3.6         1.3}
-\DocumentationTok{\#\# 66          3.1          4.4         1.4}
-\DocumentationTok{\#\# 67          3.0          4.5         1.5}
-\DocumentationTok{\#\# 68          2.7          4.1         1.0}
-\DocumentationTok{\#\# 69          2.2          4.5         1.5}
-\DocumentationTok{\#\# 70          2.5          3.9         1.1}
-\DocumentationTok{\#\# 71          3.2          4.8         1.8}
-\DocumentationTok{\#\# 72          2.8          4.0         1.3}
-\DocumentationTok{\#\# 73          2.5          4.9         1.5}
-\DocumentationTok{\#\# 74          2.8          4.7         1.2}
-\DocumentationTok{\#\# 75          2.9          4.3         1.3}
-\DocumentationTok{\#\# 76          3.0          4.4         1.4}
-\DocumentationTok{\#\# 77          2.8          4.8         1.4}
-\DocumentationTok{\#\# 78          3.0          5.0         1.7}
-\DocumentationTok{\#\# 79          2.9          4.5         1.5}
-\DocumentationTok{\#\# 80          2.6          3.5         1.0}
-\DocumentationTok{\#\# 81          2.4          3.8         1.1}
-\DocumentationTok{\#\# 82          2.4          3.7         1.0}
-\DocumentationTok{\#\# 83          2.7          3.9         1.2}
-\DocumentationTok{\#\# 84          2.7          5.1         1.6}
-\DocumentationTok{\#\# 85          3.0          4.5         1.5}
-\DocumentationTok{\#\# 86          3.4          4.5         1.6}
-\DocumentationTok{\#\# 87          3.1          4.7         1.5}
-\DocumentationTok{\#\# 88          2.3          4.4         1.3}
-\DocumentationTok{\#\# 89          3.0          4.1         1.3}
-\DocumentationTok{\#\# 90          2.5          4.0         1.3}
-\DocumentationTok{\#\# 91          2.6          4.4         1.2}
-\DocumentationTok{\#\# 92          3.0          4.6         1.4}
-\DocumentationTok{\#\# 93          2.6          4.0         1.2}
-\DocumentationTok{\#\# 94          2.3          3.3         1.0}
-\DocumentationTok{\#\# 95          2.7          4.2         1.3}
-\DocumentationTok{\#\# 96          3.0          4.2         1.2}
-\DocumentationTok{\#\# 97          2.9          4.2         1.3}
-\DocumentationTok{\#\# 98          2.9          4.3         1.3}
-\DocumentationTok{\#\# 99          2.5          3.0         1.1}
-\DocumentationTok{\#\# 100         2.8          4.1         1.3}
-\DocumentationTok{\#\# 101         3.3          6.0         2.5}
-\DocumentationTok{\#\# 102         2.7          5.1         1.9}
-\DocumentationTok{\#\# 103         3.0          5.9         2.1}
-\DocumentationTok{\#\# 104         2.9          5.6         1.8}
-\DocumentationTok{\#\# 105         3.0          5.8         2.2}
-\DocumentationTok{\#\# 106         3.0          6.6         2.1}
-\DocumentationTok{\#\# 107         2.5          4.5         1.7}
-\DocumentationTok{\#\# 108         2.9          6.3         1.8}
-\DocumentationTok{\#\# 109         2.5          5.8         1.8}
-\DocumentationTok{\#\# 110         3.6          6.1         2.5}
-\DocumentationTok{\#\# 111         3.2          5.1         2.0}
-\DocumentationTok{\#\# 112         2.7          5.3         1.9}
-\DocumentationTok{\#\# 113         3.0          5.5         2.1}
-\DocumentationTok{\#\# 114         2.5          5.0         2.0}
-\DocumentationTok{\#\# 115         2.8          5.1         2.4}
-\DocumentationTok{\#\# 116         3.2          5.3         2.3}
-\DocumentationTok{\#\# 117         3.0          5.5         1.8}
-\DocumentationTok{\#\# 118         3.8          6.7         2.2}
-\DocumentationTok{\#\# 119         2.6          6.9         2.3}
-\DocumentationTok{\#\# 120         2.2          5.0         1.5}
-\DocumentationTok{\#\# 121         3.2          5.7         2.3}
-\DocumentationTok{\#\# 122         2.8          4.9         2.0}
-\DocumentationTok{\#\# 123         2.8          6.7         2.0}
-\DocumentationTok{\#\# 124         2.7          4.9         1.8}
-\DocumentationTok{\#\# 125         3.3          5.7         2.1}
-\DocumentationTok{\#\# 126         3.2          6.0         1.8}
-\DocumentationTok{\#\# 127         2.8          4.8         1.8}
-\DocumentationTok{\#\# 128         3.0          4.9         1.8}
-\DocumentationTok{\#\# 129         2.8          5.6         2.1}
-\DocumentationTok{\#\# 130         3.0          5.8         1.6}
-\DocumentationTok{\#\# 131         2.8          6.1         1.9}
-\DocumentationTok{\#\# 132         3.8          6.4         2.0}
-\DocumentationTok{\#\# 133         2.8          5.6         2.2}
-\DocumentationTok{\#\# 134         2.8          5.1         1.5}
-\DocumentationTok{\#\# 135         2.6          5.6         1.4}
-\DocumentationTok{\#\# 136         3.0          6.1         2.3}
-\DocumentationTok{\#\# 137         3.4          5.6         2.4}
-\DocumentationTok{\#\# 138         3.1          5.5         1.8}
-\DocumentationTok{\#\# 139         3.0          4.8         1.8}
-\DocumentationTok{\#\# 140         3.1          5.4         2.1}
-\DocumentationTok{\#\# 141         3.1          5.6         2.4}
-\DocumentationTok{\#\# 142         3.1          5.1         2.3}
-\DocumentationTok{\#\# 143         2.7          5.1         1.9}
-\DocumentationTok{\#\# 144         3.2          5.9         2.3}
-\DocumentationTok{\#\# 145         3.3          5.7         2.5}
-\DocumentationTok{\#\# 146         3.0          5.2         2.3}
-\DocumentationTok{\#\# 147         2.5          5.0         1.9}
-\DocumentationTok{\#\# 148         3.0          5.2         2.0}
-\DocumentationTok{\#\# 149         3.4          5.4         2.3}
-\DocumentationTok{\#\# 150         3.0          5.1         1.8}
-\end{Highlighting}
-\end{Shaded}
-
-Aqui, \texttt{subset()} é usado para selecionar todas as colunas desde
-\texttt{Sepal.Width} até \texttt{Petal.Width}.
 
 \subsection{\texorpdfstring{A Função \texttt{summary()}}{A Função summary()}}\label{a-funuxe7uxe3o-summary}
 
@@ -3494,6 +3488,40 @@ Adicione uma nova coluna chamada \texttt{Temp.Celsius}, que converte a temperatu
 Agrupe o data frame pelo mês (\texttt{Month}) e calcule a média da coluna \texttt{Ozone} para cada mês. Use a função \texttt{aggregate()}.
 
 Crie um gráfico de dispersão (\texttt{plot()}) para a relação entre \texttt{Ozone} e a nova coluna \texttt{Temp.Celsius}, colorindo os pontos de acordo com o mês (\texttt{Month}).
+
+\textbf{17.} O naufrágio do RMS Titanic em 1912 inspirou não apenas filmes e livros, mas também um dos datasets mais famosos da história da Ciência de Dados. Nele constam informações sobre os passageiros, como sexo, idade, classe e sobrevivência. É muito utilizado para aprender sobre análise exploratória, regressão, classificação e estatística aplicada.
+
+Vamos trabalhar com uma versão reduzida e fictícia deste conjunto de dados.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Crie o seguinte data.frame:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{titanic }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{nome =} \FunctionTok{c}\NormalTok{(}\StringTok{"Ana"}\NormalTok{, }\StringTok{"Bruno"}\NormalTok{, }\StringTok{"Clara"}\NormalTok{, }\StringTok{"Daniel"}\NormalTok{, }\StringTok{"Eva"}\NormalTok{, }\StringTok{"Filipe"}\NormalTok{),}
+  \AttributeTok{sexo =} \FunctionTok{c}\NormalTok{(}\StringTok{"F"}\NormalTok{, }\StringTok{"M"}\NormalTok{, }\StringTok{"F"}\NormalTok{, }\StringTok{"M"}\NormalTok{, }\StringTok{"F"}\NormalTok{, }\StringTok{"M"}\NormalTok{),}
+  \AttributeTok{idade =} \FunctionTok{c}\NormalTok{(}\DecValTok{22}\NormalTok{, }\DecValTok{35}\NormalTok{, }\DecValTok{18}\NormalTok{, }\DecValTok{50}\NormalTok{, }\DecValTok{28}\NormalTok{, }\DecValTok{40}\NormalTok{),}
+  \AttributeTok{classe =} \FunctionTok{c}\NormalTok{(}\StringTok{"1ª"}\NormalTok{, }\StringTok{"3ª"}\NormalTok{, }\StringTok{"3ª"}\NormalTok{, }\StringTok{"1ª"}\NormalTok{, }\StringTok{"2ª"}\NormalTok{, }\StringTok{"2ª"}\NormalTok{),}
+  \AttributeTok{sobreviveu =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\item
+  Quantos passageiros do sexo feminino sobreviveram?
+\item
+  Qual é a média de idade dos que sobreviveram?
+\item
+  Quantas pessoas estavam na 3ª classe? Qual a taxa de sobrevivência nesse grupo?
+\end{enumerate}
 
 \section{Listas}\label{listas}
 
@@ -6305,7 +6333,7 @@ estatístico.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-168-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-173-1.pdf}}
 
 Para ter o gráfico com as frequências relativas fazemos:
 
@@ -6324,7 +6352,7 @@ Para ter o gráfico com as frequências relativas fazemos:
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-169-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-174-1.pdf}}
 
 \textbf{Personalização de Gráficos de Barras}
 
@@ -6344,7 +6372,7 @@ barras lado a lado).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-170-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-175-1.pdf}}
 
 \textbf{Gráfico de Barras Agrupadas}
 
@@ -6372,7 +6400,7 @@ Podemos também gerar gráficos de barras que comparam mais de uma variável. Ne
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-171-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-176-1.pdf}}
 
 Neste exemplo, usamos \texttt{rbind()} para agrupar os dados e o argumento \texttt{beside\ =\ TRUE} para gerar barras lado a lado para comparação entre ``Granito'' e ``Basalto''. O parâmetro \texttt{legend.text} cria uma legenda para identificar cada cor de barra.
 
@@ -6401,7 +6429,7 @@ Para gerar um gráfico de barras empilhado em vez de agrupado, basta remover o a
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-172-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-177-1.pdf}}
 
 \section{Gráfico Circular (Pizza)}\label{gruxe1fico-circular-pizza}
 
@@ -6441,7 +6469,7 @@ tamanho de cada fatia é proporcional à sua porcentagem.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-174-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-179-1.pdf}}
 
 \section{Histograma}\label{histograma}
 
@@ -6510,7 +6538,7 @@ de intervalo de classe no R é \((a, b]\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-176-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-181-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6538,7 +6566,7 @@ de intervalo de classe no R é \((a, b]\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-178-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-183-1.pdf}}
 
 Pode controlar o número de intervalos (bins) usando o argumento
 \texttt{breaks}. Por exemplo, \texttt{breaks\ =\ 5} divide os dados em 5 intervalos.
@@ -6562,7 +6590,7 @@ Podemos adicionar também uma curva de densidade em cima do histograma.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-179-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-184-1.pdf}}
 
 \section{Box-plot}\label{box-plot}
 
@@ -6612,7 +6640,7 @@ quartil (Q3) e máximo. Também pode mostrar outliers (valores atípicos).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-181-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-186-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6627,7 +6655,7 @@ quartil (Q3) e máximo. Também pode mostrar outliers (valores atípicos).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-182-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-187-1.pdf}}
 
 Pode comparar a distribuição de múltiplas variáveis lado a lado com
 box-plots. Use a função \texttt{par()} para ajustar o layout gráfico.
@@ -6643,7 +6671,7 @@ box-plots. Use a função \texttt{par()} para ajustar o layout gráfico.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-183-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-188-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6682,7 +6710,7 @@ variável \texttt{Sepal.Length}.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-185-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-190-1.pdf}}
 
 Vamos criar agora um box-plot da variável \texttt{Sepal.Length} agrupado por
 espécie de flor (\texttt{Species}) no conjunto de dados iris.
@@ -6697,7 +6725,7 @@ espécie de flor (\texttt{Species}) no conjunto de dados iris.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-186-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-191-1.pdf}}
 
 \section{Gráfico de Dispersão}\label{gruxe1fico-de-dispersuxe3o}
 
@@ -6754,7 +6782,7 @@ identificar correlações, tendências e outliers.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-188-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-193-1.pdf}}
 
 Gráfico de dispersão com regressão.
 
@@ -6772,7 +6800,7 @@ Gráfico de dispersão com regressão.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-189-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-194-1.pdf}}
 
 Se você tiver grupos de dados diferentes, pode diferenciá-los por cores:
 
@@ -6796,7 +6824,7 @@ Se você tiver grupos de dados diferentes, pode diferenciá-los por cores:
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-190-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-195-1.pdf}}
 
 \section{Gráfico de Linhas}\label{gruxe1fico-de-linhas}
 
@@ -6857,7 +6885,7 @@ temporais ou tendências ao longo de intervalos contínuos, como o tempo.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-192-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-197-1.pdf}}
 
 \section{Exercícios}\label{exercuxedcios-14}
 
@@ -8324,7 +8352,7 @@ O \texttt{ggplot2} baseia-se na ideia de que um gráfico pode ser decomposto nos
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-230-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-235-1.pdf}}
 
 \subsection{Exemplos práticos}\label{exemplos-pruxe1ticos}
 
@@ -8337,7 +8365,7 @@ O \texttt{ggplot2} baseia-se na ideia de que um gráfico pode ser decomposto nos
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-231-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-236-1.pdf}}
 
 \textbf{Gráfico de Barras}
 
@@ -8348,7 +8376,7 @@ O \texttt{ggplot2} baseia-se na ideia de que um gráfico pode ser decomposto nos
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-232-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-237-1.pdf}}
 
 \textbf{Boxplot por Grupo}
 
@@ -8359,7 +8387,7 @@ O \texttt{ggplot2} baseia-se na ideia de que um gráfico pode ser decomposto nos
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-233-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-238-1.pdf}}
 
 \textbf{Gráfico com Regressão Linear}
 
@@ -8375,7 +8403,7 @@ O \texttt{ggplot2} baseia-se na ideia de que um gráfico pode ser decomposto nos
 ## `geom_smooth()` using formula = 'y ~ x'
 \end{verbatim}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-234-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-239-1.pdf}}
 
 \textbf{Facetamento}
 
@@ -8387,7 +8415,7 @@ O \texttt{ggplot2} baseia-se na ideia de que um gráfico pode ser decomposto nos
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-235-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-240-1.pdf}}
 
 \textbf{Customizações com Theme}
 
@@ -8399,7 +8427,7 @@ O \texttt{ggplot2} baseia-se na ideia de que um gráfico pode ser decomposto nos
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-236-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-241-1.pdf}}
 
 \subsection{Boas práticas}\label{boas-pruxe1ticas}
 
@@ -8682,7 +8710,7 @@ Gráfico de \(f\):
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-244-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-249-1.pdf}}
 
 Para verificar que o integral da função é igual a 1 podemos usar a função \texttt{integrate()}, que realiza a integração numérica.
 
@@ -8752,7 +8780,7 @@ Vamos verificar que o integral da função é 1 e vamos fazer também o gráfico
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-249-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-254-1.pdf}}
 
 \begin{enumerate}
 \def\labelenumi{(\alph{enumi})}
@@ -8768,7 +8796,7 @@ Vamos verificar que o integral da função é 1 e vamos fazer também o gráfico
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-250-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-255-1.pdf}}
 
 Podemos resolver o integral numericamente da seguinte forma
 
@@ -9115,7 +9143,7 @@ visualizar a distribuição dos valores de \(Z\) utilizando um histograma:
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-256-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-261-1.pdf}}
 
 \section{Simulação e Geração de Números Pseudoaleatórios}\label{simulauxe7uxe3o-e-gerauxe7uxe3o-de-nuxfameros-pseudoaleatuxf3rios}
 
@@ -9562,7 +9590,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-265-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-270-1.pdf}}
 
 \textbf{Exemplo 1}: Resolva o exemplo 1 usando a função de distribuição
 empírica.
@@ -9875,7 +9903,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-268-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-273-1.pdf}}
 
 \subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o}
 
@@ -9901,7 +9929,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-269-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-274-1.pdf}}
 
 \subsection{Comparação}\label{comparauxe7uxe3o}
 
@@ -9934,7 +9962,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-270-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-275-1.pdf}}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o}
 
@@ -9957,7 +9985,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-271-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-276-1.pdf}}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-1}
 
@@ -9980,7 +10008,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-272-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-277-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9989,7 +10017,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-272-2.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-277-2.pdf}}
 
 \textbf{Cálculo de probabilidade}: Seja \(X \sim \text{Binomial}(n=20, p=0.1)\).
 
@@ -10437,7 +10465,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-275-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-280-1.pdf}}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-1}
 
@@ -10473,7 +10501,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-276-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-281-1.pdf}}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-1}
 
@@ -10493,7 +10521,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-277-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-282-1.pdf}}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-2}
 
@@ -10514,7 +10542,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-278-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-283-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10529,7 +10557,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-278-2.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-283-2.pdf}}
 
 \textbf{Cálculo de probabilidades}: Seja \(X\sim\text{Poisson}(\lambda=5)\).
 
@@ -10827,7 +10855,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-282-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-287-1.pdf}}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o}
 
@@ -10852,7 +10880,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-283-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-288-1.pdf}}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-2}
 
@@ -10883,7 +10911,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-284-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-289-1.pdf}}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-2}
 
@@ -10903,7 +10931,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-285-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-290-1.pdf}}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-3}
 
@@ -10928,7 +10956,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-286-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-291-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11124,7 +11152,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-287-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-292-1.pdf}}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-1}
 
@@ -11149,7 +11177,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-288-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-293-1.pdf}}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-3}
 
@@ -11180,7 +11208,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-289-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-294-1.pdf}}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-3}
 
@@ -11200,7 +11228,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-290-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-295-1.pdf}}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-4}
 
@@ -11225,7 +11253,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-291-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-296-1.pdf}}
 
 \subsection{Exercícios}\label{exercuxedcios-30}
 
@@ -11483,7 +11511,7 @@ Função densidade de probabilidade e função de distribuição.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-296-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-301-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11501,7 +11529,7 @@ Função densidade de probabilidade e função de distribuição.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-297-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-302-1.pdf}}
 
 \subsection{Exercícios}\label{exercuxedcios-31}
 
@@ -12380,7 +12408,7 @@ valores: \(1,2,\ldots,10\) com probabilidade \(1/10\) para
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-310-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-315-1.pdf}}
 
 \textbf{Exemplo 3}: Geração de uma variável aleatória com distribuição de
 Bernoulli. A variável aleatória \(X\) é de Bernoulli com parâmetro \(p\) se
@@ -12440,7 +12468,7 @@ método da transformada inversa
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-312-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-317-1.pdf}}
 
 \textbf{Exemplo 5}: Geração de uma variável aleatória com distribuição
 \(Geométrica(p)\). Seja \(X\sim Geometrica(p)\). Lembre que
@@ -12475,7 +12503,7 @@ onde \(\lfloor  \rfloor =\) maior inteiro.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-313-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-318-1.pdf}}
 
 \textbf{Exemplo 6}: Geração de uma variável aleatória com distribuição de
 Poisson. A variável aleatória \(X\) é de Poisson com média \(\lambda\) se
@@ -12519,7 +12547,7 @@ expresso da seguinte forma.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-314-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-319-1.pdf}}
 
 \section{Exercícios}\label{exercuxedcios-32}
 
@@ -12614,7 +12642,7 @@ A função \(F(x)=x^2\) é invertível no intervalo \((0,1)\) e
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-315-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-320-1.pdf}}
 
 \textbf{Exemplo 2}: Geração de uma variável aleatória \(Uniforme(a,b)\). A
 geração é feita através de \[X = a+(b-a)U.\]
@@ -12632,7 +12660,7 @@ geração é feita através de \[X = a+(b-a)U.\]
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-316-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-321-1.pdf}}
 
 \textbf{Exemplo 3}: Geração de uma variável aleatória exponencial. Seja \(X\)
 uma variável aleatória exponencial com taxa 1, então sua função de
@@ -12679,7 +12707,7 @@ aleatório \(U\) e fazendo \[X = -\frac{1}{\lambda}ln (U).\]
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-317-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-322-1.pdf}}
 
 \section{Exercícios}\label{exercuxedcios-33}
 

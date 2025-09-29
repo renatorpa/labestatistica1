@@ -2307,9 +2307,9 @@ Observe que na matriz, todos os dados são convertidos para o tipo
 `character`, enquanto em um data frame, cada coluna mantém seu próprio
 tipo de dados.
 
-### Aceder a Linhas e Colunas
+### Aceder a Colunas
 
-Existem várias maneiras de acedeer a linhas e colunas num data frame:
+Existem várias maneiras de aceder a colunas num data frame:
 
 ```{r eval=FALSE}
 # Aceder à coluna 'id' usando índice
@@ -2324,6 +2324,22 @@ df$id
 df[["id"]]
 ## [1] 1 2 3 4
 
+# Subdata.frame com a coluna `"id"
+df["id"]
+##   id
+## 1  1
+## 2  2
+## 3  3
+## 4  4
+
+# Subdata.frame com a coluna `"id"
+df[1]
+##   id
+## 1  1
+## 2  2
+## 3  3
+## 4  4
+
 # Aceder à primeira linha
 df[1, ] 
 ##   id nome idade salario
@@ -2332,6 +2348,50 @@ df[1, ]
 # Aceder à segunda coluna
 df[, 2] 
 ## [1] "Ana"    "Bruno"  "Carlos" "Diana"
+
+# Aceder a múltiplas colunas por nome
+df[c("nome", "idade")]
+##     nome idade
+## 1    Ana    23
+## 2  Bruno    35
+## 3 Carlos    31
+## 4  Diana    28
+```
+
+| Expressão    | Resultado                          | Classe      | Tipo de retorno         | Observações                                    |
+|--------------|------------------------------------|-------------|-------------------------|------------------------------------------------|
+| `df[,1]`     | Vetor com os valores da coluna `id` | `integer`   | vetor                   | Acessa por posição                             |
+| `df$id`      | Vetor com os valores da coluna `id` | `integer`   | vetor                   | Acessa por nome (forma mais legível)           |
+| `df[["id"]]` | Vetor com os valores da coluna `id` | `integer`   | vetor                   | Acessa por nome explicitamente                 |
+| `df["id"]`   | `data.frame` com uma única coluna `id` | `data.frame` | ainda é um `data.frame` | Retém estrutura de `data.frame`                |
+| `df[1]`      | `data.frame` com uma única coluna `id` | `data.frame` | mesma coisa que `df["id"]` | Acessa por posição, mas mantém a estrutura |
+
+### Aceder a Linhas
+
+```{r eval=FALSE}
+# Aceder ao elemento na primira linha
+df[1, ]
+##  id nome idade salario
+## 1  1  Ana    23    5000
+
+# Aceder as primeiras duas linhas
+df[1:2, ]
+##   id  nome idade salario
+## 1  1   Ana    23    5000
+## 2  2 Bruno    35    6000
+
+# Linhas 1 e 4
+df[c(1, 4), ]
+##   id  nome idade salario
+## 1  1   Ana    23    5000
+## 4  4 Diana    28    8000
+
+# Todas as linhas exceto a 1
+df[-1, ]
+## id   nome idade salario
+## 2  2  Bruno    35    6000
+## 3  3 Carlos    31    7000
+## 4  4  Diana    28    8000
 
 # Aceder ao elemento na primeira linha, segunda coluna
 df[1, 2] 
@@ -2346,15 +2406,15 @@ df[1:2, 1:2]
 # Aceder a uma entrada por nome de coluna
 df[1, "nome"] 
 ## [1] "Ana"
-
-# Aceder a múltiplas colunas por nome
-df[c("nome", "idade")]
-##     nome idade
-## 1    Ana    23
-## 2  Bruno    35
-## 3 Carlos    31
-## 4  Diana    28
 ```
+
+| Expressão        | Resultado                               | Classe        | Tipo de retorno       | Observações                                         |
+|------------------|------------------------------------------|---------------|------------------------|-----------------------------------------------------|
+| `df[1, ]`        | Primeira linha do `data.frame`          | `data.frame`  | linha como `data.frame` | Mantém estrutura de `data.frame`                   |
+| `df[1, , drop=TRUE]` | Primeira linha como vetor                 | `named vector`| vetor nomeado          | Converte linha para vetor, perde estrutura tabular  |
+| `df[1:2, ]`      | Primeiras duas linhas                    | `data.frame`  | subconjunto de linhas  | Acede a várias linhas por intervalo                |
+| `df[c(1, 4), ]`  | Linhas 1 e 4                             | `data.frame`  | subconjunto de linhas  | Acede por índice arbitrário                        |
+| `df[-1, ]`       | Todas as linhas exceto a 1              | `data.frame`  | subconjunto de linhas  | Exclusão de linhas                                 |
 
 ### Adicionar e Remover Colunas
 
@@ -2373,6 +2433,9 @@ df
 # ou 
 df[["novo_salario"]] <- df$salario * 1.1 
 
+# ou 
+df["novo_salario"] <- list(df$salario * 1.1)
+
 # ou
 df <- cbind(df, novo_salario = df$salario * 1.1)
 
@@ -2384,11 +2447,64 @@ df
 ## 2  Bruno    35    6000         6600
 ## 3 Carlos    31    7000         7700
 ## 4  Diana    28    8000         8800
+
+# ou
+df[["id"]] <- NULL
+
+# ou
+df["id"] <- NULL
+
+# Remover múltiplas colunas
+df[, -c(2,3)]
+##     nome novo_salario
+## 1    Ana         5500
+## 2  Bruno         6600
+## 3 Carlos         7700
+## 4  Diana         8800
 ```
 
 ### Fundir Data Frames
 
-Data frames podem ser combinados ou fundidos usando a função `merge()`.
+**Empilhar data.frames pela vertical (linhas) — `rbind()`**
+
+Quando os `data.frames` têm as mesmas colunas e queremos juntar mais observações (linhas).
+
+```{r eval=FALSE}
+df1 <- data.frame(id = 1:2, nome = c("Ana", "Bruno"))
+df2 <- data.frame(id = 3:4, nome = c("Carlos", "Diana"))
+
+df_total <- rbind(df1, df2)
+df_total
+##   id   nome
+## 1  1    Ana
+## 2  2  Bruno
+## 3  3 Carlos
+## 4  4  Diana
+```
+
+Obs: `rbind()` exige que os nomes e número de colunas sejam iguais.
+
+**Juntar data.frames pela horizontal (colunas) — `cbind()`**
+
+Quando os `data.frames` têm o mesmo número de linhas e queremos anexar novas variáveis (colunas).
+
+```{r eval=FALSE}
+df_a <- data.frame(id = 1:3)
+df_b <- data.frame(idade = c(23, 31, 28))
+
+df_completo <- cbind(df_a, df_b)
+df_completo
+##   id idade
+## 1  1    23
+## 2  2    31
+## 3  3    28
+```
+
+Obs: `cbind()` não garante correspondência por chave (como `id`) — apenas alinha pela ordem das linhas.
+
+**Fazer joins por uma chave comum — `merge()`**
+
+Quando queremos fundir duas tabelas por uma variável comum (chave), como `id`, `nome`, etc.
 
 ```{r eval=FALSE}
 # Criar dois data frames
@@ -2402,6 +2518,45 @@ df12
 ## 1   CAL    90        8
 ## 2    LE    75        7
 ## 3    PE    60        6
+```
+
+```{r eval=FALSE}
+df1 <- data.frame(id = 1:3, nome = c("Ana", "Bruno", "Carlos"))
+df2 <- data.frame(id = 2:4, idade = c(35, 40, 28))
+
+merge(df1, df2, by = "id")  # INNER JOIN
+##   id   nome idade
+## 1  2  Bruno    35
+## 2  3 Carlos    40
+
+merge(df1, df2, by = "id", all.x = TRUE) # LEFT JOIN
+## id   nome idade
+## 1  1    Ana    NA
+## 2  2  Bruno    35
+## 3  3 Carlos    40
+
+merge(df1, df2, by = "id", all.Y = TRUE) # RIGHT JOIN
+##   id   nome idade
+## 1  2  Bruno    35
+## 2  3 Carlos    40
+
+merge(df1, df2, by = "id", all = TRUE) # FULL OUTER JOIN
+##   id   nome idade
+## 1  1    Ana    NA
+## 2  2  Bruno    35
+## 3  3 Carlos    40
+## 4  4   <NA>    28
+```
+
+**Usando `dplyr` (mais moderno e legível)**
+
+```{r eval=FALSE}
+library(dplyr)
+
+left_join(df1, df2, by = "id")
+right_join(df1, df2, by = "id")
+inner_join(df1, df2, by = "id")
+full_join(df1, df2, by = "id")
 ```
 
 ### Explorar o Data Frame
@@ -2460,7 +2615,7 @@ tail(df, 5)
 ## 150          5.9         3.0          5.1         1.8 virginica
 ```
 
-### A função `subset()`
+### Filtragem condicional num `data.frame`
 
 A função `subset()` em R é usada para criar subconjuntos de um data
 frame com base em condições lógicas. É particularmente útil quando se
@@ -2468,271 +2623,48 @@ deseja filtrar linhas que satisfaçam certos critérios e selecionar
 colunas específicas ao mesmo tempo.
 
 ```{r eval=FALSE}
-# Carregar o conjunto de dados 'iris'
-df <- iris
-
-# Criar um subconjunto com Sepal.Width maior que 3, selecionando apenas as colunas Petal.Width e Species
-df1 <- df[df$Sepal.Width > 3, c("Petal.Width","Species")]
-head(df1)
-##   Petal.Width Species
-## 1         0.2  setosa
-## 3         0.2  setosa
-## 4         0.2  setosa
-## 5         0.2  setosa
-## 6         0.4  setosa
-## 7         0.3  setosa
-
-# Utilizando a função subset() para o mesmo subconjunto  
-(df2 <- subset(df, Sepal.Width > 3, select = c(Petal.Width, Species)))
-##     Petal.Width    Species
-## 1           0.2     setosa
-## 3           0.2     setosa
-## 4           0.2     setosa
-## 5           0.2     setosa
-## 6           0.4     setosa
-## 7           0.3     setosa
-## 8           0.2     setosa
-## 10          0.1     setosa
-## 11          0.2     setosa
-## 12          0.2     setosa
-## 15          0.2     setosa
-## 16          0.4     setosa
-## 17          0.4     setosa
-## 18          0.3     setosa
-## 19          0.3     setosa
-## 20          0.3     setosa
-## 21          0.2     setosa
-## 22          0.4     setosa
-## 23          0.2     setosa
-## 24          0.5     setosa
-## 25          0.2     setosa
-## 27          0.4     setosa
-## 28          0.2     setosa
-## 29          0.2     setosa
-## 30          0.2     setosa
-## 31          0.2     setosa
-## 32          0.4     setosa
-## 33          0.1     setosa
-## 34          0.2     setosa
-## 35          0.2     setosa
-## 36          0.2     setosa
-## 37          0.2     setosa
-## 38          0.1     setosa
-## 40          0.2     setosa
-## 41          0.3     setosa
-## 43          0.2     setosa
-## 44          0.6     setosa
-## 45          0.4     setosa
-## 47          0.2     setosa
-## 48          0.2     setosa
-## 49          0.2     setosa
-## 50          0.2     setosa
-## 51          1.4 versicolor
-## 52          1.5 versicolor
-## 53          1.5 versicolor
-## 57          1.6 versicolor
-## 66          1.4 versicolor
-## 71          1.8 versicolor
-## 86          1.6 versicolor
-## 87          1.5 versicolor
-## 101         2.5  virginica
-## 110         2.5  virginica
-## 111         2.0  virginica
-## 116         2.3  virginica
-## 118         2.2  virginica
-## 121         2.3  virginica
-## 125         2.1  virginica
-## 126         1.8  virginica
-## 132         2.0  virginica
-## 137         2.4  virginica
-## 138         1.8  virginica
-## 140         2.1  virginica
-## 141         2.4  virginica
-## 142         2.3  virginica
-## 144         2.3  virginica
-## 145         2.5  virginica
-## 149         2.3  virginica
+subset(x, subset, select, drop = FALSE, ...)
 ```
 
-No exemplo acima, ambas as abordagens (indexação direta e `subset()`)
-produzem o mesmo resultado, mas `subset()` é geralmente mais legível e
-conveniente quando se trata de filtragem condicional.
+| Parâmetro | Descrição |
+|-----------|-----------|
+| `x` | Objeto a ser subsetado (geralmente um `data.frame`, mas também pode ser vetor, matriz ou lista). É o primeiro argumento obrigatório. |
+| `subset` | Expressão lógica usada para filtrar **linhas** do objeto `x`. Avaliada no ambiente de `x`. Ex.: `idade > 30`. |
+| `select` | Expressão para selecionar **colunas** (por nome ou posição). Pode usar índices positivos, negativos ou nomes. Ex.: `select = c(nome, salario)` ou `select = -id`. |
+| `drop` | Lógico. Se `TRUE`, quando apenas uma coluna é selecionada, retorna um vetor. Se `FALSE`, mantém a estrutura de `data.frame` mesmo com uma única coluna. Valor padrão: `FALSE`. |
+| `...` | Argumentos adicionais (geralmente ignorados para `data.frames`, usados internamente para outros métodos). |
 
 ```{r eval=FALSE}
-# Criar um subconjunto com Petal.Width igual a 0.3, excluindo a coluna Sepal.Width
-(df3 <- subset(df, Petal.Width == 0.3, select = -Sepal.Width))
-##    Sepal.Length Petal.Length Petal.Width Species
-## 7           4.6          1.4         0.3  setosa
-## 18          5.1          1.4         0.3  setosa
-## 19          5.7          1.7         0.3  setosa
-## 20          5.1          1.5         0.3  setosa
-## 41          5.0          1.3         0.3  setosa
-## 42          4.5          1.3         0.3  setosa
-## 46          4.8          1.4         0.3  setosa
+df <- data.frame(
+id = 1:4,
+nome = c("Ana", "Bruno", "Carlos", "Diana"),
+idade = c(23, 35, 31, 28),
+salario = c(5000, 6000, 7000, 8000))
+
+# Filtrar linhas (idade > 30):
+subset(df, idade > 30)
+##   id   nome idade salario
+## 2  2  Bruno    35    6000
+## 3  3 Carlos    31    7000
+
+# Filtrar linhas e selecionar colunas:
+subset(df, idade > 30, select = c(nome, salario))
+##     nome salario
+## 2  Bruno    6000
+## 3 Carlos    7000
+
+# Selecionar colunas por padrão:
+subset(df, idade > 25, select = -c(id))  # remove coluna 'id'
+##     nome idade salario
+## 2  Bruno    35    6000
+## 3 Carlos    31    7000
+## 4  Diana    28    8000
+
+# Evitar conversão para vetor (drop = FALSE):
+subset(df, idade == 35, select = salario, drop = FALSE)
+##   salario
+## 2    6000
 ```
-
-Neste exemplo, a função `subset()` é utilizada para filtrar linhas em
-que `Petal.Width` é exatamente 0.3, ao mesmo tempo que exclui a coluna
-`Sepal.Width`.
-
-```{r eval=FALSE}
-# Criar um subconjunto selecionando as colunas de Sepal.Width a Petal.Width
-(df4 <- subset(df, select = Sepal.Width:Petal.Width))
-##     Sepal.Width Petal.Length Petal.Width
-## 1           3.5          1.4         0.2
-## 2           3.0          1.4         0.2
-## 3           3.2          1.3         0.2
-## 4           3.1          1.5         0.2
-## 5           3.6          1.4         0.2
-## 6           3.9          1.7         0.4
-## 7           3.4          1.4         0.3
-## 8           3.4          1.5         0.2
-## 9           2.9          1.4         0.2
-## 10          3.1          1.5         0.1
-## 11          3.7          1.5         0.2
-## 12          3.4          1.6         0.2
-## 13          3.0          1.4         0.1
-## 14          3.0          1.1         0.1
-## 15          4.0          1.2         0.2
-## 16          4.4          1.5         0.4
-## 17          3.9          1.3         0.4
-## 18          3.5          1.4         0.3
-## 19          3.8          1.7         0.3
-## 20          3.8          1.5         0.3
-## 21          3.4          1.7         0.2
-## 22          3.7          1.5         0.4
-## 23          3.6          1.0         0.2
-## 24          3.3          1.7         0.5
-## 25          3.4          1.9         0.2
-## 26          3.0          1.6         0.2
-## 27          3.4          1.6         0.4
-## 28          3.5          1.5         0.2
-## 29          3.4          1.4         0.2
-## 30          3.2          1.6         0.2
-## 31          3.1          1.6         0.2
-## 32          3.4          1.5         0.4
-## 33          4.1          1.5         0.1
-## 34          4.2          1.4         0.2
-## 35          3.1          1.5         0.2
-## 36          3.2          1.2         0.2
-## 37          3.5          1.3         0.2
-## 38          3.6          1.4         0.1
-## 39          3.0          1.3         0.2
-## 40          3.4          1.5         0.2
-## 41          3.5          1.3         0.3
-## 42          2.3          1.3         0.3
-## 43          3.2          1.3         0.2
-## 44          3.5          1.6         0.6
-## 45          3.8          1.9         0.4
-## 46          3.0          1.4         0.3
-## 47          3.8          1.6         0.2
-## 48          3.2          1.4         0.2
-## 49          3.7          1.5         0.2
-## 50          3.3          1.4         0.2
-## 51          3.2          4.7         1.4
-## 52          3.2          4.5         1.5
-## 53          3.1          4.9         1.5
-## 54          2.3          4.0         1.3
-## 55          2.8          4.6         1.5
-## 56          2.8          4.5         1.3
-## 57          3.3          4.7         1.6
-## 58          2.4          3.3         1.0
-## 59          2.9          4.6         1.3
-## 60          2.7          3.9         1.4
-## 61          2.0          3.5         1.0
-## 62          3.0          4.2         1.5
-## 63          2.2          4.0         1.0
-## 64          2.9          4.7         1.4
-## 65          2.9          3.6         1.3
-## 66          3.1          4.4         1.4
-## 67          3.0          4.5         1.5
-## 68          2.7          4.1         1.0
-## 69          2.2          4.5         1.5
-## 70          2.5          3.9         1.1
-## 71          3.2          4.8         1.8
-## 72          2.8          4.0         1.3
-## 73          2.5          4.9         1.5
-## 74          2.8          4.7         1.2
-## 75          2.9          4.3         1.3
-## 76          3.0          4.4         1.4
-## 77          2.8          4.8         1.4
-## 78          3.0          5.0         1.7
-## 79          2.9          4.5         1.5
-## 80          2.6          3.5         1.0
-## 81          2.4          3.8         1.1
-## 82          2.4          3.7         1.0
-## 83          2.7          3.9         1.2
-## 84          2.7          5.1         1.6
-## 85          3.0          4.5         1.5
-## 86          3.4          4.5         1.6
-## 87          3.1          4.7         1.5
-## 88          2.3          4.4         1.3
-## 89          3.0          4.1         1.3
-## 90          2.5          4.0         1.3
-## 91          2.6          4.4         1.2
-## 92          3.0          4.6         1.4
-## 93          2.6          4.0         1.2
-## 94          2.3          3.3         1.0
-## 95          2.7          4.2         1.3
-## 96          3.0          4.2         1.2
-## 97          2.9          4.2         1.3
-## 98          2.9          4.3         1.3
-## 99          2.5          3.0         1.1
-## 100         2.8          4.1         1.3
-## 101         3.3          6.0         2.5
-## 102         2.7          5.1         1.9
-## 103         3.0          5.9         2.1
-## 104         2.9          5.6         1.8
-## 105         3.0          5.8         2.2
-## 106         3.0          6.6         2.1
-## 107         2.5          4.5         1.7
-## 108         2.9          6.3         1.8
-## 109         2.5          5.8         1.8
-## 110         3.6          6.1         2.5
-## 111         3.2          5.1         2.0
-## 112         2.7          5.3         1.9
-## 113         3.0          5.5         2.1
-## 114         2.5          5.0         2.0
-## 115         2.8          5.1         2.4
-## 116         3.2          5.3         2.3
-## 117         3.0          5.5         1.8
-## 118         3.8          6.7         2.2
-## 119         2.6          6.9         2.3
-## 120         2.2          5.0         1.5
-## 121         3.2          5.7         2.3
-## 122         2.8          4.9         2.0
-## 123         2.8          6.7         2.0
-## 124         2.7          4.9         1.8
-## 125         3.3          5.7         2.1
-## 126         3.2          6.0         1.8
-## 127         2.8          4.8         1.8
-## 128         3.0          4.9         1.8
-## 129         2.8          5.6         2.1
-## 130         3.0          5.8         1.6
-## 131         2.8          6.1         1.9
-## 132         3.8          6.4         2.0
-## 133         2.8          5.6         2.2
-## 134         2.8          5.1         1.5
-## 135         2.6          5.6         1.4
-## 136         3.0          6.1         2.3
-## 137         3.4          5.6         2.4
-## 138         3.1          5.5         1.8
-## 139         3.0          4.8         1.8
-## 140         3.1          5.4         2.1
-## 141         3.1          5.6         2.4
-## 142         3.1          5.1         2.3
-## 143         2.7          5.1         1.9
-## 144         3.2          5.9         2.3
-## 145         3.3          5.7         2.5
-## 146         3.0          5.2         2.3
-## 147         2.5          5.0         1.9
-## 148         3.0          5.2         2.0
-## 149         3.4          5.4         2.3
-## 150         3.0          5.1         1.8
-```
-
-Aqui, `subset()` é usado para selecionar todas as colunas desde
-`Sepal.Width` até `Petal.Width`.
 
 ### A Função `summary()`
 
@@ -2869,6 +2801,28 @@ Adicione uma nova coluna chamada `Temp.Celsius`, que converte a temperatura em F
 Agrupe o data frame pelo mês (`Month`) e calcule a média da coluna `Ozone` para cada mês. Use a função `aggregate()`.
 
 Crie um gráfico de dispersão (`plot()`) para a relação entre `Ozone` e a nova coluna `Temp.Celsius`, colorindo os pontos de acordo com o mês (`Month`).
+
+**17.** O naufrágio do RMS Titanic em 1912 inspirou não apenas filmes e livros, mas também um dos datasets mais famosos da história da Ciência de Dados. Nele constam informações sobre os passageiros, como sexo, idade, classe e sobrevivência. É muito utilizado para aprender sobre análise exploratória, regressão, classificação e estatística aplicada.
+
+Vamos trabalhar com uma versão reduzida e fictícia deste conjunto de dados.
+
+(a) Crie o seguinte data.frame:
+
+```{r eval=FALSE}
+titanic <- data.frame(
+  nome = c("Ana", "Bruno", "Clara", "Daniel", "Eva", "Filipe"),
+  sexo = c("F", "M", "F", "M", "F", "M"),
+  idade = c(22, 35, 18, 50, 28, 40),
+  classe = c("1ª", "3ª", "3ª", "1ª", "2ª", "2ª"),
+  sobreviveu = c(TRUE, FALSE, TRUE, TRUE, FALSE, FALSE)
+)
+```
+
+(b) Quantos passageiros do sexo feminino sobreviveram?
+
+(c) Qual é a média de idade dos que sobreviveram?
+
+(d) Quantas pessoas estavam na 3ª classe? Qual a taxa de sobrevivência nesse grupo?
 
 
 ## Listas
