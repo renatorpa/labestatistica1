@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Renato de Paula" />
 
 
-<meta name="date" content="2025-09-30" />
+<meta name="date" content="2025-10-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -235,8 +235,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#listas"><i class="fa fa-check"></i><b>5.5</b> Listas</a>
 <ul>
 <li class="chapter" data-level="5.5.1" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#criar-e-manipular-listas"><i class="fa fa-check"></i><b>5.5.1</b> Criar e Manipular Listas</a></li>
-<li class="chapter" data-level="5.5.2" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#por-que-usar-listas"><i class="fa fa-check"></i><b>5.5.2</b> Por que usar listas?</a></li>
-<li class="chapter" data-level="5.5.3" data-path="01-intro.html"><a href="#exerc%C3%ADcios-5"><i class="fa fa-check"></i><b>5.5.3</b> Exercícios</a></li>
+<li class="chapter" data-level="5.5.2" data-path="01-intro.html"><a href="#exerc%C3%ADcios-5"><i class="fa fa-check"></i><b>5.5.2</b> Exercícios</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="01-intro.html"><a href="#estruturas-de-sele%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>6</b> Estruturas de Seleção</a>
@@ -502,41 +501,41 @@ graphics</a>.</p>
 </ol>
 <div id="estrutura-básica" class="section level3 hasAnchor" number="17.1.1">
 <h3><span class="header-section-number">17.1.1</span> Estrutura básica<a href="#estrutura-b%C3%A1sica" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="o-pacote-ggplot2.html#cb277-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb277-2"><a href="o-pacote-ggplot2.html#cb277-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
-<span id="cb277-3"><a href="o-pacote-ggplot2.html#cb277-3" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="introR_files/figure-html/unnamed-chunk-235-1.png" width="672" /></p>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="o-pacote-ggplot2.html#cb280-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb280-2"><a href="o-pacote-ggplot2.html#cb280-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb280-3"><a href="o-pacote-ggplot2.html#cb280-3" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-238-1.png" width="672" /></p>
 </div>
 <div id="exemplos-práticos" class="section level3 hasAnchor" number="17.1.2">
 <h3><span class="header-section-number">17.1.2</span> Exemplos práticos<a href="#exemplos-pr%C3%A1ticos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>Gráfico de Dispersão</strong></p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="o-pacote-ggplot2.html#cb278-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
-<span id="cb278-2"><a href="o-pacote-ggplot2.html#cb278-2" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="introR_files/figure-html/unnamed-chunk-236-1.png" width="672" /></p>
-<p><strong>Gráfico de Barras</strong></p>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="o-pacote-ggplot2.html#cb279-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> class)) <span class="sc">+</span></span>
-<span id="cb279-2"><a href="o-pacote-ggplot2.html#cb279-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div>
-<p><img src="introR_files/figure-html/unnamed-chunk-237-1.png" width="672" /></p>
-<p><strong>Boxplot por Grupo</strong></p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="o-pacote-ggplot2.html#cb280-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> class, <span class="at">y =</span> hwy)) <span class="sc">+</span></span>
-<span id="cb280-2"><a href="o-pacote-ggplot2.html#cb280-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
-<p><img src="introR_files/figure-html/unnamed-chunk-238-1.png" width="672" /></p>
-<p><strong>Gráfico com Regressão Linear</strong></p>
 <div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="o-pacote-ggplot2.html#cb281-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
-<span id="cb281-2"><a href="o-pacote-ggplot2.html#cb281-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb281-3"><a href="o-pacote-ggplot2.html#cb281-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
-<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<span id="cb281-2"><a href="o-pacote-ggplot2.html#cb281-2" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="introR_files/figure-html/unnamed-chunk-239-1.png" width="672" /></p>
-<p><strong>Facetamento</strong></p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="o-pacote-ggplot2.html#cb283-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span></span>
-<span id="cb283-2"><a href="o-pacote-ggplot2.html#cb283-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb283-3"><a href="o-pacote-ggplot2.html#cb283-3" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> class)</span></code></pre></div>
+<p><strong>Gráfico de Barras</strong></p>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="o-pacote-ggplot2.html#cb282-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> class)) <span class="sc">+</span></span>
+<span id="cb282-2"><a href="o-pacote-ggplot2.html#cb282-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div>
 <p><img src="introR_files/figure-html/unnamed-chunk-240-1.png" width="672" /></p>
-<p><strong>Customizações com Theme</strong></p>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="o-pacote-ggplot2.html#cb284-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span></span>
-<span id="cb284-2"><a href="o-pacote-ggplot2.html#cb284-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb284-3"><a href="o-pacote-ggplot2.html#cb284-3" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><strong>Boxplot por Grupo</strong></p>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="o-pacote-ggplot2.html#cb283-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> class, <span class="at">y =</span> hwy)) <span class="sc">+</span></span>
+<span id="cb283-2"><a href="o-pacote-ggplot2.html#cb283-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
 <p><img src="introR_files/figure-html/unnamed-chunk-241-1.png" width="672" /></p>
+<p><strong>Gráfico com Regressão Linear</strong></p>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="o-pacote-ggplot2.html#cb284-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb284-2"><a href="o-pacote-ggplot2.html#cb284-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb284-3"><a href="o-pacote-ggplot2.html#cb284-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<p><img src="introR_files/figure-html/unnamed-chunk-242-1.png" width="672" /></p>
+<p><strong>Facetamento</strong></p>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="o-pacote-ggplot2.html#cb286-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span></span>
+<span id="cb286-2"><a href="o-pacote-ggplot2.html#cb286-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb286-3"><a href="o-pacote-ggplot2.html#cb286-3" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> class)</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-243-1.png" width="672" /></p>
+<p><strong>Customizações com Theme</strong></p>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="o-pacote-ggplot2.html#cb287-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span></span>
+<span id="cb287-2"><a href="o-pacote-ggplot2.html#cb287-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb287-3"><a href="o-pacote-ggplot2.html#cb287-3" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="introR_files/figure-html/unnamed-chunk-244-1.png" width="672" /></p>
 </div>
 <div id="boas-práticas" class="section level3 hasAnchor" number="17.1.3">
 <h3><span class="header-section-number">17.1.3</span> Boas práticas<a href="#boas-pr%C3%A1ticas" class="anchor-section" aria-label="Anchor link to header"></a></h3>

@@ -2883,16 +2883,20 @@ print(minha_lista)
 ## $media
 ## function(x) mean(x)
 
-# Aceder a um elemento pelo nome usando $
-print(minha_lista$nome)
+minha_lista[1] # retorna uma sub-lista
+## $nome
 ## [1] "Estudante"
 
-# Aceder a um elemento pelo índice
-print(minha_lista[[1]])
+# Aceder a um elemento pelo índice (retorna o valor (vetor, número, etc.))
+minha_lista[[1]] 
+## [1] "Estudante"
+
+# Aceder a um elemento pelo nome usando $ (retorna o valor do elemento com nome "nome")
+minha_lista$nome 
 ## [1] "Estudante"
 
 # Aceder a uma sublista contendo os dois primeiros elementos
-print(minha_lista[1:2])
+minha_lista[1:2]
 ## $nome
 ## [1] "Estudante"
 ## 
@@ -2900,25 +2904,21 @@ print(minha_lista[1:2])
 ## [1] 21
 
 # Aceder à segunda nota do vetor "notas" dentro da lista
-print(minha_lista$notas[2])
+minha_lista$notas[2]
 ## [1] 90
+
+# Adicionar novo elemento à lista
+minha_lista$nota_final <- mean(minha_lista$notas)
+# ou
+minha_lista[["nota_final"]] <- mean(minha_lista$notas)
+
+# Remover um elemento da lista
+minha_lista$idade <- NULL
+
+# Remover elemento 2 e 3 da lista
+minha_lista[-c(2,3)]
 ```
 
-### Por que usar listas?
-
-Listas são extremamente úteis em R para:
-
--   **Armazenar resultados de diferentes tipos**: Em análises
-    estatísticas complexas, os resultados muitas vezes consistem em
-    diferentes tipos de dados (como números, tabelas, gráficos e modelos
-    estatísticos).
--   **Agrupar dados heterogéneos**: Quando se precisa manipular um
-    conjunto de dados que inclui diversos tipos de informação (por
-    exemplo, dados brutos, estatísticas resumidas, e resultados de
-    modelos).
--   **Passar múltiplos argumentos para funções**: As listas são usadas
-    para agrupar múltiplos parâmetros para funções, tornando-as uma
-    ferramenta poderosa para programação funcional.
 
 ### Exercícios
 
@@ -2999,6 +2999,68 @@ Aceda e imprima:
 (c) Atualize o **preço de venda** do segundo produto, aumentando-o em 5%, e imprima a nova margem de lucro mensal desse produto.
 
 (d) Crie uma lista com os **produtos mais lucrativos**, considerando aqueles cuja margem de lucro mensal é superior a 10% do custo de produção mensal.
+
+**7.** A utilização de ferramentas de inteligência artificial como o ChatGPT está a crescer entre estudantes universitários. Uma equipa de investigadores registou o número de mensagens trocadas e o tempo total de uso (em minutos) por três estudantes durante uma semana. Os dados estão organizados na lista abaixo:
+
+```{r eval=FALSE}
+chatgpt_logs <- list(
+  estudante1 = list(nome = "Ana", mensagens = c(12, 15, 9), tempo_total = 35),
+  estudante2 = list(nome = "Bruno", mensagens = c(7, 6, 5, 12), tempo_total = 42),
+  estudante3 = list(nome = "Carla", mensagens = c(10, 20), tempo_total = 28)
+)
+```
+
+(a) Qual foi o número de mensagens enviadas por Bruno na terceira sessão?
+
+(b) Calcule o número total de mensagens trocadas por cada estudante.
+
+(c) Adicione manualmente um novo elemento `media_tempo_sessao` para cada estudante, correspondente ao tempo médio por sessão.
+
+(d) Calcule, para cada estudante, a média de mensagens por sessão. Quem usou o ChatGPT de forma mais intensiva?
+
+**8.** Três perfis de Instagram dedicados à divulgação de Estatística publicaram conteúdos variados ao longo de uma semana. A lista abaixo regista, para cada perfil, os temas das publicações e o número de visualizações que cada uma recebeu.
+
+```{r eval=FALSE}
+instagram <- list(
+  biostats_girl = list(temas = c("café", "dados", "meme"), visualizacoes = c(1200, 1800, 2400)),
+  r_nerd = list(temas = c("dica_R", "ggplot2", "shiny"), visualizacoes = c(800, 1900, 2100)),
+  estatistica_hoje = list(temas = c("história", "carreira", "código"), visualizacoes = c(1500, 1600, 2000))
+)
+```
+
+(a) Qual foi o tema mais visualizado do perfil `r_nerd`?
+
+(b) Calcule o número total de visualizações de cada perfil e guarde esse valor como um novo elemento chamado `total_views`.
+
+(c) Com base nos totais, ordene os perfis do mais visualizado para o menos visualizado.
+
+(d) Calcule a média de visualizações por publicação para cada perfil. Qual deles teve o melhor desempenho médio?
+
+**9.** Os dados abaixo representam os resultados de três turmas na disciplina de Probabilidades. Para cada turma, estão registadas:
+
+- as notas dos alunos nos dois testes (T1 e T2),
+
+- se o aluno entregou o projeto final (`TRUE` ou `FALSE`).
+
+```{r eval=FALSE}
+avaliacoes <- list(
+  turmaA = list(notas_t1 = c(14, 12, 16), notas_t2 = c(15, 13, 14), projeto = c(TRUE, TRUE, FALSE)),
+  turmaB = list(notas_t1 = c(10, 11, 9), notas_t2 = c(13, 12, 10), projeto = c(TRUE, FALSE, FALSE)),
+  turmaC = list(notas_t1 = c(17, 18, 19), notas_t2 = c(18, 17, 20), projeto = c(TRUE, TRUE, TRUE))
+)
+```
+
+(a) Calcule a média final de cada aluno em cada turma.
+
+(b) Verifique quantos alunos, em cada turma, entregaram o projeto e tinham média final igual ou superior a 13 valores.
+
+(c) Calcule, para cada turma:
+
+- a média geral das notas finais,
+- a percentagem de alunos aprovados (definidos como quem entregou o projeto e teve média ≥ 10 valores).
+
+(d) Com base nesses resultados, qual foi a turma com melhor desempenho global?
+
 
 # Estruturas de Seleção
 

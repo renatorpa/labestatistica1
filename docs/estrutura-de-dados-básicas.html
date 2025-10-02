@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Renato de Paula" />
 
 
-<meta name="date" content="2025-09-30" />
+<meta name="date" content="2025-10-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -235,8 +235,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#listas"><i class="fa fa-check"></i><b>5.5</b> Listas</a>
 <ul>
 <li class="chapter" data-level="5.5.1" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#criar-e-manipular-listas"><i class="fa fa-check"></i><b>5.5.1</b> Criar e Manipular Listas</a></li>
-<li class="chapter" data-level="5.5.2" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#por-que-usar-listas"><i class="fa fa-check"></i><b>5.5.2</b> Por que usar listas?</a></li>
-<li class="chapter" data-level="5.5.3" data-path="01-intro.html"><a href="#exerc%C3%ADcios-5"><i class="fa fa-check"></i><b>5.5.3</b> Exercícios</a></li>
+<li class="chapter" data-level="5.5.2" data-path="01-intro.html"><a href="#exerc%C3%ADcios-5"><i class="fa fa-check"></i><b>5.5.2</b> Exercícios</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="01-intro.html"><a href="#estruturas-de-sele%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>6</b> Estruturas de Seleção</a>
@@ -2176,45 +2175,43 @@ incluindo um vetor, um vetor de caracteres, uma matriz e uma função:</p>
 <span id="cb88-31"><a href="estrutura-de-dados-básicas.html#cb88-31" tabindex="-1"></a><span class="do">## $media</span></span>
 <span id="cb88-32"><a href="estrutura-de-dados-básicas.html#cb88-32" tabindex="-1"></a><span class="do">## function(x) mean(x)</span></span>
 <span id="cb88-33"><a href="estrutura-de-dados-básicas.html#cb88-33" tabindex="-1"></a></span>
-<span id="cb88-34"><a href="estrutura-de-dados-básicas.html#cb88-34" tabindex="-1"></a><span class="co"># Aceder a um elemento pelo nome usando $</span></span>
-<span id="cb88-35"><a href="estrutura-de-dados-básicas.html#cb88-35" tabindex="-1"></a><span class="fu">print</span>(minha_lista<span class="sc">$</span>nome)</span>
+<span id="cb88-34"><a href="estrutura-de-dados-básicas.html#cb88-34" tabindex="-1"></a>minha_lista[<span class="dv">1</span>] <span class="co"># retorna uma sub-lista</span></span>
+<span id="cb88-35"><a href="estrutura-de-dados-básicas.html#cb88-35" tabindex="-1"></a><span class="do">## $nome</span></span>
 <span id="cb88-36"><a href="estrutura-de-dados-básicas.html#cb88-36" tabindex="-1"></a><span class="do">## [1] &quot;Estudante&quot;</span></span>
 <span id="cb88-37"><a href="estrutura-de-dados-básicas.html#cb88-37" tabindex="-1"></a></span>
-<span id="cb88-38"><a href="estrutura-de-dados-básicas.html#cb88-38" tabindex="-1"></a><span class="co"># Aceder a um elemento pelo índice</span></span>
-<span id="cb88-39"><a href="estrutura-de-dados-básicas.html#cb88-39" tabindex="-1"></a><span class="fu">print</span>(minha_lista[[<span class="dv">1</span>]])</span>
+<span id="cb88-38"><a href="estrutura-de-dados-básicas.html#cb88-38" tabindex="-1"></a><span class="co"># Aceder a um elemento pelo índice (retorna o valor (vetor, número, etc.))</span></span>
+<span id="cb88-39"><a href="estrutura-de-dados-básicas.html#cb88-39" tabindex="-1"></a>minha_lista[[<span class="dv">1</span>]] </span>
 <span id="cb88-40"><a href="estrutura-de-dados-básicas.html#cb88-40" tabindex="-1"></a><span class="do">## [1] &quot;Estudante&quot;</span></span>
 <span id="cb88-41"><a href="estrutura-de-dados-básicas.html#cb88-41" tabindex="-1"></a></span>
-<span id="cb88-42"><a href="estrutura-de-dados-básicas.html#cb88-42" tabindex="-1"></a><span class="co"># Aceder a uma sublista contendo os dois primeiros elementos</span></span>
-<span id="cb88-43"><a href="estrutura-de-dados-básicas.html#cb88-43" tabindex="-1"></a><span class="fu">print</span>(minha_lista[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span>
-<span id="cb88-44"><a href="estrutura-de-dados-básicas.html#cb88-44" tabindex="-1"></a><span class="do">## $nome</span></span>
-<span id="cb88-45"><a href="estrutura-de-dados-básicas.html#cb88-45" tabindex="-1"></a><span class="do">## [1] &quot;Estudante&quot;</span></span>
-<span id="cb88-46"><a href="estrutura-de-dados-básicas.html#cb88-46" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb88-47"><a href="estrutura-de-dados-básicas.html#cb88-47" tabindex="-1"></a><span class="do">## $idade</span></span>
-<span id="cb88-48"><a href="estrutura-de-dados-básicas.html#cb88-48" tabindex="-1"></a><span class="do">## [1] 21</span></span>
-<span id="cb88-49"><a href="estrutura-de-dados-básicas.html#cb88-49" tabindex="-1"></a></span>
-<span id="cb88-50"><a href="estrutura-de-dados-básicas.html#cb88-50" tabindex="-1"></a><span class="co"># Aceder à segunda nota do vetor &quot;notas&quot; dentro da lista</span></span>
-<span id="cb88-51"><a href="estrutura-de-dados-básicas.html#cb88-51" tabindex="-1"></a><span class="fu">print</span>(minha_lista<span class="sc">$</span>notas[<span class="dv">2</span>])</span>
-<span id="cb88-52"><a href="estrutura-de-dados-básicas.html#cb88-52" tabindex="-1"></a><span class="do">## [1] 90</span></span></code></pre></div>
+<span id="cb88-42"><a href="estrutura-de-dados-básicas.html#cb88-42" tabindex="-1"></a><span class="co"># Aceder a um elemento pelo nome usando $ (retorna o valor do elemento com nome &quot;nome&quot;)</span></span>
+<span id="cb88-43"><a href="estrutura-de-dados-básicas.html#cb88-43" tabindex="-1"></a>minha_lista<span class="sc">$</span>nome </span>
+<span id="cb88-44"><a href="estrutura-de-dados-básicas.html#cb88-44" tabindex="-1"></a><span class="do">## [1] &quot;Estudante&quot;</span></span>
+<span id="cb88-45"><a href="estrutura-de-dados-básicas.html#cb88-45" tabindex="-1"></a></span>
+<span id="cb88-46"><a href="estrutura-de-dados-básicas.html#cb88-46" tabindex="-1"></a><span class="co"># Aceder a uma sublista contendo os dois primeiros elementos</span></span>
+<span id="cb88-47"><a href="estrutura-de-dados-básicas.html#cb88-47" tabindex="-1"></a>minha_lista[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
+<span id="cb88-48"><a href="estrutura-de-dados-básicas.html#cb88-48" tabindex="-1"></a><span class="do">## $nome</span></span>
+<span id="cb88-49"><a href="estrutura-de-dados-básicas.html#cb88-49" tabindex="-1"></a><span class="do">## [1] &quot;Estudante&quot;</span></span>
+<span id="cb88-50"><a href="estrutura-de-dados-básicas.html#cb88-50" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb88-51"><a href="estrutura-de-dados-básicas.html#cb88-51" tabindex="-1"></a><span class="do">## $idade</span></span>
+<span id="cb88-52"><a href="estrutura-de-dados-básicas.html#cb88-52" tabindex="-1"></a><span class="do">## [1] 21</span></span>
+<span id="cb88-53"><a href="estrutura-de-dados-básicas.html#cb88-53" tabindex="-1"></a></span>
+<span id="cb88-54"><a href="estrutura-de-dados-básicas.html#cb88-54" tabindex="-1"></a><span class="co"># Aceder à segunda nota do vetor &quot;notas&quot; dentro da lista</span></span>
+<span id="cb88-55"><a href="estrutura-de-dados-básicas.html#cb88-55" tabindex="-1"></a>minha_lista<span class="sc">$</span>notas[<span class="dv">2</span>]</span>
+<span id="cb88-56"><a href="estrutura-de-dados-básicas.html#cb88-56" tabindex="-1"></a><span class="do">## [1] 90</span></span>
+<span id="cb88-57"><a href="estrutura-de-dados-básicas.html#cb88-57" tabindex="-1"></a></span>
+<span id="cb88-58"><a href="estrutura-de-dados-básicas.html#cb88-58" tabindex="-1"></a><span class="co"># Adicionar novo elemento à lista</span></span>
+<span id="cb88-59"><a href="estrutura-de-dados-básicas.html#cb88-59" tabindex="-1"></a>minha_lista<span class="sc">$</span>nota_final <span class="ot">&lt;-</span> <span class="fu">mean</span>(minha_lista<span class="sc">$</span>notas)</span>
+<span id="cb88-60"><a href="estrutura-de-dados-básicas.html#cb88-60" tabindex="-1"></a><span class="co"># ou</span></span>
+<span id="cb88-61"><a href="estrutura-de-dados-básicas.html#cb88-61" tabindex="-1"></a>minha_lista[[<span class="st">&quot;nota_final&quot;</span>]] <span class="ot">&lt;-</span> <span class="fu">mean</span>(minha_lista<span class="sc">$</span>notas)</span>
+<span id="cb88-62"><a href="estrutura-de-dados-básicas.html#cb88-62" tabindex="-1"></a></span>
+<span id="cb88-63"><a href="estrutura-de-dados-básicas.html#cb88-63" tabindex="-1"></a><span class="co"># Remover um elemento da lista</span></span>
+<span id="cb88-64"><a href="estrutura-de-dados-básicas.html#cb88-64" tabindex="-1"></a>minha_lista<span class="sc">$</span>idade <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb88-65"><a href="estrutura-de-dados-básicas.html#cb88-65" tabindex="-1"></a></span>
+<span id="cb88-66"><a href="estrutura-de-dados-básicas.html#cb88-66" tabindex="-1"></a><span class="co"># Remover elemento 2 e 3 da lista</span></span>
+<span id="cb88-67"><a href="estrutura-de-dados-básicas.html#cb88-67" tabindex="-1"></a>minha_lista[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)]</span></code></pre></div>
 </div>
-<div id="por-que-usar-listas" class="section level3 hasAnchor" number="5.5.2">
-<h3><span class="header-section-number">5.5.2</span> Por que usar listas?<a href="estrutura-de-dados-básicas.html#por-que-usar-listas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Listas são extremamente úteis em R para:</p>
-<ul>
-<li><strong>Armazenar resultados de diferentes tipos</strong>: Em análises
-estatísticas complexas, os resultados muitas vezes consistem em
-diferentes tipos de dados (como números, tabelas, gráficos e modelos
-estatísticos).</li>
-<li><strong>Agrupar dados heterogéneos</strong>: Quando se precisa manipular um
-conjunto de dados que inclui diversos tipos de informação (por
-exemplo, dados brutos, estatísticas resumidas, e resultados de
-modelos).</li>
-<li><strong>Passar múltiplos argumentos para funções</strong>: As listas são usadas
-para agrupar múltiplos parâmetros para funções, tornando-as uma
-ferramenta poderosa para programação funcional.</li>
-</ul>
-</div>
-<div id="exercícios-5" class="section level3 hasAnchor" number="5.5.3">
-<h3><span class="header-section-number">5.5.3</span> Exercícios<a href="#exerc%C3%ADcios-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercícios-5" class="section level3 hasAnchor" number="5.5.2">
+<h3><span class="header-section-number">5.5.2</span> Exercícios<a href="#exerc%C3%ADcios-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>1.</strong> Crie uma lista em R chamada <code>dados_estudante</code> que contenha as
 seguintes informações sobre um estudante:</p>
 <ul>
@@ -2285,6 +2282,52 @@ utilizadas anteriormente). Por exemplo:</p>
 <li><p>Encontre e imprima o produto que gera a maior margem de lucro mensal.</p></li>
 <li><p>Atualize o <strong>preço de venda</strong> do segundo produto, aumentando-o em 5%, e imprima a nova margem de lucro mensal desse produto.</p></li>
 <li><p>Crie uma lista com os <strong>produtos mais lucrativos</strong>, considerando aqueles cuja margem de lucro mensal é superior a 10% do custo de produção mensal.</p></li>
+</ol>
+<p><strong>7.</strong> A utilização de ferramentas de inteligência artificial como o ChatGPT está a crescer entre estudantes universitários. Uma equipa de investigadores registou o número de mensagens trocadas e o tempo total de uso (em minutos) por três estudantes durante uma semana. Os dados estão organizados na lista abaixo:</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="estrutura-de-dados-básicas.html#cb89-1" tabindex="-1"></a>chatgpt_logs <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb89-2"><a href="estrutura-de-dados-básicas.html#cb89-2" tabindex="-1"></a>  <span class="at">estudante1 =</span> <span class="fu">list</span>(<span class="at">nome =</span> <span class="st">&quot;Ana&quot;</span>, <span class="at">mensagens =</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">9</span>), <span class="at">tempo_total =</span> <span class="dv">35</span>),</span>
+<span id="cb89-3"><a href="estrutura-de-dados-básicas.html#cb89-3" tabindex="-1"></a>  <span class="at">estudante2 =</span> <span class="fu">list</span>(<span class="at">nome =</span> <span class="st">&quot;Bruno&quot;</span>, <span class="at">mensagens =</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">12</span>), <span class="at">tempo_total =</span> <span class="dv">42</span>),</span>
+<span id="cb89-4"><a href="estrutura-de-dados-básicas.html#cb89-4" tabindex="-1"></a>  <span class="at">estudante3 =</span> <span class="fu">list</span>(<span class="at">nome =</span> <span class="st">&quot;Carla&quot;</span>, <span class="at">mensagens =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>), <span class="at">tempo_total =</span> <span class="dv">28</span>)</span>
+<span id="cb89-5"><a href="estrutura-de-dados-básicas.html#cb89-5" tabindex="-1"></a>)</span></code></pre></div>
+<ol style="list-style-type: lower-alpha">
+<li><p>Qual foi o número de mensagens enviadas por Bruno na terceira sessão?</p></li>
+<li><p>Calcule o número total de mensagens trocadas por cada estudante.</p></li>
+<li><p>Adicione manualmente um novo elemento <code>media_tempo_sessao</code> para cada estudante, correspondente ao tempo médio por sessão.</p></li>
+<li><p>Calcule, para cada estudante, a média de mensagens por sessão. Quem usou o ChatGPT de forma mais intensiva?</p></li>
+</ol>
+<p><strong>8.</strong> Três perfis de Instagram dedicados à divulgação de Estatística publicaram conteúdos variados ao longo de uma semana. A lista abaixo regista, para cada perfil, os temas das publicações e o número de visualizações que cada uma recebeu.</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="estrutura-de-dados-básicas.html#cb90-1" tabindex="-1"></a>instagram <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb90-2"><a href="estrutura-de-dados-básicas.html#cb90-2" tabindex="-1"></a>  <span class="at">biostats_girl =</span> <span class="fu">list</span>(<span class="at">temas =</span> <span class="fu">c</span>(<span class="st">&quot;café&quot;</span>, <span class="st">&quot;dados&quot;</span>, <span class="st">&quot;meme&quot;</span>), <span class="at">visualizacoes =</span> <span class="fu">c</span>(<span class="dv">1200</span>, <span class="dv">1800</span>, <span class="dv">2400</span>)),</span>
+<span id="cb90-3"><a href="estrutura-de-dados-básicas.html#cb90-3" tabindex="-1"></a>  <span class="at">r_nerd =</span> <span class="fu">list</span>(<span class="at">temas =</span> <span class="fu">c</span>(<span class="st">&quot;dica_R&quot;</span>, <span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;shiny&quot;</span>), <span class="at">visualizacoes =</span> <span class="fu">c</span>(<span class="dv">800</span>, <span class="dv">1900</span>, <span class="dv">2100</span>)),</span>
+<span id="cb90-4"><a href="estrutura-de-dados-básicas.html#cb90-4" tabindex="-1"></a>  <span class="at">estatistica_hoje =</span> <span class="fu">list</span>(<span class="at">temas =</span> <span class="fu">c</span>(<span class="st">&quot;história&quot;</span>, <span class="st">&quot;carreira&quot;</span>, <span class="st">&quot;código&quot;</span>), <span class="at">visualizacoes =</span> <span class="fu">c</span>(<span class="dv">1500</span>, <span class="dv">1600</span>, <span class="dv">2000</span>))</span>
+<span id="cb90-5"><a href="estrutura-de-dados-básicas.html#cb90-5" tabindex="-1"></a>)</span></code></pre></div>
+<ol style="list-style-type: lower-alpha">
+<li><p>Qual foi o tema mais visualizado do perfil <code>r_nerd</code>?</p></li>
+<li><p>Calcule o número total de visualizações de cada perfil e guarde esse valor como um novo elemento chamado <code>total_views</code>.</p></li>
+<li><p>Com base nos totais, ordene os perfis do mais visualizado para o menos visualizado.</p></li>
+<li><p>Calcule a média de visualizações por publicação para cada perfil. Qual deles teve o melhor desempenho médio?</p></li>
+</ol>
+<p><strong>9.</strong> Os dados abaixo representam os resultados de três turmas na disciplina de Probabilidades. Para cada turma, estão registadas:</p>
+<ul>
+<li><p>as notas dos alunos nos dois testes (T1 e T2),</p></li>
+<li><p>se o aluno entregou o projeto final (<code>TRUE</code> ou <code>FALSE</code>).</p></li>
+</ul>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="estrutura-de-dados-básicas.html#cb91-1" tabindex="-1"></a>avaliacoes <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb91-2"><a href="estrutura-de-dados-básicas.html#cb91-2" tabindex="-1"></a>  <span class="at">turmaA =</span> <span class="fu">list</span>(<span class="at">notas_t1 =</span> <span class="fu">c</span>(<span class="dv">14</span>, <span class="dv">12</span>, <span class="dv">16</span>), <span class="at">notas_t2 =</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">13</span>, <span class="dv">14</span>), <span class="at">projeto =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)),</span>
+<span id="cb91-3"><a href="estrutura-de-dados-básicas.html#cb91-3" tabindex="-1"></a>  <span class="at">turmaB =</span> <span class="fu">list</span>(<span class="at">notas_t1 =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">9</span>), <span class="at">notas_t2 =</span> <span class="fu">c</span>(<span class="dv">13</span>, <span class="dv">12</span>, <span class="dv">10</span>), <span class="at">projeto =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>)),</span>
+<span id="cb91-4"><a href="estrutura-de-dados-básicas.html#cb91-4" tabindex="-1"></a>  <span class="at">turmaC =</span> <span class="fu">list</span>(<span class="at">notas_t1 =</span> <span class="fu">c</span>(<span class="dv">17</span>, <span class="dv">18</span>, <span class="dv">19</span>), <span class="at">notas_t2 =</span> <span class="fu">c</span>(<span class="dv">18</span>, <span class="dv">17</span>, <span class="dv">20</span>), <span class="at">projeto =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>))</span>
+<span id="cb91-5"><a href="estrutura-de-dados-básicas.html#cb91-5" tabindex="-1"></a>)</span></code></pre></div>
+<ol style="list-style-type: lower-alpha">
+<li><p>Calcule a média final de cada aluno em cada turma.</p></li>
+<li><p>Verifique quantos alunos, em cada turma, entregaram o projeto e tinham média final igual ou superior a 13 valores.</p></li>
+<li><p>Calcule, para cada turma:</p></li>
+</ol>
+<ul>
+<li>a média geral das notas finais,</li>
+<li>a percentagem de alunos aprovados (definidos como quem entregou o projeto e teve média ≥ 10 valores).</li>
+</ul>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>Com base nesses resultados, qual foi a turma com melhor desempenho global?</li>
 </ol>
 </div>
 </div>

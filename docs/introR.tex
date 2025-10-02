@@ -125,7 +125,7 @@
 
 \title{Introdução ao R e Simulação}
 \author{Renato de Paula}
-\date{2025-09-30}
+\date{2025-10-02}
 
 \begin{document}
 \maketitle
@@ -3590,16 +3590,20 @@ incluindo um vetor, um vetor de caracteres, uma matriz e uma função:
 \DocumentationTok{\#\# $media}
 \DocumentationTok{\#\# function(x) mean(x)}
 
-\CommentTok{\# Aceder a um elemento pelo nome usando $}
-\FunctionTok{print}\NormalTok{(minha\_lista}\SpecialCharTok{$}\NormalTok{nome)}
+\NormalTok{minha\_lista[}\DecValTok{1}\NormalTok{] }\CommentTok{\# retorna uma sub{-}lista}
+\DocumentationTok{\#\# $nome}
 \DocumentationTok{\#\# [1] "Estudante"}
 
-\CommentTok{\# Aceder a um elemento pelo índice}
-\FunctionTok{print}\NormalTok{(minha\_lista[[}\DecValTok{1}\NormalTok{]])}
+\CommentTok{\# Aceder a um elemento pelo índice (retorna o valor (vetor, número, etc.))}
+\NormalTok{minha\_lista[[}\DecValTok{1}\NormalTok{]] }
+\DocumentationTok{\#\# [1] "Estudante"}
+
+\CommentTok{\# Aceder a um elemento pelo nome usando $ (retorna o valor do elemento com nome "nome")}
+\NormalTok{minha\_lista}\SpecialCharTok{$}\NormalTok{nome }
 \DocumentationTok{\#\# [1] "Estudante"}
 
 \CommentTok{\# Aceder a uma sublista contendo os dois primeiros elementos}
-\FunctionTok{print}\NormalTok{(minha\_lista[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{])}
+\NormalTok{minha\_lista[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{]}
 \DocumentationTok{\#\# $nome}
 \DocumentationTok{\#\# [1] "Estudante"}
 \DocumentationTok{\#\# }
@@ -3607,32 +3611,21 @@ incluindo um vetor, um vetor de caracteres, uma matriz e uma função:
 \DocumentationTok{\#\# [1] 21}
 
 \CommentTok{\# Aceder à segunda nota do vetor "notas" dentro da lista}
-\FunctionTok{print}\NormalTok{(minha\_lista}\SpecialCharTok{$}\NormalTok{notas[}\DecValTok{2}\NormalTok{])}
+\NormalTok{minha\_lista}\SpecialCharTok{$}\NormalTok{notas[}\DecValTok{2}\NormalTok{]}
 \DocumentationTok{\#\# [1] 90}
+
+\CommentTok{\# Adicionar novo elemento à lista}
+\NormalTok{minha\_lista}\SpecialCharTok{$}\NormalTok{nota\_final }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(minha\_lista}\SpecialCharTok{$}\NormalTok{notas)}
+\CommentTok{\# ou}
+\NormalTok{minha\_lista[[}\StringTok{"nota\_final"}\NormalTok{]] }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(minha\_lista}\SpecialCharTok{$}\NormalTok{notas)}
+
+\CommentTok{\# Remover um elemento da lista}
+\NormalTok{minha\_lista}\SpecialCharTok{$}\NormalTok{idade }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
+
+\CommentTok{\# Remover elemento 2 e 3 da lista}
+\NormalTok{minha\_lista[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{)]}
 \end{Highlighting}
 \end{Shaded}
-
-\subsection{Por que usar listas?}\label{por-que-usar-listas}
-
-Listas são extremamente úteis em R para:
-
-\begin{itemize}
-\tightlist
-\item
-  \textbf{Armazenar resultados de diferentes tipos}: Em análises
-  estatísticas complexas, os resultados muitas vezes consistem em
-  diferentes tipos de dados (como números, tabelas, gráficos e modelos
-  estatísticos).
-\item
-  \textbf{Agrupar dados heterogéneos}: Quando se precisa manipular um
-  conjunto de dados que inclui diversos tipos de informação (por
-  exemplo, dados brutos, estatísticas resumidas, e resultados de
-  modelos).
-\item
-  \textbf{Passar múltiplos argumentos para funções}: As listas são usadas
-  para agrupar múltiplos parâmetros para funções, tornando-as uma
-  ferramenta poderosa para programação funcional.
-\end{itemize}
 
 \subsection{Exercícios}\label{exercuxedcios-5}
 
@@ -3765,6 +3758,99 @@ Aceda e imprima:
   Atualize o \textbf{preço de venda} do segundo produto, aumentando-o em 5\%, e imprima a nova margem de lucro mensal desse produto.
 \item
   Crie uma lista com os \textbf{produtos mais lucrativos}, considerando aqueles cuja margem de lucro mensal é superior a 10\% do custo de produção mensal.
+\end{enumerate}
+
+\textbf{7.} A utilização de ferramentas de inteligência artificial como o ChatGPT está a crescer entre estudantes universitários. Uma equipa de investigadores registou o número de mensagens trocadas e o tempo total de uso (em minutos) por três estudantes durante uma semana. Os dados estão organizados na lista abaixo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{chatgpt\_logs }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}
+  \AttributeTok{estudante1 =} \FunctionTok{list}\NormalTok{(}\AttributeTok{nome =} \StringTok{"Ana"}\NormalTok{, }\AttributeTok{mensagens =} \FunctionTok{c}\NormalTok{(}\DecValTok{12}\NormalTok{, }\DecValTok{15}\NormalTok{, }\DecValTok{9}\NormalTok{), }\AttributeTok{tempo\_total =} \DecValTok{35}\NormalTok{),}
+  \AttributeTok{estudante2 =} \FunctionTok{list}\NormalTok{(}\AttributeTok{nome =} \StringTok{"Bruno"}\NormalTok{, }\AttributeTok{mensagens =} \FunctionTok{c}\NormalTok{(}\DecValTok{7}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{12}\NormalTok{), }\AttributeTok{tempo\_total =} \DecValTok{42}\NormalTok{),}
+  \AttributeTok{estudante3 =} \FunctionTok{list}\NormalTok{(}\AttributeTok{nome =} \StringTok{"Carla"}\NormalTok{, }\AttributeTok{mensagens =} \FunctionTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{), }\AttributeTok{tempo\_total =} \DecValTok{28}\NormalTok{)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Qual foi o número de mensagens enviadas por Bruno na terceira sessão?
+\item
+  Calcule o número total de mensagens trocadas por cada estudante.
+\item
+  Adicione manualmente um novo elemento \texttt{media\_tempo\_sessao} para cada estudante, correspondente ao tempo médio por sessão.
+\item
+  Calcule, para cada estudante, a média de mensagens por sessão. Quem usou o ChatGPT de forma mais intensiva?
+\end{enumerate}
+
+\textbf{8.} Três perfis de Instagram dedicados à divulgação de Estatística publicaram conteúdos variados ao longo de uma semana. A lista abaixo regista, para cada perfil, os temas das publicações e o número de visualizações que cada uma recebeu.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{instagram }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}
+  \AttributeTok{biostats\_girl =} \FunctionTok{list}\NormalTok{(}\AttributeTok{temas =} \FunctionTok{c}\NormalTok{(}\StringTok{"café"}\NormalTok{, }\StringTok{"dados"}\NormalTok{, }\StringTok{"meme"}\NormalTok{), }\AttributeTok{visualizacoes =} \FunctionTok{c}\NormalTok{(}\DecValTok{1200}\NormalTok{, }\DecValTok{1800}\NormalTok{, }\DecValTok{2400}\NormalTok{)),}
+  \AttributeTok{r\_nerd =} \FunctionTok{list}\NormalTok{(}\AttributeTok{temas =} \FunctionTok{c}\NormalTok{(}\StringTok{"dica\_R"}\NormalTok{, }\StringTok{"ggplot2"}\NormalTok{, }\StringTok{"shiny"}\NormalTok{), }\AttributeTok{visualizacoes =} \FunctionTok{c}\NormalTok{(}\DecValTok{800}\NormalTok{, }\DecValTok{1900}\NormalTok{, }\DecValTok{2100}\NormalTok{)),}
+  \AttributeTok{estatistica\_hoje =} \FunctionTok{list}\NormalTok{(}\AttributeTok{temas =} \FunctionTok{c}\NormalTok{(}\StringTok{"história"}\NormalTok{, }\StringTok{"carreira"}\NormalTok{, }\StringTok{"código"}\NormalTok{), }\AttributeTok{visualizacoes =} \FunctionTok{c}\NormalTok{(}\DecValTok{1500}\NormalTok{, }\DecValTok{1600}\NormalTok{, }\DecValTok{2000}\NormalTok{))}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Qual foi o tema mais visualizado do perfil \texttt{r\_nerd}?
+\item
+  Calcule o número total de visualizações de cada perfil e guarde esse valor como um novo elemento chamado \texttt{total\_views}.
+\item
+  Com base nos totais, ordene os perfis do mais visualizado para o menos visualizado.
+\item
+  Calcule a média de visualizações por publicação para cada perfil. Qual deles teve o melhor desempenho médio?
+\end{enumerate}
+
+\textbf{9.} Os dados abaixo representam os resultados de três turmas na disciplina de Probabilidades. Para cada turma, estão registadas:
+
+\begin{itemize}
+\item
+  as notas dos alunos nos dois testes (T1 e T2),
+\item
+  se o aluno entregou o projeto final (\texttt{TRUE} ou \texttt{FALSE}).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{avaliacoes }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}
+  \AttributeTok{turmaA =} \FunctionTok{list}\NormalTok{(}\AttributeTok{notas\_t1 =} \FunctionTok{c}\NormalTok{(}\DecValTok{14}\NormalTok{, }\DecValTok{12}\NormalTok{, }\DecValTok{16}\NormalTok{), }\AttributeTok{notas\_t2 =} \FunctionTok{c}\NormalTok{(}\DecValTok{15}\NormalTok{, }\DecValTok{13}\NormalTok{, }\DecValTok{14}\NormalTok{), }\AttributeTok{projeto =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{)),}
+  \AttributeTok{turmaB =} \FunctionTok{list}\NormalTok{(}\AttributeTok{notas\_t1 =} \FunctionTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{11}\NormalTok{, }\DecValTok{9}\NormalTok{), }\AttributeTok{notas\_t2 =} \FunctionTok{c}\NormalTok{(}\DecValTok{13}\NormalTok{, }\DecValTok{12}\NormalTok{, }\DecValTok{10}\NormalTok{), }\AttributeTok{projeto =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{)),}
+  \AttributeTok{turmaC =} \FunctionTok{list}\NormalTok{(}\AttributeTok{notas\_t1 =} \FunctionTok{c}\NormalTok{(}\DecValTok{17}\NormalTok{, }\DecValTok{18}\NormalTok{, }\DecValTok{19}\NormalTok{), }\AttributeTok{notas\_t2 =} \FunctionTok{c}\NormalTok{(}\DecValTok{18}\NormalTok{, }\DecValTok{17}\NormalTok{, }\DecValTok{20}\NormalTok{), }\AttributeTok{projeto =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{))}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Calcule a média final de cada aluno em cada turma.
+\item
+  Verifique quantos alunos, em cada turma, entregaram o projeto e tinham média final igual ou superior a 13 valores.
+\item
+  Calcule, para cada turma:
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  a média geral das notas finais,
+\item
+  a percentagem de alunos aprovados (definidos como quem entregou o projeto e teve média ≥ 10 valores).
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Com base nesses resultados, qual foi a turma com melhor desempenho global?
 \end{enumerate}
 
 \chapter{Estruturas de Seleção}\label{estruturas-de-seleuxe7uxe3o}
@@ -6333,7 +6419,7 @@ estatístico.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-173-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-176-1.pdf}}
 
 Para ter o gráfico com as frequências relativas fazemos:
 
@@ -6352,7 +6438,7 @@ Para ter o gráfico com as frequências relativas fazemos:
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-174-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-177-1.pdf}}
 
 \textbf{Personalização de Gráficos de Barras}
 
@@ -6372,7 +6458,7 @@ barras lado a lado).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-175-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-178-1.pdf}}
 
 \textbf{Gráfico de Barras Agrupadas}
 
@@ -6400,7 +6486,7 @@ Podemos também gerar gráficos de barras que comparam mais de uma variável. Ne
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-176-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-179-1.pdf}}
 
 Neste exemplo, usamos \texttt{rbind()} para agrupar os dados e o argumento \texttt{beside\ =\ TRUE} para gerar barras lado a lado para comparação entre ``Granito'' e ``Basalto''. O parâmetro \texttt{legend.text} cria uma legenda para identificar cada cor de barra.
 
@@ -6429,7 +6515,7 @@ Para gerar um gráfico de barras empilhado em vez de agrupado, basta remover o a
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-177-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-180-1.pdf}}
 
 \section{Gráfico Circular (Pizza)}\label{gruxe1fico-circular-pizza}
 
@@ -6469,7 +6555,7 @@ tamanho de cada fatia é proporcional à sua porcentagem.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-179-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-182-1.pdf}}
 
 \section{Histograma}\label{histograma}
 
@@ -6538,7 +6624,7 @@ de intervalo de classe no R é \((a, b]\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-181-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-184-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6566,7 +6652,7 @@ de intervalo de classe no R é \((a, b]\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-183-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-186-1.pdf}}
 
 Pode controlar o número de intervalos (bins) usando o argumento
 \texttt{breaks}. Por exemplo, \texttt{breaks\ =\ 5} divide os dados em 5 intervalos.
@@ -6590,7 +6676,7 @@ Podemos adicionar também uma curva de densidade em cima do histograma.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-184-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-187-1.pdf}}
 
 \section{Box-plot}\label{box-plot}
 
@@ -6640,7 +6726,7 @@ quartil (Q3) e máximo. Também pode mostrar outliers (valores atípicos).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-186-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-189-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6655,7 +6741,7 @@ quartil (Q3) e máximo. Também pode mostrar outliers (valores atípicos).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-187-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-190-1.pdf}}
 
 Pode comparar a distribuição de múltiplas variáveis lado a lado com
 box-plots. Use a função \texttt{par()} para ajustar o layout gráfico.
@@ -6671,7 +6757,7 @@ box-plots. Use a função \texttt{par()} para ajustar o layout gráfico.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-188-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-191-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6710,7 +6796,7 @@ variável \texttt{Sepal.Length}.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-190-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-193-1.pdf}}
 
 Vamos criar agora um box-plot da variável \texttt{Sepal.Length} agrupado por
 espécie de flor (\texttt{Species}) no conjunto de dados iris.
@@ -6725,7 +6811,7 @@ espécie de flor (\texttt{Species}) no conjunto de dados iris.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-191-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-194-1.pdf}}
 
 \section{Gráfico de Dispersão}\label{gruxe1fico-de-dispersuxe3o}
 
@@ -6782,7 +6868,7 @@ identificar correlações, tendências e outliers.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-193-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-196-1.pdf}}
 
 Gráfico de dispersão com regressão.
 
@@ -6800,7 +6886,7 @@ Gráfico de dispersão com regressão.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-194-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-197-1.pdf}}
 
 Se você tiver grupos de dados diferentes, pode diferenciá-los por cores:
 
@@ -6824,7 +6910,7 @@ Se você tiver grupos de dados diferentes, pode diferenciá-los por cores:
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-195-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-198-1.pdf}}
 
 \section{Gráfico de Linhas}\label{gruxe1fico-de-linhas}
 
@@ -6885,7 +6971,7 @@ temporais ou tendências ao longo de intervalos contínuos, como o tempo.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-197-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-200-1.pdf}}
 
 \section{Exercícios}\label{exercuxedcios-14}
 
@@ -8352,7 +8438,7 @@ O \texttt{ggplot2} baseia-se na ideia de que um gráfico pode ser decomposto nos
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-235-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-238-1.pdf}}
 
 \subsection{Exemplos práticos}\label{exemplos-pruxe1ticos}
 
@@ -8365,7 +8451,7 @@ O \texttt{ggplot2} baseia-se na ideia de que um gráfico pode ser decomposto nos
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-236-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-239-1.pdf}}
 
 \textbf{Gráfico de Barras}
 
@@ -8376,7 +8462,7 @@ O \texttt{ggplot2} baseia-se na ideia de que um gráfico pode ser decomposto nos
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-237-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-240-1.pdf}}
 
 \textbf{Boxplot por Grupo}
 
@@ -8387,7 +8473,7 @@ O \texttt{ggplot2} baseia-se na ideia de que um gráfico pode ser decomposto nos
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-238-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-241-1.pdf}}
 
 \textbf{Gráfico com Regressão Linear}
 
@@ -8403,7 +8489,7 @@ O \texttt{ggplot2} baseia-se na ideia de que um gráfico pode ser decomposto nos
 ## `geom_smooth()` using formula = 'y ~ x'
 \end{verbatim}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-239-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-242-1.pdf}}
 
 \textbf{Facetamento}
 
@@ -8415,7 +8501,7 @@ O \texttt{ggplot2} baseia-se na ideia de que um gráfico pode ser decomposto nos
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-240-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-243-1.pdf}}
 
 \textbf{Customizações com Theme}
 
@@ -8427,7 +8513,7 @@ O \texttt{ggplot2} baseia-se na ideia de que um gráfico pode ser decomposto nos
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-241-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-244-1.pdf}}
 
 \subsection{Boas práticas}\label{boas-pruxe1ticas}
 
@@ -8710,7 +8796,7 @@ Gráfico de \(f\):
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-249-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-252-1.pdf}}
 
 Para verificar que o integral da função é igual a 1 podemos usar a função \texttt{integrate()}, que realiza a integração numérica.
 
@@ -8780,7 +8866,7 @@ Vamos verificar que o integral da função é 1 e vamos fazer também o gráfico
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-254-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-257-1.pdf}}
 
 \begin{enumerate}
 \def\labelenumi{(\alph{enumi})}
@@ -8796,7 +8882,7 @@ Vamos verificar que o integral da função é 1 e vamos fazer também o gráfico
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-255-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-258-1.pdf}}
 
 Podemos resolver o integral numericamente da seguinte forma
 
@@ -9143,7 +9229,7 @@ visualizar a distribuição dos valores de \(Z\) utilizando um histograma:
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-261-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-264-1.pdf}}
 
 \section{Simulação e Geração de Números Pseudoaleatórios}\label{simulauxe7uxe3o-e-gerauxe7uxe3o-de-nuxfameros-pseudoaleatuxf3rios}
 
@@ -9590,7 +9676,7 @@ conjunto de dados.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-270-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-273-1.pdf}}
 
 \textbf{Exemplo 1}: Resolva o exemplo 1 usando a função de distribuição
 empírica.
@@ -9903,7 +9989,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-273-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-276-1.pdf}}
 
 \subsection{Função massa de probabilidade (simulação)}\label{funuxe7uxe3o-massa-de-probabilidade-simulauxe7uxe3o}
 
@@ -9929,7 +10015,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-274-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-277-1.pdf}}
 
 \subsection{Comparação}\label{comparauxe7uxe3o}
 
@@ -9962,7 +10048,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-275-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-278-1.pdf}}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o}
 
@@ -9985,7 +10071,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-276-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-279-1.pdf}}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-1}
 
@@ -10008,7 +10094,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-277-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-280-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10017,7 +10103,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-277-2.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-280-2.pdf}}
 
 \textbf{Cálculo de probabilidade}: Seja \(X \sim \text{Binomial}(n=20, p=0.1)\).
 
@@ -10465,7 +10551,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-280-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-283-1.pdf}}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-1}
 
@@ -10501,7 +10587,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-281-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-284-1.pdf}}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-1}
 
@@ -10521,7 +10607,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-282-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-285-1.pdf}}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-2}
 
@@ -10542,7 +10628,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-283-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-286-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10557,7 +10643,7 @@ Seja \(X\sim\text{Poisson}(\lambda=5)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-283-2.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-286-2.pdf}}
 
 \textbf{Cálculo de probabilidades}: Seja \(X\sim\text{Poisson}(\lambda=5)\).
 
@@ -10855,7 +10941,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-287-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-290-1.pdf}}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o}
 
@@ -10880,7 +10966,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-288-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-291-1.pdf}}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-2}
 
@@ -10911,7 +10997,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-289-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-292-1.pdf}}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-2}
 
@@ -10931,7 +11017,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-290-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-293-1.pdf}}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-3}
 
@@ -10956,7 +11042,7 @@ Seja \(X\sim \text{Uniforme}(0,1)\)
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-291-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-294-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11152,7 +11238,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-292-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-295-1.pdf}}
 
 \subsection{Função densidade de probabilidade (simulação)}\label{funuxe7uxe3o-densidade-de-probabilidade-simulauxe7uxe3o-1}
 
@@ -11177,7 +11263,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-293-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-296-1.pdf}}
 
 \subsection{Comparação}\label{comparauxe7uxe3o-3}
 
@@ -11208,7 +11294,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-294-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-297-1.pdf}}
 
 \subsection{Função de distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-3}
 
@@ -11228,7 +11314,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-295-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-298-1.pdf}}
 
 \subsection{Função de distribuição empírica}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-4}
 
@@ -11253,7 +11339,7 @@ Seja \(X\sim \text{Exponencial}(\lambda=1)\).
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-296-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-299-1.pdf}}
 
 \subsection{Exercícios}\label{exercuxedcios-30}
 
@@ -11511,7 +11597,7 @@ Função densidade de probabilidade e função de distribuição.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-301-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-304-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11529,7 +11615,7 @@ Função densidade de probabilidade e função de distribuição.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-302-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-305-1.pdf}}
 
 \subsection{Exercícios}\label{exercuxedcios-31}
 
@@ -12408,7 +12494,7 @@ valores: \(1,2,\ldots,10\) com probabilidade \(1/10\) para
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-315-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-318-1.pdf}}
 
 \textbf{Exemplo 3}: Geração de uma variável aleatória com distribuição de
 Bernoulli. A variável aleatória \(X\) é de Bernoulli com parâmetro \(p\) se
@@ -12468,7 +12554,7 @@ método da transformada inversa
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-317-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-320-1.pdf}}
 
 \textbf{Exemplo 5}: Geração de uma variável aleatória com distribuição
 \(Geométrica(p)\). Seja \(X\sim Geometrica(p)\). Lembre que
@@ -12503,7 +12589,7 @@ onde \(\lfloor  \rfloor =\) maior inteiro.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-318-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-321-1.pdf}}
 
 \textbf{Exemplo 6}: Geração de uma variável aleatória com distribuição de
 Poisson. A variável aleatória \(X\) é de Poisson com média \(\lambda\) se
@@ -12547,7 +12633,7 @@ expresso da seguinte forma.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-319-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-322-1.pdf}}
 
 \section{Exercícios}\label{exercuxedcios-32}
 
@@ -12642,7 +12728,7 @@ A função \(F(x)=x^2\) é invertível no intervalo \((0,1)\) e
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-320-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-323-1.pdf}}
 
 \textbf{Exemplo 2}: Geração de uma variável aleatória \(Uniforme(a,b)\). A
 geração é feita através de \[X = a+(b-a)U.\]
@@ -12660,7 +12746,7 @@ geração é feita através de \[X = a+(b-a)U.\]
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-321-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-324-1.pdf}}
 
 \textbf{Exemplo 3}: Geração de uma variável aleatória exponencial. Seja \(X\)
 uma variável aleatória exponencial com taxa 1, então sua função de
@@ -12707,7 +12793,7 @@ aleatório \(U\) e fazendo \[X = -\frac{1}{\lambda}ln (U).\]
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-322-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{introR_files/figure-latex/unnamed-chunk-325-1.pdf}}
 
 \section{Exercícios}\label{exercuxedcios-33}
 

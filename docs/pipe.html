@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Renato de Paula" />
 
 
-<meta name="date" content="2025-09-30" />
+<meta name="date" content="2025-10-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -235,8 +235,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#listas"><i class="fa fa-check"></i><b>5.5</b> Listas</a>
 <ul>
 <li class="chapter" data-level="5.5.1" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#criar-e-manipular-listas"><i class="fa fa-check"></i><b>5.5.1</b> Criar e Manipular Listas</a></li>
-<li class="chapter" data-level="5.5.2" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#por-que-usar-listas"><i class="fa fa-check"></i><b>5.5.2</b> Por que usar listas?</a></li>
-<li class="chapter" data-level="5.5.3" data-path="01-intro.html"><a href="#exerc%C3%ADcios-5"><i class="fa fa-check"></i><b>5.5.3</b> Exercícios</a></li>
+<li class="chapter" data-level="5.5.2" data-path="01-intro.html"><a href="#exerc%C3%ADcios-5"><i class="fa fa-check"></i><b>5.5.2</b> Exercícios</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="01-intro.html"><a href="#estruturas-de-sele%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>6</b> Estruturas de Seleção</a>
@@ -500,56 +499,56 @@ de operações de maneira intuitiva e sem a necessidade de variáveis
 temporárias.</p>
 <p>Para começar a utilizar o operador pipe, é necessário instalar e
 carregar o pacote <code>magrittr</code>.</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="pipe.html#cb134-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;magrittr&quot;</span>)</span>
-<span id="cb134-2"><a href="pipe.html#cb134-2" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="pipe.html#cb137-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;magrittr&quot;</span>)</span>
+<span id="cb137-2"><a href="pipe.html#cb137-2" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span></code></pre></div>
 <p>O operador pipe <code>%&gt;%</code> permite que o <strong>valor de uma expressão à esquerda seja passado como o primeiro argumento para a função à direita</strong>. Isso permite que o <strong>código seja lido de maneira sequencial, de cima para baixo, em vez de dentro para fora</strong>, o que facilita a compreensão do fluxo de dados. Por exemplo, considere o seguinte código em R sem o uso do pipe:</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="pipe.html#cb135-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
-<span id="cb135-2"><a href="pipe.html#cb135-2" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">sum</span>(x))</span>
-<span id="cb135-3"><a href="pipe.html#cb135-3" tabindex="-1"></a><span class="do">## [1] 3.16</span></span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="pipe.html#cb138-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb138-2"><a href="pipe.html#cb138-2" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">sum</span>(x))</span>
+<span id="cb138-3"><a href="pipe.html#cb138-3" tabindex="-1"></a><span class="do">## [1] 3.16</span></span></code></pre></div>
 <p>Com o operador pipe, o código pode ser reescrito de forma mais clara e
 legível:</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="pipe.html#cb136-1" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
-<span id="cb136-2"><a href="pipe.html#cb136-2" tabindex="-1"></a>x <span class="sc">%&gt;%</span> <span class="fu">sum</span>() <span class="sc">%&gt;%</span> <span class="fu">sqrt</span>()</span>
-<span id="cb136-3"><a href="pipe.html#cb136-3" tabindex="-1"></a><span class="do">## [1] 3.16</span></span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="pipe.html#cb139-1" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb139-2"><a href="pipe.html#cb139-2" tabindex="-1"></a>x <span class="sc">%&gt;%</span> <span class="fu">sum</span>() <span class="sc">%&gt;%</span> <span class="fu">sqrt</span>()</span>
+<span id="cb139-3"><a href="pipe.html#cb139-3" tabindex="-1"></a><span class="do">## [1] 3.16</span></span></code></pre></div>
 <p>Considere um exemplo onde queremos calcular a raiz quadrada da soma dos
 logaritmos dos valores absolutos de um vetor <code>x</code>:</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="pipe.html#cb137-1" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>(<span class="fu">log</span>(<span class="fu">abs</span>(x))))</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="pipe.html#cb140-1" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>(<span class="fu">log</span>(<span class="fu">abs</span>(x))))</span></code></pre></div>
 <p>Usando o operador pipe, o mesmo código pode ser reescrito de maneira
 mais clara:</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="pipe.html#cb138-1" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> x <span class="sc">%&gt;%</span> </span>
-<span id="cb138-2"><a href="pipe.html#cb138-2" tabindex="-1"></a>  <span class="fu">abs</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb138-3"><a href="pipe.html#cb138-3" tabindex="-1"></a>  <span class="fu">log</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb138-4"><a href="pipe.html#cb138-4" tabindex="-1"></a>  <span class="fu">sum</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb138-5"><a href="pipe.html#cb138-5" tabindex="-1"></a>  <span class="fu">sqrt</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="pipe.html#cb141-1" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> x <span class="sc">%&gt;%</span> </span>
+<span id="cb141-2"><a href="pipe.html#cb141-2" tabindex="-1"></a>  <span class="fu">abs</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb141-3"><a href="pipe.html#cb141-3" tabindex="-1"></a>  <span class="fu">log</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb141-4"><a href="pipe.html#cb141-4" tabindex="-1"></a>  <span class="fu">sum</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb141-5"><a href="pipe.html#cb141-5" tabindex="-1"></a>  <span class="fu">sqrt</span>()</span></code></pre></div>
 <p><strong>Uso do Ponto (.) no Pipe</strong></p>
 <p>Em alguns casos, o <strong>resultado do lado esquerdo do operador pipe deve ser passado para um argumento que não é o primeiro na função do lado direito</strong>. Para esses casos, usamos um ponto (.) como um marcador para indicar onde o valor deve ser inserido.</p>
 <p>Por exemplo, ao usar o pipe para construir um modelo linear com o
 conjunto de dados <code>airquality</code>, queremos que o dataset seja passado como
 o segundo argumento (<code>data =</code>) da função <code>lm()</code>:</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="pipe.html#cb139-1" tabindex="-1"></a>airquality <span class="sc">%&gt;%</span></span>
-<span id="cb139-2"><a href="pipe.html#cb139-2" tabindex="-1"></a>  <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span> <span class="co"># Remove valores ausentes</span></span>
-<span id="cb139-3"><a href="pipe.html#cb139-3" tabindex="-1"></a>  <span class="fu">lm</span>(Ozone <span class="sc">~</span> Wind <span class="sc">+</span> Temp <span class="sc">+</span> Solar.R, <span class="at">data =</span> .) <span class="sc">%&gt;%</span> <span class="co"># Cria o modelo linear</span></span>
-<span id="cb139-4"><a href="pipe.html#cb139-4" tabindex="-1"></a>  <span class="fu">summary</span>() <span class="co"># Gera o resumo do modelo</span></span>
-<span id="cb139-5"><a href="pipe.html#cb139-5" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb139-6"><a href="pipe.html#cb139-6" tabindex="-1"></a><span class="do">## Call:</span></span>
-<span id="cb139-7"><a href="pipe.html#cb139-7" tabindex="-1"></a><span class="do">## lm(formula = Ozone ~ Wind + Temp + Solar.R, data = .)</span></span>
-<span id="cb139-8"><a href="pipe.html#cb139-8" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb139-9"><a href="pipe.html#cb139-9" tabindex="-1"></a><span class="do">## Residuals:</span></span>
-<span id="cb139-10"><a href="pipe.html#cb139-10" tabindex="-1"></a><span class="do">##    Min     1Q Median     3Q    Max </span></span>
-<span id="cb139-11"><a href="pipe.html#cb139-11" tabindex="-1"></a><span class="do">## -40.48 -14.22  -3.55  10.10  95.62 </span></span>
-<span id="cb139-12"><a href="pipe.html#cb139-12" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb139-13"><a href="pipe.html#cb139-13" tabindex="-1"></a><span class="do">## Coefficients:</span></span>
-<span id="cb139-14"><a href="pipe.html#cb139-14" tabindex="-1"></a><span class="do">##             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span id="cb139-15"><a href="pipe.html#cb139-15" tabindex="-1"></a><span class="do">## (Intercept) -64.3421    23.0547   -2.79   0.0062 ** </span></span>
-<span id="cb139-16"><a href="pipe.html#cb139-16" tabindex="-1"></a><span class="do">## Wind         -3.3336     0.6544   -5.09  1.5e-06 ***</span></span>
-<span id="cb139-17"><a href="pipe.html#cb139-17" tabindex="-1"></a><span class="do">## Temp          1.6521     0.2535    6.52  2.4e-09 ***</span></span>
-<span id="cb139-18"><a href="pipe.html#cb139-18" tabindex="-1"></a><span class="do">## Solar.R       0.0598     0.0232    2.58   0.0112 *  </span></span>
-<span id="cb139-19"><a href="pipe.html#cb139-19" tabindex="-1"></a><span class="do">## ---</span></span>
-<span id="cb139-20"><a href="pipe.html#cb139-20" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
-<span id="cb139-21"><a href="pipe.html#cb139-21" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb139-22"><a href="pipe.html#cb139-22" tabindex="-1"></a><span class="do">## Residual standard error: 21.2 on 107 degrees of freedom</span></span>
-<span id="cb139-23"><a href="pipe.html#cb139-23" tabindex="-1"></a><span class="do">## Multiple R-squared:  0.606,  Adjusted R-squared:  0.595 </span></span>
-<span id="cb139-24"><a href="pipe.html#cb139-24" tabindex="-1"></a><span class="do">## F-statistic: 54.8 on 3 and 107 DF,  p-value: &lt;2e-16</span></span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="pipe.html#cb142-1" tabindex="-1"></a>airquality <span class="sc">%&gt;%</span></span>
+<span id="cb142-2"><a href="pipe.html#cb142-2" tabindex="-1"></a>  <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span> <span class="co"># Remove valores ausentes</span></span>
+<span id="cb142-3"><a href="pipe.html#cb142-3" tabindex="-1"></a>  <span class="fu">lm</span>(Ozone <span class="sc">~</span> Wind <span class="sc">+</span> Temp <span class="sc">+</span> Solar.R, <span class="at">data =</span> .) <span class="sc">%&gt;%</span> <span class="co"># Cria o modelo linear</span></span>
+<span id="cb142-4"><a href="pipe.html#cb142-4" tabindex="-1"></a>  <span class="fu">summary</span>() <span class="co"># Gera o resumo do modelo</span></span>
+<span id="cb142-5"><a href="pipe.html#cb142-5" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb142-6"><a href="pipe.html#cb142-6" tabindex="-1"></a><span class="do">## Call:</span></span>
+<span id="cb142-7"><a href="pipe.html#cb142-7" tabindex="-1"></a><span class="do">## lm(formula = Ozone ~ Wind + Temp + Solar.R, data = .)</span></span>
+<span id="cb142-8"><a href="pipe.html#cb142-8" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb142-9"><a href="pipe.html#cb142-9" tabindex="-1"></a><span class="do">## Residuals:</span></span>
+<span id="cb142-10"><a href="pipe.html#cb142-10" tabindex="-1"></a><span class="do">##    Min     1Q Median     3Q    Max </span></span>
+<span id="cb142-11"><a href="pipe.html#cb142-11" tabindex="-1"></a><span class="do">## -40.48 -14.22  -3.55  10.10  95.62 </span></span>
+<span id="cb142-12"><a href="pipe.html#cb142-12" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb142-13"><a href="pipe.html#cb142-13" tabindex="-1"></a><span class="do">## Coefficients:</span></span>
+<span id="cb142-14"><a href="pipe.html#cb142-14" tabindex="-1"></a><span class="do">##             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span id="cb142-15"><a href="pipe.html#cb142-15" tabindex="-1"></a><span class="do">## (Intercept) -64.3421    23.0547   -2.79   0.0062 ** </span></span>
+<span id="cb142-16"><a href="pipe.html#cb142-16" tabindex="-1"></a><span class="do">## Wind         -3.3336     0.6544   -5.09  1.5e-06 ***</span></span>
+<span id="cb142-17"><a href="pipe.html#cb142-17" tabindex="-1"></a><span class="do">## Temp          1.6521     0.2535    6.52  2.4e-09 ***</span></span>
+<span id="cb142-18"><a href="pipe.html#cb142-18" tabindex="-1"></a><span class="do">## Solar.R       0.0598     0.0232    2.58   0.0112 *  </span></span>
+<span id="cb142-19"><a href="pipe.html#cb142-19" tabindex="-1"></a><span class="do">## ---</span></span>
+<span id="cb142-20"><a href="pipe.html#cb142-20" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb142-21"><a href="pipe.html#cb142-21" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb142-22"><a href="pipe.html#cb142-22" tabindex="-1"></a><span class="do">## Residual standard error: 21.2 on 107 degrees of freedom</span></span>
+<span id="cb142-23"><a href="pipe.html#cb142-23" tabindex="-1"></a><span class="do">## Multiple R-squared:  0.606,  Adjusted R-squared:  0.595 </span></span>
+<span id="cb142-24"><a href="pipe.html#cb142-24" tabindex="-1"></a><span class="do">## F-statistic: 54.8 on 3 and 107 DF,  p-value: &lt;2e-16</span></span></code></pre></div>
 <p>Neste exemplo, o dataset <code>airquality</code> é pré-processado com <code>na.omit()</code>
 para remover os valores ausentes, e o resultado é usado como o argumento
 data na função <code>lm()</code> para criar um modelo linear. O pipe permite que
@@ -558,51 +557,51 @@ este fluxo de operações seja descrito de forma clara e linear.</p>
 <div id="exercícios-10" class="section level2 hasAnchor" number="10.2">
 <h2><span class="header-section-number">10.2</span> Exercícios<a href="#exerc%C3%ADcios-10" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>1.</strong> Reescreva a expressão abaixo utilizando o <code>%&gt;%</code>.</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="pipe.html#cb140-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">mean</span>(<span class="fu">sum</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)<span class="sc">/</span><span class="dv">3</span>), <span class="at">digits =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="pipe.html#cb143-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">mean</span>(<span class="fu">sum</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)<span class="sc">/</span><span class="dv">3</span>), <span class="at">digits =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p><strong>Dica</strong>: utilize a função <code>magrittr::divide_by()</code>. Veja o help da
 função para mais informações.</p>
 <p><strong>2.</strong> Reescreva o código abaixo utilizando o <code>%&gt;%</code>.</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="pipe.html#cb141-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
-<span id="cb141-2"><a href="pipe.html#cb141-2" tabindex="-1"></a></span>
-<span id="cb141-3"><a href="pipe.html#cb141-3" tabindex="-1"></a>x.pos <span class="ot">&lt;-</span> x[x<span class="sc">&gt;</span><span class="dv">0</span>]</span>
-<span id="cb141-4"><a href="pipe.html#cb141-4" tabindex="-1"></a></span>
-<span id="cb141-5"><a href="pipe.html#cb141-5" tabindex="-1"></a>media <span class="ot">&lt;-</span> <span class="fu">mean</span>(x.pos)</span>
-<span id="cb141-6"><a href="pipe.html#cb141-6" tabindex="-1"></a></span>
-<span id="cb141-7"><a href="pipe.html#cb141-7" tabindex="-1"></a>saida <span class="ot">&lt;-</span> <span class="fu">round</span>(media, <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="pipe.html#cb144-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb144-2"><a href="pipe.html#cb144-2" tabindex="-1"></a></span>
+<span id="cb144-3"><a href="pipe.html#cb144-3" tabindex="-1"></a>x.pos <span class="ot">&lt;-</span> x[x<span class="sc">&gt;</span><span class="dv">0</span>]</span>
+<span id="cb144-4"><a href="pipe.html#cb144-4" tabindex="-1"></a></span>
+<span id="cb144-5"><a href="pipe.html#cb144-5" tabindex="-1"></a>media <span class="ot">&lt;-</span> <span class="fu">mean</span>(x.pos)</span>
+<span id="cb144-6"><a href="pipe.html#cb144-6" tabindex="-1"></a></span>
+<span id="cb144-7"><a href="pipe.html#cb144-7" tabindex="-1"></a>saida <span class="ot">&lt;-</span> <span class="fu">round</span>(media, <span class="dv">2</span>)</span></code></pre></div>
 <p><strong>Dica</strong>: utilize a função <code>magrittr::extract()</code>. Veja o help da função
 para mais informações.</p>
 <p><strong>3.</strong> Sem executar, diga qual a saída do código abaixo. Consulte o help
 das funções caso precise.</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="pipe.html#cb142-1" tabindex="-1"></a><span class="dv">2</span> <span class="sc">%&gt;%</span></span>
-<span id="cb142-2"><a href="pipe.html#cb142-2" tabindex="-1"></a>  <span class="fu">add</span>(<span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb142-3"><a href="pipe.html#cb142-3" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">6</span>, <span class="cn">NA</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb142-4"><a href="pipe.html#cb142-4" tabindex="-1"></a>  <span class="fu">mean</span>(<span class="at">na.rm =</span> T) <span class="sc">%&gt;%</span></span>
-<span id="cb142-5"><a href="pipe.html#cb142-5" tabindex="-1"></a>  <span class="fu">equals</span>(<span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="pipe.html#cb145-1" tabindex="-1"></a><span class="dv">2</span> <span class="sc">%&gt;%</span></span>
+<span id="cb145-2"><a href="pipe.html#cb145-2" tabindex="-1"></a>  <span class="fu">add</span>(<span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb145-3"><a href="pipe.html#cb145-3" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">6</span>, <span class="cn">NA</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb145-4"><a href="pipe.html#cb145-4" tabindex="-1"></a>  <span class="fu">mean</span>(<span class="at">na.rm =</span> T) <span class="sc">%&gt;%</span></span>
+<span id="cb145-5"><a href="pipe.html#cb145-5" tabindex="-1"></a>  <span class="fu">equals</span>(<span class="dv">5</span>)</span></code></pre></div>
 <p><strong>4.</strong> Dado o dataset <code>mtcars</code>, selecione as colunas <code>mpg</code>, <code>hp</code>, e <code>wt</code>, filtre os carros com mais de 100 cavalos de potência (<code>hp &gt; 100</code>), e ordene-os pela coluna <code>wt</code> (peso) de forma crescente.</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="pipe.html#cb143-1" tabindex="-1"></a><span class="co"># Sem o operador pipe</span></span>
-<span id="cb143-2"><a href="pipe.html#cb143-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>)</span>
-<span id="cb143-3"><a href="pipe.html#cb143-3" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb143-4"><a href="pipe.html#cb143-4" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">arrange</span>(<span class="fu">filter</span>(<span class="fu">select</span>(mtcars, mpg, hp, wt), hp <span class="sc">&gt;</span> <span class="dv">100</span>), wt)</span>
-<span id="cb143-5"><a href="pipe.html#cb143-5" tabindex="-1"></a><span class="fu">print</span>(result)</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="pipe.html#cb146-1" tabindex="-1"></a><span class="co"># Sem o operador pipe</span></span>
+<span id="cb146-2"><a href="pipe.html#cb146-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>)</span>
+<span id="cb146-3"><a href="pipe.html#cb146-3" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb146-4"><a href="pipe.html#cb146-4" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">arrange</span>(<span class="fu">filter</span>(<span class="fu">select</span>(mtcars, mpg, hp, wt), hp <span class="sc">&gt;</span> <span class="dv">100</span>), wt)</span>
+<span id="cb146-5"><a href="pipe.html#cb146-5" tabindex="-1"></a><span class="fu">print</span>(result)</span></code></pre></div>
 <p>Reescreva o código acima usando o operador pipe (<code>%&gt;%</code>).</p>
 <p><strong>5.</strong> Dado o dataset <code>iris</code>, filtre as linhas onde <code>Sepal.Length</code> seja maior que 5, selecione as colunas <code>Sepal.Length</code> e <code>Species</code>, e depois calcule a média de <code>Sepal.Length</code> para cada espécie.</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="pipe.html#cb144-1" tabindex="-1"></a><span class="co"># Sem o operador pipe</span></span>
-<span id="cb144-2"><a href="pipe.html#cb144-2" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(Sepal.Length <span class="sc">~</span> Species, <span class="at">data =</span> <span class="fu">select</span>(<span class="fu">filter</span>(iris, Sepal.Length <span class="sc">&gt;</span> <span class="dv">5</span>), Sepal.Length, Species), mean)</span>
-<span id="cb144-3"><a href="pipe.html#cb144-3" tabindex="-1"></a><span class="fu">print</span>(result)</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="pipe.html#cb147-1" tabindex="-1"></a><span class="co"># Sem o operador pipe</span></span>
+<span id="cb147-2"><a href="pipe.html#cb147-2" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(Sepal.Length <span class="sc">~</span> Species, <span class="at">data =</span> <span class="fu">select</span>(<span class="fu">filter</span>(iris, Sepal.Length <span class="sc">&gt;</span> <span class="dv">5</span>), Sepal.Length, Species), mean)</span>
+<span id="cb147-3"><a href="pipe.html#cb147-3" tabindex="-1"></a><span class="fu">print</span>(result)</span></code></pre></div>
 <p>Reescreva o código acima usando o operador pipe (<code>%&gt;%</code>).</p>
 <p><strong>6.</strong> Utilizando o dataset <code>airquality</code>, remova as linhas que contêm valores ausentes (<code>NA</code>), selecione as colunas <code>Ozone</code> e <code>Wind</code>, e calcule a média de <code>Ozone</code> para valores onde <code>Wind</code> é maior que 10.</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="pipe.html#cb145-1" tabindex="-1"></a><span class="co"># Sem o operador pipe</span></span>
-<span id="cb145-2"><a href="pipe.html#cb145-2" tabindex="-1"></a>cleaned_data <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(airquality)</span>
-<span id="cb145-3"><a href="pipe.html#cb145-3" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> <span class="fu">filter</span>(cleaned_data, Wind <span class="sc">&gt;</span> <span class="dv">10</span>)</span>
-<span id="cb145-4"><a href="pipe.html#cb145-4" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">mean</span>(filtered_data<span class="sc">$</span>Ozone)</span>
-<span id="cb145-5"><a href="pipe.html#cb145-5" tabindex="-1"></a><span class="fu">print</span>(result)</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="pipe.html#cb148-1" tabindex="-1"></a><span class="co"># Sem o operador pipe</span></span>
+<span id="cb148-2"><a href="pipe.html#cb148-2" tabindex="-1"></a>cleaned_data <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(airquality)</span>
+<span id="cb148-3"><a href="pipe.html#cb148-3" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> <span class="fu">filter</span>(cleaned_data, Wind <span class="sc">&gt;</span> <span class="dv">10</span>)</span>
+<span id="cb148-4"><a href="pipe.html#cb148-4" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">mean</span>(filtered_data<span class="sc">$</span>Ozone)</span>
+<span id="cb148-5"><a href="pipe.html#cb148-5" tabindex="-1"></a><span class="fu">print</span>(result)</span></code></pre></div>
 <p>Reescreva o código acima usando o operador pipe (<code>%&gt;%</code>). Dica: use a função <code>summarise()</code>.</p>
 <p><strong>7.</strong> Dado o dataset <code>mtcars</code>, crie uma nova coluna chamada <code>hp_per_wt</code> que seja a razão entre <code>hp</code> e <code>wt</code>. Em seguida, filtre os carros com essa razão maior que 30, e selecione as colunas <code>mpg</code>, <code>hp_per_wt</code>, e <code>gear</code>.</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="pipe.html#cb146-1" tabindex="-1"></a><span class="co"># Sem o operador pipe</span></span>
-<span id="cb146-2"><a href="pipe.html#cb146-2" tabindex="-1"></a>mtcars<span class="sc">$</span>hp_per_wt <span class="ot">&lt;-</span> mtcars<span class="sc">$</span>hp <span class="sc">/</span> mtcars<span class="sc">$</span>wt</span>
-<span id="cb146-3"><a href="pipe.html#cb146-3" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> <span class="fu">filter</span>(mtcars, hp_per_wt <span class="sc">&gt;</span> <span class="dv">30</span>)</span>
-<span id="cb146-4"><a href="pipe.html#cb146-4" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">select</span>(filtered_data, mpg, hp_per_wt, gear)</span>
-<span id="cb146-5"><a href="pipe.html#cb146-5" tabindex="-1"></a><span class="fu">print</span>(result)</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="pipe.html#cb149-1" tabindex="-1"></a><span class="co"># Sem o operador pipe</span></span>
+<span id="cb149-2"><a href="pipe.html#cb149-2" tabindex="-1"></a>mtcars<span class="sc">$</span>hp_per_wt <span class="ot">&lt;-</span> mtcars<span class="sc">$</span>hp <span class="sc">/</span> mtcars<span class="sc">$</span>wt</span>
+<span id="cb149-3"><a href="pipe.html#cb149-3" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> <span class="fu">filter</span>(mtcars, hp_per_wt <span class="sc">&gt;</span> <span class="dv">30</span>)</span>
+<span id="cb149-4"><a href="pipe.html#cb149-4" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">select</span>(filtered_data, mpg, hp_per_wt, gear)</span>
+<span id="cb149-5"><a href="pipe.html#cb149-5" tabindex="-1"></a><span class="fu">print</span>(result)</span></code></pre></div>
 <p>Reescreva o código acima usando o operador pipe (<code>%&gt;%</code>). Dica: use a função <code>mutate()</code>.</p>
 </div>
 </div>

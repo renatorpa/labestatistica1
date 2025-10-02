@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Renato de Paula" />
 
 
-<meta name="date" content="2025-09-30" />
+<meta name="date" content="2025-10-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -235,8 +235,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#listas"><i class="fa fa-check"></i><b>5.5</b> Listas</a>
 <ul>
 <li class="chapter" data-level="5.5.1" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#criar-e-manipular-listas"><i class="fa fa-check"></i><b>5.5.1</b> Criar e Manipular Listas</a></li>
-<li class="chapter" data-level="5.5.2" data-path="estrutura-de-dados-básicas.html"><a href="estrutura-de-dados-básicas.html#por-que-usar-listas"><i class="fa fa-check"></i><b>5.5.2</b> Por que usar listas?</a></li>
-<li class="chapter" data-level="5.5.3" data-path="01-intro.html"><a href="#exerc%C3%ADcios-5"><i class="fa fa-check"></i><b>5.5.3</b> Exercícios</a></li>
+<li class="chapter" data-level="5.5.2" data-path="01-intro.html"><a href="#exerc%C3%ADcios-5"><i class="fa fa-check"></i><b>5.5.2</b> Exercícios</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="01-intro.html"><a href="#estruturas-de-sele%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>6</b> Estruturas de Seleção</a>
@@ -486,7 +485,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Capítulo 27</span> Relatórios<a href="#relat%C3%B3rios" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Com a ajuda do R Markdown, uma interface de anotações que combina texto livre com códigos em R, podemos construir relatórios não só reprodutíveis, mas elegantemente bem formatados, sem sair do R!</p>
 <p>Antes de mais nada, vamos instalar os pacotes <code>{rmarkdown}</code> e <code>{knitr}</code>. O primeiro reúne todas as funcionalidades para juntar nossos textos narrativos e códigos de R. O segundo vai fazer a magia de transformar nossos simples arquivos de texto em arquivos HTML, PDF e Word (.doc).</p>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="relatórios.html#cb388-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;rmarkdown&quot;</span>, <span class="st">&quot;knitr&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="relatórios.html#cb391-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;rmarkdown&quot;</span>, <span class="st">&quot;knitr&quot;</span>))</span></code></pre></div>
 <p>Nas seções a seguir, vamos mostrar como começar a utilizar o R Markdown para criar esses documentos. Não se esqueça de conferir (e deixar por perto) as folhas de cola sobre R Markdown:</p>
 <p>…</p>
 <div id="markdown" class="section level2 hasAnchor" number="27.1">
@@ -702,8 +701,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>library(dados)
 mean(pinguins$massa_corporal, na.rm = TRUE)</code></pre>
 <p>Como o código aparece no relatório</p>
-<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="relatórios.html#cb390-1" tabindex="-1"></a><span class="fu">library</span>(dados)</span>
-<span id="cb390-2"><a href="relatórios.html#cb390-2" tabindex="-1"></a><span class="fu">mean</span>(pinguins<span class="sc">$</span>massa_corporal, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="relatórios.html#cb393-1" tabindex="-1"></a><span class="fu">library</span>(dados)</span>
+<span id="cb393-2"><a href="relatórios.html#cb393-2" tabindex="-1"></a><span class="fu">mean</span>(pinguins<span class="sc">$</span>massa_corporal, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 <div id="links" class="section level3 hasAnchor" number="27.1.6">
 <h3><span class="header-section-number">27.1.6</span> Links<a href="relatórios.html#links" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -758,10 +757,10 @@ mean(pinguins$massa_corporal, na.rm = TRUE)</code></pre>
 <p>As tabelas em Markdown têm uma estrutura definida, como mostra o exemplo abaixo.</p>
 <p>É possível usar ferramentas online para gerar tabelas em Markdown, como por exemplo o <a href="https://www.tablesgenerator.com/markdown_tables">Tables Generator</a>.</p>
 <p>Em Markdown:</p>
-<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="relatórios.html#cb391-1" tabindex="-1"></a><span class="sc">|</span> a  <span class="sc">|</span> b  <span class="sc">|</span> c  <span class="sc">|</span></span>
-<span id="cb391-2"><a href="relatórios.html#cb391-2" tabindex="-1"></a><span class="er">|:</span><span class="sc">--</span><span class="er">:|:</span><span class="sc">--</span><span class="er">:|:</span><span class="sc">--</span><span class="er">:|</span></span>
-<span id="cb391-3"><a href="relatórios.html#cb391-3" tabindex="-1"></a><span class="er">|</span> <span class="dv">1</span>  <span class="sc">|</span> <span class="dv">2</span>  <span class="sc">|</span> <span class="dv">3</span>  <span class="sc">|</span></span>
-<span id="cb391-4"><a href="relatórios.html#cb391-4" tabindex="-1"></a><span class="er">|</span> <span class="dv">2</span>  <span class="sc">|</span> <span class="dv">3</span>  <span class="sc">|</span> <span class="dv">4</span>  <span class="sc">|</span></span></code></pre></div>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="relatórios.html#cb394-1" tabindex="-1"></a><span class="sc">|</span> a  <span class="sc">|</span> b  <span class="sc">|</span> c  <span class="sc">|</span></span>
+<span id="cb394-2"><a href="relatórios.html#cb394-2" tabindex="-1"></a><span class="er">|:</span><span class="sc">--</span><span class="er">:|:</span><span class="sc">--</span><span class="er">:|:</span><span class="sc">--</span><span class="er">:|</span></span>
+<span id="cb394-3"><a href="relatórios.html#cb394-3" tabindex="-1"></a><span class="er">|</span> <span class="dv">1</span>  <span class="sc">|</span> <span class="dv">2</span>  <span class="sc">|</span> <span class="dv">3</span>  <span class="sc">|</span></span>
+<span id="cb394-4"><a href="relatórios.html#cb394-4" tabindex="-1"></a><span class="er">|</span> <span class="dv">2</span>  <span class="sc">|</span> <span class="dv">3</span>  <span class="sc">|</span> <span class="dv">4</span>  <span class="sc">|</span></span></code></pre></div>
 <p>Resultado:</p>
 <table>
 <thead>
