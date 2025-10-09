@@ -125,7 +125,7 @@
 
 \title{Introdução ao R e Simulação}
 \author{Renato de Paula}
-\date{2025-10-03}
+\date{2025-10-09}
 
 \begin{document}
 \maketitle
@@ -5044,7 +5044,55 @@ Neste exemplo, url contém o endereço do ficheiro CSV na web, e
 
 \section{Exercícios}\label{exercuxedcios-9}
 
-\textbf{1.} Faça a leitura do ficheiro \texttt{dados\_instagram} \href{https://renatorpaula.wixsite.com/renato/laboratorio-estatistica}{aqui} e responda às perguntas abaixo (lembre de instalar o pacote \texttt{readxl}):
+\textbf{1.} Um instituto de climatologia registou temperaturas mínimas e máximas durante 3 dias. Os dados estão no ficheiro \href{docs/temperaturas.txt}{Descarregar dados} com separador de tabulação e cabeçalho.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Use \texttt{read.table()} para ler ``temperaturas.txt''.
+\item
+  Visualize as 6 primeiras linhas com \texttt{head()}.
+\item
+  Qual foi a temperatura máxima no segundo dia?
+\end{enumerate}
+
+\textbf{2.} Um ficheiro .csv exportado de um sistema português contém despesas e receitas mensais \href{docs/financas.csv}{Descarregar dados}. Os valores usam vírgula como separador decimal e ponto e vírgula como separador de campos.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Importe os dados com \texttt{read.csv2()}.
+\item
+  Calcule a soma total das receitas.
+\item
+  Crie uma coluna \texttt{saldo\ =\ receitas\ -\ despesas}.
+\end{enumerate}
+
+\textbf{3.} Um laboratório gerou um ficheiro sem cabeçalho com 4 colunas: experimento, tempo, concentração e erro. Os dados estão separados por espaços. \href{docs/resultados_lab.txt}{Descarregar dados}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Leia os dados com \texttt{read.table(...,\ header\ =\ FALSE)}.
+\item
+  Atribua nomes às colunas: ``experimento'', ``tempo'', ``concentracao'', ``erro''.
+\item
+  Qual a concentração do 5.º experimento?
+\end{enumerate}
+
+\textbf{4.} Um ficheiro .csv contém uma entrada incorreta na coluna \texttt{salario} (``quatro mil''). Isso causa erro ao tentar interpretar a coluna como numérica. \href{docs/dados_com_erros.csv}{Descarregar dados}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Importe com \texttt{read.csv()} e verifique a classe da coluna salario.
+\item
+  Use \texttt{stringsAsFactors\ =\ FALSE} para evitar conversão automática.
+\item
+  Corrija os dados manualmente e converta salario em numeric.
+\end{enumerate}
+
+\textbf{5.} Faça a leitura do ficheiro \texttt{dados\_instagram} \href{https://renatorpaula.wixsite.com/renato/laboratorio-estatistica}{aqui} e responda às perguntas abaixo (lembre de instalar o pacote \texttt{readxl}):
 
 \begin{enumerate}
 \def\labelenumi{(\alph{enumi})}
@@ -5093,7 +5141,7 @@ Neste exemplo, url contém o endereço do ficheiro CSV na web, e
 \def\labelenumi{(\alph{enumi})}
 \setcounter{enumi}{2}
 \item
-  \textbf{Visualização gráfica}: Crie representações gráficas adequadas para cada variável. Considere o uso de histogramas, gráficos de barras, boxplots\ldots, conforme o tipo de variável.
+  \textbf{Visualização gráfica}: Crie representações gráficas adequadas para cada variável. Considere o uso de histogramas \texttt{hist()}, gráficos de barras \texttt{barplot()}, boxplots \texttt{boxplot()}, conforme o tipo de variável.
 \item
   \textbf{Cálculo de medidas descritivas}: Determine as principais medidas descritivas para cada variável, incluindo média, mediana, variância, desvio padrão, coeficiente de variação, primeiro e terceiro quartis (\(Q_1\) e \(Q_3\)), amplitude e amplitude interquartil. Indique quando essas medidas não forem aplicáveis.
 \item
@@ -5107,10 +5155,10 @@ Neste exemplo, url contém o endereço do ficheiro CSV na web, e
 \item
   \textbf{Identificação de outliers}: Investigue a presença de outliers nas variáveis ``número de publicações'', ``número de seguidores'' e ``média de likes''.
 \item
-  \textbf{Correlação entre ``índice de influência'' e ``média de likes''}: Calcule a correlação entre as variáveis ``índice de influência'' e ``média de likes''. Comente sobre a relação entre essas duas variáveis, discutindo se um alto índice de influência tende a estar associado a uma média maior de curtidas.
+  \textbf{Correlação entre ``índice de influência'' e ``média de likes''}: Calcule a correlação entre as variáveis ``índice de influência'' e ``média de likes''. Comente sobre a relação entre essas duas variáveis, discutindo se um alto índice de influência tende a estar associado a uma média maior de curtidas. Dica: use \texttt{cor()}.
 \end{enumerate}
 
-\textbf{2.} Importe o ficheiro \texttt{dataset.csv} \href{https://renatorpaula.wixsite.com/renato/laboratorio-estatistica}{aqui} no R e salve-o como um data frame. Em seguida:
+\textbf{6.} Importe o ficheiro \texttt{dataset.csv} \href{https://renatorpaula.wixsite.com/renato/laboratorio-estatistica}{aqui} no R e salve-o como um data frame. Em seguida:
 
 \begin{enumerate}
 \def\labelenumi{(\alph{enumi})}

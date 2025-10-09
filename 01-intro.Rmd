@@ -4025,7 +4025,39 @@ Neste exemplo, url contém o endereço do ficheiro CSV na web, e
 
 ## Exercícios
 
-**1.** Faça a leitura do ficheiro `dados_instagram` [aqui](https://renatorpaula.wixsite.com/renato/laboratorio-estatistica) e responda às perguntas abaixo (lembre de instalar o pacote `readxl`):
+**1.** Um instituto de climatologia registou temperaturas mínimas e máximas durante 3 dias. Os dados estão no ficheiro [Descarregar dados](docs/temperaturas.txt) com separador de tabulação e cabeçalho.
+
+(a) Use `read.table()` para ler "temperaturas.txt".
+
+(b) Visualize as 6 primeiras linhas com `head()`.
+
+(c) Qual foi a temperatura máxima no segundo dia?
+
+**2.** Um ficheiro .csv exportado de um sistema português contém despesas e receitas mensais [Descarregar dados](docs/financas.csv). Os valores usam vírgula como separador decimal e ponto e vírgula como separador de campos.
+
+(a) Importe os dados com `read.csv2()`.
+
+(b) Calcule a soma total das receitas.
+
+(c) Crie uma coluna `saldo = receitas - despesas`.
+
+**3.** Um laboratório gerou um ficheiro sem cabeçalho com 4 colunas: experimento, tempo, concentração e erro. Os dados estão separados por espaços. [Descarregar dados](docs/resultados_lab.txt)
+
+(a) Leia os dados com `read.table(..., header = FALSE)`.
+
+(b) Atribua nomes às colunas: "experimento", "tempo", "concentracao", "erro".
+
+(c) Qual a concentração do 5.º experimento?
+
+**4.** Um ficheiro .csv contém uma entrada incorreta na coluna `salario` (“quatro mil”). Isso causa erro ao tentar interpretar a coluna como numérica. [Descarregar dados](docs/dados_com_erros.csv) 
+
+(a) Importe com `read.csv()` e verifique a classe da coluna salario.
+
+(b) Use `stringsAsFactors = FALSE` para evitar conversão automática.
+
+(c) Corrija os dados manualmente e converta salario em numeric.
+
+**5.** Faça a leitura do ficheiro `dados_instagram` [aqui](https://renatorpaula.wixsite.com/renato/laboratorio-estatistica) e responda às perguntas abaixo (lembre de instalar o pacote `readxl`):
 
 (a) Exiba as primeiras 6 linhas do dataset:
 
@@ -4064,7 +4096,7 @@ tabela_frequencia_if_df$Freq_Abs_Acum <- cumsum(tabela_frequencia_if_df$Frequenc
 tabela_frequencia_if_df$Freq_Rela_Acum <- cumsum(tabela_frequencia_if_df$Freq_Relativa)
 ```
 
-(c) **Visualização gráfica**: Crie representações gráficas adequadas para cada variável. Considere o uso de histogramas, gráficos de barras, boxplots..., conforme o tipo de variável.
+(c) **Visualização gráfica**: Crie representações gráficas adequadas para cada variável. Considere o uso de histogramas `hist()`, gráficos de barras `barplot()`, boxplots `boxplot()`, conforme o tipo de variável.
 
 (d) **Cálculo de medidas descritivas**: Determine as principais medidas descritivas para cada variável, incluindo média, mediana, variância, desvio padrão, coeficiente de variação, primeiro e terceiro quartis ($Q_1$ e $Q_3$), amplitude e amplitude interquartil. Indique quando essas medidas não forem aplicáveis.
 
@@ -4078,9 +4110,9 @@ tabela_frequencia_if_df$Freq_Rela_Acum <- cumsum(tabela_frequencia_if_df$Freq_Re
 
 (i) **Identificação de outliers**: Investigue a presença de outliers nas variáveis “número de publicações”, “número de seguidores” e “média de likes”.
 
-(j) **Correlação entre “índice de influência” e “média de likes”**: Calcule a correlação entre as variáveis “índice de influência” e “média de likes”. Comente sobre a relação entre essas duas variáveis, discutindo se um alto índice de influência tende a estar associado a uma média maior de curtidas.
+(j) **Correlação entre “índice de influência” e “média de likes”**: Calcule a correlação entre as variáveis “índice de influência” e “média de likes”. Comente sobre a relação entre essas duas variáveis, discutindo se um alto índice de influência tende a estar associado a uma média maior de curtidas. Dica: use `cor()`.
 
-**2.** Importe o ficheiro `dataset.csv` [aqui](https://renatorpaula.wixsite.com/renato/laboratorio-estatistica) no R e salve-o como um data frame. Em seguida:
+**6.** Importe o ficheiro `dataset.csv` [aqui](https://renatorpaula.wixsite.com/renato/laboratorio-estatistica) no R e salve-o como um data frame. Em seguida:
 
 (a) Exiba as primeiras 6 linhas do dataset.
 
