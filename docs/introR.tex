@@ -125,7 +125,7 @@
 
 \title{Introdução ao R e Simulação}
 \author{Renato de Paula}
-\date{2025-10-09}
+\date{2025-10-10}
 
 \begin{document}
 \maketitle
@@ -5054,6 +5054,8 @@ Neste exemplo, url contém o endereço do ficheiro CSV na web, e
   Visualize as 6 primeiras linhas com \texttt{head()}.
 \item
   Qual foi a temperatura máxima no segundo dia?
+\item
+  Cria uma nova coluna \texttt{diferenca\_temp} com a diferença entre a temperatura máxima e a mínima. Salve o resultado num ficheiro \texttt{temperaturas\_nova.txt}. Dica: use \texttt{write.table(x=\ ,\ file=\ ,\ row.names=\ )}.
 \end{enumerate}
 
 \textbf{2.} Um ficheiro .csv exportado de um sistema português contém despesas e receitas mensais \href{docs/financas.csv}{Descarregar dados}. Os valores usam vírgula como separador decimal e ponto e vírgula como separador de campos.
@@ -5066,6 +5068,8 @@ Neste exemplo, url contém o endereço do ficheiro CSV na web, e
   Calcule a soma total das receitas.
 \item
   Crie uma coluna \texttt{saldo\ =\ receitas\ -\ despesas}.
+\item
+  Salve o resultado num ficheiro \texttt{financas\_nova.csv}. Dica: use \texttt{write.csv(x=\ ,\ file=\ ,\ row.names=\ )}.
 \end{enumerate}
 
 \textbf{3.} Um laboratório gerou um ficheiro sem cabeçalho com 4 colunas: experimento, tempo, concentração e erro. Os dados estão separados por espaços. \href{docs/resultados_lab.txt}{Descarregar dados}
@@ -5086,8 +5090,6 @@ Neste exemplo, url contém o endereço do ficheiro CSV na web, e
 \def\labelenumi{(\alph{enumi})}
 \item
   Importe com \texttt{read.csv()} e verifique a classe da coluna salario.
-\item
-  Use \texttt{stringsAsFactors\ =\ FALSE} para evitar conversão automática.
 \item
   Corrija os dados manualmente e converta salario em numeric.
 \end{enumerate}

@@ -4033,6 +4033,8 @@ Neste exemplo, url contém o endereço do ficheiro CSV na web, e
 
 (c) Qual foi a temperatura máxima no segundo dia?
 
+(d) Cria uma nova coluna `diferenca_temp` com a diferença entre a temperatura máxima e a mínima. Salve o resultado num ficheiro `temperaturas_nova.txt`. Dica: use `write.table(x= , file= , row.names= )`.
+
 **2.** Um ficheiro .csv exportado de um sistema português contém despesas e receitas mensais [Descarregar dados](docs/financas.csv). Os valores usam vírgula como separador decimal e ponto e vírgula como separador de campos.
 
 (a) Importe os dados com `read.csv2()`.
@@ -4040,6 +4042,8 @@ Neste exemplo, url contém o endereço do ficheiro CSV na web, e
 (b) Calcule a soma total das receitas.
 
 (c) Crie uma coluna `saldo = receitas - despesas`.
+
+(d) Salve o resultado num ficheiro `financas_nova.csv`. Dica: use `write.csv(x= , file= , row.names= )`.
 
 **3.** Um laboratório gerou um ficheiro sem cabeçalho com 4 colunas: experimento, tempo, concentração e erro. Os dados estão separados por espaços. [Descarregar dados](docs/resultados_lab.txt)
 
@@ -4053,9 +4057,7 @@ Neste exemplo, url contém o endereço do ficheiro CSV na web, e
 
 (a) Importe com `read.csv()` e verifique a classe da coluna salario.
 
-(b) Use `stringsAsFactors = FALSE` para evitar conversão automática.
-
-(c) Corrija os dados manualmente e converta salario em numeric.
+(b) Corrija os dados manualmente e converta salario em numeric.
 
 **5.** Faça a leitura do ficheiro `dados_instagram` [aqui](https://renatorpaula.wixsite.com/renato/laboratorio-estatistica) e responda às perguntas abaixo (lembre de instalar o pacote `readxl`):
 
@@ -4098,7 +4100,7 @@ tabela_frequencia_if_df$Freq_Rela_Acum <- cumsum(tabela_frequencia_if_df$Freq_Re
 
 (c) **Visualização gráfica**: Crie representações gráficas adequadas para cada variável. Considere o uso de histogramas `hist()`, gráficos de barras `barplot()`, boxplots `boxplot()`, conforme o tipo de variável.
 
-(d) **Cálculo de medidas descritivas**: Determine as principais medidas descritivas para cada variável, incluindo média, mediana, variância, desvio padrão, coeficiente de variação, primeiro e terceiro quartis ($Q_1$ e $Q_3$), amplitude e amplitude interquartil. Indique quando essas medidas não forem aplicáveis.
+(d) **Cálculo de medidas descritivas**: Determine as principais medidas descritivas para cada variável, incluindo média, mediana, variância, desvio padrão, coeficiente de variação, primeiro e terceiro quartis ($Q_1$ e $Q_3$), amplitude e amplitude interquartil. Indique quando essas medidas não forem aplicáveis. 
 
 (e) Calcule a média e a mediana do “índice de influência” para cada género. Comente sobre as diferenças entre os géneros e discuta se os resultados podem sugerir tendências distintas de influência entre eles.
 

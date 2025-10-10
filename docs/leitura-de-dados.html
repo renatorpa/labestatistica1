@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Renato de Paula" />
 
 
-<meta name="date" content="2025-10-09" />
+<meta name="date" content="2025-10-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -675,12 +675,14 @@ do ficheiro) para importar dados diretamente de um link online.</p>
 <li><p>Use <code>read.table()</code> para ler “temperaturas.txt”.</p></li>
 <li><p>Visualize as 6 primeiras linhas com <code>head()</code>.</p></li>
 <li><p>Qual foi a temperatura máxima no segundo dia?</p></li>
+<li><p>Cria uma nova coluna <code>diferenca_temp</code> com a diferença entre a temperatura máxima e a mínima. Salve o resultado num ficheiro <code>temperaturas_nova.txt</code>. Dica: use <code>write.table(x= , file= , row.names= )</code>.</p></li>
 </ol>
 <p><strong>2.</strong> Um ficheiro .csv exportado de um sistema português contém despesas e receitas mensais <a href="docs/financas.csv">Descarregar dados</a>. Os valores usam vírgula como separador decimal e ponto e vírgula como separador de campos.</p>
 <ol style="list-style-type: lower-alpha">
 <li><p>Importe os dados com <code>read.csv2()</code>.</p></li>
 <li><p>Calcule a soma total das receitas.</p></li>
 <li><p>Crie uma coluna <code>saldo = receitas - despesas</code>.</p></li>
+<li><p>Salve o resultado num ficheiro <code>financas_nova.csv</code>. Dica: use <code>write.csv(x= , file= , row.names= )</code>.</p></li>
 </ol>
 <p><strong>3.</strong> Um laboratório gerou um ficheiro sem cabeçalho com 4 colunas: experimento, tempo, concentração e erro. Os dados estão separados por espaços. <a href="docs/resultados_lab.txt">Descarregar dados</a></p>
 <ol style="list-style-type: lower-alpha">
@@ -691,7 +693,6 @@ do ficheiro) para importar dados diretamente de um link online.</p>
 <p><strong>4.</strong> Um ficheiro .csv contém uma entrada incorreta na coluna <code>salario</code> (“quatro mil”). Isso causa erro ao tentar interpretar a coluna como numérica. <a href="docs/dados_com_erros.csv">Descarregar dados</a></p>
 <ol style="list-style-type: lower-alpha">
 <li><p>Importe com <code>read.csv()</code> e verifique a classe da coluna salario.</p></li>
-<li><p>Use <code>stringsAsFactors = FALSE</code> para evitar conversão automática.</p></li>
 <li><p>Corrija os dados manualmente e converta salario em numeric.</p></li>
 </ol>
 <p><strong>5.</strong> Faça a leitura do ficheiro <code>dados_instagram</code> <a href="https://renatorpaula.wixsite.com/renato/laboratorio-estatistica">aqui</a> e responda às perguntas abaixo (lembre de instalar o pacote <code>readxl</code>):</p>
