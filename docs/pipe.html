@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Renato de Paula" />
 
 
-<meta name="date" content="2025-10-10" />
+<meta name="date" content="2025-10-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -595,14 +595,14 @@ das funções caso precise.</p>
 <span id="cb148-3"><a href="pipe.html#cb148-3" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> <span class="fu">filter</span>(cleaned_data, Wind <span class="sc">&gt;</span> <span class="dv">10</span>)</span>
 <span id="cb148-4"><a href="pipe.html#cb148-4" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">mean</span>(filtered_data<span class="sc">$</span>Ozone)</span>
 <span id="cb148-5"><a href="pipe.html#cb148-5" tabindex="-1"></a><span class="fu">print</span>(result)</span></code></pre></div>
-<p>Reescreva o código acima usando o operador pipe (<code>%&gt;%</code>). Dica: use a função <code>summarise()</code>.</p>
+<p>Reescreva o código acima usando o operador pipe (<code>%&gt;%</code>). Dica: use a função <code>summarise()</code> para calcular a média.</p>
 <p><strong>7.</strong> Dado o dataset <code>mtcars</code>, crie uma nova coluna chamada <code>hp_per_wt</code> que seja a razão entre <code>hp</code> e <code>wt</code>. Em seguida, filtre os carros com essa razão maior que 30, e selecione as colunas <code>mpg</code>, <code>hp_per_wt</code>, e <code>gear</code>.</p>
 <div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="pipe.html#cb149-1" tabindex="-1"></a><span class="co"># Sem o operador pipe</span></span>
 <span id="cb149-2"><a href="pipe.html#cb149-2" tabindex="-1"></a>mtcars<span class="sc">$</span>hp_per_wt <span class="ot">&lt;-</span> mtcars<span class="sc">$</span>hp <span class="sc">/</span> mtcars<span class="sc">$</span>wt</span>
 <span id="cb149-3"><a href="pipe.html#cb149-3" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> <span class="fu">filter</span>(mtcars, hp_per_wt <span class="sc">&gt;</span> <span class="dv">30</span>)</span>
 <span id="cb149-4"><a href="pipe.html#cb149-4" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">select</span>(filtered_data, mpg, hp_per_wt, gear)</span>
 <span id="cb149-5"><a href="pipe.html#cb149-5" tabindex="-1"></a><span class="fu">print</span>(result)</span></code></pre></div>
-<p>Reescreva o código acima usando o operador pipe (<code>%&gt;%</code>). Dica: use a função <code>mutate()</code>.</p>
+<p>Reescreva o código acima usando o operador pipe (<code>%&gt;%</code>). Dica: use a função <code>mutate()</code> para criar a nova coluna.</p>
 </div>
 </div>
             </section>
