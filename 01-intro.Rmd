@@ -5124,40 +5124,162 @@ data(mtcars)
 
 # Exercícios de Revisão
 
-**1** Um pesquisador está a analisar os resultados de uma pesquisa que avalia a satisfação de clientes com diferentes serviços. Ele quer calcular a média de satisfação de cada cliente e classificar os clientes em satisfeitos ou insatisfeitos.
+**1** Um pesquisador está a analisar os resultados de uma pesquisa que avalia a satisfação de clientes com três diferentes serviços (A, B e C). Abaixo estão os dados recolhidos, em que cada linha representa um cliente e cada coluna indica a pontuação (de 1 a 10) atribuída a cada serviço:
 
-* Crie um data frame chamado `satisfacao` com 10 linhas (clientes) e 3 colunas (representando os serviços).
-* Preencha o data frame com valores aleatórios entre 1 e 10.
-* Escreva uma função chamada `calcula_media` que receba o data frame e calcule a média de satisfação para cada cliente. Adicione uma coluna ao data frame com a média de satisfação.
-* Utilize um loop `for` para percorrer as médias e classificar cada cliente como “Satisfeito” (média >= 7) ou “Insatisfeito” (média < 7), usando a estrutura `if-else`. Adicione uma coluna ao data frame com o grau de satisfação.
+```{r eval=FALSE}
+satisfacao <- data.frame(
+  servico_A = c(8, 5, 9, 6, 7, 4, 10, 6, 3, 7),
+  servico_B = c(7, 6, 8, 5, 8, 5, 9, 7, 4, 6),
+  servico_C = c(9, 4, 10, 6, 6, 3, 10, 5, 5, 8)
+)
+```
 
-**2.** Uma empresa registou o número de tarefas realizadas por 15 funcionários durante 5 dias. A empresa quer saber quem atingiu a meta diária de 20 tarefas.
+(a) Escreva uma função chamada `calcula_media()` que receba o data frame `satisfacao` e devolva um vetor com a média de satisfação de cada cliente (média das 3 colunas).
 
-* Crie um data frame chamado `tarefa_funcionarios` com 15 linhas (funcionários) e 5 colunas (dias).
-* Preencha o data frame com valores aleatórios entre 10 e 30, representando o número de tarefas concluídas por dia.
-* Escreva uma função chamada `verifica_meta` que receba o data frame e verifique, para cada funcionário, se ele atingiu a meta de 20 tarefas em pelo menos 3 dias.
-* Utilize um loop `for` e a estrutura `if-else` para classificar os funcionários como “Atingiu Meta” ou “Não Atingiu Meta”, criando um vetor de saída com esses resultados. Adicione uma coluna ao data frame com a classificação dos funcionários.
+(b) Adicione ao data frame uma nova coluna chamada `media`, contendo os valores calculados pela função.
 
-**3.** Um estatístico está a simular amostras de diferentes populações para estudar a variabilidade das médias. Ele quer gerar amostras de diferentes tamanhos e calcular a média de cada amostra, parando a simulação quando a média exceder um valor limite.
+(c) Com base na coluna `media`, use um loop `for` com estrutura `if-else` para classificar cada cliente como:
 
-* Crie uma matriz `amostras` com 6 linhas e 15 colunas, onde cada linha representa uma amostra de tamanho 15.
-* Preencha a matriz com valores aleatórios entre 0 e 100.
-* Crie uma função chamada `calcula_media_amostra` que receba a matriz e calcule a média de cada amostra.
-* Utilize um loop `while` para calcular as médias das amostras e, em cada iteração, verifique se a média da amostra excede 75. Caso ultrapasse, imprima “Média Excedeu Limite”, e caso contrário, continue o cálculo até todas as amostras serem processadas.
+- "Satisfeito" se a média for maior ou igual a 7
+- "Insatisfeito" caso contrário
 
-**4.** Um climatologista está a analisar as temperaturas médias diárias em 12 cidades ao longo de uma semana. Ele quer calcular a temperatura média semanal de cada cidade e identificar se a média semanal está acima ou abaixo de uma temperatura de referência de 25ºC.
+Adicione uma nova coluna chamada `classificacao` ao data frame com essa informação.
 
-* Crie uma matriz chamada `temperaturas_cidades` com 12 linhas (cidades) e 7 colunas (dias da semana).
-* Preencha a matriz com valores aleatórios entre 10 e 40, representando as temperaturas diárias.
-* Crie uma função chamada `calcula_media_temperaturas` que receba a matriz e calcule a média de cada cidade.
-* Utilize um loop `while` para iterar sobre as cidades e, com base na média calculada, use `if-else` para indicar se a média semanal de temperatura está “Acima de 25ºC” ou “Abaixo de 25ºC”.
+**2.** Uma empresa registou o número de tarefas concluídas por 15 funcionários ao longo de 5 dias úteis. A meta da empresa é que cada funcionário realize pelo menos 20 tarefas por dia. Pretende-se agora verificar quem atingiu a meta em pelo menos 3 dos 5 dias.
 
-**5.** Uma empresa realizou uma pesquisa de satisfação com 15 clientes, onde os clientes classificaram seu nível de satisfação com notas de 1 a 5. A empresa deseja calcular a média das avaliações e identificar quais clientes deram notas abaixo de 3.
+Os dados estão organizados no seguinte data.frame, chamado `tarefa_funcionarios`, onde cada linha representa um funcionário e cada coluna um dia da semana:
 
-* Crie um vetor chamado `avaliacoes` com 15 elementos, cada um representando a nota de um cliente.
-* Crie uma função chamada `calcula_media_satisfacao` que receba o vetor e calcule a média das avaliações.
-* Use um loop `for` para verificar se alguma avaliação é inferior a 3 e, com if-else, identifique os clientes insatisfeitos.
-* Organize os resultados em uma lista chamada `resultado_pesquisa`, que contenha o vetor de avaliações, a média e os clientes insatisfeitos.
+```{r eval=FALSE}
+tarefa_funcionarios <- data.frame(
+  dia1 = c(22, 18, 19, 25, 30, 15, 21, 24, 20, 19, 28, 26, 12, 20, 18),
+  dia2 = c(18, 21, 23, 20, 27, 18, 20, 25, 16, 21, 22, 29, 17, 19, 20),
+  dia3 = c(25, 17, 15, 18, 26, 16, 19, 30, 21, 18, 24, 20, 14, 23, 22),
+  dia4 = c(20, 19, 22, 26, 28, 20, 23, 22, 17, 25, 19, 18, 19, 21, 24),
+  dia5 = c(19, 22, 18, 27, 29, 14, 24, 28, 20, 23, 25, 27, 16, 17, 18)
+)
+```
+
+(a) Escreva uma função chamada `verifica_meta()` que receba o data.frame e devolva um vetor lógico indicando, para cada funcionário, se ele atingiu a meta em pelo menos 3 dias.
+
+(b) Com base no vetor lógico obtido, use um `for` com `if-else` para criar um vetor chamado `classificacao` com os valores:
+
+- "Atingiu Meta" se o funcionário atingiu a meta em 3 ou mais dias
+- "Não Atingiu Meta" caso contrário
+
+(c) Adicione o vetor `classificacao` como uma nova coluna do data.frame `tarefa_funcionarios`.
+
+**3.** Um estatístico está a estudar o comportamento da média amostral em diferentes populações. Para isso, simulou 6 amostras de tamanho 15 (valores entre 0 e 100), e pretende calcular a média de cada uma. A simulação deve interromper-se assim que for encontrada uma média superior a 75.
+
+Os dados encontram-se na seguinte matriz chamada `amostras`:
+
+```{r eval=FALSE}
+amostras <- matrix(
+  c(
+    52, 68, 75, 48, 60, 55, 72, 81, 64, 70, 45, 69, 74, 60, 71,
+    49, 50, 63, 41, 59, 55, 67, 62, 58, 66, 61, 54, 65, 60, 57,
+    80, 82, 85, 79, 90, 88, 92, 85, 87, 84, 86, 81, 89, 83, 91,
+    30, 42, 51, 39, 35, 48, 46, 52, 41, 37, 45, 43, 38, 44, 36,
+    69, 74, 70, 66, 68, 72, 71, 73, 65, 67, 75, 64, 63, 62, 76,
+    55, 58, 61, 56, 60, 63, 57, 62, 64, 59, 65, 66, 68, 67, 69
+  ),
+  nrow = 6,
+  byrow = TRUE
+)
+```
+
+(a) Crie uma função chamada `calcula_media_amostra()` que receba a matriz amostras e devolva a média de uma linha específica (dada por um índice).
+
+(b) Escreva um ciclo `while` que percorra as linhas da matriz, calculando a média de cada amostra uma a uma. Se a média for superior a 75, o programa deve imprimir a mensagem: "Média Excedeu Limite" e parar a execução. Caso contrário, o programa deve continuar até processar todas as amostras.
+
+**4.** Crie uma lista chamada `listas_transformadas` com comprimento 7, onde o elemento de índice $i$ deve conter a seguinte sequência:
+
+$$x = \left\{ \left( j^2 + i \right) \,\middle|\, j = 1, 2, \dots, i \right\}$$
+Ou seja, para cada $i = 1, \dots, 7$, gera-se uma sequência com $i$ elementos, em que cada elemento da sequência é calculado como:
+
+$$x_j = j^2 + i$$
+(a) Crie a lista `listas_transformadas` conforme descrito, utilizando um loop `for`.
+
+(b) Verifique o comprimento do último vetor da lista.
+
+(c) Escreva uma função chamada `soma_elementos()` que receba uma lista como entrada e devolva um vetor com a soma de cada vetor contido na lista.
+
+(d) Use a função `soma_elementos()` para calcular a soma dos elementos de cada vetor da lista `listas_transformadas`.
+
+**5.** Crie dois vetores $x$ e $y$, ambos com comprimento 60, cujos valores devem ser inteiros aleatórios escolhidos com repetição entre 0 e 999 (inclusive).
+
+(a) Gere os vetores $x$ e $y$ conforme descrito. Utilize `sample()` com `replace = TRUE`.
+
+(b) Selecione os valores de $y$ que são menores que 500 e cujos correspondentes em $x$ (mesma posição) são múltiplos de 3.
+
+(c) Crie um novo vetor chamado `dif_absoluta`, contendo o valor absoluto da diferença entre $x$ e $y$ (isto é, $|x_i - y_i|$ para cada posição $i$).
+
+(d) Calcule a média e o desvio padrão dos valores em `dif_absoluta`.
+
+**6.** Seja $x$ um vetor de números reais aleatórios com comprimento 80, gerado a partir de uma distribuição normal com média 5 e desvio padrão 2.
+
+(a) Gere o vetor $x$ com 80 observações da distribuição $\mathcal{N}(5, 2)$, utilizando a função `rnorm()`.
+
+(b) Calcule a média amostral $\bar{x}$ do vetor $x$.
+
+(c) Crie um novo vetor `resultado`, onde o i-ésimo elemento é definido por:
+
+$$z_i = \sqrt{ \left| x_i^3 - \bar{x}^2 \right| }$$
+
+(d) Calcule o valor máximo, mínimo e a média do vetor `resultado`.
+
+**7.** Um climatologista está a estudar as temperaturas médias diárias em 12 cidades ao longo de uma semana (7 dias). O seu objetivo é calcular a temperatura média semanal de cada cidade e verificar se essa média está acima ou abaixo de uma temperatura de referência de 25ºC.
+
+Os dados abaixo representam as temperaturas médias diárias (em ºC) registadas durante uma semana em cada cidade. Estes dados estão organizados num data.frame chamado `temperaturas_cidades`, onde:
+
+- Cada linha representa uma cidade
+- Cada coluna representa um dia da semana (segunda a domingo)
+
+```{r eval=FALSE}
+temperaturas_cidades <- data.frame(
+  segunda  = c(28, 22, 25, 19, 30, 24, 21, 26, 27, 23, 31, 20),
+  terca    = c(29, 24, 23, 20, 32, 25, 22, 27, 26, 24, 33, 21),
+  quarta   = c(30, 25, 22, 18, 33, 26, 23, 28, 25, 22, 34, 22),
+  quinta   = c(31, 23, 24, 17, 31, 27, 20, 29, 28, 21, 32, 23),
+  sexta    = c(27, 21, 26, 16, 29, 28, 19, 30, 29, 25, 30, 24),
+  sabado   = c(26, 22, 27, 15, 28, 26, 18, 28, 27, 26, 29, 25),
+  domingo  = c(25, 23, 28, 14, 27, 25, 17, 27, 26, 27, 28, 26)
+)
+```
+
+(a) Escreva uma função chamada `calcula_media_temperaturas()` que receba o data.frame `temperaturas_cidades` e devolva um vetor com a temperatura média semanal de cada cidade.
+
+(b) Crie um vetor chamado `classificacao`, utilizando um ciclo `while`, que percorra as médias semanais e, com base numa comparação com o valor de referência de 25ºC, classifique cada cidade como:
+
+- "Acima de 25ºC" se a média for maior que 25
+- "Abaixo de 25ºC" caso contrário
+
+(c) Adicione os vetores `media_semanal` e `classificacao` como novas colunas no data.frame `temperaturas_cidades`.
+
+**8.** Os computadores podem sofrer alterações aleatórias em bits da memória (bit flips) devido à ação de partículas de alta energia, como os raios gama. Esse fenómeno é estudado em contextos críticos como aviação, medicina, criptografia e computação de alto desempenho.
+
+Um engenheiro está a simular o impacto de radiação em blocos de memória RAM, com o objetivo de identificar quais blocos foram mais afetados por possíveis bit flips.
+
+Considere a seguinte simulação:
+
+```{r eval=FALSE}
+set.seed(2025)
+
+# Vetor que representa o estado original de 1000 bits (0 ou 1)
+original <- sample(c(0,1), size = 1000, replace = TRUE)
+
+# Vetor que representa o estado final após exposição à radiação (raios gama)
+# Cada bit tem 3% de probabilidade de ser alterado (flipado)
+flipado <- ifelse(runif(1000) < 0.03, 1 - original, original)
+
+# Divisão dos bits em blocos de memória (100 bits por bloco)
+blocos <- rep(1:10, each = 100)
+```
+
+(a) Crie um vetor `erros` que contenha o número de bits alterados (bit flips), comparando original com `flipado`.
+
+(b) Crie um fator chamado `bloco_memoria` com os valores de 1 a 10, indicando o bloco de cada bit, como já feito na variável `blocos`.
+
+(c) Calcule o número de bit flips em cada bloco de memória.
 
 # Gráficos (R base)
 

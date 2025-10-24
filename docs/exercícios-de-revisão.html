@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Renato de Paula" />
 
 
-<meta name="date" content="2025-10-17" />
+<meta name="date" content="2025-10-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -483,41 +483,132 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="exercícios-de-revisão" class="section level1 hasAnchor" number="14">
 <h1><span class="header-section-number">Capítulo 14</span> Exercícios de Revisão<a href="#exerc%C3%ADcios-de-revis%C3%A3o" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><strong>1</strong> Um pesquisador está a analisar os resultados de uma pesquisa que avalia a satisfação de clientes com diferentes serviços. Ele quer calcular a média de satisfação de cada cliente e classificar os clientes em satisfeitos ou insatisfeitos.</p>
+<p><strong>1</strong> Um pesquisador está a analisar os resultados de uma pesquisa que avalia a satisfação de clientes com três diferentes serviços (A, B e C). Abaixo estão os dados recolhidos, em que cada linha representa um cliente e cada coluna indica a pontuação (de 1 a 10) atribuída a cada serviço:</p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="exercícios-de-revisão.html#cb177-1" tabindex="-1"></a>satisfacao <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb177-2"><a href="exercícios-de-revisão.html#cb177-2" tabindex="-1"></a>  <span class="at">servico_A =</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">5</span>, <span class="dv">9</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">10</span>, <span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">7</span>),</span>
+<span id="cb177-3"><a href="exercícios-de-revisão.html#cb177-3" tabindex="-1"></a>  <span class="at">servico_B =</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">5</span>, <span class="dv">9</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">6</span>),</span>
+<span id="cb177-4"><a href="exercícios-de-revisão.html#cb177-4" tabindex="-1"></a>  <span class="at">servico_C =</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">4</span>, <span class="dv">10</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">8</span>)</span>
+<span id="cb177-5"><a href="exercícios-de-revisão.html#cb177-5" tabindex="-1"></a>)</span></code></pre></div>
+<ol style="list-style-type: lower-alpha">
+<li><p>Escreva uma função chamada <code>calcula_media()</code> que receba o data frame <code>satisfacao</code> e devolva um vetor com a média de satisfação de cada cliente (média das 3 colunas).</p></li>
+<li><p>Adicione ao data frame uma nova coluna chamada <code>media</code>, contendo os valores calculados pela função.</p></li>
+<li><p>Com base na coluna <code>media</code>, use um loop <code>for</code> com estrutura <code>if-else</code> para classificar cada cliente como:</p></li>
+</ol>
 <ul>
-<li>Crie um data frame chamado <code>satisfacao</code> com 10 linhas (clientes) e 3 colunas (representando os serviços).</li>
-<li>Preencha o data frame com valores aleatórios entre 1 e 10.</li>
-<li>Escreva uma função chamada <code>calcula_media</code> que receba o data frame e calcule a média de satisfação para cada cliente. Adicione uma coluna ao data frame com a média de satisfação.</li>
-<li>Utilize um loop <code>for</code> para percorrer as médias e classificar cada cliente como “Satisfeito” (média &gt;= 7) ou “Insatisfeito” (média &lt; 7), usando a estrutura <code>if-else</code>. Adicione uma coluna ao data frame com o grau de satisfação.</li>
+<li>“Satisfeito” se a média for maior ou igual a 7</li>
+<li>“Insatisfeito” caso contrário</li>
 </ul>
-<p><strong>2.</strong> Uma empresa registou o número de tarefas realizadas por 15 funcionários durante 5 dias. A empresa quer saber quem atingiu a meta diária de 20 tarefas.</p>
+<p>Adicione uma nova coluna chamada <code>classificacao</code> ao data frame com essa informação.</p>
+<p><strong>2.</strong> Uma empresa registou o número de tarefas concluídas por 15 funcionários ao longo de 5 dias úteis. A meta da empresa é que cada funcionário realize pelo menos 20 tarefas por dia. Pretende-se agora verificar quem atingiu a meta em pelo menos 3 dos 5 dias.</p>
+<p>Os dados estão organizados no seguinte data.frame, chamado <code>tarefa_funcionarios</code>, onde cada linha representa um funcionário e cada coluna um dia da semana:</p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="exercícios-de-revisão.html#cb178-1" tabindex="-1"></a>tarefa_funcionarios <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb178-2"><a href="exercícios-de-revisão.html#cb178-2" tabindex="-1"></a>  <span class="at">dia1 =</span> <span class="fu">c</span>(<span class="dv">22</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">15</span>, <span class="dv">21</span>, <span class="dv">24</span>, <span class="dv">20</span>, <span class="dv">19</span>, <span class="dv">28</span>, <span class="dv">26</span>, <span class="dv">12</span>, <span class="dv">20</span>, <span class="dv">18</span>),</span>
+<span id="cb178-3"><a href="exercícios-de-revisão.html#cb178-3" tabindex="-1"></a>  <span class="at">dia2 =</span> <span class="fu">c</span>(<span class="dv">18</span>, <span class="dv">21</span>, <span class="dv">23</span>, <span class="dv">20</span>, <span class="dv">27</span>, <span class="dv">18</span>, <span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">16</span>, <span class="dv">21</span>, <span class="dv">22</span>, <span class="dv">29</span>, <span class="dv">17</span>, <span class="dv">19</span>, <span class="dv">20</span>),</span>
+<span id="cb178-4"><a href="exercícios-de-revisão.html#cb178-4" tabindex="-1"></a>  <span class="at">dia3 =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">17</span>, <span class="dv">15</span>, <span class="dv">18</span>, <span class="dv">26</span>, <span class="dv">16</span>, <span class="dv">19</span>, <span class="dv">30</span>, <span class="dv">21</span>, <span class="dv">18</span>, <span class="dv">24</span>, <span class="dv">20</span>, <span class="dv">14</span>, <span class="dv">23</span>, <span class="dv">22</span>),</span>
+<span id="cb178-5"><a href="exercícios-de-revisão.html#cb178-5" tabindex="-1"></a>  <span class="at">dia4 =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">19</span>, <span class="dv">22</span>, <span class="dv">26</span>, <span class="dv">28</span>, <span class="dv">20</span>, <span class="dv">23</span>, <span class="dv">22</span>, <span class="dv">17</span>, <span class="dv">25</span>, <span class="dv">19</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">21</span>, <span class="dv">24</span>),</span>
+<span id="cb178-6"><a href="exercícios-de-revisão.html#cb178-6" tabindex="-1"></a>  <span class="at">dia5 =</span> <span class="fu">c</span>(<span class="dv">19</span>, <span class="dv">22</span>, <span class="dv">18</span>, <span class="dv">27</span>, <span class="dv">29</span>, <span class="dv">14</span>, <span class="dv">24</span>, <span class="dv">28</span>, <span class="dv">20</span>, <span class="dv">23</span>, <span class="dv">25</span>, <span class="dv">27</span>, <span class="dv">16</span>, <span class="dv">17</span>, <span class="dv">18</span>)</span>
+<span id="cb178-7"><a href="exercícios-de-revisão.html#cb178-7" tabindex="-1"></a>)</span></code></pre></div>
+<ol style="list-style-type: lower-alpha">
+<li><p>Escreva uma função chamada <code>verifica_meta()</code> que receba o data.frame e devolva um vetor lógico indicando, para cada funcionário, se ele atingiu a meta em pelo menos 3 dias.</p></li>
+<li><p>Com base no vetor lógico obtido, use um <code>for</code> com <code>if-else</code> para criar um vetor chamado <code>classificacao</code> com os valores:</p></li>
+</ol>
 <ul>
-<li>Crie um data frame chamado <code>tarefa_funcionarios</code> com 15 linhas (funcionários) e 5 colunas (dias).</li>
-<li>Preencha o data frame com valores aleatórios entre 10 e 30, representando o número de tarefas concluídas por dia.</li>
-<li>Escreva uma função chamada <code>verifica_meta</code> que receba o data frame e verifique, para cada funcionário, se ele atingiu a meta de 20 tarefas em pelo menos 3 dias.</li>
-<li>Utilize um loop <code>for</code> e a estrutura <code>if-else</code> para classificar os funcionários como “Atingiu Meta” ou “Não Atingiu Meta”, criando um vetor de saída com esses resultados. Adicione uma coluna ao data frame com a classificação dos funcionários.</li>
+<li>“Atingiu Meta” se o funcionário atingiu a meta em 3 ou mais dias</li>
+<li>“Não Atingiu Meta” caso contrário</li>
 </ul>
-<p><strong>3.</strong> Um estatístico está a simular amostras de diferentes populações para estudar a variabilidade das médias. Ele quer gerar amostras de diferentes tamanhos e calcular a média de cada amostra, parando a simulação quando a média exceder um valor limite.</p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Adicione o vetor <code>classificacao</code> como uma nova coluna do data.frame <code>tarefa_funcionarios</code>.</li>
+</ol>
+<p><strong>3.</strong> Um estatístico está a estudar o comportamento da média amostral em diferentes populações. Para isso, simulou 6 amostras de tamanho 15 (valores entre 0 e 100), e pretende calcular a média de cada uma. A simulação deve interromper-se assim que for encontrada uma média superior a 75.</p>
+<p>Os dados encontram-se na seguinte matriz chamada <code>amostras</code>:</p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="exercícios-de-revisão.html#cb179-1" tabindex="-1"></a>amostras <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
+<span id="cb179-2"><a href="exercícios-de-revisão.html#cb179-2" tabindex="-1"></a>  <span class="fu">c</span>(</span>
+<span id="cb179-3"><a href="exercícios-de-revisão.html#cb179-3" tabindex="-1"></a>    <span class="dv">52</span>, <span class="dv">68</span>, <span class="dv">75</span>, <span class="dv">48</span>, <span class="dv">60</span>, <span class="dv">55</span>, <span class="dv">72</span>, <span class="dv">81</span>, <span class="dv">64</span>, <span class="dv">70</span>, <span class="dv">45</span>, <span class="dv">69</span>, <span class="dv">74</span>, <span class="dv">60</span>, <span class="dv">71</span>,</span>
+<span id="cb179-4"><a href="exercícios-de-revisão.html#cb179-4" tabindex="-1"></a>    <span class="dv">49</span>, <span class="dv">50</span>, <span class="dv">63</span>, <span class="dv">41</span>, <span class="dv">59</span>, <span class="dv">55</span>, <span class="dv">67</span>, <span class="dv">62</span>, <span class="dv">58</span>, <span class="dv">66</span>, <span class="dv">61</span>, <span class="dv">54</span>, <span class="dv">65</span>, <span class="dv">60</span>, <span class="dv">57</span>,</span>
+<span id="cb179-5"><a href="exercícios-de-revisão.html#cb179-5" tabindex="-1"></a>    <span class="dv">80</span>, <span class="dv">82</span>, <span class="dv">85</span>, <span class="dv">79</span>, <span class="dv">90</span>, <span class="dv">88</span>, <span class="dv">92</span>, <span class="dv">85</span>, <span class="dv">87</span>, <span class="dv">84</span>, <span class="dv">86</span>, <span class="dv">81</span>, <span class="dv">89</span>, <span class="dv">83</span>, <span class="dv">91</span>,</span>
+<span id="cb179-6"><a href="exercícios-de-revisão.html#cb179-6" tabindex="-1"></a>    <span class="dv">30</span>, <span class="dv">42</span>, <span class="dv">51</span>, <span class="dv">39</span>, <span class="dv">35</span>, <span class="dv">48</span>, <span class="dv">46</span>, <span class="dv">52</span>, <span class="dv">41</span>, <span class="dv">37</span>, <span class="dv">45</span>, <span class="dv">43</span>, <span class="dv">38</span>, <span class="dv">44</span>, <span class="dv">36</span>,</span>
+<span id="cb179-7"><a href="exercícios-de-revisão.html#cb179-7" tabindex="-1"></a>    <span class="dv">69</span>, <span class="dv">74</span>, <span class="dv">70</span>, <span class="dv">66</span>, <span class="dv">68</span>, <span class="dv">72</span>, <span class="dv">71</span>, <span class="dv">73</span>, <span class="dv">65</span>, <span class="dv">67</span>, <span class="dv">75</span>, <span class="dv">64</span>, <span class="dv">63</span>, <span class="dv">62</span>, <span class="dv">76</span>,</span>
+<span id="cb179-8"><a href="exercícios-de-revisão.html#cb179-8" tabindex="-1"></a>    <span class="dv">55</span>, <span class="dv">58</span>, <span class="dv">61</span>, <span class="dv">56</span>, <span class="dv">60</span>, <span class="dv">63</span>, <span class="dv">57</span>, <span class="dv">62</span>, <span class="dv">64</span>, <span class="dv">59</span>, <span class="dv">65</span>, <span class="dv">66</span>, <span class="dv">68</span>, <span class="dv">67</span>, <span class="dv">69</span></span>
+<span id="cb179-9"><a href="exercícios-de-revisão.html#cb179-9" tabindex="-1"></a>  ),</span>
+<span id="cb179-10"><a href="exercícios-de-revisão.html#cb179-10" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">6</span>,</span>
+<span id="cb179-11"><a href="exercícios-de-revisão.html#cb179-11" tabindex="-1"></a>  <span class="at">byrow =</span> <span class="cn">TRUE</span></span>
+<span id="cb179-12"><a href="exercícios-de-revisão.html#cb179-12" tabindex="-1"></a>)</span></code></pre></div>
+<ol style="list-style-type: lower-alpha">
+<li><p>Crie uma função chamada <code>calcula_media_amostra()</code> que receba a matriz amostras e devolva a média de uma linha específica (dada por um índice).</p></li>
+<li><p>Escreva um ciclo <code>while</code> que percorra as linhas da matriz, calculando a média de cada amostra uma a uma. Se a média for superior a 75, o programa deve imprimir a mensagem: “Média Excedeu Limite” e parar a execução. Caso contrário, o programa deve continuar até processar todas as amostras.</p></li>
+</ol>
+<p><strong>4.</strong> Crie uma lista chamada <code>listas_transformadas</code> com comprimento 7, onde o elemento de índice <span class="math inline">\(i\)</span> deve conter a seguinte sequência:</p>
+<p><span class="math display">\[x = \left\{ \left( j^2 + i \right) \,\middle|\, j = 1, 2, \dots, i \right\}\]</span>
+Ou seja, para cada <span class="math inline">\(i = 1, \dots, 7\)</span>, gera-se uma sequência com <span class="math inline">\(i\)</span> elementos, em que cada elemento da sequência é calculado como:</p>
+<p><span class="math display">\[x_j = j^2 + i\]</span>
+(a) Crie a lista <code>listas_transformadas</code> conforme descrito, utilizando um loop <code>for</code>.</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li><p>Verifique o comprimento do último vetor da lista.</p></li>
+<li><p>Escreva uma função chamada <code>soma_elementos()</code> que receba uma lista como entrada e devolva um vetor com a soma de cada vetor contido na lista.</p></li>
+<li><p>Use a função <code>soma_elementos()</code> para calcular a soma dos elementos de cada vetor da lista <code>listas_transformadas</code>.</p></li>
+</ol>
+<p><strong>5.</strong> Crie dois vetores <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span>, ambos com comprimento 60, cujos valores devem ser inteiros aleatórios escolhidos com repetição entre 0 e 999 (inclusive).</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Gere os vetores <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span> conforme descrito. Utilize <code>sample()</code> com <code>replace = TRUE</code>.</p></li>
+<li><p>Selecione os valores de <span class="math inline">\(y\)</span> que são menores que 500 e cujos correspondentes em <span class="math inline">\(x\)</span> (mesma posição) são múltiplos de 3.</p></li>
+<li><p>Crie um novo vetor chamado <code>dif_absoluta</code>, contendo o valor absoluto da diferença entre <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span> (isto é, <span class="math inline">\(|x_i - y_i|\)</span> para cada posição <span class="math inline">\(i\)</span>).</p></li>
+<li><p>Calcule a média e o desvio padrão dos valores em <code>dif_absoluta</code>.</p></li>
+</ol>
+<p><strong>6.</strong> Seja <span class="math inline">\(x\)</span> um vetor de números reais aleatórios com comprimento 80, gerado a partir de uma distribuição normal com média 5 e desvio padrão 2.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Gere o vetor <span class="math inline">\(x\)</span> com 80 observações da distribuição <span class="math inline">\(\mathcal{N}(5, 2)\)</span>, utilizando a função <code>rnorm()</code>.</p></li>
+<li><p>Calcule a média amostral <span class="math inline">\(\bar{x}\)</span> do vetor <span class="math inline">\(x\)</span>.</p></li>
+<li><p>Crie um novo vetor <code>resultado</code>, onde o i-ésimo elemento é definido por:</p></li>
+</ol>
+<p><span class="math display">\[z_i = \sqrt{ \left| x_i^3 - \bar{x}^2 \right| }\]</span></p>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>Calcule o valor máximo, mínimo e a média do vetor <code>resultado</code>.</li>
+</ol>
+<p><strong>7.</strong> Um climatologista está a estudar as temperaturas médias diárias em 12 cidades ao longo de uma semana (7 dias). O seu objetivo é calcular a temperatura média semanal de cada cidade e verificar se essa média está acima ou abaixo de uma temperatura de referência de 25ºC.</p>
+<p>Os dados abaixo representam as temperaturas médias diárias (em ºC) registadas durante uma semana em cada cidade. Estes dados estão organizados num data.frame chamado <code>temperaturas_cidades</code>, onde:</p>
 <ul>
-<li>Crie uma matriz <code>amostras</code> com 6 linhas e 15 colunas, onde cada linha representa uma amostra de tamanho 15.</li>
-<li>Preencha a matriz com valores aleatórios entre 0 e 100.</li>
-<li>Crie uma função chamada <code>calcula_media_amostra</code> que receba a matriz e calcule a média de cada amostra.</li>
-<li>Utilize um loop <code>while</code> para calcular as médias das amostras e, em cada iteração, verifique se a média da amostra excede 75. Caso ultrapasse, imprima “Média Excedeu Limite”, e caso contrário, continue o cálculo até todas as amostras serem processadas.</li>
+<li>Cada linha representa uma cidade</li>
+<li>Cada coluna representa um dia da semana (segunda a domingo)</li>
 </ul>
-<p><strong>4.</strong> Um climatologista está a analisar as temperaturas médias diárias em 12 cidades ao longo de uma semana. Ele quer calcular a temperatura média semanal de cada cidade e identificar se a média semanal está acima ou abaixo de uma temperatura de referência de 25ºC.</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="exercícios-de-revisão.html#cb180-1" tabindex="-1"></a>temperaturas_cidades <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb180-2"><a href="exercícios-de-revisão.html#cb180-2" tabindex="-1"></a>  <span class="at">segunda  =</span> <span class="fu">c</span>(<span class="dv">28</span>, <span class="dv">22</span>, <span class="dv">25</span>, <span class="dv">19</span>, <span class="dv">30</span>, <span class="dv">24</span>, <span class="dv">21</span>, <span class="dv">26</span>, <span class="dv">27</span>, <span class="dv">23</span>, <span class="dv">31</span>, <span class="dv">20</span>),</span>
+<span id="cb180-3"><a href="exercícios-de-revisão.html#cb180-3" tabindex="-1"></a>  <span class="at">terca    =</span> <span class="fu">c</span>(<span class="dv">29</span>, <span class="dv">24</span>, <span class="dv">23</span>, <span class="dv">20</span>, <span class="dv">32</span>, <span class="dv">25</span>, <span class="dv">22</span>, <span class="dv">27</span>, <span class="dv">26</span>, <span class="dv">24</span>, <span class="dv">33</span>, <span class="dv">21</span>),</span>
+<span id="cb180-4"><a href="exercícios-de-revisão.html#cb180-4" tabindex="-1"></a>  <span class="at">quarta   =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">25</span>, <span class="dv">22</span>, <span class="dv">18</span>, <span class="dv">33</span>, <span class="dv">26</span>, <span class="dv">23</span>, <span class="dv">28</span>, <span class="dv">25</span>, <span class="dv">22</span>, <span class="dv">34</span>, <span class="dv">22</span>),</span>
+<span id="cb180-5"><a href="exercícios-de-revisão.html#cb180-5" tabindex="-1"></a>  <span class="at">quinta   =</span> <span class="fu">c</span>(<span class="dv">31</span>, <span class="dv">23</span>, <span class="dv">24</span>, <span class="dv">17</span>, <span class="dv">31</span>, <span class="dv">27</span>, <span class="dv">20</span>, <span class="dv">29</span>, <span class="dv">28</span>, <span class="dv">21</span>, <span class="dv">32</span>, <span class="dv">23</span>),</span>
+<span id="cb180-6"><a href="exercícios-de-revisão.html#cb180-6" tabindex="-1"></a>  <span class="at">sexta    =</span> <span class="fu">c</span>(<span class="dv">27</span>, <span class="dv">21</span>, <span class="dv">26</span>, <span class="dv">16</span>, <span class="dv">29</span>, <span class="dv">28</span>, <span class="dv">19</span>, <span class="dv">30</span>, <span class="dv">29</span>, <span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">24</span>),</span>
+<span id="cb180-7"><a href="exercícios-de-revisão.html#cb180-7" tabindex="-1"></a>  <span class="at">sabado   =</span> <span class="fu">c</span>(<span class="dv">26</span>, <span class="dv">22</span>, <span class="dv">27</span>, <span class="dv">15</span>, <span class="dv">28</span>, <span class="dv">26</span>, <span class="dv">18</span>, <span class="dv">28</span>, <span class="dv">27</span>, <span class="dv">26</span>, <span class="dv">29</span>, <span class="dv">25</span>),</span>
+<span id="cb180-8"><a href="exercícios-de-revisão.html#cb180-8" tabindex="-1"></a>  <span class="at">domingo  =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">23</span>, <span class="dv">28</span>, <span class="dv">14</span>, <span class="dv">27</span>, <span class="dv">25</span>, <span class="dv">17</span>, <span class="dv">27</span>, <span class="dv">26</span>, <span class="dv">27</span>, <span class="dv">28</span>, <span class="dv">26</span>)</span>
+<span id="cb180-9"><a href="exercícios-de-revisão.html#cb180-9" tabindex="-1"></a>)</span></code></pre></div>
+<ol style="list-style-type: lower-alpha">
+<li><p>Escreva uma função chamada <code>calcula_media_temperaturas()</code> que receba o data.frame <code>temperaturas_cidades</code> e devolva um vetor com a temperatura média semanal de cada cidade.</p></li>
+<li><p>Crie um vetor chamado <code>classificacao</code>, utilizando um ciclo <code>while</code>, que percorra as médias semanais e, com base numa comparação com o valor de referência de 25ºC, classifique cada cidade como:</p></li>
+</ol>
 <ul>
-<li>Crie uma matriz chamada <code>temperaturas_cidades</code> com 12 linhas (cidades) e 7 colunas (dias da semana).</li>
-<li>Preencha a matriz com valores aleatórios entre 10 e 40, representando as temperaturas diárias.</li>
-<li>Crie uma função chamada <code>calcula_media_temperaturas</code> que receba a matriz e calcule a média de cada cidade.</li>
-<li>Utilize um loop <code>while</code> para iterar sobre as cidades e, com base na média calculada, use <code>if-else</code> para indicar se a média semanal de temperatura está “Acima de 25ºC” ou “Abaixo de 25ºC”.</li>
+<li>“Acima de 25ºC” se a média for maior que 25</li>
+<li>“Abaixo de 25ºC” caso contrário</li>
 </ul>
-<p><strong>5.</strong> Uma empresa realizou uma pesquisa de satisfação com 15 clientes, onde os clientes classificaram seu nível de satisfação com notas de 1 a 5. A empresa deseja calcular a média das avaliações e identificar quais clientes deram notas abaixo de 3.</p>
-<ul>
-<li>Crie um vetor chamado <code>avaliacoes</code> com 15 elementos, cada um representando a nota de um cliente.</li>
-<li>Crie uma função chamada <code>calcula_media_satisfacao</code> que receba o vetor e calcule a média das avaliações.</li>
-<li>Use um loop <code>for</code> para verificar se alguma avaliação é inferior a 3 e, com if-else, identifique os clientes insatisfeitos.</li>
-<li>Organize os resultados em uma lista chamada <code>resultado_pesquisa</code>, que contenha o vetor de avaliações, a média e os clientes insatisfeitos.</li>
-</ul>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Adicione os vetores <code>media_semanal</code> e <code>classificacao</code> como novas colunas no data.frame <code>temperaturas_cidades</code>.</li>
+</ol>
+<p><strong>8.</strong> Os computadores podem sofrer alterações aleatórias em bits da memória (bit flips) devido à ação de partículas de alta energia, como os raios gama. Esse fenómeno é estudado em contextos críticos como aviação, medicina, criptografia e computação de alto desempenho.</p>
+<p>Um engenheiro está a simular o impacto de radiação em blocos de memória RAM, com o objetivo de identificar quais blocos foram mais afetados por possíveis bit flips.</p>
+<p>Considere a seguinte simulação:</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="exercícios-de-revisão.html#cb181-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2025</span>)</span>
+<span id="cb181-2"><a href="exercícios-de-revisão.html#cb181-2" tabindex="-1"></a></span>
+<span id="cb181-3"><a href="exercícios-de-revisão.html#cb181-3" tabindex="-1"></a><span class="co"># Vetor que representa o estado original de 1000 bits (0 ou 1)</span></span>
+<span id="cb181-4"><a href="exercícios-de-revisão.html#cb181-4" tabindex="-1"></a>original <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">size =</span> <span class="dv">1000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb181-5"><a href="exercícios-de-revisão.html#cb181-5" tabindex="-1"></a></span>
+<span id="cb181-6"><a href="exercícios-de-revisão.html#cb181-6" tabindex="-1"></a><span class="co"># Vetor que representa o estado final após exposição à radiação (raios gama)</span></span>
+<span id="cb181-7"><a href="exercícios-de-revisão.html#cb181-7" tabindex="-1"></a><span class="co"># Cada bit tem 3% de probabilidade de ser alterado (flipado)</span></span>
+<span id="cb181-8"><a href="exercícios-de-revisão.html#cb181-8" tabindex="-1"></a>flipado <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">runif</span>(<span class="dv">1000</span>) <span class="sc">&lt;</span> <span class="fl">0.03</span>, <span class="dv">1</span> <span class="sc">-</span> original, original)</span>
+<span id="cb181-9"><a href="exercícios-de-revisão.html#cb181-9" tabindex="-1"></a></span>
+<span id="cb181-10"><a href="exercícios-de-revisão.html#cb181-10" tabindex="-1"></a><span class="co"># Divisão dos bits em blocos de memória (100 bits por bloco)</span></span>
+<span id="cb181-11"><a href="exercícios-de-revisão.html#cb181-11" tabindex="-1"></a>blocos <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">each =</span> <span class="dv">100</span>)</span></code></pre></div>
+<ol style="list-style-type: lower-alpha">
+<li><p>Crie um vetor <code>erros</code> que contenha o número de bits alterados (bit flips), comparando original com <code>flipado</code>.</p></li>
+<li><p>Crie um fator chamado <code>bloco_memoria</code> com os valores de 1 a 10, indicando o bloco de cada bit, como já feito na variável <code>blocos</code>.</p></li>
+<li><p>Calcule o número de bit flips em cada bloco de memória.</p></li>
+</ol>
 </div>
             </section>
 

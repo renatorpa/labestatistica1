@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Renato de Paula" />
 
 
-<meta name="date" content="2025-10-17" />
+<meta name="date" content="2025-10-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -488,8 +488,8 @@ aleatórias a partir de um conjunto de dados ou de uma sequência de
 números. É uma função muito flexível que permite definir o tamanho da
 amostra, se a amostragem é feita com ou sem reposição, e se os elementos
 têm diferentes probabilidades de serem selecionados.</p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="a-função-sample.html#cb288-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
-<span id="cb288-2"><a href="a-função-sample.html#cb288-2" tabindex="-1"></a><span class="fu">sample</span>(x, size, <span class="at">replace =</span> <span class="cn">FALSE</span>, <span class="at">prob =</span> <span class="cn">NULL</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="a-função-sample.html#cb293-1" tabindex="-1"></a><span class="co"># Sintaxe</span></span>
+<span id="cb293-2"><a href="a-função-sample.html#cb293-2" tabindex="-1"></a><span class="fu">sample</span>(x, size, <span class="at">replace =</span> <span class="cn">FALSE</span>, <span class="at">prob =</span> <span class="cn">NULL</span>)</span></code></pre></div>
 <ul>
 <li><code>x</code>: O vetor de elementos a serem amostrados.</li>
 <li><code>size</code>: O tamanho da amostra desejada.</li>
@@ -502,28 +502,28 @@ mesma probabilidade de serem selecionados.</li>
 <p><strong>Exemplo 1 (Amostragem Simples sem Reposição)</strong>: Neste exemplo,
 extraímos uma amostra de 5 elementos a partir de uma população de
 números inteiros de 1 a 10, sem reposição:</p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="a-função-sample.html#cb289-1" tabindex="-1"></a><span class="co"># População de 1 a 10</span></span>
-<span id="cb289-2"><a href="a-função-sample.html#cb289-2" tabindex="-1"></a>pop <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb289-3"><a href="a-função-sample.html#cb289-3" tabindex="-1"></a></span>
-<span id="cb289-4"><a href="a-função-sample.html#cb289-4" tabindex="-1"></a><span class="co"># Amostra de 5 elementos sem reposição</span></span>
-<span id="cb289-5"><a href="a-função-sample.html#cb289-5" tabindex="-1"></a>amostra <span class="ot">&lt;-</span> <span class="fu">sample</span>(pop, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb289-6"><a href="a-função-sample.html#cb289-6" tabindex="-1"></a><span class="fu">print</span>(amostra)</span>
-<span id="cb289-7"><a href="a-função-sample.html#cb289-7" tabindex="-1"></a><span class="do">## [1]  5  2  4 10  8</span></span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="a-função-sample.html#cb294-1" tabindex="-1"></a><span class="co"># População de 1 a 10</span></span>
+<span id="cb294-2"><a href="a-função-sample.html#cb294-2" tabindex="-1"></a>pop <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb294-3"><a href="a-função-sample.html#cb294-3" tabindex="-1"></a></span>
+<span id="cb294-4"><a href="a-função-sample.html#cb294-4" tabindex="-1"></a><span class="co"># Amostra de 5 elementos sem reposição</span></span>
+<span id="cb294-5"><a href="a-função-sample.html#cb294-5" tabindex="-1"></a>amostra <span class="ot">&lt;-</span> <span class="fu">sample</span>(pop, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb294-6"><a href="a-função-sample.html#cb294-6" tabindex="-1"></a><span class="fu">print</span>(amostra)</span>
+<span id="cb294-7"><a href="a-função-sample.html#cb294-7" tabindex="-1"></a><span class="do">## [1]  5  2  4 10  8</span></span></code></pre></div>
 <p><strong>Exemplo 2 (Amostragem com Reposição)</strong>:. Neste exemplo, permitimos que
 os mesmos elementos sejam selecionados mais de uma vez:</p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="a-função-sample.html#cb290-1" tabindex="-1"></a><span class="co"># Amostra de 5 elementos com reposição</span></span>
-<span id="cb290-2"><a href="a-função-sample.html#cb290-2" tabindex="-1"></a>amostra_repos <span class="ot">&lt;-</span> <span class="fu">sample</span>(pop, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb290-3"><a href="a-função-sample.html#cb290-3" tabindex="-1"></a><span class="fu">print</span>(amostra_repos)</span>
-<span id="cb290-4"><a href="a-função-sample.html#cb290-4" tabindex="-1"></a><span class="do">## [1] 6 8 9 9 6</span></span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="a-função-sample.html#cb295-1" tabindex="-1"></a><span class="co"># Amostra de 5 elementos com reposição</span></span>
+<span id="cb295-2"><a href="a-função-sample.html#cb295-2" tabindex="-1"></a>amostra_repos <span class="ot">&lt;-</span> <span class="fu">sample</span>(pop, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb295-3"><a href="a-função-sample.html#cb295-3" tabindex="-1"></a><span class="fu">print</span>(amostra_repos)</span>
+<span id="cb295-4"><a href="a-função-sample.html#cb295-4" tabindex="-1"></a><span class="do">## [1] 6 8 9 9 6</span></span></code></pre></div>
 <p><strong>Exemplo 3 (Amostragem com Probabilidades Diferentes)</strong>: Neste exemplo,
 associamos diferentes probabilidades a cada elemento da população:</p>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="a-função-sample.html#cb291-1" tabindex="-1"></a><span class="co"># Probabilidades associadas a cada elemento</span></span>
-<span id="cb291-2"><a href="a-função-sample.html#cb291-2" tabindex="-1"></a>prob <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.05</span>, <span class="fl">0.05</span>)</span>
-<span id="cb291-3"><a href="a-função-sample.html#cb291-3" tabindex="-1"></a></span>
-<span id="cb291-4"><a href="a-função-sample.html#cb291-4" tabindex="-1"></a><span class="co"># Amostra com probabilidades diferentes</span></span>
-<span id="cb291-5"><a href="a-função-sample.html#cb291-5" tabindex="-1"></a>amostra_prob <span class="ot">&lt;-</span> <span class="fu">sample</span>(pop, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">prob =</span> prob)</span>
-<span id="cb291-6"><a href="a-função-sample.html#cb291-6" tabindex="-1"></a><span class="fu">print</span>(amostra_prob)</span>
-<span id="cb291-7"><a href="a-função-sample.html#cb291-7" tabindex="-1"></a><span class="do">## [1] 2 4 6 5 3</span></span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="a-função-sample.html#cb296-1" tabindex="-1"></a><span class="co"># Probabilidades associadas a cada elemento</span></span>
+<span id="cb296-2"><a href="a-função-sample.html#cb296-2" tabindex="-1"></a>prob <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.05</span>, <span class="fl">0.05</span>)</span>
+<span id="cb296-3"><a href="a-função-sample.html#cb296-3" tabindex="-1"></a></span>
+<span id="cb296-4"><a href="a-função-sample.html#cb296-4" tabindex="-1"></a><span class="co"># Amostra com probabilidades diferentes</span></span>
+<span id="cb296-5"><a href="a-função-sample.html#cb296-5" tabindex="-1"></a>amostra_prob <span class="ot">&lt;-</span> <span class="fu">sample</span>(pop, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">prob =</span> prob)</span>
+<span id="cb296-6"><a href="a-função-sample.html#cb296-6" tabindex="-1"></a><span class="fu">print</span>(amostra_prob)</span>
+<span id="cb296-7"><a href="a-função-sample.html#cb296-7" tabindex="-1"></a><span class="do">## [1] 2 4 6 5 3</span></span></code></pre></div>
 <div id="exercícios-21" class="section level2 hasAnchor" number="18.1">
 <h2><span class="header-section-number">18.1</span> Exercícios<a href="#exerc%C3%ADcios-21" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>1.</strong> Crie um vetor com os números de 1 a 20. Utilize a função
