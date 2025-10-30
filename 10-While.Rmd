@@ -1,0 +1,175 @@
+# Loop while
+
+A instrução `while` em R é uma estrutura de controle de fluxo que
+permite executar repetidamente um bloco de código enquanto uma condição
+específica for verdadeira. Esse tipo de loop é especialmente útil quando
+o número de iterações não é conhecido antecipadamente e depende de uma
+condição lógica ser atendida.
+
+```{r eval=FALSE}
+# Sintaxe
+while (condição) {
+  # Bloco de código a ser executado repetidamente
+}
+```
+
+-   **condição**: Uma expressão lógica que é avaliada antes de cada
+    iteração do loop. Enquanto essa condição for `TRUE`, o bloco de
+    código dentro do while será executado.
+
+-   **Bloco de código**: As instruções que são repetidas enquanto a
+    condição for verdadeira.
+
+**Funcionamento do Loop While**
+
+-   **Avaliação da Condição**: Antes de cada execução do bloco de
+    código, a condição é avaliada.
+
+-   **Execução do Bloco de Código**: Se a condição for `TRUE`, o bloco
+    de código dentro do `while` é executado.
+
+-   **Reavaliação**: Após a execução do bloco de código, a condição é
+    reavaliada. Se a condição continuar a ser `TRUE`, o ciclo repete-se.
+    Se a condição se tornar `FALSE`, o loop termina e o controlo do
+    programa continua com a próxima instrução após o `while`.
+
+**Exemplo 1**: Somando números até um limite. O exemplo seguinte calcula
+a soma de todos os números de 1 a 10.
+
+```{r eval=FALSE}
+limite <- 10
+soma <- 0
+contador <- 1
+
+while (contador <= limite) {
+  soma <- soma + contador
+  contador <- contador + 1
+}
+
+print(paste("A soma dos números de 1 a", limite, "é:", soma))
+## [1] "A soma dos números de 1 a 10 é: 55"
+```
+
+Neste exemplo:
+
+-   O loop while continua enquanto `contador <= limite`.
+-   Em cada iteração, o valor de `contador` é adicionado a soma, e
+    `contador` é incrementado em 1.
+-   Quando `contador` excede `limite`, o loop termina.
+
+**Exemplo 2**: Escrever a tabuada de um número inteiro. O programa
+abaixo imprime a tabuada de um número fornecido pelo utilizador.
+
+```{r eval=FALSE}
+n <- as.numeric(readline("Digite um número inteiro: "))
+
+print(paste("Tabuada do",n, ":"))
+i <- 1
+while (i <= 10){  
+  print(paste(n,"x",i, "=", n*i))  
+  i + 1
+}
+```
+
+Explique por que o programa acima não termina. Qual é o erro no nosso
+código? O loop no código original não terminava porque a linha `i + 1`
+não atualizava a variável `i`. A expressão `i + 1` calcula o novo valor,
+mas não o atribui de volta a `i`. O código correto usa `i <- i + 1` para
+atualizar a variável `i` a cada iteração.
+
+**Exemplo 3**: Uso do break para interromper um loop. O próximo exemplo
+demonstra como usar a instrução `break` para sair de um loop
+antecipadamente.
+
+```{r eval=FALSE}
+limite <- 10
+soma <- 0
+contador <- 1
+
+while (contador <= limite) {  
+  soma <- soma + contador  
+  print(contador)  
+  if (contador == 3){    
+  	break # Interrompe o loop quando contador é igual a 3  
+  }  
+  contador <- contador + 1
+}
+## [1] 1
+## [1] 2
+## [1] 3
+```
+
+-   **break**: A instrução `break` é usada para sair imediatamente do
+    loop, independentemente de a condição de while ainda ser `TRUE`.
+
+**Considerações Importantes sobre o Uso do `while()`**
+
+-   **Condição de Paragem**: É fundamental garantir que a condição do
+    `while` eventualmente se torne `FALSE` para evitar loops infinitos
+    que podem bloquear o programa.
+
+-   **Incremento/Decremento**: A variável que controla a condição deve
+    ser atualizada corretamente dentro do loop. Falhas em fazer isso
+    corretamente também podem causar loops infinitos.
+
+-   **Desempenho**: Loops `while` podem ser menos eficientes do que
+    operações vetorizadas em R. Para grandes conjuntos de dados,
+    considere usar funções vetorizadas como `apply`, `lapply`, `sapply`,
+    etc., para melhorar o desempenho.
+
+## Exercícios
+
+**1.** Escreva um programa em R que solicite ao utilizador um número
+inteiro $n$. O programa deve imprimir todos os números inteiros de 0 até
+$n$, um número por linha.
+
+**2.** Crie um programa em R que solicite ao utilizador um número
+inteiro, calcule o seu quadrado e exiba o resultado. Em seguida,
+pergunte ao utilizador se ele deseja continuar ou terminar o programa. O
+loop deve continuar até que o utilizador escolha terminar.
+
+**3.** Desenvolva um programa em R que peça ao utilizador um número
+inteiro $n$ e calcule a soma dos primeiros $n$ inteiros (de 1 até $n$).
+O resultado deve ser exibido no console.
+
+**4.** Escreva um programa em R que solicite ao utilizador um número
+inteiro $n$ e conte quantos números pares existem no intervalo de 0 até
+$n$. O resultado deve ser impresso no console.
+
+**5.** Use um loop `while` para somar números inteiros positivos até que
+um número negativo seja inserido.
+
+Crie um programa em R que leia números inteiros inseridos pelo
+utilizador e some-os. O loop deve continuar até que o utilizador insira
+um número negativo, momento em que o programa deve parar e exibir a soma
+dos números positivos inseridos.
+
+**6.** Use um loop while para implementar uma contagem regressiva.
+
+Implemente um programa em R que solicite ao utilizador um número inteiro
+positivo e, em seguida, execute uma contagem regressiva até zero,
+imprimindo cada número no console.
+
+**7.** Escreva um programa em R que solicite ao utilizador um número
+inteiro negativo e, em seguida, conte progressivamente até zero,
+imprimindo cada número no console.
+
+**8.** Desenvolva um programa em R que peça ao utilizador para inserir
+um número. Se o número for positivo, o programa deve contar
+regressivamente até zero. Se o número for negativo, o programa deve
+contar progressivamente até zero. Cada número deve ser impresso no
+console.
+
+**9.** Crie um programa em R que solicite ao utilizador um número
+inteiro não negativo e calcule seu fatorial usando um loop `while`.
+Lembre-se que $0! = 1$ e que $4! = 4\times 3\times 2\times  = 24$.
+
+**10.** Escreva um programa em R que leia um número inteiro positivo e
+calcule a soma de seus dígitos usando um loop `while`. Por exemplo, para
+o número 23, o programa deve calcular $2+3 = 5$.
+
+**11.** Desenvolva um programa em R que gere e imprima os números da
+sequência de Fibonacci até atingir um valor máximo especificado pelo
+utilizador. A sequência de Fibonacci começa com 1, 1 e cada número
+subsequente é a soma dos dois anteriores
+$(1, 1, 2, 3, 5, 8, 13 \ldots)$.

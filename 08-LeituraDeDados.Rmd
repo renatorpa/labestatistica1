@@ -1,0 +1,335 @@
+# Leitura de dados
+
+O R é uma linguagem poderosa para análise de dados e oferece diversas
+funções para importar dados de diferentes formatos. Independentemente do
+formato, o processo básico de leitura de dados em R segue alguns passos
+comuns:
+
+1.  **Especificar o caminho do ficheiro**: Onde o ficheiro está
+    localizado.
+2.  **Indicar as características do ficheiro**: Como delimitador,
+    presença de cabeçalhos, tipos de dados, etc.
+3.  **Ler os dados e armazená-los num objeto**: Geralmente um data frame
+    para fácil manipulação e análise.
+
+## Leitura de Dados da Entrada do Utilizador
+
+A função `scan()` é usada para ler dados da entrada padrão (teclado) ou
+de um ficheiro, e devolve um vetor. Um uso comum de `scan()` é para
+entrada de dados manual:
+
+```{r eval=FALSE}
+# Solicita ao utilizador para introduzir números
+numeros <- scan()
+```
+
+Após escrever `scan()`, o utilizador pode inserir uma série de números
+separados por espaços e pressionar Enter para concluir a entrada.
+
+## Diretório de trabalho
+
+O **diretório de trabalho** (working directory) em R é o local padrão
+onde o R lê e grava ficheiros. Quando importa dados ou guarda
+resultados, o R utiliza o diretório de trabalho como ponto de
+referência. Ter um diretório de trabalho configurado corretamente é
+essencial para facilitar o acesso a ficheiros de dados e gravação de
+saídas.
+
+**Funções Principais para Manipulação de Diretório**
+
+-   `getwd()`: Retorna o caminho do diretório atual de trabalho.
+-   `setwd("caminho/do/diretorio")`: Define o diretório de trabalho para
+    o caminho especificado.
+
+Para verificar o diretório de trabalho atual, utilize `getwd()`:
+
+```{r eval=FALSE}
+getwd()
+```
+
+A saída pode ser semelhante a esta, dependendo do seu sistema operativo:
+
+```{r eval=FALSE}
+# Exemplo de saída no Windows
+## [1] "C:/Users/Utilizador/Documents"
+
+# Exemplo de saída no Mac
+## [1] "/Users/Utilizador/Documents"
+```
+
+Para alterar o diretório de trabalho para uma pasta específica, use
+`setwd()`:
+
+```{r eval=FALSE}
+# Define o diretório de trabalho para "C:/Users/Utilizador/Documents/ProjetosR"
+setwd("C:/Users/Utilizador/Documents/ProjetosR")
+
+# Verifica se o diretório de trabalho foi alterado
+print(getwd())
+## [1] "C:/Users/Utilizador/Documents/ProjetosR"
+```
+
+Ao definir corretamente o diretório de trabalho, pode importar ficheiros
+diretamente sem precisar especificar o caminho completo. Por exemplo, se
+o ficheiro `dados.csv` estiver no diretório de trabalho, pode lê-lo
+facilmente:
+
+```{r eval=FALSE}
+# Lê o ficheiro "dados.csv" no diretório de trabalho atual
+dados <- read.csv("dados.csv")
+
+# Exibe as primeiras linhas do conjunto de dados
+head(dados)
+```
+
+## A Função `read.table()`
+
+A função `read.table()` é uma das mais versáteis em R para a leitura de
+ficheiros de texto em formato tabular. Ela permite importar dados de
+ficheiros de texto e configurá-los de acordo com suas características.
+Faça o download do ficheiro `dados.txt` em
+[link](https://renatorpaula.wixsite.com/renato/laboratorio-estatistica)
+para praticar.
+
+```{r eval=FALSE}
+# Leitura de ficheiro txt com read.table()
+dados <- read.table(file = "dados.txt", header = TRUE, sep = "")
+print(dados)
+```
+
+**Argumentos Comuns de `read.table()`**
+
+-   `file`: Especifica o nome do ficheiro ou o caminho do ficheiro para
+    leitura.
+-   `header`: Indica se a primeira linha do ficheiro contém os nomes das
+    colunas. Se `header = TRUE`, a primeira linha é considerada como
+    cabeçalho.
+-   `sep`: Define o caractere separador entre os campos. O padrão é uma
+    vírgula (,), mas pode ser especificado para outros caracteres, como
+    espaço (""), ponto e vírgula (;), etc.
+-   `dec`: Define o caractere utilizado para separar a parte inteira da
+    parte decimal dos números. Por exemplo, pode ser ponto (.) ou
+    vírgula (,).
+-   `nrows`: Especifica o número máximo de linhas a serem lidas do
+    ficheiro, útil para ler apenas uma parte do ficheiro.
+-   `na.strings`: Define quais valores no ficheiro devem ser
+    interpretados como `NA` (valores ausentes), como "NA", "N/A", etc.
+-   `skip`: Indica o número de linhas a serem ignoradas no início do
+    ficheiro antes de começar a leitura.
+-   `comment.char`: Define o caractere usado para denotar comentários no
+    ficheiro. Linhas que começam com este caractere serão ignoradas.
+
+Para ver todas as opções disponíveis na função `read.table()`, pode
+usar:
+
+```{r}
+args(read.table)
+```
+
+Se o ficheiro for um CSV (valores separados por vírgula), pode utilizar
+`read.table()` com o argumento `sep` apropriado:
+
+```{r eval=FALSE}
+dados_csv <- read.table("dados.csv", header = TRUE, sep = ",")
+```
+
+## A função `read.csv()`
+
+A função `read.csv()` está otimizada para a leitura de ficheiros CSV
+(Comma-Separated Values), que são ficheiros de texto onde cada linha
+representa um registo e os valores são separados por vírgulas. A
+principal diferença entre `read.csv()` e `read.table()` é que o
+separador padrão em `read.csv()` é uma vírgula.
+
+```{r eval=FALSE}
+# Leitura de ficheiro CSV com read.csv
+dados_csv <- read.csv("dados.csv", header = TRUE)
+```
+
+Aqui, o argumento `header = TRUE` indica que a primeira linha do
+ficheiro contém os nomes das colunas. Outros argumentos são semelhantes
+aos de `read.table()`.
+
+## A função `read.csv2()`
+
+A função `read.csv2()` é semelhante à `read.csv()`, mas é projetada para
+lidar com ficheiros CSV onde o separador padrão é um ponto e vírgula (;)
+e o separador decimal é uma vírgula (,). Este formato é comum em alguns
+países europeus.
+
+```{r eval=FALSE}
+# Leitura de CSV com separador ponto e vírgula
+dados_csv2 <- read.csv2("dados.csv2", header = TRUE)
+```
+
+## A Função `read_excel()`
+
+Para ler ficheiros Excel (.xls e .xlsx), usamos a função `read_excel()`
+do pacote `readxl`. Este pacote precisa ser instalado e carregado antes
+da sua utilização.
+
+```{r eval=FALSE}
+library(readxl)
+
+# Sintaxe básica
+read_excel(path, sheet = NULL, range = NULL, col_names = TRUE,
+           col_types = NULL, na = "", trim_ws = TRUE, skip = 0, n_max = Inf,
+           guess_max = min(1000, n_max), progress = readxl_progress())
+```
+
+**Principais Parâmetros de `read_excel()`**
+
+-   `path`: O caminho do ficheiro Excel a ser lido. Este é um argumento
+    obrigatório e pode ser um caminho local ou uma URL.
+-   `sheet`: O nome ou o índice da aba (folha) do Excel a ser lida. Se
+    não for especificado, a função irá ler a primeira folha.
+-   `range`: Um intervalo específico a ser lido, como "A1:D10". Se
+    `NULL` (padrão), a função lê toda a folha.
+-   `col_names`: Um argumento lógico (`TRUE` ou `FALSE`) que indica se a
+    primeira linha da folha deve ser usada como nomes das colunas no
+    data frame. O padrão é `TRUE`.
+-   `col_types`: Um vetor de tipos de colunas que podem ser `"blank"`,
+    `"numeric"`, `"date"`, `"text"`, ou `"guess"`. O padrão é `NULL`, o
+    que permite que a função adivinhe os tipos de coluna
+    automaticamente.
+-   `na`: Um vetor de strings que devem ser interpretadas como valores
+    ausentes (`NA`). O padrão é string vazia ("").
+-   `trim_ws`: Um argumento lógico (`TRUE` ou `FALSE`) que indica se os
+    espaços em branco devem ser removidos do início e do fim dos valores
+    de texto. O padrão é `TRUE`.
+-   `skip`: Número de linhas a serem ignoradas antes de começar a
+    leitura. O padrão é 0.
+-   `n_max`: Número máximo de linhas a serem lidas. O padrão é `Inf`, o
+    que significa que todas as linhas são lidas.
+
+**Exemplo de Utilização**: Vamos considerar um exemplo em que temos um ficheiro Excel chamado `"dados_instagram.xlsx"`. Este ficheiro pode ser descarregado [aqui](https://renatorpaula.wixsite.com/renato/laboratorio-estatistica). Vamos ler a primeira folha (`Sheet1`):
+
+```{r eval=FALSE}
+dados <- read_excel(path = "instagram.xlsx",
+                    sheet = "Sheet1",
+                    col_names = TRUE)
+```
+
+## Leitura de Dados Online
+
+O R também permite ler dados diretamente de URLs. Pode usar funções como
+`read.table()`, `read.csv()`, ou `read_excel()` (dependendo do formato
+do ficheiro) para importar dados diretamente de um link online.
+
+```{r eval=FALSE}
+# Leitura de dados online com read.table
+url <- "https://example.com/data.csv"
+dados_online <- read.table(url, header = TRUE, sep = ",")
+```
+
+Neste exemplo, url contém o endereço do ficheiro CSV na web, e
+`read.table()` é usado para importar o conteúdo como um data frame.
+
+## Exercícios
+
+**1.** Um instituto de climatologia registou temperaturas mínimas e máximas durante 3 dias. Os dados estão no ficheiro [Descarregar dados](docs/temperaturas.txt) com separador de tabulação e cabeçalho.
+
+(a) Use `read.table()` para ler "temperaturas.txt".
+
+(b) Visualize as 6 primeiras linhas com `head()`.
+
+(c) Qual foi a temperatura máxima no segundo dia?
+
+(d) Cria uma nova coluna `diferenca_temp` com a diferença entre a temperatura máxima e a mínima. Salve o resultado num ficheiro `temperaturas_nova.txt`. Dica: use `write.table(x= , file= , row.names= )`.
+
+**2.** Um ficheiro .csv exportado de um sistema português contém despesas e receitas mensais [Descarregar dados](docs/financas.csv). Os valores usam vírgula como separador decimal e ponto e vírgula como separador de campos.
+
+(a) Importe os dados com `read.csv2()`.
+
+(b) Calcule a soma total das receitas.
+
+(c) Crie uma coluna `saldo = receitas - despesas`.
+
+(d) Salve o resultado num ficheiro `financas_nova.csv`. Dica: use `write.csv(x= , file= , row.names= )`.
+
+**3.** Um laboratório gerou um ficheiro sem cabeçalho com 4 colunas: experimento, tempo, concentração e erro. Os dados estão separados por espaços. [Descarregar dados](docs/resultados_lab.txt)
+
+(a) Leia os dados com `read.table(..., header = FALSE)`.
+
+(b) Atribua nomes às colunas: "experimento", "tempo", "concentracao", "erro".
+
+(c) Qual a concentração do 5.º experimento?
+
+**4.** Um ficheiro .csv contém uma entrada incorreta na coluna `salario` (“quatro mil”). Isso causa erro ao tentar interpretar a coluna como numérica. [Descarregar dados](docs/dados_com_erros.csv) 
+
+(a) Importe com `read.csv()` e verifique a classe da coluna salario.
+
+(b) Corrija os dados manualmente e converta salario em numeric.
+
+**5.** Faça a leitura do ficheiro `dados_instagram` [aqui](https://renatorpaula.wixsite.com/renato/laboratorio-estatistica) e responda às perguntas abaixo (lembre de instalar o pacote `readxl`):
+
+(a) Exiba as primeiras 6 linhas do dataset:
+
+(b) **Construa uma tabela de frequência**: Crie um data frame que contenha a tabela de frequência de cada variável no conjunto de dados.
+
+```{r eval=FALSE}
+# --------------------
+# Indice de influência
+# ---------------------
+
+# Calcular o número de classes usando a Regra de Sturges
+n <- length(dados_instagram$indice_influencia)  # Número de observações
+k <- ceiling(1 + 3.322 * log10(n))   # Número de classes arredondado para cima
+
+# Definir os limites das classes
+min_val <- min(dados_instagram$indice_influencia)
+max_val <- max(dados_instagram$indice_influencia)
+intervalos <- seq(min_val, max_val, length.out = k + 1)  # Criação dos intervalos de classe
+
+# Criar a tabela de frequências
+tabela_frequencia_if <- cut(dados_instagram$indice_influencia, breaks = intervalos, include.lowest = TRUE)
+tabela_frequencia_if <- table(tabela_frequencia_if)
+
+# Converter a tabela em um data frame para visualização mais organizada
+tabela_frequencia_if_df <- as.data.frame(tabela_frequencia_if)
+names(tabela_frequencia_if_df) <- c("Intervalo", "Frequencia")
+tabela_frequencia_if_df
+
+# Frequência relativa
+tabela_frequencia_if_df$Freq_Relativa <- round(tabela_frequencia_if_df$Frequencia/length(dados_instagram$indice_influencia), digits = 3)
+
+# Frequência absoluta acumulada
+tabela_frequencia_if_df$Freq_Abs_Acum <- cumsum(tabela_frequencia_if_df$Frequencia)
+
+# Frequência relativa acumulada
+tabela_frequencia_if_df$Freq_Rela_Acum <- cumsum(tabela_frequencia_if_df$Freq_Relativa)
+```
+
+(c) **Visualização gráfica**: Crie representações gráficas adequadas para cada variável. Considere o uso de histogramas `hist()`, gráficos de barras `barplot()`, boxplots `boxplot()`, conforme o tipo de variável.
+
+(d) **Cálculo de medidas descritivas**: Determine as principais medidas descritivas para cada variável, incluindo média, mediana, variância, desvio padrão, coeficiente de variação, primeiro e terceiro quartis ($Q_1$ e $Q_3$), amplitude e amplitude interquartil. Indique quando essas medidas não forem aplicáveis. 
+
+(e) Calcule a média e a mediana do “índice de influência” para cada género. Comente sobre as diferenças entre os géneros e discuta se os resultados podem sugerir tendências distintas de influência entre eles.
+
+(f) Calcule a média e a mediana da “média de likes” para cada género. Avalie se há diferenças significativas entre os géneros nesta métrica e discuta possíveis implicações.
+
+(g) **Comparação de dispersão entre variáveis**: Compare a dispersão das variáveis “índice de influência” e “número de publicações” utilizando medidas como variância e desvio padrão. Justifique qual das variáveis apresenta maior dispersão e interprete o que isso pode indicar sobre os dados.
+
+(h) **Análise de percentis para “número de seguidores”**: Identifique os percentis de 10%, 25%, 75% e 90% para a variável “número de seguidores”. Comente sobre como esses percentis podem ser usados para categorizar influenciadores com diferentes níveis de popularidade na plataforma.
+
+(i) **Identificação de outliers**: Investigue a presença de outliers nas variáveis “número de publicações”, “número de seguidores” e “média de likes”.
+
+(j) **Correlação entre “índice de influência” e “média de likes”**: Calcule a correlação entre as variáveis “índice de influência” e “média de likes”. Comente sobre a relação entre essas duas variáveis, discutindo se um alto índice de influência tende a estar associado a uma média maior de curtidas. Dica: use `cor()`.
+
+**6.** Importe o ficheiro `dataset.csv` [aqui](https://renatorpaula.wixsite.com/renato/laboratorio-estatistica) no R e salve-o como um data frame. Em seguida:
+
+(a) Exiba as primeiras 6 linhas do dataset.
+
+(b) Escolha uma variável categórica no dataset crie uma tabela de frequência para essa variável. Visualize a distribuição da variável usando um gráfico de barras.
+
+(c) Para cada variável numérica no dataset, crie as seguintes visualizações:
+
+- Histogramas para observar a distribuição das variáveis.
+- Boxplots para identificar a presença de outliers e a dispersão dos dados.
+
+(d) Calcule as principais medidas descritivas para uma variável numérica à sua escolha. Inclua: Média, mediana, variância, desvio padrão, coeficiente de variação, quartis ($Q_1$ e $Q_3$), amplitude e amplitude interquartil.
+
+(e) Selecione uma variável numérica e uma variável categórica (por exemplo, comparar uma variável numérica entre diferentes categorias de uma variável categórica). Especificamente:
+
+- Calcule a média e a mediana da variável numérica para cada grupo da variável categórica.
+- Use boxplots para comparar visualmente as distribuições entre os grupos.

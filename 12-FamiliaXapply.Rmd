@@ -1,0 +1,431 @@
+# Família `Xapply()`
+
+A família `Xapply()` no R refere-se a um conjunto de funções desenhadas
+para iterar de forma eficiente sobre objetos, evitando a necessidade de
+loops (ciclos) explícitos como `for`. Essas funções são especialmente
+úteis para realizar operações repetitivas em listas, vetores, matrizes,
+data frames e outros objetos, de forma concisa e frequentemente mais
+rápida.
+
+| **Função** | **Argumentos**          | **Objetivo**                                      | **Input**                  | **Output**          |
+|--------------|--------------|-----------------|--------------|--------------|
+| `apply`    | `apply(x, MARGIN, FUN)` | Aplica uma função às linhas ou colunas ou a ambas | Data frame ou matriz       | vetor, lista, array |
+| `lapply`   | `lapply(x, FUN)`        | Aplica uma função a todos os elementos da entrada | Lista, vetor ou data frame | lista               |
+| `sapply`   | `sapply(x, FUN)`        | Aplica uma função a todos os elementos da entrada | Lista, vetor ou data frame | vetor ou matriz     |
+| `tapply`   | `tapply(x, INDEX, FUN)` | Aplica uma função a cada fator                    | Vetor ou data frame        | array               |
+
+## Função `apply()`
+
+A função `apply()` aplica uma função a margens específicas (linhas ou
+colunas) de uma matriz ou data frame e devolve um vetor, lista ou array.
+É frequentemente usada para evitar loops explícitos.
+
+```{r eval=FALSE}
+# Sintaxe
+apply(X, MARGIN, FUN)
+```
+
+-   `X`: A matriz ou data frame a ser manipulado.
+
+-   `MARGIN`: Um valor que indica se a função deve ser aplicada às
+    linhas (1) ou colunas (2) ou ambas `c(1,2)`.
+
+-   `FUN`: A função que será aplicada.
+
+**Exemplo**: Calcular a soma, a média e a raíz quadrada de cada coluna
+de uma matriz.
+
+```{r eval=FALSE}
+matriz <- matrix(1:9, nrow = 3)
+
+apply(matriz, 2, sum)
+## [1]  6 15 24
+
+apply(matriz, 2, mean)
+## [1] 2 5 8
+
+f <- function(x) sqrt(x)
+apply(matriz, 2, f)
+##      [,1] [,2] [,3]
+## [1,] 1.00 2.00 2.65
+## [2,] 1.41 2.24 2.83
+## [3,] 1.73 2.45 3.00
+```
+
+## Função `lapply()`
+
+A função `lapply()` aplica uma função a cada elemento de uma lista ou
+vetor e devolve uma lista. É útil quando se deseja manter a estrutura de
+saída como uma lista.
+
+```{r eval=FALSE}
+# Sintaxe
+lapply(X, FUN, ...)
+```
+
+-   `X`: A lista ou vetor de entrada.
+
+-   `FUN`: A função que será aplicada.
+
+**Exemplo 1:**
+
+```{r eval=FALSE}
+nomes <- c("ANA", "JOAO", "PAULO", "FILIPA")
+nomes_minusc <- lapply(nomes, tolower)
+print(nomes_minusc)
+## [[1]]
+## [1] "ana"
+## 
+## [[2]]
+## [1] "joao"
+## 
+## [[3]]
+## [1] "paulo"
+## 
+## [[4]]
+## [1] "filipa"
+
+str(nomes_minusc) 
+## List of 4
+##  $ : chr "ana"
+##  $ : chr "joao"
+##  $ : chr "paulo"
+##  $ : chr "filipa"
+```
+
+**Exemplo 2:**
+
+```{r eval=FALSE}
+# Aplicar a função sqrt a cada elemento de uma lista
+vetor_dados <- list(a = 1:4, b = 5:8)
+lapply(vetor_dados, sqrt)
+## $a
+## [1] 1.00 1.41 1.73 2.00
+## 
+## $b
+## [1] 2.24 2.45 2.65 2.83
+```
+
+## Função `sapply()`
+
+A função `sapply()` é semelhante à `lapply()`, mas tenta simplificar o
+resultado para um vetor ou matriz, se possível.
+
+```{r eval=FALSE}
+# Sintaxe
+sapply(X, FUN, ...)
+```
+
+**Exemplo**
+
+```{r eval=FALSE}
+dados <- 1:5
+f <- function(x) x^2
+
+lapply(dados, f)
+## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] 4
+## 
+## [[3]]
+## [1] 9
+## 
+## [[4]]
+## [1] 16
+## 
+## [[5]]
+## [1] 25
+
+sapply(dados, f)
+## [1]  1  4  9 16 25
+```
+
+## Função `tapply()`
+
+A função `tapply()` aplica uma função a subconjuntos de um vetor,
+divididos de acordo com fatores. É ideal para operações em subconjuntos
+de dados categorizados.
+
+```{r eval=FALSE}
+# Sintaxe
+tapply(X, INDEX, FUN, ...)
+```
+
+-   `X`: O vetor de dados.
+
+-   `INDEX`: Um fator ou lista de fatores que definem os grupos.
+
+-   `FUN`: A função que será aplicada a cada grupo.
+
+**Exemplo:** O dataset `iris` em R é um conjunto de dados amplamente
+utilizado para exemplificar análises estatísticas. Foi introduzido por
+Ronald A. Fisher em 1936 no seu artigo sobre a utilização de modelos
+estatísticos para discriminação de espécies de plantas. Contém
+informações sobre três espécies de flores (`Setosa`, `Versicolor`,
+`Virginica`) e suas características morfológicas (comprimento e largura
+das sépalas e pétalas). Vamos calcular a média do comprimento das
+pétalas por espécie usando `tapply()`:
+
+```{r eval=FALSE}
+iris
+##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+## 1            5.1         3.5          1.4         0.2     setosa
+## 2            4.9         3.0          1.4         0.2     setosa
+## 3            4.7         3.2          1.3         0.2     setosa
+## 4            4.6         3.1          1.5         0.2     setosa
+## 5            5.0         3.6          1.4         0.2     setosa
+## 6            5.4         3.9          1.7         0.4     setosa
+## 7            4.6         3.4          1.4         0.3     setosa
+## 8            5.0         3.4          1.5         0.2     setosa
+## 9            4.4         2.9          1.4         0.2     setosa
+## 10           4.9         3.1          1.5         0.1     setosa
+## 11           5.4         3.7          1.5         0.2     setosa
+## 12           4.8         3.4          1.6         0.2     setosa
+## 13           4.8         3.0          1.4         0.1     setosa
+## 14           4.3         3.0          1.1         0.1     setosa
+## 15           5.8         4.0          1.2         0.2     setosa
+## 16           5.7         4.4          1.5         0.4     setosa
+## 17           5.4         3.9          1.3         0.4     setosa
+## 18           5.1         3.5          1.4         0.3     setosa
+## 19           5.7         3.8          1.7         0.3     setosa
+## 20           5.1         3.8          1.5         0.3     setosa
+## 21           5.4         3.4          1.7         0.2     setosa
+## 22           5.1         3.7          1.5         0.4     setosa
+## 23           4.6         3.6          1.0         0.2     setosa
+## 24           5.1         3.3          1.7         0.5     setosa
+## 25           4.8         3.4          1.9         0.2     setosa
+## 26           5.0         3.0          1.6         0.2     setosa
+## 27           5.0         3.4          1.6         0.4     setosa
+## 28           5.2         3.5          1.5         0.2     setosa
+## 29           5.2         3.4          1.4         0.2     setosa
+## 30           4.7         3.2          1.6         0.2     setosa
+## 31           4.8         3.1          1.6         0.2     setosa
+## 32           5.4         3.4          1.5         0.4     setosa
+## 33           5.2         4.1          1.5         0.1     setosa
+## 34           5.5         4.2          1.4         0.2     setosa
+## 35           4.9         3.1          1.5         0.2     setosa
+## 36           5.0         3.2          1.2         0.2     setosa
+## 37           5.5         3.5          1.3         0.2     setosa
+## 38           4.9         3.6          1.4         0.1     setosa
+## 39           4.4         3.0          1.3         0.2     setosa
+## 40           5.1         3.4          1.5         0.2     setosa
+## 41           5.0         3.5          1.3         0.3     setosa
+## 42           4.5         2.3          1.3         0.3     setosa
+## 43           4.4         3.2          1.3         0.2     setosa
+## 44           5.0         3.5          1.6         0.6     setosa
+## 45           5.1         3.8          1.9         0.4     setosa
+## 46           4.8         3.0          1.4         0.3     setosa
+## 47           5.1         3.8          1.6         0.2     setosa
+## 48           4.6         3.2          1.4         0.2     setosa
+## 49           5.3         3.7          1.5         0.2     setosa
+## 50           5.0         3.3          1.4         0.2     setosa
+## 51           7.0         3.2          4.7         1.4 versicolor
+## 52           6.4         3.2          4.5         1.5 versicolor
+## 53           6.9         3.1          4.9         1.5 versicolor
+## 54           5.5         2.3          4.0         1.3 versicolor
+## 55           6.5         2.8          4.6         1.5 versicolor
+## 56           5.7         2.8          4.5         1.3 versicolor
+## 57           6.3         3.3          4.7         1.6 versicolor
+## 58           4.9         2.4          3.3         1.0 versicolor
+## 59           6.6         2.9          4.6         1.3 versicolor
+## 60           5.2         2.7          3.9         1.4 versicolor
+## 61           5.0         2.0          3.5         1.0 versicolor
+## 62           5.9         3.0          4.2         1.5 versicolor
+## 63           6.0         2.2          4.0         1.0 versicolor
+## 64           6.1         2.9          4.7         1.4 versicolor
+## 65           5.6         2.9          3.6         1.3 versicolor
+## 66           6.7         3.1          4.4         1.4 versicolor
+## 67           5.6         3.0          4.5         1.5 versicolor
+## 68           5.8         2.7          4.1         1.0 versicolor
+## 69           6.2         2.2          4.5         1.5 versicolor
+## 70           5.6         2.5          3.9         1.1 versicolor
+## 71           5.9         3.2          4.8         1.8 versicolor
+## 72           6.1         2.8          4.0         1.3 versicolor
+## 73           6.3         2.5          4.9         1.5 versicolor
+## 74           6.1         2.8          4.7         1.2 versicolor
+## 75           6.4         2.9          4.3         1.3 versicolor
+## 76           6.6         3.0          4.4         1.4 versicolor
+## 77           6.8         2.8          4.8         1.4 versicolor
+## 78           6.7         3.0          5.0         1.7 versicolor
+## 79           6.0         2.9          4.5         1.5 versicolor
+## 80           5.7         2.6          3.5         1.0 versicolor
+## 81           5.5         2.4          3.8         1.1 versicolor
+## 82           5.5         2.4          3.7         1.0 versicolor
+## 83           5.8         2.7          3.9         1.2 versicolor
+## 84           6.0         2.7          5.1         1.6 versicolor
+## 85           5.4         3.0          4.5         1.5 versicolor
+## 86           6.0         3.4          4.5         1.6 versicolor
+## 87           6.7         3.1          4.7         1.5 versicolor
+## 88           6.3         2.3          4.4         1.3 versicolor
+## 89           5.6         3.0          4.1         1.3 versicolor
+## 90           5.5         2.5          4.0         1.3 versicolor
+## 91           5.5         2.6          4.4         1.2 versicolor
+## 92           6.1         3.0          4.6         1.4 versicolor
+## 93           5.8         2.6          4.0         1.2 versicolor
+## 94           5.0         2.3          3.3         1.0 versicolor
+## 95           5.6         2.7          4.2         1.3 versicolor
+## 96           5.7         3.0          4.2         1.2 versicolor
+## 97           5.7         2.9          4.2         1.3 versicolor
+## 98           6.2         2.9          4.3         1.3 versicolor
+## 99           5.1         2.5          3.0         1.1 versicolor
+## 100          5.7         2.8          4.1         1.3 versicolor
+## 101          6.3         3.3          6.0         2.5  virginica
+## 102          5.8         2.7          5.1         1.9  virginica
+## 103          7.1         3.0          5.9         2.1  virginica
+## 104          6.3         2.9          5.6         1.8  virginica
+## 105          6.5         3.0          5.8         2.2  virginica
+## 106          7.6         3.0          6.6         2.1  virginica
+## 107          4.9         2.5          4.5         1.7  virginica
+## 108          7.3         2.9          6.3         1.8  virginica
+## 109          6.7         2.5          5.8         1.8  virginica
+## 110          7.2         3.6          6.1         2.5  virginica
+## 111          6.5         3.2          5.1         2.0  virginica
+## 112          6.4         2.7          5.3         1.9  virginica
+## 113          6.8         3.0          5.5         2.1  virginica
+## 114          5.7         2.5          5.0         2.0  virginica
+## 115          5.8         2.8          5.1         2.4  virginica
+## 116          6.4         3.2          5.3         2.3  virginica
+## 117          6.5         3.0          5.5         1.8  virginica
+## 118          7.7         3.8          6.7         2.2  virginica
+## 119          7.7         2.6          6.9         2.3  virginica
+## 120          6.0         2.2          5.0         1.5  virginica
+## 121          6.9         3.2          5.7         2.3  virginica
+## 122          5.6         2.8          4.9         2.0  virginica
+## 123          7.7         2.8          6.7         2.0  virginica
+## 124          6.3         2.7          4.9         1.8  virginica
+## 125          6.7         3.3          5.7         2.1  virginica
+## 126          7.2         3.2          6.0         1.8  virginica
+## 127          6.2         2.8          4.8         1.8  virginica
+## 128          6.1         3.0          4.9         1.8  virginica
+## 129          6.4         2.8          5.6         2.1  virginica
+## 130          7.2         3.0          5.8         1.6  virginica
+## 131          7.4         2.8          6.1         1.9  virginica
+## 132          7.9         3.8          6.4         2.0  virginica
+## 133          6.4         2.8          5.6         2.2  virginica
+## 134          6.3         2.8          5.1         1.5  virginica
+## 135          6.1         2.6          5.6         1.4  virginica
+## 136          7.7         3.0          6.1         2.3  virginica
+## 137          6.3         3.4          5.6         2.4  virginica
+## 138          6.4         3.1          5.5         1.8  virginica
+## 139          6.0         3.0          4.8         1.8  virginica
+## 140          6.9         3.1          5.4         2.1  virginica
+## 141          6.7         3.1          5.6         2.4  virginica
+## 142          6.9         3.1          5.1         2.3  virginica
+## 143          5.8         2.7          5.1         1.9  virginica
+## 144          6.8         3.2          5.9         2.3  virginica
+## 145          6.7         3.3          5.7         2.5  virginica
+## 146          6.7         3.0          5.2         2.3  virginica
+## 147          6.3         2.5          5.0         1.9  virginica
+## 148          6.5         3.0          5.2         2.0  virginica
+## 149          6.2         3.4          5.4         2.3  virginica
+## 150          5.9         3.0          5.1         1.8  virginica
+
+tapply(iris$Petal.Length, iris$Species, mean)
+##     setosa versicolor  virginica 
+##       1.46       4.26       5.55
+```
+
+## Exercícios
+
+**1.** Crie um vetor chamado `nomes` contendo os nomes "Alice", "Bruno",
+"Carla", e "Daniel". Use a função `lapply()` para converter todos os
+nomes para maiúsculas. Verifique o resultado.
+
+```{r eval=FALSE}
+nomes <- c("Alice", "Bruno", "Carla", "Daniel")
+# Sua solução aqui
+
+```
+
+**2.** Crie um vetor chamado `palavras` contendo as palavras "cachorro",
+"gato", "elefante", e "leão". Use a função `sapply()` para calcular o
+comprimento (número de caracteres) de cada palavra. Verifique o
+resultado. Dica, veja `?nchar`.
+
+```{r}
+palavras <- c("cachorro", "gato", "elefante", "leão")
+# Sua solução aqui
+```
+
+**3.** Crie uma matriz 3x3 chamada `matriz_exemplo` com os números de 1
+a 9. Use a função `apply()` para calcular a soma de cada linha da
+matriz. Em seguida, use a função `apply()` novamente para calcular a
+média de cada coluna.
+
+```{r}
+matriz_exemplo <- matrix(1:9, nrow = 3)
+# Sua solução aqui
+
+```
+
+**4.** Use o conjunto de dados embutido `mtcars` em R. Use a função
+`tapply()` para calcular a média do consumo de combustível (`mpg`) para
+cada número de cilindros (`cyl`).
+
+```{r}
+data(mtcars)
+# Sua solução aqui
+
+```
+
+**5.** Crie uma lista chamada `minha_lista` contendo três elementos: um
+vetor numérico de 1 a 5, um vetor de caracteres com os valores "A", "B",
+"C", e uma matriz 2x2 com valores de 1 a 4. Use `lapply()` para calcular
+o comprimento de cada elemento da lista e, em seguida, use `sapply()`
+para simplificar o resultado num vetor.
+
+```{r}
+minha_lista <- list(1:5, c("A", "B", "C"), matrix(1:4, nrow = 2))
+# Sua solução aqui
+
+```
+
+**6.** Crie um vetor `numeros` contendo os números de 1 a 10. Use a função
+`sapply()` para aplicar uma função personalizada que retorne “par” se o
+número for par e “ímpar” se o número for ímpar.
+
+```{r}
+numeros <- 1:10
+# Sua solução aqui
+
+```
+
+**7.** Use o conjunto de dados `iris`. Utilize `tapply()` para calcular
+a média do comprimento das pétalas (`Petal.Length`) por espécie
+(`Species`) e a variância da largura das sépalas (`Sepal.Width`) por
+espécie.
+
+```{r}
+data(iris)
+# Sua solução aqui
+
+```
+
+**8.** Use o conjunto de dados `mtcars`. Use `apply()` para normalizar
+(escala de 0 a 1) todas as colunas numéricas do data frame. Converta o resultado num data frame. Em seguida,
+use `lapply()` para aplicar a função `summary()` a cada coluna
+normalizada para verificar o resultado. Valor normalizado $\frac{x-min(x)}{max(x)-min(x)}$.
+
+```{r}
+data(mtcars)
+# Sua solução aqui
+
+
+```
+
+**9.** Um professor quer analisar o desempenho dos alunos em quatro exames. Ele registou as notas de 30 alunos, e agora deseja calcular algumas estatísticas descritivas.
+
+* Crie um data frame `notas_alunos` com 30 linhas (representando 30 alunos) e 4 colunas (representando os 4 exames).
+* Preencha o data frame com valores aleatórios entre 0 e 100, para simular as notas. Use a função `runif()`.
+* Utilize `apply()` para calcular a média de cada aluno em todos os exames.
+* Em seguida, utilize `sapply()` para calcular a nota mínima e a nota máxima de cada exame.
+
+**10.** Um gestor de marketing está a analisar o número de clientes que visitam quatro lojas ao longo de um mês. Ele quer verificar a frequência média e as tendências para cada loja.
+
+* Crie uma matriz chamada `frequencia_lojas` com 4 linhas (representando 4 lojas) e 30 colunas (representando os dias do mês).
+* Preencha a matriz com valores aleatórios entre 0 e 200, representando o número de clientes diários em cada loja. Use a função `sample()`.
+* Utilize `apply()` para calcular a média diária de clientes em cada loja ao longo dos 30 dias.
+* Em seguida, utilize `apply()` para calcular a soma total de clientes de cada loja durante o mês.
+* Converta a matriz `frequencia_lojas` em um data frame e use `sapply()` para calcular o desvio padrão do número de clientes em cada dia do mês (cada coluna), para verificar a variação de clientes ao longo dos dias.

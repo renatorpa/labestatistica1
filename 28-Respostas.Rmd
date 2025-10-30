@@ -1,0 +1,247 @@
+# Respostas
+
+## O pacote dplyr
+
+### Selecionando colunas
+
+**1.** Teste aplicar a função `glimpse()` do pacote \``dplyr` à base
+`sw`. O que ela faz?
+
+```{r}
+glimpse(sw)
+```
+
+Mostra os nomes das variáveis, os tipos de dados e os primeiros valores
+de cada coluna em uma única visualização, tudo de forma horizontal.
+
+**2.** Crie uma tabela com apenas as colunas `name`, `gender`, e
+`films`. Salve em um objeto chamado `sw_simples`.
+
+```{r}
+sw_simples <- select(sw, name, gender, films)
+sw_simples
+```
+
+**3.** Selecione apenas as colunas `hair_color`, `skin_color` e
+`eye_color` usando a função auxiliar `contains()`.
+
+```{r}
+select(sw, contains("color"))
+```
+
+**4.** Usando a função `select()` (e suas funções auxiliares), escreva
+códigos que retornem a base `sw` sem as colunas `hair_color`,
+`skin_color` e `eye_color`. Escreva todas as soluções diferentes que
+você conseguir pensar.
+
+```{r eval=FALSE}
+select(sw, -hair_color, -skin_color, -eye_color)
+
+select(sw, -contains("color"))
+
+select(sw, -ends_with("color"))
+
+select(sw, name:mass, birth_year:starships)
+```
+
+### Ordenando a base
+
+**1.** Ordene `mass` em ordem crescente e `birth_year` em ordem
+decrescente e salve em um objeto chamado `sw_ordenados`.
+
+```{r}
+sw_ordenados <- arrange(sw, mass, desc(birth_year))
+sw_ordenados
+```
+
+**2.** Selecione apenas as colunas `name` e `birth_year` e então ordene
+de forma decrescente pelo `birth_year`.
+
+```{r eval=FALSE}
+# Aninhando funções
+arrange(select(sw, name, birth_year), desc(birth_year))
+
+# Criando um objeto intermediário
+sw_aux <- select(sw, name, birth_year)
+arrange(sw_aux, desc(birth_year))
+
+# Usando pipe
+sw %>% 
+  select(name, birth_year) %>%
+  arrange(desc(birth_year))
+```
+
+### Filtrando linhas
+
+Utilize a base `sw` nos exercícios a seguir.
+
+**1.** Crie um objeto chamado `humanos` apenas com personagens que sejam
+humanos.
+
+```{r eval=FALSE}
+humanos <- filter(sw, species == "Human")
+
+# O pipe
+humanos <- sw %>% 
+  filter(species == "Human")
+```
+
+**2.** Crie um objeto chamado `altos_fortes` com personagens que tenham
+mais de 200 cm de altura e peso maior que 100 kg.
+
+```{r eval=FALSE}
+altos_fortes <- filter(sw, height > 200, mass > 100)
+```
+
+**3.** Retorne tabelas (`tibbles`) apenas com:
+
+**a.** Personagens humanos que nasceram antes de 100 anos antes da
+batalha de Yavin (`birth_year < 100`).
+
+```{r eval=FALSE}
+filter(sw, species == "Human", birth_year < 100)
+```
+
+**b.** Personagens com cor `light` ou `red`.
+
+```{r eval=FALSE}
+filter(sw, skin_color == "light" | skin_color == "red")
+```
+
+**c.** Personagens com massa maior que 100 kg, ordenados de forma
+decrescente por altura, mostrando apenas as colunas `name`, `mass` e
+`height`.
+
+```{r eval=FALSE}
+select(arrange(filter(sw, mass > 100), desc(height)), name, mass, height)
+
+# usando o pipe
+sw %>% 
+  filter(mass > 100) %>% 
+  arrange(desc(height)) %>% 
+  select(name, mass, height)
+```
+
+**d.** Personagens que sejam “Humano” ou “Droid”, e tenham uma altura
+maior que 170 cm.
+
+```{r eval=FALSE}
+filter(sw, species == "Human" | species == "Droid", height > 170)
+
+# usando o pipe
+sw %>% 
+  filter(species %in% c("Human", "Droid"), height > 170)
+```
+
+**e.** Personagens que não possuem informação tanto de altura quanto de
+massa, ou seja, possuem NA em ambas as colunas.
+
+```{r eval=FALSE}
+filter(sw, is.na(height), is.na(mass))
+```
+
+### Modificando e criando novas colunas
+
+**1.** Crie uma coluna chamada `dif_peso_altura` (diferença entre altura
+e peso) e salve a nova tabela em um objeto chamado `sw_dif`. Em seguida,
+filtre apenas os personagens que têm altura maior que o peso e ordene a
+tabela por ordem crescente de `dif_peso_altura`.
+
+```{r eval=FALSE}
+sw_dif <- mutate(sw, dif_peso_altura = height-mass)
+
+arrange(filter(sw_dif, height > mass), dif_peso_altura)
+
+# usando o pipe
+sw_dif <- sw %>% 
+  mutate(dif_peso_altura = height-mass)
+
+sw_dif %>% 
+  filter(height > mass) %>% 
+  arrange(dif_peso_altura)
+```
+
+**2.** Fazendo apenas uma chamada da função `mutate()`, crie as
+seguintes colunas novas na base `sw`:
+
+**a.** `indice_massa_altura` = `mass` / `height`
+
+**b.** `indice_massa_medio` = `mean(mass, na.rm = TRUE)`
+
+**c.** `indice_relativo` =
+`(indice_massa_altura - indice_massa_medio) / indice_massa_medio`
+
+**d.** `acima_media` =
+`ifelse(indice_massa_altura > indice_massa_medio, “sim”, “não”)`
+
+```{r eval=FALSE}
+mutate(sw, 
+       indice_massa_altura = mass/height,
+       indice_massa_medio = mean(mass, na.rm = TRUE),
+       indice_relativo = (indice_massa_altura - indice_massa_medio) / indice_massa_medio,
+       acima_media = ifelse(indice_massa_altura > indice_massa_medio, "sim", "não"))
+```
+
+### Sumarizando a base
+
+Utilize a base `sw` nos exercícios a seguir.
+
+**1.** Calcule a altura média e mediana dos personagens.
+
+```{r}
+summarize(sw, 
+          media_altura = mean(height, na.rm=TRUE),
+          mediana_altura = median(height, na.rm = TRUE))
+```
+
+**2.** Calcule a massa média dos personagens cuja altura é maior que 175
+cm.
+
+```{r}
+sw %>% 
+  filter(height > 175) %>% 
+  summarize(media_massa = mean(mass, na.rm = TRUE))
+```
+
+**3.** Apresente na mesma tabela a massa média dos personagens com
+altura menor que 175 cm e a massa média dos personagens com altura maior
+ou igual a 175 cm.
+
+```{r}
+sw %>% 
+  mutate(alturas = ifelse(height < 175, "menor 175", "maior 175")) %>%
+  filter(!is.na(height)) %>% 
+  group_by(alturas) %>% 
+  summarize(altura_media = mean(height, na.rm=TRUE)
+  )
+  
+```
+
+**4.** Retorne tabelas (`tibbles`) apenas com:
+
+**a.** A altura média dos personagens por espécie.
+
+```{r}
+sw %>% 
+  group_by(species) %>% 
+  summarize(altura_media = mean(height, na.rm = TRUE))
+```
+
+**b.** A massa média e mediana dos personagens por espécie.
+
+```{r}
+sw %>%
+  filter(!is.na(mass)) %>% 
+  group_by(species) %>% 
+  summarize(massa_media = mean(mass, na.rm = TRUE),
+            massa_mediana = median(mass, na.rm = TRUE))
+```
+
+**c.** Apenas o nome dos personagens que participaram de mais de 2
+filmes.
+
+```{r}
+sw %>% 
+  filter(length(films) > 2) %>% 
+  select(name)
+```

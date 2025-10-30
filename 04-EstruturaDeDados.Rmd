@@ -1,0 +1,2019 @@
+# Estrutura de Dados Básicas
+
+Em R, temos dois tipos principais de objetos: funções e dados.
+
+-   **Funções**: São objetos que executam operações específicas.
+
+    -   Exemplos de funções:
+
+        -   `cos()` - calcula o cosseno de um ângulo.
+        -   `print()` - imprime valores no console.
+        -   `plot()` - cria gráficos.
+        -   `integrate()` - calcula a integral de uma função.
+
+-   **Dados**: São objetos que contêm informações, como números, textos
+    ou outros tipos de dados.
+
+    -   Exemplos de dados:
+
+        -   `23` (número)
+        -   `"Hello"` (texto ou string)
+        -   `TRUE` (valor lógico)
+        -   `c(1, 2, 3)` (vetor numérico)
+        -   `data.frame(nome = c("Alice", "Bob"), idade = c(25, 30))`
+            (estrutura tabular)
+        -   `list(numero = 42, nome = "Alice", flag = TRUE)` (coleção de
+            elementos de diferentes tipos)
+        -   `factor(c("homem", "mulher", "mulher", "homem"))` (dados
+            categóricos)
+
+## Vetor
+
+Um **vetor** é uma estrutura de dados básica que armazena uma sequência
+de elementos do **mesmo tipo**. Os vetores podem conter dados numéricos,
+caracteres, valores lógicos (`TRUE`/`FALSE`), números complexos, entre
+outros.
+
+-   Todos os elementos de um vetor devem ser do mesmo tipo.
+-   Os elementos de um vetor são indexados a partir de 1 (ou seja, o
+    primeiro elemento está na posição 1).
+-   Os vetores podem ser criados usando a função `c()` (concatenate) e
+    são facilmente manipulados com uma variedade de funções.
+
+### Tipos Comuns de Vetores
+
+```{r eval=FALSE}
+# Vetor numérico
+c(1.1, 2.2, 3.3)
+## [1] 1.1 2.2 3.3
+
+# Vetor de caracteres
+c("a", "b", "c")
+## [1] "a" "b" "c"
+# ou
+c('a','b','c')
+## [1] "a" "b" "c"
+
+# Vetor lógico
+c(TRUE, 1==2)
+## [1]  TRUE FALSE
+
+# Não podemos misturar tipos de dados em um vetor...
+c(3, 1==2, "a") # Observe que o R converteu tudo para "character"!
+## [1] "3"     "FALSE" "a"
+```
+
+### Construindo Vetores
+
+```{r eval=FALSE}
+# Inteiros de 1 a 10
+x <- 1:10
+x
+##  [1]  1  2  3  4  5  6  7  8  9 10
+
+b <- 10:1
+b
+##  [1]  10  9  8  7  6  5  4  3  2 1
+
+# Sequência de 0 a 50 com incrementos de 10
+a <- seq(from = 0, to = 50, by=10)
+a
+## [1]  0 10 20 30 40 50
+
+# Sequência de 15 números de 0 a 1
+y <- seq(0,1, length=15)
+y
+##  [1] 0.0000 0.0714 0.1429 0.2143 0.2857 0.3571 0.4286 0.5000 0.5714 0.6429
+## [11] 0.7143 0.7857 0.8571 0.9286 1.0000
+
+# Repetição de um vetor várias vezes
+z <- rep(1:3, times=4)
+z
+##  [1] 1 2 3 1 2 3 1 2 3 1 2 3
+
+# Repetição de cada elemento do vetor várias vezes
+t <- rep(1:3, each=4)
+t
+##  [1] 1 1 1 1 2 2 2 2 3 3 3 3
+
+# Combine números, vetores ou ambos em um novo vetor
+w <- c(x,z,5)
+w
+##  [1]  1  2  3  4  5  6  7  8  9 10  1  2  3  1  2  3  1  2  3  1  2  3  5
+```
+
+### Acesso a Elementos de um Vetor
+
+Pode aceder a elementos específicos de um vetor utilizando colchetes [ ]
+e índices.
+
+```{r eval=FALSE}
+# Defina um vetor com inteiros de (-5) a 5 e extraia os números com valor absoluto menor que 3:
+x <- (-5):5
+x
+##  [1] -5 -4 -3 -2 -1  0  1  2  3  4  5
+
+# Acesso por índice:
+x[4:8]
+## [1] -2 -1  0  1  2
+ 
+# Seleção negativa (excluindo elementos):
+x[-c(1:3,9:11)]
+## [1] -2 -1  0  1  2
+
+# Todos menos o último
+x[-length(x)]
+## [1] -5 -4 -3 -2 -1  0  1  2  3  4
+
+# Vetor lógico para seleção
+index <- abs(x)<3
+index 
+##  [1] FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE
+
+# Utilizando o vetor lógico para extrair elementos desejados:
+x[index]
+## [1] -2 -1  0  1  2
+
+# Ou de forma compacta:
+x[abs(x) < 3]
+## [1] -2 -1  0  1  2
+
+# Acesso a elementos com vetores predefinidos
+letters[1:3]
+## [1] "a" "b" "c"
+
+letters[c(2,4,6)]
+## [1] "b" "d" "f"
+
+LETTERS[1:3]
+## [1] "A" "B" "C"
+
+y <- 1:10
+y[ (y>5) ] # Seleciona qualquer número > 5
+## [1]  6  7  8  9 10
+
+y[ (y%%2==0) ] # Números divisíveis por 2
+## [1]  2  4  6  8 10
+
+y[ (y%%2==1) ] # Números não divisíveis por 2
+## [1] 1 3 5 7 9
+
+y[5] <- NA
+y[!is.na(y)] # Todos os valores de y que não são NA
+## [1]  1  2  3  4  6  7  8  9 10
+```
+
+### Funções Comuns para Vetores
+
+Os vetores são uma das estruturas de dados mais utilizadas no R, e
+existem diversas funções para manipular e obter informações sobre eles.
+Abaixo estão algumas das funções mais comuns usadas com vetores
+numéricos:
+
+```{r eval=FALSE}
+num_vector <- c(2.2, 1.1, 3.3)
+
+# Obtém o comprimento (número de elementos) de um vetor
+length(num_vector)
+## [1] 3
+
+# Calcula o valor máximo de um vetor
+max(num_vector)
+## [1] 3.3
+
+# Calcula o valor mínimo de um vetor
+min(num_vector)
+## [1] 1.1
+
+# Calcula a soma dos elementos de um vetor
+sum(num_vector)
+## [1] 6.6
+
+# Calcula a média (valor médio) dos elementos de um vetor
+mean(num_vector)
+## [1] 2.2
+
+# Calcula a mediana dos elementos de um vetor
+median(num_vector)
+## [1] 2.2
+
+# Retorna um vetor contendo o mínimo e o máximo
+range(num_vector)
+## [1] 1.1 3.3
+
+# Calcula a variância amostral dos elementos de um vetor
+var(num_vector)
+## [1] 1.21
+
+# Calcula os quantis dos elementos de um vetor
+quantile(num_vector, type = 2)
+##   0%  25%  50%  75% 100% 
+## 1.1  1.1  2.2  3.3  3.3 
+
+# Calcula a soma cumulativa dos elementos de um vetor
+cumsum(num_vector)
+## [1] 2.2 3.3 6.6
+
+# Calcula o produto cumulativo dos elementos de um vetor
+cumprod(num_vector)
+## [1] 2.20 2.42 7.99
+
+# Ordena os elementos de um vetor em ordem crescente
+sort(num_vector)
+## [1] 1.1 2.2 3.3
+
+# Ordena os elementos de um vetor em ordem decrescente
+sort(num_vector, decreasing = TRUE)
+## [1] 3.3 2.2 1.1
+
+# Remove elementos duplicados de um vetor
+duplicate_vector <- c(1, 2, 2, 3, 3, 3)
+unique(duplicate_vector)
+## [1] 1 2 3
+```
+
+A função `which` é utilizada para encontrar os índices dos elementos de
+um vetor que satisfazem uma condição específica. Isto é útil quando se
+quer localizar a posição de certos valores dentro de um vetor.
+
+```{r eval=FALSE}
+y <- c(8, 3, 5, 7, 6, 6, 8, 9, 2, 3, 9, 4, 10, 4, 11)
+
+# Encontrar os índices dos elementos que são maiores que 5
+which(y > 5)
+## [1]  1  4  5  6  7  8 11 13 15
+```
+
+Aqui, a função `which(y > 5)` retorna os índices dos elementos em `y`
+que são maiores que 5. Se quiser ver os valores em `y` que são maiores
+que 5, basta fazer:
+
+```{r eval=FALSE}
+y[y>5]
+## [1]  8  7  6  6  8  9  9 10 11
+```
+
+### Operações com Vetores
+
+Os vetores no R suportam operações aritméticas e lógicas de forma
+elementar. Isto significa que as operações são aplicadas a cada elemento
+do vetor.
+
+```{r eval=FALSE}
+# Adição de 1 a cada elemento do vetor
+num_vector + 1  
+## [1] 3.2 2.1 4.3
+
+# Multiplicação de cada elemento por 2
+num_vector * 2  
+## [1] 4.4 2.2 6.6
+
+# Comparações: verifica se cada elemento é maior que 2
+num_vector > 2  
+## [1]  TRUE FALSE  TRUE
+
+# Exponenciação de elementos
+c(2, 3, 5, 7)^2
+## [1]  4  9 25 49
+
+c(2, 3, 5, 7)^c(2, 3)
+## [1]   4  27  25 343
+
+c(1, 2, 3, 4, 5, 6)^c(2, 3, 4)
+## [1]    1    8   81   16  125 1296
+
+c(2, 3, 5, 7)^c(2, 3, 4)
+## [1]   4  27 625  49
+```
+
+Os exemplos acima ilustram a **propriedade de reciclagem** do R. Quando
+operações são realizadas entre vetores de diferentes comprimentos, o R
+“recicla” (ou repete) o vetor menor até que corresponda ao comprimento
+do vetor maior. Se o comprimento do vetor maior não for um múltiplo
+inteiro do comprimento do vetor menor, o R emitirá um aviso.
+
+Por exemplo:
+
+```{r eval=FALSE}
+c(2,3,5,7)^c(2,3)
+## [1]   4  27  25 343
+```
+
+Este comando é expandido internamente para:
+
+```{r eval=FALSE}
+c(2,3,5,7)^c(2,3,2,3)
+## [1]   4  27  25 343
+```
+
+No entanto, se os vetores não puderem ser “reciclados” perfeitamente, o
+R irá gerar um aviso:
+
+```{r eval=FALSE}
+c(2,3,5,7)^c(2,3,4)
+## Warning in c(2, 3, 5, 7)^c(2, 3, 4): longer object length is not a multiple of
+## shorter object length
+## [1]   4  27 625  49
+```
+
+Neste caso, `c(2,3,5,7)^c(2,3,4)` é expandido para:
+
+```{r eval=FALSE}
+c(2,3,5,7)^c(2,3,4,2)
+## [1]   4  27 625  49
+```
+
+Observe que o último elemento do vetor menor foi reciclado para
+corresponder ao comprimento do vetor maior, mas não completamente,
+resultando no aviso.
+
+### Exercícios
+
+**1.** Crie os vetores:
+
+(a) $(1,2,3,\ldots,19,20)$
+
+(b) $(20,19,\ldots,2,1)$
+
+(c) $(1,2,3,\ldots,19,20,19,18,\ldots,2,1)$
+
+(d) $(10,20,30,\ldots,90,10)$
+
+(e) $(1,1,\ldots,1,2,2,\ldots,2,3,3,\ldots,3)$ onde existem 10
+    ocorrências do 1, 20 ocorrências do 2 e 30 ocorrências do 3.
+
+**2.** Use a função `paste()` para criar o seguinte vetor de caracteres
+de tamanho 20:
+
+("nome 1", "nome 2", $\ldots$, "nome 20")
+
+**3.** Crie um vetor $x_1$ igual a “A” “A” “B” “B” “C” “C” “D” “D” “E”
+“E”
+
+**4.** Crie um vetor $x_2$ igual a “a” “b” “c” “d” “e” “a” “b” “c” “d”
+“e”
+
+**5.** Crie um vetor $x_3$ igual as palavras "uva" 10 vezes, "maçã" 9
+vezes, "laranja" 6 vezes e "banana" 1 vez.
+
+**6.** Crie um vetor de notas `notas <- c(7, 8, 9)` e atribua os nomes
+dos alunos “Ana”, “João” e “Pedro” aos elementos. Acesse a nota do aluno
+“João” usando o nome. Dica: use a função `names()`.
+
+**7.** Crie um vetor de 15 números aleatórios entre 1 e 100 (use a
+função `sample()`). Ordene esse vetor em ordem crescente e depois em
+ordem decrescente. Encontre o menor e o maior valor no vetor.
+
+**8.** Crie um vetor de 20 números aleatórios entre 1 e 50 (use a função
+`sample()`). Calcule a soma, a média, o desvio padrão (`sd()`) e o produto de
+todos os elementos do vetor (`prod()`).
+
+**9.** Crie um vetor de 10 números aleatórios entre 1 e 100 (use a
+função `sample()`). Extraia os elementos do vetor que são maiores que
+50. De seguida, substitua os valores menores que 30 por 0.
+
+**10.** Crie um vetor de 10 números. Verifique quais elementos são
+maiores que 5 e quais são pares. Crie um novo vetor que contenha apenas
+os números que satisfazem ambas as condições.
+
+**11.** Crie um vetor com 10 números inteiros. Multiplique os elementos
+nas posições 2, 4 e 6 por 2. Substitua o último elemento por 100.
+
+**12.** Calcule a média dos vetores:
+
+(a) $x = (1,0,NA, 5,7)$
+
+(b) $y = (-Inf,0,1,NA,2,7,Inf)$
+
+**13.** Crie:
+
+(a) um vetor com valores $e^{x} \sin(x)$ nos pontos
+    $x=2,2.1,2.2,\ldots,6$
+
+(b) um vetor com valores
+    $\left(3,\frac{3^2}{2},\frac{3^3}{3},\ldots,\frac{3^{30}}{30}\right)$
+
+**14.** Calcule:
+
+(a) $$\sum_{i=1}^{1000}\frac{9}{10^{i}}$$
+(b) $$\sum_{i=10}^{100}i^{3}+4i^{2}$$
+(c) $$\sum_{i=1}^{25}\frac{2^{i}}{i} + \frac{3^{i}}{i^2}$$
+
+**15.** Uma empresa monitorou o consumo diário de energia (em kWh) de uma residência durante 30 dias. Esses dados foram armazenados num vetor chamado `consumo`.
+
+(a) Defina o vetor `consumo` com 30 valores gerados aleatoriamente entre 10 e 40 kWh, utilizando a função `runif()` com semente 2025 (`set.seed(2025)`). Para verificar os parâmetros da função faça `?rnuif`.
+
+(b) Calcule o consumo médio da casa nesse período. Armazene o valor numa variável chamada `media`.
+
+(c) Crie um vetor lógico chamado `acima_da_media` que indica se o consumo de cada dia foi superior à média.
+
+(d) Quantos dias o consumo foi superior à média?
+
+(e) Quais foram os dias com pico de consumo, ou seja, consumo superior a 35 kWh? Retorne os valores e as posições no vetor.
+
+(f) Substitua todos os valores abaixo de 15 kWh por `NA`, simulando falhas de medição.
+
+(g) Calcule novamente a média de consumo com os valores corrigidos, ignorando os `NA`.
+
+(h) Crie um vetor reduzido com os consumos dos dias pares do mês.
+
+**16.** Uma cooperativa agrícola monitorou a produção mensal de soja (em toneladas) em 12 propriedades diferentes ao longo de um ano. A produção foi registrada numa estrutura vetorial para cada mês, e agora pretende-se fazer análises simples com os dados.
+
+(a) Crie um vetor chamado `producao` com os seguintes valores (em toneladas), representando a produção total anual por propriedade:
+
+```{r eval=FALSE}
+producao <- c(80, 95, 70, 68, 105, 120, 73, 89, 110, 66, 92, 78)
+```
+
+(b) Calcule a média da produção anual por propriedade. Armazene o resultado na variável `media_total`.
+
+(c) Identifique quais propriedades produziram abaixo da média e crie um vetor com os seus índices.
+
+(d) Suponha que uma seca afetou as propriedades 4, 10 e 12. A produção dessas foi subestimada em 10%. Corrija os valores diretamente no vetor producao.
+
+(e) Recalcule a média com os dados corrigidos e compare com a média anterior.
+
+(f) Crie um vetor lógico chamado `alta_produtividade` que identifique propriedades com produção superior a 100 toneladas.
+
+(g) Quantas propriedades tiveram alta produtividade? Qual o percentual em relação ao total?
+
+(h) Ordene os valores de produção do menor para o maior e crie um vetor chamado `ordenado`.
+
+(i) Quais são as 3 propriedades com maior produção?
+
+## Fatores
+
+Em R, um **fator** é uma estrutura de dados usada para representar dados
+**categóricos**, ou seja, dados que podem ser classificados em
+categorias distintas. Os fatores são amplamente utilizados em análises
+estatísticas e visualizações de dados, pois permitem o tratamento
+eficiente e consistente de variáveis categóricas.
+
+-   **Níveis**: Os fatores possuem **níveis** (ou **levels**), que
+    representam os diferentes valores possíveis que a variável
+    categórica pode assumir. Por exemplo, para uma variável categórica
+    que representa tamanho de roupa, os níveis poderiam ser “Pequeno”,
+    “Médio” e “Grande”.
+-   **Armazenamento Interno**: Internamente, os fatores são armazenados
+    como inteiros, onde cada inteiro corresponde a um nível específico.
+    No entanto, quando exibidos, os fatores mostram os seus rótulos
+    (labels) para facilitar a compreensão.
+-   **Fatores Ordenados e Não Ordenados**: Os fatores podem ser
+    **ordenados** (quando há uma ordem lógica entre os níveis, como
+    “Baixo”, “Médio”, “Alto”) ou **não ordenados** (quando os níveis não
+    têm uma ordem intrínseca).
+
+**Exemplos**:
+
+```{r eval=FALSE}
+# Vetor de dados categóricos
+data <- c("baixo", "medio", "alto", "medio", "baixo", "alto")
+
+# Criar um fator não ordenado a partir dos dados categóricos
+factor_data <- factor(data)
+
+print(factor_data)
+## [1] baixo    medio alto   medio baixo    alto
+## Levels: alto baixo medio
+```
+
+Por padrão, os níveis são ordenados alfabeticamente. Podemos especificar
+a ordem dos níveis de acordo com a lógica desejada:
+
+```{r eval=FALSE}
+# Especificar a ordem dos níveis do fator
+factor_data <- factor(data, levels = c("baixo", "medio", "alto"))
+print(factor_data)
+## [1] baixo    medio alto   medio baixo    alto
+## Levels: baixo medio alto
+```
+
+Para criar um fator ordenado, onde os níveis têm uma ordem específica,
+usamos o argumento `ordered = TRUE`:
+
+```{r eval=FALSE}
+# Criar um fator ordenado
+ordered_factor <- factor(data, levels = c("baixo", "medio", "alto"), ordered = TRUE)
+print(ordered_factor)
+## [1] baixo    medio alto   medio baixo    alto
+## Levels: baixo < medio < alto
+
+# Comparação entre categorias
+ordered_factor[1] < ordered_factor[3]
+## TRUE
+```
+
+### Manipulação de Fatores
+
+Podemos utilizar várias funções para verificar e modificar os níveis de
+um fator:
+
+```{r eval=FALSE}
+# Verificar Níveis
+levels(factor_data)
+## [1] "baixo"    "medio" "alto"
+
+# Modificar Níveis
+levels(factor_data) <- c("Baixo", "Medio", "Alto")
+print(factor_data)
+## [1] Baixo    Medio Alto   Medio Baixo    Alto
+## Levels: Baixo Medio Alto
+```
+
+### Gerando Fatores com `gl()`
+
+A função `gl()` (generate levels) é usada para criar fatores de maneira
+eficiente, especialmente quando se deseja gerar fatores com padrões
+repetitivos.
+
+```{r eval=FALSE}
+# Sintaxe
+gl(n, k, labels = seq_len(n), ordered = FALSE)
+```
+
+-   `n`: um inteiro que fornece o número de níveis.
+
+-   `k`: um inteiro que fornece o número de replicações.
+
+-   `labels`: um vetor opcional de rótulos para os níveis de fatores
+    resultantes.
+
+-   `ordered`: uma lógica que indica se o resultado deve ser ordenado ou
+    não.
+
+```{r eval=FALSE}
+# Gerar níveis de fator com gl()
+gl(n=4,k=3)
+##  [1] 1 1 1 2 2 2 3 3 3 4 4 4
+## Levels: 1 2 3 4
+
+# Gerar fatores com labels personalizados
+gl(n=2, k=10, labels = c("mulher", "homem"))
+##  [1] mulher mulher mulher mulher mulher mulher mulher mulher mulher mulher
+## [11] homem  homem  homem  homem  homem  homem  homem  homem  homem  homem 
+## Levels: mulher homem
+
+# Também podemos fazer
+as.factor(c(rep("mulher", 10), rep("homem", 10)))
+##  [1] mulher mulher mulher mulher mulher mulher mulher mulher mulher mulher
+## [11] homem  homem  homem  homem  homem  homem  homem  homem  homem  homem 
+## Levels: homem mulher
+```
+
+### Exercícios
+
+**1.** Crie um vetor com os seguintes valores: "pequeno", "médio",
+"grande", "pequeno", "grande". Em seguida, transforme esse vetor em um
+`factor` com níveis ordenados em "pequeno", "médio" e "grande". Exiba os
+níveis do factor criado.
+
+**2.** Crie um factor com os valores de um vetor categórico
+representando as cores de carros: "vermelho", "azul", "preto",
+"vermelho", "branco", "azul". Use a função `table()` para contar quantos
+carros existem de cada cor.
+
+**3.** Crie um factor representando avaliações de produtos com os
+valores "bom", "médio", "ruim", e modifique os níveis para "excelente",
+"razoável" e "insatisfatório". Exiba o factor modificado.
+
+**4.** Crie um vetor com valores categóricos: "solteiro", "casado",
+"divorciado". Verifique se esse vetor é um factor usando a função
+`is.factor()` e depois transforme-o em um factor.
+
+**5.** Crie um factor representando níveis de escolaridade com os
+valores "ensino superior", "ensino secundário", "doutoramento",
+"mestrado", "ensino secundário", "ensino superior". Defina uma ordem
+lógica para os níveis e ordene o factor em ordem crescente.
+
+**6.** Crie um factor com os valores "baixo", "alto", "médio", "baixo",
+"alto", e com as categorias "baixo", "médio" e "alto", representando
+níveis de pressão. Converta este factor em um vetor numérico, onde
+"baixo" seja 1, "médio" seja 2, e "alto" seja 3.
+
+**7.** Crie um factor com as categorias "verde", "amarelo", "vermelho".
+Substitua o nível "amarelo" por "laranja" e exiba o factor atualizado.
+
+**8.** Uma empresa de serviços de internet realizou uma pesquisa de satisfação com o atendimento ao cliente. Foram entrevistados 20 clientes, e as suas respostas foram categorizadas como: "Muito insatisfeito", "Insatisfeito", "Neutro", "Satisfeito", "Muito satisfeito".
+
+As respostas foram armazenadas num vetor de texto chamado `respostas`. O objetivo agora é transformar estas respostas em fatores ordenados e extrair informações úteis.
+
+(a) Crie o vetor `respostas` com os seguintes valores:
+
+```{r eval=FALSE}
+respostas <- c(
+  "Satisfeito", "Muito satisfeito", "Neutro", "Insatisfeito", "Satisfeito",
+  "Muito insatisfeito", "Satisfeito", "Neutro", "Insatisfeito", "Satisfeito",
+  "Muito satisfeito", "Neutro", "Insatisfeito", "Satisfeito", "Neutro",
+  "Satisfeito", "Muito satisfeito", "Muito insatisfeito", "Neutro", "Satisfeito"
+)
+```
+
+(b) Converta `respostas` num fator chamado `respostas_fator`, com níveis ordenados do mais negativo para o mais positivo.
+
+(c) Verifique a estrutura de `respostas_fator` usando `str()`. O R reconhece a ordem dos níveis?
+
+(d) Quantos clientes ficaram insatisfeitos ou muito insatisfeitos?
+
+(e) Qual a resposta mais frequente entre os clientes? Dica: use `table()` ou `which.max(table(...))`.
+
+(f) Calcule a frequência relativa (%) de cada nível de satisfação.
+
+(g) Substitua todas as respostas "Neutro" por "Indiferente" e actualize o fator. Certifique-se de manter a ordem dos níveis.
+
+**9.** O Transtorno de Défice de Atenção e Hiperatividade (TDAH) é uma variação neurodesenvolvimental que influencia o modo como o cérebro regula a atenção, o impulso e a atividade. Longe de ser um défice de capacidade, o TDAH envolve diferenças na forma de processar estímulos, gerir prioridades e sustentar foco, que se manifestam de maneira única em cada pessoa.
+
+Estima-se que cerca de 5% dos adultos vivenciem o TDAH, muitas vezes sem diagnóstico durante a infância. No contexto do ensino superior, é comum que estudantes neurodivergentes com TDAH relatem desafios em áreas como organização pessoal, foco sustentado, gestão do tempo e procrastinação — não por falta de interesse ou competência, mas devido a um funcionamento atencional naturalmente oscilante, criativo e intenso.
+
+Ao mesmo tempo, muitas pessoas com TDAH demonstram hiperfoco em áreas de interesse profundo, pensamento fora da caixa, energia contagiante e capacidade de adaptação rápida a ambientes dinâmicos. Valorizar essas qualidades e promover estratégias pedagógicas flexíveis é essencial para que esses estudantes possam expressar todo o seu potencial académico.
+
+(a) Crie um vetor chamado `tdah_desafios` com os seguintes valores:
+
+```{r eval=FALSE}
+tdah_desafios <- c("Foco", "Procrastinação", "Gestão do tempo", "Organização", "Nenhum", "Foco", "Foco", "Organização", "Organização", "Organização", "Gestão do tempo", "Gestão do tempo", "Procrastinação", "Procrastinação", "Procrastinação", "Procrastinação", "Foco", "Foco", "Foco")
+```
+
+Converta-o num fator não ordenado `tdah_fator`.
+
+(b) Obtenha as frequências absolutas e relativas de cada desafio.
+
+(c) Quantos estudantes relataram como principal dificuldade o "Foco" ou a "Procrastinação"?
+
+(d) Recode "Nenhum" para "Sem dificuldade declarada".
+
+(e) Crie um gráfico de barras com os desafios, incluindo rótulos de frequência. Dica: use a função `barplot()`.
+
+**10.** A Dislexia é uma condição neurológica que afeta a forma como o cérebro processa a linguagem escrita. Trata-se de uma diferença específica de aprendizagem, caracterizada por desafios na leitura fluente, escrita, ortografia e reconhecimento automático de palavras, que não estão relacionados a níveis de inteligência ou empenho.
+
+Pessoas com dislexia possuem potenciais cognitivos diversos, muitas vezes acompanhados de criatividade, pensamento visual, raciocínio não linear e outras formas únicas de compreender o mundo. Estima-se que entre 5% e 10% da população seja disléxica, e essa característica costuma ser identificada nos primeiros anos de escolaridade, quando a leitura se torna uma ferramenta central do processo de aprendizagem.
+
+Reconhecer a dislexia como parte da neurodiversidade humana é essencial para promover ambientes de ensino mais inclusivos, que valorizem diferentes formas de aprender e de expressar conhecimento.
+
+(a) Crie o vetor dificuldades com as respostas de 10 crianças, utilizando:
+
+```{r eval=FALSE}
+dificuldades <- c(
+  "Leitura", "Escrita", "Ortografia", "Leitura", "Compreensão",
+  "Ortografia", "Memória auditiva", "Leitura", "Escrita", "Ortografia"
+)
+```
+
+Converta em um fator não ordenado chamado `dislexia_fator`.
+
+(b) Crie uma tabela de frequências e identifique a dificuldade mais prevalente.
+
+(c) Recode "Ortografia" para "Erros ortográficos", mantendo o vetor como fator.
+
+(d) Visualize as frequências com `barplot()`.
+
+## Matriz e Array
+
+Em R, uma **matriz** é uma estrutura de dados bidimensional que contém
+elementos do mesmo tipo (como numérico, lógico, etc.), organizados em
+linhas e colunas. Já um **array** é uma generalização da matriz que pode
+ter mais de duas dimensões.
+
+-   **nrow**: número de linhas;
+
+-   **ncol**: número de colunas.
+
+### Criando matrizes
+
+Podemos criar uma matriz em R usando a função `matrix()`. Veja o exemplo
+abaixo:
+
+```{r eval=FALSE}
+matrix(c(1,2,3,4,5,6), nrow=2, ncol= 3, byrow = FALSE)
+##      [,1] [,2] [,3]
+## [1,]    1    3    5
+## [2,]    2    4    6
+```
+
+Podemos também realizar operações lógicas em matrizes:
+
+```{r eval=FALSE}
+# Verifica se os elementos da matriz são maiores que 6
+matrix(c(1,2,3,4,5,6), nrow=2, ncol=3, byrow = FALSE) > 5
+##       [,1]  [,2] [,3]
+## [1,] FALSE FALSE FALSE
+## [2,] FALSE FALSE TRUE
+```
+
+### Construindo Matrizes
+
+-   `rbind()` (row bind): Combina objetos por linhas, empilhando-os
+    verticalmente.
+-   `cbind()` (column bind): Combina objetos por colunas, empilhando-os
+    horizontalmente.
+
+**Exemplo com Vetores**
+
+```{r eval=FALSE}
+# Criar dois vetores
+vector1 <- c(1, 2, 3)
+vector2 <- c(4, 5, 6)
+
+# Combinar os vetores por linhas
+result <- rbind(vector1, vector2)
+print(result)
+##         [,1] [,2] [,3]
+## vector1    1    2    3
+## vector2    4    5    6
+
+# Combinar os vetores por colunas
+result <- cbind(vector1, vector2)
+print(result)
+##      vector1 vector2
+## [1,]       1       4
+## [2,]       2       5
+## [3,]       3       6
+```
+
+**Exemplo com Matrizes**
+
+```{r eval=FALSE}
+# Criar duas matrizes
+matrix1 <- matrix(1:6, nrow = 2, ncol = 3)
+matrix2 <- matrix(7:12, nrow = 2, ncol = 3)
+
+# Combinar as matrizes por linhas
+result <- rbind(matrix1, matrix2)
+print(result)
+##      [,1] [,2] [,3]
+## [1,]    1    3    5
+## [2,]    2    4    6
+## [3,]    7    9   11
+## [4,]    8   10   12
+
+# Combinar as matrizes por colunas
+result <- cbind(matrix1, matrix2)
+print(result)
+##      [,1] [,2] [,3] [,4] [,5] [,6]
+## [1,]    1    3    5    7    9   11
+## [2,]    2    4    6    8   10   12
+```
+
+### Acessar Elementos de uma Matriz
+
+Podemos aceder a elementos específicos de uma matriz utilizando índices
+ou expressões lógicas.
+
+```{r eval=FALSE}
+# Criar uma matriz
+A <- matrix((-4):5, nrow=2, ncol=5)
+A
+##      [,1] [,2] [,3] [,4] [,5]
+## [1,]   -4   -2    0    2    4
+## [2,]   -3   -1    1    3    5
+
+# Aceder a um elemento específico
+A[1,2]
+## [1] -2
+
+# Selecionar elementos negativos
+A[A<0]
+## [1] -4 -3 -2 -1
+ 
+# Atribuição condicional
+A[A<0]<-0
+A
+##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    0    0    0    2    4
+## [2,]    0    0    1    3    5
+
+# Selecionar uma linha específica
+A[2,]
+## [1] 0 0 1 3 5
+
+# Selecionar colunas específicas
+A[,c(2,4)]
+##      [,1] [,2]
+## [1,]    0    2
+## [2,]    0    3
+```
+
+### Nomear Linhas e Colunas de uma Matriz
+
+```{r eval=FALSE}
+# Criar uma matriz
+x <- matrix(rnorm(12),nrow=4)
+x
+##        [,1]   [,2]    [,3]
+## [1,] -0.508 -0.523 -0.0258
+## [2,]  1.864  2.422  0.3408
+## [3,] -0.230  0.314 -1.9076
+## [4,] -0.571  0.478 -0.5948
+
+# Nomear colunas
+colnames(x) <- paste("dados",1:3,sep="")
+x
+##      dados1 dados2  dados3
+## [1,] -0.508 -0.523 -0.0258
+## [2,]  1.864  2.422  0.3408
+## [3,] -0.230  0.314 -1.9076
+## [4,] -0.571  0.478 -0.5948
+
+# Nomear linhas e colunas de outra matriz
+y <- matrix(rnorm(15),nrow=5)
+y 
+##        [,1]   [,2]   [,3]
+## [1,] -0.559 -1.705  0.672
+## [2,] -0.796  1.176 -0.566
+## [3,]  0.855 -1.474  0.804
+## [4,] -0.630 -1.786 -0.973
+## [5,]  1.261  0.447  0.285
+
+colnames(y) <- LETTERS[1:ncol(y)]
+
+rownames(y) <- letters[1:nrow(y)]
+
+y
+##        A      B      C
+## a -0.559 -1.705  0.672
+## b -0.796  1.176 -0.566
+## c  0.855 -1.474  0.804
+## d -0.630 -1.786 -0.973
+## e  1.261  0.447  0.285
+```
+
+### Multiplicação de matrizes
+
+```{r eval=FALSE}
+M<-matrix(rnorm(20),nrow=4,ncol=5)
+N<-matrix(rnorm(15),nrow=5,ncol=3)
+
+# Multiplicação de matrizes
+M%*%N
+##          [,1]    [,2]   [,3]
+## [1,] -1.67927  0.8103 -3.405
+## [2,] -0.33112 -0.9712 -2.352
+## [3,] -0.83679 -0.2961  0.140
+## [4,] -0.00563 -0.0709 -0.113
+```
+
+### Adicionar Linhas e Colunas a uma Matriz
+
+```{r eval=FALSE}
+X <- matrix(c(1,2,3,4,5,6),nrow=2)
+X
+##      [,1] [,2] [,3]
+## [1,]    1    3    5
+## [2,]    2    4    6
+
+# Adicionar uma coluna
+cbind(X, c(7,8))
+##      [,1] [,2] [,3] [,4]
+## [1,]    1    3    5    7
+## [2,]    2    4    6    8
+
+# Adicionar uma coluna no meio
+cbind(X[,1:2],c(7,8),X[,3])
+##      [,1] [,2] [,3] [,4]
+## [1,]    1    3    7    5
+## [2,]    2    4    8    6
+
+# Adicionar uma linha
+rbind(X, c(7,8,9))
+##      [,1] [,2] [,3]
+## [1,]    1    3    5
+## [2,]    2    4    6
+## [3,]    7    8    9
+```
+
+### Algumas outras funções
+
+Seja $M$ uma matriz quadrada.
+
+-   dimensão de uma matriz $\to$ `dim(M)`
+
+-   transposta de uma matriz $\to$ `t(M)`
+
+-   diagonal principal de uma matriz $\to$ `diag(M)`
+
+-   determinante de uma matriz $\to$ `det(M)`
+
+-   inversa de uma matriz $\to$ `solve(M)`
+
+-   autovalores e autovetores $\to$ `eigen(M)`
+
+-   soma dos elementos de uma matriz $\to$ `sum(M)`
+
+-   média dos elementos de uma matriz $\to$ `mean(M)`
+
+-   aplicar uma função a cada linha ou coluna $\to$
+    `apply(M,1, sum) # soma de cada linha`
+
+-   aplicar uma função a cada linha ou coluna $\to$
+    `apply(M,2, mean) # média de cada coluna`
+
+### Criando um array
+
+Um array pode ter mais de duas dimensões e é criado usando a função
+`array()`:
+
+```{r eval=FALSE}
+# Criar um array com 4 linhas, 3 colunas, e 2 camadas
+A <- array(c(1:24), dim=c(4,3,2))
+A
+## , , 1
+## 
+##      [,1] [,2] [,3]
+## [1,]    1    5    9
+## [2,]    2    6   10
+## [3,]    3    7   11
+## [4,]    4    8   12
+## 
+## , , 2
+## 
+##      [,1] [,2] [,3]
+## [1,]   13   17   21
+## [2,]   14   18   22
+## [3,]   15   19   23
+## [4,]   16   20   24
+```
+
+### Acessar Elementos de um array
+
+```{r eval=FALSE}
+# Acessando o elemento na posição [1, 2, 1]
+A[1,2,1]
+## [1] 5
+
+# Acessar todos os elementos da linha 2 da primeira camada
+A[2, ,1]
+## [1]  2  6 10
+
+# Acessar toda a primeira camada (todos os elementos onde a terceira dimensão é 1)
+A[,,1]
+##      [,1] [,2] [,3]
+## [1,]    1    5    9
+## [2,]    2    6   10
+## [3,]    3    7   11
+## [4,]    4    8   12
+
+# Acessar os elementos [1, 1, 1] e [2, 2, 2]
+A[c(1,2), c(1,2), c(1,2)]
+## , , 1
+## 
+##      [,1] [,2]
+## [1,]    1    5
+## [2,]    2    6
+## 
+## , , 2
+## 
+##      [,1] [,2]
+## [1,]   13   17
+## [2,]   14   18
+```
+
+### Exercícios
+
+**1.** Crie uma matriz $3 \times 4$ com os números de 1 a 12,
+preenchendo a matriz por colunas. Exiba a matriz e determine a soma dos
+elementos da segunda coluna.
+
+**2.** Crie duas matrizes $2 \times 3$ chamadas $A$ e $B$, cada uma
+preenchida com números aleatórios inteiros de 1 a 10. Em seguida, some
+as duas matrizes e multiplique-as elemento por elemento. Dica: use a função `sample()`.
+
+**3.** Crie uma matriz $3 \times 3$ chamada $M$ com números aleatórios
+entre 1 e 9. Crie também um vetor de comprimento 3 chamado $v$ com valores quaisquer. Realize a multiplicação entre a matriz $M$ e o vetor $v$ (ou seja,
+$M \times v$). Faça agora a multiplicação $v \times M$.
+
+**4.** Crie uma matriz $4 \times 2$ chamada $N$ com números sequenciais
+de 1 a 8. Transponha a matriz e calcule a soma dos elementos de cada
+linha da matriz transposta. Calcule agora a soma da primeira e segunda
+linha da matriz transposta.
+
+**5.** Crie uma matriz $3 \times 3$ chamada $P$ com valores de sua
+escolha. Calcule o determinante da matriz $P$. Caso o determinante seja
+diferente de zero, calcule também a matriz inversa de $P$.
+
+**6.** Crie uma matriz $5 \times 5$ chamada $Q$ com números aleatórios
+de 1 a 25. Extraia a submatriz composta pelas 2ª, 3ª e 4ª linhas e
+colunas.
+
+**7.** Crie uma matriz $3 \times 3$ com valores sequenciais de 1 a 9.
+Calcule a soma de todos os elementos da primeira linha e a soma de todos
+os elementos da terceira coluna.
+
+**8.** Considere a matriz $$A = \left[
+\begin{matrix}
+    1 & 1 & 3 \\
+    5 & 2 & 6 \\
+    -2 & -1 & -3
+\end{matrix}
+\right]$$
+
+(a) Verifique que $A^3=0$.
+
+(b) Troque a terceira coluna pela soma da coluna 1 e coluna 3.
+
+(c) Considere a matriz $$
+    M = \left[
+    \begin{matrix}
+    20 & 22 & 23 \\
+    34 & 55 & 57 \\
+    99 & 97 & 71 \\
+    12 & 16 & 19 \\
+    10 & 53 & 24 \\
+    14 & 21 & 28
+    \end{matrix}
+    \right],
+    $$ e troque os números pares por 0.
+
+**9.** Crie uma matriz $3\times 3$ e verifique se ela é simétrica (ou
+seja, se a matriz é igual à sua transposta). Teste com a matriz $$A = 
+\left[ \begin{matrix}
+1 & 2 & 3 \\
+2 & 4 & 5 \\
+3 & 5 & 6
+\end{matrix}\right]$$ Dica: use a função `all()`.
+
+**10.** Crie uma matriz $4\times 4$ e calcule o traço da matriz (a soma
+dos elementos da diagonal principal).
+
+**11.** Crie uma matriz $5\times 5$ com valores de 1 a 25. Em seguida,
+extraia as colunas de índice par (colunas 2 e 4) da matriz.
+
+**12** Uma turma de estudantes usou o ChatGPT como ferramenta auxiliar de estudo. Para cada estudante registou-se:
+
+1. Número de perguntas feitas ao ChatGPT durante a semana  
+2. Tempo médio de resposta em segundos  
+3. Nível de satisfação (escala de 1 a 5)  
+
+Os dados de 3 alunos estão organizados na matriz:
+
+\[
+M = \begin{bmatrix}
+12 & 8 & 5 \\
+20 & 10 & 4 \\
+15 & 9 & 5
+\end{bmatrix}
+\]
+
+- **Linha 1** → Aluno A  
+- **Linha 2** → Aluno B  
+- **Linha 3** → Aluno C  
+- **Colunas** → (Perguntas, Tempo médio de resposta, Satisfação)
+
+(a) Crie a matriz `M` no R com os dados apresentados e nomeie as linhas e colunas.  
+
+(b) Use `rbind()` para adicionar os dados de um novo estudante D, que fez **18 perguntas, teve tempo médio de 11 segundos e satisfação 3**.  
+
+(c) Use `cbind()` para adicionar uma nova coluna com a variável “Horas totais de uso do ChatGPT”, com os valores **[5, 7, 6, 8]**.  
+
+(d) Calcule a **média de cada métrica** (coluna) usando a função `colMeans()`.  
+
+(e) Qual aluno fez o maior número de perguntas? (use `which.max()`). 
+
+**13.** Um ecrã digital pode ser representado por uma **matriz**, onde cada célula (entrada) corresponde à intensidade de cor de um pixel. Suponha um ecrã simplificado em **tons de cinzento** (escala de 0 a 9, em que 0 = preto e 9 = branco).  
+
+A seguinte matriz representa uma imagem de **10×10 pixels**:
+
+\[
+I =
+\begin{bmatrix}
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 9 & 9 & 9 & 0 & 0 & 9 & 9 & 9 & 0 \\
+0 & 9 & 0 & 9 & 0 & 0 & 9 & 0 & 9 & 0 \\
+0 & 9 & 9 & 9 & 0 & 0 & 9 & 9 & 9 & 0 \\
+0 & 9 & 0 & 0 & 0 & 0 & 0 & 0 & 9 & 0 \\
+0 & 9 & 0 & 0 & 0 & 0 & 0 & 0 & 9 & 0 \\
+0 & 9 & 0 & 0 & 0 & 0 & 0 & 0 & 9 & 0 \\
+0 & 9 & 0 & 0 & 0 & 0 & 0 & 0 & 9 & 0 \\
+0 & 9 & 9 & 9 & 9 & 9 & 9 & 9 & 9 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0
+\end{bmatrix}
+\]
+
+(a) Crie a matriz `I` no R usando a função `matrix()`.  
+
+```{r eval=FALSE}
+I <- matrix(c(
+  0,0,0,0,0,0,0,0,0,0,
+  0,9,9,9,0,0,9,9,9,0,
+  0,9,0,9,0,0,9,0,9,0,
+  0,9,9,9,0,0,9,9,9,0,
+  0,9,0,0,0,0,0,0,9,0,
+  0,9,0,0,0,0,0,0,9,0,
+  0,9,0,0,0,0,0,0,9,0,
+  0,9,0,0,0,0,0,0,9,0,
+  0,9,9,9,9,9,9,9,9,0,
+  0,0,0,0,0,0,0,0,0,0
+), nrow = 10, byrow = TRUE)
+```
+
+(b) Visualize a matriz como uma imagem usando a função `image()`.  
+   - Dica: use `col = gray.colors(10)` para tons de cinzento.  
+
+(c) Inverta as cores da imagem (substitua cada valor $x$ por $9 - x$).  
+
+(d) Calcule a média da intensidade de cor de todos os pixels (isto corresponde ao brilho médio da imagem).  
+
+(e) Adicione uma nova linha de zeros no final da matriz, simulando um ecrã com mais uma linha de pixels apagados.
+    
+**14.** Numa certa região há dois grupos de seres: Humanos (H) e Zumbis (Z). A dinâmica da população segue estas regras:
+
+- A cada hora, 20% dos humanos tornam-se zumbis (e os restantes 80% continuam humanos).
+- Ao mesmo tempo, 10% dos zumbis tornam-se humanos (e os restantes 90% continuam zumbis).
+
+Podemos organizar estas probabilidades numa matriz especial chamada **matriz de transição**.
+
+- Cada coluna da matriz representa o estado atual (Humanos ou Zumbis).
+- Cada linha representa o estado futuro (Humanos ou Zumbis).
+- O número em cada posição diz a proporção que passa de um grupo para o outro.
+
+Se $\mathbf{x}_t$ representa o vetor com o número de humanos e zumbis no instante $t$, então: $$\mathbf{x}_{t+1} = P \cdot \mathbf{x}_t$$
+
+No instante inicial (hora 0) existem: $H_0$ = 150 humanos e $Z_0$ = 150 zumbis.
+
+(a) Crie no R a matriz de transição $P$ e o vetor inicial $\mathbf{x}_0 = (150,\,150)^\top$.
+
+(b) Calcule, utilizando multiplicações de matrizes no R:
+
+- O vetor $\mathbf{x}_1$ (hora 1)
+- O vetor $\mathbf{x}_2$ (hora 2)
+- O vetor $\mathbf{x}_{10}$ (hora 10)
+
+Quantos zumbis existirão na 10a hora? Dica: Use `%^%` para calcular a potência de uma matriz quadrada.
+
+**Nota:** Este exemplo é, na verdade, um caso simples de **cadeia de Markov**.
+
+- Em geral, uma cadeia de Markov descreve um sistema que evolui em estados sucessivos, em que a próxima situação depende apenas do estado atual e de uma matriz de transição como a que usamos aqui.
+- No nosso caso, os estados são apenas 2 (Humanos e Zumbis), e a cada hora aplicamos a mesma regra de transição.
+
+**15.** Uma maneira de codificar uma mensagem é através de **multiplicação por matrizes**. Vamos associar as letras do alfabeto aos números, segundo a correspondência abaixo
+(**sem a letra K** e com **espaço = 0**):
+
+A B C D E F G H I J L M N O P Q R S T U V W X Y Z  
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+
+Suponhamos que a mensagem é **"PUXA VIDA"**. Podemos formar uma matriz $3\times3$:
+
+$$
+\begin{bmatrix}
+P & U & X \\
+A & \ \,& V \\
+I & D & A
+\end{bmatrix}
+\quad\longrightarrow\quad
+M=
+\begin{bmatrix}
+15 & 20 & 23\\
+1  & 0  & 21\\
+9  & 4  & 1
+\end{bmatrix}
+$$
+
+Considere agora a **matriz chave** (invertível) $C$:
+
+$$
+C=\begin{bmatrix}
+1&0&1\\
+-1&3&1\\
+0&1&1
+\end{bmatrix}.
+$$
+
+A codificação faz-se por **multiplicação à direita**: $M_{\text{cod}} = M\cdot C$.
+No exemplo acima obtém-se
+
+$$
+M\cdot C=\begin{bmatrix}
+-5 & 83 & 58\\
+1 & 21 & 22\\
+5 & 13 & 14
+\end{bmatrix},
+$$
+e transmite-se a **cadeia de números por linhas**:  
+$-5,\ 83,\ 58,\ 1,\ 21,\ 22,\ 5,\ 13,\ 14$.
+
+Quem recebe a mensagem decodifica-a através da multiplicação pela inversa:
+$(M\cdot C)\cdot C^{-1}=M$, e depois transcreve os números de volta para letras.
+
+(a) Recebeu-se a mensagem (em blocos $3\times3$, lida por linhas):
+
+$$-12,\ 48,\ 23,\ -2,\ 42,\ 26,\ 1,\ 42,\ 29.$$
+Usando a **mesma chave $C$**, traduza a mensagem.
+
+(b) Escolha uma matriz-chave que dê para codificar palavras até 16 letras. Codifique e descodifique à vontade!
+
+**16.** Crie um array de dimensão 3x3x3 com valores de 1 a 27. Em
+seguida:
+
+-   Acesse o elemento localizado na posição [2, 3, 1] do array.
+-   Acesse a segunda “camada” (a segunda matriz) do array.
+-   Todos os elementos da terceira linha da segunda camada.
+
+**17.** Crie dois arrays de dimensão 2x2x2 com valores aleatórios entre
+1 e 10. Realize as seguintes operações:
+
+-   Some os dois arrays.
+-   Multiplique elemento por elemento os dois arrays.
+-   Calcule a média dos valores resultantes da soma dos dois arrays.
+-   Multiplique a primeira matriz do primeiro array pela segunda matriz
+    do segundo array.
+
+## Data Frame
+
+Um **data frame** em R é uma estrutura de dados bidimensional usada para
+armazenar dados tabulares. Cada coluna num data frame pode conter
+valores de diferentes tipos (como numéricos, caracteres, fatores, etc.),
+mas todos os elementos dentro de uma coluna devem ser do mesmo tipo. Um
+data frame é semelhante a uma tabela em um banco de dados ou uma folha
+de cálculo em programas como o Excel. Os data frames podem ser criados a
+partir de ficheiros de dados ou convertendo vetores usando a função
+`as.data.frame()`.
+
+### Criar um Data Frame
+
+Para criar um data frame, pode usar a função `data.frame()`,
+especificando os nomes das colunas e os dados correspondentes:
+
+```{r eval=FALSE}
+df <- data.frame(
+id = 1:4,
+nome = c("Ana", "Bruno", "Carlos", "Diana"),
+idade = c(23, 35, 31, 28),
+salario = c(5000, 6000, 7000, 8000))
+df
+##   id   nome idade salario
+## 1  1    Ana    23    5000
+## 2  2  Bruno    35    6000
+## 3  3 Carlos    31    7000
+## 4  4  Diana    28    8000
+```
+
+Um data frame pode parecer semelhante a uma matriz, mas há diferenças
+importantes. Veja o exemplo de uma matriz criada com os mesmos dados:
+
+```{r eval=FALSE}
+# Comparando com uma matriz
+cbind(id = 1:4,
+nome = c("Ana", "Bruno", "Carlos", "Diana"),
+idade = c(23, 35, 31, 28),
+salario = c(5000, 6000, 7000, 8000))
+##      id  nome     idade salario
+## [1,] "1" "Ana"    "23"  "5000" 
+## [2,] "2" "Bruno"  "35"  "6000" 
+## [3,] "3" "Carlos" "31"  "7000" 
+## [4,] "4" "Diana"  "28"  "8000"
+```
+
+Observe que na matriz, todos os dados são convertidos para o tipo
+`character`, enquanto em um data frame, cada coluna mantém seu próprio
+tipo de dados.
+
+### Aceder a Colunas
+
+Existem várias maneiras de aceder a colunas num data frame:
+
+```{r eval=FALSE}
+# Aceder à coluna 'id' usando índice
+df[,1]
+## [1] 1 2 3 4
+
+# Aceder à coluna 'id' usando o nome da coluna
+df$id
+## [1] 1 2 3 4
+
+# Aceder à coluna 'id' usando double brackets
+df[["id"]]
+## [1] 1 2 3 4
+
+# Subdata.frame com a coluna `"id"
+df["id"]
+##   id
+## 1  1
+## 2  2
+## 3  3
+## 4  4
+
+# Subdata.frame com a coluna `"id"
+df[1]
+##   id
+## 1  1
+## 2  2
+## 3  3
+## 4  4
+
+# Aceder à primeira linha
+df[1, ] 
+##   id nome idade salario
+## 1  1  Ana    23    5000
+
+# Aceder à segunda coluna
+df[, 2] 
+## [1] "Ana"    "Bruno"  "Carlos" "Diana"
+
+# Aceder a múltiplas colunas por nome
+df[c("nome", "idade")]
+##     nome idade
+## 1    Ana    23
+## 2  Bruno    35
+## 3 Carlos    31
+## 4  Diana    28
+```
+
+| Expressão    | Resultado                          | Classe      | Tipo de retorno         | Observações                                    |
+|--------------|------------------------------------|-------------|-------------------------|------------------------------------------------|
+| `df[,1]`     | Vetor com os valores da coluna `id` | `integer`   | vetor                   | Acessa por posição                             |
+| `df$id`      | Vetor com os valores da coluna `id` | `integer`   | vetor                   | Acessa por nome (forma mais legível)           |
+| `df[["id"]]` | Vetor com os valores da coluna `id` | `integer`   | vetor                   | Acessa por nome explicitamente                 |
+| `df["id"]`   | `data.frame` com uma única coluna `id` | `data.frame` | ainda é um `data.frame` | Retém estrutura de `data.frame`                |
+| `df[1]`      | `data.frame` com uma única coluna `id` | `data.frame` | mesma coisa que `df["id"]` | Acessa por posição, mas mantém a estrutura |
+
+### Aceder a Linhas
+
+```{r eval=FALSE}
+# Aceder ao elemento na primira linha
+df[1, ]
+##  id nome idade salario
+## 1  1  Ana    23    5000
+
+# Aceder as primeiras duas linhas
+df[1:2, ]
+##   id  nome idade salario
+## 1  1   Ana    23    5000
+## 2  2 Bruno    35    6000
+
+# Linhas 1 e 4
+df[c(1, 4), ]
+##   id  nome idade salario
+## 1  1   Ana    23    5000
+## 4  4 Diana    28    8000
+
+# Todas as linhas exceto a 1
+df[-1, ]
+## id   nome idade salario
+## 2  2  Bruno    35    6000
+## 3  3 Carlos    31    7000
+## 4  4  Diana    28    8000
+
+# Aceder ao elemento na primeira linha, segunda coluna
+df[1, 2] 
+## [1] "Ana"
+
+# Subconjunto das primeiras duas linhas e colunas
+df[1:2, 1:2]
+##   id  nome
+## 1  1   Ana
+## 2  2 Bruno
+
+# Aceder a uma entrada por nome de coluna
+df[1, "nome"] 
+## [1] "Ana"
+```
+
+| Expressão        | Resultado                               | Classe        | Tipo de retorno       | Observações                                         |
+|------------------|------------------------------------------|---------------|------------------------|-----------------------------------------------------|
+| `df[1, ]`        | Primeira linha do `data.frame`          | `data.frame`  | linha como `data.frame` | Mantém estrutura de `data.frame`                   |
+| `df[1, , drop=TRUE]` | Primeira linha como vetor                 | `named vector`| vetor nomeado          | Converte linha para vetor, perde estrutura tabular  |
+| `df[1:2, ]`      | Primeiras duas linhas                    | `data.frame`  | subconjunto de linhas  | Acede a várias linhas por intervalo                |
+| `df[c(1, 4), ]`  | Linhas 1 e 4                             | `data.frame`  | subconjunto de linhas  | Acede por índice arbitrário                        |
+| `df[-1, ]`       | Todas as linhas exceto a 1              | `data.frame`  | subconjunto de linhas  | Exclusão de linhas                                 |
+
+### Adicionar e Remover Colunas
+
+Adicionar e remover colunas de um data frame é simples e direto:
+
+```{r eval=FALSE}
+# Adicionar uma nova coluna calculada
+df$novo_salario <- df$salario * 1.1 
+df
+##   id   nome idade salario novo_salario
+## 1  1    Ana    23    5000         5500
+## 2  2  Bruno    35    6000         6600
+## 3  3 Carlos    31    7000         7700
+## 4  4  Diana    28    8000         8800
+
+# ou 
+df[["novo_salario"]] <- df$salario * 1.1 
+
+# ou 
+df["novo_salario"] <- list(df$salario * 1.1)
+
+# ou
+df <- cbind(df, novo_salario = df$salario * 1.1)
+
+# Remover uma coluna existente
+df$id <- NULL
+df
+##     nome idade salario novo_salario
+## 1    Ana    23    5000         5500
+## 2  Bruno    35    6000         6600
+## 3 Carlos    31    7000         7700
+## 4  Diana    28    8000         8800
+
+# ou
+df[["id"]] <- NULL
+
+# ou
+df["id"] <- NULL
+
+# Remover múltiplas colunas
+df[, -c(2,3)]
+##     nome novo_salario
+## 1    Ana         5500
+## 2  Bruno         6600
+## 3 Carlos         7700
+## 4  Diana         8800
+```
+
+### Fundir Data Frames
+
+**Empilhar data.frames pela vertical (linhas) — `rbind()`**
+
+Quando os `data.frames` têm as mesmas colunas e queremos juntar mais observações (linhas).
+
+```{r eval=FALSE}
+df1 <- data.frame(id = 1:2, nome = c("Ana", "Bruno"))
+df2 <- data.frame(id = 3:4, nome = c("Carlos", "Diana"))
+
+df_total <- rbind(df1, df2)
+df_total
+##   id   nome
+## 1  1    Ana
+## 2  2  Bruno
+## 3  3 Carlos
+## 4  4  Diana
+```
+
+Obs: `rbind()` exige que os nomes e número de colunas sejam iguais.
+
+**Juntar data.frames pela horizontal (colunas) — `cbind()`**
+
+Quando os `data.frames` têm o mesmo número de linhas e queremos anexar novas variáveis (colunas).
+
+```{r eval=FALSE}
+df_a <- data.frame(id = 1:3)
+df_b <- data.frame(idade = c(23, 31, 28))
+
+df_completo <- cbind(df_a, df_b)
+df_completo
+##   id idade
+## 1  1    23
+## 2  2    31
+## 3  3    28
+```
+
+Obs: `cbind()` não garante correspondência por chave (como `id`) — apenas alinha pela ordem das linhas.
+
+**Fazer joins por uma chave comum — `merge()`**
+
+Quando queremos fundir duas tabelas por uma variável comum (chave), como `id`, `nome`, etc.
+
+```{r eval=FALSE}
+# Criar dois data frames
+df1 <- data.frame(curso = c("PE", "LE", "CAL"), horas = c(60, 75, 90))
+df2 <- data.frame(curso = c("CAL", "PE", "LE"), creditos = c(8, 6, 7))
+
+# Fundir data frames pela variável 'curso'
+df12 <- merge(df1, df2, by = "curso")
+df12
+##   curso horas creditos
+## 1   CAL    90        8
+## 2    LE    75        7
+## 3    PE    60        6
+```
+
+```{r eval=FALSE}
+df1 <- data.frame(id = 1:3, nome = c("Ana", "Bruno", "Carlos"))
+df2 <- data.frame(id = 2:4, idade = c(35, 40, 28))
+
+merge(df1, df2, by = "id")  # INNER JOIN
+##   id   nome idade
+## 1  2  Bruno    35
+## 2  3 Carlos    40
+
+merge(df1, df2, by = "id", all.x = TRUE) # LEFT JOIN
+## id   nome idade
+## 1  1    Ana    NA
+## 2  2  Bruno    35
+## 3  3 Carlos    40
+
+merge(df1, df2, by = "id", all.Y = TRUE) # RIGHT JOIN
+##   id   nome idade
+## 1  2  Bruno    35
+## 2  3 Carlos    40
+
+merge(df1, df2, by = "id", all = TRUE) # FULL OUTER JOIN
+##   id   nome idade
+## 1  1    Ana    NA
+## 2  2  Bruno    35
+## 3  3 Carlos    40
+## 4  4   <NA>    28
+```
+
+**Usando `dplyr` (mais moderno e legível)**
+
+```{r eval=FALSE}
+library(dplyr)
+
+left_join(df1, df2, by = "id")
+right_join(df1, df2, by = "id")
+inner_join(df1, df2, by = "id")
+full_join(df1, df2, by = "id")
+```
+
+### Explorar o Data Frame
+
+Funções úteis para explorar e entender a estrutura de um data frame:
+
+```{r eval=FALSE}
+df <- iris
+
+# Nomes das colunas
+names(df)
+## [1] "Sepal.Length" "Sepal.Width"  "Petal.Length" "Petal.Width"  "Species"
+
+# Classe dos dados de uma coluna
+class(df$Sepal.Length)
+## [1] "numeric"
+
+class(df$Species)
+## [1] "factor"
+
+# Dimensão do data frame
+dim(df)
+## [1] 150   5
+
+# Número de linhas
+nrow(df)
+## [1] 150
+
+# Número de colunas
+ncol(df)
+## [1] 5
+
+# Estrutura do data frame
+str(df)
+## 'data.frame':    150 obs. of  5 variables:
+##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+##  $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
+
+# Visualização das primeiras linhas
+head(df, 3)
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+
+# Visualização das últimas linhas
+tail(df, 5)
+##     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+## 146          6.7         3.0          5.2         2.3 virginica
+## 147          6.3         2.5          5.0         1.9 virginica
+## 148          6.5         3.0          5.2         2.0 virginica
+## 149          6.2         3.4          5.4         2.3 virginica
+## 150          5.9         3.0          5.1         1.8 virginica
+```
+
+### Filtragem condicional num `data.frame`
+
+A função `subset()` em R é usada para criar subconjuntos de um data
+frame com base em condições lógicas. É particularmente útil quando se
+deseja filtrar linhas que satisfaçam certos critérios e selecionar
+colunas específicas ao mesmo tempo.
+
+```{r eval=FALSE}
+subset(x, subset, select, drop = FALSE, ...)
+```
+
+| Parâmetro | Descrição |
+|-----------|-----------|
+| `x` | Objeto a ser subsetado (geralmente um `data.frame`, mas também pode ser vetor, matriz ou lista). É o primeiro argumento obrigatório. |
+| `subset` | Expressão lógica usada para filtrar **linhas** do objeto `x`. Avaliada no ambiente de `x`. Ex.: `idade > 30`. |
+| `select` | Expressão para selecionar **colunas** (por nome ou posição). Pode usar índices positivos, negativos ou nomes. Ex.: `select = c(nome, salario)` ou `select = -id`. |
+| `drop` | Lógico. Se `TRUE`, quando apenas uma coluna é selecionada, retorna um vetor. Se `FALSE`, mantém a estrutura de `data.frame` mesmo com uma única coluna. Valor padrão: `FALSE`. |
+| `...` | Argumentos adicionais (geralmente ignorados para `data.frames`, usados internamente para outros métodos). |
+
+```{r eval=FALSE}
+df <- data.frame(
+id = 1:4,
+nome = c("Ana", "Bruno", "Carlos", "Diana"),
+idade = c(23, 35, 31, 28),
+salario = c(5000, 6000, 7000, 8000))
+
+# Filtrar linhas (idade > 30):
+subset(df, idade > 30)
+##   id   nome idade salario
+## 2  2  Bruno    35    6000
+## 3  3 Carlos    31    7000
+
+# Filtrar linhas e selecionar colunas:
+subset(df, idade > 30, select = c(nome, salario))
+##     nome salario
+## 2  Bruno    6000
+## 3 Carlos    7000
+
+# Selecionar colunas por padrão:
+subset(df, idade > 25, select = -c(id))  # remove coluna 'id'
+##     nome idade salario
+## 2  Bruno    35    6000
+## 3 Carlos    31    7000
+## 4  Diana    28    8000
+
+# Evitar conversão para vetor (drop = FALSE):
+subset(df, idade == 35, select = salario, drop = FALSE)
+##   salario
+## 2    6000
+```
+
+### A Função `summary()`
+
+A função `summary()` é amplamente usada em R para fornecer resumos
+estatísticos dos dados. O comportamento de `summary()` varia conforme o
+tipo de objeto ao qual é aplicado.
+
+```{r eval=FALSE}
+# Aplicando summary() a um vetor numérico
+x <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+summary(x)	
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    1.00    3.25    5.50    5.50    7.75   10.00
+
+# Aplicando summary() a uma coluna numérica de um data frame
+summary(iris$Sepal.Length)
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    4.30    5.10    5.80    5.84    6.40    7.90
+
+# Aplicando summary() a um data frame completo
+summary(iris) 
+##   Sepal.Length   Sepal.Width    Petal.Length   Petal.Width        Species  
+##  Min.   :4.30   Min.   :2.00   Min.   :1.00   Min.   :0.1   setosa    :50  
+##  1st Qu.:5.10   1st Qu.:2.80   1st Qu.:1.60   1st Qu.:0.3   versicolor:50  
+##  Median :5.80   Median :3.00   Median :4.35   Median :1.3   virginica :50  
+##  Mean   :5.84   Mean   :3.06   Mean   :3.76   Mean   :1.2                  
+##  3rd Qu.:6.40   3rd Qu.:3.30   3rd Qu.:5.10   3rd Qu.:1.8                  
+##  Max.   :7.90   Max.   :4.40   Max.   :6.90   Max.   :2.5
+```
+
+Aplicar `summary()` ao data frame `iris` inteiro fornece resumos
+estatísticos para todas as colunas, incluindo estatísticas descritivas
+para variáveis numéricas e uma contagem de frequências para variáveis
+categóricas (fatores).
+
+### Valores ausentes
+
+```{r eval=FALSE}
+colMeans(airquality)
+##   Ozone Solar.R    Wind    Temp   Month     Day 
+##      NA      NA   9.958  77.882   6.993  15.804
+```
+
+Para eliminarmos os `NAs` em uma coluna podemos usar
+
+```{r eval=FALSE}
+sem_na <- subset(airquality, !is.na(Ozone))
+colMeans(sem_na)
+##   Ozone Solar.R    Wind    Temp   Month     Day 
+##  42.129      NA   9.862  77.871   7.198  15.534
+```
+
+Note que o argumento `na.rm=TRUE` pode ser passado para a maioria das
+funções sumárias por exemplo, `sum()`, `mean()`:
+
+```{r}
+mean(airquality$Ozone, na.rm = TRUE)
+```
+
+```{r}
+# ou
+colMeans(airquality, na.rm = TRUE)
+```
+
+### Exercícios
+
+**1.** Crie um data frame chamado `estudantes` com as colunas: Nome
+(caracteres), Idade (números inteiros), Curso (caracteres) e Nota
+(números decimais). Adicione os dados de cinco estudantes fictícios e
+exiba o data frame. Adicione agora os dados da estudante Filipa, de 20 anos de idade, cursando Matemática e com nota 16. Use a função `order()` para ordenar o data frame por `nota`.
+
+**2.** Utilize o data frame `estudantes` criado no exercício anterior.
+Aceda à coluna `Nota` e aumente todas as notas em 0.5. Substitua o valor
+da coluna `Curso` para “Estatística” para todos os estudantes com nota
+superior a 8.0.
+
+**3.** Dado o data frame `mtcars` embutido no R, filtre as linhas onde o
+número de cilindros (`cyl`) é igual a 6 e a potência (`hp`) é maior que
+100. Crie um novo data frame com essas informações.
+
+**4.** Adicione uma nova coluna ao data frame `mtcars` chamada `Peso_KG`
+que converta o peso dos carros (`wt`) de mil libras para quilogramas
+(multiplicando por 453.592).
+
+**5.** Utilizando o data frame `mtcars`, calcule a média, o mínimo e o
+máximo da potência (`hp`) para cada número diferente de cilindros
+(`cyl`). Utilize a função `aggregate()` para realizar esta operação.
+
+**6.** Utilizando o data frame `mtcars`, aplique a função `sapply()`
+para calcular o desvio padrão de todas as colunas numéricas.
+
+**7.** Transforme a coluna `am` do data frame `mtcars` num fator com
+rótulos significativos: "Automático" para 0 e "Manual" para 1. Depois,
+conte quantos carros existem para cada tipo de transmissão.
+
+**8.** Ordene o data frame `mtcars` pela coluna `mpg` em ordem
+decrescente. Mostre os 5 carros mais económicos e os 5 menos económicos. Dica: use a função `order()`.
+
+**9.** Utilize o data frame `mtcars`, disponível no R, para criar dois novos data frames chamados `carros1` e `carros2`. Primeiro, adicione ao data frame `mtcars` uma nova coluna chamada `car`, que conterá os nomes dos carros (os nomes das linhas do data frame original).
+
+O data frame `carros1` deve conter as colunas `car`, `mpg` e `cyl`, enquanto o data frame `carros2` deve conter as colunas `car`, `hp` e `wt`.
+
+Em seguida, utilize a função `merge()` para combinar os dois data frames criados (`carros1` e `carros2`) com base na coluna `car`, que contém os nomes dos carros.
+
+**10.** Carregue o dataset `airquality` e exiba as primeiras 6 linhas e
+as últimas 6 linhas da tabela.
+
+**11.** Verifique quantos valores ausentes (`NA`) existem em cada coluna
+do dataset airquality. Dica: use a função `colSums()`.
+
+**12.** Calcule a média dos valores da coluna `Solar.R` no dataset
+`airquality`, ignorando os valores ausentes (`NA`).
+
+**13.** Crie um subconjunto do dataset `airquality` onde a velocidade do
+vento (`Wind`) é maior que 10 e a temperatura (`Temp`) é maior que 80.
+Exiba as primeiras 6 linhas do resultado.
+
+**14.** Adicione uma nova coluna ao dataset `airquality` chamada
+`Temp_Wind_Sum`, que seja a soma dos valores das colunas `Temp` e
+`Wind`. Exiba as primeiras 6 linhas da tabela modificada.
+
+**15.** Carregue o dataset `iris` e verifique sua estrutura. Filtre as observações que pertencem à espécie “setosa”.
+
+Crie uma nova coluna chamada `Petal.Area`, que representa a área das pétalas (comprimento * largura).
+
+Filtre apenas as linhas onde a área da pétala (`Petal.Area`) é maior que 0.2.
+
+Ordene o data frame resultante de acordo com o comprimento da pétala (`Petal.Length`) em ordem decrescente.
+
+**16.** Carregue o dataset `airquality` e remova todas as linhas que contenham valores ausentes (`NA`). Use a função `na.omit()`.
+
+Adicione uma nova coluna chamada `Temp.Celsius`, que converte a temperatura em Fahrenheit (Temp) para Celsius usando a fórmula: $Temp.Celsius = \frac{(Temp - 32)}{1.8}$
+
+Agrupe o data frame pelo mês (`Month`) e calcule a média da coluna `Ozone` para cada mês. Use a função `aggregate()`.
+
+Crie um gráfico de dispersão (`plot()`) para a relação entre `Ozone` e a nova coluna `Temp.Celsius`, colorindo os pontos de acordo com o mês (`Month`).
+
+**17.** O naufrágio do RMS Titanic em 1912 inspirou não apenas filmes e livros, mas também um dos datasets mais famosos da história da Ciência de Dados. Nele constam informações sobre os passageiros, como sexo, idade, classe e sobrevivência. É muito utilizado para aprender sobre análise exploratória, regressão, classificação e estatística aplicada.
+
+Vamos trabalhar com uma versão reduzida e fictícia deste conjunto de dados.
+
+(a) Crie o seguinte data.frame:
+
+```{r eval=FALSE}
+titanic <- data.frame(
+  nome = c("Ana", "Bruno", "Clara", "Daniel", "Eva", "Filipe"),
+  sexo = c("F", "M", "F", "M", "F", "M"),
+  idade = c(22, 35, 18, 50, 28, 40),
+  classe = c("1ª", "3ª", "3ª", "1ª", "2ª", "2ª"),
+  sobreviveu = c(TRUE, FALSE, TRUE, TRUE, FALSE, FALSE)
+)
+```
+
+(b) Quantos passageiros do sexo feminino sobreviveram?
+
+(c) Qual é a média de idade dos que sobreviveram?
+
+(d) Quantas pessoas estavam na 3ª classe? Qual a taxa de sobrevivência nesse grupo?
+
+
+## Listas
+
+Em R, uma **lista** é uma estrutura de dados versátil que pode armazenar
+elementos de diferentes tipos, como vetores, matrizes, data frames,
+funções e até outras listas. Esta flexibilidade torna as listas uma
+poderosa ferramenta para manipulação de dados complexos, permitindo
+armazenar uma coleção heterogénea de elementos em um único objeto.
+
+-   **Flexibilidade**: Ao contrário dos vetores, que são homogéneos e
+    podem conter apenas elementos de um único tipo, as listas podem
+    conter elementos de diferentes tipos e tamanhos.
+-   **Indexação**: Os elementos de uma lista podem ser acedidos de
+    várias maneiras:
+-   **Colchetes duplos [[ ]]**: Usados para aceder elementos específicos
+    de uma lista.
+-   **Operador \$**: Usado para aceder elementos nomeados.
+-   **Colchetes simples [ ]**: Retornam uma sublista contendo os
+    elementos especificados.
+
+### Criar e Manipular Listas
+
+Vamos criar uma lista que contém diferentes tipos de elementos,
+incluindo um vetor, um vetor de caracteres, uma matriz e uma função:
+
+```{r eval=FALSE}
+# Criar uma lista com diferentes tipos de elementos
+minha_lista <- list(
+  nome = "Estudante",
+  idade = 21,
+  notas = c(85, 90, 92),
+  disciplinas = c("Matemática", "Estatística", "Computação"),
+  matriz_exemplo = matrix(1:9, nrow = 3, byrow = TRUE),
+  media= function(x) mean(x)
+)
+
+# Visualizar a lista
+print(minha_lista)
+## $nome
+## [1] "Estudante"
+## 
+## $idade
+## [1] 21
+## 
+## $notas
+## [1] 85 90 92
+## 
+## $disciplinas
+## [1] "Matemática"  "Estatística" "Computação" 
+## 
+## $matriz_exemplo
+##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    4    5    6
+## [3,]    7    8    9
+## 
+## $media
+## function(x) mean(x)
+
+minha_lista[1] # retorna uma sub-lista
+## $nome
+## [1] "Estudante"
+
+# Aceder a um elemento pelo índice (retorna o valor (vetor, número, etc.))
+minha_lista[[1]] 
+## [1] "Estudante"
+
+# Aceder a um elemento pelo nome usando $ (retorna o valor do elemento com nome "nome")
+minha_lista$nome 
+## [1] "Estudante"
+
+# Aceder a uma sublista contendo os dois primeiros elementos
+minha_lista[1:2]
+## $nome
+## [1] "Estudante"
+## 
+## $idade
+## [1] 21
+
+# Aceder à segunda nota do vetor "notas" dentro da lista
+minha_lista$notas[2]
+## [1] 90
+
+# Adicionar novo elemento à lista
+minha_lista$nota_final <- mean(minha_lista$notas)
+# ou
+minha_lista[["nota_final"]] <- mean(minha_lista$notas)
+
+# Remover um elemento da lista
+minha_lista$idade <- NULL
+
+# Remover elemento 2 e 3 da lista
+minha_lista[-c(2,3)]
+```
+
+
+### Exercícios
+
+**1.** Crie uma lista em R chamada `dados_estudante` que contenha as
+seguintes informações sobre um estudante:
+
+-   Nome: “João”
+-   Idade: 21
+-   Notas: Um vetor com as notas em Estatística (85), Matemática (90), e
+    Computação (95).
+
+Depois de criar a lista, aceda e imprima:
+
+1.  O nome do estudante.
+2.  A idade do estudante.
+3.  A nota em Computação.
+
+**2.** Considere a lista `dados_estudante` criada no exercício anterior.
+Adicione um novo elemento à lista que contenha o status de aprovação do
+estudante, com valor "Aprovado". Em seguida, substitua a nota de
+Estatística para 88. Por fim, imprima a lista completa.
+
+**3.** Crie duas listas chamadas `estudante1` e `estudante2` com as
+mesmas estruturas da lista `dados_estudante`. Em `estudante1`, use os
+valores:
+
+-   Nome: “Maria”
+-   Idade: 22
+-   Notas: 78, 85, 90
+-   Status: “Aprovado”
+
+Em `estudante2`, use os valores:
+
+-   Nome: “Carlos”
+-   Idade: 23
+-   Notas: 70, 75, 80
+-   Status: “Aprovado”
+
+Agora, combine `estudante1` e `estudante2` numa nova lista chamada
+`turma`, e imprima a lista `turma`.
+
+**4.** Utilizando a lista `turma` criada no exercício anterior, faça as
+seguintes operações:
+
+(a) Extraia e imprima o nome do segundo estudante.
+(b) Calcule a média das notas do primeiro estudante.
+(c) Altere o status do segundo estudante para “Reprovado” e imprima a
+    lista atualizada.
+
+**5.** Crie uma lista chamada `estatistica_aplicada` que contenha duas
+listas internas: `turma1` e `turma2`. Cada uma dessas listas internas
+deve conter as informações de dois estudantes (com as mesmas estruturas
+utilizadas anteriormente). Por exemplo:
+
+-   `turma1`: Contendo `estudante1` e `estudante2`.
+-   `turma2`: Contendo dois novos estudantes de sua escolha.
+
+Aceda e imprima:
+
+(a) O nome do primeiro estudante da `turma2`.
+(b) A média das notas do segundo estudante da `turma1`.
+(c) A lista completa `estatistica_aplicada`.
+
+**6.** Uma fábrica produz 4 diferentes produtos e coleta informações de produção mensal. Crie uma lista chamada `produtos_fabrica` que contenha informações sobre 4 produtos:
+
+* Nome do Produto
+
+* Quantidade Produzida Mensalmente (em unidades)
+
+* Custo de Produção Unitário (em euros)
+
+* Preço de Venda Unitário (em euros)
+
+(a) Calcule e adicione à lista a **margem de lucro mensal** de cada produto (subtraia o preço de venda do custo de produção e multiplique pela quantidade produzida). Imprima a margem de lucro mensal de cada produto.
+
+(b) Encontre e imprima o produto que gera a maior margem de lucro mensal.
+
+(c) Atualize o **preço de venda** do segundo produto, aumentando-o em 5%, e imprima a nova margem de lucro mensal desse produto.
+
+(d) Crie uma lista com os **produtos mais lucrativos**, considerando aqueles cuja margem de lucro mensal é superior a 10% do custo de produção mensal.
+
+**7.** A utilização de ferramentas de inteligência artificial como o ChatGPT está a crescer entre estudantes universitários. Uma equipa de investigadores registou o número de mensagens trocadas e o tempo total de uso (em minutos) por três estudantes durante uma semana. Os dados estão organizados na lista abaixo:
+
+```{r eval=FALSE}
+chatgpt_logs <- list(
+  estudante1 = list(nome = "Ana", mensagens = c(12, 15, 9), tempo_total = 35),
+  estudante2 = list(nome = "Bruno", mensagens = c(7, 6, 5, 12), tempo_total = 42),
+  estudante3 = list(nome = "Carla", mensagens = c(10, 20), tempo_total = 28)
+)
+```
+
+(a) Qual foi o número de mensagens enviadas por Bruno na terceira sessão?
+
+(b) Calcule o número total de mensagens trocadas por cada estudante.
+
+(c) Adicione manualmente um novo elemento `media_tempo_sessao` para cada estudante, correspondente ao tempo médio por sessão.
+
+(d) Calcule, para cada estudante, a média de mensagens por sessão. Quem usou o ChatGPT de forma mais intensiva?
+
+**8.** Três perfis de Instagram dedicados à divulgação de Estatística publicaram conteúdos variados ao longo de uma semana. A lista abaixo regista, para cada perfil, os temas das publicações e o número de visualizações que cada uma recebeu.
+
+```{r eval=FALSE}
+instagram <- list(
+  biostats_girl = list(temas = c("café", "dados", "meme"), visualizacoes = c(1200, 1800, 2400)),
+  r_nerd = list(temas = c("dica_R", "ggplot2", "shiny"), visualizacoes = c(800, 1900, 2100)),
+  estatistica_hoje = list(temas = c("história", "carreira", "código"), visualizacoes = c(1500, 1600, 2000))
+)
+```
+
+(a) Qual foi o tema mais visualizado do perfil `r_nerd`?
+
+(b) Calcule o número total de visualizações de cada perfil e guarde esse valor como um novo elemento chamado `total_views`.
+
+(c) Com base nos totais, ordene os perfis do mais visualizado para o menos visualizado.
+
+(d) Calcule a média de visualizações por publicação para cada perfil. Qual deles teve o melhor desempenho médio?
+
+**9.** Os dados abaixo representam os resultados de três turmas na disciplina de Probabilidades. Para cada turma, estão registadas:
+
+- as notas dos alunos nos dois testes (T1 e T2),
+
+- se o aluno entregou o projeto final (`TRUE` ou `FALSE`).
+
+```{r eval=FALSE}
+avaliacoes <- list(
+  turmaA = list(notas_t1 = c(14, 12, 16), notas_t2 = c(15, 13, 14), projeto = c(TRUE, TRUE, FALSE)),
+  turmaB = list(notas_t1 = c(10, 11, 9), notas_t2 = c(13, 12, 10), projeto = c(TRUE, FALSE, FALSE)),
+  turmaC = list(notas_t1 = c(17, 18, 19), notas_t2 = c(18, 17, 20), projeto = c(TRUE, TRUE, TRUE))
+)
+```
+
+(a) Calcule a média final de cada aluno em cada turma.
+
+(b) Verifique quantos alunos, em cada turma, entregaram o projeto e tinham média final igual ou superior a 13 valores.
+
+(c) Calcule, para cada turma:
+
+- a média geral das notas finais,
+- a percentagem de alunos aprovados (definidos como quem entregou o projeto e teve média ≥ 10 valores).
+
+(d) Com base nesses resultados, qual foi a turma com melhor desempenho global?

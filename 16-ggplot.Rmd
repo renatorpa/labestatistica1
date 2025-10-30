@@ -1,0 +1,107 @@
+# O pacote `ggplot2`
+
+O `ggplot2` é um dos pacotes mais populares do R para criar gráficos.
+Ele implementa o conceito de *Grammar of Graphics*, que oferece uma
+maneira sistemática de descrever e construir gráficos. Este conceito
+está apresentado no livro [The Grammar of
+graphics](https://link.springer.com/book/10.1007/0-387-28695-0).
+
+## A Gramática dos Gráficos
+
+O `ggplot2` baseia-se na ideia de que um gráfico pode ser decomposto nos seguintes componentes:
+	
+1.	**Dados**: o conjunto de dados que será visualizado.
+
+2.	**Aes (aesthetics)**: os mapeamentos estéticos, como `x`, `y`, `color`, `size`, etc.
+
+3.	**Geoms (geometrias)**: o tipo de gráfico, como pontos (`geom_point()`), linhas (`geom_line()`), barras (`geom_bar()`), etc.
+
+4.	**Scales**: definem como os dados são convertidos em estética.
+
+5.	**Facets**: permitem dividir o gráfico em subgráficos.
+
+6.	**Themes**: controlam a aparência geral.
+
+### Estrutura básica
+
+```{r}
+library(ggplot2)
+ggplot(data = mtcars, aes(x = wt, y = mpg)) +
+  geom_point()
+```
+
+### Exemplos práticos
+
+**Gráfico de Dispersão**
+
+```{r}
+ggplot(data = mtcars, aes(x = wt, y = mpg)) +
+  geom_point()
+```
+
+**Gráfico de Barras**
+
+```{r}
+ggplot(data = mpg, aes(x = class)) +
+  geom_bar()
+```
+
+**Boxplot por Grupo**
+
+```{r}
+ggplot(data = mpg, aes(x = class, y = hwy)) +
+  geom_boxplot()
+```
+
+**Gráfico com Regressão Linear**
+
+```{r}
+ggplot(data = mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+**Facetamento**
+
+```{r}
+ggplot(data = mpg, aes(x = displ, y = hwy)) +
+  geom_point() +
+  facet_wrap(~ class)
+```
+
+**Customizações com Theme**
+
+```{r}
+ggplot(data = mpg, aes(x = displ, y = hwy)) +
+  geom_point() +
+  theme_minimal()
+```
+
+### Boas práticas
+
+- Use títulos claros: `labs(title = ..., x = ..., y = ...)`
+- Evite sobrecarga visual
+- Use cores com bom contraste
+- Use `facet_wrap` ou `facet_grid` com atenção aos eixos
+
+## Exercícios
+
+1.	Com o dataset `mtcars`, faça um gráfico de dispersão entre `wt` e `mpg`, colorindo os pontos pela variável `cyl`.
+
+2. Com o dataset `mtcars`, crie um gráfico de dispersão entre `mpg` e `hp`, colorindo os pontos por `cyl` e ajustando a forma (shape) por `am`.
+
+3.	Com o dataset `mpg`, faça um gráfico de barras da variável `drv` e mude a cor das barras manualmente com `fill`.
+
+4. Usando o dataset `diamonds`, produza um gráfico de barras para a variável `cut`, preenchendo (`fill`) pelas categorias de `clarity`. Use `position = "fill"` para comparar proporções relativas.
+
+5. Com mpg, desenhe um histograma da variável `hwy` com densidade sobreposta usando `geom_density()`. Explore o argumento `alpha` para transparência.
+
+6.	Produza um boxplot de `hwy` por `manufacturer`, ordenando os fabricantes pela média de `hwy`.
+
+7. Crie boxplots de `Sepal.Length` por espécie no dataset `iris`. Sobreponha pontos representando a média de cada grupo usando `stat_summary()`.
+
+8.	Crie um gráfico com `geom_smooth()` ajustando uma curva `LOESS` para os dados `displ` vs `hwy` do `mpg`, separando por `drv` com `facet_grid()`.
+	
+9.	Exporte um dos seus gráficos para um ficheiro .png com `ggsave("grafico.png")`.
+
+10.	Escolha um conjunto de dados próprio (ou um tibble pequeno) e crie uma visualização que combine pelo menos dois tipos de `geom` diferentes.

@@ -1,0 +1,103 @@
+# A função `sample()`
+
+A função `sample()` em R é amplamente utilizada para gerar amostras
+aleatórias a partir de um conjunto de dados ou de uma sequência de
+números. É uma função muito flexível que permite definir o tamanho da
+amostra, se a amostragem é feita com ou sem reposição, e se os elementos
+têm diferentes probabilidades de serem selecionados.
+
+```{r eval=FALSE}
+# Sintaxe
+sample(x, size, replace = FALSE, prob = NULL)
+```
+
+-   `x`: O vetor de elementos a serem amostrados.
+-   `size`: O tamanho da amostra desejada.
+-   `replace`: Um valor lógico que indica se a amostragem é feita com
+    reposição (`TRUE`) ou sem reposição (`FALSE`).
+-   `prob`: Um vetor de probabilidades associadas a cada elemento em
+    `x`. Se não especificado, assume-se que todos os elementos têm a
+    mesma probabilidade de serem selecionados.
+
+**Exemplo 1 (Amostragem Simples sem Reposição)**: Neste exemplo,
+extraímos uma amostra de 5 elementos a partir de uma população de
+números inteiros de 1 a 10, sem reposição:
+
+```{r eval=FALSE}
+# População de 1 a 10
+pop <- 1:10
+
+# Amostra de 5 elementos sem reposição
+amostra <- sample(pop, size = 5, replace = FALSE)
+print(amostra)
+## [1]  5  2  4 10  8
+```
+
+**Exemplo 2 (Amostragem com Reposição)**:. Neste exemplo, permitimos que
+os mesmos elementos sejam selecionados mais de uma vez:
+
+```{r eval=FALSE}
+# Amostra de 5 elementos com reposição
+amostra_repos <- sample(pop, size = 5, replace = TRUE)
+print(amostra_repos)
+## [1] 6 8 9 9 6
+```
+
+**Exemplo 3 (Amostragem com Probabilidades Diferentes)**: Neste exemplo,
+associamos diferentes probabilidades a cada elemento da população:
+
+```{r eval=FALSE}
+# Probabilidades associadas a cada elemento
+prob <- c(0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.05, 0.05)
+
+# Amostra com probabilidades diferentes
+amostra_prob <- sample(pop, size = 5, prob = prob)
+print(amostra_prob)
+## [1] 2 4 6 5 3
+```
+
+## Exercícios
+
+**1.** Crie um vetor com os números de 1 a 20. Utilize a função
+`sample()` para selecionar uma amostra aleatória de 5 elementos desse
+vetor. A amostragem deve ser feita sem reposição.
+
+**2.** Suponha que tem uma população representada pelos números de 1 a
+10. Utilize a função `sample()` para selecionar uma amostra de 10
+elementos com reposição.
+
+**3.** Crie um vetor com as letras A, B, C, D, E. Aplique a função
+`sample()` para selecionar uma amostra de 3 letras, onde a probabilidade
+de cada letra ser selecionada é dada pelo vetor
+`c(0.1, 0.2, 0.3, 0.25, 0.15)`.
+
+**4.** Crie um vetor com os números de 1 a 10. Utilize a função
+`sample()` para reordenar aleatoriamente os elementos desse vetor.
+
+**5.** Crie um vetor com os nomes de cinco frutas: “Maçã”, “Banana”,
+“Laranja”, “Uva”, “Pera”. Utilizando a função `sample()`, selecione
+aleatoriamente uma fruta desse vetor. Em seguida, selecione uma amostra
+de 3 frutas.
+
+**6.** Você é responsável por realizar um teste de qualidade em uma
+fábrica. Há 1000 produtos fabricados, numerados de 1 a 1000. Selecione
+uma amostra aleatória de 50 produtos para inspeção, garantindo que não
+haja reposição na seleção.
+
+**7.** Simule o lançamento de dois dados justos 10000 vezes e registe as
+somas das faces resultantes. Utilize a função `sample()` para realizar a
+simulação. Em seguida, crie um histograma das somas obtidas.
+
+**8.** Tem um vetor de 200 estudantes classificados em três turmas: A,
+B, e C. As turmas têm tamanhos diferentes (50, 100, e 50 alunos,
+respetivamente). Usando `sample()`, selecione uma amostra de 20 alunos,
+mantendo a proporção original das turmas.
+
+**9.** Um cartão de Bingo contém 24 números aleatórios entre 1 e 75
+(excluindo o número central “free”). Crie 5 cartões de Bingo únicos
+usando a função `sample()`.
+
+**10.** Em um estudo clínico, 30 pacientes devem ser randomizados em
+dois grupos: tratamento e controlo. O grupo de tratamento deve conter 20
+pacientes e o grupo de controlo 10. Usando `sample()`, faça a
+randomização dos pacientes. Dica: use a função `setdiff()`.

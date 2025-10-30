@@ -1,0 +1,610 @@
+# Manipulação de dados
+
+## Tibbles
+
+**Tibbles** são uma versão moderna e melhorada dos data frames em R,
+introduzida pelo pacote `tibble`, que faz parte do `tidyverse` — um
+conjunto de pacotes desenvolvido para facilitar a ciência de dados em R.
+Os tibbles foram projetados para ultrapassar algumas das limitações dos
+data frames tradicionais, oferecendo uma estrutura de dados mais robusta
+e intuitiva para manipulação e análise de dados.
+
+**Diferenças Principais entre Tibble e Data Frame**
+
+Os tibbles têm várias vantagens em relação aos data frames,
+especialmente em termos de usabilidade e integração com o `tidyverse`. A
+tabela abaixo resume as principais diferenças:
+
+| Característica               | Data Frame                                     | Tibble                                                                  |
+|------------------|----------------------|--------------------------------|
+| Impressão no Console         | Exibe todos os dados                           | Exibe um resumo com 10 linhas e colunas visíveis                        |
+| Conversão de Strings         | Converte strings para fatores por padrão       | Mantém strings como caracteres                                          |
+| Manuseio de Colunas          | Apenas vetores, listas podem ser problemáticas | Permite listas, funções, outros tibbles                                 |
+| Nomes de Colunas             | Nomes devem ser únicos e sem espaços           | Nomes podem ter espaços, ser duplicados, etc.                           |
+| Retorno de Subsetting (`[`)  | Pode retornar um vetor ou data frame           | Sempre retorna um tibble                                                |
+| Compatibilidade e Integração | Totalmente compatível com base R               | Compatível, mas otimizado para uso com tidyverse                        |
+| Manipulação de Dados         | Menos intuitivo para algumas operações.        | Mais intuitivo e fácil de usar, especialmente com operações encadeadas. |
+
+### Criar e trabalhar com Tibbles
+
+Criar um `tibble` é semelhante a criar um data frame, mas com uma
+sintaxe ligeiramente diferente que facilita a criação de colunas
+complexas.
+
+```{r eval=FALSE}
+# Carregar o pacote tibble
+library(tibble)
+
+# Criando um tibble
+tb <- tibble(
+  x = 1:5,
+  y = c("A", "B", "C", "D", "E"),
+  z = x * 2
+)
+
+print(tb)
+## # A tibble: 5 × 3
+##       x y         z
+##   <int> <chr> <dbl>
+## 1     1 A         2
+## 2     2 B         4
+## 3     3 C         6
+## 4     4 D         8
+## 5     5 E        10
+```
+
+Também pode converter um data frame existente para um tibble usando a
+função `as_tibble()`:
+
+```{r eval=FALSE}
+# Criar um data frame
+df <- data.frame(
+  x = 1:5,
+  y = c("A", "B", "C", "D", "E")
+)
+
+# Converter para tibble
+tb <- as_tibble(df)
+
+print(tb)
+## # A tibble: 5 × 2
+##       x y    
+##   <int> <chr>
+## 1     1 A    
+## 2     2 B    
+## 3     3 C    
+## 4     4 D    
+## 5     5 E
+```
+
+## Manipulação de Dados com `dplyr`
+
+O `dplyr` é um pacote fundamental no `tidyverse` para manipulação de
+dados em R. Ele proporciona uma sintaxe mais limpa e legível para
+operações comuns em data frames e tibbles, como seleção, filtragem,
+mutação (criação/modificação de colunas), ordenação e agrupamento de
+dados.
+
+As principais funções do `dplyr` são:
+
+-   `select()`: Seleciona colunas de um data frame. 
+- `arrange()`: Ordena as linhas de um data frame com base nos valores de uma ou
+    mais colunas.
+-   `filter()`: Filtra linhas com base em condições lógicas.
+-   `mutate()`: Adiciona novas colunas ou modifica colunas existentes.
+-   `group_by()`: Agrupa os dados com base nos valores de uma ou mais
+    colunas.
+-   `summarise()`: Resuma os dados, tipicamente usado após `group_by()`
+    para calcular estatísticas agregadas.
+
+Vamos explorar cada uma dessas funções usando o dataset `starwars`
+disponível no pacote dplyr.
+
+Assim, utilizaremos o objeto `sw` para acessar os dados.
+
+```{r}
+library(dplyr)
+
+# Carregar o dataset Star Wars
+sw <- starwars
+glimpse(sw) # Exibe uma visão geral dos dados
+```
+
+### Seleção de Colunas com `select()`
+
+A função `select()` é usada para selecionar uma ou mais colunas de um
+tibble ou data frame. Pode usar nomes de colunas diretamente sem aspas.
+
+```{r}
+# Selecionar uma coluna
+select(sw, name)
+
+# Selecionar várias colunas
+select(sw, name, mass, hair_color)
+
+# Selecionar um intervalo de colunas
+select(sw, name:hair_color)
+```
+
+O `dplyr` possui um conjunto de funções auxiliares muito úteis para
+seleção de colunas. As principais são:
+
+-   `starts_with()`: para colunas que começam com um texto específico.
+-   `ends_with()`: para colunas que terminam com um texto específico.
+-   `contains()`: para colunas que contêm um texto específico.
+
+```{r}
+# Selecionar colunas que terminam com "color"
+select(sw, ends_with("color"))
+```
+
+Para remover colunas, basta acrescentar um `-` antes da seleção.
+
+```{r}
+select(sw, -name, -hair_color)
+```
+
+```{r}
+# Remover múltiplas colunas
+select(sw, -ends_with("color"))
+```
+
+### Exercícios
+
+Utilize a base `sw` nos exercícios a seguir.
+
+**1.** Utilize a função `glimpse()` do pacote `dplyr` na base `sw`. O
+que ela faz?
+
+**2.** Crie uma tabela chamada `sw_simples` contendo apenas as colunas
+`name`, `gender` e `films`.
+
+**3.** Selecione apenas as colunas `hair_color`, `skin_color` e
+`eye_color` usando a função auxiliar `contains()`.
+
+**4.** Usando a função `select()` e as suas funções auxiliares, escreva
+códigos que retornem a base `sw` sem as colunas `hair_color`,
+`skin_color` e `eye_color`. Escreva todas as soluções diferentes que
+conseguir pensar.
+
+### Ordenando a Base de Dados
+
+A função `arrange()` permite ordenar as linhas de uma tabela com base
+nos valores de uma ou mais colunas. Pode ordenar em ordem crescente ou
+decrescente, conforme a necessidade.
+
+```{r}
+# Exemplo de ordenação crescente
+arrange(sw, mass)
+
+# Exemplo de ordenação decrescente
+arrange(sw, desc(mass))
+
+# Ordenar por múltiplas colunas
+arrange(sw, desc(height), desc(mass))
+```
+
+### Exercícios
+
+**1.** Ordene a base `sw` pela coluna `mass` em ordem crescente e pela
+coluna `birth_year` em ordem decrescente. Guarde o resultado em um
+objeto chamado `sw_ordenados`.
+
+```{r eval=FALSE}
+sw_ordenados <- arrange(sw, mass, desc(birth_year))
+sw_ordenados
+```
+
+**2.** Selecione apenas as colunas `name` e `birth_year`, então ordene
+de forma decrescente pelo `birth_year`.
+
+```{r eval=FALSE}
+# Usando aninhamento de funções
+arrange(select(sw, name, birth_year), desc(birth_year))
+
+# Usando um objeto intermediário
+sw_aux <- select(sw, name, birth_year)
+arrange(sw_aux, desc(birth_year))
+
+# Usando pipes para simplificar
+sw %>% 
+  select(name, birth_year) %>% 
+  arrange(desc(birth_year))
+```
+
+### Filtrando Linhas da Base de Dados
+
+Para selecionar linhas específicas com base em uma ou mais condições,
+utilizamos a função `filter()`.
+
+```{r}
+# filter(sw, height > 170)
+# Ou
+sw %>% filter(height > 170)
+```
+
+Podemos selecionar apenas as colunas `name` e `height` para
+visualizarmos as alturas:
+
+```{r}
+sw %>% 
+  filter(height > 170) %>% 
+  select(name, height)
+```
+
+Podemos estender o filtro para duas ou mais colunas.
+
+```{r}
+filter(sw, height>170, mass>80)
+```
+
+```{r}
+sw %>% filter(height > 170, mass > 80)
+```
+
+Podemos filtrar colunas categóricas. O exemplo abaixo retorna uma tabela
+apenas com os personagens com cabelo preto ou castanho.
+
+```{r}
+# Filtrar texto com correspondência exata
+filter(sw, hair_color == "black" | hair_color == "brown")
+```
+
+```{r}
+# Filtrar texto com correspondência exata
+sw %>% filter(hair_color %in% c("black","brown"))
+```
+
+Para filtrar textos sem correspondência exata, podemos utilizar a função
+auxiliar `str_detect()` do pacote `{stringr}`. Ela serve para verificar
+se cada string de um vetor contém um determinado padrão de texto.
+
+```{r}
+library(stringr)
+
+str_detect(
+  string = c("a", "aa","abc", "bc", "A", NA), 
+  pattern = "a"
+)
+```
+
+Podemos utilizá-la para filtrar apenas os personagens com cabelo `grey`.
+
+```{r}
+# Podemos detetar se o cabelo grey aparece na string
+str_detect(
+  string = sw$hair_color,
+  pattern = "grey"
+)
+```
+
+```{r}
+library(stringr)
+sw %>% filter(str_detect(hair_color,"grey"))
+```
+
+### Exercícios
+
+Utilize a base `sw` nos exercícios a seguir.
+
+**1.** Crie um objeto chamado `humanos` apenas com personagens que sejam
+humanos.
+
+**2.** Crie um objeto chamado `altos_fortes` com personagens que tenham
+mais de 200 cm de altura e peso maior que 100 kg.
+
+**3.** Retorne tabelas (`tibbles`) apenas com:
+
+**a.** Personagens humanos que nasceram antes de 100 anos antes da
+batalha de Yavin (`birth_year < 100`).
+
+**b.** Personagens com cor `light` ou `red`.
+
+**c.** Personagens com massa maior que 100 kg, ordenados de forma
+decrescente por altura, mostrando apenas as colunas `name`, `mass` e
+`height`.
+
+**d.** Personagens que sejam “Humano” ou “Droid”, e tenham uma altura
+maior que 170 cm.
+
+**e.** Personagens que não possuem informação tanto de altura (`height`)
+quanto de massa (`mass`), ou seja, possuem `NA` em ambas as colunas.
+
+### Modificar e criar novas colunas
+
+A função `mutate()` permite criar novas colunas ou modificar colunas
+existentes, facilitando transformações de dados. O código abaixo divide
+os valores da coluna `height` por 100, mudando a unidade de medida dessa
+variável de centímetros para metros.
+
+```{r}
+# Modificar a unidade de medida da coluna height
+sw %>% mutate(height = height/100)
+```
+
+Também poderíamos ter criado essa variável em uma nova coluna. Repare
+que a nova coluna `height_meters` é colocada no final da tabela.
+
+```{r}
+sw %>% mutate(height_meters = height/100)
+```
+
+Podemos fazer qualquer operação com uma ou mais colunas. Abaixo vamos
+criar um tibble que contenha as colunas `name`, `height`, `mass`, e uma
+nova coluna `BMI`, que calcule o Índice de Massa Corporal (IMC) de cada
+personagem, usando a fórmula `mass / (height/100)^2`. Caso `height` ou
+`mass` seja `NA`, a coluna `BMI` deve ser `NA`.
+
+```{r}
+sw %>%
+  mutate(BMI = ifelse(!is.na(height) & !is.na(mass), mass / (height/100)^2, NA)) %>%
+  select(name, height, mass, BMI)
+```
+
+### Exercícios
+
+**1.** Crie uma coluna chamada `dif_peso_altura` (diferença entre altura
+e peso) e salve a nova tabela em um objeto chamado `starwars_dif`. Em
+seguida, filtre apenas os personagens que têm altura maior que o peso e
+ordene a tabela por ordem crescente de `dif_peso_altura`.
+
+**2.** Crie as seguintes colunas:
+
+**a.** `indice_massa_altura` = `mass` / `height`
+
+**b.** `indice_massa_medio` = `mean(mass, na.rm = TRUE)`
+
+**c.** `indice_relativo` =
+`(indice_massa_altura - indice_massa_medio) / indice_massa_medio`
+
+**d.** `acima_media` =
+`ifelse(indice_massa_altura > indice_massa_medio, “sim”, “não”)`
+
+**3.** Crie uma nova coluna que classifique o personagem em “recente”
+(nascido após 100 anos antes da batalha de Yavin) e “antigo” (nascido há
+100 anos ou mais).
+
+### Sumarizar a Base de Dados
+
+A função `summarize()` permite calcular estatísticas agregadas, como
+média, mediana, variância, etc. Para agregar dados por categorias,
+combinamos `summarize()` com `group_by()`.
+
+O código abaixo resume a coluna `mass` pela sua média.
+
+```{r}
+# Exemplo de sumarização
+sw %>% summarize(media_massa = mean(mass, na.rm = TRUE))
+
+# Sumarização agrupada por categorias
+sw %>%
+  group_by(species) %>%
+  summarize(media_massa = mean(mass, na.rm = TRUE))
+```
+
+Podemos calcular ao mesmo tempo sumarizações diferentes.
+
+```{r}
+sw %>% summarize(
+  media_massa = mean(mass, na.rm = TRUE),
+  mediana_massa = median(mass, na.rm = TRUE),
+  variancia_massa = var(mass, na.rm = TRUE)
+)
+```
+
+Podemos também sumarizar diversas colunas.
+
+```{r}
+sw %>% summarize(
+  media_massa = mean(mass, na.rm = TRUE),
+  media_altura = mean(height, na.rm = TRUE),
+  media_ano = mean(birth_year, na.rm = TRUE)
+)
+```
+
+Para sumarizar uma coluna agrupada pelas categorias de uma segunda
+coluna usamos além do `summarize()` a função `group_by()`.
+
+O código a abaixo calcula a altura média dos personagens para cada
+categoria da coluna `hair_color`.
+
+```{r}
+sw %>% 
+  filter(!is.na(hair_color), !is.na(height)) %>% 
+  group_by(hair_color) %>% 
+  summarize(media_altura = mean(height, na.rm = TRUE))
+```
+
+### Exerícios
+
+Utilize a base `sw` nos exercícios a seguir.
+
+**1.** Calcule a altura média e mediana dos personagens.
+
+**2.** Calcule a massa média dos personagens cuja altura é maior que 175
+cm.
+
+**3.** Apresente na mesma tabela a massa média dos personagens com
+altura menor que 175 cm e a massa média dos personagens com altura maior
+ou igual a 175 cm.
+
+**4.** Retorne tabelas (`tibbles`) apenas com:
+
+**a.** A altura média dos personagens por espécie. **b.** A massa média
+e mediana dos personagens por espécie. **c.** Apenas o nome dos
+personagens que participaram de mais de 2 filmes.
+
+### Juntando Tabelas em R com dplyr
+
+Em ciência de dados, é comum precisar combinar informações de diferentes
+fontes em uma única tabela. No R, o pacote `dplyr` oferece várias
+funções para realizar operações de junção, que permitem combinar duas ou
+mais tabelas (data frames ou tibbles) com base em uma ou mais colunas
+compartilhadas.
+
+**Tipos de Junção**
+
+As junções mais comuns em manipulação de dados são:
+
+-   `left_join()`: Mantém todas as linhas da tabela à esquerda e
+    adiciona as colunas da tabela à direita onde há correspondência de
+    valores na coluna chave.
+-   `right_join()`: Mantém todas as linhas da tabela à direita e
+    adiciona as colunas da tabela à esquerda onde há correspondência.
+-   `full_join()`: Mantém todas as linhas de ambas as tabelas e adiciona
+    NA onde não há correspondência.
+
+Essas funções são extremamente úteis quando é necessário combinar dados
+de diferentes fontes que compartilham uma chave comum, como um
+identificador único.
+
+**Exemplo**: Personagens de Star Wars
+
+Para ilustrar como estas funções funcionam, vamos usar a base de dados
+`sw` e criar dois subconjuntos de dados:
+
+1.  `personagens_altos`: Tabela contendo apenas personagens com altura
+    superior a 180 cm.
+2.  `personagens_humanos`: Tabela contendo apenas personagens que são
+    humanos.
+
+Vamos criar os nossos subconjuntos de dados usando a função `filter()`
+do dplyr.
+
+```{r}
+# Criar subconjunto de personagens altos (altura > 180 cm)
+personagens_altos <- sw %>%
+  filter(height > 180) %>%
+  select(name, height)
+
+# Criar subconjunto de personagens humanos
+personagens_humanos <- sw %>%
+  filter(species == "Human") %>%
+  select(name, species)
+```
+
+Agora que temos duas tabelas, `personagens_altos` e
+`personagens_humanos`, podemos usar as funções de junção para
+combiná-las: `left_join()`, `right_join()`, e `full_join()`.
+
+A função `left_join()` junta duas tabelas, mantendo todas as linhas da
+tabela à esquerda (primeira tabela) e adicionando colunas da tabela à
+direita (segunda tabela) para as quais existe uma correspondência.
+Valores sem correspondência entre as bases receberão `NA` na nova base.
+
+```{r}
+# Combinar tabelas mantendo todas as linhas de personagens_altos
+humanos_altos_left_join <- left_join(personagens_altos, personagens_humanos, by = "name")
+
+# Visualizar o resultado
+print(humanos_altos_left_join)
+```
+
+Neste exemplo, a tabela resultante `humanos_altos_left_join` inclui
+todos os personagens altos e adiciona informações sobre a espécie (se
+disponível) da tabela `personagens_humanos`. Se um personagem não for
+humano, as colunas de espécie serão preenchidas com `NA`.
+
+A função `right_join()` faz o oposto de `left_join()`: mantém todas as
+linhas da tabela à direita e adiciona colunas da tabela à esquerda para
+as quais existe uma correspondência.
+
+```{r}
+# Combinar tabelas mantendo todas as linhas de personagens_humanos
+humanos_altos_right_join <- right_join(personagens_altos, personagens_humanos, by = "name")
+
+# Visualizar o resultado
+print(humanos_altos_right_join)
+```
+
+A tabela `humanos_altos_right_join` inclui todos os personagens humanos
+e adiciona informações sobre a altura (se disponível) da tabela
+`personagens_altos`. Se um personagem humano não for alto, a coluna de
+altura será preenchida com `NA`.
+
+A função `full_join()` mantém todas as linhas de ambas as tabelas e
+adiciona `NA` onde não há correspondência.
+
+```{r}
+# Combinar todas as informações de personagens altos e humanos
+humanos_altos_full_join <- full_join(personagens_altos, personagens_humanos, by = "name")
+
+# Visualizar o resultado
+print(humanos_altos_full_join)
+```
+
+A tabela `humanos_altos_full_join` contém todos os personagens altos e
+humanos. Se um personagem está em apenas uma das tabelas, as colunas da
+outra tabela são preenchidas com `NA`.
+
+### Exercícios
+
+**1.** Crie uma tabela `personagens_altos` contendo apenas personagens
+com altura superior a 180 cm e uma outra tabela `personagens_leves`
+contendo apenas personagens com massa inferior a 75 kg. Use
+`left_join()` para combinar as duas tabelas com base no nome do
+personagem.
+
+```{r eval=FALSE}
+# Criação dos subconjuntos
+personagens_altos <- sw %>% 
+  filter(height > 180) %>% 
+  select(name, height)
+
+personagens_leves <- sw %>% 
+  filter(mass < 75) %>% 
+  select(name, mass)
+
+# Combinação com left_join
+left_join(personagens_altos, personagens_leves, by = "name")
+```
+
+**Dica**: Observe como `left_join()` mantém todos os personagens altos e
+adiciona informações sobre massa apenas para aqueles que também são
+leves.
+
+**2.** Crie uma tabela `personagens_humanos` contendo apenas personagens
+humanos e uma outra tabela `cor_cabelo` contendo apenas personagens com
+cor de cabelo diferente de `NA`. Use `right_join()` para combinar
+`personagens_humanos` e `cor_cabelo` com base no nome do personagem.
+
+```{r eval=FALSE}
+# Criação dos subconjuntos
+personagens_humanos <- sw %>% 
+  filter(species == "Human") %>% 
+  select(name, species)
+
+cor_cabelo <- sw %>% 
+  filter(!is.na(hair_color)) %>% 
+  select(name, hair_color,)
+
+# Combinação com right_join
+right_join(personagens_humanos, cor_cabelo, by = "name")
+```
+
+**Dica**: Observe como `right_join()` mantém todos os personagens com
+cor de cabelo conhecida e adiciona informações sobre a espécie apenas
+para aqueles que também são humanos.
+
+**3.** Crie uma tabela `especies_personagens` contendo apenas
+personagens de espécies conhecidas (não `NA`) e uma outra tabela
+`cor_olhos` contendo apenas personagens com cor de olho conhecida (não
+`NA`). Use `full_join()` para combinar as duas tabelas com base no nome
+do personagem.
+
+```{r eval=FALSE}
+# Criação dos subconjuntos
+especies_personagens <- sw %>% 
+  filter(!is.na(species)) %>% 
+  select(name, species)
+
+cor_olhos <- sw %>% 
+  filter(!is.na(eye_color)) %>% 
+  select(name, eye_color)
+
+# Combinação com full_join
+full_join(especies_personagens, cor_olhos, by = "name")
+```
+
+**Dica**: `full_join()` combina todas as informações disponíveis,
+preenchendo com NA onde não há correspondências.

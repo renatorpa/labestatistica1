@@ -1,0 +1,183 @@
+# Pipe
+
+## O operador pipe
+
+O operador pipe (`%>%`) em R é uma ferramenta poderosa que facilita a
+escrita de código mais limpo e legível. Ele permite que o resultado de
+uma função seja passado diretamente como entrada para a próxima função,
+sem a necessidade de criar variáveis intermediárias. Este operador ajuda
+a tornar o fluxo de dados mais intuitivo e o código mais fácil de ler.
+
+O operador pipe foi popularizado pelo pacote `magrittr`, desenvolvido
+por Stefan Milton Bache e lançado em 2014. O nome “magrittr” é uma
+referência ao artista surrealista René Magritte, famoso pela pintura
+“Ceci n’est pas une pipe” (Isto não é um cachimbo), que inspirou a ideia
+de que o operador pipe permite que dados fluam através de uma sequência
+de operações de maneira intuitiva e sem a necessidade de variáveis
+temporárias.
+
+Para começar a utilizar o operador pipe, é necessário instalar e
+carregar o pacote `magrittr`.
+
+```{r eval=FALSE}
+install.packages("magrittr")
+library(magrittr)
+```
+
+O operador pipe `%>%` permite que o **valor de uma expressão à esquerda seja passado como o primeiro argumento para a função à direita**. Isso permite que o **código seja lido de maneira sequencial, de cima para baixo, em vez de dentro para fora**, o que facilita a compreensão do fluxo de dados. Por exemplo, considere o seguinte código em R sem o uso do pipe:
+
+```{r eval=FALSE}
+x <- c(1, 2, 3, 4)
+sqrt(sum(x))
+## [1] 3.16
+```
+
+Com o operador pipe, o código pode ser reescrito de forma mais clara e
+legível:
+
+```{r eval=FALSE}
+library(magrittr)
+x %>% sum() %>% sqrt()
+## [1] 3.16
+```
+
+Considere um exemplo onde queremos calcular a raiz quadrada da soma dos
+logaritmos dos valores absolutos de um vetor `x`:
+
+```{r eval=FALSE}
+resultado <- sqrt(sum(log(abs(x))))
+```
+
+Usando o operador pipe, o mesmo código pode ser reescrito de maneira
+mais clara:
+
+```{r eval=FALSE}
+resultado <- x %>% 
+  abs() %>% 
+  log() %>% 
+  sum() %>% 
+  sqrt()
+```
+
+**Uso do Ponto (.) no Pipe**
+
+Em alguns casos, o **resultado do lado esquerdo do operador pipe deve ser passado para um argumento que não é o primeiro na função do lado direito**. Para esses casos, usamos um ponto (.) como um marcador para indicar onde o valor deve ser inserido.
+
+Por exemplo, ao usar o pipe para construir um modelo linear com o
+conjunto de dados `airquality`, queremos que o dataset seja passado como
+o segundo argumento (`data =`) da função `lm()`:
+
+```{r eval=FALSE}
+airquality %>%
+  na.omit() %>% # Remove valores ausentes
+  lm(Ozone ~ Wind + Temp + Solar.R, data = .) %>% # Cria o modelo linear
+  summary() # Gera o resumo do modelo
+## 
+## Call:
+## lm(formula = Ozone ~ Wind + Temp + Solar.R, data = .)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -40.48 -14.22  -3.55  10.10  95.62 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) -64.3421    23.0547   -2.79   0.0062 ** 
+## Wind         -3.3336     0.6544   -5.09  1.5e-06 ***
+## Temp          1.6521     0.2535    6.52  2.4e-09 ***
+## Solar.R       0.0598     0.0232    2.58   0.0112 *  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 21.2 on 107 degrees of freedom
+## Multiple R-squared:  0.606,  Adjusted R-squared:  0.595 
+## F-statistic: 54.8 on 3 and 107 DF,  p-value: <2e-16
+```
+
+Neste exemplo, o dataset `airquality` é pré-processado com `na.omit()`
+para remover os valores ausentes, e o resultado é usado como o argumento
+data na função `lm()` para criar um modelo linear. O pipe permite que
+este fluxo de operações seja descrito de forma clara e linear.
+
+## Exercícios
+
+**1.** Reescreva a expressão abaixo utilizando o `%>%`.
+
+```{r eval=FALSE}
+round(mean(sum(1:10)/3), digits = 1)
+```
+
+**Dica**: utilize a função `magrittr::divide_by()`. Veja o help da
+função para mais informações.
+
+**2.** Reescreva o código abaixo utilizando o `%>%`.
+
+```{r}
+x <- rnorm(100)
+
+x.pos <- x[x>0]
+
+media <- mean(x.pos)
+
+saida <- round(media, 2)
+```
+
+**Dica**: utilize a função `magrittr::extract()`. Veja o help da função
+para mais informações.
+
+**3.** Sem executar, diga qual a saída do código abaixo. Consulte o help
+das funções caso precise.
+
+```{r eval=FALSE}
+2 %>%
+  add(2) %>%
+  c(6, NA) %>%
+  mean(na.rm = T) %>%
+  equals(5)
+```
+
+**4.** Dado o dataset `mtcars`, selecione as colunas `mpg`, `hp`, e `wt`, filtre os carros com mais de 100 cavalos de potência (`hp > 100`), e ordene-os pela coluna `wt` (peso) de forma crescente.
+
+```{r eval=FALSE}
+# Sem o operador pipe
+install.packages("dplyr")
+library(dplyr)
+result <- arrange(filter(select(mtcars, mpg, hp, wt), hp > 100), wt)
+print(result)
+```
+
+Reescreva o código acima usando o operador pipe (`%>%`).
+
+**5.** Dado o dataset `iris`, filtre as linhas onde `Sepal.Length` seja maior que 5, selecione as colunas `Sepal.Length` e `Species`, e depois calcule a média de `Sepal.Length` para cada espécie.
+
+```{r eval=FALSE}
+# Sem o operador pipe
+result <- aggregate(Sepal.Length ~ Species, data = select(filter(iris, Sepal.Length > 5), Sepal.Length, Species), mean)
+print(result)
+```
+
+Reescreva o código acima usando o operador pipe (`%>%`).
+
+**6.** Utilizando o dataset `airquality`, remova as linhas que contêm valores ausentes (`NA`), selecione as colunas `Ozone` e `Wind`, e calcule a média de `Ozone` para valores onde `Wind` é maior que 10.
+
+```{r eval=FALSE}
+# Sem o operador pipe
+cleaned_data <- na.omit(airquality)
+filtered_data <- filter(cleaned_data, Wind > 10)
+result <- mean(filtered_data$Ozone)
+print(result)
+```
+
+Reescreva o código acima usando o operador pipe (`%>%`). Dica: use a função `summarise()` para calcular a média.
+
+**7.** Dado o dataset `mtcars`, crie uma nova coluna chamada `hp_per_wt` que seja a razão entre `hp` e `wt`. Em seguida, filtre os carros com essa razão maior que 30, e selecione as colunas `mpg`, `hp_per_wt`, e `gear`.
+
+```{r eval=FALSE}
+# Sem o operador pipe
+mtcars$hp_per_wt <- mtcars$hp / mtcars$wt
+filtered_data <- filter(mtcars, hp_per_wt > 30)
+result <- select(filtered_data, mpg, hp_per_wt, gear)
+print(result)
+```
+
+Reescreva o código acima usando o operador pipe (`%>%`). Dica: use a função `mutate()` para criar a nova coluna.

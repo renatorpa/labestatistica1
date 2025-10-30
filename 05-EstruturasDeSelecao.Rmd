@@ -1,0 +1,300 @@
+# Estruturas de Seleção
+
+Em R, as estruturas de seleção ou decisão são usadas para controlar o
+fluxo de execução do código com base em condições específicas. Estas
+estruturas permitem executar diferentes blocos de código dependendo de
+valores ou condições lógicas. As estruturas de seleção mais comuns em R
+são `if`, `else`, e `else if`.
+
+## Condicional `if`
+
+A instrução `if` executa um bloco de código apenas se uma condição for
+verdadeira. Caso contrário, o bloco de código dentro do `if` é ignorado.
+
+```{r eval=FALSE}
+# Sintaxe	
+if (condição) {
+	  # Código a ser executado se a condição for TRUE
+}
+```
+
+**Exemplo 1:**
+
+```{r eval=FALSE}
+idade <- 18
+
+if (idade >= 18) {
+	  print("Maior de idade")
+}
+## [1] "Maior de idade"
+```
+
+Neste exemplo, como a variável `idade` é 18, a condição `idade >= 18` é
+verdadeira, então o R executa o código dentro do `if` e imprime
+`“Maior de idade”`.
+
+## Estrutura `if...else`
+
+A estrutura `if...else` permite executar um bloco de código se a
+condição for verdadeira, e um outro bloco de código se a condição for
+falsa.
+
+```{r eval=FALSE}
+# Sintaxe
+if (condição) {
+	  # Código a ser executado se a condição for TRUE
+} else {
+	  # Código a ser executado se a condição for FALSE
+}
+```
+
+**Exemplo 2:**
+
+```{r eval=FALSE}
+idade <- 16
+
+if (idade >= 18) {
+	  print("Maior de idade")
+} else {
+    print("Menor de idade")
+}
+## [1] "Menor de idade"
+```
+
+Como a variável `idade` é 16, a condição `idade >= 18` é falsa, então o
+R executa o bloco de código dentro do `else` e imprime
+`“Menor de idade”`.
+
+## Condicional `else if`
+
+A estrutura `else if` permite testar múltiplas condições. Quando uma das
+condições é verdadeira, o R executa o código associado e ignora os
+restantes `else if` ou `else`.
+
+```{r eval=FALSE}
+# Sintaxe
+if (condição1) {
+	  # Código se condição1 for TRUE
+} else if (condição2) {
+	  # Código se condição2 for TRUE
+} else {
+	  # Código se nenhuma condição anterior for TRUE
+}
+```
+
+**Exemplo 3:**
+
+```{r eval=FALSE}
+nota <- 85
+
+if (nota >= 90) {
+  print("Excelente")
+} else if (nota >= 70) {
+  print("Bom")
+} else {
+  print("Insuficiente")
+}
+## [1] "Bom"
+```
+
+Neste caso, a variável `nota` é 85, então o código imprime `“Bom”`
+porque a condição `nota >= 70` é verdadeira.
+
+## A função `ifelse()`
+
+A função `ifelse` é uma versão vetorizada de if...else que retorna
+valores dependendo de uma condição. É especialmente útil para aplicar
+condições a vetores ou data frames.
+
+```{r eval=FALSE}
+# Sintaxe
+resultado <- ifelse(condição, valor_se_true, valor_se_false)
+```
+
+**Exemplo 4:**
+
+```{r eval=FALSE}
+valores <- c(4, 6, 9, 3)
+resultado <- ifelse(valores > 5, "maior que 5", "não é maior que 5")
+print(resultado)
+## [1] "não é maior que 5" "maior que 5"       "maior que 5"      
+## [4] "não é maior que 5"
+```
+
+Aqui, `ifelse()` aplica a condição `valores > 5` a cada elemento do
+vetor `valores` e retorna “maior que 5” se a condição for verdadeira ou
+“não é maior que 5” caso contrário.
+
+## Exemplos
+
+**Exemplo 5:** Indique o(os) erro(os) no código abaixo
+
+```{r eval=FALSE}
+if (x%%2 = 0){  
+	  print("Par")
+} else {  
+    print("Ímpar")
+}
+```
+
+Código correto
+
+```{r eval=FALSE}
+if (x%%2 == 0){  
+  print("Par")
+} else {  
+    print("Ímpar")
+}
+```
+
+**Exemplo 6:** Indique o(os) erro(os) no código abaixo
+
+```{r eval=FALSE}
+if (a>0) {  
+  print("Positivo")  
+  if (a%%5 = 0)     
+    print("Divisível por 5")  	
+} else if (a==0)   
+    print("Zero")
+  else if {  
+    print("Negativo")
+}
+```
+
+Código correto
+
+```{r eval=FALSE}
+if (a>0) {  
+  print("Positivo")  
+  if (a%%5 == 0) {    
+    print("Divisível por 5")  
+  }
+} else if (a==0) {  
+    print("Zero")
+} else {  
+    print("Negativo")
+}
+```
+
+**Exemplo 7:** Quais são os valores de `x` e `y` no final da execução?
+
+```{r eval=FALSE}
+x = 1
+y = 0
+if (x == 1){  
+  y = y - 1
+}
+if (y == 1){  
+  x = x + 1
+}
+```
+
+**Exemplo 8:**
+
+-   Se `x=1` qual será o valor de `x` no final da execução?
+
+-   Qual teria de ser o valor de `x` para que no final da execução fosse
+    -1?
+
+-   Há uma parte do programa que nunca é executada: qual é e porquê?
+
+```{r eval=FALSE}
+if (x == 1){  
+  x = x + 1  
+  if (x == 1){    
+    x = x + 1  
+  } else {   
+      x = x - 1  
+  }
+} else {  
+    x = x - 1
+}
+```
+
+## Exercícios
+
+**1.** Escreva um programa em R que leia um número do utilizador e exiba
+“O número é positivo” se for maior que zero.
+
+**2.** Crie um programa em R que leia um número inteiro do utilizador e
+imprima “Par” se o número for par, e “Ímpar” caso contrário.
+
+**3.** Escreva um programa em R que leia um número não negativo e exiba se ele está
+no intervalo [0, 10], [11, 20], ou maior que 20. Considere que os
+intervalos [0, 10] e [11, 20] são inclusivos. Exemplo: para o número 15,
+o programa deve exibir "O número está no intervalo [11, 20]".
+
+**4.** Escreva um programa em R que leia a idade de uma pessoa e a
+classifique como “Criança” (0-12 anos), “Adolescente” (13-17 anos),
+“Adulto” (18-64 anos), ou “Idoso” (65 anos ou mais). Se a idade inserida
+for negativa, o programa deve exibir “Idade inválida”.
+
+**5.** Escreva um programa em R que leia o preço original de um produto
+e aplique um desconto com base no seguinte critério: 
+
+* Desconto de 5% se o preço for inferior a \$100 
+
+* Desconto de 10% se o preço estiver entre \$100 e \$500 (inclusive) 
+
+* Desconto de 15% se o preço for superior a \$500
+
+Se o preço inserido for negativo, o programa deve exibir "Preço
+inválido". Exemplo de entrada: 350; Saída esperada: "O preço com
+desconto é \$315".
+
+**6.** Escreva um programa em R que leia as coordenadas $(x, y)$ de um
+ponto e determine em qual quadrante o ponto está localizado. Se o ponto
+estiver em um dos eixos, o programa deve especificar "Eixo X" ou "Eixo
+Y". Exemplo de entrada: $(x = -3, y = 2)$; Saída esperada: "Segundo
+quadrante".
+
+**7.** Escreva um programa em R que leia um ano e determine se é um ano
+bissexto. Um ano é bissexto se:
+
+-   É divisível por 4, mas não divisível por 100, exceto quando
+    divisível por 400.
+
+Se o ano inserido for negativo, o programa deve exibir "Ano inválido".
+Exemplo de entrada: 2000; Saída esperada: "Ano bissexto".
+
+**8.** Escreva um programa que leia um número inteiro entre 0 e 999, e o
+descreva em termos de centenas, dezenas e unidades. Por exemplo, para
+304, o programa deve exibir “3 centenas 0 dezenas e 4 unidades”. Caso o
+número inteiro não pertença ao intervalo [0;999], deverá imprimir um
+aviso “Número fora do intervalo”.
+
+**9.** Escreva um programa em R que leia um número inteiro positivo
+(menor ou igual a 5) e escreva no ecrã a sua representação em numeração
+romana. Se o número inserido for maior que 5 ou menor que 1, o programa
+deve exibir "Número fora do intervalo". Exemplo de entrada: 3; Saída
+esperada: "III".
+
+**10.** Escreva um programa em R que leia quatro números inteiros (um de
+cada vez) e exiba após cada iteração qual o menor número lido até ao
+momento. Exemplo:
+
+`Introduza um numero inteiro: 4`
+
+```         
+`O menor numero introduzido até agora é 4.`
+
+`Introduza um numero inteiro: 6`
+
+`O menor numero introduzido até agora é 4.`
+
+`Introduza um numero inteiro: 2`
+
+`O menor numero introduzido até agora é 2.`
+```
+
+**11.** Dado um vetor de números inteiros, identifique se cada número é par ou ímpar. Use a função `ifelse()` para atribuir “par” aos números divisíveis por 2 e “ímpar” aos que não são.
+
+Crie um vetor de números de 1 a 10 e use a função `ifelse()` para rotular cada número como “par” ou “ímpar”.
+
+**12.** Você tem um vetor de notas de alunos e deseja avaliar o desempenho de cada aluno como “Aprovado” ou “Reprovado”. Suponha que a nota de aprovação seja 50.
+
+Crie um vetor com as seguintes notas: 50, 85, 70, 40, 60, 90. Use `ifelse()` para marcar alunos com nota igual ou maior que 50 como “Aprovado” e os demais como “Reprovado”.
+
+Modifique o exercício para que notas entre 50 e 59 sejam classificadas como “Aprovado com Restrição”. Como ficaria o código?
+
+**13.** Dado um vetor de idades, categorize as idades em “Criança” (idade <= 12), “Adolescente” (12 < idade <= 18) e “Adulto” (idade > 18), utilizando a função `ifelse()`.
