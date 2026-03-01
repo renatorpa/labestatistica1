@@ -125,7 +125,7 @@
 
 \title{Introdução ao R e Simulação}
 \author{Renato de Paula}
-\date{2025-10-30}
+\date{2025-11-18}
 
 \begin{document}
 \maketitle
@@ -10249,11 +10249,11 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
 \NormalTok{k }\OtherTok{\textless{}{-}} \DecValTok{1000} \CommentTok{\# número de simulações}
 
 \NormalTok{dados }\OtherTok{\textless{}{-}} \FunctionTok{rbinom}\NormalTok{(k, }\AttributeTok{size =}\NormalTok{ n, }\AttributeTok{prob =}\NormalTok{ p)}
-\NormalTok{frequencia\_relativa }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(dados)}\SpecialCharTok{/}\FunctionTok{length}\NormalTok{(dados)}
+\NormalTok{frequencia\_relativa }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(}\FunctionTok{factor}\NormalTok{(dados, }\AttributeTok{levels=}\DecValTok{0}\SpecialCharTok{:}\NormalTok{n))}\SpecialCharTok{/}\FunctionTok{length}\NormalTok{(dados)}
 
 \NormalTok{teorico }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{x =} \DecValTok{0}\SpecialCharTok{:}\NormalTok{n, }\AttributeTok{y=}\FunctionTok{dbinom}\NormalTok{(}\DecValTok{0}\SpecialCharTok{:}\NormalTok{n, }\AttributeTok{size =}\NormalTok{ n, }\AttributeTok{prob =}\NormalTok{ p))}
 
-\FunctionTok{barplot}\NormalTok{(frequencia\_relativa,}
+\NormalTok{posicoes\_barra }\OtherTok{\textless{}{-}} \FunctionTok{barplot}\NormalTok{(frequencia\_relativa,}
         \AttributeTok{main =} \StringTok{"Geração de números aleatórios de Bi(20,0.1)"}\NormalTok{,}
         \AttributeTok{col =} \StringTok{"lightblue"}\NormalTok{,}
         \AttributeTok{xlab =} \StringTok{"Número de sucessos"}\NormalTok{,}
@@ -10261,7 +10261,7 @@ Seja \(X\sim\text{Binomial}(n=20, p=0.1)\).
         \AttributeTok{xlim =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{20}\NormalTok{),}
         \AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\FloatTok{0.01}\NormalTok{,}\FloatTok{0.3}\NormalTok{))}
 
-\FunctionTok{points}\NormalTok{(teorico}\SpecialCharTok{$}\NormalTok{x, teorico}\SpecialCharTok{$}\NormalTok{y,}
+\FunctionTok{points}\NormalTok{(posicoes\_barra, teorico}\SpecialCharTok{$}\NormalTok{y,}
        \AttributeTok{col =} \StringTok{"magenta"}\NormalTok{,}
        \AttributeTok{pch =} \DecValTok{19}\NormalTok{)}
 
@@ -10633,6 +10633,84 @@ Amostra aleatória de dimensão 5: \texttt{rgeom(n\ =\ 5,\ prob\ =\ 0.5)} = 3 0 
   Usando a simulação do item (c), calcule a média e o desvio padrão da amostra gerada. Compare com os valores teóricos da média \(\mu = \frac{1-p}{p}\) e do desvio padrão \(\sigma = \sqrt{\frac{1-p}{p^2}}\).
 \item
   Construa um gráfico que compare a distribuição teórica \(P(X = x)\) com a frequência relativa observada na simulação do item (c).
+\end{enumerate}
+
+\textbf{7.} Um sistema de autenticação biométrica permite tentativas consecutivas até que o utilizador seja reconhecido com sucesso. Cada tentativa tem probabilidade de sucesso igual a 0.2, e o número de tentativas até o primeiro sucesso segue uma distribuição geométrica.
+
+Um engenheiro pretende simular 1000 acessos diferentes ao sistema, assumindo que o tempo total de processamento associado ao número de tentativas \(X\) é dado pela função polinomial:
+
+\[T = 2X^2 + 3X + 5,\]
+
+onde \(T\) representa o tempo em milissegundos.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Simule 1000 valores de \(X \sim \text{Geom}(0.2)\).
+\item
+  Calcule o vetor de tempos \(T\).
+\item
+  Produza um histograma dos tempos simulados.
+\item
+  Calcule a média e o desvio padrão de \(T\).
+\item
+  Estime a probabilidade empírica de que um acesso demore mais de 150 ms.
+\end{enumerate}
+
+\textbf{8.} Um laboratório está a testar um novo medicamento que, em ensaios pré‑clínicos, elimina uma célula-alvo com probabilidade 0.1 por tentativa. O número de falhas antes do primeiro sucesso segue uma distribuição geométrica.
+
+O custo associado a um ensaio é modelado pela função polinomial:
+
+\[C = 0.5X^2 + 20,\]
+
+onde \(X\) é o número de falhas antes do sucesso e \(C\) é o custo em euros.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Simule 5000 ensaios, cada um com \(X \sim \text{Geom}(0.1)\).
+\item
+  Calcule o vetor de custos \(C\).
+\item
+  Construa um boxplot dos custos simulados.
+\item
+  Calcule:
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  A média dos custos
+\item
+  O desvio padrão
+\item
+  A percentagem de ensaios com custo superior a 200€
+\item
+  A percentagem com custo inferior a 50€
+\end{itemize}
+
+\textbf{9.} Um sistema de alta disponibilidade é composto por vários servidores redundantes. A cada tentativa de conexão, o sistema procura por um servidor funcional. Cada servidor tem 10\% de chance de estar operacional. As tentativas são feitas sequencialmente até encontrar um servidor disponível. O número de servidores verificados até o primeiro sucesso segue uma distribuição geométrica com \(p = 0.1\).
+
+O tempo total de resposta do sistema é modelado pela função:
+
+\[T = \sqrt{X^2 + 3X + 1} + \log(X + 1),\]
+
+onde \(X\) é o número de tentativas necessárias até encontrar um servidor ativo, e \(T\) é o tempo de resposta em milissegundos.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Simule 3000 valores de \(X \sim \text{Geom}(0.1)\).
+\item
+  Calcule o tempo de resposta \(T\) para cada valor simulado.
+\item
+  Crie um gráfico de dispersão entre \(X\) e \(T\).
+\item
+  Calcule a média, mediana e desvio padrão de \(T\).
+\item
+  Estime a probabilidade empírica de o tempo ultrapassar 10 ms.
+\item
+  Calcule os quantis de 25\%, 50\% e 75\% de \(T\).
 \end{enumerate}
 
 \section{Distribuição de Poisson}\label{distribuiuxe7uxe3o-de-poisson}

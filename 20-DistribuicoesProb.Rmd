@@ -475,11 +475,11 @@ p <- 0.1
 k <- 1000 # número de simulações
 
 dados <- rbinom(k, size = n, prob = p)
-frequencia_relativa <- table(dados)/length(dados)
+frequencia_relativa <- table(factor(dados, levels=0:n))/length(dados)
 
 teorico <- data.frame(x = 0:n, y=dbinom(0:n, size = n, prob = p))
 
-barplot(frequencia_relativa,
+posicoes_barra <- barplot(frequencia_relativa,
         main = "Geração de números aleatórios de Bi(20,0.1)",
         col = "lightblue",
         xlab = "Número de sucessos",
@@ -487,7 +487,7 @@ barplot(frequencia_relativa,
         xlim = c(0,20),
         ylim = c(-0.01,0.3))
 
-points(teorico$x, teorico$y,
+points(posicoes_barra, teorico$y,
        col = "magenta",
        pch = 19)
 
@@ -717,6 +717,66 @@ dgeom(x = 2, prob = 1/6)
 (d) Usando a simulação do item (c), calcule a média e o desvio padrão da amostra gerada. Compare com os valores teóricos da média  $\mu = \frac{1-p}{p}$  e do desvio padrão  $\sigma = \sqrt{\frac{1-p}{p^2}}$.
 
 (e) Construa um gráfico que compare a distribuição teórica  $P(X = x)$  com a frequência relativa observada na simulação do item (c).
+
+**7.** Um sistema de autenticação biométrica permite tentativas consecutivas até que o utilizador seja reconhecido com sucesso. Cada tentativa tem probabilidade de sucesso igual a 0.2, e o número de tentativas até o primeiro sucesso segue uma distribuição geométrica.
+
+Um engenheiro pretende simular 1000 acessos diferentes ao sistema, assumindo que o tempo total de processamento associado ao número de tentativas $X$ é dado pela função polinomial:
+
+$$T = 2X^2 + 3X + 5,$$
+
+onde $T$ representa o tempo em milissegundos.
+
+(a) Simule 1000 valores de $X \sim \text{Geom}(0.2)$.
+
+(b) Calcule o vetor de tempos $T$.
+
+(c) Produza um histograma dos tempos simulados.
+
+(d) Calcule a média e o desvio padrão de $T$.
+
+(e) Estime a probabilidade empírica de que um acesso demore mais de 150 ms.
+
+**8.** Um laboratório está a testar um novo medicamento que, em ensaios pré‑clínicos, elimina uma célula-alvo com probabilidade 0.1 por tentativa. O número de falhas antes do primeiro sucesso segue uma distribuição geométrica.
+
+O custo associado a um ensaio é modelado pela função polinomial:
+
+$$C = 0.5X^2 + 20,$$
+
+onde $X$ é o número de falhas antes do sucesso e $C$ é o custo em euros.
+
+(a) Simule 5000 ensaios, cada um com $X \sim \text{Geom}(0.1)$.
+
+(b) Calcule o vetor de custos $C$.
+
+(c) Construa um boxplot dos custos simulados.
+
+(d) Calcule:
+
+- A média dos custos
+- O desvio padrão
+- A percentagem de ensaios com custo superior a 200€
+- A percentagem com custo inferior a 50€
+
+**9.** Um sistema de alta disponibilidade é composto por vários servidores redundantes. A cada tentativa de conexão, o sistema procura por um servidor funcional. Cada servidor tem 10% de chance de estar operacional. As tentativas são feitas sequencialmente até encontrar um servidor disponível. O número de servidores verificados até o primeiro sucesso segue uma distribuição geométrica com $p = 0.1$.
+
+O tempo total de resposta do sistema é modelado pela função:
+
+$$T = \sqrt{X^2 + 3X + 1} + \log(X + 1),$$
+
+onde $X$ é o número de tentativas necessárias até encontrar um servidor ativo, e $T$ é o tempo de resposta em milissegundos.
+
+
+(a) Simule 3000 valores de $X \sim \text{Geom}(0.1)$.
+
+(b) Calcule o tempo de resposta $T$ para cada valor simulado.
+
+(c) Crie um gráfico de dispersão entre $X$ e $T$.
+
+(d) Calcule a média, mediana e desvio padrão de $T$.
+
+(e) Estime a probabilidade empírica de o tempo ultrapassar 10 ms.
+
+(f) Calcule os quantis de 25%, 50% e 75% de $T$.
 
 ## Distribuição de Poisson
 
